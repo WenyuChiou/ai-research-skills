@@ -36,6 +36,10 @@ families:
           - Obsidian Markdown notes
           - NotebookLM bundles and briefs
           - research-hub dashboards
+        verified_on: "2026-04-25"
+        verification_status: pass
+        verification_tier: T1
+        verification_notes: doctor green; search returned 3 real results from CrossRef + DBLP
       - name: research-hub-multi-ai
         directory: research-hub-multi-ai
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -47,6 +51,10 @@ families:
         outputs:
           - Delegation plan
           - Handoff prompts
+        verified_on: "2026-04-25"
+        verification_status: pass
+        verification_tier: T3
+        verification_notes: SKILL.md present; routing rules consistent with installed codex 0.121.0 and gemini 0.38.2
       - name: research-context-compressor
         directory: research-context-compressor
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -60,6 +68,10 @@ families:
           - .research/project_manifest.yml
           - .research/experiment_matrix.yml
           - .research/data_dictionary.yml
+        verified_on: "2026-04-25"
+        verification_status: pass
+        verification_tier: T3
+        verification_notes: SKILL.md well-formed (108 lines, schema-reference + token-saving sections); foundation for project-orienter
       - name: research-project-orienter
         directory: research-project-orienter
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -70,6 +82,10 @@ families:
           - Resume a research project after context has been compressed.
         outputs:
           - Orientation memo in conversation
+        verified_on: "2026-04-25"
+        verification_status: pass
+        verification_tier: T3
+        verification_notes: SKILL.md well-formed (120 lines); correctly defers to research-context-compressor when .research/ missing
       - name: literature-triage-matrix
         directory: literature-triage-matrix
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -80,6 +96,10 @@ families:
           - Decide which papers are central to a literature review.
         outputs:
           - .research/literature_matrix.md
+        verified_on: "2026-04-25"
+        verification_status: pass
+        verification_tier: T3
+        verification_notes: SKILL.md well-formed (113 lines); inputs (Zotero collections, Obsidian clusters) verified working in research-hub and zotero-skills
       - name: paper-memory-builder
         directory: paper-memory-builder
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -91,6 +111,10 @@ families:
         outputs:
           - .paper/claims.yml
           - .paper/figures.yml
+        verified_on: "2026-04-25"
+        verification_status: pass
+        verification_tier: T3
+        verification_notes: SKILL.md well-formed (125 lines); clean boundary - does not edit manuscript itself, hands off to academic-writing-skills
       - name: notebooklm-brief-verifier
         directory: notebooklm-brief-verifier
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -102,6 +126,10 @@ families:
         outputs:
           - Verification report in conversation
           - Follow-up NotebookLM prompts
+        verified_on: "2026-04-25"
+        verification_status: pass
+        verification_tier: T3
+        verification_notes: SKILL.md well-formed (134 lines, 14 sections); doctor confirms chrome via patchright + nlm_session healthy. End-to-end verifier loop not exercised in this pass.
 
   - id: academic-writing
     name: Academic writing
@@ -132,6 +160,10 @@ families:
           - Claim-evidence audit
           - Reviewer response table
           - Submission checklist
+        verified_on: "2026-04-25"
+        verification_status: pass
+        verification_tier: T3
+        verification_notes: SKILL.md + 7 reference files present (banned_words, figure_conventions, journal_format_template, section_checklists, style_overrides_example, submission_checklist, writing_principles). banned_words.md spot-check 4/4 expected words found.
 
   - id: zotero-operations
     name: Zotero operations
@@ -156,6 +188,10 @@ families:
         outputs:
           - Updated Zotero items
           - Updated collections and tags
+        verified_on: "2026-04-25"
+        verification_status: pass
+        verification_tier: T1
+        verification_notes: Zotero local API returned real collection (key GH5CN2ZZ from library 我的文獻庫); add_literature.py and zotero_client.py present.
 
   - id: ai-delegation
     name: AI delegation
@@ -183,6 +219,10 @@ families:
         outputs:
           - Codex task prompt
           - Supervision and review checklist
+        verified_on: "2026-04-25"
+        verification_status: caveat
+        verification_tier: T2
+        verification_notes: "codex-cli 0.121.0 present. Default model gpt-5.5 is too new for installed CLI - aborts with 'requires a newer version of Codex'. Workaround: pass `-m gpt-5.4` or pin gpt-5.4 in ~/.codex/config.toml. Confirmed working with -m gpt-5.4."
       - name: gemini-delegate
         directory: .
         repo_url: https://github.com/WenyuChiou/gemini-delegate-skill
@@ -195,6 +235,10 @@ families:
         outputs:
           - Gemini task prompt
           - Review or synthesis output
+        verified_on: "2026-04-25"
+        verification_status: pass
+        verification_tier: T2
+        verification_notes: gemini 0.38.2 present; one-shot prompt returned PING cleanly.
 
 boundaries:
   research-hub: Zotero, Obsidian, NotebookLM, local research workspace, .research, .paper handoff files.
