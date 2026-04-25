@@ -60,4 +60,3 @@ response.
 The goal is not to replace the researcher. The goal is to stop wasting time
 reloading context and start using AI on the parts of research that need judgment:
 triage, synthesis, critique, revision, and reproducibility.
-

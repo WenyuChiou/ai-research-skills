@@ -31,4 +31,3 @@ If a new skill is mainly about:
 - Zotero CRUD -> `zotero-skills`,
 - AI CLI handoff -> delegation repo,
 - domain simulation or coupling -> the model repo.
-

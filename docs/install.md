@@ -72,4 +72,3 @@ academic-writing-skills
 
 Add `zotero-skills` if you maintain a large Zotero library. Add delegation
 skills if you actively use Codex or Gemini alongside Claude.
-

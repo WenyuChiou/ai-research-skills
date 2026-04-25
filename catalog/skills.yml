@@ -73,4 +73,3 @@ boundaries:
   zotero-skills: Deep Zotero library operations that are not tied to the research-hub pipeline.
   delegation-skills: Multi-AI handoff patterns, not research-domain logic.
   model-repos: Domain-specific simulations, governance, audit traces, and external model coupling contracts.
-

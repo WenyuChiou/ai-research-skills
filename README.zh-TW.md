@@ -112,4 +112,3 @@ Zotero + NotebookLM
 ## License
 
 MIT
-
