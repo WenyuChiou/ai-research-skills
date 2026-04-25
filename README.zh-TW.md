@@ -2,6 +2,8 @@
 
 這是一個給研究者使用的 AI skills 總目錄，整理 Zotero、Obsidian、NotebookLM、論文寫作、以及 Codex/Gemini delegation 相關 skills。
 
+語言版本：[English](README.md) | [繁中](README.zh-TW.md) | [Bilingual / 中英文對照](README.bilingual.md)
+
 這個 repo 是 umbrella catalog，不複製各 skill 的本體。每個 skill 仍由原本的 canonical repo 維護，避免文件、測試和安裝方式分叉。
 
 ## 適合誰

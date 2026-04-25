@@ -3,6 +3,8 @@
 A curated index of practical AI skills for researchers who use AI assistants
 with Zotero, Obsidian, NotebookLM, manuscript drafts, and coding agents.
 
+Languages: [English](README.md) | [繁中](README.zh-TW.md) | [Bilingual / 中英文對照](README.bilingual.md)
+
 This repo is an umbrella catalog. It does not duplicate the skill bodies from
 the source repositories. Each skill remains maintained in its canonical repo so
 updates, tests, and installation instructions stay in one place.

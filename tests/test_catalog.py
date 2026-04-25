@@ -48,6 +48,27 @@ def test_readme_mentions_core_tool_combinations():
         assert phrase in readme
 
 
+def test_bilingual_readme_exists_and_lists_all_skills():
+    bilingual = (ROOT / "README.bilingual.md").read_text(encoding="utf-8")
+    for phrase in [
+        "English",
+        "繁中",
+        "Zotero + Obsidian",
+        "Obsidian + NotebookLM",
+        "research-hub",
+        "research-context-compressor",
+        "research-project-orienter",
+        "literature-triage-matrix",
+        "paper-memory-builder",
+        "notebooklm-brief-verifier",
+        "academic-writing-skills",
+        "zotero-skills",
+        "codex-delegate",
+        "gemini-delegate",
+    ]:
+        assert phrase in bilingual
+
+
 def test_researcher_workflow_checklist_lists_core_research_combinations():
     checklist = (ROOT / "docs" / "researcher-workflow-checklist.md").read_text(encoding="utf-8")
     for phrase in [
