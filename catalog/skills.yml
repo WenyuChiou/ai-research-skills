@@ -1,0 +1,76 @@
+version: 1
+updated: "2026-04-25"
+catalog_name: ai-research-skills
+description: Curated AI skills for research workflows, literature management, academic writing, and multi-agent delegation.
+
+families:
+  - id: research-workspace
+    name: Research workspace
+    canonical_repo: https://github.com/WenyuChiou/research-hub
+    install_doc: https://github.com/WenyuChiou/research-hub
+    tools:
+      - Zotero
+      - Obsidian
+      - NotebookLM
+    skills:
+      - name: knowledge-base
+        purpose: Operate research-hub workflows for discovery, ingest, organization, NotebookLM, dashboard, and maintenance.
+      - name: research-hub-multi-ai
+        purpose: Decide when to work directly vs delegate to Codex or Gemini.
+      - name: research-context-compressor
+        purpose: Create .research manifests so future AI sessions avoid repeated repo scans.
+      - name: research-project-orienter
+        purpose: Read .research manifests and produce a concise orientation memo.
+      - name: literature-triage-matrix
+        purpose: Compare papers by method, data, claims, limitations, and relevance.
+      - name: paper-memory-builder
+        purpose: Extract .paper claims and figure memory for manuscript work.
+      - name: notebooklm-brief-verifier
+        purpose: Verify NotebookLM briefs against uploaded source bundles.
+
+  - id: academic-writing
+    name: Academic writing
+    canonical_repo: https://github.com/WenyuChiou/academic-writing-skills
+    install_doc: https://github.com/WenyuChiou/academic-writing-skills
+    tools:
+      - Word
+      - LaTeX
+      - Markdown
+      - Obsidian
+    skills:
+      - name: academic-writing-skills
+        purpose: Manuscript revision, claim-evidence audit, reviewer response, figure-text consistency, and submission checks.
+
+  - id: zotero-operations
+    name: Zotero operations
+    canonical_repo: https://github.com/WenyuChiou/zotero-skills
+    install_doc: https://github.com/WenyuChiou/zotero-skills
+    tools:
+      - Zotero
+    skills:
+      - name: zotero-skills
+        purpose: Deep Zotero CRUD, collections, tags, item edits, and library maintenance.
+
+  - id: ai-delegation
+    name: AI delegation
+    canonical_repo: https://github.com/WenyuChiou/codex-delegate
+    install_doc: https://github.com/WenyuChiou/codex-delegate
+    related_repos:
+      - https://github.com/WenyuChiou/gemini-delegate-skill
+    tools:
+      - Claude
+      - Codex
+      - Gemini
+    skills:
+      - name: codex-delegate
+        purpose: Delegate coding-heavy work from Claude to Codex CLI.
+      - name: gemini-delegate-skill
+        purpose: Delegate long-context, multilingual, or CJK-heavy work from Claude to Gemini CLI.
+
+boundaries:
+  research-hub: Zotero, Obsidian, NotebookLM, local research workspace, .research, .paper handoff files.
+  academic-writing-skills: Manuscript writing, reviewer response, journal compliance, claim-evidence audits.
+  zotero-skills: Deep Zotero library operations that are not tied to the research-hub pipeline.
+  delegation-skills: Multi-AI handoff patterns, not research-domain logic.
+  model-repos: Domain-specific simulations, governance, audit traces, and external model coupling contracts.
+
