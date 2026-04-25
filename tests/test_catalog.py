@@ -22,10 +22,16 @@ def test_every_family_has_canonical_repo_and_skills():
     data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
     for family in data["families"]:
         assert family["canonical_repo"].startswith("https://github.com/WenyuChiou/")
+        assert family["default_branch"]
+        assert family["install"]["commands"], family["id"]
         assert family["skills"], family["id"]
         for skill in family["skills"]:
             assert skill["name"]
             assert skill["purpose"]
+            assert skill["repo_url"].startswith("https://github.com/WenyuChiou/")
+            assert "/blob/" in skill["skill_url"]
+            assert skill["use_when"], skill["name"]
+            assert skill["outputs"], skill["name"]
 
 
 def test_readme_mentions_core_tool_combinations():
@@ -36,8 +42,19 @@ def test_readme_mentions_core_tool_combinations():
         "Zotero + NotebookLM",
         "research-hub",
         "academic-writing-skills",
+        "docs/skill-directory.md",
     ]:
         assert phrase in readme
+
+
+def test_skill_directory_has_every_catalog_skill():
+    data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
+    directory = (ROOT / "docs" / "skill-directory.md").read_text(encoding="utf-8")
+    for family in data["families"]:
+        assert family["canonical_repo"] in directory
+        for skill in family["skills"]:
+            assert skill["name"] in directory
+            assert skill["skill_url"] in directory
 
 
 def test_no_model_project_specific_positioning():

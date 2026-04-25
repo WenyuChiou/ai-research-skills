@@ -24,17 +24,30 @@ Zotero + NotebookLM
 
 三個都用時，可以形成完整研究工作流。
 
+## 從這裡開始
+
+| 你想做什麼 | 使用這個 skill | 下載 / 安裝 |
+|---|---|---|
+| 連接 Zotero、Obsidian、NotebookLM | [`research-hub`](https://github.com/WenyuChiou/research-hub) | `pip install research-hub-pipeline`，再執行 `research-hub install --platform claude-code` |
+| 做 literature review 比較表 | [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) | 透過 `research-hub install` 安裝 |
+| 驗證 NotebookLM brief | [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) | 透過 `research-hub install` 安裝 |
+| 準備 manuscript 給 AI 寫作/修改 | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) + [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) | 安裝 `research-hub`，並 clone `academic-writing-skills` |
+| 修改論文或回覆 reviewer | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) | `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` |
+| 清理或編輯 Zotero library | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | `git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills` |
+| 委派大量 coding 工作 | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate) | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate` |
+| 委派長 context 或中英文工作 | [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill) | `git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill` |
+
+完整目錄見 [docs/skill-directory.md](docs/skill-directory.md)。Machine-readable catalog 見 [catalog/skills.yml](catalog/skills.yml)。
+
 ## Skill Families
 
 | 類別 | Canonical repo | 用途 |
 |---|---|---|
-| Research workspace | `research-hub` | 讓 AI 操作 Zotero、Obsidian、NotebookLM、clusters、dashboard 和本地研究 artifacts。 |
-| Academic writing | `academic-writing-skills` | manuscript revision、claim-evidence audit、reviewer response、figure-text consistency。 |
-| Zotero operations | `zotero-skills` | 深度 Zotero CRUD、collections、tags、batch metadata、library maintenance。 |
-| Codex delegation | `codex-delegate` | 讓 Claude 把 coding-heavy 工作交給 Codex CLI。 |
-| Gemini delegation | `gemini-delegate-skill` | 讓 Claude 把長 context、多語言或中文重的工作交給 Gemini CLI。 |
-
-完整 catalog 見 [catalog/skills.yml](catalog/skills.yml)。
+| Research workspace | [`research-hub`](https://github.com/WenyuChiou/research-hub) | 讓 AI 操作 Zotero、Obsidian、NotebookLM、clusters、dashboard 和本地研究 artifacts。 |
+| Academic writing | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) | manuscript revision、claim-evidence audit、reviewer response、figure-text consistency。 |
+| Zotero operations | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | 深度 Zotero CRUD、collections、tags、batch metadata、library maintenance。 |
+| Codex delegation | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate) | 讓 Claude 把 coding-heavy 工作交給 Codex CLI。 |
+| Gemini delegation | [`gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill) | 讓 Claude 把長 context、多語言或中文重的工作交給 Gemini CLI。 |
 
 ## 建議安裝順序
 
@@ -51,13 +64,13 @@ Zotero + NotebookLM
 
 來自 `research-hub`：
 
-- `knowledge-base`
-- `research-hub-multi-ai`
-- `research-context-compressor`
-- `research-project-orienter`
-- `literature-triage-matrix`
-- `paper-memory-builder`
-- `notebooklm-brief-verifier`
+- [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md)
+- [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md)
+- [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md)
+- [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md)
+- [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md)
+- [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md)
+- [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md)
 
 這些 skills 負責文獻工作流、Obsidian cluster notes、NotebookLM brief verification，以及 `.research/` / `.paper/` context files。
 
@@ -65,7 +78,7 @@ Zotero + NotebookLM
 
 來自 `academic-writing-skills`：
 
-- `academic-writing-skills`
+- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md)
 
 負責 manuscript structure、claim-evidence audit、reviewer response、journal format checks、figure-text consistency、pre-submission checks。
 
@@ -73,9 +86,9 @@ Zotero + NotebookLM
 
 獨立 repo：
 
-- `zotero-skills`
-- `codex-delegate`
-- `gemini-delegate-skill`
+- [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md)
+- [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md)
+- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md)
 
 這些不放進 `research-hub`，因為它們處理的是不同層次的工作。
 

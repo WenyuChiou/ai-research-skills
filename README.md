@@ -27,17 +27,30 @@ Zotero + NotebookLM
 
 Using all three unlocks the full loop.
 
+## Start Here
+
+| If you want to... | Use this skill | Download / install |
+|---|---|---|
+| Connect Zotero, Obsidian, and/or NotebookLM | [`research-hub`](https://github.com/WenyuChiou/research-hub) | `pip install research-hub-pipeline` then `research-hub install --platform claude-code` |
+| Compare papers in a literature review | [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) | Installed through `research-hub install` |
+| Verify a NotebookLM brief | [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) | Installed through `research-hub install` |
+| Prepare a manuscript for AI writing | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) + [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) | Install `research-hub` and clone `academic-writing-skills` |
+| Revise a paper or respond to reviewers | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) | `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` |
+| Clean or edit Zotero library items | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | `git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills` |
+| Delegate coding-heavy work | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate) | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate` |
+| Delegate long-context or bilingual work | [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill) | `git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill` |
+
+Full directory: [docs/skill-directory.md](docs/skill-directory.md). Machine-readable catalog: [catalog/skills.yml](catalog/skills.yml).
+
 ## Skill Families
 
 | Family | Canonical repo | Use when |
 |---|---|---|
-| Research workspace | `research-hub` | You want AI to operate Zotero, Obsidian, NotebookLM, clusters, dashboards, and local research artifacts. |
-| Academic writing | `academic-writing-skills` | You want manuscript revision, claim-evidence audits, reviewer response, and figure-text consistency. |
-| Zotero operations | `zotero-skills` | You need deeper Zotero CRUD, collections, tags, batch metadata, or library maintenance. |
-| Codex delegation | `codex-delegate` | Claude should hand code-heavy work to Codex CLI. |
-| Gemini delegation | `gemini-delegate-skill` | Claude should hand long-context, multilingual, or CJK-heavy work to Gemini CLI. |
-
-Full machine-readable catalog: [catalog/skills.yml](catalog/skills.yml).
+| Research workspace | [`research-hub`](https://github.com/WenyuChiou/research-hub) | You want AI to operate Zotero, Obsidian, NotebookLM, clusters, dashboards, and local research artifacts. |
+| Academic writing | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) | You want manuscript revision, claim-evidence audits, reviewer response, and figure-text consistency. |
+| Zotero operations | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | You need deeper Zotero CRUD, collections, tags, batch metadata, or library maintenance. |
+| Codex delegation | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate) | Claude should hand code-heavy work to Codex CLI. |
+| Gemini delegation | [`gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill) | Claude should hand long-context, multilingual, or CJK-heavy work to Gemini CLI. |
 
 ## Recommended Install Order
 
@@ -56,22 +69,22 @@ See [docs/install.md](docs/install.md) for commands.
 
 From `research-hub`:
 
-- `knowledge-base`
-- `research-hub-multi-ai`
-- `research-context-compressor`
-- `research-project-orienter`
-- `literature-triage-matrix`
-- `paper-memory-builder`
-- `notebooklm-brief-verifier`
+- [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md)
+- [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md)
+- [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md)
+- [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md)
+- [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md)
+- [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md)
+- [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md)
 
 These skills cover literature workflow, Obsidian cluster notes, NotebookLM
 brief verification, and `.research/` / `.paper/` context files.
 
 ### Academic writing skill
 
-From `academic-writing-skills`:
+From [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills):
 
-- `academic-writing-skills`
+- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md)
 
 This skill covers manuscript structure, claim-evidence audits, reviewer
 response, journal format checks, figure-text consistency, and pre-submission
@@ -81,9 +94,9 @@ checks.
 
 From standalone repos:
 
-- `zotero-skills`
-- `codex-delegate`
-- `gemini-delegate-skill`
+- [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md)
+- [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md)
+- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md)
 
 These are intentionally separate from `research-hub` because they solve
 different layers of the workflow.

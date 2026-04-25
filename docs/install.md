@@ -2,6 +2,9 @@
 
 This repo is a catalog. Install skills from their canonical repositories.
 
+For a complete inventory with direct skill links, see
+[skill-directory.md](skill-directory.md).
+
 ## 1. research-hub
 
 Use this if your workflow includes Zotero, Obsidian, NotebookLM, or any useful
