@@ -40,6 +40,8 @@ Using all three unlocks the full loop.
 | Delegate coding-heavy work | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate) | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate` |
 | Delegate long-context or bilingual work | [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill) | `git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill` |
 
+For a researcher-facing checklist, start with
+[docs/researcher-workflow-checklist.md](docs/researcher-workflow-checklist.md).
 Full directory: [docs/skill-directory.md](docs/skill-directory.md). Machine-readable catalog: [catalog/skills.yml](catalog/skills.yml).
 
 ## Skill Families

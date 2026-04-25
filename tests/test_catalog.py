@@ -43,8 +43,25 @@ def test_readme_mentions_core_tool_combinations():
         "research-hub",
         "academic-writing-skills",
         "docs/skill-directory.md",
+        "docs/researcher-workflow-checklist.md",
     ]:
         assert phrase in readme
+
+
+def test_researcher_workflow_checklist_lists_core_research_combinations():
+    checklist = (ROOT / "docs" / "researcher-workflow-checklist.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Zotero + Obsidian",
+        "Obsidian + NotebookLM",
+        "Zotero + NotebookLM",
+        "Zotero + Obsidian + NotebookLM",
+        "notebooklm-brief-verifier",
+        "literature-triage-matrix",
+        "paper-memory-builder",
+        "academic-writing-skills",
+        "zotero-skills",
+    ]:
+        assert phrase in checklist
 
 
 def test_skill_directory_has_every_catalog_skill():

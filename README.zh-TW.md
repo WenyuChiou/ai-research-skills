@@ -37,6 +37,7 @@ Zotero + NotebookLM
 | 委派大量 coding 工作 | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate) | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate` |
 | 委派長 context 或中英文工作 | [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill) | `git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill` |
 
+研究者工作流清單見 [docs/researcher-workflow-checklist.md](docs/researcher-workflow-checklist.md)。
 完整目錄見 [docs/skill-directory.md](docs/skill-directory.md)。Machine-readable catalog 見 [catalog/skills.yml](catalog/skills.yml)。
 
 ## Skill Families

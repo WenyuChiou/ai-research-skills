@@ -3,6 +3,10 @@
 This page is the practical index. Start with the tool combination you already
 use, then install the skill that matches your workflow.
 
+For a checklist organized around Zotero, Obsidian, NotebookLM, manuscript work,
+and AI assistants, see
+[researcher-workflow-checklist.md](researcher-workflow-checklist.md).
+
 ## Choose By Tool Combination
 
 | You use | Start with | Install |
