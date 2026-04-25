@@ -1,9 +1,9 @@
 # AI Research Skills / AI 研究 Skills
 
 English and Traditional Chinese side-by-side guide for choosing and installing
-research-oriented AI skills.
+research-oriented AI skills for researchers and research-adjacent users.
 
-中英文對照版，用來快速判斷你需要哪個 research AI skill，以及要去哪裡下載或安裝。
+中英文對照版，給研究者與研究相關使用者快速判斷需要哪個 research AI skill，以及要去哪裡下載或安裝。
 
 Links:
 
@@ -20,6 +20,8 @@ Links:
 | This repo is an umbrella catalog for AI skills used in research workflows. | 這個 repo 是研究工作流 AI skills 的總目錄。 |
 | It does not duplicate skill bodies. Each skill remains maintained in its canonical repo. | 它不複製 skill 本體。每個 skill 仍由原本的 canonical repo 維護。 |
 | Use this page to decide what to install, then follow the direct links. | 使用這頁判斷要裝什麼，然後點直接連結安裝。 |
+| Target readers include graduate students, PhD researchers, postdocs, research engineers, librarians, research support staff, and AI power users. | 目標讀者包含研究生、博士生、博士後、研究人員、研究工程師、圖書館或研究支援人員，以及 AI 重度使用者。 |
+| Each entry should explain the problem solved, the tool combination it fits, and where to install it. | 每一項都應該說清楚解決什麼問題、適合哪一種工具組合，以及要去哪裡安裝。 |
 
 ## Tool Combinations / 工具組合
 

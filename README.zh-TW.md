@@ -1,10 +1,14 @@
 # AI Research Skills
 
-這是一個給研究者使用的 AI skills 總目錄，整理 Zotero、Obsidian、NotebookLM、論文寫作、以及 Codex/Gemini delegation 相關 skills。
+這是一個面向公開推廣的 AI skills 總目錄，主要給研究者與研究相關使用者使用，整理 Zotero、Obsidian、NotebookLM、論文寫作、以及 Codex/Gemini delegation 相關 skills。
 
 語言版本：[English](README.md) | [繁中](README.zh-TW.md) | [Bilingual / 中英文對照](README.bilingual.md)
 
 這個 repo 是 umbrella catalog，不複製各 skill 的本體。每個 skill 仍由原本的 canonical repo 維護，避免文件、測試和安裝方式分叉。
+
+目標讀者包含研究生、博士生、博士後、研究人員、研究工程師、圖書館或研究支援人員，以及需要管理論文、筆記、NotebookLM 摘要、草稿或研究程式碼的 AI 重度使用者。
+
+目標是讓外部使用者能採用：每一項 skill 都要說清楚它解決什麼問題、適合哪一種工具組合，以及要去哪裡安裝。
 
 ## 適合誰
 

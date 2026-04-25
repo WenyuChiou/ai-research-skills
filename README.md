@@ -1,13 +1,21 @@
 # AI Research Skills
 
-A curated index of practical AI skills for researchers who use AI assistants
-with Zotero, Obsidian, NotebookLM, manuscript drafts, and coding agents.
+A public, researcher-facing index of practical AI skills for people who use AI
+assistants with Zotero, Obsidian, NotebookLM, manuscript drafts, and coding
+agents.
 
 Languages: [English](README.md) | [繁中](README.zh-TW.md) | [Bilingual / 中英文對照](README.bilingual.md)
 
 This repo is an umbrella catalog. It does not duplicate the skill bodies from
 the source repositories. Each skill remains maintained in its canonical repo so
 updates, tests, and installation instructions stay in one place.
+
+Target readers include graduate students, PhD researchers, postdocs, research
+engineers, librarians, research support staff, and AI power users who manage
+papers, notes, briefs, drafts, or research code.
+
+The goal is adoption: every entry should make it clear what problem the skill
+solves, which tool combination it fits, and where to install it.
 
 ## Who This Is For
 

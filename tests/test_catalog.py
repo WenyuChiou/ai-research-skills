@@ -37,6 +37,9 @@ def test_every_family_has_canonical_repo_and_skills():
 def test_readme_mentions_core_tool_combinations():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     for phrase in [
+        "researcher-facing",
+        "graduate students",
+        "research support staff",
         "Zotero + Obsidian",
         "Obsidian + NotebookLM",
         "Zotero + NotebookLM",
@@ -53,6 +56,9 @@ def test_bilingual_readme_exists_and_lists_all_skills():
     for phrase in [
         "English",
         "繁中",
+        "research-adjacent users",
+        "研究相關使用者",
+        "研究生",
         "Zotero + Obsidian",
         "Obsidian + NotebookLM",
         "research-hub",
