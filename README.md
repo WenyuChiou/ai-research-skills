@@ -110,13 +110,12 @@ OneNote skill — use Obsidian as the notes layer.)*
 | [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) *(optional)* | Audit Zotero before comparison — find duplicate DOIs, orphan items, propose tag/collection cleanup. Read-only. |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) *(optional)* | Apply the cleanup the curator proposes — full CRUD on Zotero items. |
 
-### 3a. Frame the problem (you do this)
+### 3a. Frame the problem
 
 > *"Is my research question sharp enough to be falsifiable?"*
 
-AI doesn't replace this work. The skill below acts as a **Socratic
-dialog partner** — it asks structured questions to surface what you'd
-otherwise leave implicit; it does not invent the question for you.
+A Socratic dialog partner that asks structured questions to surface
+what you'd otherwise leave implicit.
 
 | Skill | What it does |
 |---|---|
@@ -139,9 +138,8 @@ repo.
 
 > *"What architecture, equations, agents, or prompts do I need?"*
 
-The creative part — choosing model class, parameters, identifiability
-strategy — stays human. AI helps by reading back the `design_brief.md`
-from 3a and generating implementation scaffolding.
+Re-read the `design_brief.md` produced in Stage 3a as your model spec,
+then generate implementation scaffolding.
 
 | Skill | What it does |
 |---|---|
@@ -168,11 +166,12 @@ For repeatable sweeps and post-fix verification, delegate via the
 
 > *"What does the figure actually show? Does my caption match?"*
 
-No native skill yet. Visualisation typically means direct interaction
-with your plotting stack (matplotlib / plotly). When the work is
-mechanical (consistent style across N figures, batch re-renders) or
-interpretive (caption / narrative pairing), delegate via the
-**Cross-cutting tools** below.
+Tools: **matplotlib / plotly / your plotting stack of choice.**
+
+| Skill | What it does |
+|---|---|
+| [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) | Generate or refactor plotting scripts (consistent style across N figures, batch re-renders). |
+| [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) | Pair a figure with a draft caption / interpretation paragraph using long-context reading. |
 
 ### 7. Draft and revise the manuscript
 
@@ -235,14 +234,10 @@ Three skills don't belong to a specific stage — they're triggered by
 
 - [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) — manuscript revision, claim-evidence audit, banned-word / humanize, journal format, reviewer response. *(Stages 7, 8)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7)*
-- [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) — Claude → Codex CLI handoff for code-heavy work. *(Cross-cutting)*
-- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting)*
+- [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) — Claude → Codex CLI handoff for code-heavy work. *(Cross-cutting, also Stage 6)*
+- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting, also Stages 6, 7)*
 
 </details>
-
-Stage with no native skill yet: **(6) visualisation** — closest fits
-are the cross-cutting `codex-delegate` and `gemini-delegate`.
-Contributions welcome.
 
 ---
 
