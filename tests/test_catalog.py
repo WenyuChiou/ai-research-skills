@@ -168,9 +168,14 @@ def test_claude_plugin_marketplace_is_well_formed():
 
 
 def test_canonical_install_command_consistent_across_sources_of_truth():
-    """The catalog standardized on `research-hub setup --persona <X>` as the
-    fresh-user onboarding command. README, install docs, and the
-    machine-readable YAML must all lead with `setup`, not bare `install`."""
+    """The catalog standardized on `research-hub setup` (interactive
+    onboarding) as the fresh-user command. README, install docs, and
+    the machine-readable YAML must all lead with `setup`, not bare
+    `install`. The README dropped `--persona <X>` because it was a
+    CLI-internal flag the README shouldn't be teaching; the interactive
+    setup asks the same questions without forcing the user to learn the
+    persona names. Per-doc files (docs/install.md, catalog/skills.yml,
+    etc.) may still reference `--persona` for completeness."""
     docs_with_install = [
         ROOT / "README.md",
         ROOT / "README.zh-TW.md",
@@ -181,8 +186,8 @@ def test_canonical_install_command_consistent_across_sources_of_truth():
     ]
     for doc in docs_with_install:
         text = doc.read_text(encoding="utf-8")
-        assert "research-hub setup --persona" in text, (
-            f"{doc.relative_to(ROOT)}: missing canonical `research-hub setup --persona` command"
+        assert "research-hub setup" in text, (
+            f"{doc.relative_to(ROOT)}: missing canonical `research-hub setup` command"
         )
 
 

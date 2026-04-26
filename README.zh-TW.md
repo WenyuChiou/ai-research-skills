@@ -87,11 +87,11 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/g
 
 ```bash
 pip install research-hub-pipeline
-research-hub setup --persona researcher
+research-hub setup
 ```
 
-Persona 選項：`researcher` / `analyst` / `humanities` / `internal`
-——對應差異看 [docs/install.md](docs/install.md)。
+`research-hub setup` 跑互動式 onboarding，會問你要連 Zotero / Obsidian
+/ NotebookLM 哪幾個，不用事先選任何選項。
 
 **+ `research-hub`**（論文搜尋、ingest、NotebookLM 上傳）、
 **`research-hub-multi-ai`**（delegation orchestration）。也會把第 1-2
@@ -156,9 +156,9 @@ ls ~/.claude/skills/
 | **寫論文 / 改稿** | `paper-memory-builder` + `academic-writing-skills` |
 | **管理研究專案 / Zotero library** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` |
 
-> **協助別人用 AI 做研究**（圖書館員 / RA / 指導者）？不用裝——讀
-> [docs/install.md](docs/install.md) 與 [docs/verification.md](docs/verification.md)
-> 然後推薦就好。
+> **協助別人用 AI 做研究**（圖書館員 / RA / 指導者）？不用裝——直接把
+> 這個 README 跟 [docs/verification.md](docs/verification.md)（per-skill
+> testing 結果）轉給對方就好。
 >
 > **沒對到你的目標？** 完整 8 階段研究 pipeline 在
 > [docs/pipeline.zh-TW.md](docs/pipeline.zh-TW.md)，找到你的階段就裝

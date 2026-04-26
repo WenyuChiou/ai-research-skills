@@ -93,11 +93,12 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/g
 
 ```bash
 pip install research-hub-pipeline
-research-hub setup --persona researcher
+research-hub setup
 ```
 
-Persona choices: `researcher` / `analyst` / `humanities` / `internal`
-— see [docs/install.md](docs/install.md) for which to pick.
+`research-hub setup` runs an interactive onboarding that asks which
+of Zotero / Obsidian / NotebookLM you want to wire up. No flags or
+choices to memorise upfront.
 
 **+ `research-hub`** (paper search, ingest, NotebookLM upload),
 **`research-hub-multi-ai`** (delegation orchestration). Also installs
