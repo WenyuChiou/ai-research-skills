@@ -7,9 +7,7 @@
 
 語言：[English](README.md) | [繁中](README.zh-TW.md)
 
-![研究 pipeline 示意圖即將推出——13 個 skills 對應 8 個研究階段](docs/img/pipeline-overview.png)
-*（圖片佔位中——完整 pipeline 示意圖即將推出。在此之前，請參考下方
-**完整研究 pipeline** 段落。）*
+![13 個 AI skills 對應 8 個研究階段，附 cross-cutting tools（codex-delegate、gemini-delegate、research-hub-multi-ai）每階段都可用](docs/img/pipeline-overview.png)
 
 **你會拿到什麼：** 13 個 skills，涵蓋整個研究 workflow。**驗證狀態：**
 13 個裡 11 個對真實研究環境（1100+ 篇 Zotero、live NotebookLM、真實

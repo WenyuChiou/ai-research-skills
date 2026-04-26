@@ -9,9 +9,7 @@ final manuscript.
 
 Languages: [English](README.md) | [繁中](README.zh-TW.md)
 
-![Pipeline diagram coming soon — the catalog of 13 skills mapped to the 8-stage research workflow](docs/img/pipeline-overview.png)
-*(Diagram placeholder — full pipeline overview is coming. Until then,
-see the **Full research pipeline** section below.)*
+![13 AI skills mapped to the 8-stage research workflow, with cross-cutting tools (codex-delegate, gemini-delegate, research-hub-multi-ai) usable at every stage](docs/img/pipeline-overview.png)
 
 **What you get:** 13 skills covering the full research workflow.
 **Verification status:** 11 of 13 verified end-to-end (T1) against a
