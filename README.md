@@ -127,6 +127,61 @@ ls ~/.claude/skills/
 
 ---
 
+## Using these skills outside Claude Code
+
+The `claude plugin install` path is Claude Code-specific. Each
+SKILL.md is plain Markdown, so you can use these skills with Codex
+CLI, Gemini CLI, Cursor, Windsurf, or any AI assistant that accepts
+context files. You lose Claude Code's auto-trigger (the
+description-matching that picks the right skill from your phrasing) —
+on other hosts, point the AI at the specific `SKILL.md` you want.
+
+### 1. Get the source
+
+```bash
+git clone https://github.com/WenyuChiou/research-hub
+git clone https://github.com/WenyuChiou/academic-writing-skills
+git clone https://github.com/WenyuChiou/zotero-skills
+git clone https://github.com/WenyuChiou/codex-delegate
+git clone https://github.com/WenyuChiou/gemini-delegate-skill
+```
+
+Each repo's SKILL.md (and its `references/`) live under
+`skills/<plugin-name>/`. For research-hub that's 9 SKILL.md files;
+the other 4 repos have 1 each.
+
+### 2. Load per host
+
+| Host | How to load SKILL.md |
+|---|---|
+| **Codex CLI** | `codex exec --full-auto -C /repo "$(cat path/to/SKILL.md)\n\nNow do X..."`, or write a `.ai/codex_task.md` that starts with the SKILL.md contents and references the workflow you want |
+| **Gemini CLI** | Pass via `--system-prompt-file path/to/SKILL.md`, or include in project context |
+| **Cursor / Windsurf** | Copy SKILL.md (or its contents) into `.cursor/rules/` or the editor's rules directory |
+| **Generic API client** | Use SKILL.md as the system prompt |
+| **Any other AI** | Paste the relevant section of SKILL.md into your prompt |
+
+### 3. Notes on which skills make sense outside Claude Code
+
+- The 5 pure-reasoning skills (`literature-triage-matrix`,
+  `research-design-helper`, `research-context-compressor`,
+  `research-project-orienter`, `paper-memory-builder`) work on any
+  AI — they describe a workflow + output format, not a Claude-specific
+  trigger.
+- `academic-writing-skills` works on any AI that can read files
+  (`.paper/`, journal_format.md).
+- `notebooklm-brief-verifier` Manual fallback works anywhere.
+- `zotero-skills` works on any AI that can call the Zotero local /
+  Web API (it's mostly an API-routing reference, not a Claude
+  feature).
+- `codex-delegate` / `gemini-delegate` are most useful **from
+  Claude** delegating outward; if you're already using Codex or
+  Gemini directly, these don't add much.
+- `research-hub` and `research-hub-multi-ai` need the
+  `research-hub-pipeline` Python CLI on PATH regardless of which
+  AI calls them.
+
+---
+
 ## How to use
 
 After install, skills auto-trigger inside Claude Code when your

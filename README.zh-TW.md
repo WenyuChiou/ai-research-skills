@@ -120,6 +120,54 @@ ls ~/.claude/skills/
 
 ---
 
+## 在 Claude Code 之外用這些 skills
+
+`claude plugin install` 那條路徑只有 Claude Code 認得。SKILL.md 本身
+就是 Markdown，可以給 Codex CLI、Gemini CLI、Cursor、Windsurf 或任何
+吃 context file 的 AI assistant 用。代價是失去 Claude Code 的
+auto-trigger（你描述需求它會自己挑對的 skill）——在其他 host 上你要
+明確指出要用哪個 SKILL.md。
+
+### 1. 拿原始檔
+
+```bash
+git clone https://github.com/WenyuChiou/research-hub
+git clone https://github.com/WenyuChiou/academic-writing-skills
+git clone https://github.com/WenyuChiou/zotero-skills
+git clone https://github.com/WenyuChiou/codex-delegate
+git clone https://github.com/WenyuChiou/gemini-delegate-skill
+```
+
+每個 repo 的 SKILL.md（連同 `references/`）都在
+`skills/<plugin-name>/` 底下。research-hub 有 9 份；其他 4 個各 1 份。
+
+### 2. 各 host 載入方式
+
+| Host | 怎麼載入 SKILL.md |
+|---|---|
+| **Codex CLI** | `codex exec --full-auto -C /repo "$(cat path/to/SKILL.md)\n\n現在做 X..."`，或寫一份 `.ai/codex_task.md` 開頭塞 SKILL.md 內容 |
+| **Gemini CLI** | `--system-prompt-file path/to/SKILL.md`，或放進 project context |
+| **Cursor / Windsurf** | 把 SKILL.md（或內容）丟到 `.cursor/rules/` 或對應 rules 目錄 |
+| **通用 API** | 把 SKILL.md 當 system prompt 用 |
+| **其他 AI** | 把 SKILL.md 相關段落貼進你的 prompt |
+
+### 3. 哪些 skill 在 Claude Code 之外比較合理
+
+- 5 個純推理 skill（`literature-triage-matrix`、
+  `research-design-helper`、`research-context-compressor`、
+  `research-project-orienter`、`paper-memory-builder`）任何 AI 都能
+  跑——它們講的是 workflow + 輸出格式，不依賴 Claude 特定機制。
+- `academic-writing-skills` 任何 AI 能讀檔（`.paper/`、journal_format.md）就行。
+- `notebooklm-brief-verifier` 的 Manual fallback 模式哪都能跑。
+- `zotero-skills` 任何 AI 能呼叫 Zotero local / Web API 就能用——它
+  主要是 API routing reference，不是 Claude 特性。
+- `codex-delegate` / `gemini-delegate` 是 **Claude 對外 delegate**
+  時用的；如果你直接用 Codex 或 Gemini，這兩個不太需要。
+- `research-hub` 跟 `research-hub-multi-ai` 不論用哪個 AI 都要先
+  `pip install research-hub-pipeline`。
+
+---
+
 ## 怎麼用
 
 裝完之後，skills 會在你 Claude Code 的請求符合 skill 的描述時**自動觸發**。
