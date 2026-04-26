@@ -1,11 +1,13 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "ai-research-skills",
+  "description": "Researcher-facing Claude Code skills for Zotero, Obsidian, NotebookLM, research memory, and paper workflows.",
   "owner": {
     "name": "Wenyu Chiou"
   },
   "metadata": {
     "description": "Catalog of AI skills for the research workflow — researcher-led, AI-assisted",
-    "version": "1.0.5"
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -18,6 +20,58 @@
       "source": {
         "source": "url",
         "url": "https://github.com/WenyuChiou/research-hub.git",
+        "ref": "master"
+      }
+    },
+    {
+      "name": "academic-writing-skills",
+      "description": "Manuscript revision, claim-evidence audit, banned-word / humanize pass, figure-text consistency, journal-format check, reviewer response.",
+      "category": "productivity",
+      "homepage": "https://github.com/WenyuChiou/academic-writing-skills",
+      "version": "0.1.0",
+      "strict": true,
+      "source": {
+        "source": "url",
+        "url": "https://github.com/WenyuChiou/academic-writing-skills.git",
+        "ref": "main"
+      }
+    },
+    {
+      "name": "zotero-skills",
+      "description": "Full Zotero CRUD: search, add, update, delete items with notes, tags, collections, and PDF attachments. Dual local/Web API routing.",
+      "category": "productivity",
+      "homepage": "https://github.com/WenyuChiou/zotero-skills",
+      "version": "0.1.0",
+      "strict": true,
+      "source": {
+        "source": "url",
+        "url": "https://github.com/WenyuChiou/zotero-skills.git",
+        "ref": "master"
+      }
+    },
+    {
+      "name": "codex-delegate",
+      "description": "Hand token-heavy mechanical work (batch edits, scaffolding, refactors, test generation, plotting scripts) from Claude to Codex CLI.",
+      "category": "productivity",
+      "homepage": "https://github.com/WenyuChiou/codex-delegate",
+      "version": "0.1.0",
+      "strict": true,
+      "source": {
+        "source": "url",
+        "url": "https://github.com/WenyuChiou/codex-delegate.git",
+        "ref": "master"
+      }
+    },
+    {
+      "name": "gemini-delegate",
+      "description": "Hand long-context reading, bilingual rewrites, second-opinion review, and Traditional Chinese / CJK output from Claude to Gemini CLI.",
+      "category": "productivity",
+      "homepage": "https://github.com/WenyuChiou/gemini-delegate-skill",
+      "version": "0.1.0",
+      "strict": true,
+      "source": {
+        "source": "url",
+        "url": "https://github.com/WenyuChiou/gemini-delegate-skill.git",
         "ref": "master"
       }
     }

@@ -32,55 +32,37 @@ interactive `/plugin install` UI on Claude Code 2.1.119. The
 interactive path can try SSH (`git@github.com`) for GitHub sources and
 fail on machines without a configured GitHub SSH key.
 
-## Plugin shipped
+## Plugins shipped
 
-Currently the marketplace ships **one plugin** that installs cleanly
-under Claude Code's auto-discovery rules:
+The marketplace ships **5 plugins** — one bundle (`research-workspace`)
+that auto-discovers 9 skills from a `skills/<name>/SKILL.md` layout,
+plus 4 standalone single-skill plugins whose SKILL.md sits at the repo
+root and is exposed via a `.claude-plugin/plugin.json` declaring
+`"skills": ["./"]`.
 
-| Plugin | Source repo | Skills bundled |
+| Plugin | Source repo | Skills it ships |
 |---|---|---|
-| `research-workspace` | `WenyuChiou/research-hub` | 9 skills auto-discovered from `skills/<name>/SKILL.md` (research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder) |
+| `research-workspace` | `WenyuChiou/research-hub` | 9 skills auto-discovered from `skills/<name>/SKILL.md`: research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder |
+| `academic-writing-skills` | `WenyuChiou/academic-writing-skills` | Single skill: manuscript revision, banned-word audit, claim-evidence check, journal format, reviewer response |
+| `zotero-skills` | `WenyuChiou/zotero-skills` | Single skill: full Zotero CRUD (local + Web API) |
+| `codex-delegate` | `WenyuChiou/codex-delegate` | Single skill: hand token-heavy mechanical work to Codex CLI |
+| `gemini-delegate` | `WenyuChiou/gemini-delegate-skill` | Single skill: hand long-context / CJK output to Gemini CLI |
 
-### What this plugin alone gets you
+### What each plugin gets you out of the box
 
-**5 of the 9 skills work fully** with marketplace install only
-(`literature-triage-matrix`, `research-design-helper`,
-`research-context-compressor`, `research-project-orienter`,
-`paper-memory-builder`). **1 works in fallback mode**
-(`notebooklm-brief-verifier`). **3 need
-`pip install research-hub-pipeline`** (they're wrappers around the
-research-hub CLI). When a CLI-required skill is invoked without the
-CLI, it prints a setup hint instead of failing silently.
-
-Per-step coverage detail and install commands for the rest of the
-catalog (academic-writing-skills, zotero-skills, codex-delegate,
-gemini-delegate, the research-hub CLI): see
-[../README.md](../README.md) "What you can use after each step".
-
-## Why only one plugin?
-
-The catalog also references 4 **standalone** skill repos
-(`academic-writing-skills`, `zotero-skills`, `codex-delegate`,
-`gemini-delegate-skill`). Each of those repos keeps its `SKILL.md` at
-the repo root, not under `skills/<name>/`. The marketplace plugin
-schema's documented workaround for that layout —
-`"skills": ["./"]` — is currently rejected by Claude Code's parser
-when paired with a `github` source. As a result, those 4 plugins are
-**not** in the marketplace yet; the catalog README directs users to
-install them via `git clone` (Path B) until the upstream issue is
-resolved.
-
-Two ways the 4 standalone plugins could ship via this marketplace
-later:
-
-1. **Add `plugin.json`** declaring `{"skills": ["./"]}` to each of the
-   4 source repos. Claude Code would then read that manifest after
-   cloning and find SKILL.md correctly.
-2. **Upstream fix in Claude Code** so `"skills": ["./"]` is accepted
-   for `github`-source plugins (matches the documented spec).
-
-Tracked as a follow-up; this marketplace will grow back to 5 plugins
-once one of those paths lands.
+- **`research-workspace`** — 5 of its 9 skills work fully without any
+  extra setup (`literature-triage-matrix`, `research-design-helper`,
+  `research-context-compressor`, `research-project-orienter`,
+  `paper-memory-builder`). 1 works in fallback mode
+  (`notebooklm-brief-verifier`). 3 are CLI wrappers and need
+  `pip install research-hub-pipeline` to actually run; without it they
+  print a setup hint instead of hallucinating output.
+- **`academic-writing-skills`** — works fully on its own.
+- **`zotero-skills`** + **`zotero-library-curator`** (in
+  `research-workspace`) — need Zotero connectivity (local API on port
+  23119, or Web API key).
+- **`codex-delegate`** / **`gemini-delegate`** — need their respective
+  CLI binaries installed; see each source repo's README.
 
 ## Marketplace install vs. `pip install research-hub-pipeline`
 
