@@ -6,16 +6,16 @@ catalog installable as a Claude Code plugin marketplace.
 ## Quick install
 
 ```text
-/plugin marketplace add WenyuChiou/ai-research-skills
-/plugin marketplace list
-/plugin install research-workspace@ai-research-skills
-/plugin list
+claude plugin marketplace add WenyuChiou/ai-research-skills
+claude plugin marketplace list
+claude plugin install research-workspace@ai-research-skills --scope user
+claude plugin list
 ```
 
 Expected checks:
 
-- `/plugin marketplace list` should include `ai-research-skills`.
-- `/plugin list` should include `research-workspace@ai-research-skills`.
+- `claude plugin marketplace list` should include `ai-research-skills`.
+- `claude plugin list` should include `research-workspace@ai-research-skills`.
 
 For shell-level diagnostics, use:
 
@@ -26,6 +26,11 @@ claude plugin list --available --json
 Do not use `/plugin marketplace info ai-research-skills` as a
 verification step on Claude Code 2.1.119; `marketplace info` is not a
 supported marketplace subcommand in that version.
+
+Also prefer the terminal `claude plugin install ...` command over the
+interactive `/plugin install` UI on Claude Code 2.1.119. The
+interactive path can try SSH (`git@github.com`) for GitHub sources and
+fail on machines without a configured GitHub SSH key.
 
 ## Plugin shipped
 
@@ -81,7 +86,7 @@ once one of those paths lands.
 
 | You want… | Use this path |
 |---|---|
-| Just the SKILL.md instructions (skills auto-trigger inside Claude Code) | `/plugin marketplace add` above — lighter, no Python env |
+| Just the SKILL.md instructions (skills auto-trigger inside Claude Code) | `claude plugin marketplace add` above — lighter, no Python env |
 | The full research-hub workflow with CLI commands (`research-hub auto`, `research-hub search`, NotebookLM upload automation, etc.) | `pip install research-hub-pipeline` then `research-hub setup --persona <X>` (see [docs/install.md](../docs/install.md)) |
 
 Both paths install the same 9 SKILL.md files under

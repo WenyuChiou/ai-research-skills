@@ -73,7 +73,10 @@ def test_zh_readme_mirrors_persona_table():
         "寫論文 / 改稿",
         "管理研究專案",
         "協助別人用 AI 做研究",
-        "Cross-cutting Tools",
+        # Pipeline + cross-cutting tools moved to docs/pipeline.zh-TW.md
+        # to keep the README focused on install + how-to-use; the
+        # README must still link out to the moved doc.
+        "docs/pipeline.zh-TW.md",
     ]:
         assert phrase in zh, f"zh-TW phrase missing: {phrase}"
 
