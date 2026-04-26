@@ -307,7 +307,33 @@ Prerequisite: Claude Code (https://claude.ai/code).
 > the skill's trigger description. Skills are not CLI tools or Python
 > packages — they're prompt scaffolding the host loads on your behalf.
 
-The minimum useful set:
+### Path A — Claude Code marketplace (recommended for most users)
+
+Two commands. No Python env, no per-repo `git clone`. Skills auto-update
+when the source repos push new commits.
+
+```text
+/plugin marketplace add WenyuChiou/ai-research-skills
+/plugin install research-workspace@ai-research-skills
+```
+
+The catalog ships 5 plugins — install whichever you need:
+
+| Plugin | What's in it |
+|---|---|
+| `research-workspace` | 9 skills: literature search + comparison + planning + multi-AI routing |
+| `academic-writing-skills` | Manuscript revision, claim audit, reviewer response |
+| `zotero-skills` | Deep Zotero CRUD beyond research-hub |
+| `codex-delegate` | Claude → Codex CLI handoff |
+| `gemini-delegate` | Claude → Gemini CLI handoff |
+
+Marketplace internals: see [.claude-plugin/README.md](.claude-plugin/README.md).
+
+### Path B — `pip install` + `git clone` (full platform with CLI)
+
+Pick this if you want the **research-hub Python CLI** (`research-hub auto`,
+`research-hub search`, NotebookLM browser automation, etc.) on top of
+the SKILL.md files.
 
 ```bash
 # 1. research-hub — installs 9 skills + onboards your persona in one go
@@ -319,7 +345,7 @@ git clone https://github.com/WenyuChiou/academic-writing-skills \
   ~/.claude/skills/academic-writing-skills
 ```
 
-That's it for most researchers. Add as needed:
+Add as needed:
 
 ```bash
 # Heavy Zotero CRUD (deeper than research-hub bundles)
@@ -335,37 +361,12 @@ pip install "research-hub-pipeline[playwright]"
 research-hub notebooklm login
 ```
 
-> **Already ran `research-hub install --platform claude-code`?** That
-> command still works but only writes the SKILL.md files — `setup` is
-> the recommended onboarding because it also handles persona, Zotero
-> default collection, and NotebookLM login. Both are idempotent; you
-> can run `setup` any time.
+> **Path A vs Path B:** Path A ships only the SKILL.md files (lighter,
+> no Python env). Path B adds the research-hub CLI (search/ingest/
+> NotebookLM upload/dashboard). Pick A if you mostly work inside Claude
+> Code conversations; pick B if you also script research-hub commands.
 
-### Don't want research-hub at all?
-
-Skip `pip install research-hub-pipeline` and clone only the standalone
-repos you need. You'll get up to 4 skills, fully usable, with no
-platform install:
-
-```bash
-# Manuscript revision + reviewer response (most-used)
-git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills
-
-# Deep Zotero CRUD
-git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
-
-# Hand code-heavy tasks to Codex CLI
-git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
-
-# Hand long-context / 繁中 work to Gemini CLI
-git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
-```
-
-The other 9 skills (literature-triage, design-helper, compressor,
-orienter, paper-memory-builder, etc.) ship together inside
-`research-hub-pipeline` and aren't separately installable today.
-
-Full guide: [docs/install.md](docs/install.md). Upgrading from
+Full install guide: [docs/install.md](docs/install.md). Upgrading from
 research-hub-pipeline ≤ 0.45? See the upgrade note in that file.
 
 ---

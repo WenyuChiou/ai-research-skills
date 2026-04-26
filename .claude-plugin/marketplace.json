@@ -1,0 +1,63 @@
+{
+  "name": "ai-research-skills",
+  "owner": {
+    "name": "Wenyu Chiou"
+  },
+  "metadata": {
+    "description": "Catalog of 13 AI skills for the research workflow — researcher-led, AI-assisted",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "research-workspace",
+      "description": "9 research-hub skills: literature search, comparison matrix, planning manifests, design dialog, multi-AI routing, NotebookLM brief verification, paper-memory builder, Zotero curator",
+      "source": {
+        "source": "github",
+        "repo": "WenyuChiou/research-hub"
+      },
+      "skills": [
+        "skills/research-hub",
+        "skills/literature-triage-matrix",
+        "skills/notebooklm-brief-verifier",
+        "skills/zotero-library-curator",
+        "skills/research-design-helper",
+        "skills/research-context-compressor",
+        "skills/research-project-orienter",
+        "skills/research-hub-multi-ai",
+        "skills/paper-memory-builder"
+      ]
+    },
+    {
+      "name": "academic-writing-skills",
+      "description": "Manuscript revision, claim-evidence audit, banned-word / humanize pass, figure-text consistency, journal-format check, reviewer response",
+      "source": {
+        "source": "github",
+        "repo": "WenyuChiou/academic-writing-skills"
+      }
+    },
+    {
+      "name": "zotero-skills",
+      "description": "Deep Zotero CRUD beyond research-hub — search, add, update, delete items with notes, tags, collections, PDF attachments. Dual-API (local + Web)",
+      "source": {
+        "source": "github",
+        "repo": "WenyuChiou/zotero-skills"
+      }
+    },
+    {
+      "name": "codex-delegate",
+      "description": "Hand code-heavy / repetitive / many-file mechanical work from Claude to Codex CLI. Claude supervises; Codex executes",
+      "source": {
+        "source": "github",
+        "repo": "WenyuChiou/codex-delegate"
+      }
+    },
+    {
+      "name": "gemini-delegate",
+      "description": "Hand long-context reading, bilingual / 繁中 / CJK synthesis, second-opinion review from Claude to Gemini CLI",
+      "source": {
+        "source": "github",
+        "repo": "WenyuChiou/gemini-delegate-skill"
+      }
+    }
+  ]
+}

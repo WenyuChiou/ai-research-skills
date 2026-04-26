@@ -116,6 +116,46 @@ def test_no_model_project_specific_positioning():
     assert not re.search(forbidden, text)
 
 
+def test_claude_plugin_marketplace_is_well_formed():
+    """The .claude-plugin/marketplace.json file makes the catalog a Claude
+    Code plugin marketplace. Guard its basic structure so future edits
+    don't silently break `/plugin marketplace add`."""
+    import json
+    marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"
+    assert marketplace_path.exists(), "missing .claude-plugin/marketplace.json"
+
+    with marketplace_path.open(encoding="utf-8") as f:
+        data = json.load(f)
+
+    # Top-level required fields
+    assert data.get("name") == "ai-research-skills"
+    assert "owner" in data and data["owner"].get("name")
+    assert "metadata" in data
+    assert "plugins" in data and isinstance(data["plugins"], list)
+    assert len(data["plugins"]) >= 1, "marketplace must list at least 1 plugin"
+
+    # Per-plugin required fields
+    for plugin in data["plugins"]:
+        assert plugin.get("name"), f"plugin missing name: {plugin}"
+        assert plugin.get("description"), f"plugin {plugin['name']} missing description"
+        assert "source" in plugin, f"plugin {plugin['name']} missing source"
+
+        src = plugin["source"]
+        # source can be a string (local path) or an object (github / url / git-subdir)
+        if isinstance(src, dict):
+            assert src.get("source") in {"github", "url", "git-subdir"}, (
+                f"plugin {plugin['name']} has unknown source type: {src.get('source')}"
+            )
+            if src["source"] == "github":
+                assert src.get("repo"), f"plugin {plugin['name']} github source missing repo"
+            elif src["source"] in {"url", "git-subdir"}:
+                assert src.get("url"), f"plugin {plugin['name']} {src['source']} missing url"
+        else:
+            assert isinstance(src, str) and src, (
+                f"plugin {plugin['name']} string source must be non-empty"
+            )
+
+
 def test_canonical_install_command_consistent_across_sources_of_truth():
     """The catalog standardized on `research-hub setup --persona <X>` as the
     fresh-user onboarding command. README, install docs, and the
