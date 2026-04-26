@@ -1,0 +1,9 @@
+{
+  "name": "diagnostic-local",
+  "description": "Local-source diagnostic plugin used to isolate whether marketplace filtering is on the marketplace.json side or the remote source side. Safe to ignore.",
+  "version": "0.0.1",
+  "author": {
+    "name": "Wenyu Chiou"
+  },
+  "license": "MIT"
+}
