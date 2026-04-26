@@ -38,44 +38,47 @@ request matches a skill's trigger description.
 Pick the rows you need. Each row is **additive** — you can stop at
 any row and use what you've installed.
 
-| Step | Command | What you can use after this step |
+| Step | Paste this | What you can use after this step |
 |---|---|---|
-| **1. Marketplace plugin** *(start here)* | `claude plugin marketplace add WenyuChiou/ai-research-skills`<br>`claude plugin marketplace list`<br>`claude plugin install research-workspace@ai-research-skills --scope user`<br>`claude plugin list` | **5 skills ready immediately** (Claude reasoning + file writes only): `literature-triage-matrix`, `research-design-helper`, `research-context-compressor`, `research-project-orienter`, `paper-memory-builder`. **+ 1 in fallback mode**: `notebooklm-brief-verifier` (your downloaded brief + plain source list — [verified](test-corpus/manual-fallback-fresh-user/brief-verify-manual-fallback.md)). |
-| **2. + Manuscript work** | `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` | **+ 1 skill**: `academic-writing-skills` (banned-word audit, claim-evidence check, journal format, reviewer response). |
-| **3. + Zotero** | Set up Zotero local API or Web key, then:<br>`git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills` | **+ 2 skills**: `zotero-skills` (full CRUD), `zotero-library-curator` (audit + cleanup proposals). |
-| **4. + Multi-CLI delegation** | Install Codex / Gemini CLI binaries, then:<br>`git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate`<br>`git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill` | **+ 2 skills**: `codex-delegate` (token-heavy code work), `gemini-delegate` (long-context, CJK output). |
-| **5. + Literature pipeline automation** | `pip install research-hub-pipeline`<br>`research-hub setup --persona researcher`<br>*(persona = `researcher` &#124; `analyst` &#124; `humanities` &#124; `internal`)* | **+ 2 skills**: `research-hub` (paper search, ingest, NotebookLM upload), `research-hub-multi-ai` (delegation orchestration). Step 5 also re-installs steps 1-2's skills if you skipped them. |
+| **1. Marketplace plugin** *(start here)* | `claude plugin marketplace add WenyuChiou/ai-research-skills`<br>`claude plugin install research-workspace@ai-research-skills --scope user` | **5 skills + 1 fallback**: `literature-triage-matrix`, `research-design-helper`, `research-context-compressor`, `research-project-orienter`, `paper-memory-builder`, plus `notebooklm-brief-verifier` (Manual fallback — [verified](test-corpus/manual-fallback-fresh-user/brief-verify-manual-fallback.md)). |
+| **2. + Manuscript work** | `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` | **+ `academic-writing-skills`** (banned-word audit, claim-evidence check, journal format, reviewer response). |
+| **3. + Zotero**<sup>†</sup> | `git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills` | **+ `zotero-skills`** (full CRUD), **+ `zotero-library-curator`** (audit + cleanup proposals). |
+| **4. + Multi-CLI delegation**<sup>‡</sup> | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate`<br>`git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill` | **+ `codex-delegate`** (token-heavy code work), **+ `gemini-delegate`** (long-context, CJK output). |
+| **5. + Literature pipeline automation** | `pip install research-hub-pipeline`<br>`research-hub setup --persona researcher` | **+ `research-hub`** (paper search, ingest, NotebookLM upload), **+ `research-hub-multi-ai`** (delegation orchestration). Also re-installs steps 1-2's skills if you skipped them. |
 
-After step 1 alone, **6 of 13 skills are useful right away** (5 fully
-+ 1 fallback). Steps 2-5 are additions you make only when you hit
-that need. Skills that need a CLI / service print a setup hint
-instead of failing silently.
+Verify any step: `claude plugin list` or `ls ~/.claude/skills/`.
 
-### Notes
+After step 1 alone, **6 of 13 skills are useful right away**. Steps
+2-5 are additive — only do the ones you need.
 
-- Run the step 1 commands from your terminal, not from inside the
-  interactive `/plugin` UI. On Claude Code 2.1.119, the interactive
-  `/plugin install` path can try SSH (`git@github.com`) and fail if no
-  SSH key is configured; the terminal `claude plugin install ...`
-  command uses the supported CLI path and has been verified.
-- Verify step 1 with `claude plugin marketplace list` first, then
-  `claude plugin list`. The marketplace list should include
-  `ai-research-skills`; the plugin list should include
-  `research-workspace@ai-research-skills`.
-- For shell-level diagnostics, use
-  `claude plugin list --available --json`.
-- Do not use `/plugin marketplace info ai-research-skills` as a
-  verification step on Claude Code 2.1.119; `marketplace info` is not a
-  supported marketplace subcommand in that version.
-- Step 1 ships SKILL.md only — no Python env. Step 5 adds the
-  `research-hub` Python CLI on top.
-- The 4 standalone repos (steps 2-4) currently install via `git
-  clone` rather than the marketplace because their `SKILL.md` lives
-  at the repo root; this is a Claude Code marketplace schema
-  limitation, tracked at
+<sup>†</sup> **Step 3 also needs Zotero.** Install
+[Zotero desktop](https://www.zotero.org/download/), then in Zotero:
+Edit → Settings → Advanced → check **"Allow other applications on
+this computer to communicate with Zotero"** (enables the local API on
+port 23119). Web API key alternative: see
+[zotero-skills README](https://github.com/WenyuChiou/zotero-skills#readme).
+
+<sup>‡</sup> **Step 4 also needs CLI binaries.** Codex CLI install
++ login: see [codex-delegate README](https://github.com/WenyuChiou/codex-delegate#readme).
+Gemini CLI install + login: see [gemini-delegate-skill README](https://github.com/WenyuChiou/gemini-delegate-skill#readme).
+Step 5's `research-hub` CLI uses `pip install` and needs no extra
+binary.
+
+**Other notes:**
+
+- Run step 1 in a terminal — not inside the interactive `/plugin` UI.
+  On Claude Code 2.1.119, `/plugin install` can fall back to SSH and
+  fail without a configured GitHub SSH key. The terminal
+  `claude plugin install ...` path is verified.
+- `(no content)` from `/plugin marketplace info` is not an error —
+  `info` is not a supported subcommand on 2.1.119.
+- Persona choices for step 5: `researcher` / `analyst` / `humanities`
+  / `internal` — see [docs/install.md](docs/install.md) for which to
+  pick.
+- Steps 2-4 use `git clone` (not the marketplace) because those
+  repos keep `SKILL.md` at the repo root, which the current Claude
+  Code marketplace schema doesn't accept. Background:
   [.claude-plugin/README.md](.claude-plugin/README.md).
-- Full install detail (troubleshooting, upgrade notes, persona
-  comparison): [docs/install.md](docs/install.md).
 
 ---
 
