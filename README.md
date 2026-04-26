@@ -54,7 +54,7 @@ fallback mode). That's 6 of 13 skills, ready immediately.
 ### Step 2 — Manuscript work
 
 ```bash
-git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills
+claude plugin install academic-writing-skills@ai-research-skills --scope user
 ```
 
 **+ `academic-writing-skills`** — banned-word audit, claim-evidence
@@ -68,7 +68,7 @@ this computer to communicate with Zotero"**. (Web API key alternative:
 see [zotero-skills README](https://github.com/WenyuChiou/zotero-skills#readme).)
 
 ```bash
-git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
+claude plugin install zotero-skills@ai-research-skills --scope user
 ```
 
 **+ `zotero-skills`** (full CRUD) and **`zotero-library-curator`**
@@ -82,8 +82,8 @@ First install the CLI binaries (instructions in upstream READMEs):
 [Gemini CLI](https://github.com/WenyuChiou/gemini-delegate-skill#readme).
 
 ```bash
-git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
-git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
+claude plugin install codex-delegate@ai-research-skills --scope user
+claude plugin install gemini-delegate@ai-research-skills --scope user
 ```
 
 **+ `codex-delegate`** (hand token-heavy code to Codex CLI),
@@ -118,9 +118,9 @@ ls ~/.claude/skills/
 - The interactive `/plugin install` UI can fall back to SSH and fail
   without a GitHub SSH key; the terminal `claude plugin install ...`
   uses HTTPS.
-- Steps 2-4 use `git clone` (not the marketplace) because those repos
-  keep `SKILL.md` at the repo root, which the current Claude Code
-  marketplace schema doesn't accept. Background:
+- All 5 plugins (research-workspace + the 4 standalones) install via
+  `claude plugin install` from this catalog's marketplace. Background
+  on the marketplace schema and per-plugin coverage:
   [.claude-plugin/README.md](.claude-plugin/README.md).
 
 ---

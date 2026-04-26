@@ -49,7 +49,7 @@ claude plugin install research-workspace@ai-research-skills --scope user
 ### Step 2 — 寫論文
 
 ```bash
-git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills
+claude plugin install academic-writing-skills@ai-research-skills --scope user
 ```
 
 **+ `academic-writing-skills`**——banned-word audit、claim-evidence
@@ -63,7 +63,7 @@ to communicate with Zotero」**。（Web API key 替代方案：看
 [zotero-skills README](https://github.com/WenyuChiou/zotero-skills#readme)。）
 
 ```bash
-git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
+claude plugin install zotero-skills@ai-research-skills --scope user
 ```
 
 **+ `zotero-skills`**（完整 CRUD）和 **`zotero-library-curator`**
@@ -76,8 +76,8 @@ git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-sk
 [Gemini CLI](https://github.com/WenyuChiou/gemini-delegate-skill#readme)。
 
 ```bash
-git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
-git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
+claude plugin install codex-delegate@ai-research-skills --scope user
+claude plugin install gemini-delegate@ai-research-skills --scope user
 ```
 
 **+ `codex-delegate`**（把 token-heavy 的 code 工作交給 Codex CLI）、
@@ -111,9 +111,9 @@ ls ~/.claude/skills/
 - 互動式 `/plugin install` 有時會改走 SSH，本機沒有 GitHub SSH key
   就會失敗；terminal 的 `claude plugin install ...` 走 HTTPS，沒有
   這個問題。
-- 第 2-4 步用 `git clone`（不是 marketplace），因為這 4 個 repo 的
-  `SKILL.md` 在 repo 根目錄，現行 Claude Code marketplace schema
-  不接受這個 layout。詳情見
+- 5 個 plugin（research-workspace + 4 個 standalone）都從這個
+  catalog 的 marketplace 透過 `claude plugin install` 安裝。
+  marketplace schema 跟 per-plugin coverage 詳情見
   [.claude-plugin/README.md](.claude-plugin/README.md)。
 
 ---
