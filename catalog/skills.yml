@@ -23,9 +23,9 @@ families:
       - NotebookLM
     skills:
       - name: research-hub
-        directory: knowledge-base
+        directory: research-hub
         repo_url: https://github.com/WenyuChiou/research-hub
-        skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md
+        skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md
         purpose: Operate research-hub workflows for discovery, ingest, organization, NotebookLM, dashboard, and maintenance.
         use_when:
           - Find papers about a topic and organize them.

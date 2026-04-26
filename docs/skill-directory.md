@@ -46,7 +46,7 @@ research-hub notebooklm login
 
 | Skill | Use when | Direct skill link |
 |---|---|---|
-| `research-hub` | You want the AI to find papers, ingest sources, operate Zotero/Obsidian/NotebookLM, open dashboards, or maintain a vault. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md) |
+| `research-hub` | You want the AI to find papers, ingest sources, operate Zotero/Obsidian/NotebookLM, open dashboards, or maintain a vault. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) |
 | `research-hub-multi-ai` | You want Claude, Codex, Gemini, or another assistant to split research-hub work cleanly (cross-cutting routing). | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) |
 | `research-design-helper` | You want to sharpen a research question through 5 Socratic segments (RQ → mechanism → identifiability → validation → risks) and produce `.research/design_brief.md`. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) |
 | `research-context-compressor` | You want to create `.research/` manifests so future AI sessions do not rescan the whole repo. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) |

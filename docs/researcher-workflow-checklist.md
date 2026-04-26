@@ -27,7 +27,7 @@ research-hub setup --persona researcher
 
 Use these skills:
 
-- [research-hub](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md): find papers, ingest metadata, write Obsidian paper notes, maintain clusters.
+- [research-hub](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md): find papers, ingest metadata, write Obsidian paper notes, maintain clusters.
 - [literature-triage-matrix](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md): compare papers by method, data, claim, limitation, and relevance.
 - [research-context-compressor](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md): create `.research/` manifests so AI sessions do not rescan the whole project.
 - [research-project-orienter](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md): read `.research/` manifests and produce a fast orientation memo.
@@ -52,7 +52,7 @@ research-hub notebooklm login
 
 Use these skills:
 
-- [research-hub](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md): import local PDFs, DOCX, Markdown, TXT, and URLs into an Obsidian-backed workspace.
+- [research-hub](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md): import local PDFs, DOCX, Markdown, TXT, and URLs into an Obsidian-backed workspace.
 - [notebooklm-brief-verifier](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md): verify downloaded NotebookLM briefs against the source bundle.
 - [literature-triage-matrix](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md): convert notes and briefs into a comparison matrix.
 
@@ -77,7 +77,7 @@ research-hub notebooklm login
 
 Use these skills:
 
-- [research-hub](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md): select papers from Zotero, create source bundles, upload to NotebookLM, and download outputs.
+- [research-hub](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md): select papers from Zotero, create source bundles, upload to NotebookLM, and download outputs.
 - [notebooklm-brief-verifier](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md): catch missed sources, unsupported claims, and contradictions.
 - [zotero-skills](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md): use only when you need item-level Zotero edits beyond the research-hub workflow.
 
@@ -93,7 +93,7 @@ research-hub notebooklm login
 
 Core skills:
 
-- [research-hub](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md): full loop from search to ingest to organize to NotebookLM.
+- [research-hub](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md): full loop from search to ingest to organize to NotebookLM.
 - [literature-triage-matrix](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md): literature comparison table.
 - [notebooklm-brief-verifier](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md): NotebookLM output verification.
 - [research-context-compressor](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md): project memory for future AI sessions.
