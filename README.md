@@ -239,6 +239,42 @@ Three skills don't belong to a specific stage — they're triggered by
 
 </details>
 
+### Standalone use notes
+
+Most skills work without the full Zotero + Obsidian + NotebookLM stack.
+These 5 have dependency stories worth knowing **before** you install:
+
+- **`literature-triage-matrix`** — works on any paper list. With no
+  Zotero / Obsidian set up, paste a markdown list of titles + DOIs
+  into the chat; the skill builds the matrix from that. Zotero
+  collections and Obsidian clusters are *easier* inputs, not required
+  ones.
+- **`research-project-orienter`** — needs `.research/` manifests. If
+  none exist, the skill falls back to scanning README + `docs/`
+  (one-shot, slower); for repeat orientation, run
+  `research-context-compressor` first.
+- **`research-context-compressor`** — the SKILL.md inputs list
+  (`pyproject.toml` / `scripts/` / `notebooks/` / `data/`) is
+  **priority order, not requirements**. Works on any repo: a
+  humanities project with just `README.md` + `notes/` produces a thin
+  manifest with most fields blank (skill's own *"don't fabricate"*
+  rule). Don't be scared off by the input list.
+- **`research-hub`** (knowledge-base) — this *is* the platform. For
+  the lightest entry, run `research-hub setup --persona analyst`
+  (Obsidian + NotebookLM only, no Zotero required) or
+  `--persona humanities` (Zotero, qualitative-friendly defaults).
+- **`notebooklm-brief-verifier`** — currently requires a NotebookLM
+  brief uploaded *via* `research-hub notebooklm`. If you upload to
+  NotebookLM manually, this skill can't find your bundle. An
+  arbitrary-inputs mode is being tracked upstream.
+
+The other 8 skills (`research-design-helper`, `research-hub-multi-ai`,
+`paper-memory-builder`, `zotero-library-curator`,
+`academic-writing-skills`, `zotero-skills`, `codex-delegate`,
+`gemini-delegate`) work standalone with their natural inputs (a paper
+draft, a Zotero connection, a CLI binary, etc.) — no research-hub
+workspace required.
+
 ---
 
 ## Install

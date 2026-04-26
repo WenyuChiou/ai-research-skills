@@ -229,6 +229,38 @@ tools** 的 `gemini-delegate`。
 
 </details>
 
+### Standalone 使用說明
+
+大部分 skills 不需要完整的 Zotero + Obsidian + NotebookLM stack。下面這
+5 個 skill **裝之前**值得先了解依賴：
+
+- **`literature-triage-matrix`**——任何「論文 list」都能跑。沒有 Zotero
+  / Obsidian 也行：直接把標題 + DOI 的 markdown bullet list 貼進 chat，
+  skill 就能產出比較表。Zotero collection 和 Obsidian cluster 是**比較
+  方便的輸入**，不是**必要條件**。
+- **`research-project-orienter`**——需要 `.research/` manifest。如果還
+  沒有，skill 會 fallback 去 scan `README` + `docs/`（一次性、比較慢）；
+  想要重複用 orientation 的話，先跑 `research-context-compressor`。
+- **`research-context-compressor`**——SKILL.md 的 inputs 清單
+  （`pyproject.toml` / `scripts/` / `notebooks/` / `data/`）是
+  **priority order，不是 requirements**。任何 repo 都能跑：人文專案
+  只有 `README.md` + `notes/` 也會產出一份 thin 但可用的 manifest（skill
+  自己的「不捏造、留空」規則保證）。input list 看起來嚇人不要被嚇到。
+- **`research-hub`**（knowledge-base）——這個就是**平台本體**。最輕量
+  的入口是 `research-hub setup --persona analyst`（Obsidian + NotebookLM
+  only，無 Zotero）或 `--persona humanities`（Zotero，但用 qualitative
+  研究友善的 defaults）。
+- **`notebooklm-brief-verifier`**——目前 hard-code 必須是用
+  `research-hub notebooklm` 上傳的 NLM bundle。如果你是手動上傳到
+  NotebookLM，這個 skill 找不到你的 bundle。upstream 正在追蹤
+  arbitrary-inputs 模式。
+
+其他 8 個 skill（`research-design-helper`、`research-hub-multi-ai`、
+`paper-memory-builder`、`zotero-library-curator`、`academic-writing-skills`、
+`zotero-skills`、`codex-delegate`、`gemini-delegate`）用各自的自然輸入就
+能 standalone 跑（一份 paper draft、一個 Zotero 連線、一個 CLI binary，
+等等）——不需要 research-hub workspace。
+
 ---
 
 ## 安裝
