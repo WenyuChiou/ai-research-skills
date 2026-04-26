@@ -7,14 +7,25 @@ catalog installable as a Claude Code plugin marketplace.
 
 ```text
 /plugin marketplace add WenyuChiou/ai-research-skills
+/plugin marketplace list
 /plugin install research-workspace@ai-research-skills
 /plugin list
 ```
 
-Use `/plugin marketplace list` to confirm the marketplace is configured.
-On Claude Code 2.1.119, `/plugin marketplace info ai-research-skills`
-can return `(no content)` even when the marketplace validates and plugins
-install correctly; treat install/list as the supported verification path.
+Expected checks:
+
+- `/plugin marketplace list` should include `ai-research-skills`.
+- `/plugin list` should include `research-workspace@ai-research-skills`.
+
+For shell-level diagnostics, use:
+
+```powershell
+claude plugin list --available --json
+```
+
+Do not use `/plugin marketplace info ai-research-skills` as a
+verification step on Claude Code 2.1.119; `marketplace info` is not a
+supported marketplace subcommand in that version.
 
 ## Plugin shipped
 
