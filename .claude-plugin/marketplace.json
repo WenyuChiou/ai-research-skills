@@ -10,22 +10,11 @@
   "plugins": [
     {
       "name": "research-workspace",
-      "description": "9 research-hub skills: literature search, comparison matrix, planning manifests, design dialog, multi-AI routing, NotebookLM brief verification, paper-memory builder, Zotero curator",
+      "description": "9 research-hub skills: literature search, comparison matrix, planning manifests, design dialog, multi-AI routing, NotebookLM brief verification, paper-memory builder, Zotero curator. Auto-discovered from the source repo's skills/ subdirectory.",
       "source": {
         "source": "github",
         "repo": "WenyuChiou/research-hub"
-      },
-      "skills": [
-        "skills/research-hub",
-        "skills/literature-triage-matrix",
-        "skills/notebooklm-brief-verifier",
-        "skills/zotero-library-curator",
-        "skills/research-design-helper",
-        "skills/research-context-compressor",
-        "skills/research-project-orienter",
-        "skills/research-hub-multi-ai",
-        "skills/paper-memory-builder"
-      ]
+      }
     },
     {
       "name": "academic-writing-skills",
