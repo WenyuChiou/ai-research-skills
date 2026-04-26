@@ -36,30 +36,21 @@ under Claude Code's auto-discovery rules:
 |---|---|---|
 | `research-workspace` | `WenyuChiou/research-hub` | 9 skills auto-discovered from `skills/<name>/SKILL.md` (research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder) |
 
-### Coverage of those 9 skills without the Python CLI
+### What this plugin alone gets you
 
-The marketplace install ships only the SKILL.md instruction files.
-Python CLI commands (`research-hub auto`, `research-hub search`,
-NotebookLM browser automation) come from
-`pip install research-hub-pipeline`, **not** from the marketplace.
+**5 of the 9 skills work fully** with marketplace install only
+(`literature-triage-matrix`, `research-design-helper`,
+`research-context-compressor`, `research-project-orienter`,
+`paper-memory-builder`). **1 works in fallback mode**
+(`notebooklm-brief-verifier`). **3 need
+`pip install research-hub-pipeline`** (they're wrappers around the
+research-hub CLI). When a CLI-required skill is invoked without the
+CLI, it prints a setup hint instead of failing silently.
 
-| Without the CLI | Coverage |
-|---|---|
-| `literature-triage-matrix`, `research-design-helper`, `research-context-compressor`, `research-project-orienter`, `paper-memory-builder` | **Full** — pure Claude reasoning + writes markdown / YAML files |
-| `notebooklm-brief-verifier` | **Manual fallback** works (your downloaded brief + a plain source list); CLI-managed mode (auto-fetched source bundle) needs the CLI |
-| `zotero-library-curator` | **Read-only audit / proposal** works; applying cleanup is delegated to `zotero-skills` (Zotero local API), independent of the research-hub CLI |
-| `research-hub`, `research-hub-multi-ai` | **Describes the workflow but cannot execute** — these skills are wrappers around the CLI |
-
-If you only want the lightweight "help me think about this" cases
-(compare papers, sharpen a research question, write a project
-manifest, build paper memory), the marketplace install alone is
-enough. If you want literature pipeline automation, NotebookLM upload,
-or multi-AI orchestration, install `pip install research-hub-pipeline`
-on top — see [docs/install.md](../docs/install.md) Path B.
-
-When a CLI-required skill is invoked without the CLI present, the
-skill prints a `pip install research-hub-pipeline` hint instead of
-silently failing.
+Per-step coverage detail and install commands for the rest of the
+catalog (academic-writing-skills, zotero-skills, codex-delegate,
+gemini-delegate, the research-hub CLI): see
+[../README.md](../README.md) "What you can use after each step".
 
 ## Why only one plugin?
 
