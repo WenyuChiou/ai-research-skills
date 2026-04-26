@@ -28,8 +28,13 @@ repo 維護，方便文件、測試、安裝指令集中管理：
 - 寫論文、回覆 reviewer、準備投稿；
 - 把 coding 或長 context 工作交給 Codex 或 Gemini。
 
-不需要三個工具都用。`Zotero + Obsidian + NotebookLM` 任挑兩個，就已經
-足以開始整個流程。
+不需要三個工具都用。下面任挑兩個就能跑大部分 workflow：
+
+```text
+Zotero + Obsidian
+Obsidian + NotebookLM
+Zotero + NotebookLM
+```
 
 ## Research Pipeline——找到你目前所在的階段
 

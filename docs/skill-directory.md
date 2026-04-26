@@ -42,12 +42,14 @@ research-hub notebooklm login
 | Skill | Use when | Direct skill link |
 |---|---|---|
 | `research-hub` | You want the AI to find papers, ingest sources, operate Zotero/Obsidian/NotebookLM, open dashboards, or maintain a vault. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md) |
-| `research-hub-multi-ai` | You want Claude, Codex, Gemini, or another assistant to split research-hub work cleanly. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) |
+| `research-hub-multi-ai` | You want Claude, Codex, Gemini, or another assistant to split research-hub work cleanly (cross-cutting routing). | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) |
+| `research-design-helper` | You want to sharpen a research question through 5 Socratic segments (RQ → mechanism → identifiability → validation → risks) and produce `.research/design_brief.md`. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) |
 | `research-context-compressor` | You want to create `.research/` manifests so future AI sessions do not rescan the whole repo. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) |
 | `research-project-orienter` | The project already has `.research/` manifests and you want a fast orientation memo. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) |
 | `literature-triage-matrix` | You want a compact comparison table across a Zotero collection, Obsidian cluster, or manual paper list. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) |
 | `paper-memory-builder` | You want `.paper/claims.yml` and `.paper/figures.yml` before manuscript writing or revision. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) |
 | `notebooklm-brief-verifier` | You downloaded a NotebookLM brief and want to verify source coverage, unsupported claims, or contradictions. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) |
+| `zotero-library-curator` | You want to audit a Zotero library — find duplicate DOIs, orphan items, propose tag/collection cleanup. Read-only; defers writes to `zotero-skills`. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) |
 
 ### academic-writing-skills
 

@@ -16,7 +16,8 @@ repositories so updates, tests, and install instructions stay in one place:
 - [`gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill) — hand long-context or bilingual work to Gemini CLI.
 
 Target readers: graduate students, PhD researchers, postdocs, research
-engineers, and anyone who runs a real research project with AI in the loop.
+engineers, librarians, and research support staff who run real research
+projects with AI in the loop.
 
 ## Who This Is For
 
@@ -29,8 +30,14 @@ Use this collection if you want AI help with any of these:
 - preparing manuscripts, responding to reviewers, and submitting,
 - delegating coding or long-context work to Codex or Gemini.
 
-You do not need every tool. Any two of `Zotero + Obsidian + NotebookLM`
-already unlocks most of the workflow.
+You do not need every tool. Any two of these pairings already unlocks
+most of the workflow:
+
+```text
+Zotero + Obsidian
+Obsidian + NotebookLM
+Zotero + NotebookLM
+```
 
 ## Research Pipeline — Pick Your Stage
 
