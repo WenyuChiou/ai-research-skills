@@ -11,21 +11,27 @@
 *（圖片佔位中——完整 pipeline 示意圖即將推出。在此之前，請參考下方
 **完整研究 pipeline** 段落。）*
 
-**你會拿到什麼：** 13 個 skills，其中 11 個已對真實研究環境（1100+ 篇
-Zotero、live NotebookLM、真實 manuscript audit）做完端到端驗證。9 個
-透過一次安裝就到位（`research-hub-pipeline`）；4 個是獨立 clone。
+**你會拿到什麼：** 13 個 skills，涵蓋整個研究 workflow。**驗證狀態：**
+13 個裡 11 個對真實研究環境（1100+ 篇 Zotero、live NotebookLM、真實
+manuscript audit）做完端到端驗證 (T1)；2 個在 binary / CLI 層驗證 (T2)；
+0 個未驗證。完整 per-skill matrix 見
+[docs/verification.md](docs/verification.md)。**安裝方式：** 9 個透過
+一次安裝就到位（`research-hub-pipeline`）；4 個是獨立 clone。
 
 **適合誰：** 研究生、博士生、博士後、研究人員、研究工程師、圖書館員，
 以及在實際研究流程中把 AI 拉進來的研究支援人員。
 
 ---
 
-## 5 分鐘上手
+## 10 分鐘上手
 
 想在讀完整份 README 之前先感受一下這個目錄能做什麼？
 
 **前置條件：** 已安裝 Claude Code——見 https://claude.ai/code。下方所有
 skills 都是在 Claude Code 對話裡觸發。
+
+**實際時間：** 第一次大約 ~10 分鐘（Claude Code 登入 + research-hub
+安裝 + 找論文 + 產出比較表）。設定好的機器之後再跑大約 2–3 分鐘。
 
 **情境：** *「找 10 篇我研究主題的論文，產出一張可以拿來寫文獻回顧的
 比較表」*

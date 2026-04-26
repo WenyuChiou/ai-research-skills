@@ -22,7 +22,7 @@ Install:
 
 ```bash
 pip install research-hub-pipeline
-research-hub install --platform claude-code
+research-hub setup --persona researcher
 ```
 
 Use these skills:
@@ -46,7 +46,7 @@ Install:
 
 ```bash
 pip install "research-hub-pipeline[playwright]"
-research-hub install --platform claude-code
+research-hub setup --persona analyst   # no Zotero in this combo
 research-hub notebooklm login
 ```
 
@@ -71,7 +71,7 @@ Install:
 
 ```bash
 pip install "research-hub-pipeline[playwright]"
-research-hub install --platform claude-code
+research-hub setup --persona researcher
 research-hub notebooklm login
 ```
 
@@ -87,7 +87,7 @@ Install `research-hub` first:
 
 ```bash
 pip install "research-hub-pipeline[playwright]"
-research-hub install --platform claude-code
+research-hub setup --persona researcher
 research-hub notebooklm login
 ```
 

@@ -11,9 +11,10 @@ and AI assistants, see
 
 | You use | Start with | Install |
 |---|---|---|
-| Zotero + Obsidian | `research-hub` | `pip install research-hub-pipeline` then `research-hub install --platform claude-code` |
-| Obsidian + NotebookLM | `research-hub` | `pip install "research-hub-pipeline[playwright]"` then `research-hub install --platform claude-code` |
-| Zotero + NotebookLM | `research-hub` | `pip install "research-hub-pipeline[playwright]"` then `research-hub install --platform claude-code` |
+| Zotero + Obsidian | `research-hub` | `pip install research-hub-pipeline` then `research-hub setup --persona researcher` |
+| Obsidian + NotebookLM | `research-hub` | `pip install "research-hub-pipeline[playwright]"` then `research-hub setup --persona analyst` |
+| Zotero + NotebookLM | `research-hub` | `pip install "research-hub-pipeline[playwright]"` then `research-hub setup --persona researcher` |
+| Humanities / qualitative work (Zotero, no code) | `research-hub` | `pip install research-hub-pipeline` then `research-hub setup --persona humanities` |
 | Manuscript drafts | `academic-writing-skills` | `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` |
 | Large Zotero library cleanup | `zotero-skills` | `git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills` |
 | Coding-heavy AI handoff | `codex-delegate` | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate` |
@@ -29,10 +30,14 @@ Install:
 
 ```bash
 pip install research-hub-pipeline
-research-hub install --platform claude-code
+research-hub setup --persona researcher   # or: analyst | humanities | internal
 ```
 
-Optional NotebookLM automation:
+`setup` is interactive — it picks Claude Code automatically, prompts for
+Zotero default collection (skipped on `analyst`), and offers NotebookLM
+login.
+
+Optional NotebookLM automation (also handled by `setup` if you say yes):
 
 ```bash
 pip install "research-hub-pipeline[playwright]"

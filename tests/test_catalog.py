@@ -69,7 +69,7 @@ def test_zh_readme_mirrors_persona_table():
     """The zh-TW README must address all 5 personas with translated headings."""
     zh = (ROOT / "README.zh-TW.md").read_text(encoding="utf-8")
     for phrase in [
-        "5 分鐘上手",
+        "10 分鐘上手",
         "找到你的起點",
         "正在寫論文",
         "跑實驗 / 建模型",

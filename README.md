@@ -13,9 +13,12 @@ Languages: [English](README.md) | [繁中](README.zh-TW.md)
 *(Diagram placeholder — full pipeline overview is coming. Until then,
 see the **Full research pipeline** section below.)*
 
-**What you get:** 13 skills, 11 already verified end-to-end against a
+**What you get:** 13 skills covering the full research workflow.
+**Verification status:** 11 of 13 verified end-to-end (T1) against a
 real research workspace (1100+ papers in Zotero, live NotebookLM, real
-manuscript audits). 9 skills come from one install
+manuscript audits); 2 of 13 verified at the binary / CLI layer (T2);
+0 unverified. See [docs/verification.md](docs/verification.md) for the
+per-skill matrix. **Distribution:** 9 skills come from one install
 (`research-hub-pipeline`); 4 are standalone clones.
 
 **Who this is for:** graduate students, PhD researchers, postdocs,
@@ -24,12 +27,16 @@ research projects with AI in the loop.
 
 ---
 
-## 5-Minute First Try
+## 10-Minute First Try
 
 Want to feel what this catalog does before reading the rest?
 
 **Prerequisite:** Claude Code installed — see https://claude.ai/code.
 The skills below activate inside a Claude Code conversation.
+
+**Realistic time:** ~10 min the first time (Claude Code login +
+research-hub install + paper search + matrix build). Subsequent runs
+on a configured machine are closer to 2–3 min.
 
 **Scenario:** *"Find 10 papers on my research topic and produce a
 comparison matrix I can use to write a literature review."*
