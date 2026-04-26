@@ -55,6 +55,25 @@ Claude Code 2.1.119 目前沒有可靠的 `marketplace info` 指令；如果
 設計對話、多 AI routing、NotebookLM brief 驗證、paper-memory builder、
 Zotero curator）。
 
+> **路徑 A 只裝 SKILL.md，沒有 Python CLI。** 9 個 skills 的覆蓋範圍：
+>
+> - **5 個 skill 不用 CLI 就完整可跑**（純 Claude 推理 + 寫檔）：
+>   `literature-triage-matrix`、`research-design-helper`、
+>   `research-context-compressor`、`research-project-orienter`、
+>   `paper-memory-builder`。
+> - **1 個 skill 走 fallback 模式可跑**：`notebooklm-brief-verifier`
+>   ——Manual fallback 用你下載好的 brief + 純文字 source list，
+>   [已驗證](test-corpus/manual-fallback-fresh-user/brief-verify-manual-fallback.md)
+>   產出和 CLI-managed 模式一致。
+> - **3 個 skill 要 `pip install research-hub-pipeline` 才完整**：
+>   `research-hub`（論文搜尋 / ingest / NotebookLM 上傳自動化）、
+>   `research-hub-multi-ai`（delegation orchestration）、
+>   `zotero-library-curator`（Zotero 認證 + 透過 `zotero-skills` CRUD）。
+>
+> 需要 CLI 的 skill 在 CLI 不存在時會主動印出
+> `pip install research-hub-pipeline` 提示，不會卡住——大多數人從 A 開始
+> 用，遇到 skill 喊缺 CLI 再從**路徑 B** 裝。
+
 4 個獨立 skills（academic-writing-skills、zotero-skills、codex-delegate、
 gemini-delegate）走下方**路徑 B**——一個一個 `git clone`，因為
 marketplace plugin spec 目前不支援它們的 root-level SKILL.md layout。

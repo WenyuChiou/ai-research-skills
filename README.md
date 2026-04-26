@@ -59,6 +59,28 @@ This installs the **9 research-hub skills** (literature search,
 comparison, planning manifests, design dialog, multi-AI routing,
 NotebookLM brief verification, paper-memory builder, Zotero curator).
 
+> **Path A ships SKILL.md only — no Python CLI.** Coverage of the 9
+> skills:
+>
+> - **5 skills work fully without the CLI** (pure Claude reasoning +
+>   file writes): `literature-triage-matrix`, `research-design-helper`,
+>   `research-context-compressor`, `research-project-orienter`,
+>   `paper-memory-builder`.
+> - **1 skill works in fallback mode**: `notebooklm-brief-verifier` —
+>   the Manual fallback uses your downloaded brief + a plain source
+>   list, [verified end-to-end](test-corpus/manual-fallback-fresh-user/brief-verify-manual-fallback.md)
+>   to match the CLI-managed mode.
+> - **3 skills need `pip install research-hub-pipeline` for full
+>   function**: `research-hub` (paper search / ingest / NotebookLM
+>   upload automation), `research-hub-multi-ai` (delegation
+>   orchestration), `zotero-library-curator` (Zotero auth + CRUD via
+>   `zotero-skills`).
+>
+> Each affected skill prints a `pip install research-hub-pipeline` hint
+> if you call it without the CLI present, so you won't be stuck
+> guessing — most users start with Path A and add the CLI from
+> **Path B** below only when a skill asks.
+
 For the 4 standalone skills (academic-writing-skills, zotero-skills,
 codex-delegate, gemini-delegate), use **Path B** below — each is a
 single `git clone` because the marketplace plugin spec doesn't yet
