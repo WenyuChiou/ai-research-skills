@@ -23,13 +23,6 @@ per-skill matrix. **Distribution:** 9 skills come from one install
 research engineers, librarians, and research support staff who run real
 research projects with AI in the loop.
 
-**How skills actually work:** each skill is a Markdown instruction file
-(`SKILL.md`) installed under `~/.claude/skills/`. AI hosts that
-support skills (Claude Code, Cursor with the Claude Code extension,
-etc.) automatically read and apply them when your request matches the
-skill's trigger description. **Skills are not CLI tools or Python
-packages** — they're prompt scaffolding the host loads on your behalf.
-
 ---
 
 ## 10-Minute First Try
@@ -77,27 +70,30 @@ relevance, where to use the paper. **Reproducible reference output:**
 
 ## Pick Your Starting Point
 
-Find the row that matches you. Install the 2 named skills. Skip the
-rest until you need them.
+Find the row that matches your immediate goal. Install the named
+skills with one command. Skip the rest until you need them.
 
-| If you are... | Your question | Start with these 2 skills | Time to first result |
+| Your immediate goal | Skills you'll use | One install command | Time |
 |---|---|---|---|
-| **First-year PhD / MSc student** | "What's been done in my topic? What should I read?" | [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md) + [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) | ~10 min |
-| **Writing a paper now** | "Does my prose match the figures? Does it sound human?" | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) + [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) | ~15 min |
-| **Running experiments / building models** | "How do I sharpen my research question and capture project state cheaply?" | [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) + [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | ~20 min |
-| **Cleaning a Zotero library** | "What duplicates / missing tags / stale clusters are in my library?" | [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) + [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) | ~5 min |
-| **Helping others adopt AI for research** *(librarian / RA / advisor)* | "What should I recommend to my team? Does this stuff actually work?" | The whole catalog + [docs/install.md](docs/install.md) + [docs/verification.md](docs/verification.md) | (read-only) |
+| **Find & compare literature** | `research-hub` + `literature-triage-matrix` | `research-hub setup --persona researcher` | ~10 min |
+| **Write or revise a paper** | `paper-memory-builder` + `academic-writing-skills` | above + `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` | ~15 min |
+| **Manage a research project / Zotero library** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` | `research-hub setup --persona researcher` | ~20 min |
 
-> **Don't see yourself?** The full pipeline below covers 8 research
-> stages. Find your stage, install the matching skill.
+> **Helping others adopt AI for research** (librarian / RA / advisor)?
+> No install needed — read [docs/install.md](docs/install.md) and
+> [docs/verification.md](docs/verification.md) and recommend.
+>
+> **Don't see your goal?** The full pipeline below covers 8 stages of
+> research; find your stage and the matching skill.
 
 ---
 
-## Full Research Pipeline
+<details>
+<summary><h2>Full Research Pipeline (click to expand)</h2></summary>
 
 The 8 stages of a research project, with the skills that fit each one.
-This is the comprehensive view — start with the persona table above if
-this feels dense.
+This is the comprehensive reference — most users will pick from the
+persona table above and never need to read this.
 
 ```text
 1. Discover lit  →  2. Organise & compare  →  3a. Frame  →  3b. Plan
@@ -220,6 +216,8 @@ For long-form bilingual rewrites or 繁中 / CJK drafts, use the
 | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) | Reviewer response tables, pre-submission checklist, journal-format audit, rebuttal letter. |
 | [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | Freeze the project's final state so future AI sessions (or future you) can resume in seconds. |
 
+</details>
+
 ---
 
 ## Cross-cutting Tools — Used at Every Stage
@@ -302,6 +300,13 @@ The other 12 skills work **directly** with their natural inputs:
 
 Prerequisite: Claude Code (https://claude.ai/code).
 
+> **How skills actually work:** each skill is a Markdown instruction
+> file (`SKILL.md`) installed under `~/.claude/skills/`. AI hosts that
+> support skills (Claude Code, Cursor with the Claude Code extension,
+> etc.) automatically read and apply them when your request matches
+> the skill's trigger description. Skills are not CLI tools or Python
+> packages — they're prompt scaffolding the host loads on your behalf.
+
 The minimum useful set:
 
 ```bash
@@ -367,21 +372,9 @@ research-hub-pipeline ≤ 0.45? See the upgrade note in that file.
 
 ## Verified
 
-This is not a "trust me, it works" catalog. Every skill has been
-exercised against a real research workspace and the evidence is
-committed to this repo:
-
-- **11 of 13** skills passed **T1** (full functional smoke test with
-  real input → real output).
-- **1 of 13** at **T2 caveat** (`codex-delegate`: workaround
-  documented).
-- **1 of 13** at **T2 pass** (`gemini-delegate`).
-- **0** failures, **0** unverified.
-
-Test corpus: 5 papers on AI agents and social interaction (real
-arXiv / Elsevier metadata), reproducible via a single
-`research-hub search` command. Full per-skill report:
-[docs/verification.md](docs/verification.md).
+All 13 skills exercised end-to-end on a real research workspace
+(11 T1 functional + 2 T2 binary; 0 failures). Per-skill matrix +
+test-corpus artifacts: [docs/verification.md](docs/verification.md).
 
 ---
 

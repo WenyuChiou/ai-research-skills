@@ -52,28 +52,28 @@ def test_readme_mentions_core_tool_combinations():
 
 
 def test_readme_has_persona_starting_points():
-    """The persona table is the redesigned README's primary entry point.
-    Each of the 5 personas must be addressed by name."""
+    """The persona table is the README's primary entry point. After the UX
+    trim it has 3 goal-based rows + a librarian/RA/advisor callout."""
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     for persona_phrase in [
-        "First-year PhD",
-        "Writing a paper",
-        "Running experiments",
-        "Cleaning a Zotero library",
+        "Find & compare literature",
+        "Write or revise a paper",
+        "Manage a research project",
         "Helping others adopt AI for research",
     ]:
         assert persona_phrase in readme, f"persona row missing: {persona_phrase}"
 
 
 def test_zh_readme_mirrors_persona_table():
-    """The zh-TW README must address all 5 personas with translated headings."""
+    """The zh-TW README must mirror the 3 goal-based persona rows + librarian callout."""
     zh = (ROOT / "README.zh-TW.md").read_text(encoding="utf-8")
     for phrase in [
         "10 分鐘上手",
         "找到你的起點",
-        "正在寫論文",
-        "跑實驗 / 建模型",
-        "整理 Zotero library",
+        "找文獻、比較文獻",
+        "寫論文 / 改稿",
+        "管理研究專案",
+        "協助別人用 AI 做研究",
         "Cross-cutting Tools",
     ]:
         assert phrase in zh, f"zh-TW phrase missing: {phrase}"

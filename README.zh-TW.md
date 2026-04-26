@@ -19,12 +19,6 @@ manuscript audit）做完端到端驗證 (T1)；2 個在 binary / CLI 層驗證 
 **適合誰：** 研究生、博士生、博士後、研究人員、研究工程師、圖書館員，
 以及在實際研究流程中把 AI 拉進來的研究支援人員。
 
-**Skills 實際上怎麼運作：** 每個 skill 是一份 Markdown 指令檔
-（`SKILL.md`），安裝在 `~/.claude/skills/` 下。支援 skills 的 AI host
-（Claude Code、有 Claude Code extension 的 Cursor 等）在你的請求符合該
-skill 的 trigger description 時，會自動讀進來並套用。**Skills 不是 CLI
-工具、不是 Python package**——它們是 host 替你載入的 prompt scaffolding。
-
 ---
 
 ## 10 分鐘上手
@@ -70,25 +64,28 @@ question、method、data、claim、evidence type、limitation、relevance、
 
 ## 找到你的起點
 
-對到下面其中一行就好。裝那 2 個 skill。其他等你需要再說。
+對到你眼前的目標。一個指令裝完，其他等你需要再說。
 
-| 你是... | 你的問題 | 從這 2 個 skills 開始 | 多久能拿到第一個結果 |
+| 你眼前的目標 | 你會用到的 skills | 一行 install | 時間 |
 |---|---|---|---|
-| **碩一 / 博一新生** | 「我這個題目別人做過什麼？我該讀什麼？」 | [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md) + [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) | ~10 分鐘 |
-| **正在寫論文** | 「我的文字跟圖一致嗎？讀起來像人寫的嗎？」 | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) + [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) | ~15 分鐘 |
-| **跑實驗 / 建模型** | 「怎麼把 RQ 框得更 sharp？怎麼省 token 把專案狀態存下來？」 | [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) + [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | ~20 分鐘 |
-| **整理 Zotero library** | 「我的 library 裡有哪些重複論文 / 缺 tag / 殘留 cluster？」 | [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) + [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) | ~5 分鐘 |
-| **協助別人用 AI 做研究** *（圖書館員 / RA / 指導者）* | 「我該推薦給我的 team 用什麼？這東西真的能用嗎？」 | 整個目錄 + [docs/install.md](docs/install.md) + [docs/verification.md](docs/verification.md) | （read-only） |
+| **找文獻、比較文獻** | `research-hub` + `literature-triage-matrix` | `research-hub setup --persona researcher` | ~10 分鐘 |
+| **寫論文 / 改稿** | `paper-memory-builder` + `academic-writing-skills` | 上面那行 + `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` | ~15 分鐘 |
+| **管理研究專案 / Zotero library** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` | `research-hub setup --persona researcher` | ~20 分鐘 |
 
-> **你不在上面任何一行？** 下方的完整 pipeline 列出 8 個研究階段，找到
-> 你的階段，裝對應的 skill。
+> **協助別人用 AI 做研究**（圖書館員 / RA / 指導者）？不用裝——讀
+> [docs/install.md](docs/install.md) 與 [docs/verification.md](docs/verification.md)
+> 然後推薦就好。
+>
+> **沒對到你的目標？** 下方完整 pipeline 列出 8 個研究階段，找到你的
+> 階段就裝對應的 skill。
 
 ---
 
-## 完整研究 pipeline
+<details>
+<summary><h2>完整研究 pipeline（點開展開）</h2></summary>
 
-研究專案的 8 個階段，配上每個階段適用的 skill。這是完整版——如果覺得密
-度太高，可以先用上面的「找到你的起點」。
+研究專案的 8 個階段，配上每個階段適用的 skill。這是完整版 reference——
+大部分使用者用上面的「找到你的起點」就夠了，不必讀這段。
 
 ```text
 1. 找文獻  →  2. 整理比較、找 gap  →  3a. 框問題  →  3b. 寫計畫
@@ -208,6 +205,8 @@ tools** 的 `gemini-delegate`。
 | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) | Reviewer response 表、pre-submission checklist、journal format 審查、rebuttal letter。 |
 | [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | 把專案最終狀態凍結進 `.research/` manifests，讓未來 AI session（或未來的你）幾秒就能回到狀況。 |
 
+</details>
+
 ---
 
 ## Cross-cutting Tools——每個階段都會用到
@@ -287,6 +286,13 @@ tools** 的 `gemini-delegate`。
 
 前置條件：Claude Code（https://claude.ai/code）。
 
+> **Skills 實際上怎麼運作：** 每個 skill 是一份 Markdown 指令檔
+> （`SKILL.md`），安裝在 `~/.claude/skills/` 下。支援 skills 的 AI host
+> （Claude Code、有 Claude Code extension 的 Cursor 等）在你的請求符合
+> 該 skill 的 trigger description 時，會自動讀進來並套用。Skills 不是
+> CLI 工具、不是 Python package——它們是 host 替你載入的 prompt
+> scaffolding。
+
 最低限度的有用組合：
 
 ```bash
@@ -350,17 +356,9 @@ research-hub-pipeline ≤ 0.45 升級的話，請參考該檔案的 upgrade note
 
 ## 已驗證
 
-這不是「相信我能用」型的 catalog。每個 skill 都對真實研究環境跑過、
-證據 commit 進這個 repo：
-
-- **13 個裡 11 個** 通過 **T1**（用真實輸入跑出真實輸出的功能性 smoke test）。
-- **1 個 T2 caveat**（`codex-delegate`：有 workaround，文件記錄了）。
-- **1 個 T2 pass**（`gemini-delegate`）。
-- **0 個失敗**、**0 個未驗證**。
-
-測試 corpus：5 篇 AI agent 與 social interaction 主題的論文（真實
-arXiv / Elsevier metadata），單一 `research-hub search` 指令可重現。
-完整 per-skill 報告：[docs/verification.md](docs/verification.md)。
+13 個 skills 全部端到端對真實研究環境跑過（11 T1 功能性 + 2 T2 binary；
+0 個失敗）。完整 per-skill 矩陣與 test-corpus 證據見
+[docs/verification.md](docs/verification.md)。
 
 ---
 
