@@ -59,8 +59,10 @@ own `CLAUDE.md` describes).
 | 9 | `zotero-skills` | T1 | ✓ pass | `curl http://localhost:23119/api/users/0/collections` returned real collection from `我的文獻庫`; ingestion of test corpus also exercised the local API path |
 | 10 | `codex-delegate` | T2 | ⚠ caveat | `codex --version` 0.121.0 present; default model `gpt-5.5` aborts with "requires a newer version of Codex"; explicit `-m gpt-5.4` works (verified by `codex exec --full-auto -C /tmp -m gpt-5.4 "echo HELLO_CODEX_5_4"` → succeeded) |
 | 11 | `gemini-delegate` | T2 | ✓ pass | `gemini --version` 0.38.2 present; `gemini -p "Say only PING"` → `PING` |
+| 12 | `research-design-helper` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/design_brief.md` — 5-segment Socratic dialog completed all sections (no `_TODO_` left); RQ falsification condition concrete (Cliff's δ < 0.5, p > 0.05 in non-poker tasks); 5 risks each with early-warning + mitigation |
+| 13 | `zotero-library-curator` | T1 | ✓ pass | `test-corpus/.../.research_hub/zotero-curator-audit-20260425.md` — read-only audit of real vault: caught 10 duplicate DOIs, 44 case-only near-duplicate tag pairs, 435 sparse tags, 1 orphan cluster (the `ai-agents-social-interaction-test` residual), 0 writes performed |
 
-**Totals:** 10 ✓ pass · 1 ⚠ caveat · 0 ✗ fail · 0 not_yet · **9 of 11 at T1**, the other 2 at T2 (delegates — T2 is the right tier for them, since their value *is* the external CLI).
+**Totals:** 12 ✓ pass · 1 ⚠ caveat · 0 ✗ fail · 0 not_yet · **11 of 13 at T1**, the other 2 at T2 (delegates — T2 is the right tier for them, since their value *is* the external CLI).
 
 ## Per-skill detail
 
@@ -247,6 +249,61 @@ This is the deepest test in the batch — full cycle from ingest to verify.
 - **Expected:** stdout `PING`.
 - **Actual:** `PING` (with a one-line warning about a `skill-creator`
   override which is unrelated to gemini-delegate).
+- **Pass:** ✓
+
+### 12. research-design-helper (T1)
+
+- **Input:** the 5-paper test corpus (Lim 2025, Lin & Hou 2026, Kumar
+  2026, McDonald 2026, Wang 2026) — used as the literature context for
+  the dialog. Scenario: *"if a researcher wanted to enter this field,
+  what study could they actually run?"*
+- **Output:** [`design_brief.md`](../test-corpus/ai-agents-social-interaction/.research/design_brief.md)
+  — 5-segment Socratic dialog completed:
+  - **§1 Research question** — sharpened to a cross-task generalisation
+    test of Lin & Hou 2026's memory claim, with concrete falsification
+    condition (`Cliff's δ < 0.5, p > 0.05` in two non-poker tasks).
+  - **§2 Expected mechanism** — causal chain spelled out; most uncertain
+    step explicitly named.
+  - **§3 Identifiability check** — discriminating condition + 4
+    confounders + missing-data plan.
+  - **§4 Validation plan** — primary metric, baseline, ablation,
+    negative control.
+  - **§5 Risk register** — 5 risks, each with early-warning signal +
+    mitigation.
+- **Skill-rule compliance:** did not invent the research question
+  (built on Lin & Hou's claim, not a fabricated RQ); no `_TODO_`
+  markers needed because the corpus had enough context; no model
+  architecture proposed (Stage 4 boundary respected).
+- **Pass:** ✓
+
+### 13. zotero-library-curator (T1)
+
+- **Input:** the user's real Zotero library (`14772686 我的文獻庫`) +
+  research-hub vault (`~/knowledge-base/`, 1102 obsidian notes, 12
+  active clusters + 1 stale test cluster).
+- **Inputs read** (per skill priority order):
+  - Cluster registry via `python -m research_hub status`.
+  - Zotero local API: `curl http://localhost:23119/api/users/0/tags?limit=500`
+    (case-insensitive near-duplicate scan).
+  - Dedup index: `~/knowledge-base/.research_hub/dedup_index.json`
+    (775 unique DOIs / 1100 unique titles, 16,971 lines).
+- **Output:** [`zotero-curator-audit-20260425.md`](../test-corpus/ai-agents-social-interaction/.research_hub/zotero-curator-audit-20260425.md)
+  — read-only audit report with 5 sections matching SKILL.md schema:
+  - **Duplicate DOIs**: 10 found. Three shown verbatim (Schwarz 2020,
+    Corazzini 2025, Gao 2024), each with concrete keep/merge advice.
+  - **Tag hygiene**: 44 case-only near-duplicate pairs (e.g.
+    `ABM-Methodology` vs `ABM-methodology`); first 10 listed.
+  - **Sparse tags**: 435 of 488 unique tags (89%) used by < 3 items —
+    flagged for human review per skill rule.
+  - **Cluster bloat**: 2 clusters > 200 items
+    (`llm-agents-social-cognitive-simulation` 423,
+    `survey` 237) flagged for splitting.
+  - **Orphan cluster**: `ai-agents-social-interaction-test` (5 papers)
+    still in registry but obsidian folder gone — leftover from earlier
+    skill verification cleanup.
+- **Skill-rule compliance:** zero writes. All findings emitted as
+  preview plans with explicit handoff to `zotero-skills` /
+  `research-hub clusters` / manual review for any apply step.
 - **Pass:** ✓
 
 ## Open follow-ups

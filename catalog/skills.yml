@@ -114,13 +114,17 @@ families:
         outputs:
           - .research/design_brief.md
         verified_on: "2026-04-25"
-        verification_status: not_yet
-        verification_tier: T3
+        verification_status: pass
+        verification_tier: T1
         verification_notes: |
-          Catalogued upstream-shipped skill (research-hub recommendation #1).
-          SKILL.md inspected: well-formed frontmatter, lays out the 5
-          Socratic segments. Not yet exercised against a real test scenario;
-          verification will follow in a separate run.
+          T1 promoted. Output committed to
+          test-corpus/ai-agents-social-interaction/.research/design_brief.md.
+          5-segment Socratic dialog completed all sections (no _TODO_
+          left): RQ sharpened with concrete falsification condition
+          (Cliff's δ < 0.5, p > 0.05 in 2 non-poker tasks); 5 risks
+          each with early-warning + mitigation. Skill correctly did not
+          invent the RQ (built on Lin & Hou 2026's claim) and did not
+          propose model architecture (Stage 4 boundary respected).
       - name: literature-triage-matrix
         directory: literature-triage-matrix
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -204,14 +208,20 @@ families:
           - Audit report in conversation
           - Preview-only cleanup plan (handed to zotero-skills for apply)
         verified_on: "2026-04-25"
-        verification_status: not_yet
-        verification_tier: T3
+        verification_status: pass
+        verification_tier: T1
         verification_notes: |
-          Catalogued upstream-shipped skill (research-hub recommendation #4
-          side effect). SKILL.md inspected: well-formed frontmatter, clear
-          read-only / preview-only scope with explicit handoff to
-          zotero-skills for any writes. Not yet exercised against a real
-          test scenario; verification will follow in a separate run.
+          T1 promoted. Output committed to
+          test-corpus/ai-agents-social-interaction/.research_hub/zotero-curator-audit-20260425.md.
+          Read-only audit of real vault (我的文獻庫 + 1102 obsidian
+          notes): caught 10 duplicate DOIs (3 shown verbatim with
+          keep/merge advice), 44 case-only near-duplicate tag pairs
+          (e.g. ABM-Methodology vs ABM-methodology), 435 sparse tags
+          (89% of 488), 2 cluster-bloat candidates (>200 items), 1
+          orphan cluster (ai-agents-social-interaction-test residual).
+          Zero writes performed; all findings emitted as preview plans
+          with explicit handoff to zotero-skills / research-hub
+          clusters for any apply step.
 
   - id: academic-writing
     name: Academic writing
