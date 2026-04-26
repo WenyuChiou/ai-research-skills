@@ -29,46 +29,88 @@ testing 細節見 [docs/verification.md](docs/verification.md)。
 Skills 是放在 `~/.claude/skills/` 底下的 Markdown 指令檔
 （`SKILL.md`）。Claude Code 看到請求符合 skill 的描述就自動讀進來。
 
-### 每一步裝完之後可以用什麼
+下面每一步是**累加的**——做到哪裡停都可以，已裝的就能用。每個 code
+block 右上角會出現 GitHub 的複製按鈕。
 
-挑你需要的列。每一列是**累加的**——你可以在任何一列停下來、用已裝的東西。
+### Step 1 — Marketplace plugin（從這裡開始）
 
-| 步驟 | 直接貼這個 | 這一步裝完後可以用的 skill |
-|---|---|---|
-| **1. Marketplace plugin** *（從這裡開始）* | `claude plugin marketplace add WenyuChiou/ai-research-skills`<br>`claude plugin install research-workspace@ai-research-skills --scope user` | **5 個 skill + 1 個 fallback**：`literature-triage-matrix`、`research-design-helper`、`research-context-compressor`、`research-project-orienter`、`paper-memory-builder`，加上 `notebooklm-brief-verifier`（Manual fallback 模式）。 |
-| **2. + 寫論文** | `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` | **+ `academic-writing-skills`**（banned-word audit、claim-evidence 檢查、journal format、reviewer response）。 |
-| **3. + Zotero**<sup>†</sup> | `git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills` | **+ `zotero-skills`**（完整 CRUD）、**+ `zotero-library-curator`**（audit + cleanup 提案）。 |
-| **4. + 多 CLI delegation**<sup>‡</sup> | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate`<br>`git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill` | **+ `codex-delegate`**（token-heavy code work）、**+ `gemini-delegate`**（長 context、CJK 輸出）。 |
-| **5. + 文獻 pipeline 自動化** | `pip install research-hub-pipeline`<br>`research-hub setup --persona researcher` | **+ `research-hub`**（論文搜尋、ingest、NotebookLM 上傳）、**+ `research-hub-multi-ai`**（delegation orchestration）。也會把第 1-2 步如果你跳過的補裝。 |
+請在 terminal 執行，不要在互動式 `/plugin` UI 裡跑：
 
-驗證任一步：`claude plugin list` 或 `ls ~/.claude/skills/`。
+```bash
+claude plugin marketplace add WenyuChiou/ai-research-skills
+claude plugin install research-workspace@ai-research-skills --scope user
+```
 
-只裝第 1 步，**13 個 skill 裡有 6 個立刻可用**。第 2-5 步是累加的——
-有需求才加。
+**可以用的 skill：** `literature-triage-matrix`、`research-design-helper`、
+`research-context-compressor`、`research-project-orienter`、
+`paper-memory-builder`，加上 `notebooklm-brief-verifier`（Manual fallback 模式）。
+13 個裡先得到 6 個，立刻可用。
 
-<sup>†</sup> **第 3 步另外需要 Zotero。** 裝
-[Zotero desktop](https://www.zotero.org/download/)，然後在 Zotero 裡：
-Edit → Settings → Advanced → 勾 **「Allow other applications on this
-computer to communicate with Zotero」**（開 port 23119 的 local API）。
-要用 Web API key 的話請看
-[zotero-skills README](https://github.com/WenyuChiou/zotero-skills#readme)。
+### Step 2 — 寫論文
 
-<sup>‡</sup> **第 4 步另外需要 CLI binary。** Codex CLI 安裝 + 登入：
-看 [codex-delegate README](https://github.com/WenyuChiou/codex-delegate#readme)。
-Gemini CLI 安裝 + 登入：看
-[gemini-delegate-skill README](https://github.com/WenyuChiou/gemini-delegate-skill#readme)。
-第 5 步的 `research-hub` CLI 用 `pip install`，不需要額外 binary。
+```bash
+git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills
+```
+
+**+ `academic-writing-skills`**——banned-word audit、claim-evidence
+檢查、journal format、reviewer response。
+
+### Step 3 — Zotero
+
+先在 Zotero desktop（[下載](https://www.zotero.org/download/)）：Edit →
+Settings → Advanced → 勾 **「Allow other applications on this computer
+to communicate with Zotero」**。（Web API key 替代方案：看
+[zotero-skills README](https://github.com/WenyuChiou/zotero-skills#readme)。）
+
+```bash
+git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
+```
+
+**+ `zotero-skills`**（完整 CRUD）和 **`zotero-library-curator`**
+（audit + cleanup 提案；本身在第 1 步已經有，這步把它從 preview-only
+變成「能真的執行修改」）。
+
+### Step 4 — 多 CLI delegation
+
+先裝 CLI binary（安裝指引在上游 README）：[Codex CLI](https://github.com/WenyuChiou/codex-delegate#readme)、
+[Gemini CLI](https://github.com/WenyuChiou/gemini-delegate-skill#readme)。
+
+```bash
+git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
+git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
+```
+
+**+ `codex-delegate`**（把 token-heavy 的 code 工作交給 Codex CLI）、
+**+ `gemini-delegate`**（長 context / CJK 輸出走 Gemini CLI）。
+
+### Step 5 — 文獻 pipeline 自動化
+
+```bash
+pip install research-hub-pipeline
+research-hub setup --persona researcher
+```
+
+Persona 選項：`researcher` / `analyst` / `humanities` / `internal`
+——對應差異看 [docs/install.md](docs/install.md)。
+
+**+ `research-hub`**（論文搜尋、ingest、NotebookLM 上傳）、
+**`research-hub-multi-ai`**（delegation orchestration）。也會把第 1-2
+步如果你跳過的補裝。
+
+### 驗證
+
+```bash
+claude plugin list
+ls ~/.claude/skills/
+```
 
 **其他注意：**
 
-- 第 1 步請在 terminal 執行——不要在互動式 `/plugin` UI 裡跑。Claude
-  Code 2.1.119 的 `/plugin install` 有時會改走 SSH（`git@github.com`），
-  本機沒有 GitHub SSH key 就會失敗。terminal 的
-  `claude plugin install ...` 走 HTTPS，沒有這個問題。
 - `/plugin marketplace info` 顯示 `(no content)` 不是錯誤——`info`
-  在 2.1.119 不是支援的 subcommand。
-- 第 5 步的 persona 選項：`researcher` / `analyst` / `humanities` /
-  `internal`——對應差異看 [docs/install.md](docs/install.md)。
+  在 Claude Code 2.1.119 不是支援的 subcommand。
+- 互動式 `/plugin install` 有時會改走 SSH，本機沒有 GitHub SSH key
+  就會失敗；terminal 的 `claude plugin install ...` 走 HTTPS，沒有
+  這個問題。
 - 第 2-4 步用 `git clone`（不是 marketplace），因為這 4 個 repo 的
   `SKILL.md` 在 repo 根目錄，現行 Claude Code marketplace schema
   不接受這個 layout。詳情見
