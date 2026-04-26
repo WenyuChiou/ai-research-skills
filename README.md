@@ -28,13 +28,20 @@ research projects with AI in the loop.
 
 Want to feel what this catalog does before reading the rest?
 
+**Prerequisite:** Claude Code installed — see https://claude.ai/code.
+The skills below activate inside a Claude Code conversation.
+
 **Scenario:** *"Find 10 papers on my research topic and produce a
 comparison matrix I can use to write a literature review."*
 
 ```bash
-# 1. Install the core (one command, ships 9 skills)
+# 1. Install + onboard (one command — handles persona, skill install,
+#    optional NotebookLM login, sample data)
 pip install research-hub-pipeline
-research-hub install --platform claude-code
+research-hub setup --persona researcher
+#   ↑ pick `analyst` if you don't use Zotero (Obsidian + NotebookLM only)
+#     pick `humanities` for qualitative / archival / interpretive work
+#     pick `researcher` for the full Zotero + Obsidian + NotebookLM stack
 
 # 2. Find + ingest 10 papers (skip NotebookLM for the first run)
 python -m research_hub auto "your topic here" --max-papers 10 --no-nlm
@@ -49,6 +56,10 @@ python -m research_hub auto "your topic here" --max-papers 10 --no-nlm
 relevance, where to use the paper. **Reproducible reference output:**
 [test-corpus/.../literature_matrix.md](test-corpus/ai-agents-social-interaction/.research/literature_matrix.md)
 (real 5-paper run on AI agents and social interaction).
+
+> **Already have research-hub installed but never picked a persona?**
+> Re-run `research-hub setup --persona <choice>` any time — it's
+> idempotent.
 
 ---
 
@@ -273,12 +284,14 @@ workspace required.
 
 ## Install
 
+Prerequisite: Claude Code (https://claude.ai/code).
+
 The minimum useful set:
 
 ```bash
-# 1. research-hub — installs 9 skills in one go
+# 1. research-hub — installs 9 skills + onboards your persona in one go
 pip install research-hub-pipeline
-research-hub install --platform claude-code
+research-hub setup --persona researcher   # or: analyst | humanities | internal
 
 # 2. academic-writing-skills — for any manuscript work
 git clone https://github.com/WenyuChiou/academic-writing-skills \
@@ -295,10 +308,17 @@ git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-sk
 git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
 git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
 
-# Optional NotebookLM browser automation
+# Optional NotebookLM browser automation (handled by `setup` if you
+# answer yes when prompted; install separately here if you skipped it)
 pip install "research-hub-pipeline[playwright]"
 research-hub notebooklm login
 ```
+
+> **Already ran `research-hub install --platform claude-code`?** That
+> command still works but only writes the SKILL.md files — `setup` is
+> the recommended onboarding because it also handles persona, Zotero
+> default collection, and NotebookLM login. Both are idempotent; you
+> can run `setup` any time.
 
 Full guide: [docs/install.md](docs/install.md). Upgrading from
 research-hub-pipeline ≤ 0.45? See the upgrade note in that file.
