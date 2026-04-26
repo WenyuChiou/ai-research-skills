@@ -5,21 +5,18 @@
 > **Stop asking AI to reread your research project from scratch every
 > session. Give it skills.**
 
-A researcher-facing catalog of **13 verified AI skills** that cover the
-full research workflow — from finding the first paper to submitting the
-final manuscript.
+A researcher-facing catalog of 13 AI skills covering the full research
+workflow — from finding the first paper to submitting the final
+manuscript.
 
 Languages: [English](README.md) | [繁中](README.zh-TW.md)
 
 ![13 AI skills mapped to the 8-stage research workflow, with cross-cutting tools (codex-delegate, gemini-delegate, research-hub-multi-ai) usable at every stage](docs/img/pipeline-overview.png)
 
 **What you get:** 13 skills covering the full research workflow.
-**Verification status:** 11 of 13 verified end-to-end (T1) against a
-real research workspace (1100+ papers in Zotero, live NotebookLM, real
-manuscript audits); 2 of 13 verified at the binary / CLI layer (T2);
-0 unverified. See [docs/verification.md](docs/verification.md) for the
-per-skill matrix. **Distribution:** 9 skills come from one install
-(`research-hub-pipeline`); 4 are standalone clones.
+9 ship via one install (`research-hub-pipeline`); 4 are standalone
+clones. Per-skill testing details:
+[docs/verification.md](docs/verification.md).
 
 **Who this is for:** graduate students, PhD researchers, postdocs,
 research engineers, librarians, and research support staff who run real
@@ -372,11 +369,10 @@ research-hub-pipeline ≤ 0.45? See the upgrade note in that file.
 
 ---
 
-## Verified
+## Testing
 
-All 13 skills exercised end-to-end on a real research workspace
-(11 T1 functional + 2 T2 binary; 0 failures). Per-skill matrix +
-test-corpus artifacts: [docs/verification.md](docs/verification.md).
+Per-skill testing matrix and reproducible test-corpus artifacts:
+[docs/verification.md](docs/verification.md).
 
 ---
 

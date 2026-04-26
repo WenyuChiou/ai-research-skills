@@ -4,19 +4,16 @@
 
 > **不要每次都叫 AI 重讀你的研究專案。給它 skills。**
 
-研究者導向的 **13 個 verified AI skills** 目錄——涵蓋從找第一篇論文到投稿
-最後一份手稿的完整研究 workflow。
+研究者導向的 13 個 AI skills 目錄——涵蓋從找第一篇論文到投稿最後一份
+手稿的完整研究 workflow。
 
 語言：[English](README.md) | [繁中](README.zh-TW.md)
 
 ![13 個 AI skills 對應 8 個研究階段，附 cross-cutting tools（codex-delegate、gemini-delegate、research-hub-multi-ai）每階段都可用](docs/img/pipeline-overview.zh-TW.png)
 
-**你會拿到什麼：** 13 個 skills，涵蓋整個研究 workflow。**驗證狀態：**
-13 個裡 11 個對真實研究環境（1100+ 篇 Zotero、live NotebookLM、真實
-manuscript audit）做完端到端驗證 (T1)；2 個在 binary / CLI 層驗證 (T2)；
-0 個未驗證。完整 per-skill matrix 見
-[docs/verification.md](docs/verification.md)。**安裝方式：** 9 個透過
-一次安裝就到位（`research-hub-pipeline`）；4 個是獨立 clone。
+**你會拿到什麼：** 13 個 skills，涵蓋整個研究 workflow。9 個透過一次
+安裝（`research-hub-pipeline`）就到位；4 個是獨立 clone。Per-skill
+testing 細節見 [docs/verification.md](docs/verification.md)。
 
 **適合誰：** 研究生、博士生、博士後、研究人員、研究工程師、圖書館員，
 以及在實際研究流程中把 AI 拉進來的研究支援人員。
@@ -356,10 +353,9 @@ research-hub-pipeline ≤ 0.45 升級的話，請參考該檔案的 upgrade note
 
 ---
 
-## 已驗證
+## Testing
 
-13 個 skills 全部端到端對真實研究環境跑過（11 T1 功能性 + 2 T2 binary；
-0 個失敗）。完整 per-skill 矩陣與 test-corpus 證據見
+Per-skill testing 矩陣與可重現的 test-corpus 證據：
 [docs/verification.md](docs/verification.md)。
 
 ---

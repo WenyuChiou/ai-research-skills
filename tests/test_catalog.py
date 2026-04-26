@@ -148,12 +148,12 @@ def test_verification_counts_match_catalog():
     fail_count = statuses.count("fail")
     not_yet_count = statuses.count("not_yet")
 
-    # README hero claims: 11 T1 + 2 T2 = 13 total; 0 fail; 0 not_yet
+    # YAML-side verification counts: 12 pass + 1 caveat + 0 fail + 0 not_yet = 13
     assert pass_count == 12, f"expected 12 pass, got {pass_count}"
     assert caveat_count == 1, f"expected 1 caveat (codex-delegate gpt-5.5), got {caveat_count}"
     assert fail_count == 0, f"expected 0 fail, got {fail_count}"
     assert not_yet_count == 0, f"expected 0 not_yet, got {not_yet_count}"
 
-    readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    for claim in ["13 verified", "11 of 13", "T1", "T2"]:
-        assert claim in readme, f"README missing verification claim: {claim}"
+    # README intentionally does NOT advertise verification counts in its
+    # body (avoids self-aggrandizing tone). docs/verification.md carries
+    # the per-skill detail; this test only guards the YAML-side counts.
