@@ -2,20 +2,16 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-> **研究者主導，AI 輔助。**
->
-> 13 個 skills，依照實際研究 workflow 組織。
-
-研究者導向的 13 個 AI skills 目錄——涵蓋從找第一篇論文到投稿最後一份
-手稿的完整研究 workflow。
+> 13 個 Claude Code skills，covers 常見的研究任務——文獻整理、研究
+> design、專案 context、論文撰寫、多 AI delegation。
 
 語言：[English](README.md) | [繁中](README.zh-TW.md)
 
-![13 個 AI skills 對應 8 個研究階段，附 cross-cutting tools（codex-delegate、gemini-delegate、research-hub-multi-ai）每階段都可用](docs/img/pipeline-overview.zh-TW.png)
+![13 個 AI skills 對應研究 workflow 階段，附 cross-cutting tools（codex-delegate、gemini-delegate、research-hub-multi-ai）每階段都可用](docs/img/pipeline-overview.zh-TW.png)
 
-**你會拿到什麼：** 13 個 skills，涵蓋整個研究 workflow。9 個透過一次
-安裝（`research-hub-pipeline`）就到位；4 個是獨立 clone。Per-skill
-testing 細節見 [docs/verification.md](docs/verification.md)。
+**你會拿到什麼：** 1 個 Claude Code marketplace 統一安裝，5 個 plugin
+共 13 個 skill。Per-skill testing 細節見
+[docs/verification.md](docs/verification.md)。
 
 **適合誰：** 研究生、博士生、博士後、研究人員、研究工程師、圖書館員，
 以及在實際研究流程中把 AI 拉進來的研究支援人員。
@@ -41,10 +37,16 @@ claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 ```
 
-**可以用的 skill：** `literature-triage-matrix`、`research-design-helper`、
+**立刻可用的 skill**（純 Claude 推理 + 寫檔，不需要外部設定）：
+`literature-triage-matrix`、`research-design-helper`、
 `research-context-compressor`、`research-project-orienter`、
-`paper-memory-builder`，加上 `notebooklm-brief-verifier`（Manual fallback 模式）。
-13 個裡先得到 6 個，立刻可用。
+`paper-memory-builder`，加上 `notebooklm-brief-verifier`（Manual fallback 模式）。13 個裡先 6 個。
+
+> Step 1 也會裝 `research-hub`、`research-hub-multi-ai`、跟
+> `zotero-library-curator` 的 apply-cleanup 那半。沒有 `research-hub`
+> Python CLI 在 PATH 上時，這幾個 skill 會印出
+> `pip install research-hub-pipeline` 提示，不會幻覺輸出——要完整啟用
+> 看 Step 5。
 
 ### Step 2 — 寫論文
 
@@ -142,7 +144,7 @@ ls ~/.claude/skills/
 
 如果 Claude Code 沒挑到對的 skill，明說 skill 名字：
 
-> 「Use `literature-triage-matrix` to compare these 5 papers.」
+> 「用 `literature-triage-matrix` 比較這 5 篇論文。」
 
 ---
 

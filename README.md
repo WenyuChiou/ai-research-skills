@@ -2,21 +2,16 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-> **Researcher-led, AI-assisted.**
->
-> 13 skills organized by an actual research workflow.
-
-A researcher-facing catalog of 13 AI skills covering the full research
-workflow — from finding the first paper to submitting the final
-manuscript.
+> 13 Claude Code skills for common research tasks — literature
+> triage, research design, project context, manuscript writing, and
+> multi-AI delegation.
 
 Languages: [English](README.md) | [繁中](README.zh-TW.md)
 
-![13 AI skills mapped to the 8-stage research workflow, with cross-cutting tools (codex-delegate, gemini-delegate, research-hub-multi-ai) usable at every stage](docs/img/pipeline-overview.png)
+![13 AI skills mapped to research workflow stages, with cross-cutting tools (codex-delegate, gemini-delegate, research-hub-multi-ai) usable at every stage](docs/img/pipeline-overview.png)
 
-**What you get:** 13 skills covering the full research workflow.
-9 ship via one install (`research-hub-pipeline`); 4 are standalone
-clones. Per-skill testing details:
+**What you get:** 5 plugins shipped via one Claude Code marketplace,
+exposing 13 skills total. Per-skill testing details:
 [docs/verification.md](docs/verification.md).
 
 **Who this is for:** graduate students, PhD researchers, postdocs,
@@ -46,10 +41,17 @@ claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 ```
 
-**You can use:** `literature-triage-matrix`, `research-design-helper`,
+**You can use immediately** (pure Claude reasoning + file writes, no
+external setup): `literature-triage-matrix`, `research-design-helper`,
 `research-context-compressor`, `research-project-orienter`,
 `paper-memory-builder`, plus `notebooklm-brief-verifier` (Manual
-fallback mode). That's 6 of 13 skills, ready immediately.
+fallback mode). 6 of 13 skills.
+
+> Step 1 also installs `research-hub`, `research-hub-multi-ai`, and
+> the apply-cleanup half of `zotero-library-curator`. When invoked
+> without the `research-hub` Python CLI on PATH they print a
+> `pip install research-hub-pipeline` hint instead of fabricating
+> output — see Step 5 to enable them fully.
 
 ### Step 2 — Manuscript work
 

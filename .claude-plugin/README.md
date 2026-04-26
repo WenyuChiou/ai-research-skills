@@ -1,7 +1,9 @@
 # Claude Code Plugin Marketplace
 
-This directory makes the [`ai-research-skills`](https://github.com/WenyuChiou/ai-research-skills)
-catalog installable as a Claude Code plugin marketplace.
+Marketplace configuration for the catalog. For end-user install
+instructions, see [the main README](../README.md). This file documents
+the marketplace internals (plugins shipped, schema notes, update
+behavior) for contributors and the curious.
 
 ## Quick install
 
@@ -69,7 +71,7 @@ root and is exposed via a `.claude-plugin/plugin.json` declaring
 | You want… | Use this path |
 |---|---|
 | Just the SKILL.md instructions (skills auto-trigger inside Claude Code) | `claude plugin marketplace add` above — lighter, no Python env |
-| The full research-hub workflow with CLI commands (`research-hub auto`, `research-hub search`, NotebookLM upload automation, etc.) | `pip install research-hub-pipeline` then `research-hub setup --persona <X>` (see [docs/install.md](../docs/install.md)) |
+| The full research-hub workflow with CLI commands (`research-hub auto`, `research-hub search`, NotebookLM upload automation, etc.) | `pip install research-hub-pipeline` then `research-hub setup` (interactive onboarding) |
 
 Both paths install the same 9 SKILL.md files under
 `~/.claude/skills/` — the difference is whether you also get the

@@ -35,9 +35,16 @@ def test_every_family_has_canonical_repo_and_skills():
 
 
 def test_readme_mentions_core_tool_combinations():
+    """README must reference the core tools and audience the catalog
+    actually addresses — Zotero, Obsidian, NotebookLM as the data
+    surface; graduate students and research support staff as the
+    audience; the two main upstream skills (research-hub,
+    academic-writing-skills); and the two long-form docs
+    (install.md, verification.md). Marketing language like
+    "researcher-facing" is intentionally not asserted — it was trimmed
+    in the UX pass for being overclaim-y."""
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     for phrase in [
-        "researcher-facing",
         "graduate students",
         "research support staff",
         "Zotero",
