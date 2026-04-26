@@ -5,15 +5,15 @@
   },
   "metadata": {
     "description": "Catalog of AI skills for the research workflow — researcher-led, AI-assisted",
-    "version": "1.0.1"
+    "version": "1.0.2"
   },
   "plugins": [
     {
       "name": "research-workspace",
       "description": "9 research-hub skills: literature search, comparison matrix, planning manifests, design dialog, multi-AI routing, NotebookLM brief verification, paper-memory builder, Zotero curator. Auto-discovered from the source repo's skills/ subdirectory.",
       "source": {
-        "source": "github",
-        "repo": "WenyuChiou/research-hub"
+        "source": "url",
+        "url": "https://github.com/WenyuChiou/research-hub.git"
       }
     }
   ]
