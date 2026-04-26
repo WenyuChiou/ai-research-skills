@@ -9,13 +9,14 @@ families:
     canonical_repo: https://github.com/WenyuChiou/research-hub
     default_branch: master
     install:
-      summary: Install all packaged research-hub skills through the research-hub CLI.
+      summary: Install all packaged research-hub skills through the research-hub CLI; `setup` is the recommended onboarding (init + install + persona + optional NotebookLM login in one command).
       commands:
         - pip install research-hub-pipeline
-        - research-hub install --platform claude-code
+        - research-hub setup --persona researcher  # or: analyst | humanities | internal
       optional_commands:
         - pip install "research-hub-pipeline[playwright]"
         - research-hub notebooklm login
+        - research-hub install --platform claude-code  # bare install if you skipped setup
     tools:
       - Zotero
       - Obsidian
