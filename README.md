@@ -1,9 +1,6 @@
 # AI Research Skills
 
-[![Tests](https://img.shields.io/badge/tests-10%2F10%20passing-brightgreen)](tests/test_catalog.py)
-[![Verification](https://img.shields.io/badge/verification-11%20T1%20%2B%202%20T2-blue)](docs/verification.md)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-orange)](https://claude.ai/code)
 
 > **Stop asking AI to reread your research project from scratch every
 > session. Give it skills.**
