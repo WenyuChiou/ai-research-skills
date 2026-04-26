@@ -43,6 +43,18 @@ Prerequisite: Claude Code (https://claude.ai/code).
 /plugin install research-workspace@ai-research-skills
 ```
 
+Verify with:
+
+```text
+/plugin marketplace list
+/plugin list
+```
+
+Claude Code 2.1.119 does not expose a reliable `marketplace info`
+command; `(no content)` from `/plugin marketplace info
+ai-research-skills` does not mean the marketplace is empty. The
+install command above is the source-of-truth check.
+
 This installs the **9 research-hub skills** (literature search,
 comparison, planning manifests, design dialog, multi-AI routing,
 NotebookLM brief verification, paper-memory builder, Zotero curator).

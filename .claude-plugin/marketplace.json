@@ -11,6 +11,8 @@
     {
       "name": "research-workspace",
       "description": "9 research-hub skills: literature search, comparison matrix, planning manifests, design dialog, multi-AI routing, NotebookLM brief verification, paper-memory builder, Zotero curator. Auto-discovered from the source repo's skills/ subdirectory.",
+      "category": "productivity",
+      "homepage": "https://github.com/WenyuChiou/research-hub",
       "version": "0.1.0",
       "strict": true,
       "source": {

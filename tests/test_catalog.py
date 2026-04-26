@@ -137,12 +137,15 @@ def test_claude_plugin_marketplace_is_well_formed():
     assert "owner" in data and data["owner"].get("name")
     assert "metadata" in data
     assert "plugins" in data and isinstance(data["plugins"], list)
-    assert len(data["plugins"]) >= 1, "marketplace must list at least 1 plugin"
+    plugin_names = [plugin.get("name") for plugin in data["plugins"]]
+    assert plugin_names == ["research-workspace"]
 
     # Per-plugin required fields
     for plugin in data["plugins"]:
         assert plugin.get("name"), f"plugin missing name: {plugin}"
         assert plugin.get("description"), f"plugin {plugin['name']} missing description"
+        assert plugin.get("category"), f"plugin {plugin['name']} missing category"
+        assert plugin.get("homepage"), f"plugin {plugin['name']} missing homepage"
         assert "source" in plugin, f"plugin {plugin['name']} missing source"
 
         src = plugin["source"]

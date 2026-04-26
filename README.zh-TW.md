@@ -40,6 +40,17 @@ testing 細節見 [docs/verification.md](docs/verification.md)。
 /plugin install research-workspace@ai-research-skills
 ```
 
+驗證方式：
+
+```text
+/plugin marketplace list
+/plugin list
+```
+
+Claude Code 2.1.119 目前沒有可靠的 `marketplace info` 指令；如果
+`/plugin marketplace info ai-research-skills` 顯示 `(no content)`，
+不代表 marketplace 是空的。以上 install 指令是否成功，才是實際檢查點。
+
 這會裝 **9 個 research-hub skills**（文獻搜尋、比較、計畫 manifest、
 設計對話、多 AI routing、NotebookLM brief 驗證、paper-memory builder、
 Zotero curator）。
