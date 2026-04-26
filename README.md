@@ -1,49 +1,80 @@
 # AI Research Skills
 
-A researcher-facing index of practical AI skills, organised the way a
-researcher actually works — from finding the first paper to wrapping up the
-final submission.
+> **Stop asking AI to reread your research project from scratch every
+> session. Give it skills.**
 
-Languages: [English](README.md) | [繁中](README.zh-TW.md) | [Bilingual / 中英文對照](README.bilingual.md)
+A researcher-facing catalog of **13 verified AI skills** that cover the
+full research workflow — from finding the first paper to submitting the
+final manuscript.
 
-This repo is an umbrella catalog. The skills themselves live in their own
-repositories so updates, tests, and install instructions stay in one place:
+Languages: [English](README.md) | [繁中](README.zh-TW.md)
 
-- [`research-hub`](https://github.com/WenyuChiou/research-hub) — Zotero, Obsidian, NotebookLM, `.research/`, `.paper/`.
-- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) — manuscript revision, claim audits, reviewer response.
-- [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills) — deep Zotero CRUD.
-- [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate) — hand coding work to Codex CLI.
-- [`gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill) — hand long-context or bilingual work to Gemini CLI.
+![Pipeline diagram coming soon — the catalog of 13 skills mapped to the 8-stage research workflow](docs/img/pipeline-overview.png)
+*(Diagram placeholder — full pipeline overview is coming. Until then,
+see the **Full research pipeline** section below.)*
 
-Target readers: graduate students, PhD researchers, postdocs, research
-engineers, librarians, and research support staff who run real research
-projects with AI in the loop.
+**What you get:** 13 skills, 11 already verified end-to-end against a
+real research workspace (1100+ papers in Zotero, live NotebookLM, real
+manuscript audits). 9 skills come from one install
+(`research-hub-pipeline`); 4 are standalone clones.
 
-## Who This Is For
+**Who this is for:** graduate students, PhD researchers, postdocs,
+research engineers, librarians, and research support staff who run real
+research projects with AI in the loop.
 
-Use this collection if you want AI help with any of these:
+---
 
-- finding and organising papers across Zotero, Obsidian, and NotebookLM,
-- comparing literature without rereading every PDF,
-- compressing project context so future AI sessions are cheap,
-- building, running, and validating models or experiments,
-- preparing manuscripts, responding to reviewers, and submitting,
-- delegating coding or long-context work to Codex or Gemini.
+## 5-Minute First Try
 
-You do not need every tool. Any two of these pairings already unlocks
-most of the workflow:
+Want to feel what this catalog does before reading the rest?
 
-```text
-Zotero + Obsidian
-Obsidian + NotebookLM
-Zotero + NotebookLM
+**Scenario:** *"Find 10 papers on my research topic and produce a
+comparison matrix I can use to write a literature review."*
+
+```bash
+# 1. Install the core (one command, ships 9 skills)
+pip install research-hub-pipeline
+research-hub install --platform claude-code
+
+# 2. Find + ingest 10 papers (skip NotebookLM for the first run)
+python -m research_hub auto "your topic here" --max-papers 10 --no-nlm
+
+# 3. In Claude Code, ask for the matrix:
+#    "Use literature-triage-matrix to compare the 10 papers
+#     in cluster <slug-research-hub-just-printed>"
 ```
 
-## Research Pipeline — Pick Your Stage
+**What you get back:** `.research/literature_matrix.md` with 9 columns
+— citation, question, method, data, claim, evidence type, limitation,
+relevance, where to use the paper. **Reproducible reference output:**
+[test-corpus/.../literature_matrix.md](test-corpus/ai-agents-social-interaction/.research/literature_matrix.md)
+(real 5-paper run on AI agents and social interaction).
 
-AI skills are most useful when matched to the stage you are in. Find your
-stage below, install the matching skill, and stop asking AI to reread your
-project from scratch each time.
+---
+
+## Pick Your Starting Point
+
+Find the row that matches you. Install the 2 named skills. Skip the
+rest until you need them.
+
+| If you are... | Your question | Start with these 2 skills | Time to first result |
+|---|---|---|---|
+| **First-year PhD / MSc student** | "What's been done in my topic? What should I read?" | [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md) + [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) | ~10 min |
+| **Writing a paper now** | "Does my prose match the figures? Does it sound human?" | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) + [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) | ~15 min |
+| **Running experiments / building models** | "How do I sharpen my research question and capture project state cheaply?" | [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) + [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | ~20 min |
+| **Cleaning a Zotero library** | "What duplicates / missing tags / stale clusters are in my library?" | [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) + [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) | ~5 min |
+| **Helping others adopt AI for research** *(librarian / RA / advisor)* | "What should I recommend to my team? Does this stuff actually work?" | The whole catalog + [docs/install.md](docs/install.md) + [docs/verification.md](docs/verification.md) | (read-only) |
+
+> **Don't see yourself?** The full pipeline below covers 8 research
+> stages. Find your stage, install the matching skill.
+
+---
+
+## Full Research Pipeline
+
+The 8 stages of a research project, with the skills that fit each one.
+This is the comprehensive view — start with the persona table above if
+this feels dense.
 
 ```text
 1. Discover lit  →  2. Organise & compare  →  3a. Frame  →  3b. Plan
@@ -51,26 +82,9 @@ project from scratch each time.
         →  7. Draft manuscript  →  8. Submit, respond, wrap up
 ```
 
-> Most skills below live in [`research-hub`](https://github.com/WenyuChiou/research-hub)
-> or [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills).
-> The "Lives in" line on each stage tells you which repo to clone.
-
-## Cross-cutting Tools — Used at Every Stage
-
-Three skills don't belong to a specific stage — they're triggered by *task
-character*, not pipeline position:
-
-| Skill | Trigger | What it does |
-|---|---|---|
-| [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) | Token-heavy mechanical work | Hand batch edits, scaffolding, refactors, test generation, plotting scripts to Codex CLI. Claude reviews; Codex types. |
-| [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) | Long-context reading or 繁中 / CJK output | Hand long-PDF synthesis, bilingual rewrites, second-opinion review to Gemini CLI. |
-| [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) | "Who should do this?" | Stage-agnostic, character-driven routing — produces a delegation plan + handoff prompts. |
-
-Use them at *any* stage. The stage tables below focus on stage-specific
-skills and reference these three by name where they apply.
-
-**Lives in:** standalone `codex-delegate` / `gemini-delegate-skill` ·
-`research-hub` (multi-ai router).
+Three skills don't belong to a specific stage — they're triggered by
+*task character*, not pipeline position. See **Cross-cutting tools**
+below.
 
 ### 1. Discover literature
 
@@ -84,13 +98,9 @@ OneNote skill — use Obsidian as the notes layer.)*
 | [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md) | Search arXiv / Semantic Scholar / CrossRef / PubMed, ingest metadata, write paper notes into Obsidian. |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) | Add, tag, deduplicate, and clean Zotero items beyond the research-hub pipeline. |
 
-**Lives in:** `research-hub` (search/ingest) · standalone `zotero-skills`.
-
 ### 2. Organise & compare literature, find the gap
 
 > *"Where is the research gap? Which 5 papers actually matter?"*
-
-Tools: **Zotero collections · Obsidian clusters · NotebookLM briefs.**
 
 | Skill | What it does |
 |---|---|
@@ -100,202 +110,201 @@ Tools: **Zotero collections · Obsidian clusters · NotebookLM briefs.**
 | [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) *(optional)* | Audit Zotero before comparison — find duplicate DOIs, orphan items, propose tag/collection cleanup. Read-only. |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) *(optional)* | Apply the cleanup the curator proposes — full CRUD on Zotero items. |
 
-**Lives in:** `research-hub` (matrix, verifier, hub, curator) · standalone `zotero-skills`.
-
 ### 3a. Frame the problem (you do this)
 
 > *"Is my research question sharp enough to be falsifiable?"*
 
-AI doesn't replace this work — sharpening a vague interest into a research
-question with identifiable mechanism, validation plan, and risk register
-is the irreducibly creative part of research. The skill below acts as a
-**Socratic dialog partner**, not a problem-framer.
+AI doesn't replace this work. The skill below acts as a **Socratic
+dialog partner** — it asks structured questions to surface what you'd
+otherwise leave implicit; it does not invent the question for you.
 
 | Skill | What it does |
 |---|---|
-| [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | Walks you through 5 segments — research question sharpening → expected mechanism → identifiability check → validation plan → risk register — and writes `.research/design_brief.md`. Does NOT invent the question; helps you articulate it. |
-
-**Lives in:** `research-hub`.
+| [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | Walks you through 5 segments — research question → expected mechanism → identifiability check → validation plan → risk register — and writes `.research/design_brief.md`. |
 
 ### 3b. Plan the project (capture the artifacts)
 
 > *"What am I claiming, with what data, and what's my plan?"*
 
-Once Stage 3a has shaped the question, these skills capture the plan as
-machine-readable manifests so future AI sessions don't reread the whole repo.
+Once 3a has shaped the question, these skills capture the plan as
+machine-readable manifests so future AI sessions don't reread the whole
+repo.
 
 | Skill | What it does |
 |---|---|
-| [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | Write `.research/project_manifest.yml`, `.research/experiment_matrix.yml`, `.research/data_dictionary.yml` so future AI sessions skip the rescan. Picks up `design_brief.md` from 3a if present. |
+| [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | Write `.research/project_manifest.yml`, `experiment_matrix.yml`, `data_dictionary.yml`. Picks up `design_brief.md` from 3a if present. |
 | [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) | Read those manifests and produce a fast orientation memo when you (or a new AI session) come back to the project. |
-
-**Lives in:** `research-hub`.
 
 ### 4. Design and build the model
 
 > *"What architecture, equations, agents, or prompts do I need?"*
 
-Tools: **your repo + IDE.**
-
 The creative part — choosing model class, parameters, identifiability
 strategy — stays human. AI helps by reading back the `design_brief.md`
-produced in Stage 3a and generating implementation scaffolding.
+from 3a and generating implementation scaffolding.
 
 | Skill | What it does |
 |---|---|
-| [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | Same skill as 3a — re-read `.research/design_brief.md` here when you're ready to translate "what to model" into "how to model". |
+| [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | Same skill as 3a — re-read `.research/design_brief.md` here when translating "what to model" into "how to model". |
 
-For implementation scaffolding (test harness, plotting, batch edits) and
-design review by long-context reading, use the **Cross-cutting tools**
-(`codex-delegate`, `gemini-delegate`) above.
-
-**Lives in:** `research-hub`.
+For implementation scaffolding (test harness, plotting, batch edits)
+and design review by long-context reading, use the **Cross-cutting
+tools** (`codex-delegate`, `gemini-delegate`) below.
 
 ### 5. Run experiments, calibrate, and validate (C&V)
 
 > *"Is the run reproducible, checkable, extensible? Can I save tokens
 > across long sessions?"*
 
-Tools: **your repo + multi-AI CLIs.**
-
 | Skill | What it does |
 |---|---|
-| [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | Token-saving manifests so each new run-and-check session does not start from zero. |
-| [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) | Cheap re-onboarding when you switch between experiments or come back days later. |
+| [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | Token-saving manifests so each run-and-check session doesn't start from zero. |
+| [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) | Cheap re-onboarding when you switch experiments or come back days later. |
 
-For repeatable sweeps, regression tests, and post-fix verification,
-delegate token-heavy runs via the **Cross-cutting tools**
-(`codex-delegate` for code-heavy work; `research-hub-multi-ai` to plan
-the routing across Claude / Codex / Gemini).
-
-**Lives in:** `research-hub`.
+For repeatable sweeps and post-fix verification, delegate via the
+**Cross-cutting tools** below.
 
 ### 6. Visualise and interpret results
 
 > *"What does the figure actually show? Does my caption match?"*
 
-Tools: **matplotlib / plotly / your plotting stack of choice.**
-
-No native skill yet. Visualisation work is typically direct interaction
-with your plotting stack. When the work is mechanical (consistent style
-across N figures, batch re-renders) or interpretive (caption /
-narrative pairing for a figure), delegate via the **Cross-cutting
-tools** above — `codex-delegate` for plotting scripts;
-`gemini-delegate` for figure-caption pairing using long context.
+No native skill yet. Visualisation typically means direct interaction
+with your plotting stack (matplotlib / plotly). When the work is
+mechanical (consistent style across N figures, batch re-renders) or
+interpretive (caption / narrative pairing), delegate via the
+**Cross-cutting tools** below.
 
 ### 7. Draft and revise the manuscript
 
-> *"Does the prose match the figure? Does it fit the target journal? Does
-> it sound human?"*
-
-Tools: **Word · LaTeX · Markdown.**
+> *"Does the prose match the figure? Does it fit the target journal?
+> Does it sound human?"*
 
 | Skill | What it does |
 |---|---|
 | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) | Extract `.paper/claims.yml` and `.paper/figures.yml` so writing tools see the same numbers as the figures. |
 | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) | Manuscript revision, claim-evidence audit, banned-word / humanize pass, figure-text consistency, journal-format check. |
-| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) *(optional)* | Deep-edit bibliography entries — fix citation metadata, add missing fields, attach PDFs — when the writing skill flags references that need cleanup. |
+| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) *(optional)* | Deep-edit bibliography entries when the writing skill flags references that need cleanup. |
 
 For long-form bilingual rewrites or 繁中 / CJK drafts, use the
-**Cross-cutting tool** `gemini-delegate` above.
-
-**Lives in:** `research-hub` (paper-memory-builder) · standalone `academic-writing-skills` · standalone `zotero-skills`.
+**Cross-cutting tool** `gemini-delegate` below.
 
 ### 8. Submit, respond to reviewers, wrap up
 
 > *"Are my claims defensible? Is the reviewer response complete? Is the
-> project state preserved for the next person — or for future me?"*
-
-Tools: **journal portal · your repo.**
+> project state preserved for future me?"*
 
 | Skill | What it does |
 |---|---|
 | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) | Reviewer response tables, pre-submission checklist, journal-format audit, rebuttal letter. |
-| [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | Freeze the project's final state into `.research/` manifests so future AI sessions (or future you) can resume in seconds. |
+| [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | Freeze the project's final state so future AI sessions (or future you) can resume in seconds. |
 
-**Lives in:** standalone `academic-writing-skills` · `research-hub`.
+---
 
-## All Skills in This Catalog
+## Cross-cutting Tools — Used at Every Stage
 
-The full set of skills referenced above, grouped by their canonical repo.
-**Thirteen skills total** — every one of them appears either in at least
-one pipeline stage or in the Cross-cutting tools section above.
+Three skills don't belong to a specific stage — they're triggered by
+*task character*:
 
-**From [`research-hub`](https://github.com/WenyuChiou/research-hub) (9 skills):**
+| Skill | Trigger | What it does |
+|---|---|---|
+| [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) | Token-heavy mechanical work | Hand batch edits, scaffolding, refactors, test generation, plotting scripts to Codex CLI. |
+| [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) | Long-context reading or 繁中 / CJK output | Hand long-PDF synthesis, bilingual rewrites, second-opinion review to Gemini CLI. |
+| [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) | "Who should do this?" | Stage-agnostic, character-driven routing — produces a delegation plan + handoff prompts. |
+
+---
+
+## All 13 Skills
+
+<details>
+<summary><b>From <code>research-hub</code> (9 skills)</b> — one install gets all of them</summary>
 
 - [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md) — search, ingest, organise papers across Zotero / Obsidian / NotebookLM. *(Stages 1, 2)*
 - [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) — comparison matrix across method, data, claim, limitation. *(Stage 2)*
 - [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) — verify NotebookLM briefs against source bundles. *(Stage 2)*
-- [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) — audit Zotero library, find duplicates / orphans, propose cleanup (preview only). *(Stage 2)*
-- [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) — Socratic dialog through research question → mechanism → identifiability → validation → risk. Writes `.research/design_brief.md`. *(Stages 3a, 4)*
+- [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) — audit Zotero, propose cleanup (preview only). *(Stage 2)*
+- [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) — Socratic dialog through RQ → mechanism → identifiability → validation → risk. *(Stages 3a, 4)*
 - [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) — `.research/` manifests so future AI sessions skip the rescan. *(Stages 3b, 5, 8)*
 - [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) — fast orientation memo from those manifests. *(Stages 3b, 5)*
 - [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — stage-agnostic, character-driven routing across Claude / Codex / Gemini. *(Cross-cutting)*
 - [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) — `.paper/claims.yml` and `.paper/figures.yml` for manuscript work. *(Stage 7)*
 
-**Standalone repos (4 skills):**
+</details>
+
+<details>
+<summary><b>Standalone repos (4 skills)</b> — git clone individually</summary>
 
 - [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) — manuscript revision, claim-evidence audit, banned-word / humanize, journal format, reviewer response. *(Stages 7, 8)*
-- [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7 — the apply layer beneath `zotero-library-curator`)*
+- [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) — Claude → Codex CLI handoff for code-heavy work. *(Cross-cutting)*
 - [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting)*
 
-Stage with no native skill yet: **(6) visualisation** — the closest fits
-are the cross-cutting `codex-delegate` (plotting scripts) and
-`gemini-delegate` (figure-caption pairing). Contributions welcome.
+</details>
 
-## Quick Reference — By Tool Combination
+Stage with no native skill yet: **(6) visualisation** — closest fits
+are the cross-cutting `codex-delegate` and `gemini-delegate`.
+Contributions welcome.
 
-If you already know your stack, use this lookup instead of the pipeline.
+---
 
-| If you want to... | Use this skill | Install |
-|---|---|---|
-| Connect Zotero, Obsidian, and/or NotebookLM | [`research-hub`](https://github.com/WenyuChiou/research-hub) | `pip install research-hub-pipeline` then `research-hub install --platform claude-code` |
-| Compare papers in a literature review | [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) | via `research-hub install` |
-| Verify a NotebookLM brief | [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) | via `research-hub install` |
-| Prepare a manuscript for AI writing | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) + [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) | install `research-hub` and clone `academic-writing-skills` |
-| Revise a paper or respond to reviewers | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) | `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` |
-| Clean or edit a Zotero library | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | `git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills` |
-| Delegate coding-heavy work | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate) | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate` |
-| Delegate long-context or bilingual work | [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill) | `git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill` |
+## Install
 
-For the researcher-facing checklist, see
-[docs/researcher-workflow-checklist.md](docs/researcher-workflow-checklist.md).
-Full directory: [docs/skill-directory.md](docs/skill-directory.md).
-Machine-readable catalog: [catalog/skills.yml](catalog/skills.yml).
+The minimum useful set:
 
-## Skill Families & Boundary Rules
+```bash
+# 1. research-hub — installs 9 skills in one go
+pip install research-hub-pipeline
+research-hub install --platform claude-code
 
-| Family | Canonical repo | Owns |
-|---|---|---|
-| Research workspace | [`research-hub`](https://github.com/WenyuChiou/research-hub) | Zotero / Obsidian / NotebookLM workflow, `.research/` and `.paper/` handoff files. |
-| Academic writing | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) | Manuscript revision, claim-evidence audit, reviewer response, figure-text consistency, journal compliance. |
-| Zotero operations | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | Deep Zotero CRUD, batch metadata, library maintenance. |
-| Codex delegation | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate) | Claude → Codex CLI handoff for code-heavy work. |
-| Gemini delegation | [`gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill) | Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. |
+# 2. academic-writing-skills — for any manuscript work
+git clone https://github.com/WenyuChiou/academic-writing-skills \
+  ~/.claude/skills/academic-writing-skills
+```
 
-Domain-specific simulation governance, model coupling, and audit traces
-belong in the relevant model repository, not here.
+That's it for most researchers. Add as needed:
 
-## Recommended Install Order
+```bash
+# Heavy Zotero CRUD (deeper than research-hub bundles)
+git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
 
-1. Install `research-hub` if you use any two of Zotero, Obsidian, NotebookLM.
-2. Install `academic-writing-skills` if you write or revise papers with AI.
-3. Add `zotero-skills` if you need deep Zotero library operations.
-4. Add `codex-delegate` and `gemini-delegate-skill` if you use multiple AI CLIs.
+# Multi-CLI workflows (Claude + Codex + Gemini)
+git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
+git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
 
-Commands: [docs/install.md](docs/install.md).
+# Optional NotebookLM browser automation
+pip install "research-hub-pipeline[playwright]"
+research-hub notebooklm login
+```
 
-## Status
+Full guide: [docs/install.md](docs/install.md). Upgrading from
+research-hub-pipeline ≤ 0.45? See the upgrade note in that file.
 
-The catalog is intentionally lightweight. It points to tested canonical
-repos rather than becoming a monorepo.
+---
 
-Currently verified:
+## Verified
 
-- `research-hub`: targeted skill tests passing.
-- `academic-writing-skills`: integrity tests passing.
+This is not a "trust me, it works" catalog. Every skill has been
+exercised against a real research workspace and the evidence is
+committed to this repo:
 
-## License
+- **11 of 13** skills passed **T1** (full functional smoke test with
+  real input → real output).
+- **1 of 13** at **T2 caveat** (`codex-delegate`: workaround
+  documented).
+- **1 of 13** at **T2 pass** (`gemini-delegate`).
+- **0** failures, **0** unverified.
 
-MIT
+Test corpus: 5 papers on AI agents and social interaction (real
+arXiv / Elsevier metadata), reproducible via a single
+`research-hub search` command. Full per-skill report:
+[docs/verification.md](docs/verification.md).
+
+---
+
+## Status & License
+
+Lightweight catalog. Each skill is maintained in its canonical repo —
+this catalog is the index, not a monorepo.
+
+License: MIT. Contributions welcome — open an issue or PR. New skill
+proposals should target either `research-hub` (workflow integration)
+or a standalone repo (deep, single-purpose CRUD).

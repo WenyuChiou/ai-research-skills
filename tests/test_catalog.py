@@ -40,39 +40,43 @@ def test_readme_mentions_core_tool_combinations():
         "researcher-facing",
         "graduate students",
         "research support staff",
-        "Zotero + Obsidian",
-        "Obsidian + NotebookLM",
-        "Zotero + NotebookLM",
+        "Zotero",
+        "Obsidian",
+        "NotebookLM",
         "research-hub",
         "academic-writing-skills",
-        "docs/skill-directory.md",
-        "docs/researcher-workflow-checklist.md",
+        "docs/install.md",
+        "docs/verification.md",
     ]:
         assert phrase in readme
 
 
-def test_bilingual_readme_exists_and_lists_all_skills():
-    bilingual = (ROOT / "README.bilingual.md").read_text(encoding="utf-8")
-    for phrase in [
-        "English",
-        "繁中",
-        "research-adjacent users",
-        "研究相關使用者",
-        "研究生",
-        "Zotero + Obsidian",
-        "Obsidian + NotebookLM",
-        "research-hub",
-        "research-context-compressor",
-        "research-project-orienter",
-        "literature-triage-matrix",
-        "paper-memory-builder",
-        "notebooklm-brief-verifier",
-        "academic-writing-skills",
-        "zotero-skills",
-        "codex-delegate",
-        "gemini-delegate",
+def test_readme_has_persona_starting_points():
+    """The persona table is the redesigned README's primary entry point.
+    Each of the 5 personas must be addressed by name."""
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    for persona_phrase in [
+        "First-year PhD",
+        "Writing a paper",
+        "Running experiments",
+        "Cleaning a Zotero library",
+        "Helping others adopt AI for research",
     ]:
-        assert phrase in bilingual
+        assert persona_phrase in readme, f"persona row missing: {persona_phrase}"
+
+
+def test_zh_readme_mirrors_persona_table():
+    """The zh-TW README must address all 5 personas with translated headings."""
+    zh = (ROOT / "README.zh-TW.md").read_text(encoding="utf-8")
+    for phrase in [
+        "5 分鐘上手",
+        "找到你的起點",
+        "正在寫論文",
+        "跑實驗 / 建模型",
+        "整理 Zotero library",
+        "Cross-cutting Tools",
+    ]:
+        assert phrase in zh, f"zh-TW phrase missing: {phrase}"
 
 
 def test_researcher_workflow_checklist_lists_core_research_combinations():
