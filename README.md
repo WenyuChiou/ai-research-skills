@@ -39,14 +39,31 @@ stage below, install the matching skill, and stop asking AI to reread your
 project from scratch each time.
 
 ```text
-1. Discover lit  →  2. Organise & compare  →  3. Frame & plan  →  4. Build model
-        →  5. Run & validate (C&V)  →  6. Visualise  →  7. Draft manuscript
-        →  8. Submit, respond, wrap up
+1. Discover lit  →  2. Organise & compare  →  3a. Frame  →  3b. Plan
+        →  4. Build model  →  5. Run & validate (C&V)  →  6. Visualise
+        →  7. Draft manuscript  →  8. Submit, respond, wrap up
 ```
 
 > Most skills below live in [`research-hub`](https://github.com/WenyuChiou/research-hub)
 > or [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills).
 > The "Lives in" line on each stage tells you which repo to clone.
+
+## Cross-cutting Tools — Used at Every Stage
+
+Three skills don't belong to a specific stage — they're triggered by *task
+character*, not pipeline position:
+
+| Skill | Trigger | What it does |
+|---|---|---|
+| [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) | Token-heavy mechanical work | Hand batch edits, scaffolding, refactors, test generation, plotting scripts to Codex CLI. Claude reviews; Codex types. |
+| [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) | Long-context reading or 繁中 / CJK output | Hand long-PDF synthesis, bilingual rewrites, second-opinion review to Gemini CLI. |
+| [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) | "Who should do this?" | Stage-agnostic, character-driven routing — produces a delegation plan + handoff prompts. |
+
+Use them at *any* stage. The stage tables below focus on stage-specific
+skills and reference these three by name where they apply.
+
+**Lives in:** standalone `codex-delegate` / `gemini-delegate-skill` ·
+`research-hub` (multi-ai router).
 
 ### 1. Discover literature
 
@@ -73,18 +90,36 @@ Tools: **Zotero collections · Obsidian clusters · NotebookLM briefs.**
 | [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) | Compare papers by method, data, claim, limitation, and relevance — without rereading every PDF. |
 | [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) | Verify a NotebookLM brief against the source bundle. Catches missed sources, unsupported claims, and contradictions. |
 | [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md) | Build the Obsidian cluster and the NotebookLM source bundle that feed the matrix. |
+| [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) *(optional)* | Audit Zotero before comparison — find duplicate DOIs, orphan items, propose tag/collection cleanup. Read-only. |
+| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) *(optional)* | Apply the cleanup the curator proposes — full CRUD on Zotero items. |
 
-**Lives in:** `research-hub` (all three).
+**Lives in:** `research-hub` (matrix, verifier, hub, curator) · standalone `zotero-skills`.
 
-### 3. Frame the problem, plan the project
+### 3a. Frame the problem (you do this)
 
-> *"What am I claiming, with what data, and what's my plan?"*
+> *"Is my research question sharp enough to be falsifiable?"*
 
-Tools: **Obsidian project notes · `.research/` manifests in your repo.**
+AI doesn't replace this work — sharpening a vague interest into a research
+question with identifiable mechanism, validation plan, and risk register
+is the irreducibly creative part of research. The skill below acts as a
+**Socratic dialog partner**, not a problem-framer.
 
 | Skill | What it does |
 |---|---|
-| [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | Write `.research/project_manifest.yml`, `.research/experiment_matrix.yml`, `.research/data_dictionary.yml` so future AI sessions skip the rescan. |
+| [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | Walks you through 5 segments — research question sharpening → expected mechanism → identifiability check → validation plan → risk register — and writes `.research/design_brief.md`. Does NOT invent the question; helps you articulate it. |
+
+**Lives in:** `research-hub`.
+
+### 3b. Plan the project (capture the artifacts)
+
+> *"What am I claiming, with what data, and what's my plan?"*
+
+Once Stage 3a has shaped the question, these skills capture the plan as
+machine-readable manifests so future AI sessions don't reread the whole repo.
+
+| Skill | What it does |
+|---|---|
+| [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | Write `.research/project_manifest.yml`, `.research/experiment_matrix.yml`, `.research/data_dictionary.yml` so future AI sessions skip the rescan. Picks up `design_brief.md` from 3a if present. |
 | [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) | Read those manifests and produce a fast orientation memo when you (or a new AI session) come back to the project. |
 
 **Lives in:** `research-hub`.
@@ -95,30 +130,38 @@ Tools: **Obsidian project notes · `.research/` manifests in your repo.**
 
 Tools: **your repo + IDE.**
 
-There is no model-design-specific skill in this catalog yet. Closest match:
+The creative part — choosing model class, parameters, identifiability
+strategy — stays human. AI helps by reading back the `design_brief.md`
+produced in Stage 3a and generating implementation scaffolding.
 
 | Skill | What it does |
 |---|---|
-| [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) | Hand scaffolding, batch edits, boilerplate, and many-file refactors to Codex CLI. Claude reviews; Codex types. |
-| [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) | Use Gemini's long context for design reviews, second opinions, and reading large reference codebases. |
+| [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | Same skill as 3a — re-read `.research/design_brief.md` here when you're ready to translate "what to model" into "how to model". |
 
-**Lives in:** standalone `codex-delegate` and `gemini-delegate-skill` repos.
+For implementation scaffolding (test harness, plotting, batch edits) and
+design review by long-context reading, use the **Cross-cutting tools**
+(`codex-delegate`, `gemini-delegate`) above.
+
+**Lives in:** `research-hub`.
 
 ### 5. Run experiments, calibrate, and validate (C&V)
 
 > *"Is the run reproducible, checkable, extensible? Can I save tokens
-> across long sessions? Can I share work across multiple AIs?"*
+> across long sessions?"*
 
-Tools: **your repo + multi-AI CLIs (Claude, Codex, Gemini).**
+Tools: **your repo + multi-AI CLIs.**
 
 | Skill | What it does |
 |---|---|
-| [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) | Decide what stays in Claude vs. what goes to Codex (code-heavy) vs. Gemini (long context, bilingual). Plan the handoff. |
-| [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) | Repeatable Codex runs for sweeps, regression tests, and post-fix verification. |
 | [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | Token-saving manifests so each new run-and-check session does not start from zero. |
 | [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) | Cheap re-onboarding when you switch between experiments or come back days later. |
 
-**Lives in:** `research-hub` (multi-ai, compressor, orienter) · standalone `codex-delegate`.
+For repeatable sweeps, regression tests, and post-fix verification,
+delegate token-heavy runs via the **Cross-cutting tools**
+(`codex-delegate` for code-heavy work; `research-hub-multi-ai` to plan
+the routing across Claude / Codex / Gemini).
+
+**Lives in:** `research-hub`.
 
 ### 6. Visualise and interpret results
 
@@ -126,14 +169,12 @@ Tools: **your repo + multi-AI CLIs (Claude, Codex, Gemini).**
 
 Tools: **matplotlib / plotly / your plotting stack of choice.**
 
-There is no visualisation-specific skill in this catalog yet. Closest match:
-
-| Skill | What it does |
-|---|---|
-| [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) | Generate or refactor plotting scripts (consistent style across N figures, batch re-renders). |
-| [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) | Pair a figure with a draft caption / interpretation paragraph using long-context reading. |
-
-**Lives in:** standalone `codex-delegate` and `gemini-delegate-skill`.
+No native skill yet. Visualisation work is typically direct interaction
+with your plotting stack. When the work is mechanical (consistent style
+across N figures, batch re-renders) or interpretive (caption /
+narrative pairing for a figure), delegate via the **Cross-cutting
+tools** above — `codex-delegate` for plotting scripts;
+`gemini-delegate` for figure-caption pairing using long context.
 
 ### 7. Draft and revise the manuscript
 
@@ -146,9 +187,12 @@ Tools: **Word · LaTeX · Markdown.**
 |---|---|
 | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) | Extract `.paper/claims.yml` and `.paper/figures.yml` so writing tools see the same numbers as the figures. |
 | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) | Manuscript revision, claim-evidence audit, banned-word / humanize pass, figure-text consistency, journal-format check. |
-| [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) | Long-form rewrites, bilingual or CJK drafts, second-opinion review on prose. |
+| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) *(optional)* | Deep-edit bibliography entries — fix citation metadata, add missing fields, attach PDFs — when the writing skill flags references that need cleanup. |
 
-**Lives in:** `research-hub` (paper-memory-builder) · standalone `academic-writing-skills` · standalone `gemini-delegate-skill`.
+For long-form bilingual rewrites or 繁中 / CJK drafts, use the
+**Cross-cutting tool** `gemini-delegate` above.
+
+**Lives in:** `research-hub` (paper-memory-builder) · standalone `academic-writing-skills` · standalone `zotero-skills`.
 
 ### 8. Submit, respond to reviewers, wrap up
 
@@ -167,29 +211,31 @@ Tools: **journal portal · your repo.**
 ## All Skills in This Catalog
 
 The full set of skills referenced above, grouped by their canonical repo.
-Eleven skills total — every one of them appears in at least one stage of
-the pipeline.
+**Thirteen skills total** — every one of them appears either in at least
+one pipeline stage or in the Cross-cutting tools section above.
 
-**From [`research-hub`](https://github.com/WenyuChiou/research-hub) (7 skills):**
+**From [`research-hub`](https://github.com/WenyuChiou/research-hub) (9 skills):**
 
 - [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md) — search, ingest, organise papers across Zotero / Obsidian / NotebookLM. *(Stages 1, 2)*
 - [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) — comparison matrix across method, data, claim, limitation. *(Stage 2)*
 - [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) — verify NotebookLM briefs against source bundles. *(Stage 2)*
-- [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) — `.research/` manifests so future AI sessions skip the rescan. *(Stages 3, 5, 8)*
-- [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) — fast orientation memo from those manifests. *(Stages 3, 5)*
-- [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — split work across Claude / Codex / Gemini, plan handoffs. *(Stage 5)*
+- [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) — audit Zotero library, find duplicates / orphans, propose cleanup (preview only). *(Stage 2)*
+- [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) — Socratic dialog through research question → mechanism → identifiability → validation → risk. Writes `.research/design_brief.md`. *(Stages 3a, 4)*
+- [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) — `.research/` manifests so future AI sessions skip the rescan. *(Stages 3b, 5, 8)*
+- [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) — fast orientation memo from those manifests. *(Stages 3b, 5)*
+- [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — stage-agnostic, character-driven routing across Claude / Codex / Gemini. *(Cross-cutting)*
 - [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) — `.paper/claims.yml` and `.paper/figures.yml` for manuscript work. *(Stage 7)*
 
 **Standalone repos (4 skills):**
 
 - [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) — manuscript revision, claim-evidence audit, banned-word / humanize, journal format, reviewer response. *(Stages 7, 8)*
-- [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) — deep Zotero CRUD, batch metadata, library maintenance. *(Stage 1)*
-- [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) — Claude → Codex CLI handoff for code-heavy work. *(Stages 4, 5, 6)*
-- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Stages 4, 6, 7)*
+- [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7 — the apply layer beneath `zotero-library-curator`)*
+- [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) — Claude → Codex CLI handoff for code-heavy work. *(Cross-cutting)*
+- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting)*
 
-Stages with no native skill yet: **(4) model design** and **(6) visualization**
-— the closest fits today are `codex-delegate` and `gemini-delegate`.
-Contributions for either gap are welcome.
+Stage with no native skill yet: **(6) visualisation** — the closest fits
+are the cross-cutting `codex-delegate` (plotting scripts) and
+`gemini-delegate` (figure-caption pairing). Contributions welcome.
 
 ## Quick Reference — By Tool Combination
 

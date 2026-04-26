@@ -101,6 +101,26 @@ families:
           test-corpus/ai-agents-social-interaction/.research/orientation_memo.md.
           Followed the exact memo template in SKILL.md; read 0 source
           files outside .research/ (per skill's token-saving rule).
+      - name: research-design-helper
+        directory: research-design-helper
+        repo_url: https://github.com/WenyuChiou/research-hub
+        skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md
+        purpose: Guide a researcher through 5 Socratic segments (research question sharpening, expected mechanism, identifiability check, validation plan, risk register) and produce .research/design_brief.md. Does NOT write the model spec or invent the research question - guides the human to articulate them.
+        use_when:
+          - Frame a vague interest into a falsifiable research question.
+          - Sharpen a hypothesis before designing a model.
+          - Walk through study design before coding starts.
+          - Produce a design_brief artifact that compressor / orienter can read.
+        outputs:
+          - .research/design_brief.md
+        verified_on: "2026-04-25"
+        verification_status: not_yet
+        verification_tier: T3
+        verification_notes: |
+          Catalogued upstream-shipped skill (research-hub recommendation #1).
+          SKILL.md inspected: well-formed frontmatter, lays out the 5
+          Socratic segments. Not yet exercised against a real test scenario;
+          verification will follow in a separate run.
       - name: literature-triage-matrix
         directory: literature-triage-matrix
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -170,6 +190,28 @@ families:
           indexed (NLM listed them and quoted Lim 2025 verbatim) - the
           failure is in NLM's brief-generation step subsetting silently,
           not in source indexing. Sharpens the verifier's value.
+      - name: zotero-library-curator
+        directory: zotero-library-curator
+        repo_url: https://github.com/WenyuChiou/research-hub
+        skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md
+        purpose: Audit and curate a Zotero library - find duplicate DOIs, orphan items missing required tags, propose collection rebinds, generate tag hygiene reports, emit preview-only cleanup plans. Defers all CRUD to the standalone zotero-skills skill or research-hub zotero CLI.
+        use_when:
+          - Audit a Zotero library before a literature review.
+          - Find duplicate DOIs or orphan items.
+          - Generate a tag hygiene report.
+          - Propose a Zotero cleanup plan (preview only, no writes).
+        outputs:
+          - Audit report in conversation
+          - Preview-only cleanup plan (handed to zotero-skills for apply)
+        verified_on: "2026-04-25"
+        verification_status: not_yet
+        verification_tier: T3
+        verification_notes: |
+          Catalogued upstream-shipped skill (research-hub recommendation #4
+          side effect). SKILL.md inspected: well-formed frontmatter, clear
+          read-only / preview-only scope with explicit handoff to
+          zotero-skills for any writes. Not yet exercised against a real
+          test scenario; verification will follow in a separate run.
 
   - id: academic-writing
     name: Academic writing
