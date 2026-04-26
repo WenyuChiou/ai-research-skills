@@ -25,49 +25,6 @@ research projects with AI in the loop.
 
 ---
 
-## 10-Minute First Try
-
-Want to feel what this catalog does before reading the rest?
-
-**Prerequisite:** Claude Code installed — see https://claude.ai/code.
-The skills below activate inside a Claude Code conversation.
-
-**Realistic time:** ~10 min the first time (Claude Code login +
-research-hub install + paper search + matrix build). Subsequent runs
-on a configured machine are closer to 2–3 min.
-
-**Scenario:** *"Find 10 papers on my research topic and produce a
-comparison matrix I can use to write a literature review."*
-
-```bash
-# 1. Install + onboard (one command — handles persona, skill install,
-#    optional NotebookLM login, sample data)
-pip install research-hub-pipeline
-research-hub setup --persona researcher
-#   ↑ pick `analyst` if you don't use Zotero (Obsidian + NotebookLM only)
-#     pick `humanities` for qualitative / archival / interpretive work
-#     pick `researcher` for the full Zotero + Obsidian + NotebookLM stack
-
-# 2. Find + ingest 10 papers (skip NotebookLM for the first run)
-python -m research_hub auto "your topic here" --max-papers 10 --no-nlm
-
-# 3. In Claude Code, ask for the matrix:
-#    "Use literature-triage-matrix to compare the 10 papers
-#     in cluster <slug-research-hub-just-printed>"
-```
-
-**What you get back:** `.research/literature_matrix.md` with 9 columns
-— citation, question, method, data, claim, evidence type, limitation,
-relevance, where to use the paper. **Reproducible reference output:**
-[test-corpus/.../literature_matrix.md](test-corpus/ai-agents-social-interaction/.research/literature_matrix.md)
-(real 5-paper run on AI agents and social interaction).
-
-> **Already have research-hub installed but never picked a persona?**
-> Re-run `research-hub setup --persona <choice>` any time — it's
-> idempotent.
-
----
-
 ## Pick Your Starting Point
 
 Find the row that matches your immediate goal. Install the named

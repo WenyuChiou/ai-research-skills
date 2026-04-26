@@ -68,7 +68,6 @@ def test_zh_readme_mirrors_persona_table():
     """The zh-TW README must mirror the 3 goal-based persona rows + librarian callout."""
     zh = (ROOT / "README.zh-TW.md").read_text(encoding="utf-8")
     for phrase in [
-        "10 分鐘上手",
         "找到你的起點",
         "找文獻、比較文獻",
         "寫論文 / 改稿",

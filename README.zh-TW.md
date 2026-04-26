@@ -22,47 +22,6 @@ testing 細節見 [docs/verification.md](docs/verification.md)。
 
 ---
 
-## 10 分鐘上手
-
-想在讀完整份 README 之前先感受一下這個目錄能做什麼？
-
-**前置條件：** 已安裝 Claude Code——見 https://claude.ai/code。下方所有
-skills 都是在 Claude Code 對話裡觸發。
-
-**實際時間：** 第一次大約 ~10 分鐘（Claude Code 登入 + research-hub
-安裝 + 找論文 + 產出比較表）。設定好的機器之後再跑大約 2–3 分鐘。
-
-**情境：** *「找 10 篇我研究主題的論文，產出一張可以拿來寫文獻回顧的
-比較表」*
-
-```bash
-# 1. 安裝 + onboarding（一個指令——處理 persona、skill 安裝、
-#    可選 NotebookLM 登入、sample data）
-pip install research-hub-pipeline
-research-hub setup --persona researcher
-#   ↑ 不用 Zotero 的選 `analyst`（Obsidian + NotebookLM only）
-#     人文 / 質性 / 解讀型研究選 `humanities`
-#     完整 Zotero + Obsidian + NotebookLM stack 選 `researcher`
-
-# 2. 找並匯入 10 篇論文（第一次先跳過 NotebookLM）
-python -m research_hub auto "你的研究主題" --max-papers 10 --no-nlm
-
-# 3. 在 Claude Code 裡請它做比較表：
-#    「Use literature-triage-matrix to compare the 10 papers
-#     in cluster <research-hub 剛印出來的 slug>」
-```
-
-**會拿到什麼：** `.research/literature_matrix.md`，9 個欄位——citation、
-question、method、data、claim、evidence type、limitation、relevance、
-這篇論文該放在你 manuscript 的哪裡。**可重現的範例輸出：**
-[test-corpus/.../literature_matrix.md](test-corpus/ai-agents-social-interaction/.research/literature_matrix.md)
-（用 5 篇 AI agent 與 social interaction 主題的論文真的跑過）。
-
-> **已經裝過 research-hub 但沒選 persona？** 隨時 re-run
-> `research-hub setup --persona <choice>`，這個指令是 idempotent。
-
----
-
 ## 找到你的起點
 
 對到你眼前的目標。一個指令裝完，其他等你需要再說。
