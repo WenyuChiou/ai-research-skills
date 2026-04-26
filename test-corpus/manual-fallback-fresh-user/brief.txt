@@ -1,0 +1,8 @@
+# AI Agents Social Interaction Test
+
+Source: https://notebooklm.google.com/notebook/9763efa3-297f-467d-bd30-c52a390764f5
+Downloaded: 20260426T001559Z
+Sources: 0
+Saved briefings: The Evolution of AI Interaction: Social Learning and Embodied Influence; Multi-Agent and Embodied AI: Expanding Social Influence and Learning Paradigms
+
+這份研究報告探討了將大型語言模型（LLM）從傳統的一對一教學模式轉向多代理人社會學習環境的成效。研究透過兩項實驗發現，在數學邏輯等收斂性問題中，同時結合「導師」與會出錯的「虛擬同儕」能顯著提升學習者的測試準確度。針對寫作等發散性任務，使用兩個角色專業化且架構不同的 AI 協作，能有效解決單一模型常導致的觀點同質化問題，進而保留創意的多樣性。這項研究指出，模擬社會互動與同儕觀察的環境比單純的權威式引導更能增進學習深度。此外，多代理人配置雖可能增加認知負荷，卻能提升學習者的自我效能感與參與意願。總體而言，這為未來 AI 輔助教育工具的設計提供了從「數位導師」邁向「豐富代理人生態系」的發展藍圖。

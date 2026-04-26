@@ -247,30 +247,35 @@ tools** 的 `gemini-delegate`。
 
 ### Standalone 使用說明
 
-13 個 skill 中有 11 個不需要完整的 Zotero + Obsidian + NotebookLM
-stack。下面 2 個有依賴鏈，**裝之前**值得先了解：
+**13 個 skill 全部裝完就能直接用**——沒有 skill 依賴另一個 skill，也
+沒有任何 skill 需要超出 `research-hub setup --persona <X>` 已經幫你
+設好的 research-hub workspace。
 
-- **`research-project-orienter`**——需要 `.research/` manifest。如果還
-  沒有，skill 會 fallback 去 scan `README.md` + `docs/`（一次性、比較
-  慢）；想要重複用 orientation 的話，先跑
-  `research-context-compressor` 產出 manifest。
-- **`research-hub`**（knowledge-base）——這個就是**平台本體**。最輕量
-  的入口是 `research-hub setup --persona analyst`（Obsidian + NotebookLM
-  only，無 Zotero）或 `--persona humanities`（Zotero，但用 qualitative
-  研究友善的 defaults）。
+下面這 1 個有 *workflow 順序*——不是依賴，只是建議的執行順序：
 
-原本還有 3 個 skill（`literature-triage-matrix`、`research-context-compressor`、
-`notebooklm-brief-verifier`）需要額外的 standalone caveat，但
-research-hub-pipeline ≥ 0.68.2 已經把 standalone / 手動輸入的路徑直接
-寫進各自的 SKILL.md 裡（triage 的 manual paper list、compressor 的 3 分支
-input 結構含人文範例、verifier 的 Manual fallback mode）。安裝完直接讀
-SKILL.md 就好——這邊不再列額外 caveat。
+- **`research-project-orienter`**——讀 `.research/` manifest 比較快。
+  如果還沒有，skill 會 fallback 去 scan `README.md` + `docs/`（比較
+  慢）；想要重複用 orientation 的話，先跑 `research-context-compressor`
+  產出 manifest。
 
-其餘 8 個 skill（`research-design-helper`、`research-hub-multi-ai`、
-`paper-memory-builder`、`zotero-library-curator`、`academic-writing-skills`、
-`zotero-skills`、`codex-delegate`、`gemini-delegate`）用各自的自然輸入就
-能 standalone 跑（一份 paper draft、一個 Zotero 連線、一個 CLI binary，
-等等）——不需要 research-hub workspace。
+其他 12 個 skill 都是**直接**用自然輸入：
+
+- 5 個只需要 Claude Code + 你自己的檔案：`research-design-helper`、
+  `research-hub-multi-ai`、`research-context-compressor`、
+  `paper-memory-builder`、`academic-writing-skills`。
+- 4 個需要一個你本來就會有的外部服務：`zotero-skills` /
+  `zotero-library-curator`（Zotero local API）、`codex-delegate`
+  （Codex CLI binary）、`gemini-delegate`（Gemini CLI binary）。
+- 3 個有 research-hub-managed / 手動雙模式：
+  - `literature-triage-matrix`——任何論文 list 貼進 chat 即可（per
+    SKILL.md mode #0）。
+  - `notebooklm-brief-verifier`——接受手動下載的 brief + 純文字 source
+    list（per SKILL.md Manual fallback mode，v0.68.2）。
+    [已用 fresh-user setup 端到端驗證](test-corpus/manual-fallback-fresh-user/brief-verify-manual-fallback.md)，
+    跟 research-hub-managed mode 產出**完全相同**的結果。
+  - `research-hub`（knowledge-base）——選 `analyst` persona 是 Obsidian
+    + NotebookLM only（無 Zotero）；選 `humanities` 是 Zotero +
+    qualitative-friendly defaults。
 
 ---
 

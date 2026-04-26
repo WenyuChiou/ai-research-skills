@@ -259,33 +259,37 @@ Three skills don't belong to a specific stage — they're triggered by
 
 ### Standalone use notes
 
-11 of 13 skills work without the full Zotero + Obsidian + NotebookLM
-stack. The 2 below have dependency chains worth knowing **before** you
-install:
+**All 13 skills are usable directly after install** — no skill depends
+on another skill, and none require a research-hub workspace beyond
+what `research-hub setup --persona <X>` configures for you.
 
-- **`research-project-orienter`** — needs `.research/` manifests. If
-  none exist, the skill falls back to scanning `README.md` + `docs/`
-  (one-shot, slower); for repeat orientation, run
+The 1 skill below has a *workflow chain* worth knowing — not a
+dependency, just an order:
+
+- **`research-project-orienter`** — reads `.research/` manifests for
+  speed. If none exist yet, the skill falls back to scanning
+  `README.md` + `docs/` (slower); for repeat orientation, run
   `research-context-compressor` first to produce the manifests.
-- **`research-hub`** (knowledge-base) — this *is* the platform. For
-  the lightest entry, run `research-hub setup --persona analyst`
-  (Obsidian + NotebookLM only, no Zotero required) or
-  `--persona humanities` (Zotero, qualitative-friendly defaults).
 
-Three skills used to need extra explanation here — `literature-triage-matrix`,
-`research-context-compressor`, `notebooklm-brief-verifier` — but
-research-hub-pipeline ≥ 0.68.2 now documents their standalone /
-manual-input paths directly inside each SKILL.md (manual paper list
-for triage; 3-branch input structure with humanities example for
-compressor; explicit Manual fallback mode for verifier). Read the
-SKILL.md when you install — no separate caveats needed here.
+The other 12 skills work **directly** with their natural inputs:
 
-The remaining 8 skills (`research-design-helper`, `research-hub-multi-ai`,
-`paper-memory-builder`, `zotero-library-curator`,
-`academic-writing-skills`, `zotero-skills`, `codex-delegate`,
-`gemini-delegate`) work standalone with their natural inputs (a paper
-draft, a Zotero connection, a CLI binary, etc.) — no research-hub
-workspace required.
+- 5 need only Claude Code + your own files: `research-design-helper`,
+  `research-hub-multi-ai`, `research-context-compressor`,
+  `paper-memory-builder`, `academic-writing-skills`.
+- 4 need one external service you'd already have: `zotero-skills` /
+  `zotero-library-curator` (Zotero local API), `codex-delegate`
+  (Codex CLI binary), `gemini-delegate` (Gemini CLI binary).
+- 3 work either with or without research-hub-managed inputs:
+  - `literature-triage-matrix` — paste any paper list (titles + DOIs)
+    in chat (per SKILL.md mode #0).
+  - `notebooklm-brief-verifier` — accepts manually-downloaded brief +
+    plain source list (per SKILL.md Manual fallback mode, v0.68.2).
+    [Verified end-to-end](test-corpus/manual-fallback-fresh-user/brief-verify-manual-fallback.md)
+    against a fresh-user setup; produces identical results to the
+    research-hub-managed mode.
+  - `research-hub` (knowledge-base) — pick `analyst` persona for
+    Obsidian + NotebookLM only (no Zotero), or `humanities` for
+    Zotero + qualitative defaults.
 
 ---
 

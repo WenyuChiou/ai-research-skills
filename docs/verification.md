@@ -50,7 +50,7 @@ own `CLAUDE.md` describes).
 |---|---|---|---|---|
 | 1 | `research-hub` (knowledge-base) | T1 | ✓ pass | `python -m research_hub doctor` (all green) + `search "agent-based modeling" --limit 3 --json` returned 3 results; full ingest cycle for the test corpus exercised below |
 | 2 | `literature-triage-matrix` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/literature_matrix.md` (5-paper × 9-column matrix from test corpus) |
-| 3 | `notebooklm-brief-verifier` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research_hub/brief-verify-20260426T001559Z.md` — full cycle: ingest → bundle → upload → generate → download → verify. Caught real failure: NLM produced Kumar-only brief from 5-source bundle |
+| 3 | `notebooklm-brief-verifier` | T1 | ✓ pass (both modes) | research-hub-managed mode: `test-corpus/ai-agents-social-interaction/.research_hub/brief-verify-20260426T001559Z.md` — full cycle. Manual fallback mode (v0.68.2): `test-corpus/manual-fallback-fresh-user/brief-verify-manual-fallback.md` — fresh-user setup with no research-hub paths, identical verification output to managed mode |
 | 4 | `research-context-compressor` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/{project_manifest,experiment_matrix,data_dictionary}.yml` + `run_log.md` + `open_questions.md` (all parse) |
 | 5 | `research-project-orienter` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/orientation_memo.md` (read 0 source files outside `.research/`) |
 | 6 | `research-hub-multi-ai` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/multi-ai-routing-decision.md` (9-step routing plan honoring all 4 guardrails) |

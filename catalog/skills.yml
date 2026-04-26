@@ -180,20 +180,23 @@ families:
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          T1 promoted - full end-to-end cycle exercised. Created cluster
-          ai-agents-social-interaction-test, ingested 5 papers
-          (--no-zotero), bundled (4 PDFs + 1 URL), uploaded to live
-          NotebookLM (5/5 succeeded), generated brief, downloaded brief,
-          ran verifier. Verifier output committed to
-          test-corpus/.../.research_hub/brief-verify-20260426T001559Z.md.
-          Caught real failure: NLM produced Kumar-only brief (1/5 sources
-          represented despite "Multi-Agent and Embodied AI" title).
-          Verifier flagged 4 missed sources + 1 unsupported claim and
-          generated 5 follow-up prompts. Re-test +9min: same 1/5 brief
-          coverage. Direct `notebooklm ask` proved all 5 sources ARE
-          indexed (NLM listed them and quoted Lim 2025 verbatim) - the
-          failure is in NLM's brief-generation step subsetting silently,
-          not in source indexing. Sharpens the verifier's value.
+          T1 verified in BOTH modes (research-hub-managed + Manual fallback).
+          Mode 1 (research-hub-managed, 2026-04-25): full cycle - cluster
+          create, 5-paper ingest, bundle, upload to live NLM, generate,
+          download, verify. Output: test-corpus/ai-agents-social-interaction/.research_hub/brief-verify-20260426T001559Z.md.
+          Caught real failure: NLM produced Kumar-only brief (1/5 sources)
+          despite "Multi-Agent and Embodied AI" title. Direct `notebooklm
+          ask` proved all 5 sources ARE indexed; failure is in NLM's
+          brief-generation step.
+          Mode 2 (Manual fallback, v0.68.2, 2026-04-26): fresh-user setup -
+          brief.txt + sources.md (markdown bullet list) at arbitrary
+          paths, NO research-hub paths read. Output:
+          test-corpus/manual-fallback-fresh-user/brief-verify-manual-fallback.md.
+          Produces IDENTICAL verification output to Mode 1: same 1/5
+          source coverage detected, same 4 missed sources, same 1
+          unsupported claim, same 5 follow-up prompts. Confirms a fresh
+          user who uploads to NotebookLM directly (no research-hub
+          workspace) gets the same verification quality.
       - name: zotero-library-curator
         directory: zotero-library-curator
         repo_url: https://github.com/WenyuChiou/research-hub
