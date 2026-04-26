@@ -5,15 +5,9 @@
   },
   "metadata": {
     "description": "Catalog of AI skills for the research workflow — researcher-led, AI-assisted",
-    "version": "1.0.4"
+    "version": "1.0.5"
   },
   "plugins": [
-    {
-      "name": "diagnostic-local",
-      "description": "Diagnostic plugin (local source) — used to isolate whether `/plugin marketplace info` filters by marketplace.json structure or remote source resolution. Safe to ignore or uninstall.",
-      "version": "0.0.1",
-      "source": "./plugins/diagnostic-local"
-    },
     {
       "name": "research-workspace",
       "description": "9 research-hub skills: literature search, comparison matrix, planning manifests, design dialog, multi-AI routing, NotebookLM brief verification, paper-memory builder, Zotero curator. Auto-discovered from the source repo's skills/ subdirectory.",
