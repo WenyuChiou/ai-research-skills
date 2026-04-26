@@ -23,6 +23,13 @@ per-skill matrix. **Distribution:** 9 skills come from one install
 research engineers, librarians, and research support staff who run real
 research projects with AI in the loop.
 
+**How skills actually work:** each skill is a Markdown instruction file
+(`SKILL.md`) installed under `~/.claude/skills/`. AI hosts that
+support skills (Claude Code, Cursor with the Claude Code extension,
+etc.) automatically read and apply them when your request matches the
+skill's trigger description. **Skills are not CLI tools or Python
+packages** — they're prompt scaffolding the host loads on your behalf.
+
 ---
 
 ## 10-Minute First Try
@@ -328,6 +335,30 @@ research-hub notebooklm login
 > the recommended onboarding because it also handles persona, Zotero
 > default collection, and NotebookLM login. Both are idempotent; you
 > can run `setup` any time.
+
+### Don't want research-hub at all?
+
+Skip `pip install research-hub-pipeline` and clone only the standalone
+repos you need. You'll get up to 4 skills, fully usable, with no
+platform install:
+
+```bash
+# Manuscript revision + reviewer response (most-used)
+git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills
+
+# Deep Zotero CRUD
+git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
+
+# Hand code-heavy tasks to Codex CLI
+git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
+
+# Hand long-context / 繁中 work to Gemini CLI
+git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
+```
+
+The other 9 skills (literature-triage, design-helper, compressor,
+orienter, paper-memory-builder, etc.) ship together inside
+`research-hub-pipeline` and aren't separately installable today.
 
 Full guide: [docs/install.md](docs/install.md). Upgrading from
 research-hub-pipeline ≤ 0.45? See the upgrade note in that file.

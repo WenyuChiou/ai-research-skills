@@ -7,7 +7,7 @@
 
 語言：[English](README.md) | [繁中](README.zh-TW.md)
 
-![13 個 AI skills 對應 8 個研究階段，附 cross-cutting tools（codex-delegate、gemini-delegate、research-hub-multi-ai）每階段都可用](docs/img/pipeline-overview.png)
+![13 個 AI skills 對應 8 個研究階段，附 cross-cutting tools（codex-delegate、gemini-delegate、research-hub-multi-ai）每階段都可用](docs/img/pipeline-overview.zh-TW.png)
 
 **你會拿到什麼：** 13 個 skills，涵蓋整個研究 workflow。**驗證狀態：**
 13 個裡 11 個對真實研究環境（1100+ 篇 Zotero、live NotebookLM、真實
@@ -18,6 +18,12 @@ manuscript audit）做完端到端驗證 (T1)；2 個在 binary / CLI 層驗證 
 
 **適合誰：** 研究生、博士生、博士後、研究人員、研究工程師、圖書館員，
 以及在實際研究流程中把 AI 拉進來的研究支援人員。
+
+**Skills 實際上怎麼運作：** 每個 skill 是一份 Markdown 指令檔
+（`SKILL.md`），安裝在 `~/.claude/skills/` 下。支援 skills 的 AI host
+（Claude Code、有 Claude Code extension 的 Cursor 等）在你的請求符合該
+skill 的 trigger description 時，會自動讀進來並套用。**Skills 不是 CLI
+工具、不是 Python package**——它們是 host 替你載入的 prompt scaffolding。
 
 ---
 
@@ -313,6 +319,29 @@ research-hub notebooklm login
 > 還能用，但只寫 SKILL.md 檔案。**`setup` 是建議的 onboarding** 因為
 > 它還處理 persona、Zotero default collection、NotebookLM 登入。兩個
 > 都是 idempotent，setup 隨時可以再跑。
+
+### 完全不想用 research-hub？
+
+跳過 `pip install research-hub-pipeline`，只 clone 你需要的獨立 repo。
+最多拿到 4 個 skill，完整可用，不需要平台 install：
+
+```bash
+# 論文修改 + reviewer response（最常用）
+git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills
+
+# 深度 Zotero CRUD
+git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
+
+# 把程式重的工作交給 Codex CLI
+git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
+
+# 把長 context / 繁中工作交給 Gemini CLI
+git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
+```
+
+其他 9 個 skill（literature-triage、design-helper、compressor、
+orienter、paper-memory-builder 等）都打包在 `research-hub-pipeline`
+裡，目前還沒法獨立安裝。
 
 完整安裝指南：[docs/install.md](docs/install.md)。從
 research-hub-pipeline ≤ 0.45 升級的話，請參考該檔案的 upgrade note。
