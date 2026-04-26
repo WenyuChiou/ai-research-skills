@@ -40,7 +40,7 @@ any row and use what you've installed.
 
 | Step | Paste this | What you can use after this step |
 |---|---|---|
-| **1. Marketplace plugin** *(start here)* | `claude plugin marketplace add WenyuChiou/ai-research-skills`<br>`claude plugin install research-workspace@ai-research-skills --scope user` | **5 skills + 1 fallback**: `literature-triage-matrix`, `research-design-helper`, `research-context-compressor`, `research-project-orienter`, `paper-memory-builder`, plus `notebooklm-brief-verifier` (Manual fallback — [verified](test-corpus/manual-fallback-fresh-user/brief-verify-manual-fallback.md)). |
+| **1. Marketplace plugin** *(start here)* | `claude plugin marketplace add WenyuChiou/ai-research-skills`<br>`claude plugin install research-workspace@ai-research-skills --scope user` | **5 skills + 1 fallback**: `literature-triage-matrix`, `research-design-helper`, `research-context-compressor`, `research-project-orienter`, `paper-memory-builder`, plus `notebooklm-brief-verifier` (Manual fallback mode). |
 | **2. + Manuscript work** | `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` | **+ `academic-writing-skills`** (banned-word audit, claim-evidence check, journal format, reviewer response). |
 | **3. + Zotero**<sup>†</sup> | `git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills` | **+ `zotero-skills`** (full CRUD), **+ `zotero-library-curator`** (audit + cleanup proposals). |
 | **4. + Multi-CLI delegation**<sup>‡</sup> | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate`<br>`git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill` | **+ `codex-delegate`** (token-heavy code work), **+ `gemini-delegate`** (long-context, CJK output). |
@@ -69,7 +69,7 @@ binary.
 - Run step 1 in a terminal — not inside the interactive `/plugin` UI.
   On Claude Code 2.1.119, `/plugin install` can fall back to SSH and
   fail without a configured GitHub SSH key. The terminal
-  `claude plugin install ...` path is verified.
+  `claude plugin install ...` path uses HTTPS and works.
 - `(no content)` from `/plugin marketplace info` is not an error —
   `info` is not a supported subcommand on 2.1.119.
 - Persona choices for step 5: `researcher` / `analyst` / `humanities`

@@ -35,7 +35,7 @@ Skills 是放在 `~/.claude/skills/` 底下的 Markdown 指令檔
 
 | 步驟 | 直接貼這個 | 這一步裝完後可以用的 skill |
 |---|---|---|
-| **1. Marketplace plugin** *（從這裡開始）* | `claude plugin marketplace add WenyuChiou/ai-research-skills`<br>`claude plugin install research-workspace@ai-research-skills --scope user` | **5 個 skill + 1 個 fallback**：`literature-triage-matrix`、`research-design-helper`、`research-context-compressor`、`research-project-orienter`、`paper-memory-builder`，加上 `notebooklm-brief-verifier`（Manual fallback——[已驗證](test-corpus/manual-fallback-fresh-user/brief-verify-manual-fallback.md)）。 |
+| **1. Marketplace plugin** *（從這裡開始）* | `claude plugin marketplace add WenyuChiou/ai-research-skills`<br>`claude plugin install research-workspace@ai-research-skills --scope user` | **5 個 skill + 1 個 fallback**：`literature-triage-matrix`、`research-design-helper`、`research-context-compressor`、`research-project-orienter`、`paper-memory-builder`，加上 `notebooklm-brief-verifier`（Manual fallback 模式）。 |
 | **2. + 寫論文** | `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` | **+ `academic-writing-skills`**（banned-word audit、claim-evidence 檢查、journal format、reviewer response）。 |
 | **3. + Zotero**<sup>†</sup> | `git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills` | **+ `zotero-skills`**（完整 CRUD）、**+ `zotero-library-curator`**（audit + cleanup 提案）。 |
 | **4. + 多 CLI delegation**<sup>‡</sup> | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate`<br>`git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill` | **+ `codex-delegate`**（token-heavy code work）、**+ `gemini-delegate`**（長 context、CJK 輸出）。 |
@@ -64,7 +64,7 @@ Gemini CLI 安裝 + 登入：看
 - 第 1 步請在 terminal 執行——不要在互動式 `/plugin` UI 裡跑。Claude
   Code 2.1.119 的 `/plugin install` 有時會改走 SSH（`git@github.com`），
   本機沒有 GitHub SSH key 就會失敗。terminal 的
-  `claude plugin install ...` 是已驗證可用的路徑。
+  `claude plugin install ...` 走 HTTPS，沒有這個問題。
 - `/plugin marketplace info` 顯示 `(no content)` 不是錯誤——`info`
   在 2.1.119 不是支援的 subcommand。
 - 第 5 步的 persona 選項：`researcher` / `analyst` / `humanities` /
