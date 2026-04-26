@@ -1,0 +1,87 @@
+# Project manifest for ai-research-skills
+# Written by research-context-compressor on 2026-04-25.
+
+project_name: ai-research-skills
+research_area: AI skills for research workflows (Zotero / Obsidian / NotebookLM / academic writing / multi-AI delegation)
+research_question: |
+  How should a researcher discover, install, and combine AI skills across the
+  full research lifecycle (literature → planning → modelling → execution →
+  visualization → writing → submission), and which existing skills are
+  verified to work in practice on a real researcher's stack?
+current_stage: writing
+last_updated: "2026-04-25"
+
+# What this repo *is*
+project_kind: umbrella-catalog
+description: |
+  This repo is an index, not a monorepo. The 11 catalogued skills live in
+  five canonical repositories (research-hub, academic-writing-skills,
+  zotero-skills, codex-delegate, gemini-delegate-skill). This repo contains
+  only navigation, install pointers, verification evidence, and a small
+  test corpus.
+
+# Where the skill bodies live
+canonical_repos:
+  - id: research-hub
+    url: https://github.com/WenyuChiou/research-hub
+    owns: 7 skills (knowledge-base/research-hub, multi-ai, compressor, orienter, triage-matrix, paper-memory-builder, brief-verifier)
+  - id: academic-writing-skills
+    url: https://github.com/WenyuChiou/academic-writing-skills
+    owns: 1 skill (manuscript revision, claim audit, reviewer response)
+  - id: zotero-skills
+    url: https://github.com/WenyuChiou/zotero-skills
+    owns: 1 skill (deep Zotero CRUD)
+  - id: codex-delegate
+    url: https://github.com/WenyuChiou/codex-delegate
+    owns: 1 skill (Codex CLI handoff)
+  - id: gemini-delegate-skill
+    url: https://github.com/WenyuChiou/gemini-delegate-skill
+    owns: 1 skill (Gemini CLI handoff)
+
+# Repo entrypoints (skim these first; do not deep-read)
+entrypoints:
+  primary_readme: README.md
+  zh_readme: README.zh-TW.md
+  bilingual_readme: README.bilingual.md
+  workflow_checklist: docs/researcher-workflow-checklist.md
+  per_skill_directory: docs/skill-directory.md
+  install_guide: docs/install.md
+  machine_readable_catalog: catalog/skills.yml
+  verification_report: docs/verification.md
+  test_corpus_root: test-corpus/ai-agents-social-interaction/
+
+# Datasets ("data" in research-repo sense). This repo has none in the
+# scientific sense; the closest equivalents are the catalog YAML and the
+# test corpus.
+datasets:
+  - name: skills.yml
+    path: catalog/skills.yml
+    schema: 4 families × N skills, each with name/purpose/use_when/outputs +
+      verified_on/verification_status/verification_tier/verification_notes
+  - name: ai-agents-social-interaction test corpus
+    path: test-corpus/ai-agents-social-interaction/
+    schema: 5 papers (frontmatter + abstract + extractable claims) +
+      raw search-results.json
+    purpose: Reproducible input for verifying literature-triage-matrix,
+      paper-memory-builder, and notebooklm-brief-verifier.
+
+# Tools assumed installed for catalogued skills to work
+tools:
+  - python
+  - research-hub-pipeline (>=0.45)
+  - codex-cli
+  - gemini-cli
+  - Zotero (with local API enabled)
+  - Obsidian (optional, for cluster notes)
+  - Chrome (for NotebookLM browser automation)
+
+# Recent activity (from `git log --oneline -10`)
+recent_activity:
+  - "549dd60 Add first verification pass for all 11 catalogued skills"
+  - "9773d42 Restructure READMEs around 8-stage research pipeline"
+  - "5083251 Clarify researcher audience positioning"
+  - "cfd3eeb Add bilingual README"
+  - "ca38088 Add researcher workflow checklist"
+  - "9a0d7f8 Add direct skill directory and install links"
+  - "8754607 Normalize catalog file endings"
+  - "45912f0 Create AI research skills catalog"

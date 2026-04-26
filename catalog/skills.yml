@@ -53,8 +53,12 @@ families:
           - Handoff prompts
         verified_on: "2026-04-25"
         verification_status: pass
-        verification_tier: T3
-        verification_notes: SKILL.md present; routing rules consistent with installed codex 0.121.0 and gemini 0.38.2
+        verification_tier: T1
+        verification_notes: |
+          T1 promoted. Output committed to .research/multi-ai-routing-decision.md
+          - 9-step routing plan for the 5-paper test scenario, each step
+          quoting matching SKILL.md Decision Rule. detect_llm_cli() probe
+          returned 'claude'. All 4 SKILL.md guardrails honored.
       - name: research-context-compressor
         directory: research-context-compressor
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -70,8 +74,13 @@ families:
           - .research/data_dictionary.yml
         verified_on: "2026-04-25"
         verification_status: pass
-        verification_tier: T3
-        verification_notes: SKILL.md well-formed (108 lines, schema-reference + token-saving sections); foundation for project-orienter
+        verification_tier: T1
+        verification_notes: |
+          T1 promoted. Output committed to .research/{project_manifest,
+          experiment_matrix,data_dictionary}.yml + run_log.md +
+          open_questions.md. All 3 YAML files parse cleanly. Did not
+          invent research_question; left decisions.md empty (no ADRs);
+          surfaced 4 real open questions including the codex caveat.
       - name: research-project-orienter
         directory: research-project-orienter
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -84,8 +93,11 @@ families:
           - Orientation memo in conversation
         verified_on: "2026-04-25"
         verification_status: pass
-        verification_tier: T3
-        verification_notes: SKILL.md well-formed (120 lines); correctly defers to research-context-compressor when .research/ missing
+        verification_tier: T1
+        verification_notes: |
+          T1 promoted. Output committed to .research/orientation_memo.md.
+          Followed the exact memo template in SKILL.md; read 0 source
+          files outside .research/ (per skill's token-saving rule).
       - name: literature-triage-matrix
         directory: literature-triage-matrix
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -98,8 +110,13 @@ families:
           - .research/literature_matrix.md
         verified_on: "2026-04-25"
         verification_status: pass
-        verification_tier: T3
-        verification_notes: SKILL.md well-formed (113 lines); inputs (Zotero collections, Obsidian clusters) verified working in research-hub and zotero-skills
+        verification_tier: T1
+        verification_notes: |
+          T1 promoted. Output committed to .research/literature_matrix.md.
+          5 papers x 9 columns matrix from test corpus
+          (test-corpus/ai-agents-social-interaction/papers/). Correctly
+          separated 3 method types (empirical/tooling/conceptual) and 5
+          domains - confirmed by the 3x5 sanity grid in the output.
       - name: paper-memory-builder
         directory: paper-memory-builder
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -113,8 +130,13 @@ families:
           - .paper/figures.yml
         verified_on: "2026-04-25"
         verification_status: pass
-        verification_tier: T3
-        verification_notes: SKILL.md well-formed (125 lines); clean boundary - does not edit manuscript itself, hands off to academic-writing-skills
+        verification_tier: T1
+        verification_notes: |
+          T1 promoted. Output committed to test-corpus/ai-agents-social-interaction/.paper/lim-2025/{claims,figures}.yml.
+          5 claims (C1-C5) extracted verbatim from Lim 2025 abstract;
+          C5 marked status:draft (non-significant trend). figures.yml
+          intentionally empty per "don't fabricate" rule, with
+          run_notes documenting the abstract-only scope.
       - name: notebooklm-brief-verifier
         directory: notebooklm-brief-verifier
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -128,8 +150,18 @@ families:
           - Follow-up NotebookLM prompts
         verified_on: "2026-04-25"
         verification_status: pass
-        verification_tier: T3
-        verification_notes: SKILL.md well-formed (134 lines, 14 sections); doctor confirms chrome via patchright + nlm_session healthy. End-to-end verifier loop not exercised in this pass.
+        verification_tier: T1
+        verification_notes: |
+          T1 promoted - full end-to-end cycle exercised. Created cluster
+          ai-agents-social-interaction-test, ingested 5 papers
+          (--no-zotero), bundled (4 PDFs + 1 URL), uploaded to live
+          NotebookLM (5/5 succeeded), generated brief, downloaded brief,
+          ran verifier. Verifier output committed to
+          test-corpus/.../.research_hub/brief-verify-20260426T001559Z.md.
+          Caught real failure: NLM produced Kumar-only brief (1/5 sources
+          represented despite "Multi-Agent and Embodied AI" title).
+          Verifier flagged 4 missed sources + 1 unsupported claim and
+          generated 5 follow-up prompts.
 
   - id: academic-writing
     name: Academic writing
@@ -162,8 +194,14 @@ families:
           - Submission checklist
         verified_on: "2026-04-25"
         verification_status: pass
-        verification_tier: T3
-        verification_notes: SKILL.md + 7 reference files present (banned_words, figure_conventions, journal_format_template, section_checklists, style_overrides_example, submission_checklist, writing_principles). banned_words.md spot-check 4/4 expected words found.
+        verification_tier: T1
+        verification_notes: |
+          T1 promoted. Output committed to test-corpus/ai-agents-social-interaction/.paper/lim-2025/audit-lim-2025-abstract.md.
+          Banned-word audit on Lim 2025 abstract found 3 banned
+          (leveraging, crucial, highlight) + 1 borderline filler
+          ("address this gap"). Correctly did NOT flag "tended to"
+          (recommended replacement, not banned), proving the audit
+          reads the rules rather than naive keyword-matching.
 
   - id: zotero-operations
     name: Zotero operations

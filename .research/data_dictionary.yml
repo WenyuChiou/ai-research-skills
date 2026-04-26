@@ -1,0 +1,76 @@
+# Data dictionary for ai-research-skills
+# Written by research-context-compressor on 2026-04-25.
+#
+# This repo holds no scientific datasets. The only structured machine-readable
+# inputs are the catalog YAML and the test corpus.
+
+datasets:
+  - name: skills.yml
+    path: catalog/skills.yml
+    rows: 11 skills across 4 families
+    schema:
+      families:
+        - id: string (research-workspace | academic-writing | zotero-operations | ai-delegation)
+          name: string
+          canonical_repo: url
+          default_branch: string
+          install: object
+          tools: list[string]
+          skills:
+            - name: string
+              directory: string
+              repo_url: url
+              skill_url: url
+              purpose: string
+              use_when: list[string]
+              outputs: list[string]
+              verified_on: ISO date
+              verification_status: enum (pass | caveat | fail | not_yet)
+              verification_tier: enum (T1 | T2 | T3)
+              verification_notes: string
+      boundaries: object
+
+  - name: search-results.json (AI agents social interaction)
+    path: test-corpus/ai-agents-social-interaction/search-results.json
+    rows: 8 papers (5 selected for corpus)
+    schema:
+      - title: string
+        doi: string
+        arxiv_id: string
+        abstract: string
+        year: int
+        authors: list[string]
+        venue: string
+        url: url
+        citation_count: int
+        pdf_url: url
+        source: string (arxiv | crossref | dblp | openalex)
+        confidence: float
+        found_in: list[string]
+        doc_type: string
+        categories: list[string]
+        publication_types: list[string]
+
+  - name: literature_matrix.md
+    path: .research/literature_matrix.md
+    rows: 5 papers
+    schema: |
+      Markdown table with columns: Citation, Question, Method,
+      Data / study area, Main claim, Evidence, Limitation, Relevance,
+      Use as. Plus cluster reading commentary and method × paper-type
+      sanity-check grid.
+
+  - name: per-paper test corpus
+    path: test-corpus/ai-agents-social-interaction/papers/*.md
+    rows: 5 markdown files
+    schema:
+      frontmatter:
+        - title, authors, year, venue
+        - doi or arxiv_id
+        - url, citation_count, source
+        - paper_type (empirical-study | tooling-paper | conceptual-framework)
+        - method, domain
+      body:
+        - '"## Abstract" section verbatim from search result'
+        - '"## Key extractable claims" section, one bullet per claim'
+        - '"## Key extractable numbers" section (optional): effect sizes, sample sizes, p-values'

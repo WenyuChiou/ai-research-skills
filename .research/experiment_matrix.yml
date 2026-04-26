@@ -1,0 +1,90 @@
+# Experiment matrix for ai-research-skills
+# Written by research-context-compressor on 2026-04-25.
+#
+# This repo's "experiments" are the verification runs documented in
+# docs/verification.md. Each row is one skill being tested.
+
+experiments:
+  - id: research-hub
+    status: pass
+    tier: T1
+    method: doctor health check + search "agent-based modeling" --limit 3 --json
+    artifacts: docs/verification.md (per-skill detail)
+    last_run: "2026-04-25"
+
+  - id: zotero-skills
+    status: pass
+    tier: T1
+    method: curl Zotero local API for collections
+    artifacts: docs/verification.md
+    last_run: "2026-04-25"
+
+  - id: literature-triage-matrix
+    status: pass
+    tier: T1
+    method: invoke skill against 5-paper test corpus
+    inputs: test-corpus/ai-agents-social-interaction/papers/
+    outputs: .research/literature_matrix.md
+    last_run: "2026-04-25"
+
+  - id: research-context-compressor
+    status: pass
+    tier: T1
+    method: invoke skill against this catalog repo
+    inputs: README.md, docs/, catalog/, test-corpus/, git log
+    outputs: .research/project_manifest.yml + this file + data_dictionary.yml + run_log.md + open_questions.md
+    last_run: "2026-04-25"
+
+  - id: research-project-orienter
+    status: pending
+    tier: T1
+    method: read .research/ produced above and emit orientation memo
+    inputs: .research/project_manifest.yml + experiment_matrix.yml + data_dictionary.yml
+    outputs: orientation memo in docs/verification.md
+    last_run: "2026-04-25"
+
+  - id: paper-memory-builder
+    status: pending
+    tier: T1
+    method: invoke against test-corpus/ai-agents-social-interaction/papers/01-lim-2025-vr-embodied-agents.md
+    inputs: 01-lim-2025-vr-embodied-agents.md (frontmatter + abstract + key claims)
+    outputs: test-corpus/ai-agents-social-interaction/.paper/lim-2025/{claims,figures}.yml
+    last_run: "2026-04-25"
+
+  - id: academic-writing-skills
+    status: pending
+    tier: T1
+    method: invoke banned-word audit on Lim 2025 abstract paragraph
+    inputs: paragraph from test-corpus/.../01-lim-2025-vr-embodied-agents.md
+    outputs: audit report in docs/verification.md
+    last_run: "2026-04-25"
+
+  - id: research-hub-multi-ai
+    status: pending
+    tier: T1
+    method: present 5-paper corpus task; ask skill for routing decision (Claude vs Codex vs Gemini)
+    artifacts: routing decision in docs/verification.md
+    last_run: "2026-04-25"
+
+  - id: notebooklm-brief-verifier
+    status: pending
+    tier: T1
+    method: full cycle - ingest 5 papers into research-hub cluster, bundle, upload to NotebookLM, generate brief, download, verify against source
+    inputs: 5-paper test corpus
+    outputs: brief + verification report
+    last_run: "2026-04-25"
+
+  - id: codex-delegate
+    status: caveat
+    tier: T2
+    method: codex --version + codex exec --full-auto -m gpt-5.4 "echo test"
+    artifacts: docs/verification.md
+    notes: default model gpt-5.5 too new for codex-cli 0.121.0; -m gpt-5.4 works
+    last_run: "2026-04-25"
+
+  - id: gemini-delegate
+    status: pass
+    tier: T2
+    method: gemini --version + gemini -p "Say only PING"
+    artifacts: docs/verification.md
+    last_run: "2026-04-25"

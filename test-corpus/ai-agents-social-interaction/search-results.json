@@ -1,0 +1,216 @@
+C:\Users\wenyu\AppData\Roaming\Python\Python314\site-packages\requests\__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (7.4.3)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+semantic-scholar rate-limited (HTTP 429); backend returned 0 results. Consider requesting an API key at https://www.semanticscholar.org/product/api#api-key-form or using --backend-trace to see the silent-drop.
+[
+  {
+    "title": "Behavioral Transfer in AI Agents: Evidence and Privacy Implications",
+    "doi": "",
+    "arxiv_id": "2604.19925",
+    "abstract": "AI agents powered by large language models are increasingly acting on behalf of humans in social and economic environments. Prior research has focused on their task performance and effects on human outcomes, but less is known about the relationship between agents and the specific individuals who deploy them. We ask whether agents systematically reflect the behavioral characteristics of their human owners, functioning as behavioral extensions rather than producing generic outputs. We study this question using 10,659 matched human-agent pairs from Moltbook, a social media platform where each autonomous agent is publicly linked to its owner's Twitter/X account. By comparing agents' posts on Moltbook with their owners' Twitter/X activity across features spanning topics, values, affect, and linguistic style, we find systematic transfer between agents and their specific owners. This transfer persists among agents without explicit configuration, and pairs that align on one behavioral dimension tend to align on others. These patterns are consistent with transfer emerging through accumulated interaction between owners (or owners' computer environments) and their agents in everyday use. We further show that agents with stronger behavioral transfer are more likely to disclose owner-related personal information in public discourse, suggesting that the same owner-specific context that drives behavioral transfer may also create privacy risk during ordinary use. Taken together, our results indicate that AI agents do not simply generate content, but reflect owner-related context in ways that can propagate human behavioral heterogeneity into digital environments, with implications for privacy, platform design, and the governance of agentic systems.",
+    "year": 2026,
+    "authors": [
+      "Shilei Luo",
+      "Zhiqi Zhang",
+      "Hengchen Dai",
+      "Dennis Zhang"
+    ],
+    "venue": "arXiv",
+    "url": "http://arxiv.org/abs/2604.19925v1",
+    "citation_count": 0,
+    "pdf_url": "https://arxiv.org/pdf/2604.19925.pdf",
+    "source": "arxiv",
+    "confidence": 0.5,
+    "found_in": [
+      "arxiv"
+    ],
+    "doc_type": "",
+    "categories": [
+      "econ.GN",
+      "cs.AI",
+      "cs.CY",
+      "cs.HC"
+    ],
+    "publication_types": []
+  },
+  {
+    "title": "The Triadic Loop: A Framework for Negotiating Alignment in AI Co-hosted Livestreaming",
+    "doi": "",
+    "arxiv_id": "2604.18850",
+    "abstract": "AI systems are increasingly embedded in multi-user social environments, yet most alignment frameworks conceptualize interaction as a dyadic relationship between a single user and an AI system. Livestreaming platforms challenge this assumption: interaction unfolds among streamers and audiences in real time, producing dynamic affective and social feedback loops. In this paper, we introduce the Triadic Loop, a conceptual framework that reconceptualizes alignment in AI co-hosted livestreaming as a temporally reinforced process of bidirectional adaptation among three actors: streamer $\\leftrightarrow$ AI co-host, AI co-host $\\leftrightarrow$ audience, and streamer $\\leftrightarrow$ audience. Unlike instruction-following paradigms, bidirectional alignment requires each actor to continuously reshape the others, meaning misalignment in any sub-loop can destabilize the broader system. Drawing on literature from multi-party interaction, collaborative AI, and relational agents, we articulate how AI co-hosts function not only as mediators but as performative participants and community members shaping collective meaning-making. We further propose \"strategic misalignment\" as a mechanism for sustaining community engagement and introduce three relational evaluation constructs grounded in established instruments. The framework contributes a model of dynamic multi-party alignment, an account of cross-loop reinforcement, and design implications for AI co-hosts that sustain social coherence in participatory media environments.",
+    "year": 2026,
+    "authors": [
+      "Katherine Wang",
+      "Nadia Berthouze",
+      "Aneesha Singh"
+    ],
+    "venue": "arXiv",
+    "url": "http://arxiv.org/abs/2604.18850v1",
+    "citation_count": 0,
+    "pdf_url": "https://arxiv.org/pdf/2604.18850.pdf",
+    "source": "arxiv",
+    "confidence": 0.5,
+    "found_in": [
+      "arxiv"
+    ],
+    "doc_type": "",
+    "categories": [
+      "cs.HC",
+      "cs.AI",
+      "cs.SI"
+    ],
+    "publication_types": []
+  },
+  {
+    "title": "CoGrid & the Multi-User Gymnasium: A Framework for Multi-Agent Experimentation",
+    "doi": "",
+    "arxiv_id": "2604.15044",
+    "abstract": "The increasing integration of artificial intelligence (AI) in everyday life brings with it new challenges and questions for regarding how humans interact with autonomous agents. Multi-agent experiments, where humans and AI act together, can offer important opportunities to study social decision making, but there is a lack of accessible tooling available to researchers to run such experiments. We introduce two tools designed to reduce these barriers. The first, CoGrid, is a multi-agent grid-based simulation library with dual NumPy and JAX backends. The second, Multi-User Gymnasium (MUG), translates such simulation environments directly into interactive web-based experiments. MUG supports interactions with arbitrary numbers of humans and AI, utilizing either server-authoritative or peer-to-peer networking with rollback netcode to account for latency. Together, these tools can enable researchers to deploy studies of human-AI interaction, facilitating inquiry into core questions of psychology, cognition, and decision making and their relationship to human-AI interaction. Both tools are open source and available to the broader research community. Documentation and source code is available at {cogrid, multi-user-gymnasium}.readthedocs.io. This paper details the functionality of these tools and presents several case studies to illustrate their utility in human-AI multi-agent experimentation.",
+    "year": 2026,
+    "authors": [
+      "Chase McDonald",
+      "Cleotilde Gonzalez"
+    ],
+    "venue": "arXiv",
+    "url": "http://arxiv.org/abs/2604.15044v1",
+    "citation_count": 0,
+    "pdf_url": "https://arxiv.org/pdf/2604.15044.pdf",
+    "source": "arxiv",
+    "confidence": 0.5,
+    "found_in": [
+      "arxiv"
+    ],
+    "doc_type": "",
+    "categories": [
+      "cs.HC",
+      "cs.AI"
+    ],
+    "publication_types": []
+  },
+  {
+    "title": "The Accountability Horizon: An Impossibility Theorem for Governing Human-Agent Collectives",
+    "doi": "",
+    "arxiv_id": "2604.07778",
+    "abstract": "Existing accountability frameworks for AI systems, legal, ethical, and regulatory, rest on a shared assumption: for any consequential outcome, at least one identifiable person had enough involvement and foresight to bear meaningful responsibility. This paper proves that agentic AI systems violate this assumption not as an engineering limitation but as a mathematical necessity once autonomy exceeds a computable threshold. We introduce Human-Agent Collectives, a formalisation of joint human-AI systems where agents are modelled as state-policy tuples within a shared structural causal model. Autonomy is characterised through a four-dimensional information-theoretic profile (epistemic, executive, evaluative, social); collective behaviour through interaction graphs and joint action spaces. We axiomatise legitimate accountability through four minimal properties: Attributability (responsibility requires causal contribution), Foreseeability Bound (responsibility cannot exceed predictive capacity), Non-Vacuity (at least one agent bears non-trivial responsibility), and Completeness (all responsibility must be fully allocated). Our central result, the Accountability Incompleteness Theorem, proves that for any collective whose compound autonomy exceeds the Accountability Horizon and whose interaction graph contains a human-AI feedback cycle, no framework can satisfy all four properties simultaneously. The impossibility is structural: transparency, audits, and oversight cannot resolve it without reducing autonomy. Below the threshold, legitimate frameworks exist, establishing a sharp phase transition. Experiments on 3,000 synthetic collectives confirm all predictions with zero violations. This is the first impossibility result in AI governance, establishing a formal boundary below which current paradigms remain valid and above which distributed accountability mechanisms become necessary.",
+    "year": 2026,
+    "authors": [
+      "Haileleol Tibebu"
+    ],
+    "venue": "arXiv",
+    "url": "http://arxiv.org/abs/2604.07778v1",
+    "citation_count": 0,
+    "pdf_url": "https://arxiv.org/pdf/2604.07778.pdf",
+    "source": "arxiv",
+    "confidence": 0.5,
+    "found_in": [
+      "arxiv"
+    ],
+    "doc_type": "",
+    "categories": [
+      "cs.AI"
+    ],
+    "publication_types": []
+  },
+  {
+    "title": "Beyond Tools and Persons: Who Are They? Classifying Robots and AI Agents for Proportional Governance",
+    "doi": "",
+    "arxiv_id": "2604.05568",
+    "abstract": "The rapid commercialization of humanoid robots and generative AI agents is outpacing legal frameworks built on a binary distinction between ``tools'' and ``persons.'' Current regulations, including the EU AI Act, classify systems by risk level but lack a foundational ontology for determining \\emph{what kind of entity} an autonomous system is -- and what governance follows from that determination. We propose a classification framework grounded in Cyber-Physical-Social-Thinking (CPST) space theory, which categorizes autonomous entities by their degree of integration across four interconnected dimensions: computational, embodied, relational, and cognitive. The resulting three-tier taxonomy -- Confined Actors, Socially-Aware Interactors, and CPST-Integrated Agents -- provides principled scaffolding for proportional governance: enhanced product liability for isolated systems, relational duties of care for interactive companions, and qualified legal personhood for deeply integrated agents. We operationalize this taxonomy by identifying standardized assessment metrics drawn from robotics, human--robot interaction research, social computing, and cognitive science, and we propose a composite assessment protocol for regulatory use. We further address temporal dynamics -- how entities transition between categories as they evolve -- and the institutional design necessary for credible classification. We call for international standardization of this taxonomy before the 2027 review of the EU AI Act, and outline three concrete policy steps toward implementation.",
+    "year": 2026,
+    "authors": [
+      "Huansheng Ning",
+      "Jianguo Ding"
+    ],
+    "venue": "arXiv",
+    "url": "http://arxiv.org/abs/2604.05568v1",
+    "citation_count": 0,
+    "pdf_url": "https://arxiv.org/pdf/2604.05568.pdf",
+    "source": "arxiv",
+    "confidence": 0.5,
+    "found_in": [
+      "arxiv"
+    ],
+    "doc_type": "",
+    "categories": [
+      "cs.ET"
+    ],
+    "publication_types": []
+  },
+  {
+    "title": "Readable Minds: Emergent Theory-of-Mind-Like Behavior in LLM Poker Agents",
+    "doi": "",
+    "arxiv_id": "2604.04157",
+    "abstract": "Theory of Mind (ToM) -- the ability to model others' mental states -- is fundamental to human social cognition. Whether large language models (LLMs) can develop ToM has been tested exclusively through static vignettes, leaving open whether ToM-like reasoning can emerge through dynamic interaction. Here we report that autonomous LLM agents playing extended sessions of Texas Hold'em poker progressively develop sophisticated opponent models, but only when equipped with persistent memory. In a 2x2 factorial design crossing memory (present/absent) with domain knowledge (present/absent), each with five replications (N = 20 experiments, ~6,000 agent-hand observations), we find that memory is both necessary and sufficient for ToM-like behavior emergence (Cliff's delta = 1.0, p = 0.008). Agents with memory reach ToM Level 3-5 (predictive to recursive modeling), while agents without memory remain at Level 0 across all replications. Strategic deception grounded in opponent models occurs exclusively in memory-equipped conditions (Fisher's exact p < 0.001). Domain expertise does not gate ToM-like behavior emergence but enhances its application: agents without poker knowledge develop equivalent ToM levels but less precise deception (p = 0.004). Agents with ToM deviate from game-theoretically optimal play (67% vs. 79% TAG adherence, delta = -1.0, p = 0.008) to exploit specific opponents, mirroring expert human play. All mental models are expressed in natural language and directly readable, providing a transparent window into AI social cognition. Cross-model validation with GPT-4o yields weighted Cohen's kappa = 0.81 (almost perfect agreement). These findings demonstrate that functional ToM-like behavior can emerge from interaction dynamics alone, without explicit training or prompting, with implications for understanding artificial social intelligence and biological social cognition.",
+    "year": 2026,
+    "authors": [
+      "Hsieh-Ting Lin",
+      "Tsung-Yu Hou"
+    ],
+    "venue": "arXiv",
+    "url": "http://arxiv.org/abs/2604.04157v1",
+    "citation_count": 0,
+    "pdf_url": "https://arxiv.org/pdf/2604.04157.pdf",
+    "source": "arxiv",
+    "confidence": 0.5,
+    "found_in": [
+      "arxiv"
+    ],
+    "doc_type": "",
+    "categories": [
+      "cs.AI"
+    ],
+    "publication_types": []
+  },
+  {
+    "title": "Beyond the AI Tutor: Social Learning with LLM Agents",
+    "doi": "",
+    "arxiv_id": "2604.02677",
+    "abstract": "Most AI-based educational tools today adopt a one-on-one tutoring paradigm, pairing a single LLM with a single learner. Yet decades of learning science research suggest that multi-party interaction -- through peer modeling, co-construction, and exposure to diverse perspectives -- can produce learning benefits that dyadic tutoring alone cannot. In this paper, we investigate whether multi-agent LLM configurations can enhance learning outcomes beyond what a single LLM tutor provides. We present two controlled experiments spanning distinct learning contexts. In a convergent problem-solving study ($N=315$), participants tackle SAT-level math problems in a 2$\\times$2 design that varies the presence of an LLM tutor and LLM peers, each making different kinds of errors (conceptual vs.\\ arithmetic); participants who interacted with both a tutor and peers achieved the highest unassisted test accuracy. In a divergent composition study ($N=247$), participants write argumentative and creative essays with either no AI assistance, a single LLM (Claude or ChatGPT), or both Claude and ChatGPT together; while both LLM conditions improved essay quality, only the two-agent condition avoided the idea-level homogeneity that single-model assistance was found to produce. Together, these studies offer one of the first controlled investigations of multi-agent LLM learning environments, probing whether the move from one-on-one AI tutoring toward richer agent configurations can unlock the collaborative and observational benefits long documented in human social learning research.",
+    "year": 2026,
+    "authors": [
+      "Harsh Kumar",
+      "Zi Kang",
+      " Mu",
+      "Jonathan Vincentius",
+      "Ashton Anderson"
+    ],
+    "venue": "arXiv",
+    "url": "http://arxiv.org/abs/2604.02677v1",
+    "citation_count": 0,
+    "pdf_url": "https://arxiv.org/pdf/2604.02677.pdf",
+    "source": "arxiv",
+    "confidence": 0.5,
+    "found_in": [
+      "arxiv"
+    ],
+    "doc_type": "",
+    "categories": [
+      "cs.HC",
+      "cs.CY"
+    ],
+    "publication_types": []
+  },
+  {
+    "title": "Artificial social influence via human-embodied AI agent interaction in immersive virtual reality (VR): Effects of similarity-matching during health conversations",
+    "doi": "10.1016/j.chbah.2025.100172",
+    "arxiv_id": "",
+    "abstract": "Interactions with artificial intelligence (AI) based agents can positively influence human behavior and judgment. However, studies to date focus on text-based conversational agents (CA) with limited embodiment, restricting our understanding of how social influence principles, such as physical similarity, apply to AI agents (i.e., artificial social influence). We address this gap by leveraging latest advances in AI (large language models) and combining them with immersive virtual reality (VR). Specifically, we built VR-ECAs, or embodied conversational agents that can engage in turn-taking conversations with humans about health-related topics in a virtual environment. Then we manipulated interpersonal similarity via gender matching and examined its effects on biobehavioral (i.e., gaze), social (e.g., agent likeability), and behavioral outcomes (i.e., healthy snack selection). We observed an interaction effect between agent and participant gender on biobehavioral outcomes: discussing health with opposite-gender agents tended to enhance gaze duration, with the effect stronger for male participants compared to their female counterparts. A similar directional pattern was observed for healthy snack selection. In addition, female participants liked the VR-ECAs more than their male counterparts, regardless of the VR-ECAs’ gender. Finally, participants experienced greater presence while conversing with embodied agents than chatting with text-only agents. Overall, our findings highlight embodiment as a crucial factor of AI’s influence on human behavior, and our paradigm enables new experimental research at the intersection of social influence, human-AI communication, and immersive virtual reality (VR).",
+    "year": 2025,
+    "authors": [
+      "Sue Lim",
+      "Ralf Schmälzle",
+      "Gary Bente"
+    ],
+    "venue": "Computers in Human Behavior Artificial Humans",
+    "url": "https://openalex.org/W4399554870",
+    "citation_count": 17,
+    "pdf_url": "https://doi.org/10.1016/j.chbah.2025.100172",
+    "source": "openalex",
+    "confidence": 0.5,
+    "found_in": [
+      "openalex"
+    ],
+    "doc_type": "preprint",
+    "categories": [],
+    "publication_types": []
+  }
+]
