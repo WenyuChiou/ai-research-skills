@@ -55,7 +55,8 @@ families:
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          T1 promoted. Output committed to .research/multi-ai-routing-decision.md
+          T1 promoted. Output committed to
+          test-corpus/ai-agents-social-interaction/.research/multi-ai-routing-decision.md
           - 9-step routing plan for the 5-paper test scenario, each step
           quoting matching SKILL.md Decision Rule. detect_llm_cli() probe
           returned 'claude'. All 4 SKILL.md guardrails honored.
@@ -76,7 +77,8 @@ families:
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          T1 promoted. Output committed to .research/{project_manifest,
+          T1 promoted. Output committed to
+          test-corpus/ai-agents-social-interaction/.research/{project_manifest,
           experiment_matrix,data_dictionary}.yml + run_log.md +
           open_questions.md. All 3 YAML files parse cleanly. Did not
           invent research_question; left decisions.md empty (no ADRs);
@@ -95,7 +97,8 @@ families:
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          T1 promoted. Output committed to .research/orientation_memo.md.
+          T1 promoted. Output committed to
+          test-corpus/ai-agents-social-interaction/.research/orientation_memo.md.
           Followed the exact memo template in SKILL.md; read 0 source
           files outside .research/ (per skill's token-saving rule).
       - name: literature-triage-matrix
@@ -112,7 +115,8 @@ families:
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          T1 promoted. Output committed to .research/literature_matrix.md.
+          T1 promoted. Output committed to
+          test-corpus/ai-agents-social-interaction/.research/literature_matrix.md.
           5 papers x 9 columns matrix from test corpus
           (test-corpus/ai-agents-social-interaction/papers/). Correctly
           separated 3 method types (empirical/tooling/conceptual) and 5

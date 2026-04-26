@@ -49,11 +49,11 @@ own `CLAUDE.md` describes).
 | # | Skill | Tier | Status | Evidence path |
 |---|---|---|---|---|
 | 1 | `research-hub` (knowledge-base) | T1 | ✓ pass | `python -m research_hub doctor` (all green) + `search "agent-based modeling" --limit 3 --json` returned 3 results; full ingest cycle for the test corpus exercised below |
-| 2 | `literature-triage-matrix` | T1 | ✓ pass | `.research/literature_matrix.md` (5-paper × 9-column matrix from test corpus) |
+| 2 | `literature-triage-matrix` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/literature_matrix.md` (5-paper × 9-column matrix from test corpus) |
 | 3 | `notebooklm-brief-verifier` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research_hub/brief-verify-20260426T001559Z.md` — full cycle: ingest → bundle → upload → generate → download → verify. Caught real failure: NLM produced Kumar-only brief from 5-source bundle |
-| 4 | `research-context-compressor` | T1 | ✓ pass | `.research/{project_manifest,experiment_matrix,data_dictionary}.yml` + `run_log.md` + `open_questions.md` (all parse) |
-| 5 | `research-project-orienter` | T1 | ✓ pass | `.research/orientation_memo.md` (read 0 source files outside `.research/`) |
-| 6 | `research-hub-multi-ai` | T1 | ✓ pass | `.research/multi-ai-routing-decision.md` (9-step routing plan honoring all 4 guardrails) |
+| 4 | `research-context-compressor` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/{project_manifest,experiment_matrix,data_dictionary}.yml` + `run_log.md` + `open_questions.md` (all parse) |
+| 5 | `research-project-orienter` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/orientation_memo.md` (read 0 source files outside `.research/`) |
+| 6 | `research-hub-multi-ai` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/multi-ai-routing-decision.md` (9-step routing plan honoring all 4 guardrails) |
 | 7 | `paper-memory-builder` | T1 | ✓ pass | `test-corpus/.../.paper/lim-2025/{claims,figures}.yml` (5 claims extracted; figures.yml empty as honest abstract-only run) |
 | 8 | `academic-writing-skills` | T1 | ✓ pass | `test-corpus/.../.paper/lim-2025/audit-lim-2025-abstract.md` — banned-word audit on Lim abstract found `leveraging`, `crucial`, `highlight` (matches `banned_words.md`) |
 | 9 | `zotero-skills` | T1 | ✓ pass | `curl http://localhost:23119/api/users/0/collections` returned real collection from `我的文獻庫`; ingestion of test corpus also exercised the local API path |
@@ -83,7 +83,7 @@ own `CLAUDE.md` describes).
   2026, Kumar 2026, McDonald 2026, Wang 2026), selected from a real
   `research-hub search "AI agents social interaction" --limit 8 --rank-by
   smart` (raw JSON in `search-results.json`).
-- **Output:** [`.research/literature_matrix.md`](../.research/literature_matrix.md)
+- **Output:** [`literature_matrix.md`](../test-corpus/ai-agents-social-interaction/.research/literature_matrix.md)
   — 9-column comparison matrix (Citation | Question | Method | Data /
   study area | Main claim | Evidence | Limitation | Relevance | Use as)
   + cluster-reading commentary + method × paper-type sanity grid.
@@ -138,12 +138,14 @@ This is the deepest test in the batch — full cycle from ingest to verify.
 
 - **Input:** this catalog repo (`README.md`, `docs/`, `catalog/`,
   `test-corpus/`, `git log`).
-- **Output:** 5 files written under `.research/`:
-  [`project_manifest.yml`](../.research/project_manifest.yml),
-  [`experiment_matrix.yml`](../.research/experiment_matrix.yml),
-  [`data_dictionary.yml`](../.research/data_dictionary.yml),
-  [`run_log.md`](../.research/run_log.md),
-  [`open_questions.md`](../.research/open_questions.md).
+- **Output:** 5 files originally written to `<repo-root>/.research/`,
+  now relocated to `test-corpus/ai-agents-social-interaction/.research/`
+  for repo cleanliness (see that dir's [README](../test-corpus/ai-agents-social-interaction/.research/README.md) for provenance):
+  [`project_manifest.yml`](../test-corpus/ai-agents-social-interaction/.research/project_manifest.yml),
+  [`experiment_matrix.yml`](../test-corpus/ai-agents-social-interaction/.research/experiment_matrix.yml),
+  [`data_dictionary.yml`](../test-corpus/ai-agents-social-interaction/.research/data_dictionary.yml),
+  [`run_log.md`](../test-corpus/ai-agents-social-interaction/.research/run_log.md),
+  [`open_questions.md`](../test-corpus/ai-agents-social-interaction/.research/open_questions.md).
 - **YAML parse check:** all 3 YAML files parse cleanly via `python -c
   "import yaml; yaml.safe_load(open(..., encoding='utf-8'))"`.
 - **Skill-rule compliance:** did not invent a `research_question` (used
@@ -156,7 +158,7 @@ This is the deepest test in the batch — full cycle from ingest to verify.
 - **Input:** the 3 manifests + `run_log.md` + `open_questions.md`
   produced in #4. **Zero source files outside `.research/` were read**
   (per skill's token-saving rule).
-- **Output:** [`.research/orientation_memo.md`](../.research/orientation_memo.md)
+- **Output:** [`orientation_memo.md`](../test-corpus/ai-agents-social-interaction/.research/orientation_memo.md)
   — single-file orientation following the exact memo template in
   SKILL.md (Project orientation header / Research question / Stage /
   Datasets / Experiments by status / Main entrypoints / Recent decisions
@@ -171,7 +173,7 @@ This is the deepest test in the batch — full cycle from ingest to verify.
 - **CLI detection probe** (skill's recommended diagnostic): `python -c
   "from research_hub.auto import detect_llm_cli; print(detect_llm_cli())"`
   → `claude`. Confirms primary detection.
-- **Output:** [`.research/multi-ai-routing-decision.md`](../.research/multi-ai-routing-decision.md)
+- **Output:** [`multi-ai-routing-decision.md`](../test-corpus/ai-agents-social-interaction/.research/multi-ai-routing-decision.md)
   — 9-step routing plan with each step quoting the matching SKILL.md
   Decision Rule + concrete handoff prompts for Codex (with the `-m
   gpt-5.4` workaround applied) and Gemini. All 4 SKILL.md guardrails
