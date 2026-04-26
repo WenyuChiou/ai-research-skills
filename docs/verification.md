@@ -124,6 +124,14 @@ This is the deepest test in the batch — full cycle from ingest to verify.
   also produced 5 follow-up NotebookLM prompts to repair the gap. This
   is exactly the failure mode the skill was built to catch — the verifier
   earned its existence on its first real test.
+- **Step 7 (re-test +9 min later):** re-download still Kumar-only;
+  `notebooklm ask` confirmed all 5 sources are *indexed* (NLM listed
+  all 5 by title + first author when asked, and produced a verbatim
+  Lim 2025 quote when asked specifically). So **the failure is in
+  NLM's brief-generation step, not in source indexing** — without the
+  verifier, a researcher would cite a 1/5-coverage brief thinking it
+  represented the full bundle. Re-test notes appended to the verifier
+  artifact.
 - **Pass:** ✓
 
 ### 4. research-context-compressor (T1)

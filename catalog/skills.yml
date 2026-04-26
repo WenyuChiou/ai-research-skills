@@ -161,7 +161,11 @@ families:
           Caught real failure: NLM produced Kumar-only brief (1/5 sources
           represented despite "Multi-Agent and Embodied AI" title).
           Verifier flagged 4 missed sources + 1 unsupported claim and
-          generated 5 follow-up prompts.
+          generated 5 follow-up prompts. Re-test +9min: same 1/5 brief
+          coverage. Direct `notebooklm ask` proved all 5 sources ARE
+          indexed (NLM listed them and quoted Lim 2025 verbatim) - the
+          failure is in NLM's brief-generation step subsetting silently,
+          not in source indexing. Sharpens the verifier's value.
 
   - id: academic-writing
     name: Academic writing
