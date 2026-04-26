@@ -2,7 +2,9 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-> **不要每次都叫 AI 重讀你的研究專案。給它 skills。**
+> **研究者主導，AI 輔助。**
+>
+> 13 個 skills，依照實際研究 workflow 組織。
 
 研究者導向的 13 個 AI skills 目錄——涵蓋從找第一篇論文到投稿最後一份
 手稿的完整研究 workflow。

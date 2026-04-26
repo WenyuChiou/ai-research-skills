@@ -2,8 +2,9 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-> **Stop asking AI to reread your research project from scratch every
-> session. Give it skills.**
+> **Researcher-led, AI-assisted.**
+>
+> 13 skills organized by an actual research workflow.
 
 A researcher-facing catalog of 13 AI skills covering the full research
 workflow — from finding the first paper to submitting the final
