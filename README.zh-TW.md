@@ -38,7 +38,7 @@ block 右上角會出現 GitHub 的複製按鈕。
 
 ```bash
 claude plugin marketplace add WenyuChiou/ai-research-skills
-claude plugin install research-workspace@ai-research-skills --scope user
+claude plugin install research-workspace@ai-research-skills
 ```
 
 **可以用的 skill：** `literature-triage-matrix`、`research-design-helper`、
@@ -49,7 +49,7 @@ claude plugin install research-workspace@ai-research-skills --scope user
 ### Step 2 — 寫論文
 
 ```bash
-claude plugin install academic-writing-skills@ai-research-skills --scope user
+claude plugin install academic-writing-skills@ai-research-skills
 ```
 
 **+ `academic-writing-skills`**——banned-word audit、claim-evidence
@@ -63,7 +63,7 @@ to communicate with Zotero」**。（Web API key 替代方案：看
 [zotero-skills README](https://github.com/WenyuChiou/zotero-skills#readme)。）
 
 ```bash
-claude plugin install zotero-skills@ai-research-skills --scope user
+claude plugin install zotero-skills@ai-research-skills
 ```
 
 **+ `zotero-skills`**（完整 CRUD）和 **`zotero-library-curator`**
@@ -76,8 +76,8 @@ claude plugin install zotero-skills@ai-research-skills --scope user
 [Gemini CLI](https://github.com/WenyuChiou/gemini-delegate-skill#readme)。
 
 ```bash
-claude plugin install codex-delegate@ai-research-skills --scope user
-claude plugin install gemini-delegate@ai-research-skills --scope user
+claude plugin install codex-delegate@ai-research-skills
+claude plugin install gemini-delegate@ai-research-skills
 ```
 
 **+ `codex-delegate`**（把 token-heavy 的 code 工作交給 Codex CLI）、
@@ -186,10 +186,10 @@ ls ~/.claude/skills/
 <details>
 <summary><b>獨立 repos（4 個）</b>——個別 git clone</summary>
 
-- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md)：manuscript 修改、claim-evidence audit、banned-word／humanize、journal format、reviewer response。*(階段 7、8)*
-- [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md)：完整 Zotero CRUD、batch metadata、library maintenance。*(階段 1、2、7)*
-- [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md)：把程式重的工作從 Claude 交給 Codex CLI。*(Cross-cutting，也用於階段 6)*
-- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md)：把長 context、多語、CJK 工作從 Claude 交給 Gemini CLI。*(Cross-cutting，也用於階段 6、7)*
+- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md)：manuscript 修改、claim-evidence audit、banned-word／humanize、journal format、reviewer response。*(階段 7、8)*
+- [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md)：完整 Zotero CRUD、batch metadata、library maintenance。*(階段 1、2、7)*
+- [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md)：把程式重的工作從 Claude 交給 Codex CLI。*(Cross-cutting，也用於階段 6)*
+- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md)：把長 context、多語、CJK 工作從 Claude 交給 Gemini CLI。*(Cross-cutting，也用於階段 6、7)*
 
 </details>
 

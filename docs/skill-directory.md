@@ -68,7 +68,7 @@ git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills
 
 | Skill | Use when | Direct skill link |
 |---|---|---|
-| `academic-writing-skills` | You need manuscript rewriting, claim-evidence audits, reviewer response, journal format checks, figure-text consistency, or pre-submission checks. | [SKILL.md](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) |
+| `academic-writing-skills` | You need manuscript rewriting, claim-evidence audits, reviewer response, journal format checks, figure-text consistency, or pre-submission checks. | [SKILL.md](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) |
 
 ### zotero-skills
 
@@ -82,7 +82,7 @@ git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-sk
 
 | Skill | Use when | Direct skill link |
 |---|---|---|
-| `zotero-skills` | You need full Zotero CRUD: search, add, update, delete, collections, tags, notes, or PDF attachments. | [SKILL.md](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) |
+| `zotero-skills` | You need full Zotero CRUD: search, add, update, delete, collections, tags, notes, or PDF attachments. | [SKILL.md](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) |
 
 ### AI delegation skills
 
@@ -98,8 +98,8 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/g
 
 | Skill | Use when | Direct skill link |
 |---|---|---|
-| `codex-delegate` | Coding work is repetitive, implementation-heavy, or spans many files, and Claude should supervise while Codex executes. | [SKILL.md](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) |
-| `gemini-delegate` | Work is long-context, synthesis-heavy, bilingual/CJK-heavy, or needs a second-opinion review. | [SKILL.md](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) |
+| `codex-delegate` | Coding work is repetitive, implementation-heavy, or spans many files, and Claude should supervise while Codex executes. | [SKILL.md](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) |
+| `gemini-delegate` | Work is long-context, synthesis-heavy, bilingual/CJK-heavy, or needs a second-opinion review. | [SKILL.md](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) |
 
 ## Quick Recommendations
 

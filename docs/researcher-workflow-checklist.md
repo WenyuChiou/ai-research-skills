@@ -38,7 +38,7 @@ Add if needed:
 git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
 ```
 
-- [zotero-skills](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md): deep Zotero CRUD, batch cleanup, tags, collections, item edits, and PDF attachments.
+- [zotero-skills](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md): deep Zotero CRUD, batch cleanup, tags, collections, item edits, and PDF attachments.
 
 ## If You Use Obsidian + NotebookLM
 
@@ -79,7 +79,7 @@ Use these skills:
 
 - [research-hub](https://github.com/WenyuChiou/research-hub/blob/master/skills/knowledge-base/SKILL.md): select papers from Zotero, create source bundles, upload to NotebookLM, and download outputs.
 - [notebooklm-brief-verifier](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md): catch missed sources, unsupported claims, and contradictions.
-- [zotero-skills](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md): use only when you need item-level Zotero edits beyond the research-hub workflow.
+- [zotero-skills](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md): use only when you need item-level Zotero edits beyond the research-hub workflow.
 
 ## If You Use All Three: Zotero + Obsidian + NotebookLM
 
@@ -121,7 +121,7 @@ git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills
 Use these skills:
 
 - [paper-memory-builder](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md): extract `.paper/claims.yml` and `.paper/figures.yml`.
-- [academic-writing-skills](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md): revise manuscript prose, audit claim evidence, respond to reviewers, check figures and journal format.
+- [academic-writing-skills](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md): revise manuscript prose, audit claim evidence, respond to reviewers, check figures and journal format.
 
 Recommended manuscript workflow:
 
@@ -142,8 +142,8 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/g
 
 Use these skills:
 
-- [codex-delegate](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md): coding-heavy, repetitive, or many-file implementation work.
-- [gemini-delegate](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md): long-context reading, bilingual or CJK writing, source synthesis, and second-opinion reviews.
+- [codex-delegate](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md): coding-heavy, repetitive, or many-file implementation work.
+- [gemini-delegate](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md): long-context reading, bilingual or CJK writing, source synthesis, and second-opinion reviews.
 - [research-hub-multi-ai](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md): decide how Claude, Codex, and Gemini should share research-hub work.
 
 ## Minimal Recommendations

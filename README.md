@@ -43,7 +43,7 @@ Run in a terminal, not inside the interactive `/plugin` UI:
 
 ```bash
 claude plugin marketplace add WenyuChiou/ai-research-skills
-claude plugin install research-workspace@ai-research-skills --scope user
+claude plugin install research-workspace@ai-research-skills
 ```
 
 **You can use:** `literature-triage-matrix`, `research-design-helper`,
@@ -54,7 +54,7 @@ fallback mode). That's 6 of 13 skills, ready immediately.
 ### Step 2 — Manuscript work
 
 ```bash
-claude plugin install academic-writing-skills@ai-research-skills --scope user
+claude plugin install academic-writing-skills@ai-research-skills
 ```
 
 **+ `academic-writing-skills`** — banned-word audit, claim-evidence
@@ -68,7 +68,7 @@ this computer to communicate with Zotero"**. (Web API key alternative:
 see [zotero-skills README](https://github.com/WenyuChiou/zotero-skills#readme).)
 
 ```bash
-claude plugin install zotero-skills@ai-research-skills --scope user
+claude plugin install zotero-skills@ai-research-skills
 ```
 
 **+ `zotero-skills`** (full CRUD) and **`zotero-library-curator`**
@@ -82,8 +82,8 @@ First install the CLI binaries (instructions in upstream READMEs):
 [Gemini CLI](https://github.com/WenyuChiou/gemini-delegate-skill#readme).
 
 ```bash
-claude plugin install codex-delegate@ai-research-skills --scope user
-claude plugin install gemini-delegate@ai-research-skills --scope user
+claude plugin install codex-delegate@ai-research-skills
+claude plugin install gemini-delegate@ai-research-skills
 ```
 
 **+ `codex-delegate`** (hand token-heavy code to Codex CLI),
@@ -196,10 +196,10 @@ match your immediate goal below.
 <details>
 <summary><b>Standalone repos (4 skills)</b> — git clone individually</summary>
 
-- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/SKILL.md) — manuscript revision, claim-evidence audit, banned-word / humanize, journal format, reviewer response. *(Stages 7, 8)*
-- [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7)*
-- [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) — Claude → Codex CLI handoff for code-heavy work. *(Cross-cutting, also Stage 6)*
-- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting, also Stages 6, 7)*
+- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — manuscript revision, claim-evidence audit, banned-word / humanize, journal format, reviewer response. *(Stages 7, 8)*
+- [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7)*
+- [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — Claude → Codex CLI handoff for code-heavy work. *(Cross-cutting, also Stage 6)*
+- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting, also Stages 6, 7)*
 
 </details>
 

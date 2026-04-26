@@ -8,7 +8,7 @@ catalog installable as a Claude Code plugin marketplace.
 ```text
 claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin marketplace list
-claude plugin install research-workspace@ai-research-skills --scope user
+claude plugin install research-workspace@ai-research-skills
 claude plugin list
 ```
 
