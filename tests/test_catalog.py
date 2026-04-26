@@ -118,7 +118,13 @@ def test_no_model_project_specific_positioning():
 def test_claude_plugin_marketplace_is_well_formed():
     """The .claude-plugin/marketplace.json file makes the catalog a Claude
     Code plugin marketplace. Guard its basic structure so future edits
-    don't silently break `/plugin marketplace add`."""
+    don't silently break `/plugin marketplace add`.
+
+    Currently ships 1 plugin (research-workspace) — the 4 standalone
+    plugins are deferred until upstream Claude Code accepts
+    `"skills": ["./"]` on github-source plugins, OR each standalone
+    source repo gains a `.claude-plugin/plugin.json`. See
+    .claude-plugin/README.md for the full story."""
     import json
     marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"
     assert marketplace_path.exists(), "missing .claude-plugin/marketplace.json"

@@ -22,15 +22,111 @@ testing 細節見 [docs/verification.md](docs/verification.md)。
 
 ---
 
+## 安裝
+
+前置條件：Claude Code（https://claude.ai/code）。
+
+> **Skills 實際上怎麼運作：** 每個 skill 是一份 Markdown 指令檔
+> （`SKILL.md`），安裝在 `~/.claude/skills/` 下。支援 skills 的 AI host
+> （Claude Code、有 Claude Code extension 的 Cursor 等）在你的請求符合
+> 該 skill 的 trigger description 時，會自動讀進來並套用。Skills 不是
+> CLI 工具、不是 Python package——它們是 host 替你載入的 prompt
+> scaffolding。
+
+### 路徑 A — Claude Code marketplace（一個指令、9 個 skills）
+
+```text
+/plugin marketplace add WenyuChiou/ai-research-skills
+/plugin install research-workspace@ai-research-skills
+```
+
+這會裝 **9 個 research-hub skills**（文獻搜尋、比較、計畫 manifest、
+設計對話、多 AI routing、NotebookLM brief 驗證、paper-memory builder、
+Zotero curator）。
+
+4 個獨立 skills（academic-writing-skills、zotero-skills、codex-delegate、
+gemini-delegate）走下方**路徑 B**——一個一個 `git clone`，因為
+marketplace plugin spec 目前不支援它們的 root-level SKILL.md layout。
+
+### 路徑 B — `pip install` + `git clone`（完整平台、含 CLI）
+
+如果除了 SKILL.md 之外還想要 **research-hub Python CLI**（`research-hub
+auto`、`research-hub search`、NotebookLM 瀏覽器自動化等），**或**想用 4 個
+獨立 skills，用這條：
+
+```bash
+# 1. research-hub——一個指令裝 9 個 skills + onboarding 你的 persona
+pip install research-hub-pipeline
+research-hub setup --persona researcher   # 或：analyst | humanities | internal
+
+# 2. academic-writing-skills——任何 manuscript 工作都會用到
+git clone https://github.com/WenyuChiou/academic-writing-skills \
+  ~/.claude/skills/academic-writing-skills
+```
+
+需要時再加：
+
+```bash
+# 深度 Zotero CRUD（research-hub 不夠用時）
+git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
+
+# 多 CLI workflow（Claude + Codex + Gemini）
+git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
+git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
+
+# 選裝：NotebookLM 瀏覽器自動化（如果 setup 時答 yes 就會幫你裝；
+# 跳過的話可以個別在這裡裝）
+pip install "research-hub-pipeline[playwright]"
+research-hub notebooklm login
+```
+
+> **路徑 A vs 路徑 B：** A 一個指令，只裝 9 個 research-hub SKILL.md
+> （不用 Python env）。B 多了 research-hub CLI 跟 4 個獨立 skills。
+> 大多數使用者先選 A，需要時再加 B 的 repos。
+
+完整安裝指南：[docs/install.md](docs/install.md)。Marketplace 內部說明：
+[.claude-plugin/README.md](.claude-plugin/README.md)。從
+research-hub-pipeline ≤ 0.45 升級的話，請參考該檔案的 upgrade note。
+
+---
+
+## 怎麼用
+
+裝完之後，skills 會在你 Claude Code 的請求符合 skill 的描述時**自動觸發**。
+**你不用記 skill 名字**——描述你想做什麼，Claude Code 會挑對的 skill。
+
+### 範例：你怎麼說 → 哪個 skill 會啟動
+
+| 你說... | 啟動的 skill |
+|---|---|
+| 「比較這 5 篇論文的 method、data、limitations」 | `literature-triage-matrix` |
+| 「audit 我的 Zotero library 找重複跟 orphan tags」 | `zotero-library-curator` |
+| 「在我開始 coding 之前先帶我走過研究 design」 | `research-design-helper` |
+| 「驗證這份 NotebookLM brief 對應 source bundle」 | `notebooklm-brief-verifier` |
+| 「從 manuscript draft 建一份 paper memory」 | `paper-memory-builder` |
+| 「audit 我這段文字有沒有 banned words 跟 overclaim」 | `academic-writing-skills` |
+| 「壓縮這個 project context 給未來 AI session 用」 | `research-context-compressor` |
+| 「Orient 一下——這個 repo 在做什麼？」 | `research-project-orienter` |
+| 「這個 task 是 code-heavy——交給 Codex」 | `codex-delegate` |
+| 「把這份 brief 翻成繁中、需要長 context」 | `gemini-delegate` |
+
+### Skill 沒自動觸發怎麼辦
+
+如果 Claude Code 沒挑到對的 skill，明說 skill 名字：
+
+> 「Use `literature-triage-matrix` to compare these 5 papers.」
+
+---
+
 ## 找到你的起點
 
-對到你眼前的目標。一個指令裝完，其他等你需要再說。
+如果你想按目標挑 skill subset 而不是裝全部，對到你眼前的目標就好。
 
-| 你眼前的目標 | 你會用到的 skills | 一行 install | 時間 |
-|---|---|---|---|
-| **找文獻、比較文獻** | `research-hub` + `literature-triage-matrix` | `research-hub setup --persona researcher` | ~10 分鐘 |
-| **寫論文 / 改稿** | `paper-memory-builder` + `academic-writing-skills` | 上面那行 + `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` | ~15 分鐘 |
-| **管理研究專案 / Zotero library** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` | `research-hub setup --persona researcher` | ~20 分鐘 |
+| 你眼前的目標 | 你會用到的 skills |
+|---|---|
+| **找文獻、比較文獻** | `research-hub` + `literature-triage-matrix` |
+| **寫論文 / 改稿** | `paper-memory-builder` + `academic-writing-skills` |
+| **管理研究專案 / Zotero library** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` |
 
 > **協助別人用 AI 做研究**（圖書館員 / RA / 指導者）？不用裝——讀
 > [docs/install.md](docs/install.md) 與 [docs/verification.md](docs/verification.md)
@@ -239,80 +335,6 @@ tools** 的 `gemini-delegate`。
   - `research-hub`（knowledge-base）——選 `analyst` persona 是 Obsidian
     + NotebookLM only（無 Zotero）；選 `humanities` 是 Zotero +
     qualitative-friendly defaults。
-
----
-
-## 安裝
-
-前置條件：Claude Code（https://claude.ai/code）。
-
-> **Skills 實際上怎麼運作：** 每個 skill 是一份 Markdown 指令檔
-> （`SKILL.md`），安裝在 `~/.claude/skills/` 下。支援 skills 的 AI host
-> （Claude Code、有 Claude Code extension 的 Cursor 等）在你的請求符合
-> 該 skill 的 trigger description 時，會自動讀進來並套用。Skills 不是
-> CLI 工具、不是 Python package——它們是 host 替你載入的 prompt
-> scaffolding。
-
-### 路徑 A — Claude Code marketplace（大多數使用者推薦這條）
-
-兩個指令。不用 Python env、不用一個一個 `git clone`。Skills 在來源 repo
-push 新 commit 時會自動更新。
-
-```text
-/plugin marketplace add WenyuChiou/ai-research-skills
-/plugin install research-workspace@ai-research-skills
-```
-
-Catalog 共 5 個 plugins，按需求挑：
-
-| Plugin | 內容 |
-|---|---|
-| `research-workspace` | 9 個 skills：文獻搜尋 + 比較 + 計畫 + 多 AI routing |
-| `academic-writing-skills` | 論文修改、claim audit、reviewer response |
-| `zotero-skills` | 比 research-hub 更深的 Zotero CRUD |
-| `codex-delegate` | Claude → Codex CLI 委派 |
-| `gemini-delegate` | Claude → Gemini CLI 委派 |
-
-Marketplace 內部說明：[.claude-plugin/README.md](.claude-plugin/README.md)。
-
-### 路徑 B — `pip install` + `git clone`（完整平台、含 CLI）
-
-如果除了 SKILL.md 之外還想要 **research-hub Python CLI**（`research-hub
-auto`、`research-hub search`、NotebookLM 瀏覽器自動化等），用這條：
-
-```bash
-# 1. research-hub——一個指令裝 9 個 skills + onboarding 你的 persona
-pip install research-hub-pipeline
-research-hub setup --persona researcher   # 或：analyst | humanities | internal
-
-# 2. academic-writing-skills——任何 manuscript 工作都會用到
-git clone https://github.com/WenyuChiou/academic-writing-skills \
-  ~/.claude/skills/academic-writing-skills
-```
-
-需要時再加：
-
-```bash
-# 深度 Zotero CRUD（research-hub 不夠用時）
-git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
-
-# 多 CLI workflow（Claude + Codex + Gemini）
-git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
-git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
-
-# 選裝：NotebookLM 瀏覽器自動化（如果 setup 時答 yes 就會幫你裝；
-# 跳過的話可以個別在這裡裝）
-pip install "research-hub-pipeline[playwright]"
-research-hub notebooklm login
-```
-
-> **路徑 A vs 路徑 B：** A 只裝 SKILL.md（輕量、不用 Python env）。B
-> 多了 research-hub CLI（搜尋／匯入／NotebookLM 自動化／dashboard）。
-> 你大部分時間在 Claude Code 對話裡 → 選 A；你會 script research-hub
-> 指令 → 選 B。
-
-完整安裝指南：[docs/install.md](docs/install.md)。從
-research-hub-pipeline ≤ 0.45 升級的話，請參考該檔案的 upgrade note。
 
 ---
 

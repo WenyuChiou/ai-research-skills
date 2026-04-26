@@ -4,8 +4,8 @@
     "name": "Wenyu Chiou"
   },
   "metadata": {
-    "description": "Catalog of 13 AI skills for the research workflow — researcher-led, AI-assisted",
-    "version": "1.0.0"
+    "description": "Catalog of AI skills for the research workflow — researcher-led, AI-assisted",
+    "version": "1.0.1"
   },
   "plugins": [
     {
@@ -15,42 +15,6 @@
         "source": "github",
         "repo": "WenyuChiou/research-hub"
       }
-    },
-    {
-      "name": "academic-writing-skills",
-      "description": "Manuscript revision, claim-evidence audit, banned-word / humanize pass, figure-text consistency, journal-format check, reviewer response",
-      "source": {
-        "source": "github",
-        "repo": "WenyuChiou/academic-writing-skills"
-      },
-      "skills": ["./"]
-    },
-    {
-      "name": "zotero-skills",
-      "description": "Deep Zotero CRUD beyond research-hub — search, add, update, delete items with notes, tags, collections, PDF attachments. Dual-API (local + Web)",
-      "source": {
-        "source": "github",
-        "repo": "WenyuChiou/zotero-skills"
-      },
-      "skills": ["./"]
-    },
-    {
-      "name": "codex-delegate",
-      "description": "Hand code-heavy / repetitive / many-file mechanical work from Claude to Codex CLI. Claude supervises; Codex executes",
-      "source": {
-        "source": "github",
-        "repo": "WenyuChiou/codex-delegate"
-      },
-      "skills": ["./"]
-    },
-    {
-      "name": "gemini-delegate",
-      "description": "Hand long-context reading, bilingual / 繁中 / CJK synthesis, second-opinion review from Claude to Gemini CLI",
-      "source": {
-        "source": "github",
-        "repo": "WenyuChiou/gemini-delegate-skill"
-      },
-      "skills": ["./"]
     }
   ]
 }

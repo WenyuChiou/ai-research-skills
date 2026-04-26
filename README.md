@@ -25,16 +25,117 @@ research projects with AI in the loop.
 
 ---
 
+## Install
+
+Prerequisite: Claude Code (https://claude.ai/code).
+
+> **How skills actually work:** each skill is a Markdown instruction
+> file (`SKILL.md`) installed under `~/.claude/skills/`. AI hosts that
+> support skills (Claude Code, Cursor with the Claude Code extension,
+> etc.) automatically read and apply them when your request matches
+> the skill's trigger description. Skills are not CLI tools or Python
+> packages — they're prompt scaffolding the host loads on your behalf.
+
+### Path A — Claude Code marketplace (one command, 9 skills)
+
+```text
+/plugin marketplace add WenyuChiou/ai-research-skills
+/plugin install research-workspace@ai-research-skills
+```
+
+This installs the **9 research-hub skills** (literature search,
+comparison, planning manifests, design dialog, multi-AI routing,
+NotebookLM brief verification, paper-memory builder, Zotero curator).
+
+For the 4 standalone skills (academic-writing-skills, zotero-skills,
+codex-delegate, gemini-delegate), use **Path B** below — each is a
+single `git clone` because the marketplace plugin spec doesn't yet
+support their root-level SKILL.md layout.
+
+### Path B — `pip install` + `git clone` (full platform with CLI)
+
+Pick this if you want the **research-hub Python CLI** (`research-hub
+auto`, `research-hub search`, NotebookLM browser automation, etc.) on
+top of the SKILL.md files, **or** if you want the 4 standalone skills.
+
+```bash
+# 1. research-hub — installs 9 skills + onboards your persona in one go
+pip install research-hub-pipeline
+research-hub setup --persona researcher   # or: analyst | humanities | internal
+
+# 2. academic-writing-skills — for any manuscript work
+git clone https://github.com/WenyuChiou/academic-writing-skills \
+  ~/.claude/skills/academic-writing-skills
+```
+
+Add as needed:
+
+```bash
+# Heavy Zotero CRUD (deeper than research-hub bundles)
+git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
+
+# Multi-CLI workflows (Claude + Codex + Gemini)
+git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
+git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
+
+# Optional NotebookLM browser automation (handled by `setup` if you
+# answer yes when prompted; install separately here if you skipped it)
+pip install "research-hub-pipeline[playwright]"
+research-hub notebooklm login
+```
+
+> **Path A vs Path B:** Path A is one command, ships only the 9
+> research-hub SKILL.md files (no Python env). Path B adds the
+> research-hub CLI plus the 4 standalone skills. Most users pick A
+> first and add Path B repos later if they need them.
+
+Full install guide: [docs/install.md](docs/install.md). Marketplace
+internals: [.claude-plugin/README.md](.claude-plugin/README.md).
+Upgrading from research-hub-pipeline ≤ 0.45? See the upgrade note in
+the install guide.
+
+---
+
+## How to use
+
+After install, skills auto-trigger inside Claude Code when your
+phrasing matches a skill's description. **You don't have to remember
+skill names** — describe what you want and Claude Code picks the right
+skill.
+
+### Example phrases → skills they activate
+
+| When you say... | Skill that activates |
+|---|---|
+| "Compare these 5 papers by method, data, and limitations" | `literature-triage-matrix` |
+| "Audit my Zotero library for duplicates and orphan tags" | `zotero-library-curator` |
+| "Walk me through my research design before I start coding" | `research-design-helper` |
+| "Verify this NotebookLM brief against the source bundle" | `notebooklm-brief-verifier` |
+| "Build a paper memory layer from my manuscript draft" | `paper-memory-builder` |
+| "Audit my paragraph for banned words and overclaim" | `academic-writing-skills` |
+| "Compress this project context for future AI sessions" | `research-context-compressor` |
+| "Orient me — what is this repo about?" | `research-project-orienter` |
+| "This task is code-heavy — delegate to Codex" | `codex-delegate` |
+| "Translate this brief into 繁中 with long context" | `gemini-delegate` |
+
+### When skills don't auto-trigger
+
+If Claude Code doesn't pick the right skill, name it explicitly:
+
+> "Use `literature-triage-matrix` to compare these 5 papers."
+
+---
+
 ## Pick Your Starting Point
 
-Find the row that matches your immediate goal. Install the named
-skills with one command. Skip the rest until you need them.
+If you'd rather pick a skill subset by goal instead of using everything,
+match your immediate goal below.
 
-| Your immediate goal | Skills you'll use | One install command | Time |
-|---|---|---|---|
-| **Find & compare literature** | `research-hub` + `literature-triage-matrix` | `research-hub setup --persona researcher` | ~10 min |
-| **Write or revise a paper** | `paper-memory-builder` + `academic-writing-skills` | above + `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` | ~15 min |
-| **Manage a research project / Zotero library** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` | `research-hub setup --persona researcher` | ~20 min |
+| Your immediate goal | Skills you'll use |
+|---|---|
+| **Find & compare literature** | `research-hub` + `literature-triage-matrix` |
+| **Write or revise a paper** | `paper-memory-builder` + `academic-writing-skills` |
+| **Manage a research project / Zotero library** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` |
 
 > **Helping others adopt AI for research** (librarian / RA / advisor)?
 > No install needed — read [docs/install.md](docs/install.md) and
@@ -250,81 +351,6 @@ The other 12 skills work **directly** with their natural inputs:
   - `research-hub` (knowledge-base) — pick `analyst` persona for
     Obsidian + NotebookLM only (no Zotero), or `humanities` for
     Zotero + qualitative defaults.
-
----
-
-## Install
-
-Prerequisite: Claude Code (https://claude.ai/code).
-
-> **How skills actually work:** each skill is a Markdown instruction
-> file (`SKILL.md`) installed under `~/.claude/skills/`. AI hosts that
-> support skills (Claude Code, Cursor with the Claude Code extension,
-> etc.) automatically read and apply them when your request matches
-> the skill's trigger description. Skills are not CLI tools or Python
-> packages — they're prompt scaffolding the host loads on your behalf.
-
-### Path A — Claude Code marketplace (recommended for most users)
-
-Two commands. No Python env, no per-repo `git clone`. Skills auto-update
-when the source repos push new commits.
-
-```text
-/plugin marketplace add WenyuChiou/ai-research-skills
-/plugin install research-workspace@ai-research-skills
-```
-
-The catalog ships 5 plugins — install whichever you need:
-
-| Plugin | What's in it |
-|---|---|
-| `research-workspace` | 9 skills: literature search + comparison + planning + multi-AI routing |
-| `academic-writing-skills` | Manuscript revision, claim audit, reviewer response |
-| `zotero-skills` | Deep Zotero CRUD beyond research-hub |
-| `codex-delegate` | Claude → Codex CLI handoff |
-| `gemini-delegate` | Claude → Gemini CLI handoff |
-
-Marketplace internals: see [.claude-plugin/README.md](.claude-plugin/README.md).
-
-### Path B — `pip install` + `git clone` (full platform with CLI)
-
-Pick this if you want the **research-hub Python CLI** (`research-hub auto`,
-`research-hub search`, NotebookLM browser automation, etc.) on top of
-the SKILL.md files.
-
-```bash
-# 1. research-hub — installs 9 skills + onboards your persona in one go
-pip install research-hub-pipeline
-research-hub setup --persona researcher   # or: analyst | humanities | internal
-
-# 2. academic-writing-skills — for any manuscript work
-git clone https://github.com/WenyuChiou/academic-writing-skills \
-  ~/.claude/skills/academic-writing-skills
-```
-
-Add as needed:
-
-```bash
-# Heavy Zotero CRUD (deeper than research-hub bundles)
-git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
-
-# Multi-CLI workflows (Claude + Codex + Gemini)
-git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
-git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
-
-# Optional NotebookLM browser automation (handled by `setup` if you
-# answer yes when prompted; install separately here if you skipped it)
-pip install "research-hub-pipeline[playwright]"
-research-hub notebooklm login
-```
-
-> **Path A vs Path B:** Path A ships only the SKILL.md files (lighter,
-> no Python env). Path B adds the research-hub CLI (search/ingest/
-> NotebookLM upload/dashboard). Pick A if you mostly work inside Claude
-> Code conversations; pick B if you also script research-hub commands.
-
-Full install guide: [docs/install.md](docs/install.md). Upgrading from
-research-hub-pipeline ≤ 0.45? See the upgrade note in that file.
 
 ---
 
