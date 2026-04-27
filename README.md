@@ -53,6 +53,18 @@ fallback mode). 6 of 13 skills.
 > `pip install research-hub-pipeline` hint instead of fabricating
 > output — see Step 5 to enable them fully.
 
+> **Want all 5 plugins in one go?** After step 1 + steps 2-4 below,
+> you can also batch them with the helper script:
+>
+> ```bash
+> bash scripts/install-all.sh                # macOS / Linux / git-bash
+> pwsh scripts/install-all.ps1               # Windows PowerShell
+> ```
+>
+> The script does the same `claude plugin install` calls below, just
+> in a loop. External prereqs (Zotero local API, Codex / Gemini CLI
+> binaries) still need the manual setup described in steps 3 and 4.
+
 ### Step 2 — Manuscript work
 
 ```bash
@@ -199,6 +211,8 @@ skill.
 | "Verify this NotebookLM brief against the source bundle" | `notebooklm-brief-verifier` |
 | "Build a paper memory layer from my manuscript draft" | `paper-memory-builder` |
 | "Audit my paragraph for banned words and overclaim" | `academic-writing-skills` |
+| "Build a point-by-point response to these reviewer comments" | `academic-writing-skills` |
+| "Audit my figure captions for figure-text consistency" | `academic-writing-skills` |
 | "Compress this project context for future AI sessions" | `research-context-compressor` |
 | "Orient me — what is this repo about?" | `research-project-orienter` |
 | "This task is code-heavy — delegate to Codex" | `codex-delegate` |
@@ -219,9 +233,9 @@ match your immediate goal below.
 
 | Your immediate goal | Skills you'll use |
 |---|---|
-| **Find & compare literature** | `research-hub` + `literature-triage-matrix` |
-| **Write or revise a paper** | `paper-memory-builder` + `academic-writing-skills` |
-| **Manage a research project / Zotero library** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` |
+| **Find & compare literature** | [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) + [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) |
+| **Write or revise a paper** | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) + [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) |
+| **Manage a research project / Zotero library** | [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) + [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) + [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) |
 
 > **Helping others adopt AI for research** (librarian / RA / advisor)?
 > No install needed — read [docs/install.md](docs/install.md) and
@@ -230,6 +244,11 @@ match your immediate goal below.
 > **Don't see your goal?** See [docs/pipeline.md](docs/pipeline.md)
 > for the full 8-stage breakdown — find your stage and the matching
 > skill.
+>
+> **Want to see what using these skills together looks like end-to-end?**
+> [docs/demo-walkthrough.md](docs/demo-walkthrough.md) walks 7 skills
+> through a real 5-paper test corpus and links every artifact each
+> skill produced.
 
 ---
 

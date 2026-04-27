@@ -130,3 +130,40 @@ What tests do **not** guard (manual review needed):
 Same coordination as renames: issue here first, upstream removal
 after, catalog PR with the skill removed from `skills.yml` +
 `marketplace.json` + the doc references in lockstep.
+
+## For maintainers: GitHub repo settings
+
+The repo's discoverability comes from two settings that aren't in git
+and have to be set via the GitHub API or UI:
+
+### Description + topics (set via `gh` CLI, version-controlled here)
+
+```bash
+gh api -X PATCH repos/WenyuChiou/ai-research-skills \
+  -f description="13 Claude Code skills for common research tasks — literature triage, research design, project context, manuscript writing, and multi-AI delegation. 5-plugin marketplace, install in one command."
+
+gh api -X PUT repos/WenyuChiou/ai-research-skills/topics \
+  -f 'names[]=claude-code' -f 'names[]=claude-skills' \
+  -f 'names[]=research' -f 'names[]=academic-writing' \
+  -f 'names[]=zotero' -f 'names[]=obsidian' -f 'names[]=notebooklm' \
+  -f 'names[]=literature-review' -f 'names[]=ai-skills' \
+  -f 'names[]=marketplace'
+```
+
+Re-run if the description or topics need to change. Verify with:
+
+```bash
+gh repo view WenyuChiou/ai-research-skills --json description,repositoryTopics
+```
+
+### Social preview image (manual UI step — no API)
+
+The image at `docs/img/social-preview.png` is the intended preview
+for Twitter / Threads / LinkedIn / Slack shares. GitHub does not
+expose an API for setting it; upload manually:
+
+1. GitHub → repo Settings → General → Social preview.
+2. Click "Edit" → upload `docs/img/social-preview.png`.
+3. Save.
+
+Re-upload only if the source image changes.

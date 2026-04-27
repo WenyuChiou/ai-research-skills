@@ -48,6 +48,18 @@ claude plugin install research-workspace@ai-research-skills
 > `pip install research-hub-pipeline` 提示，不會幻覺輸出——要完整啟用
 > 看 Step 5。
 
+> **想一次裝完 5 個 plugin？** 跑完 step 1 + 下面 step 2-4 之後，也
+> 可以用這支 helper script 把所有 install 指令批次跑一遍：
+>
+> ```bash
+> bash scripts/install-all.sh                # macOS / Linux / git-bash
+> pwsh scripts/install-all.ps1               # Windows PowerShell
+> ```
+>
+> 這個 script 就是把下面那些 `claude plugin install` 指令包成 loop。
+> 外部前置（Zotero local API、Codex / Gemini CLI binary）還是要照
+> step 3 / step 4 的說明手動處理。
+
 ### Step 2 — 寫論文
 
 ```bash
@@ -183,6 +195,8 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill
 | 「驗證這份 NotebookLM brief 對應 source bundle」 | `notebooklm-brief-verifier` |
 | 「從 manuscript draft 建一份 paper memory」 | `paper-memory-builder` |
 | 「audit 我這段文字有沒有 banned words 跟 overclaim」 | `academic-writing-skills` |
+| 「依照這些 reviewer 意見產出 point-by-point 回覆」 | `academic-writing-skills` |
+| 「audit 我的 figure caption 跟內文一致性」 | `academic-writing-skills` |
 | 「壓縮這個 project context 給未來 AI session 用」 | `research-context-compressor` |
 | 「Orient 一下——這個 repo 在做什麼？」 | `research-project-orienter` |
 | 「這個 task 是 code-heavy——交給 Codex」 | `codex-delegate` |
@@ -202,17 +216,24 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill
 
 | 你眼前的目標 | 你會用到的 skills |
 |---|---|
-| **找文獻、比較文獻** | `research-hub` + `literature-triage-matrix` |
-| **寫論文 / 改稿** | `paper-memory-builder` + `academic-writing-skills` |
-| **管理研究專案 / Zotero library** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` |
+| **找文獻、比較文獻** | [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) + [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) |
+| **寫論文 / 改稿** | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) + [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) |
+| **管理研究專案 / Zotero library** | [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) + [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) + [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) |
 
 > **協助別人用 AI 做研究**（圖書館員 / RA / 指導者）？不用裝——直接把
-> 這個 README 跟 [docs/verification.md](docs/verification.md)（per-skill
-> testing 結果）轉給對方就好。
+> 這個 README、[docs/install.zh-TW.md](docs/install.zh-TW.md)、
+> [docs/skill-directory.zh-TW.md](docs/skill-directory.zh-TW.md)、
+> [docs/researcher-workflow-checklist.zh-TW.md](docs/researcher-workflow-checklist.zh-TW.md)
+> 轉給對方就好。Per-skill testing 結果在
+> [docs/verification.md](docs/verification.md)（英文）。
 >
 > **沒對到你的目標？** 完整 8 階段研究 pipeline 在
 > [docs/pipeline.zh-TW.md](docs/pipeline.zh-TW.md)，找到你的階段就裝
 > 對應的 skill。
+>
+> **想看 skill 串起來用實際長什麼樣？** [docs/demo-walkthrough.md](docs/demo-walkthrough.md)
+> 用一份 5 篇真論文的 test corpus，把 7 個 skill 從搜尋到稿件 audit
+> 走完，每一步都連到實際產出的 artifact 檔案（英文）。
 
 ---
 
