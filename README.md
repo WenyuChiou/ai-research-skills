@@ -2,16 +2,16 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-> 13 Claude Code skills for common research tasks — literature
+> 14 Claude Code skills for common research tasks — literature
 > triage, research design, project context, manuscript writing, and
 > multi-AI delegation.
 
 Languages: [English](README.md) | [繁中](README.zh-TW.md)
 
-![13 AI skills mapped to research workflow stages, with cross-cutting tools (codex-delegate, gemini-delegate, research-hub-multi-ai) usable at every stage](docs/img/pipeline-overview.png)
+![14 AI skills mapped to research workflow stages, with cross-cutting tools (codex-delegate, gemini-delegate, research-hub-multi-ai) usable at every stage](docs/img/pipeline-overview.png)
 
 **What you get:** 5 plugins shipped via one Claude Code marketplace,
-exposing 13 skills total. Per-skill testing details:
+exposing 14 skills total. Per-skill testing details:
 [docs/verification.md](docs/verification.md).
 
 **Who this is for:** graduate students, PhD researchers, postdocs,
@@ -45,7 +45,7 @@ claude plugin install research-workspace@ai-research-skills
 external setup): `literature-triage-matrix`, `research-design-helper`,
 `research-context-compressor`, `research-project-orienter`,
 `paper-memory-builder`, plus `notebooklm-brief-verifier` (Manual
-fallback mode). 6 of 13 skills.
+fallback mode). 6 of 14 skills.
 
 > Step 1 also installs `research-hub`, `research-hub-multi-ai`, and
 > the apply-cleanup half of `zotero-library-curator`. When invoked
@@ -159,7 +159,7 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill
 ```
 
 Each repo's SKILL.md (and its `references/`) live under
-`skills/<plugin-name>/`. For research-hub that's 9 SKILL.md files;
+`skills/<plugin-name>/`. For research-hub that's 10 SKILL.md files;
 the other 4 repos have 1 each.
 
 ### 2. Load per host
@@ -252,10 +252,10 @@ match your immediate goal below.
 
 ---
 
-## All 13 Skills
+## All 14 Skills
 
 <details>
-<summary><b>From <code>research-hub</code> (9 skills)</b> — one install gets all of them</summary>
+<summary><b>From <code>research-hub</code> (10 skills)</b> — one install gets all of them</summary>
 
 - [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) — search, ingest, organise papers across Zotero / Obsidian / NotebookLM. *(Stages 1, 2)*
 - [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) — comparison matrix across method, data, claim, limitation. *(Stage 2)*
@@ -266,6 +266,7 @@ match your immediate goal below.
 - [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) — fast orientation memo from those manifests. *(Stages 3b, 5)*
 - [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — stage-agnostic, character-driven routing across Claude / Codex / Gemini. *(Cross-cutting)*
 - [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) — `.paper/claims.yml` and `.paper/figures.yml` for manuscript work. *(Stage 7)*
+- [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) — fill per-paper Key Findings / Methodology / Relevance in both Obsidian markdown and Zotero child notes after `research-hub auto`. *(Stage 2)*
 
 </details>
 

@@ -206,11 +206,11 @@ def test_canonical_install_command_consistent_across_sources_of_truth():
 
 
 def test_verification_counts_match_catalog():
-    """The README + verification.md claim 13 skills with a specific T1/T2
+    """The README + verification.md claim 14 skills with a specific T1/T2
     split. The machine-readable YAML must agree on the count."""
     data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
     total_skills = sum(len(family["skills"]) for family in data["families"])
-    assert total_skills == 13, f"catalog has {total_skills} skills; README claims 13"
+    assert total_skills == 14, f"catalog has {total_skills} skills; README claims 14"
 
     statuses = [s.get("verification_status") for f in data["families"] for s in f["skills"]]
     pass_count = statuses.count("pass")
@@ -218,8 +218,9 @@ def test_verification_counts_match_catalog():
     fail_count = statuses.count("fail")
     not_yet_count = statuses.count("not_yet")
 
-    # YAML-side verification counts: 12 pass + 1 caveat + 0 fail + 0 not_yet = 13
-    assert pass_count == 12, f"expected 12 pass, got {pass_count}"
+    # YAML-side verification counts: 13 pass + 1 caveat + 0 fail + 0 not_yet = 14
+    # (paper-summarize added v0.69.0 = 13th pass; codex-delegate stays caveat)
+    assert pass_count == 13, f"expected 13 pass, got {pass_count}"
     assert caveat_count == 1, f"expected 1 caveat (codex-delegate gpt-5.5), got {caveat_count}"
     assert fail_count == 0, f"expected 0 fail, got {fail_count}"
     assert not_yet_count == 0, f"expected 0 not_yet, got {not_yet_count}"

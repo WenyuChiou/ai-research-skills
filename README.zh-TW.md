@@ -2,15 +2,15 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-> 13 個 Claude Code skills，covers 常見的研究任務——文獻整理、研究
+> 14 個 Claude Code skills，covers 常見的研究任務——文獻整理、研究
 > design、專案 context、論文撰寫、多 AI delegation。
 
 語言：[English](README.md) | [繁中](README.zh-TW.md)
 
-![13 個 AI skills 對應研究 workflow 階段，附 cross-cutting tools（codex-delegate、gemini-delegate、research-hub-multi-ai）每階段都可用](docs/img/pipeline-overview.zh-TW.png)
+![14 個 AI skills 對應研究 workflow 階段，附 cross-cutting tools（codex-delegate、gemini-delegate、research-hub-multi-ai）每階段都可用](docs/img/pipeline-overview.zh-TW.png)
 
 **你會拿到什麼：** 1 個 Claude Code marketplace 統一安裝，5 個 plugin
-共 13 個 skill。Per-skill testing 細節見
+共 14 個 skill。Per-skill testing 細節見
 [docs/verification.md](docs/verification.md)。
 
 **適合誰：** 研究生、博士生、博士後、研究人員、研究工程師、圖書館員，
@@ -40,7 +40,7 @@ claude plugin install research-workspace@ai-research-skills
 **立刻可用的 skill**（純 Claude 推理 + 寫檔，不需要外部設定）：
 `literature-triage-matrix`、`research-design-helper`、
 `research-context-compressor`、`research-project-orienter`、
-`paper-memory-builder`，加上 `notebooklm-brief-verifier`（Manual fallback 模式）。13 個裡先 6 個。
+`paper-memory-builder`，加上 `notebooklm-brief-verifier`（Manual fallback 模式）。14 個裡先 6 個。
 
 > Step 1 也會裝 `research-hub`、`research-hub-multi-ai`、跟
 > `zotero-library-curator` 的 apply-cleanup 那半。沒有 `research-hub`
@@ -237,10 +237,10 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill
 
 ---
 
-## 全部 13 個 Skills
+## 全部 14 個 Skills
 
 <details>
-<summary><b>來自 <code>research-hub</code>（9 個）</b>——一次安裝全部到位</summary>
+<summary><b>來自 <code>research-hub</code>（10 個）</b>——一次安裝全部到位</summary>
 
 - [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md)：在 Zotero / Obsidian / NotebookLM 之間搜尋、匯入、整理論文。*(階段 1、2)*
 - [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md)：依 method、data、claim、limitation 做比較表。*(階段 2)*
@@ -251,6 +251,7 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill
 - [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md)：讀那些 manifest，快速產生 orientation 摘要。*(階段 3b、5)*
 - [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md)：stage-agnostic、按 task 性質做 Claude / Codex / Gemini routing。*(Cross-cutting)*
 - [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md)：產出 `.paper/claims.yml` 與 `.paper/figures.yml` 給寫作流程用。*(階段 7)*
+- [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md)：`research-hub auto` 跑完後，把每篇論文的 Key Findings / Methodology / Relevance 同時寫到 Obsidian 與 Zotero child note。*(階段 2)*
 
 </details>
 

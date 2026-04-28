@@ -55,14 +55,15 @@ own `CLAUDE.md` describes).
 | 5 | `research-project-orienter` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/orientation_memo.md` (read 0 source files outside `.research/`) |
 | 6 | `research-hub-multi-ai` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/multi-ai-routing-decision.md` (9-step routing plan honoring all 4 guardrails) |
 | 7 | `paper-memory-builder` | T1 | ✓ pass | `test-corpus/.../.paper/lim-2025/{claims,figures}.yml` (5 claims extracted; figures.yml empty as honest abstract-only run) |
-| 8 | `academic-writing-skills` | T1 | ✓ pass | `test-corpus/.../.paper/lim-2025/audit-lim-2025-abstract.md` — banned-word audit on Lim abstract found `leveraging`, `crucial`, `highlight` (matches `banned_words.md`) |
-| 9 | `zotero-skills` | T1 | ✓ pass | `curl http://localhost:23119/api/users/0/collections` returned real collection from `我的文獻庫`; ingestion of test corpus also exercised the local API path |
-| 10 | `codex-delegate` | T2 | ⚠ caveat | `codex --version` 0.121.0 present; default model `gpt-5.5` aborts with "requires a newer version of Codex"; explicit `-m gpt-5.4` works (verified by `codex exec --full-auto -C /tmp -m gpt-5.4 "echo HELLO_CODEX_5_4"` → succeeded) |
-| 11 | `gemini-delegate` | T2 | ✓ pass | `gemini --version` 0.38.2 present; `gemini -p "Say only PING"` → `PING` |
-| 12 | `research-design-helper` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/design_brief.md` — 5-segment Socratic dialog completed all sections (no `_TODO_` left); RQ falsification condition concrete (Cliff's δ < 0.5, p > 0.05 in non-poker tasks); 5 risks each with early-warning + mitigation |
-| 13 | `zotero-library-curator` | T1 | ✓ pass | `test-corpus/.../.research_hub/zotero-curator-audit-20260425.md` — read-only audit of real vault: caught 10 duplicate DOIs, 44 case-only near-duplicate tag pairs, 435 sparse tags, 1 orphan cluster (the `ai-agents-social-interaction-test` residual), 0 writes performed |
+| 8 | `paper-summarize` | T2 | ✓ pass | research-hub v0.69.0 unit suite: 17 tests in `tests/test_v069_summarize.py` cover prompt building, validation (4 reject + 1 accept), Obsidian + Zotero atomic writes, rollback, fallback when no zotero-key, and 4 orchestration scenarios (no CLI / detected CLI / explicit override / unparseable JSON). T2 — not yet promoted to T1 because no real-cluster verification has been committed to `test-corpus/`. |
+| 9 | `academic-writing-skills` | T1 | ✓ pass | `test-corpus/.../.paper/lim-2025/audit-lim-2025-abstract.md` — banned-word audit on Lim abstract found `leveraging`, `crucial`, `highlight` (matches `banned_words.md`) |
+| 10 | `zotero-skills` | T1 | ✓ pass | `curl http://localhost:23119/api/users/0/collections` returned real collection from `我的文獻庫`; ingestion of test corpus also exercised the local API path |
+| 11 | `codex-delegate` | T2 | ⚠ caveat | `codex --version` 0.121.0 present; default model `gpt-5.5` aborts with "requires a newer version of Codex"; explicit `-m gpt-5.4` works (verified by `codex exec --full-auto -C /tmp -m gpt-5.4 "echo HELLO_CODEX_5_4"` → succeeded) |
+| 12 | `gemini-delegate` | T2 | ✓ pass | `gemini --version` 0.38.2 present; `gemini -p "Say only PING"` → `PING` |
+| 13 | `research-design-helper` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/design_brief.md` — 5-segment Socratic dialog completed all sections (no `_TODO_` left); RQ falsification condition concrete (Cliff's δ < 0.5, p > 0.05 in non-poker tasks); 5 risks each with early-warning + mitigation |
+| 14 | `zotero-library-curator` | T1 | ✓ pass | `test-corpus/.../.research_hub/zotero-curator-audit-20260425.md` — read-only audit of real vault: caught 10 duplicate DOIs, 44 case-only near-duplicate tag pairs, 435 sparse tags, 1 orphan cluster (the `ai-agents-social-interaction-test` residual), 0 writes performed |
 
-**Totals:** 12 ✓ pass · 1 ⚠ caveat · 0 ✗ fail · 0 not_yet · **11 of 13 at T1**, the other 2 at T2 (delegates — T2 is the right tier for them, since their value *is* the external CLI).
+**Totals:** 13 ✓ pass · 1 ⚠ caveat · 0 ✗ fail · 0 not_yet · **11 of 14 at T1**, the other 3 at T2 (delegates + paper-summarize — T2 is the right tier for delegates since their value *is* the external CLI; paper-summarize is T2 pending real-cluster commit to `test-corpus/`).
 
 ## Per-skill detail
 

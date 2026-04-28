@@ -166,6 +166,31 @@ families:
           C5 marked status:draft (non-significant trend). figures.yml
           intentionally empty per "don't fabricate" rule, with
           run_notes documenting the abstract-only scope.
+      - name: paper-summarize
+        directory: paper-summarize
+        repo_url: https://github.com/WenyuChiou/research-hub
+        skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md
+        purpose: Fill per-paper Key Findings / Methodology / Relevance in both Obsidian markdown and Zotero child notes after `research-hub auto` ingests a cluster.
+        use_when:
+          - "User says: \"summarize the papers in cluster X\" or \"fill the TODO Key Findings\"."
+          - Just ran `research-hub auto` and per-paper notes are still TODO skeletons.
+          - Want Zotero notes and Obsidian markdown to stay in sync per paper.
+        outputs:
+          - Obsidian markdown blocks (`## Key Findings`, `## Methodology`, `## Relevance` per paper)
+          - Zotero child note HTML (one per paper, atomically rolled back if write fails)
+          - Fallback prompt at `<vault>/.research_hub/artifacts/<slug>/summarize-prompt.md` when no LLM CLI on PATH
+        verified_on: "2026-04-27"
+        verification_status: pass
+        verification_tier: T2
+        verification_notes: |
+          Added in research-hub v0.69.0 (10th packaged skill). 17
+          unit tests cover prompt building, validation (4 reject + 1
+          accept cases), Obsidian + Zotero writes, atomic rollback on
+          Zotero failure, fallback when no zotero-key in frontmatter,
+          and 4 orchestration scenarios (no CLI / detected CLI /
+          explicit override / unparseable JSON). T2 — not yet
+          promoted to T1 because no real-cluster verification has
+          been committed to test-corpus/.
       - name: notebooklm-brief-verifier
         directory: notebooklm-brief-verifier
         repo_url: https://github.com/WenyuChiou/research-hub
