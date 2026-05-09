@@ -18,6 +18,8 @@ exposing 14 skills total. Per-skill testing details:
 research engineers, librarians, and research support staff who run real
 research projects with AI in the loop.
 
+> 📚 Part of the [**agentic AI learning roadmap**](https://github.com/WenyuChiou/awesome-agentic-ai-zh) — a 7-stage curated path for building agentic AI, multilingual (zh-TW · zh-CN · English). This marketplace is featured in §13-14 (research workflow skills).
+
 ---
 
 ## Install
