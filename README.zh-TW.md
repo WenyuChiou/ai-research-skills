@@ -11,7 +11,8 @@
 
 **你會拿到什麼：** 1 個 Claude Code marketplace 統一安裝，5 個 plugin
 共 14 個 skill。Per-skill testing 細節見
-[docs/verification.md](docs/verification.md)。
+[docs/verification.zh-TW.md](docs/verification.zh-TW.md)（中文摘要）或
+[docs/verification.md](docs/verification.md)（英文完整逐項）。
 
 **適合誰：** 研究生、博士生、博士後、研究人員、研究工程師、圖書館員，
 以及在實際研究流程中把 AI 拉進來的研究支援人員。
@@ -225,15 +226,17 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill
 > [docs/skill-directory.zh-TW.md](docs/skill-directory.zh-TW.md)、
 > [docs/researcher-workflow-checklist.zh-TW.md](docs/researcher-workflow-checklist.zh-TW.md)
 > 轉給對方就好。Per-skill testing 結果在
-> [docs/verification.md](docs/verification.md)（英文）。
+> [docs/verification.zh-TW.md](docs/verification.zh-TW.md)（中文摘要）
+> 或 [docs/verification.md](docs/verification.md)（英文完整逐項）。
 >
 > **沒對到你的目標？** 完整 8 階段研究 pipeline 在
 > [docs/pipeline.zh-TW.md](docs/pipeline.zh-TW.md)，找到你的階段就裝
 > 對應的 skill。
 >
-> **想看 skill 串起來用實際長什麼樣？** [docs/demo-walkthrough.md](docs/demo-walkthrough.md)
-> 用一份 5 篇真論文的 test corpus，把 7 個 skill 從搜尋到稿件 audit
-> 走完，每一步都連到實際產出的 artifact 檔案（英文）。
+> **想看 skill 串起來用實際長什麼樣？**
+> [docs/demo-walkthrough.zh-TW.md](docs/demo-walkthrough.zh-TW.md) 用一份
+> 5 篇真論文的 test corpus，把 7 個 skill 從搜尋到稿件 audit 走完，每一步
+> 都連到實際產出的 artifact 檔案。
 
 ---
 
@@ -276,7 +279,8 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill
 ## Testing
 
 Per-skill testing 矩陣與可重現的 test-corpus 證據：
-[docs/verification.md](docs/verification.md)。
+[docs/verification.zh-TW.md](docs/verification.zh-TW.md)（中文摘要）或
+[docs/verification.md](docs/verification.md)（英文完整逐項）。
 
 ---
 

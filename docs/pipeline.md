@@ -78,7 +78,12 @@ then generate implementation scaffolding.
 
 For implementation scaffolding (test harness, plotting, batch edits)
 and design review by long-context reading, use the **Cross-cutting
-tools** (`codex-delegate`, `gemini-delegate`) below.
+tools** (`codex-delegate`, `gemini-delegate`) below. If a single round
+of work needs both delegates (e.g. Codex writes the test harness *and*
+Gemini drafts the design-review memo), route through the
+[`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md)
+router first — it writes `.coord/multi_ai_plan.md` and the leaves read
+their per-task brief.
 
 ## 5. Run experiments, calibrate, and validate (C&V)
 
@@ -91,7 +96,11 @@ tools** (`codex-delegate`, `gemini-delegate`) below.
 | [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) | Cheap re-onboarding when you switch experiments or come back days later. |
 
 For repeatable sweeps and post-fix verification, delegate via the
-**Cross-cutting tools** below.
+**Cross-cutting tools** below. Multi-delegate rounds in this stage
+(e.g. one Codex run for the sweep, a parallel Codex run for the post-
+fix verification) go through the
+[`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md)
+router first.
 
 ## 6. Visualise and interpret results
 
@@ -103,6 +112,11 @@ Tools: **matplotlib / plotly / your plotting stack of choice.**
 |---|---|
 | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) | Generate or refactor plotting scripts (consistent style across N figures, batch re-renders). |
 | [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) | Pair a figure with a draft caption / interpretation paragraph using long-context reading. |
+
+When a figure pass needs both delegates same round (e.g. Codex
+re-renders N figures and Gemini drafts captions), use the
+[`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md)
+router so the plan and per-task briefs stay in sync.
 
 ## 7. Draft and revise the manuscript
 

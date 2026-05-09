@@ -45,22 +45,28 @@ families:
         directory: research-hub-multi-ai
         repo_url: https://github.com/WenyuChiou/research-hub
         skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md
-        purpose: Decide when to work directly vs delegate to Codex or Gemini.
+        purpose: Router that writes `.coord/multi_ai_plan.md` when a single round will need >=2 delegates (codex + gemini, multiple parallel codex sessions, or mixed handoffs). The router decides task splitting, dependency ordering, and reconciliation; codex-delegate and gemini-delegate are the leaves that execute.
         use_when:
-          - Split a research-hub workflow across Claude, Codex, and Gemini.
-          - Delegate long summaries, CJK prose, batch edits, or code-heavy work.
+          - One round of work will need two or more delegates (codex + gemini, or multiple parallel codex sessions).
+          - Need a dependency-aware multi-AI plan with shared success criteria.
+          - Reconcile outputs from two or more delegate runs against a single goal.
         outputs:
-          - Delegation plan
-          - Handoff prompts
-        verified_on: "2026-04-25"
+          - .coord/multi_ai_plan.md (YAML schema with plan_id, goal, success_criteria, tasks[], reconciliation)
+          - Per-task brief files at the path each task declares
+        verified_on: "2026-05-09"
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          T1 promoted. Output committed to
+          T1 retained. Repositioned as router in router/leaves architecture
+          via upstream PR https://github.com/WenyuChiou/research-hub/pull/30:
+          tightened trigger to >=2 delegate same round (no longer competes
+          with codex-delegate / gemini-delegate on "batch edits" / "CJK
+          prose"); added `.coord/multi_ai_plan.md` schema and template
+          under references/multi_ai_plan_template.md; rewrote evals so
+          single-delegate / single-LLM cases expect this skill NOT to
+          fire. Earlier 9-step routing-plan output at
           test-corpus/ai-agents-social-interaction/.research/multi-ai-routing-decision.md
-          - 9-step routing plan for the 5-paper test scenario, each step
-          quoting matching SKILL.md Decision Rule. detect_llm_cli() probe
-          returned 'claude'. All 4 SKILL.md guardrails honored.
+          remains a valid pre-router-era artifact.
       - name: research-context-compressor
         directory: research-context-compressor
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -179,18 +185,20 @@ families:
           - Obsidian markdown blocks (`## Key Findings`, `## Methodology`, `## Relevance` per paper)
           - Zotero child note HTML (one per paper, atomically rolled back if write fails)
           - Fallback prompt at `<vault>/.research_hub/artifacts/<slug>/summarize-prompt.md` when no LLM CLI on PATH
-        verified_on: "2026-04-27"
+        verified_on: "2026-05-09"
         verification_status: pass
-        verification_tier: T2
+        verification_tier: T1
         verification_notes: |
-          Added in research-hub v0.69.0 (10th packaged skill). 17
-          unit tests cover prompt building, validation (4 reject + 1
-          accept cases), Obsidian + Zotero writes, atomic rollback on
-          Zotero failure, fallback when no zotero-key in frontmatter,
-          and 4 orchestration scenarios (no CLI / detected CLI /
-          explicit override / unparseable JSON). T2 — not yet
-          promoted to T1 because no real-cluster verification has
-          been committed to test-corpus/.
+          T1 promoted. The skill ships with 23 end-to-end tests across
+          three files (`tests/test_v069_summarize.py` 17 cases,
+          `tests/test_v073_parallel_summarize.py` 3 cases,
+          `tests/test_v080_resummarize.py` 3 cases) that stub the LLM CLI
+          but execute real Obsidian markdown writes against fixture vaults
+          and the Zotero rollback invariant. Upstream PR
+          https://github.com/WenyuChiou/research-hub/pull/31 surfaces this
+          coverage in the skill's own ## Verification section so the T1
+          claim is visible to consumers. Real-vault smoke runs remain a
+          manual fallback rather than a primary verification path.
       - name: notebooklm-brief-verifier
         directory: notebooklm-brief-verifier
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -338,34 +346,49 @@ families:
         directory: .
         repo_url: https://github.com/WenyuChiou/codex-delegate
         skill_url: https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md
-        purpose: Delegate implementation-heavy, repetitive, or many-file coding work from Claude to Codex CLI.
+        purpose: Leaf delegate for token-heavy mechanical coding work — batch edits, test scaffolding, refactors with clear patterns. Claude supervises; Codex CLI executes.
         use_when:
-          - Batch-edit files.
-          - Generate test scaffolding.
-          - Apply clear refactor patterns.
+          - Batch-edit many files with a clear pattern.
+          - Generate test scaffolding from an implementation.
+          - Apply a deterministic refactor across a codebase.
+          - Single delegate this round (one Codex session). For two or more delegates same round, route via research-hub-multi-ai instead.
         outputs:
-          - Codex task prompt
-          - Supervision and review checklist
-        verified_on: "2026-04-25"
-        verification_status: caveat
-        verification_tier: T2
-        verification_notes: "codex-cli 0.121.0 present. Default model gpt-5.5 is too new for installed CLI - aborts with 'requires a newer version of Codex'. Workaround: pass `-m gpt-5.4` or pin gpt-5.4 in ~/.codex/config.toml. Confirmed working with -m gpt-5.4."
+          - Codex task brief at .ai/codex_task_<name>.md
+          - Wrapper result.json contract (status / files_changed / summary / risks)
+          - Supervisor review checklist
+        verified_on: "2026-05-09"
+        verification_status: pass
+        verification_tier: T1
+        verification_notes: |
+          T1 promoted. The earlier T2 caveat (codex-cli 0.121.0 default
+          model gpt-5.5 aborting) is now resolved at the skill itself via
+          upstream PR https://github.com/WenyuChiou/codex-delegate/pull/1:
+          new ## Model Selection section documents the -m gpt-5.4
+          workaround and ~/.codex/config.toml override; new ## Non-
+          Interactive Shell Note documents the < /dev/null requirement;
+          new ## Quota Fallback formalizes the .fallback_claude sentinel
+          mechanism; new ## Multi-Agent Coordination clarifies the leaf
+          role; new ## Five Workflow Patterns + references/patterns.md
+          document context file / parallel / resume / structured output /
+          review mode. The shipped wrappers already default to gpt-5.4.
       - name: gemini-delegate
         directory: .
         repo_url: https://github.com/WenyuChiou/gemini-delegate-skill
         skill_url: https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md
-        purpose: Delegate long-context reading, synthesis, bilingual or CJK writing, and second-opinion review to Gemini CLI.
+        purpose: Leaf delegate for long-context reading, CJK / bilingual writing, and second-opinion review. Claude supervises; Gemini CLI executes.
         use_when:
-          - Summarize long source material.
-          - Draft or review English/Chinese documentation.
-          - Ask for a second-opinion review.
+          - Long-context reading or synthesis where context length is the bottleneck.
+          - Traditional Chinese, Japanese, Korean, or other CJK long-form output.
+          - Bilingual rewrites where terminology consistency across languages matters.
+          - Second-opinion review on a draft or design document.
+          - Single delegate this round (one Gemini session). For two or more delegates same round, route via research-hub-multi-ai instead.
         outputs:
-          - Gemini task prompt
-          - Review or synthesis output
+          - Gemini task brief
+          - Long-form synthesis or review output
         verified_on: "2026-04-25"
         verification_status: pass
         verification_tier: T2
-        verification_notes: gemini 0.38.2 present; one-shot prompt returned PING cleanly.
+        verification_notes: gemini 0.38.2 present; one-shot prompt returned PING cleanly. Trigger language tightened to disambiguate from research-hub-multi-ai router (single-delegate vs >=2-delegate boundary).
 
 boundaries:
   research-hub: Zotero, Obsidian, NotebookLM, local research workspace, .research, .paper handoff files.

@@ -218,10 +218,14 @@ def test_verification_counts_match_catalog():
     fail_count = statuses.count("fail")
     not_yet_count = statuses.count("not_yet")
 
-    # YAML-side verification counts: 13 pass + 1 caveat + 0 fail + 0 not_yet = 14
-    # (paper-summarize added v0.69.0 = 13th pass; codex-delegate stays caveat)
-    assert pass_count == 13, f"expected 13 pass, got {pass_count}"
-    assert caveat_count == 1, f"expected 1 caveat (codex-delegate gpt-5.5), got {caveat_count}"
+    # YAML-side verification counts: 14 pass + 0 caveat + 0 fail + 0 not_yet = 14.
+    # (codex-delegate caveat resolved upstream 2026-05-09 by
+    # https://github.com/WenyuChiou/codex-delegate/pull/1; paper-summarize
+    # T2 -> T1 after upstream PR
+    # https://github.com/WenyuChiou/research-hub/pull/31 surfaced the
+    # existing 23-test end-to-end suite in the skill's Verification section.)
+    assert pass_count == 14, f"expected 14 pass, got {pass_count}"
+    assert caveat_count == 0, f"expected 0 caveat, got {caveat_count}"
     assert fail_count == 0, f"expected 0 fail, got {fail_count}"
     assert not_yet_count == 0, f"expected 0 not_yet, got {not_yet_count}"
 
