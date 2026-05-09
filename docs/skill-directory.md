@@ -99,7 +99,7 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/g
 
 | Skill | Use when | Direct skill link |
 |---|---|---|
-| `codex-delegate` | Coding work is repetitive, implementation-heavy, or spans many files, and Claude should supervise while Codex executes. | [SKILL.md](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) |
+| `codex-delegate` | Coding work is repetitive, implementation-heavy, or spans many files, and Claude should supervise while Codex executes. | [SKILL.md](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) |
 | `gemini-delegate` | Work is long-context, synthesis-heavy, bilingual/CJK-heavy, or needs a second-opinion review. | [SKILL.md](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) |
 
 ## Quick Recommendations

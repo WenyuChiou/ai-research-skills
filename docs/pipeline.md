@@ -110,7 +110,7 @@ Tools: **matplotlib / plotly / your plotting stack of choice.**
 
 | Skill | What it does |
 |---|---|
-| [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md) | Generate or refactor plotting scripts (consistent style across N figures, batch re-renders). |
+| [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) | Generate or refactor plotting scripts (consistent style across N figures, batch re-renders). |
 | [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) | Pair a figure with a draft caption / interpretation paragraph using long-context reading. |
 
 When a figure pass needs both delegates same round (e.g. Codex

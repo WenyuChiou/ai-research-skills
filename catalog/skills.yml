@@ -345,7 +345,7 @@ families:
       - name: codex-delegate
         directory: .
         repo_url: https://github.com/WenyuChiou/codex-delegate
-        skill_url: https://github.com/WenyuChiou/codex-delegate/blob/master/SKILL.md
+        skill_url: https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md
         purpose: Leaf delegate for token-heavy mechanical coding work — batch edits, test scaffolding, refactors with clear patterns. Claude supervises; Codex CLI executes.
         use_when:
           - Batch-edit many files with a clear pattern.
