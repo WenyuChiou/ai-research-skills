@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ai-research-skills · Claude Code marketplace for research workflows</title>
+  <meta name="description" content="14 Claude Code skills for research workflows — literature triage, research design, manuscript writing, and multi-AI delegation. 5-plugin marketplace, one-command install.">
+  <meta property="og:title" content="ai-research-skills">
+  <meta property="og:description" content="14 Claude Code skills · 5-plugin marketplace · one-command install.">
+  <meta property="og:image" content="img/social-preview.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0b1220;
+      --body: #334155;
+      --mute: #64748b;
+      --line: #e5e7eb;
+      --soft: #f1f5f9;
+      --card: #f8fafc;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--body);
+      background: #fff;
+      line-height: 1.6;
+    }
+    .container { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+    code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; }
+
+    /* Header */
+    header {
+      background: var(--ink);
+      color: #fff;
+      padding: 80px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(37, 99, 235, 0.1) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+    header::after {
+      content: '';
+      position: absolute; top: -120px; right: -100px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.45), transparent 60%);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .header-inner { position: relative; z-index: 1; }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin: 0 0 18px;
+      color: #fff;
+    }
+    .lede {
+      font-size: 18px;
+      color: #cbd5e1;
+      max-width: 680px;
+      margin: 0 0 28px;
+    }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.1);
+      color: #cbd5e1;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .pill strong { color: #fff; }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: inherit;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+    .btn-secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+
+    /* Sections */
+    section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+    section:last-of-type { border-bottom: 0; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 16px;
+      color: var(--ink);
+    }
+    .section-lede { font-size: 17px; color: var(--body); margin-bottom: 36px; max-width: 720px; }
+
+    /* Pipeline image */
+    .pipeline-img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      border: 1px solid var(--line);
+      display: block;
+    }
+    .img-caption {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--mute);
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Plugins grid */
+    .plugins { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .plugin {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .plugin h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--ink);
+      margin: 0 0 6px;
+      font-weight: 600;
+    }
+    .plugin-meta {
+      font-size: 12px;
+      color: var(--mute);
+      margin-bottom: 10px;
+    }
+    .plugin p { margin: 0; font-size: 14px; line-height: 1.55; }
+
+    /* Install code */
+    pre {
+      background: var(--ink);
+      color: #e2e8f0;
+      padding: 18px 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    pre code { color: inherit; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: inherit; }
+    pre .comment { color: #64748b; }
+    pre .accent { color: #93c5fd; }
+
+    /* Links section */
+    .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    .link-card {
+      display: block;
+      padding: 16px 18px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .link-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .link-card-title { font-weight: 600; margin-bottom: 4px; }
+    .link-card-desc { font-size: 13px; color: var(--mute); }
+
+    /* Footer */
+    footer {
+      padding: 48px 0;
+      text-align: center;
+      color: var(--mute);
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      header { padding: 56px 0 44px; }
+      h1 { font-size: 34px; }
+      .lede { font-size: 16px; }
+      h2 { font-size: 26px; }
+      section { padding: 48px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="eyebrow">github.com/WenyuChiou/ai-research-skills · ★ 61</div>
+    <h1>14 Claude Code skills <br>for research workflows</h1>
+    <p class="lede">
+      Literature triage, research design, project context, manuscript writing,
+      and multi-AI delegation — packaged as a 5-plugin Claude Code marketplace.
+      One command installs everything.
+    </p>
+    <div class="pills">
+      <span class="pill"><strong>14</strong> skills</span>
+      <span class="pill"><strong>5</strong> plugins</span>
+      <span class="pill"><strong>1</strong> command install</span>
+      <span class="pill"><strong>MIT</strong> licensed</span>
+      <span class="pill"><strong>EN · 繁中</strong></span>
+    </div>
+    <div class="cta">
+      <a class="btn btn-primary" href="install.html">Install guide →</a>
+      <a class="btn btn-secondary" href="https://github.com/WenyuChiou/ai-research-skills">View on GitHub</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="section-label">Pipeline overview</div>
+    <h2>Composable skills mapped to research workflow stages</h2>
+    <p class="section-lede">
+      Each skill addresses one workflow stage. Cross-cutting tools (codex-delegate,
+      gemini-delegate, research-hub-multi-ai) work at any stage — usable solo or
+      composed across plugins.
+    </p>
+    <img src="img/pipeline-overview.png" alt="14 skills mapped to research workflow stages with cross-cutting delegation tools" class="pipeline-img">
+    <p class="img-caption">14 skills · 5 plugins · cross-cutting delegation primitives at every stage.</p>
+  </div>
+</section>
+
+<section style="background: var(--soft);">
+  <div class="container">
+    <div class="section-label">5 plugins</div>
+    <h2>Pick the plugin that matches your workflow</h2>
+    <p class="section-lede">
+      Each plugin bundles 2–4 skills. Install one at a time as you need them, or
+      grab the full marketplace with one command.
+    </p>
+    <div class="plugins">
+      <div class="plugin">
+        <h3>research-hub</h3>
+        <div class="plugin-meta">Knowledge base · Zotero · Obsidian · NotebookLM</div>
+        <p>Operate your literature stack from Claude Code: search papers, save to Zotero, build Obsidian notes, query NotebookLM. CLI · MCP · REST · dashboard.</p>
+      </div>
+      <div class="plugin">
+        <h3>academic-writing-skills</h3>
+        <div class="plugin-meta">Manuscripts · audits · figure-text consistency</div>
+        <p>Rigorous paper writing, revision, reviewer response, submission checklists. Findings-first structure, banned-word audit, claim-evidence ledger.</p>
+      </div>
+      <div class="plugin">
+        <h3>codex-delegate</h3>
+        <div class="plugin-meta">Multi-LLM · token-heavy code execution</div>
+        <p>Delegate token-heavy, mechanical coding work to Codex CLI while Claude plans, reviews, and accepts. Cost-aware routing pattern for production.</p>
+      </div>
+      <div class="plugin">
+        <h3>gemini-delegate</h3>
+        <div class="plugin-meta">Multi-LLM · large-context · CJK drafting</div>
+        <p>Delegate large-context synthesis, long-form English/Chinese drafting, and second-opinion review to Google's Gemini CLI. Wrapper-based execution.</p>
+      </div>
+      <div class="plugin">
+        <h3>zotero-skills</h3>
+        <div class="plugin-meta">Programmatic Zotero CRUD</div>
+        <p>Full CRUD on your Zotero library — search, add, classify, annotate, organize references. Dual-API architecture (local read · web write).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Install</div>
+    <h2>One command (the full marketplace)</h2>
+    <p class="section-lede">
+      Requires Claude Code (<code>https://claude.ai/code</code>). The plugin
+      framework loads each skill on demand based on your prompt context.
+    </p>
+    <pre><code><span class="comment"># Add the marketplace</span>
+claude plugin marketplace add WenyuChiou/ai-research-skills
+
+<span class="comment"># Install all 5 plugins (or just the ones you need)</span>
+claude plugin install research-hub@ai-research-skills        <span class="accent">--scope user</span>
+claude plugin install academic-writing-skills@ai-research-skills
+claude plugin install codex-delegate@ai-research-skills
+claude plugin install gemini-delegate@ai-research-skills
+claude plugin install zotero-skills@ai-research-skills</code></pre>
+    <p style="margin-top: 24px; font-size: 14px; color: var(--mute);">
+      For installation troubleshooting, persona-based setup, and per-skill
+      verification, see <a href="install.html" style="color: var(--accent);">the full install guide</a>.
+    </p>
+  </div>
+</section>
+
+<section style="background: var(--soft);">
+  <div class="container">
+    <div class="section-label">Documentation</div>
+    <h2>Deeper reading</h2>
+    <div class="links-grid">
+      <a class="link-card" href="pipeline.html">
+        <div class="link-card-title">Pipeline mapping</div>
+        <div class="link-card-desc">How each skill maps to the research workflow.</div>
+      </a>
+      <a class="link-card" href="skill-directory.html">
+        <div class="link-card-title">Skill directory</div>
+        <div class="link-card-desc">Pick by tool combination (Zotero, Obsidian, NotebookLM…).</div>
+      </a>
+      <a class="link-card" href="researcher-workflow-checklist.html">
+        <div class="link-card-title">Workflow checklist</div>
+        <div class="link-card-desc">Researcher-facing checklist around Zotero / Obsidian / NotebookLM.</div>
+      </a>
+      <a class="link-card" href="demo-walkthrough.html">
+        <div class="link-card-title">Demo walkthrough</div>
+        <div class="link-card-desc">A full session showing the marketplace in action.</div>
+      </a>
+      <a class="link-card" href="verification.html">
+        <div class="link-card-title">Per-skill verification</div>
+        <div class="link-card-desc">How each skill is tested before release.</div>
+      </a>
+      <a class="link-card" href="repo-map.html">
+        <div class="link-card-title">Repo map</div>
+        <div class="link-card-desc">What's in the repo and how it's organized.</div>
+      </a>
+    </div>
+    <p style="margin-top: 28px; font-size: 14px; color: var(--mute);">
+      All docs are also available in 繁體中文 · see the same filenames with
+      <code>.zh-TW</code> suffix in <a href="https://github.com/WenyuChiou/ai-research-skills/tree/main/docs" style="color: var(--accent);">/docs/</a>.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Part of a broader ecosystem</div>
+    <h2>The agentic AI learning roadmap</h2>
+    <p class="section-lede">
+      <code>ai-research-skills</code> is one of several open-source maintainer
+      projects. The full picture is curated in
+      <a href="https://wenyuchiou.github.io/awesome-agentic-ai-zh/" style="color: var(--accent);">awesome-agentic-ai-zh</a>
+      — a 7-stage trilingual learning roadmap for agentic AI (★ 519 in week 1)
+      where this marketplace lives in §13 (research workflow skills).
+    </p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://wenyuchiou.github.io/awesome-agentic-ai-zh/">Explore the roadmap →</a>
+      <a class="btn btn-secondary" href="https://wenyuchiou.github.io">More projects @ wenyuchiou.github.io</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>
+      Built &amp; maintained by <a href="https://wenyuchiou.github.io">Wenyu Chiou</a>
+      · Lehigh University CEE · MIT licensed
+      · <a href="https://github.com/WenyuChiou/ai-research-skills">GitHub</a>
+      · <a href="https://github.com/WenyuChiou/ai-research-skills/issues">Issues</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
