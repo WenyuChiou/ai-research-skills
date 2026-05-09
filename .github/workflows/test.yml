@@ -18,3 +18,5 @@ jobs:
         run: pip install pytest pyyaml
       - name: Run catalog tests
         run: python -m pytest tests/ -q
+      - name: Check catalog <-> marketplace consistency
+        run: python scripts/check_marketplace_consistency.py

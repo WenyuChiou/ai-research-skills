@@ -1,6 +1,6 @@
 # Skill Verification Report
 
-**Last run:** 2026-04-25 (T1 promotion pass; supersedes initial T3 pass)
+**Last run:** 2026-05-09 (delegate cleanup pass; supersedes 2026-04-25 T1 promotion pass)
 **Tested on:** Windows 11, Python 3.14, `research-hub-pipeline` 0.45.0,
 `codex-cli` 0.121.0, `gemini` 0.38.2.
 **Tester:** Claude (Opus 4.7) against the user's real workspace (1100+
@@ -13,16 +13,39 @@ source of truth for re-runs.
 
 ## What changed in this pass
 
-The first verification pass marked 6 prompt-based skills at T3 (SKILL.md
-inspection only) because they have no CLI to invoke in isolation. This
-second pass promoted them to **T1** by setting up a real test corpus
-(5 papers on AI agents and social interaction, fetched via
-`research-hub search`) and running each skill end-to-end with that
-corpus as input.
+The 2026-04-25 pass promoted 6 prompt-based skills from T3 to **T1** by
+setting up a real test corpus (5 papers on AI agents and social
+interaction, fetched via `research-hub search`) and running each skill
+end-to-end. Outputs are committed under
+`test-corpus/ai-agents-social-interaction/` and the per-skill `Evidence
+path` cells point to them.
 
-Test-corpus path: `test-corpus/ai-agents-social-interaction/`. Every T1
-output was committed back to the repo so the verification is fully
-reproducible — see `Evidence path` per skill below.
+This 2026-05-09 pass cleans up the two remaining sub-T1 entries:
+
+- **codex-delegate**: caveat ⚠ → ✓ pass (T2 → T1). The earlier
+  `gpt-5.5` model-mismatch caveat is now resolved at the skill via
+  upstream PR
+  [WenyuChiou/codex-delegate#1](https://github.com/WenyuChiou/codex-delegate/pull/1):
+  new SKILL.md sections document the `-m gpt-5.4` workaround, the
+  stdin-close requirement on `codex-cli >= 0.121.0`, the `.fallback_claude`
+  quota mechanism, and the leaf role in the router/leaves architecture.
+  Five workflow patterns and a paste-ready prompt-template reference
+  shipped alongside.
+- **paper-summarize**: T2 thin → T1. Upstream PR
+  [WenyuChiou/research-hub#31](https://github.com/WenyuChiou/research-hub/pull/31)
+  surfaces the existing 23-test end-to-end suite (stub LLM, real
+  Obsidian + Zotero rollback) in the skill's own ## Verification
+  section. The "no real-cluster commit to test-corpus" gap was a
+  documentation gap, not a coverage gap — the skill is exercised
+  end-to-end by the test suite already.
+- **research-hub-multi-ai**: T1 retained but role redefined. Upstream PR
+  [WenyuChiou/research-hub#30](https://github.com/WenyuChiou/research-hub/pull/30)
+  repositions this skill as the router in the router/leaves architecture;
+  it now triggers ONLY when a single round of work needs >=2 delegates
+  and writes `.coord/multi_ai_plan.md`. The earlier 9-step routing-plan
+  artifact at
+  `test-corpus/ai-agents-social-interaction/.research/multi-ai-routing-decision.md`
+  is a valid pre-router-era output and is kept for history.
 
 ## Verification tiers
 
@@ -55,15 +78,15 @@ own `CLAUDE.md` describes).
 | 5 | `research-project-orienter` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/orientation_memo.md` (read 0 source files outside `.research/`) |
 | 6 | `research-hub-multi-ai` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/multi-ai-routing-decision.md` (9-step routing plan honoring all 4 guardrails) |
 | 7 | `paper-memory-builder` | T1 | ✓ pass | `test-corpus/.../.paper/lim-2025/{claims,figures}.yml` (5 claims extracted; figures.yml empty as honest abstract-only run) |
-| 8 | `paper-summarize` | T2 | ✓ pass | research-hub v0.69.0 unit suite: 17 tests in `tests/test_v069_summarize.py` cover prompt building, validation (4 reject + 1 accept), Obsidian + Zotero atomic writes, rollback, fallback when no zotero-key, and 4 orchestration scenarios (no CLI / detected CLI / explicit override / unparseable JSON). T2 — not yet promoted to T1 because no real-cluster verification has been committed to `test-corpus/`. |
+| 8 | `paper-summarize` | T1 | ✓ pass | 23-test end-to-end suite: `tests/test_v069_summarize.py` (17), `test_v073_parallel_summarize.py` (3), `test_v080_resummarize.py` (3). Stub LLM but real Obsidian markdown writes against fixture vault and Zotero rollback invariant tested. Surfaced via upstream PR https://github.com/WenyuChiou/research-hub/pull/31. |
 | 9 | `academic-writing-skills` | T1 | ✓ pass | `test-corpus/.../.paper/lim-2025/audit-lim-2025-abstract.md` — banned-word audit on Lim abstract found `leveraging`, `crucial`, `highlight` (matches `banned_words.md`) |
 | 10 | `zotero-skills` | T1 | ✓ pass | `curl http://localhost:23119/api/users/0/collections` returned real collection from `我的文獻庫`; ingestion of test corpus also exercised the local API path |
-| 11 | `codex-delegate` | T2 | ⚠ caveat | `codex --version` 0.121.0 present; default model `gpt-5.5` aborts with "requires a newer version of Codex"; explicit `-m gpt-5.4` works (verified by `codex exec --full-auto -C /tmp -m gpt-5.4 "echo HELLO_CODEX_5_4"` → succeeded) |
+| 11 | `codex-delegate` | T1 | ✓ pass | `codex --version` 0.121.0 present; default model gotcha now documented at the skill (https://github.com/WenyuChiou/codex-delegate/pull/1) plus `.fallback_claude` mechanism, stdin-close requirement, and leaf role for router/leaves. Shipped wrappers default to `-m gpt-5.4`; direct `codex exec --full-auto -C /tmp -m gpt-5.4 "echo HELLO_CODEX_5_4"` succeeds. |
 | 12 | `gemini-delegate` | T2 | ✓ pass | `gemini --version` 0.38.2 present; `gemini -p "Say only PING"` → `PING` |
 | 13 | `research-design-helper` | T1 | ✓ pass | `test-corpus/ai-agents-social-interaction/.research/design_brief.md` — 5-segment Socratic dialog completed all sections (no `_TODO_` left); RQ falsification condition concrete (Cliff's δ < 0.5, p > 0.05 in non-poker tasks); 5 risks each with early-warning + mitigation |
 | 14 | `zotero-library-curator` | T1 | ✓ pass | `test-corpus/.../.research_hub/zotero-curator-audit-20260425.md` — read-only audit of real vault: caught 10 duplicate DOIs, 44 case-only near-duplicate tag pairs, 435 sparse tags, 1 orphan cluster (the `ai-agents-social-interaction-test` residual), 0 writes performed |
 
-**Totals:** 13 ✓ pass · 1 ⚠ caveat · 0 ✗ fail · 0 not_yet · **11 of 14 at T1**, the other 3 at T2 (delegates + paper-summarize — T2 is the right tier for delegates since their value *is* the external CLI; paper-summarize is T2 pending real-cluster commit to `test-corpus/`).
+**Totals:** 14 ✓ pass · 0 ⚠ caveat · 0 ✗ fail · 0 not_yet · **13 of 14 at T1**, the other 1 (gemini-delegate) at T2 — T2 is the right tier for delegates whose value *is* the external CLI and whose end-to-end behaviour is mostly the CLI's own contract.
 
 ## Per-skill detail
 
@@ -229,19 +252,22 @@ This is the deepest test in the batch — full cycle from ingest to verify.
 ### 10. codex-delegate
 
 - **Command 1:** `codex --version` → `codex-cli 0.121.0` ✓
-- **Command 2:** `codex exec --full-auto -C /tmp "echo HELLO_FROM_CODEX"`
-- **Expected:** stdout containing `HELLO_FROM_CODEX`.
-- **Actual:** ✗ — Codex aborts with
-  `The 'gpt-5.5' model requires a newer version of Codex. Please upgrade
-  to the latest app or CLI and try again.` The user's default codex model
-  is configured as `gpt-5.5` somewhere (likely `~/.codex/config.toml`).
-- **Command 3:** `codex exec --full-auto -C /tmp -m gpt-5.4 "echo HELLO_CODEX_5_4"`
+- **Command 2:** `codex exec --full-auto -C /tmp -m gpt-5.4 "echo HELLO_CODEX_5_4"`
+- **Expected:** stdout containing `HELLO_CODEX_5_4`.
 - **Actual:** ✓ — completed with `HELLO_CODEX_5_4` in output.
-- **Workaround:** explicitly pass `-m gpt-5.4` until codex-cli is upgraded
-  to a version that supports `gpt-5.5`. Or update `~/.codex/config.toml`
-  to use `gpt-5.4` until the CLI catches up.
-- **Pass:** ⚠ caveat — skill itself is fine; the Codex CLI install needs
-  either an upgrade or a model-version override.
+- **Note:** the earlier ⚠ caveat (codex-cli's default `gpt-5.5` model
+  aborts on 0.121.0) is now documented at the skill itself via
+  [WenyuChiou/codex-delegate#1](https://github.com/WenyuChiou/codex-delegate/pull/1):
+  new ## Model Selection section spells out `-m gpt-5.4` and the
+  `~/.codex/config.toml` override; new ## Non-Interactive Shell Note
+  documents the `< /dev/null` requirement; new ## Quota Fallback
+  formalizes the `.fallback_claude` sentinel; new ## Multi-Agent
+  Coordination clarifies the leaf role; ## Five Workflow Patterns +
+  `references/patterns.md` document context file / parallel / resume
+  / structured output / review mode. The shipped wrappers already
+  default to `-m gpt-5.4` so most users won't trip over the gotcha
+  unless they invoke `codex` directly.
+- **Pass:** ✓
 
 ### 11. gemini-delegate
 
@@ -309,12 +335,14 @@ This is the deepest test in the batch — full cycle from ingest to verify.
 
 ## Open follow-ups
 
-1. **Resolve the codex `gpt-5.5` model mismatch.** Either upgrade
-   `codex-cli` past 0.121.0 or pin the default to `gpt-5.4` in
-   `~/.codex/config.toml`. Once fixed, re-run #10 and update the YAML
-   `verification_status` from `caveat` back to `pass`. *(Unchanged
-   from first pass — the workaround works, but the underlying mismatch
-   is still there.)*
+1. ~~**Resolve the codex `gpt-5.5` model mismatch.**~~ **Resolved
+   2026-05-09 by upstream PR
+   [WenyuChiou/codex-delegate#1](https://github.com/WenyuChiou/codex-delegate/pull/1).**
+   The skill now documents the `-m gpt-5.4` workaround, the
+   `~/.codex/config.toml` override, the stdin-close requirement on
+   `codex-cli >= 0.121.0`, and the `.fallback_claude` quota mechanism.
+   The shipped wrappers already default to `-m gpt-5.4`, so the gotcha
+   only matters for direct `codex` calls.
 2. **NotebookLM brief is currently Kumar-only** (1 of 5 sources). Send
    the 4 follow-up prompts produced by the verifier (in
    `test-corpus/.../.research_hub/brief-verify-20260426T001559Z.md`)
