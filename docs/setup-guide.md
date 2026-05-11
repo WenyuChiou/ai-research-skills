@@ -9,9 +9,9 @@ already have Claude Code, Python, and Zotero working, skip to
 
 **Time budget**:
 
-- Phase A + B alone (~20 min) → 6 of 14 skills usable, pure reasoning, no Zotero needed.
-- Phase A + B + C (~40 min) → 9 of 14 skills with Zotero connectivity.
-- Phase A + B + C + D (~60 min) → all 14 skills, full pipeline.
+- Phase A + B alone (~20 min) → 10 of 14 skills installed; the 6 pure-reasoning ones inside the research-workspace plugin work immediately, no Zotero needed.
+- Phase A + B + C (~40 min) → 12 of 14 skills wired with Zotero connectivity (add academic-writing-skills in B-extra for the 12th).
+- Phase A + B + C + D (~60 min) → research-hub Python pipeline behind 13 skills; codex/gemini delegates wait for Phase E3.
 
 Stop after any phase and use what you've installed.
 
@@ -114,11 +114,11 @@ claude plugin install research-workspace@ai-research-skills
 ```bash
 # verify
 ls ~/.claude/skills/
-# expected: directories including literature-triage-matrix,
+# expected: 10 directories — literature-triage-matrix,
 # research-hub, research-design-helper, paper-memory-builder,
-# notebooklm-brief-verifier, research-context-compressor,
-# research-project-orienter, research-hub-multi-ai,
-# zotero-library-curator
+# paper-summarize, notebooklm-brief-verifier,
+# research-context-compressor, research-project-orienter,
+# research-hub-multi-ai, zotero-library-curator
 ```
 
 ### B3. Smoke test: literature matrix from 3 papers
@@ -145,9 +145,31 @@ output, see [F2](#f2-claude-doesnt-trigger-the-skill).
 
 ### Phase B checkpoint
 
-You have a working literature matrix without any external setup. You
-can stop here and use the 6 pure-reasoning skills for manual workflows.
-Continue to Phase C if you want Zotero connectivity.
+You have 10 of 14 skills installed (the research-workspace plugin) and
+a working literature matrix without any external setup. The 6 pure-
+reasoning skills inside research-workspace work immediately; the other
+4 (research-hub, research-hub-multi-ai, zotero-library-curator's apply
+mode, and full literature-triage-matrix with paper search) need
+Phase C / D / E. Continue to Phase B-extra if you also want manuscript
+work tooling, or skip to Phase C for Zotero.
+
+### B-extra. academic-writing-skills (optional, ~1 min)
+
+If you'll be writing or revising manuscripts:
+
+```bash
+claude plugin install academic-writing-skills@ai-research-skills
+```
+
+```bash
+# verify
+ls ~/.claude/skills/academic-writing-skills/
+# expected: SKILL.md plus references/
+```
+
+This adds the 11th skill — banned-word audit, claim-evidence check,
+journal format, reviewer response. Skip if you only need literature
+triage / lit review.
 
 ---
 
@@ -214,10 +236,14 @@ see [F4](#f4-zotero-skill-cant-find-items).
 
 ### Phase C checkpoint
 
-You have 11 of 14 skills wired up (6 from Phase B + zotero-skills +
-turning zotero-library-curator from preview-only to apply-capable). The
-remaining 3 (`research-hub`, `research-hub-multi-ai`, and full
-`literature-triage-matrix` with paper-search) need Phase D.
+You have 12 of 14 skills wired up (10 from research-workspace +
+academic-writing-skills from Phase B-extra + zotero-skills), and the
+zotero-library-curator skill is upgraded from preview-only to
+apply-capable. The remaining 2 (`codex-delegate`, `gemini-delegate`)
+are installed in Phase E3 once you've installed their CLI binaries.
+Phase D activates the full power of `research-hub`,
+`research-hub-multi-ai`, and `literature-triage-matrix`'s paper-search
+mode by adding the Python CLI behind them.
 
 ---
 

@@ -8,9 +8,9 @@
 
 **時間預算：**
 
-- Phase A + B 單獨跑（~20 分鐘）→ 14 支 skill 裡的 6 支可用，純 Claude reasoning，不需要 Zotero。
-- Phase A + B + C（~40 分鐘）→ 9 支 skill + Zotero 連接。
-- Phase A + B + C + D（~60 分鐘）→ 全部 14 支 skill、完整 pipeline。
+- Phase A + B 單獨跑（~20 分鐘）→ 裝好 14 支裡的 10 支；research-workspace plugin 裡 6 支純 reasoning 立刻能用，不需要 Zotero。
+- Phase A + B + C（~40 分鐘）→ 12 支 wired with Zotero 連接（B-extra 加 academic-writing-skills 拿到第 12 支）。
+- Phase A + B + C + D（~60 分鐘）→ research-hub Python pipeline 接上 13 支；codex / gemini delegate 等 Phase E3。
 
 任何一個 phase 收手都可以、用裝好的就行。
 
@@ -104,11 +104,11 @@ claude plugin install research-workspace@ai-research-skills
 ```bash
 # verify
 ls ~/.claude/skills/
-# 預期：看到一堆資料夾，至少包含 literature-triage-matrix、
+# 預期：10 個資料夾 — literature-triage-matrix、
 # research-hub、research-design-helper、paper-memory-builder、
-# notebooklm-brief-verifier、research-context-compressor、
-# research-project-orienter、research-hub-multi-ai、
-# zotero-library-curator
+# paper-summarize、notebooklm-brief-verifier、
+# research-context-compressor、research-project-orienter、
+# research-hub-multi-ai、zotero-library-curator
 ```
 
 ### B3. Smoke test：3 篇 paper 出表
@@ -134,8 +134,27 @@ Claude 回「我沒有這個 skill」或沒生表 → 看 [F2](#f2-claude-沒-tr
 
 ### Phase B checkpoint
 
-不需要任何外部設定就有 working literature matrix。停在這裡用 6 支純 reasoning skill 做手動 workflow 也可以。
-要 Zotero 連接就繼續 Phase C。
+14 支裡的 10 支裝好（research-workspace plugin），有 working literature matrix、不需要任何外部設定。
+research-workspace 裡 6 支純 reasoning skill 立刻可用；剩下 4 支（research-hub、research-hub-multi-ai、
+zotero-library-curator 的 apply mode、完整的 literature-triage-matrix 含 paper search）要 Phase C / D / E。
+要寫 / 修稿就接 Phase B-extra；只要文獻整理就跳 Phase C。
+
+### B-extra. academic-writing-skills（選擇性，~1 分鐘）
+
+要寫 / 修 manuscript 的話加這支：
+
+```bash
+claude plugin install academic-writing-skills@ai-research-skills
+```
+
+```bash
+# verify
+ls ~/.claude/skills/academic-writing-skills/
+# 預期：有 SKILL.md 加 references/
+```
+
+裝完是第 11 支 — banned-word audit、claim-evidence check、journal format、reviewer response。
+只要做 lit triage / lit review 就跳過。
 
 ---
 
@@ -196,9 +215,10 @@ Claude 應該呼叫 Zotero local API、回真的 title。
 
 ### Phase C checkpoint
 
-14 支 skill 裡有 11 支 wired up（Phase B 那 6 支 + zotero-skills + 把
-zotero-library-curator 從 preview-only 升級成 apply-capable）。
-剩下 3 支（`research-hub`、`research-hub-multi-ai`、完整版的 `literature-triage-matrix` 含 paper-search）要 Phase D。
+14 支裡 12 支 wired up（research-workspace 10 支 + Phase B-extra 的 academic-writing-skills + zotero-skills），
+zotero-library-curator 從 preview-only 升級成 apply-capable。剩下 2 支（`codex-delegate`、`gemini-delegate`）
+等 Phase E3 裝完對應的 CLI binary 後加進來。Phase D 給 `research-hub`、`research-hub-multi-ai`、
+`literature-triage-matrix` 的 paper-search 模式接上 Python CLI 後台。
 
 ---
 
