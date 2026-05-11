@@ -392,7 +392,7 @@ Installer 更新 PATH、但只有新 terminal 看得到。
 
 Trigger phrase 看 `~/.claude/skills/<skill-name>/SKILL.md`（找 "Trigger phrases" 段落）。
 
-### F3. Zotero local API（port 23119）連不到
+### F3. Zotero local API port 23119 連不到
 
 ```bash
 # 診斷
@@ -449,7 +449,7 @@ pip install research-hub-pipeline
 ### F7. 非 Claude Code host 上的 skill 安裝
 
 要在 Codex CLI / Gemini CLI / Cursor / Hermes 等 agentskills.io 相容 host 上用這些 skill，
-看 [README → Using these skills outside Claude Code](../README.zh-TW.md)（zh-TW 版有對應段落）
+看 [README → 在 Claude Code 之外用這些 skills](../README.zh-TW.md#在-claude-code-之外用這些-skills)
 跟 [Hermes 相容性審計](../.research/hermes-compatibility-audit.md) 了解什麼經過驗證、什麼是 host-specific。
 
 ---
