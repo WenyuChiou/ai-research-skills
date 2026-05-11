@@ -5,7 +5,7 @@
 **Date**: 2026-05-10
 **Audit branch**: `claude/hermes-compat-audit` (not yet pushed to origin/main)
 **Constraint**: read-only on the 14 SKILL.md files (per user); audit only, no edits.
-**Outcome (TL;DR)**: 11/14 fully portable, 3/14 cosmetic tweaks, 0 claude-only. `literature-triage-matrix` verified end-to-end installable into Hermes (`hermes skills install` → SAFE → `enabled`). Inference-loop test was auth-gated and not run. See Phase 4 for the calibrated portfolio claim.
+**Outcome (TL;DR, as of audit run 2026-05-10)**: 11/14 fully portable, 3/14 needed cosmetic `<skill-root>` path templating + `compatibility:` frontmatter, 0 claude-only. Those 3 cosmetic edits have since been landed upstream in commits [codex-delegate@e259e02](https://github.com/WenyuChiou/codex-delegate/commit/e259e02), [gemini-delegate-skill@efece73](https://github.com/WenyuChiou/gemini-delegate-skill/commit/efece73), and [research-hub@b7f6420](https://github.com/WenyuChiou/research-hub/commit/b7f6420). `literature-triage-matrix` verified end-to-end installable into Hermes (`hermes skills install` → SAFE → `enabled`). Inference-loop test was auth-gated and not run. See Phase 4 for the calibrated portfolio claim.
 
 ---
 
@@ -30,7 +30,7 @@ I dispatched 3 Explore agents and got back a "yes everything is real" story. Bec
 
 ### Honest caveat about Phase 1
 
-I can verify *that pages exist with these claims*. I cannot verify in this session whether the broader ecosystem narrative matches the substance — i.e., whether all 35 listed vendors actually shipped working `SKILL.md` loaders or whether some are aspirational. **Phase 3 (real install + real test) is the actual integrity check.**
+I can verify *that pages exist with these claims*. I cannot verify in this session whether the broader ecosystem narrative matches the substance — i.e., whether all 35 listed vendors actually shipped working `SKILL.md` loaders or whether some are aspirational. **Phase 3 (real install + real test) is the actual skill-load integrity check for Hermes specifically — it does not generalize to "all 35 hosts work".**
 
 ### Why my prior was wrong
 
@@ -182,7 +182,7 @@ This is the **"loads but inference loop not validated"** outcome from the Phase 
 
 ### Verdict
 
-**Half-real, leaning real.** The compatibility premise is settled at the spec-implementation layer; the runtime-behavior layer is unverified by design.
+**Half-real, leaning real.** The compatibility premise is verified at the spec / skill-load layer for one representative skill (`literature-triage-matrix` on Hermes 0.13.0); the runtime-behavior layer (LLM routing, actual output quality, the other 13 skills, other hosts) is unverified by design — see "What is not verified" below.
 
 What is verified:
 
@@ -210,15 +210,18 @@ What is **not** verified:
 
 ### Lowest-cost first cross-platform skill
 
-`literature-triage-matrix`. **Ship time: ~30 min** of doc-only work — add a one-line `compatibility:` field stating "tested with NousResearch/hermes-agent 0.13.0 at skill-load level" and a short note in the catalog readme. No code changes needed.
+`literature-triage-matrix`. The doc-only `compatibility:` line declaring Hermes verification has since been landed in [research-hub@b7f6420](https://github.com/WenyuChiou/research-hub/commit/b7f6420); see the skill's frontmatter.
 
-To upgrade the 3 `needs-tweak` skills: ~1–2 hr — replace hardcoded `~/.claude/skills/...` example paths with host-agnostic phrasing like "`<skill-root>/scripts/run_codex.sh`" plus a `compatibility:` field declaring the dependency. Mechanical Codex-delegatable refactor across 3 files.
+The 3 `needs-tweak` skills (codex-delegate, gemini-delegate, zotero-library-curator) have also been refactored upstream — hardcoded `~/.claude/skills/...` example paths replaced with `<skill-root>/...` placeholder + portability prose in the surrounding `compatibility:` frontmatter and inline notes. Commits:
+[codex-delegate@e259e02](https://github.com/WenyuChiou/codex-delegate/commit/e259e02),
+[gemini-delegate-skill@efece73](https://github.com/WenyuChiou/gemini-delegate-skill/commit/efece73),
+[research-hub@b7f6420](https://github.com/WenyuChiou/research-hub/commit/b7f6420) (zotero-library-curator).
 
 ### Calibrated LinkedIn / portfolio wording
 
 Honest claim shape (will fit in 1–2 sentences):
 
-> Author and maintainer of `ai-research-skills`, a 14-skill Claude Code marketplace for research workflows. After agentskills.io became the de facto open spec for agent skills in early 2026, audited the catalog for portability and verified end-to-end skill installation on NousResearch/hermes-agent — 11 of 14 skills are strict-spec-compliant; the remaining 3 need only cosmetic example-path edits, no architectural rewrite.
+> Author and maintainer of `ai-research-skills`, a 14-skill Claude Code marketplace for research workflows. After agentskills.io published an open spec for agent skills in early 2026, audited the catalog for portability and verified end-to-end skill installation on NousResearch/hermes-agent — 11 of 14 skills were strict-spec-compliant out of the box; the remaining 3 needed only cosmetic example-path edits (since landed) — no architectural rewrite.
 
 The supportable subclaims (each tied to evidence in this repo):
 
