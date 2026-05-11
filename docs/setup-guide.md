@@ -133,11 +133,14 @@ Make a literature triage matrix for these 3 papers:
 ```
 
 ```bash
-# verify
+# verify (run in Git Bash on Windows, or zsh / bash on macOS / Linux)
 ls .research/
 # expected: a file literature_matrix.md
 cat .research/literature_matrix.md | head
 # expected: a 9-column markdown table with Citation / Question / Method / etc.
+
+# On Windows PowerShell, use this instead:
+#   Get-Content .research/literature_matrix.md -TotalCount 10
 ```
 
 If Claude says "I don't have a skill for that" or skips the matrix
@@ -201,6 +204,11 @@ In the Zotero desktop app:
 # verify (Zotero must be running)
 curl http://localhost:23119/api/users/0
 # expected: a JSON response with a "userID" field
+
+# On Windows PowerShell, `curl` is aliased to Invoke-WebRequest which
+# wraps the response. Use `curl.exe` (the real curl, bundled with Git
+# for Windows) for the same raw JSON output:
+#   curl.exe http://localhost:23119/api/users/0
 ```
 
 If you get `Connection refused`, see [F3](#f3-zotero-local-api-port-23119-not-reachable).
@@ -404,8 +412,10 @@ PATH but only new terminals see it.
 
 If still not found after a fresh terminal:
 
-- Confirm install location: `ls "$HOME/.claude/bin/"` (macOS / Linux)
-  or `dir "%USERPROFILE%\.claude\bin"` (Windows).
+- Confirm install location:
+  - macOS / Linux: `ls "$HOME/.claude/bin/"`
+  - Windows PowerShell: `Get-ChildItem "$env:USERPROFILE\.claude\bin"`
+  - Windows cmd.exe: `dir "%USERPROFILE%\.claude\bin"`
 - Re-run the installer; allow it to update PATH.
 
 ### F2. Claude doesn't trigger the skill
@@ -456,8 +466,12 @@ If `pip install research-hub-pipeline` gives **`Permission denied`** or
 
 ```bash
 pip install --user pipx
-pipx install research-hub-pipeline
+python -m pipx ensurepath   # adds pipx's bin dir to PATH; reopen terminal after
+python -m pipx install research-hub-pipeline
 ```
+
+Using `python -m pipx` (not bare `pipx`) sidesteps the case where the
+user-scripts directory isn't on PATH yet right after `pip install --user`.
 
 **Alternative** (venv):
 

@@ -123,11 +123,14 @@ ls ~/.claude/skills/
 ```
 
 ```bash
-# verify
+# verify（在 Git Bash on Windows、或 macOS / Linux 的 zsh / bash 跑）
 ls .research/
 # 預期：有一個 literature_matrix.md
 cat .research/literature_matrix.md | head
 # 預期：9 欄 markdown 表格（Citation / Question / Method / 等等）
+
+# Windows PowerShell 改用：
+#   Get-Content .research/literature_matrix.md -TotalCount 10
 ```
 
 Claude 回「我沒有這個 skill」或沒生表 → 看 [F2](#f2-claude-沒-trigger-skill)。
@@ -182,6 +185,10 @@ Zotero 桌面版裡：
 # verify（Zotero 必須開著）
 curl http://localhost:23119/api/users/0
 # 預期：一個 JSON、有 "userID" 欄位
+
+# Windows PowerShell 上 `curl` 是 Invoke-WebRequest 的 alias、會包一層回應。
+# 想要原始 JSON 改用 `curl.exe`（Git for Windows 帶的真 curl）：
+#   curl.exe http://localhost:23119/api/users/0
 ```
 
 `Connection refused` → 看 [F3](#f3-zotero-local-api-port-23119-連不到)。
@@ -367,7 +374,10 @@ Installer 更新 PATH、但只有新 terminal 看得到。
 
 新 terminal 還是找不到：
 
-- 確認安裝位置：macOS / Linux `ls "$HOME/.claude/bin/"`、Windows `dir "%USERPROFILE%\.claude\bin"`。
+- 確認安裝位置：
+  - macOS / Linux：`ls "$HOME/.claude/bin/"`
+  - Windows PowerShell：`Get-ChildItem "$env:USERPROFILE\.claude\bin"`
+  - Windows cmd.exe：`dir "%USERPROFILE%\.claude\bin"`
 - 重跑 installer、讓它更新 PATH。
 
 ### F2. Claude 沒 trigger skill
@@ -408,8 +418,12 @@ curl -v http://localhost:23119/api/users/0
 
 ```bash
 pip install --user pipx
-pipx install research-hub-pipeline
+python -m pipx ensurepath   # 把 pipx 的 bin 加到 PATH；裝完開新 terminal
+python -m pipx install research-hub-pipeline
 ```
+
+`python -m pipx`（不是直接 `pipx`）規避剛 `pip install --user` 完
+user-scripts 資料夾還沒進 PATH 的情況。
 
 **替代**（venv）：
 
