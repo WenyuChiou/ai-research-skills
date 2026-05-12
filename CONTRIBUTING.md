@@ -96,8 +96,8 @@ Tests guard:
 - Marketplace JSON structure (5 plugins, expected names, source
   fields).
 - `research-hub setup` documented as the canonical install command.
-- 13 skills total with the documented verification status counts
-  (12 pass + 1 caveat).
+- 14 skills total with the documented verification status counts
+  (14 pass + 0 caveat per `tests/test_catalog.py::test_verification_counts_match_catalog`).
 
 What tests do **not** guard (manual review needed):
 - Upstream SKILL.md URLs being live (network test would be flaky).
@@ -140,7 +140,7 @@ and have to be set via the GitHub API or UI:
 
 ```bash
 gh api -X PATCH repos/WenyuChiou/ai-research-skills \
-  -f description="13 Claude Code skills for common research tasks — literature triage, research design, project context, manuscript writing, and multi-AI delegation. 5-plugin marketplace, install in one command."
+  -f description="14 Claude Code skills for common research tasks — literature triage, research design, project context, manuscript writing, and multi-AI delegation. 5-plugin marketplace, install in one command."
 
 gh api -X PUT repos/WenyuChiou/ai-research-skills/topics \
   -f 'names[]=claude-code' -f 'names[]=claude-skills' \

@@ -6,6 +6,11 @@
 前置條件：[Claude Code](https://claude.ai/code)（或 Codex CLI /
 Cursor / Gemini CLI）。所有 catalog 收錄的 skill 都在 AI 對話內啟動。
 
+> **第一次來？** Claude Code / Python / Zotero 都還沒 work 的話，
+> 先看 [**setup-guide.zh-TW.md**](setup-guide.zh-TW.md) —— 從 runtime
+> 到 plugin 到 Zotero local API 整個 end-to-end 帶你跑，每步有驗證
+> 指令。這頁假設你 prereq 都 work，專注在「哪個 plugin 對應哪個 workflow」。
+
 完整 skill 列表跟連結：[skill-directory.zh-TW.md](skill-directory.zh-TW.md)。
 
 ## 路徑 A — Claude Code marketplace（推薦）
