@@ -23,6 +23,11 @@
 
 前置條件：Claude Code（https://claude.ai/code）。
 
+> **第一次安裝？** Claude Code / Python / Zotero 都還沒裝的話，先看
+> [**docs/setup-guide.zh-TW.md**](docs/setup-guide.zh-TW.md) —— 那篇
+> 從 runtime 到 plugin 到 Zotero local API 整個 end-to-end 帶你跑，
+> 每步有驗證指令。底下這段假設你 prereq 都 work。
+
 Skills 是放在 `~/.claude/skills/` 底下的 Markdown 指令檔
 （`SKILL.md`）。Claude Code 看到請求符合 skill 的描述就自動讀進來。
 

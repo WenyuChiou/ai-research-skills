@@ -26,6 +26,13 @@ research projects with AI in the loop.
 
 Prerequisite: Claude Code (https://claude.ai/code).
 
+> **First time setting up?** If you don't have Claude Code, Python,
+> or Zotero installed yet, read
+> [**docs/setup-guide.md**](docs/setup-guide.md) first — it walks
+> through the runtimes, plugins, and Zotero local API end-to-end with
+> verification commands at each step. This section below assumes those
+> prereqs are working.
+
 Skills are Markdown instruction files (`SKILL.md`) under
 `~/.claude/skills/`. Claude Code reads them automatically when your
 request matches a skill's trigger description.
