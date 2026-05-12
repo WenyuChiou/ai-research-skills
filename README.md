@@ -157,6 +157,24 @@ context files. You lose Claude Code's auto-trigger (the
 description-matching that picks the right skill from your phrasing) —
 on other hosts, point the AI at the specific `SKILL.md` you want.
 
+### Compatibility status
+
+The 14 SKILL.md files in this catalog conform to the
+[**agentskills.io**](https://agentskills.io) open spec — the same format
+used by ~35 agent runtimes that have adopted the spec.
+
+| What | Status |
+|---|---|
+| All 14 SKILL.md pass strict-minimum spec (`name` + `description`, ≤500 lines) | ✅ verified, 14/14 |
+| Zero-edit portable across agentskills.io hosts | ✅ 11/14 |
+| Needed cosmetic `<skill-root>` example-path edits (since landed) | 3/14 (codex-delegate, gemini-delegate, zotero-library-curator) |
+| End-to-end install verified on NousResearch/hermes-agent 0.13.0 | ✅ `literature-triage-matrix` — security scan SAFE, registered as `enabled` |
+| Inference-loop run on Hermes | ⚠ not tested (auth-gated; out of scope) |
+| Other 34 listed agentskills.io hosts | not individually tested |
+
+Full audit + experiment transcripts:
+[`.research/hermes-compatibility-audit.md`](.research/hermes-compatibility-audit.md).
+
 ### 1. Get the source
 
 ```bash

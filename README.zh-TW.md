@@ -146,6 +146,23 @@ ls ~/.claude/skills/
 auto-trigger（你描述需求它會自己挑對的 skill）——在其他 host 上你要
 明確指出要用哪個 SKILL.md。
 
+### 相容性狀態
+
+這 14 支 SKILL.md 符合 [**agentskills.io**](https://agentskills.io) open spec ——
+就是 ~35 個採用該規格的 agent runtime 用的同一套格式。
+
+| 項目 | 狀態 |
+|---|---|
+| 14 支 SKILL.md 都通過 strict-minimum spec（`name` + `description`、≤500 行）| ✅ 14/14 驗證 |
+| 跨 agentskills.io host 零修改可移植 | ✅ 11/14 |
+| 需要 cosmetic `<skill-root>` example-path 修改（已 landed） | 3/14（codex-delegate、gemini-delegate、zotero-library-curator） |
+| 在 NousResearch/hermes-agent 0.13.0 端對端安裝驗證 | ✅ `literature-triage-matrix` —— 安全掃描 SAFE、`enabled` 註冊 |
+| Hermes 上跑 inference loop | ⚠ 未測（卡 auth gate、超出範圍）|
+| agentskills.io 上其他 34 個列出的 host | 未個別測試 |
+
+完整審計 + 實驗 transcript：
+[`.research/hermes-compatibility-audit.md`](.research/hermes-compatibility-audit.md)。
+
 ### 1. 拿原始檔
 
 ```bash

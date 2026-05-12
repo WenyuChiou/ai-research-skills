@@ -5,6 +5,13 @@ This repo is a catalog. Install skills from their canonical repositories.
 Prerequisite: [Claude Code](https://claude.ai/code) (or Codex CLI / Cursor /
 Gemini CLI). All catalogued skills activate inside an AI conversation.
 
+> **New here?** If you don't have Claude Code, Python, or Zotero
+> working yet, start with [**setup-guide.md**](setup-guide.md) — it
+> walks through runtimes + plugins + Zotero local API end-to-end with
+> verification commands at every step. This page assumes those prereqs
+> are working and focuses on which plugin to install for which
+> workflow.
+
 For a complete inventory with direct skill links, see
 [skill-directory.md](skill-directory.md).
 

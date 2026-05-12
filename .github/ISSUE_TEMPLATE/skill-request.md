@@ -10,7 +10,7 @@ labels: enhancement
 <one paragraph: the research workflow gap, when it shows up, what's
 currently painful>
 
-## Why don't the existing 13 skills cover it?
+## Why don't the existing 14 skills cover it?
 
 <which existing skills are closest, and what they don't do>
 
