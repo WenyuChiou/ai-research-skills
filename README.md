@@ -1,6 +1,8 @@
 # AI Research Skills
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![agentskills.io spec](https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C)](.research/hermes-compatibility-audit.md)
+[![Hermes verified](https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C)](.research/hermes-compatibility-audit.md)
 
 > 14 Claude Code skills for common research tasks — literature
 > triage, research design, project context, manuscript writing, and

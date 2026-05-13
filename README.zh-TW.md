@@ -1,6 +1,8 @@
 # AI Research Skills
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![agentskills.io spec](https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C)](.research/hermes-compatibility-audit.md)
+[![Hermes verified](https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C)](.research/hermes-compatibility-audit.md)
 
 > 14 個 Claude Code skills，covers 常見的研究任務——文獻整理、研究
 > design、專案 context、論文撰寫、多 AI delegation。
