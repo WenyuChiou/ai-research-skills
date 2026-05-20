@@ -15,9 +15,23 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Added
+## [1.5.1] - 2026-05-20
 
-- **`docs/verification.md` + `docs/verification.zh-TW.md` § 2026-05-20 Phase 6 post-merge re-verification on v1.5.0** — captures the install round-trip + 14-skill auto-trigger + three dogfood walks re-run against the v1.5.0 (`1b557fc`) HEAD. Phase A passes (5 / 5 ✔ enabled). Phase B strict count 10 / 14 (lenient 13 / 14, one routing overlap with `agent-collab-workspace:agent-task-splitter`, three conservative input-first responses). Phase C three ⚠ partial walks, all gaps roll into the existing Phase 2 hard-gated research-hub backlog. No fix-PRs shipped against this repo this round; `marketplace.json` stays at 1.5.0 and no new tag is associated with the addendum.
+### Fixed
+
+- **README badges rendered as literal markdown text instead of shield
+  images.** The Phase 6 PR-2 (`v1.5.0`) "badge clutter" cleanup wrapped
+  the three badges in `<sub>...</sub>` for smaller font, but per
+  CommonMark / GFM rules a multi-line markdown block inside an HTML
+  block tag (with no blank line separator) is not processed as
+  markdown — so the three badges shipped as literal
+  `[![License](...)](LICENSE)` text on GitHub's renderer. Replaced
+  the markdown image syntax with equivalent pure-HTML
+  `<a><img></a>` inside the same `<sub>` wrapper, on a single line.
+  Now the badges render correctly as 3 small shields linking to
+  `LICENSE` and `.research/hermes-compatibility-audit.md`. Same fix
+  applied to `README.zh-TW.md`. No behavior change beyond the visual
+  fix; the link targets are unchanged.
 
 ## [1.5.0] - 2026-05-20
 
@@ -26,6 +40,8 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 The usability content that the Phase 6 agent-team analysis flagged as
 the highest-impact missing pieces. PR-1 (`1.4.3`) shipped only bug
 fixes; this minor release adds net-new docs.
+
+- **`docs/verification.md` + `docs/verification.zh-TW.md` § 2026-05-20 Phase 6 post-merge re-verification on v1.5.0** — captures the install round-trip + 14-skill auto-trigger + three dogfood walks re-run against the v1.5.0 (`1b557fc`) HEAD. Phase A passes (5 / 5 ✔ enabled). Phase B strict count 10 / 14 (lenient 13 / 14, one routing overlap with `agent-collab-workspace:agent-task-splitter`, three conservative input-first responses). Phase C three ⚠ partial walks, all gaps roll into the existing Phase 2 hard-gated research-hub backlog. (Originally landed in PR #15 on top of `v1.5.0`; recorded here under the version it actually exercised.)
 
 - **`docs/examples.md`** + **`docs/examples.zh-TW.md`** — synthetic
   deliverable samples for the 4 most-common skills
@@ -358,7 +374,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.1...HEAD
+[1.5.1]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.3...v1.5.0
 [1.4.3]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.1...v1.4.2
