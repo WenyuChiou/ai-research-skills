@@ -54,6 +54,7 @@ research-hub notebooklm login
 | `research-project-orienter` | repo 已經有 `.research/` manifest，想快速產 orientation 摘要。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) |
 | `literature-triage-matrix` | 想對 Zotero collection、Obsidian cluster 或手動論文清單做緊湊比較表。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) |
 | `paper-memory-builder` | 想在寫稿 / 修稿前產出 `.paper/claims.yml` 跟 `.paper/figures.yml`。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) |
+| `paper-summarize` | 剛跑完 `research-hub auto`，每篇 paper 的 Key Findings / Methodology / Relevance 區塊還是 TODO 骨架。用一次 LLM call 同時填 Obsidian markdown 跟 Zotero child note,Zotero 寫失敗會 atomic rollback。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) |
 | `notebooklm-brief-verifier` | 下載了 NotebookLM brief，想 verify source 涵蓋、未根據的 claim、矛盾敘述。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) |
 | `zotero-library-curator` | 想 audit Zotero library——找重複 DOI、orphan item、提整理計畫。Read-only；寫操作丟給 `zotero-skills`。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) |
 

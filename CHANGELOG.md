@@ -15,6 +15,75 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.4.3] - 2026-05-20
+
+### Fixed
+
+Stale-fact + install-path-consistency sweep driven by the Phase 6 agent-team
+analysis (Explore + code-reviewer + fresh-user dogfood). All findings of the
+"would actually break a new user's experience" class — no new content,
+no schema changes. The matching usability *additions* ship in [1.5.0].
+
+- **Verify-step bug across 4 user-entry-point docs** (6 distinct
+  occurrences total): `README.md`, `README.zh-TW.md`,
+  `docs/setup-guide.md` (3 locations: Phase B1, B-extra, C3),
+  `docs/setup-guide.zh-TW.md` (same 3 locations) all instructed
+  `ls ~/.claude/skills/<name>` after `claude plugin install`, but
+  marketplace plugins do **not** extract there — they live under
+  `~/.claude/plugins/cache/<marketplace>/<plugin>/<version>/skills/<name>/`.
+  A new user running the prior verify command saw an empty directory
+  and concluded the install failed. Replaced every occurrence with
+  `claude plugin list` + an inline explanation. (The Phase 5.3.b
+  addendum had documented this correctly in `docs/verification.md` but
+  the fix never propagated to the user-entry-point docs.)
+- `CONTRIBUTING.md`: `# 11 tests, < 1s` → `# 25 tests, < 1s` (test count
+  was stale since the schema layer landed in 1.4.0).
+- `CONTRIBUTING.md`: research-hub upstream description "9 skills" →
+  "10 skills" (every other doc in the repo had already said 10;
+  CONTRIBUTING.md was the lone holdout).
+- `docs/skill-directory.zh-TW.md`: added the `paper-summarize` row that
+  was present in the EN counterpart but missing in zh-TW, so 繁中 readers
+  could not discover the skill from the directory.
+- `docs/install.md` + `docs/install.zh-TW.md`: "9 skills under
+  `~/.claude/skills/`" → "10 skills"; updated the enumeration to include
+  `paper-summarize`.
+- `docs/install.md` + `docs/install.zh-TW.md`: rewrote the
+  `knowledge-base` deprecation note from "slated for removal in
+  research-hub-pipeline v0.70" (future tense) to a past-tense
+  observation that v0.70+ has dropped the alias — the prior wording was
+  stale relative to current research-hub releases.
+- `docs/install.md` §2–§5: relabeled the canonical install path for
+  each of `academic-writing-skills` / `zotero-skills` / `codex-delegate`
+  / `gemini-delegate` to `claude plugin install …@ai-research-skills`,
+  collapsed the bare `git clone … ~/.claude/skills/<name>` blocks into
+  `<details>` "Legacy alternative" sections. README and `install.md`
+  now agree on which install path is canonical.
+- `docs/setup-guide.md` + `docs/setup-guide.zh-TW.md` (Phase D verify):
+  expected version `0.7x or higher` → `0.45.0 or higher` to match the
+  baseline documented in `docs/verification.md`.
+- `docs/setup-guide.md` + `docs/setup-guide.zh-TW.md` (Phase E3):
+  added Node.js 18+ prerequisite before the `npm install -g` commands
+  (Python-only environments hit `npm: command not found` with no
+  diagnostic path); fixed the Codex CLI link from
+  `WenyuChiou/codex-delegate#readme` (the skill wrapper) to
+  `github.com/openai/codex` (the actual upstream CLI), same for the
+  Gemini CLI link.
+
+### Out of scope for this release
+
+These came up in the Phase 6 analysis but cannot ship in 1.4.3 because
+they require changes to the `WenyuChiou/research-hub` source repo,
+which is Phase-2 hard-gated:
+
+- SKILL.md `description` rewrites for `research-hub`, `paper-memory-builder`,
+  `research-design-helper`, `notebooklm-brief-verifier`, `zotero-library-curator`
+  to improve auto-trigger keyword overlap.
+- Removing the embedded `research-hub/skills/zotero-skills/` copy to
+  resolve the bare-name shadow collision documented in `docs/verification.md`
+  §2026-05-20.
+- Aligning `research-hub/.claude-plugin/plugin.json` to declare all 10
+  shipped skills (currently declares 3).
+
 ## [1.4.2] - 2026-05-20
 
 ### Added
@@ -214,7 +283,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.2...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.3...HEAD
+[1.4.3]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.3.0...v1.4.0

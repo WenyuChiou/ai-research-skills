@@ -73,8 +73,16 @@ need their manual steps. Full per-plugin breakdown:
 
 ```bash
 claude plugin list
-ls ~/.claude/skills/
+# expected: 5 plugins, each ending in @ai-research-skills, each marked ✔ enabled.
 ```
+
+Marketplace-installed plugins do **not** extract into `~/.claude/skills/`
+— they live under `~/.claude/plugins/cache/ai-research-skills/<plugin>/<version>/skills/<name>/`
+and are discovered by Claude Code via each plugin's `.claude-plugin/plugin.json`.
+A bare `ls ~/.claude/skills/` does not confirm a successful marketplace
+install. Use `claude plugin list` for that. (See
+[docs/verification.md](docs/verification.md) §2026-05-20 for the
+end-to-end install + skill-trigger verification record.)
 
 ---
 

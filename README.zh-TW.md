@@ -71,8 +71,15 @@ pwsh scripts/install-all.ps1       # Windows PowerShell
 
 ```bash
 claude plugin list
-ls ~/.claude/skills/
+# 預期:5 個 plugin、每個以 @ai-research-skills 結尾、每個都標 ✔ enabled。
 ```
+
+Marketplace 裝的 plugin **不會**展開到 `~/.claude/skills/` —— 它們住在
+`~/.claude/plugins/cache/ai-research-skills/<plugin>/<version>/skills/<name>/`,
+由 Claude Code 透過每個 plugin 的 `.claude-plugin/plugin.json` 發現。
+直接 `ls ~/.claude/skills/` **不能**確認 marketplace 安裝成功;用
+`claude plugin list` 才對。(端到端的安裝 + skill 觸發驗證紀錄看
+[docs/verification.md](docs/verification.md) §2026-05-20。)
 
 ---
 

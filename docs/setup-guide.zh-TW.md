@@ -103,12 +103,15 @@ claude plugin install research-workspace@ai-research-skills
 
 ```bash
 # verify
-ls ~/.claude/skills/
-# 預期：10 個資料夾 — literature-triage-matrix、
-# research-hub、research-design-helper、paper-memory-builder、
-# paper-summarize、notebooklm-brief-verifier、
-# research-context-compressor、research-project-orienter、
-# research-hub-multi-ai、zotero-library-curator
+claude plugin list
+# 預期：research-workspace@ai-research-skills 出現、標 ✔ enabled。
+# （marketplace plugin 不會展到 ~/.claude/skills/;它們住在
+#  ~/.claude/plugins/cache/ai-research-skills/research-workspace/
+#  <version>/skills/<name>/ 底下。這個 plugin 帶 10 個 skill:
+#  literature-triage-matrix、research-hub、research-design-helper、
+#  paper-memory-builder、paper-summarize、notebooklm-brief-verifier、
+#  research-context-compressor、research-project-orienter、
+#  research-hub-multi-ai、zotero-library-curator。)
 ```
 
 ### B3. Smoke test：3 篇 paper 出表
@@ -152,8 +155,9 @@ claude plugin install academic-writing-skills@ai-research-skills
 
 ```bash
 # verify
-ls ~/.claude/skills/academic-writing-skills/
-# 預期：有 SKILL.md 加 references/
+claude plugin list
+# 預期:academic-writing-skills@ai-research-skills 出現、標 ✔ enabled。
+# (marketplace plugin 不展到 ~/.claude/skills/ —— 看 README 它們實際住哪。)
 ```
 
 裝完是第 11 支 — banned-word audit、claim-evidence check、journal format、reviewer response。
@@ -205,8 +209,8 @@ claude plugin install zotero-skills@ai-research-skills
 
 ```bash
 # verify
-ls ~/.claude/skills/zotero-skills/
-# 預期：有 SKILL.md 跟 references/（如果有的話）
+claude plugin list
+# 預期:zotero-skills@ai-research-skills 出現、標 ✔ enabled。
 ```
 
 ### C4. 測 Zotero 連接
@@ -245,7 +249,8 @@ pip install research-hub-pipeline
 ```bash
 # verify
 research-hub --version
-# 預期：research-hub 0.7x 或更新
+# 預期:0.45.0 或更新(docs/verification.md 涵蓋的版本起點)。
+# PyPI 上最新版可能更新;0.45 以前不支援。
 ```
 
 ### D2. 互動式 setup
@@ -339,12 +344,21 @@ research-hub notebooklm status
 
 ### E3. Codex CLI / Gemini CLI（多 AI delegation）
 
-先照 upstream README 裝 CLI binary：
+**前置**: Node.js 18+ — 兩個 CLI 都靠 `npm` 裝。`node --version` 驗證;
+缺的話從 [nodejs.org](https://nodejs.org) 裝。(如果 npm 裝完不在 PATH,重開 shell。)
 
-- [Codex CLI](https://github.com/WenyuChiou/codex-delegate#readme) →
+從 upstream 官方來源裝 CLI binary:
+
+- [Codex CLI (OpenAI 官方)](https://github.com/openai/codex) →
   `npm install -g @openai/codex`
-- [Gemini CLI](https://github.com/WenyuChiou/gemini-delegate-skill#readme) →
+- [Gemini CLI (Google 官方)](https://github.com/google-gemini/gemini-cli) →
   `npm install -g @google/gemini-cli`
+
+把工作 delegate 給這些 CLI 的 skill wrapper 住在
+[`WenyuChiou/codex-delegate`](https://github.com/WenyuChiou/codex-delegate)
+跟
+[`WenyuChiou/gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill)
+—— 跟 CLI binary 本身是兩件事。
 
 然後裝 delegate plugin：
 

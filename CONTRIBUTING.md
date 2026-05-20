@@ -16,7 +16,7 @@ contribute, depending on what you want to change.
 
 Upstream source repos:
 
-- [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) — 9 skills (research-workspace plugin)
+- [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) — 10 skills (research-workspace plugin)
 - [`WenyuChiou/academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) — manuscript writing
 - [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) — Zotero CRUD
 - [`WenyuChiou/codex-delegate`](https://github.com/WenyuChiou/codex-delegate) — Codex CLI handoff
@@ -86,7 +86,7 @@ If you change a source repo's default branch (e.g. `master` →
 ```bash
 git clone https://github.com/WenyuChiou/ai-research-skills
 cd ai-research-skills
-python -m pytest tests/ -q   # 11 tests, < 1s
+python -m pytest tests/ -q   # 25 tests, < 1s
 ```
 
 Tests guard:
