@@ -454,25 +454,52 @@ A tighter description is a candidate for a future minor pass.
 
 ### Silent skill-name collision found (zotero-skills)
 
-`zotero-skills` is registered by **two** installed plugins:
+**Plain-language summary.** Two of the five plugins installed in this
+catalog both register a skill named `zotero-skills`. When you type
+something like *"search my Zotero library for items tagged 'X'"* and
+Claude Code's auto-trigger picks `zotero-skills`, it always lands on
+the version embedded in `research-workspace` (which is an older, larger
+copy carried inside research-hub) — never on the standalone
+`zotero-skills` plugin (the canonical one). No error, no prompt, no
+warning — the bare-name lookup just resolves to whichever the registry
+hit first.
 
-| Source | Path | SKILL.md size | skill name (registered) | name conflict |
-|---|---|---|---|---|
-| `research-workspace` (from research-hub) | `research-workspace/0.1.0/skills/zotero-skills/` | 11,321 B | `zotero-skills` | same name, different content |
-| standalone `zotero-skills` (canonical) | `zotero-skills/0.1.0/skills/zotero-skills/` | 4,391 B | `zotero-skills` | same name, different content |
+**What this means in practice.** For most prompts the two copies do the
+same thing, so users won't notice. But if a behaviour added in the
+standalone canonical `zotero-skills` is missing, your prompt will hit
+the older embedded copy instead and you'll wonder why the new feature
+isn't there.
 
-A bare-name invocation of `Skill(skill="zotero-skills")` resolves
-silently to the **research-workspace embedded copy** (11K, older),
-shadowing the canonical 4K standalone. No disambiguation prompt, no
-warning. The canonical standalone is reachable only via the
-plugin-qualified form `Skill(skill="zotero-skills:zotero-skills")`.
+**Receipts.**
 
-**Classification:** pre-existing — predates this verification round.
-**Right fix:** delete `skills/zotero-skills/` from `WenyuChiou/research-hub`
-so the canonical standalone is the only source. **Blocked by:** Phase 2
-hard-gate (research-hub source edits not allowed this round).
-**Workaround documented:** README §Limitations both languages.
-**Deferred to:** Phase 2 (research-hub Task B1 + E4 window).
+| Source plugin | Path on disk | SKILL.md size | Registered name |
+|---|---|---|---|
+| `research-workspace` (carried inside research-hub) | `…/research-workspace/0.1.0/skills/zotero-skills/` | 11,321 B (older, larger) | `zotero-skills` |
+| standalone `zotero-skills` (canonical) | `…/zotero-skills/0.1.0/skills/zotero-skills/` | 4,391 B (canonical) | `zotero-skills` |
+
+**Workaround until the right fix lands (Phase 2).** Force the canonical
+one by using the qualified form. In a Claude Code prompt:
+
+```
+Skill(skill="zotero-skills:zotero-skills")
+```
+
+The `<plugin-name>:<skill-name>` shape (`zotero-skills:zotero-skills`)
+disambiguates because the plugin name and the skill name happen to be
+identical for the canonical one. The embedded copy from research-workspace
+would be `research-workspace:zotero-skills`. Use the qualified form
+only when you specifically need the canonical standalone — for general
+Zotero workflows, the embedded copy is fine.
+
+**The right fix** is to delete `skills/zotero-skills/` from
+`WenyuChiou/research-hub` so only the canonical standalone exists.
+That's a one-PR change in research-hub. It is **blocked by the Phase 2
+hard-gate** (no research-hub source-repo edits in this round) and will
+land in the Phase 2 Task B1 + E4 window. Bare-name resolution will
+become safe again at that point.
+
+**Classification:** pre-existing — predates Phase 5.3.b verification.
+**Deferred to:** Phase 2.
 
 ### What this pass did NOT do (honest gaps)
 

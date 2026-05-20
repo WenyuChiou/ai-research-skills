@@ -1,13 +1,17 @@
 # AI Research Skills
 
-[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![agentskills.io spec](https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C)](.research/hermes-compatibility-audit.md)
-[![Hermes verified](https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C)](.research/hermes-compatibility-audit.md)
-
 > 14 個 Claude Code skills、覆蓋常見研究任務——文獻整理、研究 design、
 > 專案 context、論文撰寫、多 AI delegation。
 
-語言：[English](README.md) | [繁中](README.zh-TW.md)
+語言：[English](README.md) | [繁中](README.zh-TW.md) ·
+[看每個 skill 實際產出什麼 →](docs/examples.zh-TW.md) ·
+[詞彙表](docs/glossary.zh-TW.md)
+
+<sub>
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![agentskills.io spec](https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C)](.research/hermes-compatibility-audit.md)
+[![Hermes verified](https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C)](.research/hermes-compatibility-audit.md)
+</sub>
 
 ![14 個 AI skills 對應研究 workflow 階段，附 cross-cutting tools（codex-delegate、gemini-delegate、research-hub-multi-ai）每階段都可用](docs/img/pipeline-overview.zh-TW.png)
 
@@ -115,7 +119,30 @@ Auto-trigger 沒挑到對的 skill 時、明說 skill 名字：
 > 把這份 README 跟 [docs/install.zh-TW.md](docs/install.zh-TW.md) 轉給對方就好。
 
 完整對應表：[docs/skill-directory.zh-TW.md](docs/skill-directory.zh-TW.md) ·
-按研究 pipeline 階段看：[docs/pipeline.zh-TW.md](docs/pipeline.zh-TW.md)。
+按研究 pipeline 階段看：[docs/pipeline.zh-TW.md](docs/pipeline.zh-TW.md) ·
+Skill 產出範例：[docs/examples.zh-TW.md](docs/examples.zh-TW.md)。
+
+### 時間與成本預估
+
+Maintainer 在 session 裡實際觀察到的範圍 —— 視你的 input 大小調整:
+
+| Task | 典型時間 | 對話輪數 | 註記 |
+|---|---|---|---|
+| 比較 5 篇 paper(`literature-triage-matrix`)| 1–3 分鐘 | 1–2 | 對 paper 數線性;20 篇 ≈ 5 分鐘 |
+| 1 段文字 banned-word audit(`academic-writing-skills`)| <1 分鐘 | 1 | 跟 manuscript 整體大小無關 |
+| Reviewer response 6 條意見(`academic-writing-skills`)| 3–8 分鐘 | 3–5 | 隨意見深度跟需要改稿幅度增加 |
+| Audit 800 條 Zotero library(`zotero-library-curator`)| 2–4 分鐘 | 1 | Read-only;tag diversity 影響大過 library size |
+| 5 篇 paper summarize(`paper-summarize`)| 4–10 分鐘 | 1 | 每篇 paper 一次 LLM call;失敗會 per-paper rollback |
+
+這些是 **maintainer 觀察範圍**、不是 benchmark。LLM provider、網路、
+library 狀態、prompt 寫法都會影響實際時間。先泡杯咖啡。
+
+### ⚠️ 動 Zotero CRUD 前先備份
+
+`zotero-library-curator` 是 read-only —— 它只 emit preview 報告。
+`zotero-skills` **會**寫(merge 重複、刪 item、改 collection 歸屬)。**讓
+任何 AI 動你 library 之前一定先 export 備份**:Zotero → File →
+「Export Library…」→ Zotero RDF。Skill 不會自動幫你做這件事。
 
 ---
 
@@ -143,6 +170,10 @@ SKILL.md，看
 ---
 
 ## 全部 14 個 Skills
+
+> 下方 `*(階段 X、Y)*` 對應研究 workflow 1-8 階段 ——
+> 圖跟階段對應看 [`docs/pipeline.zh-TW.md`](docs/pipeline.zh-TW.md)
+> 跟 [`docs/glossary.zh-TW.md`](docs/glossary.zh-TW.md) § Phase 數字。
 
 <details>
 <summary><b>來自 <code>research-hub</code>（10 個）</b>——一次安裝全部到位</summary>

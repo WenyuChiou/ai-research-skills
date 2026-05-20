@@ -102,25 +102,45 @@ cleanup")不是字面寫出來,所以信心降到 medium。未來小幅微調 de
 
 ### 找到一個靜默的 skill-name 碰撞(zotero-skills)
 
-`zotero-skills` 同時被兩個已安裝的 plugin 註冊:
+**白話版總結。** Catalog 5 個 plugin 裡有兩個都註冊了名叫
+`zotero-skills` 的 skill。當你說「search 我 Zotero library tag 是 X 的
+item」之類 Claude Code auto-trigger 挑到 `zotero-skills` 時,**它每次都會
+落在 `research-workspace` 裡內嵌的那份**(那是 research-hub 帶的舊大份
+副本)—— **絕對不會**落在 standalone `zotero-skills` plugin(canonical 那份)
+上。沒錯誤訊息、沒 prompt、沒 warning —— bare-name 解析就直接 hit 到
+registry 順序排第一的那個。
 
-| 來源 | 路徑 | SKILL.md 大小 | 註冊的 skill name | 名稱衝突 |
-|---|---|---|---|---|
-| `research-workspace`(來自 research-hub) | `research-workspace/0.1.0/skills/zotero-skills/` | 11,321 B | `zotero-skills` | 同名、內容不同 |
-| canonical standalone `zotero-skills` | `zotero-skills/0.1.0/skills/zotero-skills/` | 4,391 B | `zotero-skills` | 同名、內容不同 |
+**實際影響。** 大部分 prompt 兩份副本做的事一樣,使用者通常不會注意到。
+但如果你想用的是 standalone canonical 新加的某個行為,你的 prompt 會落
+在舊的內嵌副本上,然後你會困惑為什麼新 feature 沒生效。
 
-直接 `Skill(skill="zotero-skills")` (bare name) 會**靜默 resolve 到
-research-workspace 裡的舊副本**(11K),把 canonical 4K standalone
-shadow 掉。沒有 disambiguation prompt、沒有 warning。要打到 canonical
-standalone 只能用 plugin-qualified 形式
-`Skill(skill="zotero-skills:zotero-skills")`。
+**證據。**
 
-**分類:** pre-existing —— 早於這次驗證 round。
-**正確修法:** 從 `WenyuChiou/research-hub` 刪掉
-`skills/zotero-skills/`,讓 canonical standalone 成為唯一來源。
-**被擋的原因:** Phase 2 hard-gate(這 round 不能改 research-hub 的源碼)。
-**Workaround 已寫進:** README §限制 兩個語言版本。
-**延後到:** Phase 2 (research-hub Task B1 + E4 視窗)。
+| 來源 plugin | 磁碟路徑 | SKILL.md 大小 | 註冊名稱 |
+|---|---|---|---|
+| `research-workspace`(research-hub 內嵌) | `…/research-workspace/0.1.0/skills/zotero-skills/` | 11,321 B(舊、較大) | `zotero-skills` |
+| standalone `zotero-skills`(canonical) | `…/zotero-skills/0.1.0/skills/zotero-skills/` | 4,391 B(canonical) | `zotero-skills` |
+
+**Phase 2 修好之前的 workaround。** 用 qualified 形式強制指定 canonical
+那份。在 Claude Code prompt 裡:
+
+```
+Skill(skill="zotero-skills:zotero-skills")
+```
+
+`<plugin-name>:<skill-name>` 這個寫法(`zotero-skills:zotero-skills`)
+能 disambiguate,因為 canonical 那份剛好 plugin name 跟 skill name
+都叫同樣的。research-workspace 那份內嵌的對應寫法則是
+`research-workspace:zotero-skills`。**只有真的需要 canonical
+standalone 時才用 qualified form**;一般 Zotero workflow,內嵌那份就夠了。
+
+**正確修法**是從 `WenyuChiou/research-hub` 刪掉 `skills/zotero-skills/`,
+讓 canonical standalone 成為唯一來源。research-hub 那邊一個 PR 就解決。
+但**目前被 Phase 2 hard-gate 擋住**(這 round 不能改 research-hub 的源碼),
+會在 Phase 2 Task B1 + E4 視窗一起處理。屆時 bare-name 解析就會回到安全狀態。
+
+**分類:** pre-existing —— 早於 Phase 5.3.b 驗證。
+**延後到:** Phase 2。
 
 ### 這次 pass **沒有**做的事(誠實列出落差)
 

@@ -228,14 +228,57 @@ the other 4 repos have 1 each.
 
 | Host | How to load SKILL.md |
 |---|---|
-| **Codex CLI** | `codex exec --full-auto -C /repo "$(cat path/to/SKILL.md)\n\nNow do X..."`, or write a `.ai/codex_task.md` that starts with the SKILL.md contents and references the workflow |
-| **Gemini CLI** | Pass via `--system-prompt-file path/to/SKILL.md`, or include in project context |
+| **Codex CLI** | `codex exec --sandbox workspace-write -C /repo "$(cat path/to/SKILL.md)\n\nNow do X..."`, or write a `.ai/codex_task.md` that starts with the SKILL.md contents and references the workflow |
+| **Gemini CLI** | Inline the SKILL.md as part of the prompt: `gemini -p "$(cat path/to/SKILL.md)\n\nNow do X..."`, or include it in project-level context |
 | **Cursor / Windsurf** | Copy SKILL.md (or its contents) into `.cursor/rules/` or the editor's rules directory |
 | **Hermes Agent** | `hermes skills install <github-raw-url-to-SKILL.md>` — verified end-to-end on Hermes 0.13.0 for `literature-triage-matrix`; see [`.research/hermes-compatibility-audit.md`](../.research/hermes-compatibility-audit.md) |
 | **Generic API client** | Use SKILL.md as the system prompt |
 | **Any other AI** | Paste the relevant section of SKILL.md into your prompt |
 
-### 3. Which skills make sense outside Claude Code
+### 3. Worked invocation examples
+
+The table above gives the mechanism; here are concrete recipes for the
+two most common non-Claude hosts. Replace `<repo>` with the absolute
+path to your cloned source repo from step 1.
+
+**Codex CLI** — running `literature-triage-matrix` against 5 papers in
+the current directory. Recipe assumes bash / git-bash (on Windows
+PowerShell, replace `$(pwd)` with `$(Get-Location)` and the heredoc
+form with `Get-Content`):
+
+```bash
+codex exec --sandbox workspace-write -C "$(pwd)" \
+  "$(cat <repo>/skills/literature-triage-matrix/SKILL.md)
+
+  Now produce a 9-column comparison matrix for the 5 papers in
+  ./papers/. Write the output to .research/literature_matrix.md."
+```
+
+**Gemini CLI** — running `academic-writing-skills` banned-word audit
+on a draft paragraph (Gemini CLI loads SKILL.md as inline context, not
+via a system-prompt flag):
+
+```bash
+gemini -p "$(cat <repo>/skills/academic-writing-skills/SKILL.md)
+
+Audit this paragraph for banned words and overclaim:
+$(cat draft_paragraph.md)"
+```
+
+**Cursor / Windsurf** — drop the SKILL.md into the editor's rules dir:
+
+```bash
+mkdir -p .cursor/rules
+cp <repo>/skills/literature-triage-matrix/SKILL.md \
+   .cursor/rules/literature-triage-matrix.md
+# In Cursor: invoke "Use literature-triage-matrix" in chat.
+```
+
+In all three hosts you lose Claude Code's auto-trigger (the
+`description` → prompt matching). You must name the SKILL.md
+explicitly each time.
+
+### 4. Which skills make sense outside Claude Code
 
 - The 5 pure-reasoning skills (`literature-triage-matrix`,
   `research-design-helper`, `research-context-compressor`,
