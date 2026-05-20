@@ -47,13 +47,16 @@ Catalog 是一份 [Claude Code](https://claude.ai/code) plugin 的 curated
 
 ## Catalog 用機器檢查的部分
 
-CI 在每次 push、每個 PR 對 `main` 跑。它執行
-`python -m pytest tests/ -q` 加上
-`python scripts/check_marketplace_consistency.py`,合在一起守住:
+CI 在每次 push、每個 PR 對 `main` 跑。它執行 `python -m pytest tests/ -q`、
+`python scripts/check_marketplace_consistency.py`、
+`python scripts/check_catalog_schema.py`,合在一起守住:
 
-- `catalog/skills.yml` — 每個 skill 該有的欄位(`name`、`purpose`、
-  `use_when`、`outputs`、`repo_url`、`skill_url`)、必要的 family
-  清單、每個 URL 形狀正確。
+- `catalog/skills.yml` — 每個欄位形狀對著
+  [`schema/skills.schema.json`](../schema/skills.schema.json)(JSON
+  Schema Draft 2020-12)檢查:skill / family / 頂層的必要欄位、URL
+  pattern 正則、`verification_status` / `verification_tier` 的 enum
+  限制、`verified_on` 跟 `updated` 的 ISO 日期、未知欄位拒收
+  (`additionalProperties: false`)。
 - `.claude-plugin/marketplace.json` — schema 合法、plugin 順序符合
   預期、每個 plugin 都有 source URL。
 - 跨文件一致性 — catalog 裡每個 skill 的 `repo_url` 對得回 plugin
@@ -67,8 +70,10 @@ CI 在每次 push、每個 PR 對 `main` 跑。它執行
   [`docs/verification.md`](verification.md) 對齊。
 
 CI 紅燈擋 merge。完整檢查清單在
-[`tests/test_catalog.py`](../tests/test_catalog.py) 跟
-[`scripts/check_marketplace_consistency.py`](../scripts/check_marketplace_consistency.py)。
+[`tests/test_catalog.py`](../tests/test_catalog.py)、
+[`tests/test_catalog_schema.py`](../tests/test_catalog_schema.py)、
+[`scripts/check_marketplace_consistency.py`](../scripts/check_marketplace_consistency.py)、
+[`scripts/check_catalog_schema.py`](../scripts/check_catalog_schema.py)。
 
 ---
 
@@ -92,8 +97,13 @@ CI 紅燈擋 merge。完整檢查清單在
 (「ARS」)是 Claude Code 上學術 skill suite 的成熟、完整參考。借鑒
 進這個 catalog 跟它的 plugin 的(shape,不是 scale):
 
-- **Schema-driven 驗證** 在 catalog 層 — 給 `catalog/skills.yml` 加
-  JSON schema 已經在 roadmap 上,跟現在的結構性測試互補。
+- **Schema-driven 驗證** 在 catalog 層 —
+  [`schema/skills.schema.json`](../schema/skills.schema.json)(JSON
+  Schema Draft 2020-12)把 `catalog/skills.yml` 的形狀正式化,由
+  [`scripts/check_catalog_schema.py`](../scripts/check_catalog_schema.py)
+  在 CI 跑,以及
+  [`tests/test_catalog_schema.py`](../tests/test_catalog_schema.py)
+  每個 PR 跑。
 - **誠實 provenance** — 對其他專案的任何比較(這份文件、plugin
   README、CHANGELOG 條目)都附上可驗證的 link。
 - **每個 skill 的 `Limitations` 區塊** — 慣例是每個 source repo 的

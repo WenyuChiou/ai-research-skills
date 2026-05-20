@@ -53,13 +53,16 @@ after install:
 
 ## What the catalog machine-checks
 
-CI runs on every push and PR to `main`. It runs
-`python -m pytest tests/ -q` plus
-`python scripts/check_marketplace_consistency.py`. Together these guard:
+CI runs on every push and PR to `main`. It runs `python -m pytest tests/ -q`,
+`python scripts/check_marketplace_consistency.py`, and
+`python scripts/check_catalog_schema.py`. Together these guard:
 
-- `catalog/skills.yml` — required fields per skill (`name`, `purpose`,
-  `use_when`, `outputs`, `repo_url`, `skill_url`), required family list,
-  every URL has the expected shape.
+- `catalog/skills.yml` — every field shape against
+  [`schema/skills.schema.json`](../schema/skills.schema.json) (JSON
+  Schema Draft 2020-12): required fields per skill / family /
+  top-level, URL pattern regexes, enum-restricted `verification_status`
+  / `verification_tier`, ISO-date `verified_on` and `updated`, unknown
+  fields rejected (`additionalProperties: false`).
 - `.claude-plugin/marketplace.json` — well-formed schema, expected
   plugin order, every plugin has a source URL.
 - Cross-document consistency — every catalog skill's `repo_url` maps to
@@ -74,8 +77,10 @@ CI runs on every push and PR to `main`. It runs
   split (see [`docs/verification.md`](verification.md)).
 
 A red CI run blocks merge. The full check list is in
-[`tests/test_catalog.py`](../tests/test_catalog.py) and
-[`scripts/check_marketplace_consistency.py`](../scripts/check_marketplace_consistency.py).
+[`tests/test_catalog.py`](../tests/test_catalog.py),
+[`tests/test_catalog_schema.py`](../tests/test_catalog_schema.py),
+[`scripts/check_marketplace_consistency.py`](../scripts/check_marketplace_consistency.py),
+and [`scripts/check_catalog_schema.py`](../scripts/check_catalog_schema.py).
 
 ---
 
@@ -103,9 +108,12 @@ A red CI run blocks merge. The full check list is in
 suites in Claude Code. Patterns adapted (shape, not scale) into this
 catalog and its plugins:
 
-- **Schema-driven validation** at the catalog layer — adding a JSON
-  schema for `catalog/skills.yml` is on the roadmap, complementing the
-  current structural tests.
+- **Schema-driven validation** at the catalog layer —
+  [`schema/skills.schema.json`](../schema/skills.schema.json) (JSON
+  Schema Draft 2020-12) formalises the shape of `catalog/skills.yml`,
+  enforced by [`scripts/check_catalog_schema.py`](../scripts/check_catalog_schema.py)
+  in CI and by [`tests/test_catalog_schema.py`](../tests/test_catalog_schema.py)
+  on every PR.
 - **Honest provenance** — every comparison to another project (in this
   doc, in plugin READMEs, in CHANGELOG entries) is paired with a
   verifiable link to the source it cites.
