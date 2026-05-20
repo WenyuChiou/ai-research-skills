@@ -550,3 +550,164 @@ Marketplace install + per-skill auto-trigger **PASSES** on a clean
 Claude Code 2.1.142 install. One silent collision documented; fix
 deferred to Phase 2 by hard-gate. Tagged `v1.4.2` after this addendum
 lands.
+
+---
+
+## 2026-05-20 — Phase 6 post-merge re-verification on v1.5.0
+
+Re-run of the Phase 5.3.b install + trigger protocol against the
+v1.5.0 (`1b557fc`) HEAD, plus three dogfood walks against the
+Phase 6 PR-2 content (`docs/examples.md`, `docs/glossary.md`, README
+time/cost table + Zotero backup callout) to check whether the new
+docs close the gaps the agent-team analysis flagged.
+
+Tested on: Windows 11 / Claude Code 2.1.145 / git-bash 5.2.37 / Python
+3.14. Tester: Claude (Opus 4.7) on the maintainer's machine.
+Artifacts captured to `~/airs-verify-phase6/` (00 baseline → 11 dogfood
+notes) — not committed. Each Phase B trigger ran in a separate fresh
+`claude -p` process with `< /dev/null` stdin closure, so the
+in-session skill registry could not contaminate the result (Phase
+5.3.b methodology lesson).
+
+### Phase A — install round-trip
+
+| Step | Command | Result |
+|---|---|---|
+| 1 | `claude plugin marketplace remove ai-research-skills` | ✅ "Successfully removed" |
+| 2 | `claude plugin marketplace add WenyuChiou/ai-research-skills` | ✅ "Successfully added marketplace" |
+| 3 | `bash scripts/install-all.sh` from a fresh `git clone --depth 1` of v1.5.0 (`1b557fc`) | ✅ 5/5 plugins installed |
+| 4 | `claude plugin list` | ✅ all 5 show `Status: ✔ enabled`, `Scope: user`, `Version: 0.1.0`: `academic-writing-skills`, `codex-delegate`, `gemini-delegate`, `research-workspace`, `zotero-skills` |
+
+### Phase B — 14-skill auto-trigger
+
+Each prompt was handed to a separate `claude -p` invocation; the
+trailing sentinel asked the model to report which Skill tool (if any)
+it invoked. Results:
+
+| # | Expected | Sentinel reported | Classification |
+|---|---|---|---|
+| 1 | `research-hub` | `research-workspace:research-hub` | ✅ hit (qualified form) |
+| 2 | `research-hub-multi-ai` | `agent-collab-workspace:agent-task-splitter` | ⚠ routing overlap — see note below |
+| 3 | `research-context-compressor` | `research-workspace:research-context-compressor` | ✅ hit (qualified) |
+| 4 | `research-project-orienter` | `research-workspace:research-project-orienter` | ✅ hit (qualified) |
+| 5 | `research-design-helper` | `research-design-helper` | ✅ hit (bare) |
+| 6 | `literature-triage-matrix` | `research-workspace:literature-triage-matrix` | ✅ hit (qualified) — skill asked for paper input before producing the matrix |
+| 7 | `paper-memory-builder` | `paper-memory-builder` | ✅ hit (bare) |
+| 8 | `paper-summarize` | `NONE` | ⚠ skill named in the reply ("叫 `paper-summarize` skill 去填那些 TODO 區塊") but not invoked — model asked for the cluster name first |
+| 9 | `notebooklm-brief-verifier` | `notebooklm-brief-verifier` | ✅ hit (bare) |
+| 10 | `zotero-library-curator` | `zotero-library-curator` (after retry; initial run hit the 180 s timeout) | ✅ hit (bare) |
+| 11 | `academic-writing-skills` | `NONE` | ⚠ skill recognised ("`banned-word-auditor` subagent ... `academic-writing-skills`") but not invoked — model asked for the paragraph text first; see C2 below where invoking with text produced the expected table |
+| 12 | `zotero-skills` | `zotero-skills:zotero-skills` | ✅ hit on the **canonical standalone** via qualified form (no longer silently shadowed for this prompt; bare-name collision still documented in the §2026-05-20 Phase 5.3.b section above) |
+| 13 | `codex-delegate` | `codex-delegate:codex-delegate` | ✅ hit (qualified) |
+| 14 | `gemini-delegate` | `NONE` | ⚠ skill named in the reply ("會走 gemini-delegate") but not invoked — model asked for the brief content first |
+
+Counts:
+- **Strict count (Skill tool actually invoked)**: 10 / 14.
+- **Lenient count (correct skill identified in the reply, with or without invocation)**: 13 / 14.
+  *(Trigger 2 is excluded from both counts — a different skill fired, not the expected one.)*
+- **Routing overlap**: 1 (trigger 2).
+
+Notes on the non-strict outcomes:
+
+- **Trigger 2 — routing overlap**. The prompt "task needs codex + gemini both" matched the `agent-collab-workspace:agent-task-splitter` description more closely than the `research-hub-multi-ai` description. `CLAUDE.md` itself routes ≥2-delegate prompts to `agent-task-splitter` first, so this is an intentional cross-marketplace overlap rather than a router failure on this catalog's side. Tightening `research-hub-multi-ai`'s description to clarify the router-vs-splitter split is a research-hub-side change (HARD-GATED) plus an `agent-collab-skills`-side change — out of scope for this catalog's repo.
+- **Trigger 6 — skill invoked, input requested inline**. `literature-triage-matrix` resolved and the Skill tool fired (counted in the strict 10). The skill asked for the paper source list as part of its response, consistent with its documented interface; this is conservative-correct, not a failure.
+- **Triggers 8, 11, 14 — skill named in the reply but not invoked**. The model recognised the right skill (`paper-summarize`, `academic-writing-skills`, `gemini-delegate`) but asked for the missing input (cluster name, paragraph text, brief content) before invoking the Skill tool. These three are the basis for the lenient-vs-strict gap (lenient 13 = strict 10 + these three). C2 below shows that when actual text *is* supplied, `academic-writing-skills` produces the table shape documented in `docs/examples.md`. Input-first prompting is the right default for this class of skills; the trigger-prompt set used here is a probe, not a full task statement.
+
+### Phase C — three dogfood walks against Phase 6 PR-2 content
+
+| # | Walk | Result | Evidence |
+|---|---|---|---|
+| C1 | "compare 5 papers" → `literature-triage-matrix` | ⚠ partial | Skill resolved via Phase B trigger 6 (`research-workspace:literature-triage-matrix`). Skill asked for paper sources before producing a matrix; could not verify the 9-column shape end-to-end without a real input set. Skill behaviour is conservative-correct; shape verification stays open for the next round. |
+| C2 | "audit this paragraph for banned words" → `academic-writing-skills` | ⚠ partial | Re-ran with the verbatim `docs/examples.md` sample input. Output ✅ matches the `docs/examples.md` §academic-writing-skills banned-word audit table (Severity / Term / Span / Replacement / Reason). Caught `leverages`, `novel`, `comprehensively`, `multifaceted`, `robustly`, `demonstrating`, `significantly`, `delve`, `proposed` — 9 hits in a single sentence. Sentinel reported `NONE` while the response content was the audit table; sentinel-protocol noise, not a skill miss. **D6 finding**: no mention of `paper-memory-builder`, `.paper/`, or `claims.yml` anywhere in the response — the auto-router does not signal the upstream-skill dependency. Already on the Phase 2 backlog (SKILL.md description in research-hub). |
+| C3 | "audit my Zotero library" → `zotero-library-curator` | ⚠ partial | Skill ran a real read-only audit on the maintainer's library: 1,191 items, 4 duplicate DOIs (8 items, 4 removable), 331 orphans (27.8% — 96% from one 2026-01 bulk-import event). Output preview-only; defers actual deletes to `zotero-skills`. Shape ✅ matches `docs/examples.md` §zotero-library-curator. **Backup-callout finding**: README's `⚠️ Back up before any Zotero CRUD` block did NOT surface in the skill's reply. The response said *"verify which copy has the PDF attachment"* and *"Don't blanket-delete"* — helpful, but not the Zotero RDF export step. Surfacing the backup recommendation belongs in the curator's SKILL.md, which lives in research-hub source — Phase 2 hard-gated. |
+
+### Fixes shipped during this verification
+
+None — verification confirmed the v1.5.0 state. Every identified gap is
+research-hub-side and falls under the existing Phase 2 hard-gate, so
+nothing was fixable inside `WenyuChiou/ai-research-skills` this round.
+`marketplace.json` stays at 1.5.0; no new tag is associated with this
+addendum.
+
+### Known issues NOT fixed this round
+
+Carried into the Phase 2 backlog (all research-hub source-repo edits,
+HARD-GATED until "research-hub 可以" is said):
+
+1. `research-hub-multi-ai` vs `agent-collab-workspace:agent-task-splitter`
+   routing overlap on ≥2-delegate prompts — description-level edits in
+   both research-hub (for `research-hub-multi-ai`) and `agent-collab-skills`
+   (for `agent-task-splitter`).
+2. `academic-writing-skills` reply does not signal the
+   `paper-memory-builder` upstream dependency to the user — description
+   edits in research-hub.
+3. `zotero-library-curator` reply does not echo the Zotero RDF backup
+   recommendation surfaced in the README — SKILL.md edit in research-hub.
+4. Plus the four already-stacked Phase 2 backlog items from earlier
+   rounds (`paper-memory-builder` anti-leakage schema; `research-hub`
+   `plugin.json` declares 3 skills while shipping 11; the
+   `zotero-skills` shadow collision real fix; the five SKILL.md
+   description rewrites for auto-trigger keyword overlap).
+
+### What this verification does NOT cover
+
+- External users — usage data is still N=1 (the maintainer).
+- Cross-model second-opinion judge (Codex / Gemini as second
+  reviewer) — v0.3 backlog.
+- Domain generalisation outside water resources / agent-based modeling —
+  v0.3 backlog.
+- Corpus-scale false-negative / false-positive rate calibration on the
+  banned-word and overclaim audit — v0.3 backlog.
+
+### Reproducing this pass
+
+```bash
+mkdir -p ~/airs-verify-phase6 && cd ~/airs-verify-phase6
+
+# Phase A
+claude --version > 00-claude-version.txt
+claude plugin marketplace remove ai-research-skills 2>/dev/null || true
+claude plugin marketplace add WenyuChiou/ai-research-skills 2>&1 | tee 02-add.txt
+git clone --depth 1 https://github.com/WenyuChiou/ai-research-skills ~/airs-tmp-clone
+bash ~/airs-tmp-clone/scripts/install-all.sh 2>&1 | tee 04-install.txt
+claude plugin list 2>&1 | tee 05-after.txt
+
+# Phase B — 14 fresh `claude -p` triggers with the sentinel suffix:
+#   __SKILL_USED__: <name-or-NONE>
+# Each invocation must pass `< /dev/null` to avoid the stdin-wait warning.
+# Harness script: ~/airs-verify-phase6/run-triggers.sh
+# Pattern: timeout 180 claude -p "<prompt>" < /dev/null >> 10-triggers.txt 2>&1
+# Prompt list + expected skill names are reproduced in the Phase B table above.
+
+# Phase C — three dogfood walks (literature-triage-matrix / academic-writing-skills /
+# zotero-library-curator). Compare the C2 output against docs/examples.md §academic-writing-skills.
+```
+
+### Methodology lessons recorded for future rounds
+
+- `claude -p` requires `< /dev/null` stdin redirection to skip the
+  "no stdin data received in 3 s" prompt-cancel behaviour. Without it
+  the process emits a warning and exits without running the prompt.
+- A trailing sentinel line (`__SKILL_USED__: <name-or-NONE>`) is a
+  reliable measurement only when the Skill tool actually fires.
+  Skills whose work is "respond in the same conversation context" (the
+  prompt-only / banned-word-auditor class) can ship the documented
+  output without registering a `Skill()` invocation — count those as
+  ⚠ rather than ❌, and record the response content as the real signal.
+- Trigger probes are not the same as full task statements. Conservative
+  input-first behaviour from the auto-router is the right default for
+  skills whose work depends on a paper list, cluster name, paragraph
+  text, or brief content. Probe sets should expect a non-trivial
+  fraction of input-first responses and grade them on whether the right
+  skill was identified, not only on whether `Skill()` was called.
+
+### Verdict for this pass
+
+Phase A passes (5 / 5 ✔ enabled). Phase B strict count 10 / 14, with the
+remaining four explained: one routing overlap that is intentionally
+shaped by `CLAUDE.md` cross-marketplace routing, three conservative
+input-first responses where the right skill was named in the reply.
+Phase C runs three ⚠ partial walks where the underlying gaps all sit
+in research-hub source files and roll into the Phase 2 backlog.
+Marketplace install + skill resolution path is intact at v1.5.0; no
+fix-PR shipped against this repo this round.

@@ -15,6 +15,10 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- **`docs/verification.md` + `docs/verification.zh-TW.md` § 2026-05-20 Phase 6 post-merge re-verification on v1.5.0** — captures the install round-trip + 14-skill auto-trigger + three dogfood walks re-run against the v1.5.0 (`1b557fc`) HEAD. Phase A passes (5 / 5 ✔ enabled). Phase B strict count 10 / 14 (lenient 13 / 14, one routing overlap with `agent-collab-workspace:agent-task-splitter`, three conservative input-first responses). Phase C three ⚠ partial walks, all gaps roll into the existing Phase 2 hard-gated research-hub backlog. No fix-PRs shipped against this repo this round; `marketplace.json` stays at 1.5.0 and no new tag is associated with the addendum.
+
 ## [1.5.0] - 2026-05-20
 
 ### Added
