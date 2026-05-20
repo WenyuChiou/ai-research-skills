@@ -1,13 +1,17 @@
 # AI Research Skills
 
-[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![agentskills.io spec](https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C)](.research/hermes-compatibility-audit.md)
-[![Hermes verified](https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C)](.research/hermes-compatibility-audit.md)
-
 > 14 Claude Code skills for research workflows — literature triage, research
 > design, project context, manuscript writing, multi-AI delegation.
 
-Languages: [English](README.md) | [繁中](README.zh-TW.md)
+Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
+[See what each skill produces →](docs/examples.md) ·
+[Glossary](docs/glossary.md)
+
+<sub>
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![agentskills.io spec](https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C)](.research/hermes-compatibility-audit.md)
+[![Hermes verified](https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C)](.research/hermes-compatibility-audit.md)
+</sub>
 
 ![14 AI skills mapped to research workflow stages, with cross-cutting tools (codex-delegate, gemini-delegate, research-hub-multi-ai) usable at every stage](docs/img/pipeline-overview.png)
 
@@ -118,7 +122,32 @@ If auto-trigger picks the wrong skill, name it explicitly:
 > No install needed — share this README plus [docs/install.md](docs/install.md).
 
 Full mapping: [docs/skill-directory.md](docs/skill-directory.md) ·
-Pipeline-stage view: [docs/pipeline.md](docs/pipeline.md).
+Pipeline-stage view: [docs/pipeline.md](docs/pipeline.md) ·
+Deliverable samples: [docs/examples.md](docs/examples.md).
+
+### Time + cost expectations
+
+Rough envelope from in-session use — adjust to your input size:
+
+| Task | Typical wall time | Conversation turns | Notes |
+|---|---|---|---|
+| Compare 5 papers (`literature-triage-matrix`) | 1–3 min | 1–2 | Linear in paper count; 20 papers ≈ 5 min |
+| Banned-word audit on 1 paragraph (`academic-writing-skills`) | <1 min | 1 | Independent of manuscript size |
+| Reviewer response (6 comments) (`academic-writing-skills`) | 3–8 min | 3–5 | Scales with comment depth + revision required |
+| Audit 800-item Zotero library (`zotero-library-curator`) | 2–4 min | 1 | Read-only; library size matters less than tag diversity |
+| Summarize 5 papers per cluster (`paper-summarize`) | 4–10 min | 1 | One LLM call per paper; rolls back per-paper on failure |
+
+These are **maintainer-observed ranges**, not benchmark numbers. Your
+LLM provider, network, library state, and prompt phrasing all affect
+the actual time. Bring a cup of coffee.
+
+### ⚠️ Back up before any Zotero CRUD
+
+`zotero-library-curator` is read-only — it emits a preview report.
+`zotero-skills` *can* write (merge duplicates, delete items, rebind
+collections). **Always export a Zotero backup before letting any AI
+modify your library**: Zotero → File → "Export Library…" → Zotero RDF.
+The skills will not do this for you.
 
 ---
 
@@ -147,6 +176,11 @@ generic-API client, see
 ---
 
 ## All 14 skills
+
+> `*(Stages X, Y)*` tags below refer to research-workflow stages 1–8 —
+> see [`docs/pipeline.md`](docs/pipeline.md) for the diagram and
+> [`docs/glossary.md`](docs/glossary.md) §Phase numbers for the
+> stage-by-stage breakdown.
 
 <details>
 <summary><b>From <code>research-hub</code> (10 skills)</b> — one install gets all</summary>

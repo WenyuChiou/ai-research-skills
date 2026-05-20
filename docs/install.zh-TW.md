@@ -159,14 +159,53 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill
 
 | Host | 怎麼載入 SKILL.md |
 |---|---|
-| **Codex CLI** | `codex exec --full-auto -C /repo "$(cat path/to/SKILL.md)\n\n現在做 X..."`，或寫一份 `.ai/codex_task.md` 開頭塞 SKILL.md 內容 |
-| **Gemini CLI** | `--system-prompt-file path/to/SKILL.md`，或放進 project context |
+| **Codex CLI** | `codex exec --sandbox workspace-write -C /repo "$(cat path/to/SKILL.md)\n\n現在做 X..."`，或寫一份 `.ai/codex_task.md` 開頭塞 SKILL.md 內容 |
+| **Gemini CLI** | 把 SKILL.md inline 進 prompt：`gemini -p "$(cat path/to/SKILL.md)\n\n現在做 X..."`，或放進 project context |
 | **Cursor / Windsurf** | 把 SKILL.md（或內容）丟到 `.cursor/rules/` 或對應 rules 目錄 |
 | **Hermes Agent** | `hermes skills install <github-raw-url-to-SKILL.md>`——`literature-triage-matrix` 已在 Hermes 0.13.0 端對端驗證過；見 [`.research/hermes-compatibility-audit.md`](../.research/hermes-compatibility-audit.md) |
 | **通用 API** | 把 SKILL.md 當 system prompt 用 |
 | **其他 AI** | 把 SKILL.md 相關段落貼進你的 prompt |
 
-### 3. 哪些 skill 在 Claude Code 之外比較合理
+### 3. 實際呼叫範例
+
+上面表是機制;這邊給兩個最常用的非-Claude host 具體 recipe。`<repo>`
+換成你 step 1 clone 下來的絕對路徑。
+
+**Codex CLI** —— 對 current dir 5 篇 paper 跑
+`literature-triage-matrix`。recipe 假設 bash / git-bash(Windows
+PowerShell 上把 `$(pwd)` 換成 `$(Get-Location)`、heredoc 形式換 `Get-Content`):
+
+```bash
+codex exec --sandbox workspace-write -C "$(pwd)" \
+  "$(cat <repo>/skills/literature-triage-matrix/SKILL.md)
+
+  現在對 ./papers/ 5 篇做 9 欄比較表,輸出寫到
+  .research/literature_matrix.md。"
+```
+
+**Gemini CLI** —— 對一段草稿跑 `academic-writing-skills` banned-word
+audit(Gemini CLI 把 SKILL.md 當 inline context 載入,沒有 system-prompt flag):
+
+```bash
+gemini -p "$(cat <repo>/skills/academic-writing-skills/SKILL.md)
+
+audit 這段有沒有 banned word 跟 overclaim:
+$(cat draft_paragraph.md)"
+```
+
+**Cursor / Windsurf** —— 把 SKILL.md 丟進編輯器 rules dir:
+
+```bash
+mkdir -p .cursor/rules
+cp <repo>/skills/literature-triage-matrix/SKILL.md \
+   .cursor/rules/literature-triage-matrix.md
+# 在 Cursor 對話打「Use literature-triage-matrix」即可。
+```
+
+這三個 host 都會失去 Claude Code 的 auto-trigger(`description` → prompt
+matching),每次得明說 SKILL.md 名字。
+
+### 4. 哪些 skill 在 Claude Code 之外比較合理
 
 - 5 個純推理 skill（`literature-triage-matrix`、
   `research-design-helper`、`research-context-compressor`、

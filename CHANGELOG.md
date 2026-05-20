@@ -15,6 +15,77 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-05-20
+
+### Added
+
+The usability content that the Phase 6 agent-team analysis flagged as
+the highest-impact missing pieces. PR-1 (`1.4.3`) shipped only bug
+fixes; this minor release adds net-new docs.
+
+- **`docs/examples.md`** + **`docs/examples.zh-TW.md`** — synthetic
+  deliverable samples for the 4 most-common skills
+  (`literature-triage-matrix`: 5-paper × 9-column matrix;
+  `academic-writing-skills`: banned-word audit table + reviewer-response
+  table; `zotero-library-curator`: preview-only audit report; 
+  `paper-summarize`: per-paper Key Findings / Methodology / Relevance
+  markdown block). Closes the dogfood-report finding that fresh users
+  install on faith without ever seeing what each skill produces.
+- **`docs/glossary.md`** + **`docs/glossary.zh-TW.md`** — defines the
+  catalog-specific terms used across the docs (plugin vs skill, bare
+  name vs qualified name, `.research/` and `.paper/` conventions,
+  Obsidian cluster, NotebookLM brief, `research-hub auto`, T1/T2/T3
+  verification tiers, skill router, marketplace cache vs
+  `~/.claude/skills/`, stage 1–8 phase numbers used in the skill list).
+  Closes the dogfood-report finding that 4 of those terms were used
+  without definition.
+- **README.md + README.zh-TW.md — "Time + cost expectations" table**:
+  maintainer-observed wall-time + conversation-turn ranges for the 5
+  most common tasks (compare 5 papers, banned-word audit, reviewer
+  response, Zotero audit, summarize 5 papers). Closes the dogfood
+  finding that the docs gave no time/cost signal.
+- **README.md + README.zh-TW.md — Zotero backup callout**: explicit
+  "⚠️ Back up before any Zotero CRUD" block before any path that lets
+  `zotero-skills` write. Closes the dogfood finding that 800-item
+  library cleanup had no backup warning.
+- **README.md + README.zh-TW.md — cross-links**: new top-of-page links
+  to `docs/examples` and `docs/glossary`; new pointer to
+  `docs/pipeline.md` + `docs/glossary.md`'s "Phase numbers" section
+  from the All-14-skills section, so the dangling `*(Stages X, Y)*`
+  tags now resolve.
+- **`docs/install.md` + `docs/install.zh-TW.md` "Worked invocation
+  examples"**: concrete recipes for `codex exec`, `gemini`, and Cursor
+  rules-dir layout. Closes the per-host F3 gap (mechanism table was
+  present in 1.4.x but no concrete invocation snippets).
+
+### Changed
+
+- **`docs/verification.md` + `docs/verification.zh-TW.md` — zotero-skills
+  shadow collision workaround section rewritten** in plain language
+  with a concrete `Skill(skill="zotero-skills:zotero-skills")` worked
+  example and a clear explanation of when to use the qualified form
+  vs the bare form. The 1.4.x version was honest but used too much
+  jargon — fresh users could not act on it. (Underlying collision
+  remains; the real fix is still Phase 2-gated.)
+- **README.md + README.zh-TW.md — badge placement**: the 3 compatibility
+  badges (MIT, agentskills.io, Hermes verified) moved from above the
+  tagline into a `<sub>` block below the language selector. The
+  promotional-feel-at-the-top issue flagged by the dogfood report;
+  badges still verifiable, just less prominent.
+
+### Out of scope for this release (Phase 2 hard-gated, unchanged)
+
+- SKILL.md `description` rewrites in `WenyuChiou/research-hub` for
+  auto-trigger keyword overlap (research-hub, paper-memory-builder,
+  research-design-helper, notebooklm-brief-verifier,
+  zotero-library-curator).
+- Delete `research-hub/skills/zotero-skills/` to resolve the bare-name
+  shadow collision at the source.
+- Align `research-hub/.claude-plugin/plugin.json` to declare all 10
+  shipped skills.
+- v0.3 backlog: cross-model independent judge, corpus-scale FNR/FPR
+  calibration, domain generalisation beyond water-resources / ABM.
+
 ## [1.4.3] - 2026-05-20
 
 ### Fixed
@@ -283,7 +354,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.3...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.3...v1.5.0
 [1.4.3]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.0...v1.4.1
