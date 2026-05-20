@@ -15,6 +15,47 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-05-20
+
+### Removed
+
+- `docs/public-post-outline.md` — was launch-marketing material, no
+  longer needed after the marketplace shipped.
+- `docs/repo-map.md` + `docs/repo-map.zh-TW.md` — content duplicated
+  by `CONTRIBUTING.md` §"Where the change belongs" and
+  `docs/skill-directory.md`.
+
+### Changed
+
+- `docs/index.html` — removed the "Repo map" link card.
+
+## Upstream ecosystem notes
+
+> This section is **not** part of any catalog release. It records
+> changes that landed in plugin source repos during the catalog's
+> Phase 5.3.a audit window (2026-05-20) so future readers can trace
+> when the maturity floor moved.
+
+- [`WenyuChiou/academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills)
+  — added `CHANGELOG.md`, `.github/workflows/test.yml` (first CI),
+  and fixed a latent test path bug (silent since the 2026-04-26
+  marketplace migration). Tagged
+  [`v0.1.0`](https://github.com/WenyuChiou/academic-writing-skills/releases/tag/v0.1.0).
+- [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills)
+  — added MIT `LICENSE` (was previously legally ambiguous despite
+  README's `## License: MIT` declaration); added `CHANGELOG.md`;
+  tagged
+  [`v0.1.0`](https://github.com/WenyuChiou/zotero-skills/releases/tag/v0.1.0).
+- [`WenyuChiou/codex-delegate`](https://github.com/WenyuChiou/codex-delegate)
+  — added `CHANGELOG.md`; tagged
+  [`v0.1.0`](https://github.com/WenyuChiou/codex-delegate/releases/tag/v0.1.0).
+- [`WenyuChiou/gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill)
+  — added `CHANGELOG.md`; tagged
+  [`v0.1.0`](https://github.com/WenyuChiou/gemini-delegate-skill/releases/tag/v0.1.0).
+
+Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
+`docs/design-philosophy.md` §Roadmap.
+
 ## [1.4.0] - 2026-05-19
 
 ### Added
@@ -140,7 +181,8 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.1...HEAD
+[1.4.1]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.1.0...v1.2.0
