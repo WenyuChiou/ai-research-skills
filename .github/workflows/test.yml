@@ -15,8 +15,10 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install test deps
-        run: pip install pytest pyyaml
+        run: pip install pytest pyyaml jsonschema
       - name: Run catalog tests
         run: python -m pytest tests/ -q
       - name: Check catalog <-> marketplace consistency
         run: python scripts/check_marketplace_consistency.py
+      - name: Check catalog YAML against schema
+        run: python scripts/check_catalog_schema.py

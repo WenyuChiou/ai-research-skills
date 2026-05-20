@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/WenyuChiou/ai-research-skills/blob/main/schema/skills.schema.json",
+  "title": "ai-research-skills catalog schema",
+  "description": "JSON Schema (Draft 2020-12) for catalog/skills.yml. Run scripts/check_catalog_schema.py to validate.",
+  "type": "object",
+  "required": ["version", "updated", "catalog_name", "description", "families"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Catalog schema version. Bump when the schema itself changes shape."
+    },
+    "updated": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "ISO date (YYYY-MM-DD) the catalog was last edited."
+    },
+    "catalog_name": {"type": "string", "minLength": 1},
+    "description": {"type": "string", "minLength": 1},
+    "families": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/family"}
+    },
+    "boundaries": {
+      "type": "object",
+      "description": "Human-readable scope notes per family / skill group.",
+      "additionalProperties": {"type": "string"}
+    }
+  },
+  "$defs": {
+    "family": {
+      "type": "object",
+      "required": ["id", "name", "canonical_repo", "default_branch", "install", "tools", "skills"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "Slug. Lowercase ASCII + hyphens, starts with a letter."
+        },
+        "name": {"type": "string", "minLength": 1},
+        "canonical_repo": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/[^/]+/[^/]+/?$",
+          "description": "Canonical source repo URL on github.com."
+        },
+        "default_branch": {"type": "string", "minLength": 1},
+        "install": {"$ref": "#/$defs/install"},
+        "tools": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "skills": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/skill"}
+        }
+      }
+    },
+    "install": {
+      "type": "object",
+      "required": ["summary", "commands"],
+      "additionalProperties": false,
+      "properties": {
+        "summary": {"type": "string", "minLength": 1},
+        "commands": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "optional_commands": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "required": [
+        "name",
+        "directory",
+        "repo_url",
+        "skill_url",
+        "purpose",
+        "use_when",
+        "outputs",
+        "verified_on",
+        "verification_status",
+        "verification_tier",
+        "verification_notes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "Skill slug. Lowercase ASCII + hyphens."
+        },
+        "directory": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Sub-directory inside the source repo (or '.' for repo-root skills)."
+        },
+        "repo_url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/[^/]+/[^/]+/?$"
+        },
+        "skill_url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/[^/]+/[^/]+/blob/[^/]+/.*SKILL\\.md$",
+          "description": "Full /blob/<branch>/<path>/SKILL.md URL."
+        },
+        "purpose": {"type": "string", "minLength": 1},
+        "use_when": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "outputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "verified_on": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "ISO date the skill was last verified by the maintainer."
+        },
+        "verification_status": {
+          "enum": ["pass", "caveat", "fail", "not_yet"],
+          "description": "Outcome of the last verification run."
+        },
+        "verification_tier": {
+          "enum": ["T1", "T2", "T3"],
+          "description": "T1 = test-corpus artifact committed; T2 = end-to-end run by maintainer, no corpus; T3 = author-asserted only."
+        },
+        "verification_notes": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Free-text notes on what was checked and how."
+        }
+      }
+    }
+  }
+}
