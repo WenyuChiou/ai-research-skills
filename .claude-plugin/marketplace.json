@@ -7,9 +7,22 @@
   },
   "metadata": {
     "description": "Catalog of AI skills for the research workflow — researcher-led, AI-assisted",
-    "version": "1.1.0"
+    "version": "1.2.0"
   },
   "plugins": [
+    {
+      "name": "audit-first-skills",
+      "description": "5 skills (verify-references, senior-author-review, abstract-writer, scientific-writing, skill-lint) for the audit-first researcher: verify a paper's claims, audit numerical results, draft 6-part abstracts, enforce water-resources style, lint other skills. The lean alternative to ARS — bundled with 5 machine-checked invariants (audit budget, no declarative-only gates, eval mix, anti-hype README, honest provenance). MIT.",
+      "category": "productivity",
+      "homepage": "https://github.com/WenyuChiou/audit-first-skills",
+      "version": "0.1.0",
+      "strict": true,
+      "source": {
+        "source": "url",
+        "url": "https://github.com/WenyuChiou/audit-first-skills.git",
+        "ref": "master"
+      }
+    },
     {
       "name": "research-workspace",
       "description": "10 research-hub skills: literature search, comparison matrix, planning manifests, design dialog, multi-AI routing, NotebookLM brief verification, paper-memory builder, paper-summarize, Zotero curator. Auto-discovered from the source repo's skills/ subdirectory.",

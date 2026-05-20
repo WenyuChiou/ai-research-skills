@@ -46,6 +46,9 @@ claude plugin install research-workspace@ai-research-skills
 # 2. Manuscript work
 claude plugin install academic-writing-skills@ai-research-skills
 
+# 2b. Audit-first companion: verify references / audit results / draft abstracts / lint other skills
+claude plugin install audit-first-skills@ai-research-skills
+
 # 3. Zotero (enable local API in Zotero desktop first — see docs/setup-guide.md §C)
 claude plugin install zotero-skills@ai-research-skills
 
@@ -161,6 +164,7 @@ generic-API client, see
 <summary><b>Standalone repos (4 skills)</b> — one plugin install each</summary>
 
 - [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — manuscript revision, claim-evidence audit, banned-word / humanize, journal format, reviewer response. *(Stages 7, 8)*
+- [`audit-first-skills`](https://github.com/WenyuChiou/audit-first-skills) (v0.1) — 5 audit-first skills: `verify-references`, `senior-author-review`, `abstract-writer`, `scientific-writing`, `skill-lint`. The lean, audit-in-30-minutes alternative to ARS — see [`docs/why-not-ARS.md`](https://github.com/WenyuChiou/audit-first-skills/blob/master/docs/why-not-ARS.md) and the design contract in [`docs/audit-first-design.md`](https://github.com/WenyuChiou/audit-first-skills/blob/master/docs/audit-first-design.md). *(Stages 5–8, audit pass)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — Claude → Codex CLI handoff for code-heavy work. *(Cross-cutting, also Stage 6)*
 - [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting, also Stages 6, 7)*
