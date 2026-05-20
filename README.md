@@ -15,7 +15,7 @@ Languages: [English](README.md) | [繁中](README.zh-TW.md)
 
 ## What is this
 
-5 plugins in one Claude Code marketplace, exposing 14 skills. Built for
+6 plugins in one Claude Code marketplace: 14 skills in the core catalog plus 5 audit-first skills. Built for
 graduate students, PhDs, postdocs, and research support staff running real
 research projects with AI in the loop.
 
@@ -61,7 +61,7 @@ pip install research-hub-pipeline
 research-hub setup
 ```
 
-Batch all 5 plugins in one go:
+Batch all 6 plugins in one go:
 
 ```bash
 bash scripts/install-all.sh        # macOS / Linux / git-bash
@@ -161,7 +161,7 @@ generic-API client, see
 </details>
 
 <details>
-<summary><b>Standalone repos (4 skills)</b> — one plugin install each</summary>
+<summary><b>Standalone repos (5 plugins)</b> — one plugin install each</summary>
 
 - [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — manuscript revision, claim-evidence audit, banned-word / humanize, journal format, reviewer response. *(Stages 7, 8)*
 - [`audit-first-skills`](https://github.com/WenyuChiou/audit-first-skills) (v0.1) — 5 audit-first skills: `verify-references`, `senior-author-review`, `abstract-writer`, `scientific-writing`, `skill-lint`. The lean, audit-in-30-minutes alternative to ARS — see [`docs/why-not-ARS.md`](https://github.com/WenyuChiou/audit-first-skills/blob/master/docs/why-not-ARS.md) and the design contract in [`docs/audit-first-design.md`](https://github.com/WenyuChiou/audit-first-skills/blob/master/docs/audit-first-design.md). *(Stages 5–8, audit pass)*

@@ -133,11 +133,9 @@ def test_claude_plugin_marketplace_is_well_formed():
     Ships 6 plugins: research-workspace (9 skills auto-discovered from
     research-hub's skills/ subdir), academic-writing-skills, audit-first-skills
     (5-skill bundle auto-discovered from audit-first-skills' skills/ subdir),
-    plus 3 single-skill plugins (zotero-skills, codex-delegate, gemini-delegate).
-    See .claude-plugin/README.md for the full story.
-    (academic-writing-skills, zotero-skills, codex-delegate,
-    gemini-delegate) whose source repos declare {"skills": ["./"]} in
-    their .claude-plugin/plugin.json so the root SKILL.md is picked up.
+    plus 3 single-skill plugins (zotero-skills, codex-delegate, gemini-delegate)
+    whose source repos declare {"skills": ["./"]} in their
+    .claude-plugin/plugin.json so the root SKILL.md is picked up.
     See .claude-plugin/README.md for the full story."""
     import json
     marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"

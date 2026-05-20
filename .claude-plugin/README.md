@@ -36,16 +36,17 @@ fail on machines without a configured GitHub SSH key.
 
 ## Plugins shipped
 
-The marketplace ships **5 plugins** — one bundle (`research-workspace`)
-that auto-discovers 9 skills from a `skills/<name>/SKILL.md` layout,
-plus 4 standalone single-skill plugins whose SKILL.md sits at the repo
-root and is exposed via a `.claude-plugin/plugin.json` declaring
-`"skills": ["./"]`.
+The marketplace ships **6 plugins** — two bundles (`research-workspace`
+and `audit-first-skills`) that auto-discover their skills from a
+`skills/<name>/SKILL.md` layout, plus 4 standalone single-skill plugins
+whose SKILL.md sits at the repo root and is exposed via a
+`.claude-plugin/plugin.json` declaring `"skills": ["./"]`.
 
 | Plugin | Source repo | Skills it ships |
 |---|---|---|
 | `research-workspace` | `WenyuChiou/research-hub` | 9 skills auto-discovered from `skills/<name>/SKILL.md`: research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder |
 | `academic-writing-skills` | `WenyuChiou/academic-writing-skills` | Single skill: manuscript revision, banned-word audit, claim-evidence check, journal format, reviewer response |
+| `audit-first-skills` | `WenyuChiou/audit-first-skills` | 5 skills auto-discovered from `skills/<name>/SKILL.md`: verify-references, senior-author-review, abstract-writer, scientific-writing, skill-lint |
 | `zotero-skills` | `WenyuChiou/zotero-skills` | Single skill: full Zotero CRUD (local + Web API) |
 | `codex-delegate` | `WenyuChiou/codex-delegate` | Single skill: hand token-heavy mechanical work to Codex CLI |
 | `gemini-delegate` | `WenyuChiou/gemini-delegate-skill` | Single skill: hand long-context / CJK output to Gemini CLI |

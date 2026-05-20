@@ -2,10 +2,14 @@
 
 The reference point for academic skill suites in Claude Code is
 [`Imbad0202/academic-research-skills`][ars] ("ARS"). It is a mature,
-comprehensive academic pipeline plugin: ~v3.9.4 at time of writing,
-~136 KB CHANGELOG, 200+ tests, 90+ `check_*.py` lints, a 10-stage
-orchestrator that runs research → write → review → revise. Read the
-[ARS README][ars-readme] to see the scope.
+comprehensive academic pipeline plugin: `v3.9.x` at time of writing
+(latest release as of 2026-05-19 is `v3.9.2`, see the [ARS releases
+page][ars-releases]), `~133 KB` CHANGELOG, 200+ tests, `~30` top-level
+`check_*.py` lints in `scripts/` (with matching `test_check_*.py`
+runners), a 10-stage orchestrator that runs research → write → review
+→ revise. Read the [ARS README][ars-readme] to see the scope. (Numbers
+in this doc may drift; check the [live ARS scripts directory][ars-scripts]
+for the current count.)
 
 This marketplace does not try to be ARS. The skills under
 `audit-first-skills` (and the `skill-lint` meta-skill) are deliberately
@@ -13,6 +17,8 @@ This marketplace does not try to be ARS. The skills under
 
 [ars]: https://github.com/Imbad0202/academic-research-skills
 [ars-readme]: https://github.com/Imbad0202/academic-research-skills#readme
+[ars-releases]: https://github.com/Imbad0202/academic-research-skills/releases
+[ars-scripts]: https://github.com/Imbad0202/academic-research-skills/tree/main/scripts
 
 ---
 
@@ -35,12 +41,12 @@ machine-enforced — not aspirational.
 
 ## Comparison axes (verifiable, not hype)
 
-| Axis | ARS (v3.9.4) | `audit-first-skills` (v0.1) |
+| Axis | ARS (`v3.9.x`, see [releases][ars-releases]) | `audit-first-skills` (v0.1) |
 |---|---|---|
 | Install | `/plugin marketplace add Imbad0202/academic-research-skills` | `/plugin marketplace add WenyuChiou/ai-research-skills` |
 | Skills shipped | 4 + orchestrator | 5 (no orchestrator) |
-| Lines of CHANGELOG | ~136 KB | starts at ~1 KB; budget-capped |
-| `check_*.py` lints | 90+ | 1 (`_selftest/lint_skill.sh`) |
+| CHANGELOG size | `~133 KB` ([source][ars-readme]) | starts at `~1 KB`; budget-capped |
+| `check_*.py` lints | `~30` top-level ([source][ars-scripts]) | 1 (`_selftest/lint_skill.sh`) |
 | Schema versions | Schema 13.1 with `allOf` branch gymnastics | single eval format, no schema versioning |
 | Opt-in env flags | multiple (`ARS_CLAIM_AUDIT`, …) | zero by design |
 | Test infra | 200+ pytest with GH Actions CI | 1 `tests/test_skill_integrity.py`, parameterized across all skills |

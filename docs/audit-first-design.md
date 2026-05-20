@@ -91,8 +91,8 @@ fixture — the [v0.2 case study in that doc][fa-t2] explains how a
 synthetic year `2099` can vacuously satisfy a conditional `must_not` and
 cross-trip a check the eval didn't cover.
 
-[fa]: ../skills/skill-lint/FIXTURE_AUTHORING.md
-[fa-t2]: ../skills/skill-lint/FIXTURE_AUTHORING.md#worked-case-study--phase-t-fixture-t2
+[fa]: https://github.com/WenyuChiou/audit-first-skills/blob/master/skills/skill-lint/references/FIXTURE_AUTHORING.md
+[fa-t2]: https://github.com/WenyuChiou/audit-first-skills/blob/master/skills/skill-lint/references/FIXTURE_AUTHORING.md#worked-case-study--phase-t-fixture-t2
 
 ---
 

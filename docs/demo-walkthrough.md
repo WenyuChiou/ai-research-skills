@@ -21,8 +21,9 @@ claude plugin marketplace add WenyuChiou/ai-research-skills
 bash scripts/install-all.sh        # or pwsh scripts/install-all.ps1
 ```
 
-After this you have all 5 plugins (14 skills) loaded. Three of them
-in this walkthrough need additional setup:
+After this you have all 6 plugins loaded (14 skills in the core catalog
+plus 5 audit-first skills). Three of them in this walkthrough need
+additional setup:
 
 - `research-hub` (paper search) needs `pip install
   research-hub-pipeline` + `research-hub setup`. See

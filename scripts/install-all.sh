@@ -18,6 +18,7 @@ MARKETPLACE="WenyuChiou/ai-research-skills"
 PLUGINS=(
   "research-workspace"
   "academic-writing-skills"
+  "audit-first-skills"
   "zotero-skills"
   "codex-delegate"
   "gemini-delegate"
@@ -44,4 +45,4 @@ for p in "${PLUGINS[@]}"; do
 done
 
 echo ""
-echo "Done. Run 'claude plugin list' to confirm all 5 plugins show as ✔ enabled."
+echo "Done. Run 'claude plugin list' to confirm all 6 plugins show as ✔ enabled."

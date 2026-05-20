@@ -133,6 +133,8 @@ def test_invariant_2_no_declarative_only_gates(skill):
 @pytest.mark.parametrize("skill", ALL_SKILLS)
 def test_invariant_3_eval_mix(skill):
     p = SKILLS_DIR / skill / "evals" / "evals.json"
+    if not p.exists():
+        pytest.skip(f"{skill}: evals/evals.json absent — covered by test_evals_shape")
     data = json.loads(_read(p))
     ids = [e["id"] for e in data["evals"]]
     assert any(i.startswith("pos-") for i in ids), f"I3 {skill}: no pos- case in evals"
