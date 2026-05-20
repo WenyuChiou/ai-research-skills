@@ -179,6 +179,14 @@ Per-skill testing 矩陣與可重現的 test-corpus 證據：
   registry 是結構性檢查,實際安裝跟觸發路徑由 maintainer 在 release
   之間人工驗證(看 [docs/verification.md](docs/verification.md)
   哪些有覆蓋、哪些沒有)。
+- `zotero-skills` 同時被兩個 plugin 提供:`research-workspace` 裡
+  夾帶了舊版本,另一個是 canonical 的 standalone `zotero-skills`
+  plugin。直接呼叫 `Skill(skill="zotero-skills")`(bare name)會
+  靜默 resolve 到 `research-workspace` 裡的舊副本。要打到 canonical
+  standalone 必須用 plugin-qualified 形式
+  `Skill(skill="zotero-skills:zotero-skills")`。重現步驟跟延後修
+  紀錄在
+  [docs/verification.md §2026-05-20](docs/verification.md#2026-05-20--phase-53b-end-to-end-verification)。
 
 完整設計契約——包含哪些東西用機器檢查、哪些不檢查——在
 [docs/design-philosophy.zh-TW.md](docs/design-philosophy.zh-TW.md)。

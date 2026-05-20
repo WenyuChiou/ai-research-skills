@@ -15,6 +15,39 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.4.2] - 2026-05-20
+
+### Added
+
+- [`docs/verification.md`](docs/verification.md) +
+  [`docs/verification.zh-TW.md`](docs/verification.zh-TW.md) — Phase
+  5.3.b end-to-end addendum: real `claude plugin marketplace add` →
+  `install-all.sh` → bare-name skill resolution chain exercised on a
+  clean Claude Code 2.1.142 machine. All 14 expected skill names
+  resolve; trigger-routing prompts hit 14/14 (one resolution lands on
+  the wrong copy of `zotero-skills` — see collision note in the
+  addendum). Provides the first documented evidence for the
+  "no install round-trip is asserted by CI" gap that the README
+  Limitations section called out. CI still does not assert this path
+  — only manual evidence now exists.
+- [`README.md`](README.md) + [`README.zh-TW.md`](README.zh-TW.md)
+  Limitations — documented the silent `zotero-skills` name collision
+  (`research-workspace` embeds an old copy that shadows the canonical
+  standalone via bare-name invocation), with the
+  `Skill(skill="zotero-skills:zotero-skills")` workaround for users
+  who need the canonical standalone variant. Upstream fix is deferred
+  to Phase 2 (research-hub source edit).
+
+### Changed
+
+- `.claude-plugin/marketplace.json` — `research-workspace`
+  description now enumerates all 10 listed research-hub skills (the
+  previous text listed 9 items for a stated count of 10 — the
+  `project orientation` item for `research-project-orienter` was
+  missing). No behavioural change; documentation polish to match the
+  stated count.
+- `.claude-plugin/marketplace.json` `metadata.version`: `1.4.1 → 1.4.2`.
+
 ## [1.4.1] - 2026-05-20
 
 ### Removed
@@ -181,7 +214,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.1...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.2...HEAD
+[1.4.2]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.2.0...v1.3.0

@@ -390,3 +390,136 @@ for skill in research-hub knowledge-base literature-triage-matrix notebooklm-bri
   test -f ~/.claude/skills/$skill/SKILL.md && echo "$skill OK" || echo "$skill MISSING"
 done
 ```
+
+---
+
+## 2026-05-20 — Phase 5.3.b end-to-end verification
+
+This pass is **different in kind** from the per-skill T1/T2 checks
+above. Those exercise individual skill behaviour against real input.
+This pass exercises the **marketplace install path** itself — the
+`claude plugin marketplace add` → `claude plugin install` → bare-name
+skill resolution chain — on a clean machine.
+
+**Tested on:** Windows 11 / Claude Code 2.1.142 / git-bash 5.2.37 /
+Python 3.14. Tester: Claude (Opus 4.7) on the maintainer's machine.
+Artifacts captured to `/tmp/airs-verify/` (00–15) — not committed, but
+the relevant outputs are quoted below.
+
+### Phase A — install round-trip
+
+| Step | Command | Result |
+|---|---|---|
+| 1 | `claude plugin marketplace add WenyuChiou/ai-research-skills` | ✅ "Successfully added marketplace" |
+| 2 | `bash scripts/install-all.sh` | ✅ 5/5 plugins installed (`research-workspace`, `academic-writing-skills`, `zotero-skills`, `codex-delegate`, `gemini-delegate`) |
+| 3 | `claude plugin list` | ✅ all 5 show `Status: ✔ enabled, Scope: user, Version: 0.1.0` |
+| 4 | 14 expected skill names resolvable by bare name | ✅ all 14 resolved by bare name from a fresh `claude -p` session — but one (`zotero-skills`) lands on the wrong copy; see [Silent skill-name collision](#silent-skill-name-collision-found-zotero-skills) below |
+
+**Documentation correction:** the original verification recipe expected
+plugin-provided skills to extract to `~/.claude/skills/<name>/`. They
+don't — Claude Code keeps plugin skills under
+`~/.claude/plugins/cache/<marketplace>/<plugin>/<version>/skills/<skill>/`
+and registers them via `.claude-plugin/plugin.json` auto-discovery.
+The `~/.claude/skills/` diff step is the wrong assertion; the right one
+is "does `claude -p` resolve `Skill(skill=<bare-name>)`". This pass
+uses the latter.
+
+### Phase B — per-skill trigger (14 / 14)
+
+Each of the 14 expected skill names was tested by handing a
+representative trigger prompt to a fresh `claude -p` session and
+recording which skill it would route to. 14/14 hit.
+
+| # | Trigger prompt (verbatim) | Routes to | Confidence |
+|---|---|---|---|
+| 1 | `幫我找 5 篇關於 agent-based modeling 的論文,丟到 Zotero` | research-hub | high |
+| 2 | `這個 task 需要 codex 跟 gemini 兩邊同時做 — 一邊改 Python 一邊寫繁中報告` | research-hub-multi-ai | high |
+| 3 | `把這個 repo 壓成 .research/ manifest 給未來 AI session 用` | research-context-compressor | high |
+| 4 | `這個 repo 在做什麼?讀 .research/ 給我一份 orientation memo` | research-project-orienter | high |
+| 5 | `在我開始 coding 之前帶我走過研究 design — 從 RQ 到 mechanism 到 validation` | research-design-helper | high |
+| 6 | `比較這 5 篇論文的 method、data、claims、limitations` | literature-triage-matrix | high |
+| 7 | `從我這份 manuscript draft 抽出 claims 跟 figure memory 到 .paper/` | paper-memory-builder | high |
+| 8 | `把 cluster X 的論文 summarize 一下,填掉 TODO Key Findings 區塊` | paper-summarize | high |
+| 9 | `這份 NotebookLM brief 對得回 source bundle 嗎?驗一下` | notebooklm-brief-verifier | high |
+| 10 | `audit 我的 Zotero library 找重複 DOI 跟 orphan items` | zotero-library-curator | high |
+| 11 | `audit 這段文字有沒有 banned words 跟 overclaim` | academic-writing-skills | med (see note) |
+| 12 | `用 Zotero search tag='machine-learning' 的條目,limit 25` | zotero-skills | high (but see collision) |
+| 13 | `這個 task code-heavy,把這個 batch refactor 交給 Codex` | codex-delegate | high |
+| 14 | `把這份 brief 翻成繁中、需要長 context` | gemini-delegate | high |
+
+**Note on #11:** `academic-writing-skills` resolves but the word
+"banned" is implicit ("GPT-style prose cleanup") rather than literal in
+the plugin description. This nudges the routing confidence to medium.
+A tighter description is a candidate for a future minor pass.
+
+### Silent skill-name collision found (zotero-skills)
+
+`zotero-skills` is registered by **two** installed plugins:
+
+| Source | Path | SKILL.md size | skill name (registered) | name conflict |
+|---|---|---|---|---|
+| `research-workspace` (from research-hub) | `research-workspace/0.1.0/skills/zotero-skills/` | 11,321 B | `zotero-skills` | same name, different content |
+| standalone `zotero-skills` (canonical) | `zotero-skills/0.1.0/skills/zotero-skills/` | 4,391 B | `zotero-skills` | same name, different content |
+
+A bare-name invocation of `Skill(skill="zotero-skills")` resolves
+silently to the **research-workspace embedded copy** (11K, older),
+shadowing the canonical 4K standalone. No disambiguation prompt, no
+warning. The canonical standalone is reachable only via the
+plugin-qualified form `Skill(skill="zotero-skills:zotero-skills")`.
+
+**Classification:** pre-existing — predates this verification round.
+**Right fix:** delete `skills/zotero-skills/` from `WenyuChiou/research-hub`
+so the canonical standalone is the only source. **Blocked by:** Phase 2
+hard-gate (research-hub source edits not allowed this round).
+**Workaround documented:** README §Limitations both languages.
+**Deferred to:** Phase 2 (research-hub Task B1 + E4 window).
+
+### What this pass did NOT do (honest gaps)
+
+- **Cross-model second-opinion routing** (Codex / Gemini as second
+  judge) — still v0.3 backlog, not exercised here.
+- **Real-world skill behaviour on user data** — covered by the
+  2026-04-25 / 2026-05-09 T1 passes above, not re-run here.
+- **`marketplace.json` `ref:` pinning to v0.1.0 tags** — still
+  on default branch. Roadmap item in
+  [`docs/design-philosophy.md`](design-philosophy.md) §Roadmap.
+- **Domain validation outside water resources / agent-based
+  modeling** — still flagged in README §Limitations.
+
+### Reproducing this pass
+
+```bash
+mkdir -p /tmp/airs-verify && cd /tmp/airs-verify
+
+# Phase A
+claude --version > 00-claude-version.txt
+claude plugin marketplace remove ai-research-skills 2>/dev/null || true
+claude plugin marketplace add WenyuChiou/ai-research-skills 2>&1 | tee 03-marketplace-add.txt
+git clone --depth 1 https://github.com/WenyuChiou/ai-research-skills /tmp/airs
+bash /tmp/airs/scripts/install-all.sh 2>&1 | tee 05-install-all.txt
+claude plugin list 2>&1 | tee 06-after-plugins.txt
+
+# Phase A collision check — the two zotero-skills SKILL.md sizes
+wc -c ~/.claude/plugins/cache/ai-research-skills/research-workspace/*/skills/zotero-skills/SKILL.md \
+       ~/.claude/plugins/cache/ai-research-skills/zotero-skills/*/skills/zotero-skills/SKILL.md \
+  > 07-skill-size-comparison.txt && cat 07-skill-size-comparison.txt
+# Expect: 11321 (research-workspace) and 4391 (standalone) — bare-name resolves to the larger one.
+
+# Phase B — bare-name resolution dump from a fresh claude process
+claude -p --output-format text --permission-mode bypassPermissions \
+  "List every skill name you can invoke via the Skill tool, one per line, no descriptions." \
+  > 11-fresh-claude-skills.txt
+for s in research-hub research-hub-multi-ai research-context-compressor research-project-orienter \
+         research-design-helper literature-triage-matrix paper-memory-builder paper-summarize \
+         notebooklm-brief-verifier zotero-library-curator academic-writing-skills zotero-skills \
+         codex-delegate gemini-delegate; do
+  grep -qE "(^|:)$s\$" 11-fresh-claude-skills.txt && echo "✅ $s" || echo "❌ $s"
+done
+```
+
+### Verdict
+
+Marketplace install + per-skill auto-trigger **PASSES** on a clean
+Claude Code 2.1.142 install. One silent collision documented; fix
+deferred to Phase 2 by hard-gate. Tagged `v1.4.2` after this addendum
+lands.
