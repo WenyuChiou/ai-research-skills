@@ -53,3 +53,89 @@ T3 不代表較弱，只是反映純推理 skill 性質不同。對這類 skill 
 - **未結 follow-up：** [verification.md#open-follow-ups](verification.md#open-follow-ups)（英文）
 - **整體 pipeline 與 stage 對應：** [pipeline.md](pipeline.md) 或 [pipeline.zh-TW.md](pipeline.zh-TW.md)
 - **Skill catalog 機器可讀來源：** [`catalog/skills.yml`](../catalog/skills.yml)
+
+---
+
+## 2026-05-20 — Phase 5.3.b 端到端驗證(中文摘要)
+
+跟上面的 T1/T2 逐項 skill 驗證**性質不同**。上面的 pass 是針對單個
+skill 對真實 input 的行為。這次 pass 是針對 **marketplace 的安裝
+路徑本身** —— `claude plugin marketplace add` → `claude plugin
+install` → bare-name skill 解析整套鏈條 —— 在乾淨機器上跑。
+
+**測試環境:** Windows 11 / Claude Code 2.1.142 / git-bash 5.2.37 /
+Python 3.14。測試者:Claude(Opus 4.7),在 maintainer 機器上。
+完整 artifact 放在 `/tmp/airs-verify/`(00–15),沒 commit,但相關
+輸出引用在英文版
+[verification.md §2026-05-20](verification.md#2026-05-20--phase-53b-end-to-end-verification)。
+
+### Phase A — install round-trip
+
+| Step | 指令 | 結果 |
+|---|---|---|
+| 1 | `claude plugin marketplace add WenyuChiou/ai-research-skills` | ✅ "Successfully added marketplace" |
+| 2 | `bash scripts/install-all.sh` | ✅ 5/5 plugin 安裝完成 |
+| 3 | `claude plugin list` | ✅ 5 個都顯示 `Status: ✔ enabled, Scope: user, Version: 0.1.0` |
+| 4 | 14 個預期 skill 名字可以用 bare name 解析 | ✅ 在乾淨 `claude -p` session 全部解析得到 —— 但其中一個(`zotero-skills`)解析到錯的副本;見下方[靜默 skill-name 碰撞](#找到一個靜默的-skill-name-碰撞zotero-skills) |
+
+**文件勘誤:** 原本的 verification recipe 預期 plugin 安裝後 skill 會
+解開到 `~/.claude/skills/<name>/`,事實上不會 —— Claude Code 把
+plugin skill 放在
+`~/.claude/plugins/cache/<marketplace>/<plugin>/<version>/skills/<skill>/`,
+然後透過 `.claude-plugin/plugin.json` 的 auto-discovery 註冊。
+驗證該檢查的應該是「`claude -p` 是否能用 bare name 解析到
+`Skill(skill=<name>)`」,而不是 `~/.claude/skills/` diff。這次
+pass 改用前者。
+
+### Phase B — 每個 skill 的觸發測試(14 / 14)
+
+對 14 個預期 skill 名字,各餵一個代表性 trigger prompt 到乾淨
+`claude -p` session,記錄它會 route 到哪個 skill。14/14 命中。
+
+完整 trigger 表跟 prompt 文字看英文版
+[verification.md §2026-05-20 — Phase B](verification.md#phase-b--per-skill-trigger-14--14)。
+
+**#11 的小註記:** `academic-writing-skills` 可以 route 到,但
+"banned" 這個字在 plugin description 裡是隱含("GPT-style prose
+cleanup")不是字面寫出來,所以信心降到 medium。未來小幅微調 description 是
+候選改進。
+
+### 找到一個靜默的 skill-name 碰撞(zotero-skills)
+
+`zotero-skills` 同時被兩個已安裝的 plugin 註冊:
+
+| 來源 | 路徑 | SKILL.md 大小 | 註冊的 skill name | 名稱衝突 |
+|---|---|---|---|---|
+| `research-workspace`(來自 research-hub) | `research-workspace/0.1.0/skills/zotero-skills/` | 11,321 B | `zotero-skills` | 同名、內容不同 |
+| canonical standalone `zotero-skills` | `zotero-skills/0.1.0/skills/zotero-skills/` | 4,391 B | `zotero-skills` | 同名、內容不同 |
+
+直接 `Skill(skill="zotero-skills")` (bare name) 會**靜默 resolve 到
+research-workspace 裡的舊副本**(11K),把 canonical 4K standalone
+shadow 掉。沒有 disambiguation prompt、沒有 warning。要打到 canonical
+standalone 只能用 plugin-qualified 形式
+`Skill(skill="zotero-skills:zotero-skills")`。
+
+**分類:** pre-existing —— 早於這次驗證 round。
+**正確修法:** 從 `WenyuChiou/research-hub` 刪掉
+`skills/zotero-skills/`,讓 canonical standalone 成為唯一來源。
+**被擋的原因:** Phase 2 hard-gate(這 round 不能改 research-hub 的源碼)。
+**Workaround 已寫進:** README §限制 兩個語言版本。
+**延後到:** Phase 2 (research-hub Task B1 + E4 視窗)。
+
+### 這次 pass **沒有**做的事(誠實列出落差)
+
+- **跨 model second-opinion routing**(Codex / Gemini 當第二 judge) ——
+  還在 v0.3 backlog,這次沒跑。
+- **使用者真實資料上的 skill 行為驗證** —— 已由 2026-04-25 / 2026-05-09
+  的 T1 pass 涵蓋,這次沒重跑。
+- **`marketplace.json` `ref:` 釘到 v0.1.0 tag** —— 還在 default
+  branch。路線圖項目見
+  [`docs/design-philosophy.md`](design-philosophy.md) §Roadmap。
+- **水資源 / agent-based modeling 以外的 domain 驗證** —— 還寫在
+  README §限制 裡。
+
+### 結論
+
+Marketplace 安裝 + 每個 skill 的 auto-trigger 在乾淨 Claude Code
+2.1.142 機器上 **PASSES**。找到一個靜默碰撞已記錄;修法因 hard-gate
+延後到 Phase 2。這 addendum 落地後標 `v1.4.2` tag。
