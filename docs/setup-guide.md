@@ -113,12 +113,15 @@ claude plugin install research-workspace@ai-research-skills
 
 ```bash
 # verify
-ls ~/.claude/skills/
-# expected: 10 directories — literature-triage-matrix,
-# research-hub, research-design-helper, paper-memory-builder,
-# paper-summarize, notebooklm-brief-verifier,
-# research-context-compressor, research-project-orienter,
-# research-hub-multi-ai, zotero-library-curator
+claude plugin list
+# expected: research-workspace@ai-research-skills shows up with ✔ enabled.
+# (Marketplace plugins do NOT extract into ~/.claude/skills/; they live
+#  under ~/.claude/plugins/cache/ai-research-skills/research-workspace/
+#  <version>/skills/<name>/. The plugin ships 10 skills:
+#  literature-triage-matrix, research-hub, research-design-helper,
+#  paper-memory-builder, paper-summarize, notebooklm-brief-verifier,
+#  research-context-compressor, research-project-orienter,
+#  research-hub-multi-ai, zotero-library-curator.)
 ```
 
 ### B3. Smoke test: literature matrix from 3 papers
@@ -166,8 +169,10 @@ claude plugin install academic-writing-skills@ai-research-skills
 
 ```bash
 # verify
-ls ~/.claude/skills/academic-writing-skills/
-# expected: SKILL.md plus references/
+claude plugin list
+# expected: academic-writing-skills@ai-research-skills shows up with ✔ enabled.
+# (Marketplace plugins do NOT extract into ~/.claude/skills/ — see the README
+#  for where they actually land.)
 ```
 
 This adds the 11th skill — banned-word audit, claim-evidence check,
@@ -226,8 +231,8 @@ claude plugin install zotero-skills@ai-research-skills
 
 ```bash
 # verify
-ls ~/.claude/skills/zotero-skills/
-# expected: SKILL.md plus any references/
+claude plugin list
+# expected: zotero-skills@ai-research-skills shows up with ✔ enabled.
 ```
 
 ### C4. Test Zotero connectivity
@@ -273,7 +278,8 @@ If you get `Permission denied` or want to keep things isolated, see
 ```bash
 # verify
 research-hub --version
-# expected: research-hub 0.7x or higher
+# expected: 0.45.0 or higher (the version range covered by docs/verification.md).
+# Latest PyPI may be newer; older versions before 0.45 are unsupported.
 ```
 
 ### D2. Run interactive setup
@@ -374,12 +380,22 @@ research-hub notebooklm status
 
 ### E3. Codex CLI / Gemini CLI (multi-AI delegation)
 
-Install the CLI binaries first per their upstream READMEs:
+**Prereq**: Node.js 18+ — both CLIs install via `npm`. Verify with
+`node --version`; install from [nodejs.org](https://nodejs.org) if
+missing. (If `npm` is not on PATH after install, restart your shell.)
 
-- [Codex CLI](https://github.com/WenyuChiou/codex-delegate#readme) →
+Install the CLI binaries from their official upstream sources:
+
+- [Codex CLI (OpenAI)](https://github.com/openai/codex) →
   `npm install -g @openai/codex`
-- [Gemini CLI](https://github.com/WenyuChiou/gemini-delegate-skill#readme) →
+- [Gemini CLI (Google)](https://github.com/google-gemini/gemini-cli) →
   `npm install -g @google/gemini-cli`
+
+The skill wrappers that delegate work TO these CLIs live in
+[`WenyuChiou/codex-delegate`](https://github.com/WenyuChiou/codex-delegate)
+and
+[`WenyuChiou/gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill)
+— those are different from the CLI binaries themselves.
 
 Then install the delegate plugins:
 

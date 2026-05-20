@@ -59,11 +59,17 @@ research-hub install --platform codex
 research-hub install --platform gemini
 ```
 
-裝完之後 9 個 skill 出現在 `~/.claude/skills/` 底下：`research-hub`、
+裝完之後 10 個 skill 出現在 `~/.claude/skills/` 底下：`research-hub`、
 `research-design-helper`、`research-context-compressor`、
 `research-project-orienter`、`research-hub-multi-ai`、
-`literature-triage-matrix`、`paper-memory-builder`、
+`literature-triage-matrix`、`paper-memory-builder`、`paper-summarize`、
 `notebooklm-brief-verifier`、`zotero-library-curator`。
+
+*註*: 這條 Python-CLI 路徑(`research-hub setup`)**會**把 skill 展到
+`~/.claude/skills/` 底下。Claude Code marketplace 路徑(`claude plugin
+install …@ai-research-skills`)**不會** —— 那些 skill 住在
+`~/.claude/plugins/cache/…` 底下。兩條路徑都能用,只是 SKILL.md 落點不同。
+端到端紀錄看 [verification.md](verification.md) §2026-05-20。
 
 NotebookLM 的瀏覽器自動化（如果 setup 時答 yes 就會幫你裝；跳過的話
 個別在這裡裝）：
@@ -90,27 +96,24 @@ research-hub setup
 
 ### 從 research-hub-pipeline ≤ 0.45 升級
 
-舊版本會裝一個叫 `knowledge-base/` 的 skill。現在的正式名稱是
-`research-hub/`（同樣的 workflow）。新裝不會再寫 `knowledge-base/`，
-但你之前裝的可能還留著舊目錄。
+舊版本會裝一個叫 `knowledge-base/` 的 skill。canonical 名字從 v0.46
+開始就是 `research-hub/`(同樣的 workflow)。新裝不會再寫
+`knowledge-base/`,但之前裝的可能還留著舊目錄。
 
-如果 `~/.claude/skills/knowledge-base/` 跟
-`~/.claude/skills/research-hub/` 同時存在，舊 alias 可能讓 skill
-router 重複觸發。可以安全移除：
+如果 `~/.claude/skills/knowledge-base/` 跟 `~/.claude/skills/research-hub/`
+同時存在,舊 alias 可能讓 skill router 重複觸發。
+`get_bundled_skill_path("knowledge-base")` 這個 alias 在 `v0.45–0.69`
+會印 `DeprecationWarning`、`v0.70+` 已經拿掉 alias。安全移除舊目錄:
 
 ```bash
 rm -rf ~/.claude/skills/knowledge-base
 ```
 
-舊版 code 還在引用 `get_bundled_skill_path("knowledge-base")` 這個版本
-還能跑，但會印 `DeprecationWarning`；alias 預計在
-research-hub-pipeline v0.70 移除。
-
 ## 各 plugin 直接安裝指令（不想跑 helper script 的話）
 
 ```bash
 claude plugin marketplace add WenyuChiou/ai-research-skills
-claude plugin install research-workspace@ai-research-skills        # 9 skills
+claude plugin install research-workspace@ai-research-skills        # 10 skills
 claude plugin install academic-writing-skills@ai-research-skills   # +1
 claude plugin install zotero-skills@ai-research-skills             # +1
 claude plugin install codex-delegate@ai-research-skills            # +1

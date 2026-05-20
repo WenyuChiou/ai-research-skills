@@ -50,11 +50,18 @@ research-hub install --platform codex
 research-hub install --platform gemini
 ```
 
-A fresh setup writes 9 skills under `~/.claude/skills/`: `research-hub`,
+A fresh setup writes 10 skills under `~/.claude/skills/`: `research-hub`,
 `research-design-helper`, `research-context-compressor`,
 `research-project-orienter`, `research-hub-multi-ai`,
-`literature-triage-matrix`, `paper-memory-builder`,
+`literature-triage-matrix`, `paper-memory-builder`, `paper-summarize`,
 `notebooklm-brief-verifier`, `zotero-library-curator`.
+
+*Note*: this Python-CLI path (`research-hub setup`) DOES extract skills
+into `~/.claude/skills/`. The Claude Code marketplace path
+(`claude plugin install …@ai-research-skills`) does NOT — those skills
+live under `~/.claude/plugins/cache/…`. Both paths work; they just
+land the SKILL.md files in different directories. See
+[verification.md](verification.md) §2026-05-20 for the round-trip detail.
 
 For NotebookLM browser automation (also handled by `setup` if you answer
 yes when prompted):
@@ -81,55 +88,104 @@ research-hub setup --persona researcher
 
 ### Upgrading from research-hub-pipeline ≤ 0.45
 
-Older versions installed a skill named `knowledge-base/`. The current
-canonical name is `research-hub/` (same workflow). Fresh installs no
-longer write `knowledge-base/`, but a previous install of yours may have
-left the old directory behind.
+Older versions installed a skill named `knowledge-base/`. The canonical
+name has been `research-hub/` since v0.46. Fresh installs no longer
+write `knowledge-base/`, but a previous install may have left the old
+directory behind.
 
-If `~/.claude/skills/knowledge-base/` exists *and* `~/.claude/skills/research-hub/`
-exists, the legacy alias may double-trigger the skill router. Safe to
-remove:
+If `~/.claude/skills/knowledge-base/` and `~/.claude/skills/research-hub/`
+both exist, the legacy alias may double-trigger the skill router. The
+`get_bundled_skill_path("knowledge-base")` alias emitted a
+`DeprecationWarning` in `v0.45–0.69` and was removed in `v0.70+`. Safe
+to remove the stale directory:
 
 ```bash
 rm -rf ~/.claude/skills/knowledge-base
 ```
 
-Calling code that still references `get_bundled_skill_path("knowledge-base")`
-keeps working in this version but emits a `DeprecationWarning`; the alias is
-slated for removal in research-hub-pipeline v0.70.
-
 ## 2. academic-writing-skills
+
+**Canonical path** (Claude Code marketplace):
+
+```bash
+claude plugin install academic-writing-skills@ai-research-skills
+```
+
+<details>
+<summary>Legacy alternative: manual <code>git clone</code> (works for any Claude-compatible host)</summary>
 
 ```bash
 git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills
 ```
 
-Project-level install:
+Project-level:
 
 ```bash
 git clone https://github.com/WenyuChiou/academic-writing-skills <project>/.claude/skills/academic-writing-skills
 ```
 
+Use the manual path only when you need the SKILL.md outside Claude
+Code (Codex CLI, Cursor, Hermes, etc.) — see *Using these skills
+outside Claude Code* below.
+</details>
+
 ## 3. zotero-skills
+
+**Canonical path** (Claude Code marketplace):
+
+```bash
+claude plugin install zotero-skills@ai-research-skills
+```
+
+Use this only if you need deep Zotero operations beyond research-hub's
+pipeline integration. **Note**: the `research-workspace` plugin
+currently ships an embedded copy of `zotero-skills` from research-hub
+that takes precedence by bare name — see `docs/verification.md`
+§2026-05-20 for the workaround until the upstream collision is resolved.
+
+<details>
+<summary>Legacy alternative: manual <code>git clone</code></summary>
 
 ```bash
 git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
 ```
-
-Use this only if you need deep Zotero operations beyond research-hub's pipeline
-integration.
+</details>
 
 ## 4. codex-delegate
+
+**Canonical path** (Claude Code marketplace):
+
+```bash
+claude plugin install codex-delegate@ai-research-skills
+```
+
+<details>
+<summary>Legacy alternative: manual <code>git clone</code></summary>
 
 ```bash
 git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
 ```
+</details>
 
-## 5. gemini-delegate-skill
+## 5. gemini-delegate
+
+**Canonical path** (Claude Code marketplace):
 
 ```bash
-git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
+claude plugin install gemini-delegate@ai-research-skills
 ```
+
+**Note**: the source repo is named `gemini-delegate-skill` but the
+plugin name (and `Skill()` invocation name) is `gemini-delegate`. This
+asymmetry is intentional — see [`CONTRIBUTING.md`](../CONTRIBUTING.md) §3.
+
+<details>
+<summary>Legacy alternative: manual <code>git clone</code></summary>
+
+```bash
+git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate
+```
+</details>
 
 ## Suggested Minimal Set
 
