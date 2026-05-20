@@ -15,7 +15,7 @@ Languages: [English](README.md) | [繁中](README.zh-TW.md)
 
 ## What is this
 
-6 plugins in one Claude Code marketplace: 14 skills in the core catalog plus 5 audit-first skills. Built for
+5 plugins in one Claude Code marketplace, 14 skills total. Built for
 graduate students, PhDs, postdocs, and research support staff running real
 research projects with AI in the loop.
 
@@ -46,9 +46,6 @@ claude plugin install research-workspace@ai-research-skills
 # 2. Manuscript work
 claude plugin install academic-writing-skills@ai-research-skills
 
-# 2b. Audit-first companion: verify references / audit results / draft abstracts / lint other skills
-claude plugin install audit-first-skills@ai-research-skills
-
 # 3. Zotero (enable local API in Zotero desktop first — see docs/setup-guide.md §C)
 claude plugin install zotero-skills@ai-research-skills
 
@@ -61,7 +58,7 @@ pip install research-hub-pipeline
 research-hub setup
 ```
 
-Batch all 6 plugins in one go:
+Batch all 5 plugins in one go:
 
 ```bash
 bash scripts/install-all.sh        # macOS / Linux / git-bash
@@ -113,8 +110,7 @@ If auto-trigger picks the wrong skill, name it explicitly:
 > No install needed — share this README plus [docs/install.md](docs/install.md).
 
 Full mapping: [docs/skill-directory.md](docs/skill-directory.md) ·
-Pipeline-stage view: [docs/pipeline.md](docs/pipeline.md) ·
-End-to-end demo: [docs/demo-walkthrough.md](docs/demo-walkthrough.md).
+Pipeline-stage view: [docs/pipeline.md](docs/pipeline.md).
 
 ---
 
@@ -161,10 +157,9 @@ generic-API client, see
 </details>
 
 <details>
-<summary><b>Standalone repos (5 plugins)</b> — one plugin install each</summary>
+<summary><b>Standalone repos (4 plugins)</b> — one plugin install each</summary>
 
 - [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — manuscript revision, claim-evidence audit, banned-word / humanize, journal format, reviewer response. *(Stages 7, 8)*
-- [`audit-first-skills`](https://github.com/WenyuChiou/audit-first-skills) (v0.1) — 5 audit-first skills: `verify-references`, `senior-author-review`, `abstract-writer`, `scientific-writing`, `skill-lint`. The lean, audit-in-30-minutes alternative to ARS — see [`docs/why-not-ARS.md`](https://github.com/WenyuChiou/audit-first-skills/blob/master/docs/why-not-ARS.md) and the design contract in [`docs/audit-first-design.md`](https://github.com/WenyuChiou/audit-first-skills/blob/master/docs/audit-first-design.md). *(Stages 5–8, audit pass)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — Claude → Codex CLI handoff for code-heavy work. *(Cross-cutting, also Stage 6)*
 - [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting, also Stages 6, 7)*
@@ -173,6 +168,26 @@ generic-API client, see
 
 Per-skill testing matrix + reproducible test-corpus artifacts:
 [docs/verification.md](docs/verification.md).
+
+---
+
+## Limitations
+
+- Assembled and tested by one graduate-student researcher; not
+  corpus-scale-validated.
+- Domain bias toward water resources and agent-based modeling; not
+  validated for social sciences, ML, or clinical writing.
+- Behavioral correctness on real-world inputs is the source repo's
+  responsibility, not this catalog's.
+- Upstream URL liveness is not machine-checked; verified manually on PRs.
+- No `claude plugin install` round-trip is asserted by CI; the
+  marketplace registry is checked structurally, the actual install +
+  trigger path is verified by the maintainer between releases (see
+  [docs/verification.md](docs/verification.md) for what is and isn't
+  covered).
+
+The full design contract — including what is and is not machine-checked
+— is in [docs/design-philosophy.md](docs/design-philosophy.md).
 
 ---
 

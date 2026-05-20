@@ -36,28 +36,27 @@ fail on machines without a configured GitHub SSH key.
 
 ## Plugins shipped
 
-The marketplace ships **6 plugins** — two bundles (`research-workspace`
-and `audit-first-skills`) that auto-discover their skills from a
-`skills/<name>/SKILL.md` layout, plus 4 standalone single-skill plugins
-whose SKILL.md sits at the repo root and is exposed via a
-`.claude-plugin/plugin.json` declaring `"skills": ["./"]`.
+The marketplace ships **5 plugins** — one bundle (`research-workspace`)
+that auto-discovers its skills from a `skills/<name>/SKILL.md` layout,
+plus 4 standalone single-skill plugins whose SKILL.md sits at the repo
+root and is exposed via a `.claude-plugin/plugin.json` declaring
+`"skills": ["./"]`.
 
 | Plugin | Source repo | Skills it ships |
 |---|---|---|
-| `research-workspace` | `WenyuChiou/research-hub` | 9 skills auto-discovered from `skills/<name>/SKILL.md`: research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder |
+| `research-workspace` | `WenyuChiou/research-hub` | 10 skills auto-discovered from `skills/<name>/SKILL.md`: research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder, paper-summarize |
 | `academic-writing-skills` | `WenyuChiou/academic-writing-skills` | Single skill: manuscript revision, banned-word audit, claim-evidence check, journal format, reviewer response |
-| `audit-first-skills` | `WenyuChiou/audit-first-skills` | 5 skills auto-discovered from `skills/<name>/SKILL.md`: verify-references, senior-author-review, abstract-writer, scientific-writing, skill-lint |
 | `zotero-skills` | `WenyuChiou/zotero-skills` | Single skill: full Zotero CRUD (local + Web API) |
 | `codex-delegate` | `WenyuChiou/codex-delegate` | Single skill: hand token-heavy mechanical work to Codex CLI |
 | `gemini-delegate` | `WenyuChiou/gemini-delegate-skill` | Single skill: hand long-context / CJK output to Gemini CLI |
 
 ### What each plugin gets you out of the box
 
-- **`research-workspace`** — 5 of its 9 skills work fully without any
+- **`research-workspace`** — 5 of its 10 skills work fully without any
   extra setup (`literature-triage-matrix`, `research-design-helper`,
   `research-context-compressor`, `research-project-orienter`,
   `paper-memory-builder`). 1 works in fallback mode
-  (`notebooklm-brief-verifier`). 3 are CLI wrappers and need
+  (`notebooklm-brief-verifier`). 4 are CLI wrappers and need
   `pip install research-hub-pipeline` to actually run; without it they
   print a setup hint instead of hallucinating output.
 - **`academic-writing-skills`** — works fully on its own.
@@ -74,7 +73,7 @@ whose SKILL.md sits at the repo root and is exposed via a
 | Just the SKILL.md instructions (skills auto-trigger inside Claude Code) | `claude plugin marketplace add` above — lighter, no Python env |
 | The full research-hub workflow with CLI commands (`research-hub auto`, `research-hub search`, NotebookLM upload automation, etc.) | `pip install research-hub-pipeline` then `research-hub setup` (interactive onboarding) |
 
-Both paths install the same 9 SKILL.md files under
+Both paths install the same 10 SKILL.md files under
 `~/.claude/skills/` — the difference is whether you also get the
 Python CLI.
 

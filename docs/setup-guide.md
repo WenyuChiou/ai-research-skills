@@ -512,5 +512,4 @@ for what's verified and what's host-specific.
 
 - Skill-by-skill install reference: [install.md](install.md)
 - Workflow-by-workflow guide: [researcher-workflow-checklist.md](researcher-workflow-checklist.md)
-- Demo: [demo-walkthrough.md](demo-walkthrough.md)
 - Catalog of all 14 skills: [skill-directory.md](skill-directory.md)

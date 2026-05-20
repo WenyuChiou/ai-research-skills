@@ -15,7 +15,7 @@
 
 ## 這是什麼
 
-1 個 Claude Code marketplace、6 個 plugin:核心 14 個 skill 加上 audit-first-skills 的 5 個 skill。
+1 個 Claude Code marketplace、5 個 plugin、共 14 個 skill。
 給研究生、博士生、博士後、研究人員、研究工程師、研究支援人員用——
 真實研究流程裡把 AI 拉進來、不是 demo。
 
@@ -44,9 +44,6 @@ claude plugin install research-workspace@ai-research-skills
 # 2. 論文撰寫
 claude plugin install academic-writing-skills@ai-research-skills
 
-# 2b. 審計專用配套:驗證引用 / 稽核結果 / 寫摘要 / lint 別的 skill
-claude plugin install audit-first-skills@ai-research-skills
-
 # 3. Zotero（先在 Zotero desktop 開 local API——見 docs/setup-guide.zh-TW.md §C）
 claude plugin install zotero-skills@ai-research-skills
 
@@ -59,7 +56,7 @@ pip install research-hub-pipeline
 research-hub setup
 ```
 
-一次裝 6 個 plugin:
+一次裝 5 個 plugin:
 
 ```bash
 bash scripts/install-all.sh        # macOS / Linux / git-bash
@@ -111,8 +108,7 @@ Auto-trigger 沒挑到對的 skill 時、明說 skill 名字：
 > 把這份 README 跟 [docs/install.zh-TW.md](docs/install.zh-TW.md) 轉給對方就好。
 
 完整對應表：[docs/skill-directory.zh-TW.md](docs/skill-directory.zh-TW.md) ·
-按研究 pipeline 階段看：[docs/pipeline.zh-TW.md](docs/pipeline.zh-TW.md) ·
-End-to-end demo：[docs/demo-walkthrough.zh-TW.md](docs/demo-walkthrough.zh-TW.md)。
+按研究 pipeline 階段看：[docs/pipeline.zh-TW.md](docs/pipeline.zh-TW.md)。
 
 ---
 
@@ -170,6 +166,22 @@ SKILL.md，看
 Per-skill testing 矩陣與可重現的 test-corpus 證據：
 [docs/verification.zh-TW.md](docs/verification.zh-TW.md)（中文摘要）或
 [docs/verification.md](docs/verification.md)（英文完整逐項）。
+
+---
+
+## 限制
+
+- 由一位研究生組裝、測試;沒做過 corpus 規模驗證。
+- 領域偏向水資源、agent-based modeling;社會科學、ML、臨床寫作未驗證。
+- 真實世界輸入的行為正確性是 source repo 的責任,不是 catalog 的。
+- 上游 URL 是否還活著沒有 CI 自動檢查;PR 時人工 review。
+- CI 沒有 assert `claude plugin install` 整套 round-trip——marketplace
+  registry 是結構性檢查,實際安裝跟觸發路徑由 maintainer 在 release
+  之間人工驗證(看 [docs/verification.md](docs/verification.md)
+  哪些有覆蓋、哪些沒有)。
+
+完整設計契約——包含哪些東西用機器檢查、哪些不檢查——在
+[docs/design-philosophy.zh-TW.md](docs/design-philosophy.zh-TW.md)。
 
 ---
 

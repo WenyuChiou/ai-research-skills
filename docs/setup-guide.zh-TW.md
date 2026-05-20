@@ -458,5 +458,4 @@ pip install research-hub-pipeline
 
 - Skill-by-skill 安裝參考：[install.zh-TW.md](install.zh-TW.md)
 - Workflow-by-workflow 指南：[researcher-workflow-checklist.zh-TW.md](researcher-workflow-checklist.zh-TW.md)
-- Demo：[demo-walkthrough.zh-TW.md](demo-walkthrough.zh-TW.md)
 - 14 支 skill 完整 catalog：[skill-directory.zh-TW.md](skill-directory.zh-TW.md)
