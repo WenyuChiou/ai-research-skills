@@ -11,9 +11,11 @@ check before publishing).
 
 Checks:
 
-1. The five marketplace plugins line up with five canonical_repo URLs
-   in catalog/skills.yml. Order matters because the README and install
-   docs reference plugins in this order.
+1. The six marketplace plugins line up with the canonical_repo URLs
+   in catalog/skills.yml (audit-first-skills is a separately-bundled
+   audit suite and is intentionally outside the catalog skills.yml).
+   Order matters because the README and install docs reference plugins
+   in this order.
 2. The research-workspace plugin description's "<N> research-hub skills"
    count matches the actual number of skills under the research-workspace
    family in skills.yml.
@@ -43,6 +45,7 @@ MARKETPLACE_PATH = ROOT / ".claude-plugin" / "marketplace.json"
 EXPECTED_PLUGIN_NAMES = [
     "research-workspace",
     "academic-writing-skills",
+    "audit-first-skills",
     "zotero-skills",
     "codex-delegate",
     "gemini-delegate",

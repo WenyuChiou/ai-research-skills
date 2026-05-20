@@ -15,7 +15,7 @@
 
 ## 這是什麼
 
-1 個 Claude Code marketplace、5 個 plugin、共 14 個 skill。
+1 個 Claude Code marketplace、6 個 plugin:核心 14 個 skill 加上 audit-first-skills 的 5 個 skill。
 給研究生、博士生、博士後、研究人員、研究工程師、研究支援人員用——
 真實研究流程裡把 AI 拉進來、不是 demo。
 
@@ -44,6 +44,9 @@ claude plugin install research-workspace@ai-research-skills
 # 2. 論文撰寫
 claude plugin install academic-writing-skills@ai-research-skills
 
+# 2b. 審計專用配套:驗證引用 / 稽核結果 / 寫摘要 / lint 別的 skill
+claude plugin install audit-first-skills@ai-research-skills
+
 # 3. Zotero（先在 Zotero desktop 開 local API——見 docs/setup-guide.zh-TW.md §C）
 claude plugin install zotero-skills@ai-research-skills
 
@@ -56,7 +59,7 @@ pip install research-hub-pipeline
 research-hub setup
 ```
 
-一次裝 5 個 plugin：
+一次裝 6 個 plugin:
 
 ```bash
 bash scripts/install-all.sh        # macOS / Linux / git-bash

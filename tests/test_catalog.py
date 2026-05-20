@@ -130,11 +130,12 @@ def test_claude_plugin_marketplace_is_well_formed():
     Code plugin marketplace. Guard its basic structure so future edits
     don't silently break `/plugin marketplace add`.
 
-    Ships 5 plugins: research-workspace (9 skills auto-discovered from
-    research-hub's skills/ subdir) + 4 standalone single-skill plugins
-    (academic-writing-skills, zotero-skills, codex-delegate,
-    gemini-delegate) whose source repos declare {"skills": ["./"]} in
-    their .claude-plugin/plugin.json so the root SKILL.md is picked up.
+    Ships 6 plugins: research-workspace (9 skills auto-discovered from
+    research-hub's skills/ subdir), academic-writing-skills, audit-first-skills
+    (5-skill bundle auto-discovered from audit-first-skills' skills/ subdir),
+    plus 3 single-skill plugins (zotero-skills, codex-delegate, gemini-delegate)
+    whose source repos declare {"skills": ["./"]} in their
+    .claude-plugin/plugin.json so the root SKILL.md is picked up.
     See .claude-plugin/README.md for the full story."""
     import json
     marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"
@@ -152,6 +153,7 @@ def test_claude_plugin_marketplace_is_well_formed():
     assert plugin_names == [
         "research-workspace",
         "academic-writing-skills",
+        "audit-first-skills",
         "zotero-skills",
         "codex-delegate",
         "gemini-delegate",

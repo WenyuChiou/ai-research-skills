@@ -21,6 +21,7 @@ $Marketplace = "WenyuChiou/ai-research-skills"
 $Plugins = @(
   "research-workspace"
   "academic-writing-skills"
+  "audit-first-skills"
   "zotero-skills"
   "codex-delegate"
   "gemini-delegate"
@@ -41,4 +42,4 @@ foreach ($p in $Plugins) {
 }
 
 Write-Host ""
-Write-Host "Done. Run 'claude plugin list' to confirm all 5 plugins show as ✔ enabled."
+Write-Host "Done. Run 'claude plugin list' to confirm all 6 plugins show as ✔ enabled."

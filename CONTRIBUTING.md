@@ -93,7 +93,7 @@ Tests guard:
 - Catalog YAML structure (required families, fields, URLs).
 - README phrase invariants (Zotero/Obsidian/NotebookLM mentioned;
   persona starting points present; bilingual parity).
-- Marketplace JSON structure (5 plugins, expected names, source
+- Marketplace JSON structure (6 plugins, expected names, source
   fields).
 - `research-hub setup` documented as the canonical install command.
 - 14 skills total with the documented verification status counts

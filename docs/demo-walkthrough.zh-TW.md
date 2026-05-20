@@ -13,7 +13,7 @@ claude plugin marketplace add WenyuChiou/ai-research-skills
 bash scripts/install-all.sh        # 或 pwsh scripts/install-all.ps1
 ```
 
-裝完之後 5 個 plugin（13 個 skill）都會載入。本 walkthrough 用到其中三個會需要額外設定：
+裝完之後 6 個 plugin 都會載入(14 個核心 skill + audit-first-skills 的 5 個 skill)。本 walkthrough 用到其中三個會需要額外設定:
 
 - `research-hub`（論文搜尋）需要 `pip install research-hub-pipeline` + `research-hub setup`。詳見 [install.md](install.md)。
 - `notebooklm-brief-verifier` 的手動模式不需設定；Managed 模式需要 research-hub CLI。
