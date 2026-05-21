@@ -248,6 +248,12 @@ the prototype.
   discovery) → `literature-triage-matrix` (§2–§4) → `research-design-helper`
   (§5–§7) → `paper-memory-builder` (the `.paper/claims.yml` linkage). Raw
   search output is archived alongside a real deliverable.
+- **Companion files (machine-readable):** every deliverable ships with
+  `<name>.bib` — a BibTeX export of §8 References — and `<name>.gaps.yml`
+  — a structured export of §5 research gaps + §6 open questions (each gap
+  carries `statement / evidence / closes_via / linked_claim / status`).
+  For this example: `example-literature-review-deliverable.bib` and
+  `example-literature-review-deliverable.gaps.yml`.
 - **Corpus limitation:** in a real run the corpus is read **abstract-only**
   unless full-text is fetched; quantified findings are transcribed from
   abstracts, and "not specified in abstract" is used wherever the abstract

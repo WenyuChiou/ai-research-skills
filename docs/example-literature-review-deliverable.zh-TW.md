@@ -215,6 +215,11 @@
   `literature-triage-matrix`(§2–§4)→ `research-design-helper`(§5–§7)
   → `paper-memory-builder`(`.paper/claims.yml` 串接)。真實交付品會一併
   保存原始搜尋輸出。
+- **機器可讀的伴隨檔:** 每份交付品都附 `<name>.bib`(§8 參考文獻的
+  BibTeX 匯出)與 `<name>.gaps.yml`(§5 研究缺口 + §6 開放問題的結構化
+  匯出,每個缺口帶 `statement / evidence / closes_via / linked_claim /
+  status`)。本範例為 `example-literature-review-deliverable.bib` 與
+  `example-literature-review-deliverable.gaps.yml`。
 - **語料限制:** 真實執行中,除非取得全文,語料僅讀摘要;量化發現由摘要
   轉錄,摘要未提之處一律寫「摘要未指明」。
 - **並非系統性回顧:** 這是篩選等級的分流,並非帶正式納入 / 排除準則的可重製

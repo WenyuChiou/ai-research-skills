@@ -20,8 +20,8 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - **`docs/example-literature-review-deliverable.md` (+ `.zh-TW.md`,
-  `.docx`, `.zh-TW.docx`) — a full literature-review deliverable
-  example.** The per-skill entries in `docs/examples.md` show output
+  `.docx`, `.zh-TW.docx`, `.bib`, `.gaps.yml`) — a full
+  literature-review deliverable example.** The per-skill entries in `docs/examples.md` show output
   *fragments*; this new file shows the consolidated 9-section document
   the research-hub pipeline (`search` → `literature-triage-matrix` →
   `research-design-helper` → `paper-memory-builder`) produces end to
@@ -30,8 +30,10 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   references, and a provenance section. Doubles as a reusable
   section-contract template. Fully synthetic (6 fabricated papers,
   placeholder identifiers) per the catalog's no-real-artifacts policy.
-  Markdown + Word, English + 繁中. `docs/examples.md` and
-  `.zh-TW.md` gain a "Putting it together" pointer section.
+  Markdown + Word, English + 繁中. Ships machine-readable companions
+  too — a BibTeX `.bib` (references) and a `.gaps.yml` (structured
+  research gaps + open questions). `docs/examples.md` and `.zh-TW.md`
+  gain a "Putting it together" pointer section.
 
 ## [1.5.4] - 2026-05-21
 
