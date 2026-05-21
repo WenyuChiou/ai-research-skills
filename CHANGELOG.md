@@ -15,6 +15,21 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.2] - 2026-05-20
+
+### Added
+
+- **Standalone-skills callout in `README.md` + `README.zh-TW.md`** at
+  the top of the `## Install` section: explicit list of the 7 of 14
+  skills that work immediately with only Claude Code (no Python /
+  Zotero / Codex / Gemini CLI setup) — the 6 manifest / triage /
+  design skills inside `research-workspace`
+  (`literature-triage-matrix`, `research-design-helper`,
+  `research-context-compressor`, `research-project-orienter`,
+  `paper-memory-builder`, `research-hub-multi-ai`) plus
+  `academic-writing-skills`. Closes the "如果其他人只有 Claude
+  怎麼辦" question raised during the Phase 5.3.b verification dogfood.
+
 ## [1.5.1] - 2026-05-20
 
 ### Fixed
@@ -374,7 +389,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.1...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.2...HEAD
+[1.5.2]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.3...v1.5.0
 [1.4.3]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.2...v1.4.3
