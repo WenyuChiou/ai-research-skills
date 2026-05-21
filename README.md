@@ -35,6 +35,19 @@ Prerequisite: [Claude Code](https://claude.ai/code). If you don't have
 Python / Zotero / Git working yet, start with
 [**docs/setup-guide.md**](docs/setup-guide.md).
 
+**If you only have Claude Code** (no Python / Zotero / Codex / Gemini
+CLI), 7 of the 14 skills are pure-reasoning and work immediately
+after Step 1 + Step 2 below: 6 `research-workspace` skills —
+`literature-triage-matrix`, `research-design-helper`,
+`research-context-compressor`, `research-project-orienter`,
+`paper-memory-builder`, `research-hub-multi-ai` (routing guidance is
+useful even though the Codex / Gemini handoffs it prescribes won't
+execute without those CLIs) — plus `academic-writing-skills`. The
+other 7 skills wrap external tools (Zotero local API, NotebookLM,
+the `research-hub-pipeline` Python CLI, Codex CLI, Gemini CLI) and
+need their per-tool setup. Full breakdown:
+[docs/install.md](docs/install.md).
+
 Each step is **additive** — stop after any step and use what you've
 installed.
 

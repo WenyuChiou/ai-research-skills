@@ -34,6 +34,19 @@ Cursor / Windsurf / Hermes（見 [Compatibility](#compatibility)）。
 Python / Zotero / Git 還沒裝起來的話，從
 [**docs/setup-guide.zh-TW.md**](docs/setup-guide.zh-TW.md) 開始。
 
+**只裝 Claude Code 也能用的部分**（沒裝 Python / Zotero / Codex /
+Gemini CLI）：14 支 skills 裡有 7 支是純推理型，做完下面 Step 1 +
+Step 2 後立刻可用——`research-workspace` 裡的 6 支
+（`literature-triage-matrix`、`research-design-helper`、
+`research-context-compressor`、`research-project-orienter`、
+`paper-memory-builder`、`research-hub-multi-ai`，最後這支的路由建議
+仍然有用，只是它建議去呼叫的 Codex / Gemini handoff 在沒裝 CLI 的
+情況下沒辦法實際執行）加上 `academic-writing-skills`。其餘 7 支
+都包了外部工具（Zotero local API、NotebookLM、
+`research-hub-pipeline` Python CLI、Codex CLI、Gemini CLI），須先
+完成各工具的設定。完整對照：
+[docs/install.zh-TW.md](docs/install.zh-TW.md)。
+
 每一步**累加**——做到哪裡停都可以、已裝的就能用。
 
 ```bash
