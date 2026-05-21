@@ -15,6 +15,23 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.3] - 2026-05-21
+
+### Changed
+
+- **`research-workspace` plugin registry version `0.1.0` → `0.2.0`**
+  (`.claude-plugin/marketplace.json`). Mirrors the upstream
+  `research-hub` `.claude-plugin/plugin.json` bump (Phase 8 Wave 1).
+  A 2026-05-20 dogfood test found fresh `claude plugin install` users
+  were still served the pre-Phase-7 cached `0.1.0` skill bundle — the
+  `paper-memory-builder` anti-leakage rule (Phase 7 Wave A) and the
+  `zotero-skills` shadow removal (Wave C) had shipped to the
+  `research-hub` `master` branch but not propagated to installs,
+  because the plugin cache directory is keyed on this version string.
+  The registry entry now matches the upstream `0.2.0` so a
+  `claude plugin marketplace update` pulls a fresh cache. The plugin
+  `source.ref` is unchanged (`master`); only the version label moves.
+
 ## [1.5.2] - 2026-05-20
 
 ### Added
@@ -389,7 +406,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.2...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.3...HEAD
+[1.5.3]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.2...v1.5.3
 [1.5.2]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.4.3...v1.5.0
