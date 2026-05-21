@@ -15,6 +15,24 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.5] - 2026-05-21
+
+### Added
+
+- **`docs/example-literature-review-deliverable.md` (+ `.zh-TW.md`,
+  `.docx`, `.zh-TW.docx`) — a full literature-review deliverable
+  example.** The per-skill entries in `docs/examples.md` show output
+  *fragments*; this new file shows the consolidated 9-section document
+  the research-hub pipeline (`search` → `literature-triage-matrix` →
+  `research-design-helper` → `paper-memory-builder`) produces end to
+  end — literature inventory, per-paper summaries, cross-paper
+  synthesis, tagged research-gap analysis, recommended next step,
+  references, and a provenance section. Doubles as a reusable
+  section-contract template. Fully synthetic (6 fabricated papers,
+  placeholder identifiers) per the catalog's no-real-artifacts policy.
+  Markdown + Word, English + 繁中. `docs/examples.md` and
+  `.zh-TW.md` gain a "Putting it together" pointer section.
+
 ## [1.5.4] - 2026-05-21
 
 ### Changed
@@ -422,7 +440,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.4...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.5...HEAD
+[1.5.5]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.2...v1.5.3
 [1.5.2]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.1...v1.5.2
