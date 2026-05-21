@@ -158,6 +158,20 @@ Block 落在現有的 `## Key Findings` / `## Methodology` / `## Relevance`
 
 ---
 
+## 把它組起來 —— 一份完整的文獻回顧交付品
+
+上面的逐 skill 範例是片段。把 research-hub 文獻管線端到端跑一次 —— `search`
+→ `literature-triage-matrix` → `research-design-helper` —— 這些片段就加總成
+一份整合文件:一份 **文獻回顧
+交付品** —— 完整九節,從 TL;DR、文獻清單,到逐篇摘要、跨論文綜合、附標記的
+研究缺口分析、開放問題、建議下一步、參考文獻,以及來源說明。
+
+一份完整的合成範例 —— 完整 9 節外形、可直接重用為範本 —— 位於
+[`example-literature-review-deliverable.zh-TW.md`](example-literature-review-deliverable.zh-TW.md)
+([English](example-literature-review-deliverable.md))。
+
+---
+
 ## 上面範例**沒**展示的
 
 - **真實 time-to-complete 數字** —— 看 `README.md` § 「Time + cost

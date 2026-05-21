@@ -172,6 +172,23 @@ The block lands at the existing `## Key Findings` / `## Methodology` /
 
 ---
 
+## Putting it together — a full literature-review deliverable
+
+The per-skill samples above are fragments. Run the research-hub literature
+pipeline end to end — `search` → `literature-triage-matrix` →
+`research-design-helper` — and those fragments add up to one consolidated
+document: a **literature-review deliverable** — all nine sections, from a
+TL;DR and literature inventory through per-paper summaries, a cross-paper
+synthesis, a tagged research-gap analysis, open questions, a recommended
+next step, references, and a provenance section.
+
+A complete synthetic example — the full 9-section shape, ready to reuse as a
+template — is at
+[`example-literature-review-deliverable.md`](example-literature-review-deliverable.md)
+([繁中](example-literature-review-deliverable.zh-TW.md)).
+
+---
+
 ## What these examples do NOT show
 
 - **Real time-to-complete numbers** — see `README.md` § "Time + cost

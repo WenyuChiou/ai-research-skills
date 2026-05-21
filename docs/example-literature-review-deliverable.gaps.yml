@@ -1,0 +1,61 @@
+# research_gaps.yml — structured export of the literature-review deliverable
+# example: §5 (Research gaps) + §6 (Open questions). Machine-readable
+# companion so a later pass can list every open research question.
+#
+# SYNTHETIC EXAMPLE — the gaps below are derived from a fully synthetic
+# corpus (6 fabricated papers). Nothing here refers to real research.
+deliverable: example-literature-review-deliverable
+topic: "LLM cognitive biases (synthetic example)"
+generated: "2026-01-15"   # synthetic date
+corpus_size: 6
+evidence_grade: screening-grade-triage   # NOT a systematic review
+synthetic: true
+
+gaps:
+  - id: G1
+    statement: "No standardized free-response effect size for LLM anchoring."
+    evidence: "S1 uses numeric-estimation tasks; S3 uses multiple-choice; neither reports a free-response effect size."
+    closes_via: "A free-response anchoring pilot reporting a standardized effect size."
+    linked_claim: C6      # .paper/claims.yml — status: gap
+    status: open
+
+  - id: G2
+    statement: "The anchor effect's dependence on anchor plausibility is untested."
+    evidence: "No corpus paper grades anchor plausibility; all use fixed anchors."
+    closes_via: "A graded-anchor pilot testing a monotonic dose-response."
+    linked_claim: C5      # .paper/claims.yml — status: gap
+    status: open
+
+  - id: G3
+    statement: "Cross-paper results are not comparable — each study uses its own benchmark."
+    evidence: "S1, S3, and S5 each use a different task set and metric; no shared benchmark exists."
+    closes_via: "A shared public benchmark with a common severity metric."
+    linked_claim: null
+    status: open
+
+  - id: G4
+    statement: "Multiple-choice to free-response generalization is unverified."
+    evidence: "S3's prevalence numbers are all multiple-choice; open-ended behaviour is untested."
+    closes_via: "A free-response replication of a benchmark subset."
+    linked_claim: null
+    status: open
+
+  - id: G5
+    statement: "Bias-mitigation efficacy has no head-to-head evaluation."
+    evidence: "S1 (simple prompts fail) and S5 (self-audit works) are not comparable across their differing setups."
+    closes_via: "A controlled bake-off of mitigation methods on one benchmark."
+    linked_claim: null
+    status: open
+
+  - id: G6
+    statement: "Persona / moderator effects rest on an opaque operationalization."
+    evidence: "Only S4 conditions on persona, and its definition of 'persona' is not specified."
+    closes_via: "A full-text read of S4 plus an independent persona-conditioning replication."
+    linked_claim: null
+    status: open
+
+open_questions:
+  - id: Q1
+    text: "Do S1's estimation tasks and S3's 600 benchmark items share any scenarios? If not, their apparent agreement on prevalence is two non-overlapping samples agreeing by construction."
+  - id: Q2
+    text: "Should a pilot be powered for S3's full range (22-61%) or its high end? The choice changes the required sample size; a power analysis is outstanding."
