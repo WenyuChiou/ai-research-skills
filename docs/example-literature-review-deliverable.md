@@ -8,9 +8,9 @@
 >
 > Languages: [English](example-literature-review-deliverable.md) | [繁中](example-literature-review-deliverable.zh-TW.md)
 
-This is the consolidated end-to-end output of the research-hub pipeline
-(`search` → `literature-triage-matrix` → `research-design-helper` →
-`paper-memory-builder`) — the single document those skills add up to.
+This is the consolidated end-to-end output of the research-hub literature
+pipeline (`search` → `literature-triage-matrix` → `research-design-helper`)
+— the single document those skills add up to.
 
 > **Template note:** this file is BOTH a worked example AND the reusable
 > section contract. Each `>` italic note states what the section must
@@ -23,7 +23,7 @@ This is the consolidated end-to-end output of the research-hub pipeline
 | Scope | Anchoring / framing / persona effects; model scale, prompt detail, and applied-domain risk |
 | Corpus | 6 papers — abstracts only, not full-text (synthetic) |
 | Compiled | 2026-01-15 (synthetic date) |
-| Pipeline | research-hub: `search` → `literature-triage-matrix` → `research-design-helper` → `paper-memory-builder` |
+| Pipeline | research-hub: `search` → `literature-triage-matrix` → `research-design-helper` |
 | Evidence grade | Screening-grade triage — **NOT a systematic review** |
 
 ---
@@ -244,10 +244,12 @@ the prototype.
   of a research-hub literature-review deliverable. None refer to a real
   publication. A real run produces this same shape with real, resolvable
   sources.
-- **Produced by:** the research-hub skill pipeline — `search` (corpus
+- **Produced by:** the research-hub literature pipeline — `search` (corpus
   discovery) → `literature-triage-matrix` (§2–§4) → `research-design-helper`
-  (§5–§7) → `paper-memory-builder` (the `.paper/claims.yml` linkage). Raw
-  search output is archived alongside a real deliverable.
+  (§5–§7). Raw search output is archived alongside a real deliverable.
+  `paper-memory-builder` is not a literature-review step — it runs on a
+  user's own manuscript draft; the `.paper/claims.yml` claim IDs in §5 come
+  from such a draft, not from the corpus.
 - **Companion files (machine-readable):** every deliverable ships with
   `<name>.bib` — a BibTeX export of §8 References — and `<name>.gaps.yml`
   — a structured export of §5 research gaps + §6 open questions (each gap

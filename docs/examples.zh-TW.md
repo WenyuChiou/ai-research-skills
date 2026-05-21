@@ -160,9 +160,9 @@ Block 落在現有的 `## Key Findings` / `## Methodology` / `## Relevance`
 
 ## 把它組起來 —— 一份完整的文獻回顧交付品
 
-上面的逐 skill 範例是片段。把 research-hub 管線端到端跑一次 —— `search` →
-`literature-triage-matrix` → `research-design-helper` →
-`paper-memory-builder` —— 這些片段就加總成一份整合文件:一份 **文獻回顧
+上面的逐 skill 範例是片段。把 research-hub 文獻管線端到端跑一次 —— `search`
+→ `literature-triage-matrix` → `research-design-helper` —— 這些片段就加總成
+一份整合文件:一份 **文獻回顧
 交付品** —— 完整九節,從 TL;DR、文獻清單,到逐篇摘要、跨論文綜合、附標記的
 研究缺口分析、開放問題、建議下一步、參考文獻,以及來源說明。
 

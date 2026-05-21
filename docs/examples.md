@@ -174,9 +174,9 @@ The block lands at the existing `## Key Findings` / `## Methodology` /
 
 ## Putting it together — a full literature-review deliverable
 
-The per-skill samples above are fragments. Run the research-hub pipeline end
-to end — `search` → `literature-triage-matrix` → `research-design-helper` →
-`paper-memory-builder` — and those fragments add up to one consolidated
+The per-skill samples above are fragments. Run the research-hub literature
+pipeline end to end — `search` → `literature-triage-matrix` →
+`research-design-helper` — and those fragments add up to one consolidated
 document: a **literature-review deliverable** — all nine sections, from a
 TL;DR and literature inventory through per-paper summaries, a cross-paper
 synthesis, a tagged research-gap analysis, open questions, a recommended

@@ -7,9 +7,9 @@
 >
 > 語言:[English](example-literature-review-deliverable.md) | [繁中](example-literature-review-deliverable.zh-TW.md)
 
-這是 research-hub 管線(`search` → `literature-triage-matrix` →
-`research-design-helper` → `paper-memory-builder`)的端到端整合輸出 ——
-這些 skill 加總起來會得到的那一份文件。
+這是 research-hub 文獻管線(`search` → `literature-triage-matrix` →
+`research-design-helper`)的端到端整合輸出 —— 這些 skill 加總起來會得到的
+那一份文件。
 
 > **範本說明:** 本文件同時是「填好的範例」與「可重用的章節契約」。每個 `>`
 > 斜體註記說明該章節必須包含什麼。重用方式:保留章節結構與斜體契約,把
@@ -21,7 +21,7 @@
 | 範圍 | 錨定 / 框架 / persona 效應;模型規模、提示詳細度與應用領域風險 |
 | 語料 | 6 篇論文 —— 僅摘要,非全文(合成) |
 | 編製日期 | 2026-01-15(合成日期) |
-| 管線 | research-hub:`search` → `literature-triage-matrix` → `research-design-helper` → `paper-memory-builder` |
+| 管線 | research-hub:`search` → `literature-triage-matrix` → `research-design-helper` |
 | 證據等級 | 篩選等級分流 —— **並非系統性回顧** |
 
 ---
@@ -211,10 +211,11 @@
 - **本文是合成範例。** 全部六篇論文、其作者、其識別碼與每一個數字皆為虛構,
   用以示範 research-hub 文獻回顧交付品的 *結構*。皆不指涉真實出版品。真實
   執行會以真實、可解析的來源產出同樣的外形。
-- **產出者:** research-hub skill 管線 —— `search`(語料探索)→
-  `literature-triage-matrix`(§2–§4)→ `research-design-helper`(§5–§7)
-  → `paper-memory-builder`(`.paper/claims.yml` 串接)。真實交付品會一併
-  保存原始搜尋輸出。
+- **產出者:** research-hub 文獻管線 —— `search`(語料探索)→
+  `literature-triage-matrix`(§2–§4)→ `research-design-helper`(§5–§7)。
+  真實交付品會一併保存原始搜尋輸出。`paper-memory-builder` 不是文獻回顧
+  步驟 —— 它在使用者自己的手稿草稿上執行;§5 的 `.paper/claims.yml`
+  claim ID 來自那份草稿,而非語料。
 - **機器可讀的伴隨檔:** 每份交付品都附 `<name>.bib`(§8 參考文獻的
   BibTeX 匯出)與 `<name>.gaps.yml`(§5 研究缺口 + §6 開放問題的結構化
   匯出,每個缺口帶 `statement / evidence / closes_via / linked_claim /

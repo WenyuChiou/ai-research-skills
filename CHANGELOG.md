@@ -21,11 +21,12 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - **`docs/example-literature-review-deliverable.md` (+ `.zh-TW.md`,
   `.docx`, `.zh-TW.docx`, `.bib`, `.gaps.yml`) — a full
-  literature-review deliverable example.** The per-skill entries in `docs/examples.md` show output
-  *fragments*; this new file shows the consolidated 9-section document
-  the research-hub pipeline (`search` → `literature-triage-matrix` →
-  `research-design-helper` → `paper-memory-builder`) produces end to
-  end — literature inventory, per-paper summaries, cross-paper
+  literature-review deliverable example.** The per-skill entries in
+  `docs/examples.md` show output *fragments*; this new file shows the
+  consolidated 9-section document the research-hub literature pipeline
+  (`search` → `literature-triage-matrix` → `research-design-helper`)
+  produces end to end — literature inventory, per-paper summaries,
+  cross-paper
   synthesis, tagged research-gap analysis, recommended next step,
   references, and a provenance section. Doubles as a reusable
   section-contract template. Fully synthetic (6 fabricated papers,
