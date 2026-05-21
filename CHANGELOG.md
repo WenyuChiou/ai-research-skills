@@ -15,6 +15,22 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.4] - 2026-05-21
+
+### Changed
+
+- **`academic-writing-skills` plugin registry version `0.1.0` → `0.2.0`**
+  (`.claude-plugin/marketplace.json`). Mirrors the upstream
+  `academic-writing-skills` `.claude-plugin/plugin.json` bump
+  (Phase 8.1). A 2026-05-21 Phase 9 behavioral verification found the
+  `§8 step 10` claim-gap cross-reference (added in the prior
+  `academic-writing-skills` release) had shipped to that repo's `main`
+  but not to user installs — the plugin cache directory is keyed on
+  the version string, and the prior change never bumped it. The
+  registry entry now matches the upstream `0.2.0` so a
+  `claude plugin update academic-writing-skills@ai-research-skills`
+  pulls a fresh cache. `source.ref` unchanged (`main`).
+
 ## [1.5.3] - 2026-05-21
 
 ### Changed
@@ -406,7 +422,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.3...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.4...HEAD
+[1.5.4]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.2...v1.5.3
 [1.5.2]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.0...v1.5.1
