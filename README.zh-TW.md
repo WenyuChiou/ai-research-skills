@@ -41,7 +41,7 @@ Step 2 後立刻可用——`research-workspace` 裡的 6 支
 `research-context-compressor`、`research-project-orienter`、
 `paper-memory-builder`、`research-hub-multi-ai`，最後這支的路由建議
 仍然有用，只是它建議去呼叫的 Codex / Gemini handoff 在沒裝 CLI 的
-情況下沒辦法實際執行）加上 `academic-writing-skills`。其餘 7 支
+情況下沒辦法實際執行）加上 `academic-writing-skills`。其餘 8 支
 都包了外部工具（Zotero local API、NotebookLM、
 `research-hub-pipeline` Python CLI、Codex CLI、Gemini CLI），須先
 完成各工具的設定。完整對照：
@@ -168,6 +168,9 @@ spec——~35 個採用該規格的 agent runtime 用的同一套格式。
 | 在 NousResearch/hermes-agent 0.13.0 端對端安裝驗證 | ✅ `literature-triage-matrix` —— 安全掃描 SAFE、`enabled` 註冊 |
 | Hermes 上跑 inference loop | ⚠ 未測（卡 auth gate、超出範圍）|
 | 其他 34 個 agentskills.io host | 未個別測試 |
+
+`n/14` 可移植性數字反映 2026-05-10 的審計，當時 catalog 有 14 支 skill；
+`gap-to-topic`（2026-05-21 新增，第 15 支）尚未做可移植性審計。
 
 Calibrated 審計 + 實驗 transcript：
 [`.research/hermes-compatibility-audit.md`](.research/hermes-compatibility-audit.md)。

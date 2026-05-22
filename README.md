@@ -43,7 +43,7 @@ after Step 1 + Step 2 below: 6 `research-workspace` skills —
 `paper-memory-builder`, `research-hub-multi-ai` (routing guidance is
 useful even though the Codex / Gemini handoffs it prescribes won't
 execute without those CLIs) — plus `academic-writing-skills`. The
-other 7 skills wrap external tools (Zotero local API, NotebookLM,
+other 8 skills wrap external tools (Zotero local API, NotebookLM,
 the `research-hub-pipeline` Python CLI, Codex CLI, Gemini CLI) and
 need their per-tool setup. Full breakdown:
 [docs/install.md](docs/install.md).
@@ -174,6 +174,10 @@ by ~35 agent runtimes.
 | End-to-end install verified on NousResearch/hermes-agent 0.13.0 | ✅ `literature-triage-matrix` — security scan SAFE, registered `enabled` |
 | Inference loop on Hermes | ⚠ not tested (auth-gated; out of scope) |
 | Other 34 listed agentskills.io hosts | not individually tested |
+
+The `n/14` portability rows reflect the audit run 2026-05-10, when the
+catalog had 14 skills; `gap-to-topic` (added 2026-05-21, the 15th) is not
+yet portability-audited.
 
 Calibrated audit + experiment transcripts:
 [`.research/hermes-compatibility-audit.md`](.research/hermes-compatibility-audit.md).

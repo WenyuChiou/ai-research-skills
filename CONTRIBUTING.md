@@ -97,7 +97,8 @@ Tests guard:
   fields).
 - `research-hub setup` documented as the canonical install command.
 - 15 skills total with the documented verification status counts
-  (14 pass + 0 caveat per `tests/test_catalog.py::test_verification_counts_match_catalog`).
+  (14 pass + 0 caveat + 1 not_yet per
+  `tests/test_catalog.py::test_verification_counts_match_catalog`).
 
 What tests do **not** guard (manual review needed):
 - Upstream SKILL.md URLs being live (network test would be flaky).
