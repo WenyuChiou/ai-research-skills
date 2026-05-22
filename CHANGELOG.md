@@ -15,6 +15,21 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.9] - 2026-05-22
+
+### Changed
+
+- **`research-workspace` plugin registry version `0.3.2` → `0.3.5`**
+  (`.claude-plugin/marketplace.json`). Mirrors three upstream `research-hub`
+  plugin bumps that iterated the `gap-to-topic` dossier for readability:
+  reader-first layout (PR #78), scannability tables incl. a Decision
+  scorecard (PR #80), and evidence-strength tags plus an upgrade/kill test
+  from a Codex evaluation (PR #82). `source.ref` unchanged (`master`); skill
+  count unchanged at 11. `gap-to-topic` `verification_notes` in
+  `catalog/skills.yml` updated to record the dossier iteration; the skill's
+  `verification_status` stays `pass`. Catalog metadata version
+  `1.5.8` → `1.5.9`.
+
 ## [1.5.8] - 2026-05-22
 
 ### Changed
