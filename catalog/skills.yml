@@ -257,7 +257,11 @@ families:
           resolves only already-ingested Zotero items - fixed upstream in
           research-hub plugin v0.3.1 (PR #75). SKILL.md and references
           were also reviewed by the code-reviewer subagent across two
-          rounds when the skill was added.
+          rounds when the skill was added. A follow-up workflow audit found
+          §1 named literature-triage-matrix as the default prior-art tool
+          without a step producing its matrix; fixed in plugin v0.3.2
+          (PR #76), and the skill was re-tested end-to-end on the topic
+          "LLM applications in water resources" on the corrected pipeline.
       - name: zotero-library-curator
         directory: zotero-library-curator
         repo_url: https://github.com/WenyuChiou/research-hub

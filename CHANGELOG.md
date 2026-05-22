@@ -15,6 +15,21 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.8] - 2026-05-22
+
+### Changed
+
+- **`research-workspace` plugin registry version `0.3.1` → `0.3.2`**
+  (`.claude-plugin/marketplace.json`). Mirrors the upstream `research-hub`
+  `.claude-plugin/plugin.json` bump (PR #76), which fixed a `gap-to-topic`
+  §1 workflow gap — the SKILL.md named `literature-triage-matrix` as the
+  default prior-art tool but no §1 step produced its matrix; §1 now has an
+  explicit step that runs it. `source.ref` unchanged (`master`); skill
+  count unchanged at 11. `gap-to-topic` `verification_notes` in
+  `catalog/skills.yml` updated to record the fix and the end-to-end
+  re-test on the corrected pipeline (topic: "LLM applications in water
+  resources"). Catalog metadata version `1.5.7` → `1.5.8`.
+
 ## [1.5.7] - 2026-05-21
 
 ### Changed
