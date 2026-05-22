@@ -271,6 +271,11 @@ families:
           end-to-end on the screened pipeline. Plugin v0.3.7 (PR #87)
           reworked the dossier to read as a plain summary report — no
           machine codes, no glyphs, plain verdicts, an in-document index.
+          Plugin v0.3.8 (PR #89) reworked the dossier section-by-section for
+          researcher value — a Likert scorecard, a "what it would
+          contribute" claim and a validation sketch in Gate 2, design /
+          scale / proposal-vs-dissertation feasibility in Gate 3, and a
+          method-note Appendix.
       - name: zotero-library-curator
         directory: zotero-library-curator
         repo_url: https://github.com/WenyuChiou/research-hub
