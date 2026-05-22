@@ -15,6 +15,20 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.10] - 2026-05-22
+
+### Changed
+
+- **`research-workspace` plugin registry version `0.3.5` → `0.3.6`**
+  (`.claude-plugin/marketplace.json`). Mirrors upstream `research-hub`
+  PR #86, which wired `gap-to-topic` §1 onto the new `search --screen`
+  fit-check BM25 relevance gate (research-hub PR #84) — §1 step 1 now runs
+  `search --adversarial --screen --json` and builds the matrix and `.bib`
+  from the on-topic results only. `source.ref` unchanged (`master`); skill
+  count unchanged at 11. `gap-to-topic` `verification_notes` in
+  `catalog/skills.yml` updated; `verification_status` stays `pass`. Catalog
+  metadata version `1.5.9` → `1.5.10`.
+
 ## [1.5.9] - 2026-05-22
 
 ### Changed
