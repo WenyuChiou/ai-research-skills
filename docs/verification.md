@@ -11,6 +11,11 @@ This report is point-in-time. The `verified_on` field per skill in
 [`catalog/skills.yml`](../catalog/skills.yml) is the machine-readable
 source of truth for re-runs.
 
+This pass covers the 14 skills in the catalog as of 2026-05-09.
+`gap-to-topic` (added 2026-05-21, catalog v1.5.6) carries
+`verification_status: not_yet` in the YAML — its dogfood run is pending
+and will be folded into the next verification pass.
+
 ## What changed in this pass
 
 The 2026-04-25 pass promoted 6 prompt-based skills from T3 to **T1** by

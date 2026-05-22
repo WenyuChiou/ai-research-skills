@@ -8,6 +8,10 @@
 
 [`catalog/skills.yml`](../catalog/skills.yml) 的 `verified_on` 欄位是機器可讀的真實來源。
 
+本次 pass 涵蓋 2026-05-09 當時 catalog 內的 14 支 skill。
+`gap-to-topic`（2026-05-21 新增，catalog v1.5.6）在 YAML 標記為
+`verification_status: not_yet`——dogfood run 尚待執行，會併入下一次驗證 pass。
+
 ## 本次 pass 變更
 
 2026-04-25 那次 pass 把 6 個純推理 skill 從 T3 升到 **T1**：建好真實 5 篇論文 test corpus（AI agents + 社會互動主題，由 `research-hub search` 抓取），逐個 skill 端到端跑過。所有產出 commit 在 `test-corpus/ai-agents-social-interaction/`。
