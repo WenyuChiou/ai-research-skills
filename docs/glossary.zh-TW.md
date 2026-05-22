@@ -18,7 +18,7 @@ Claude Code marketplace 的一筆 entry —— `.claude-plugin/marketplace.json`
 
 一支 `SKILL.md` 加 frontmatter(`name`、`description`)加可選的
 `references/`、`evals/` 資料夾。Claude Code 的 auto-trigger 讀 `description`、
-嘗試把你說的話 match 到對的 skill。Catalog 5 個 plugin 共 14 個 skill。
+嘗試把你說的話 match 到對的 skill。Catalog 5 個 plugin 共 15 個 skill。
 
 ### Bare name(裸名)vs qualified name(限定名)
 

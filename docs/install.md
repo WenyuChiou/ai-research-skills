@@ -50,7 +50,7 @@ research-hub install --platform codex
 research-hub install --platform gemini
 ```
 
-A fresh setup writes 10 skills under `~/.claude/skills/`: `research-hub`,
+A fresh setup writes 11 skills under `~/.claude/skills/`: `research-hub`,
 `research-design-helper`, `research-context-compressor`,
 `research-project-orienter`, `research-hub-multi-ai`,
 `literature-triage-matrix`, `paper-memory-builder`, `paper-summarize`,
@@ -221,7 +221,7 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill
 ```
 
 Each repo's SKILL.md (and its `references/`) live under
-`skills/<plugin-name>/`. For research-hub that's 10 SKILL.md files;
+`skills/<plugin-name>/`. For research-hub that's 11 SKILL.md files;
 the other 4 repos have 1 each.
 
 ### 2. Load per host

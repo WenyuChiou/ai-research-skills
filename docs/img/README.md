@@ -6,7 +6,7 @@ Image files for the catalog README + social preview.
 
 | Filename | Used by | Notes |
 |---|---|---|
-| `pipeline-overview.png` | Top of [`README.md`](../../README.md) | Vertical infographic, 1024×1500, 8-stage research pipeline + 14 skills + cross-cutting tools band. Regenerate via ChatGPT image gen when skill count or stage mapping changes — see `pipeline-overview-prompt.md` in this folder for the canonical prompt. |
+| `pipeline-overview.png` | Top of [`README.md`](../../README.md) | Vertical infographic, 1024×1500, 8-stage research pipeline + 15 skills + cross-cutting tools band. Regenerate via ChatGPT image gen when skill count or stage mapping changes — see `pipeline-overview-prompt.md` in this folder for the canonical prompt. |
 | `pipeline-overview.zh-TW.png` | Top of [`README.zh-TW.md`](../../README.zh-TW.md) | Chinese-language mirror of `pipeline-overview.png`. |
 | `social-preview.png` | GitHub repo Settings → Social preview | Horizontal 1280×640 hero used when the repo URL is shared on Twitter / Threads / LinkedIn / Slack. Upload manually via repo Settings → General → Social preview (GitHub has no API for this). |
 

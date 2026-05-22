@@ -23,7 +23,7 @@ claude plugin marketplace add WenyuChiou/ai-research-skills
 bash scripts/install-all.sh        # 或 pwsh scripts/install-all.ps1
 ```
 
-裝好之後 5 個 plugin 全部到位、總共 14 個 skill。Step 5(research-hub
+裝好之後 5 個 plugin 全部到位、總共 15 個 skill。Step 5(research-hub
 CLI)跟 step 3-4(Zotero / Codex / Gemini 外部 binary)的前置設定看
 README。
 
@@ -59,7 +59,7 @@ research-hub install --platform codex
 research-hub install --platform gemini
 ```
 
-裝完之後 10 個 skill 出現在 `~/.claude/skills/` 底下：`research-hub`、
+裝完之後 11 個 skill 出現在 `~/.claude/skills/` 底下：`research-hub`、
 `research-design-helper`、`research-context-compressor`、
 `research-project-orienter`、`research-hub-multi-ai`、
 `literature-triage-matrix`、`paper-memory-builder`、`paper-summarize`、
@@ -113,7 +113,7 @@ rm -rf ~/.claude/skills/knowledge-base
 
 ```bash
 claude plugin marketplace add WenyuChiou/ai-research-skills
-claude plugin install research-workspace@ai-research-skills        # 10 skills
+claude plugin install research-workspace@ai-research-skills        # 11 skills
 claude plugin install academic-writing-skills@ai-research-skills   # +1
 claude plugin install zotero-skills@ai-research-skills             # +1
 claude plugin install codex-delegate@ai-research-skills            # +1
@@ -153,7 +153,7 @@ git clone https://github.com/WenyuChiou/gemini-delegate-skill
 ```
 
 每個 repo 的 SKILL.md（連同 `references/`）都在
-`skills/<plugin-name>/` 底下。research-hub 有 10 份；其他 4 個各 1 份。
+`skills/<plugin-name>/` 底下。research-hub 有 11 份；其他 4 個各 1 份。
 
 ### 2. 各 host 載入方式
 

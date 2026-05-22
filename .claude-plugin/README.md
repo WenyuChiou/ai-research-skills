@@ -44,7 +44,7 @@ root and is exposed via a `.claude-plugin/plugin.json` declaring
 
 | Plugin | Source repo | Skills it ships |
 |---|---|---|
-| `research-workspace` | `WenyuChiou/research-hub` | 10 skills auto-discovered from `skills/<name>/SKILL.md`: research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder, paper-summarize |
+| `research-workspace` | `WenyuChiou/research-hub` | 11 skills auto-discovered from `skills/<name>/SKILL.md`: research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder, paper-summarize, gap-to-topic |
 | `academic-writing-skills` | `WenyuChiou/academic-writing-skills` | Single skill: manuscript revision, banned-word audit, claim-evidence check, journal format, reviewer response |
 | `zotero-skills` | `WenyuChiou/zotero-skills` | Single skill: full Zotero CRUD (local + Web API) |
 | `codex-delegate` | `WenyuChiou/codex-delegate` | Single skill: hand token-heavy mechanical work to Codex CLI |
@@ -52,7 +52,7 @@ root and is exposed via a `.claude-plugin/plugin.json` declaring
 
 ### What each plugin gets you out of the box
 
-- **`research-workspace`** — 5 of its 10 skills work fully without any
+- **`research-workspace`** — 5 of its 11 skills work fully without any
   extra setup (`literature-triage-matrix`, `research-design-helper`,
   `research-context-compressor`, `research-project-orienter`,
   `paper-memory-builder`). 1 works in fallback mode
@@ -73,7 +73,7 @@ root and is exposed via a `.claude-plugin/plugin.json` declaring
 | Just the SKILL.md instructions (skills auto-trigger inside Claude Code) | `claude plugin marketplace add` above — lighter, no Python env |
 | The full research-hub workflow with CLI commands (`research-hub auto`, `research-hub search`, NotebookLM upload automation, etc.) | `pip install research-hub-pipeline` then `research-hub setup` (interactive onboarding) |
 
-Both paths install the same 10 SKILL.md files under
+Both paths install the same 11 SKILL.md files under
 `~/.claude/skills/` — the difference is whether you also get the
 Python CLI.
 

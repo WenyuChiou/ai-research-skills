@@ -15,6 +15,20 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.6] - 2026-05-21
+
+### Changed
+
+- **`research-workspace` plugin registry version `0.2.0` → `0.3.0`**
+  (`.claude-plugin/marketplace.json`). Mirrors the upstream `research-hub`
+  `.claude-plugin/plugin.json` bump — research-hub added an 11th packaged
+  skill, `gap-to-topic` (a topic-decision dossier that runs a candidate
+  research topic through a 3-gate go/no-go test). The registry entry now
+  matches the upstream `0.3.0`, so a
+  `claude plugin update research-workspace@ai-research-skills` pulls a
+  fresh cache that includes the new skill. `source.ref` unchanged
+  (`master`); the plugin description is updated 10 → 11 skills.
+
 ## [1.5.5] - 2026-05-21
 
 ### Added
@@ -443,7 +457,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.5...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.6...HEAD
+[1.5.6]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.5...v1.5.6
 [1.5.5]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.2...v1.5.3

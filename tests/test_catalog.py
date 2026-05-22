@@ -206,11 +206,11 @@ def test_canonical_install_command_consistent_across_sources_of_truth():
 
 
 def test_verification_counts_match_catalog():
-    """The README + verification.md claim 14 skills with a specific T1/T2
+    """The catalog enumerates 15 skills with a specific verification-status
     split. The machine-readable YAML must agree on the count."""
     data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
     total_skills = sum(len(family["skills"]) for family in data["families"])
-    assert total_skills == 14, f"catalog has {total_skills} skills; README claims 14"
+    assert total_skills == 15, f"catalog has {total_skills} skills; expected 15"
 
     statuses = [s.get("verification_status") for f in data["families"] for s in f["skills"]]
     pass_count = statuses.count("pass")
@@ -218,7 +218,8 @@ def test_verification_counts_match_catalog():
     fail_count = statuses.count("fail")
     not_yet_count = statuses.count("not_yet")
 
-    # YAML-side verification counts: 14 pass + 0 caveat + 0 fail + 0 not_yet = 14.
+    # YAML-side verification counts: 14 pass + 0 caveat + 0 fail + 1 not_yet = 15.
+    # (gap-to-topic added 2026-05-21 as not_yet — new skill, dogfood run pending.)
     # (codex-delegate caveat resolved upstream 2026-05-09 by
     # https://github.com/WenyuChiou/codex-delegate/pull/1; paper-summarize
     # T2 -> T1 after upstream PR
@@ -227,7 +228,7 @@ def test_verification_counts_match_catalog():
     assert pass_count == 14, f"expected 14 pass, got {pass_count}"
     assert caveat_count == 0, f"expected 0 caveat, got {caveat_count}"
     assert fail_count == 0, f"expected 0 fail, got {fail_count}"
-    assert not_yet_count == 0, f"expected 0 not_yet, got {not_yet_count}"
+    assert not_yet_count == 1, f"expected 1 not_yet, got {not_yet_count}"
 
     # README intentionally does NOT advertise verification counts in its
     # body (avoids self-aggrandizing tone). docs/verification.md carries

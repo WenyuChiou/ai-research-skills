@@ -9,8 +9,8 @@ already have Claude Code, Python, and Zotero working, skip to
 
 **Time budget**:
 
-- Phase A + B alone (~20 min) → 10 of 14 skills installed; the 6 pure-reasoning ones inside the research-workspace plugin work immediately, no Zotero needed.
-- Phase A + B + C (~40 min) → 12 of 14 skills wired with Zotero connectivity (add academic-writing-skills in B-extra for the 12th).
+- Phase A + B alone (~20 min) → 11 of 15 skills installed; the 6 pure-reasoning ones inside the research-workspace plugin work immediately, no Zotero needed.
+- Phase A + B + C (~40 min) → 12 of 15 skills wired with Zotero connectivity (add academic-writing-skills in B-extra for the 12th).
 - Phase A + B + C + D (~60 min) → research-hub Python pipeline behind 13 skills; codex/gemini delegates wait for Phase E3.
 
 Stop after any phase and use what you've installed.
@@ -117,7 +117,7 @@ claude plugin list
 # expected: research-workspace@ai-research-skills shows up with ✔ enabled.
 # (Marketplace plugins do NOT extract into ~/.claude/skills/; they live
 #  under ~/.claude/plugins/cache/ai-research-skills/research-workspace/
-#  <version>/skills/<name>/. The plugin ships 10 skills:
+#  <version>/skills/<name>/. The plugin ships 11 skills:
 #  literature-triage-matrix, research-hub, research-design-helper,
 #  paper-memory-builder, paper-summarize, notebooklm-brief-verifier,
 #  research-context-compressor, research-project-orienter,
@@ -151,7 +151,7 @@ output, see [F2](#f2-claude-doesnt-trigger-the-skill).
 
 ### Phase B checkpoint
 
-You have 10 of 14 skills installed (the research-workspace plugin) and
+You have 11 of 15 skills installed (the research-workspace plugin) and
 a working literature matrix without any external setup. The 6 pure-
 reasoning skills inside research-workspace work immediately; the other
 4 (research-hub, research-hub-multi-ai, zotero-library-curator's apply
@@ -249,7 +249,7 @@ see [F4](#f4-zotero-skill-cant-find-items).
 
 ### Phase C checkpoint
 
-You have 12 of 14 skills wired up (10 from research-workspace +
+You have 12 of 15 skills wired up (11 from research-workspace +
 academic-writing-skills from Phase B-extra + zotero-skills), and the
 zotero-library-curator skill is upgraded from preview-only to
 apply-capable. The remaining 2 (`codex-delegate`, `gemini-delegate`)
@@ -335,7 +335,7 @@ hands the list to `literature-triage-matrix`, and writes
 
 ### Phase D checkpoint
 
-All 14 skills are wired up. You're done with the core setup.
+All 15 skills are wired up. You're done with the core setup.
 
 ---
 
@@ -528,4 +528,4 @@ for what's verified and what's host-specific.
 
 - Skill-by-skill install reference: [install.md](install.md)
 - Workflow-by-workflow guide: [researcher-workflow-checklist.md](researcher-workflow-checklist.md)
-- Catalog of all 14 skills: [skill-directory.md](skill-directory.md)
+- Catalog of all 15 skills: [skill-directory.md](skill-directory.md)
