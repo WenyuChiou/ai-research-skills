@@ -262,6 +262,10 @@ families:
           without a step producing its matrix; fixed in plugin v0.3.2
           (PR #76), and the skill was re-tested end-to-end on the topic
           "LLM applications in water resources" on the corrected pipeline.
+          The dossier output was then iterated for readability through
+          plugin v0.3.5: reader-first layout (PR #78), scannability tables
+          incl. a Decision scorecard (PR #80), and evidence-strength tags
+          plus an upgrade/kill test from a Codex evaluation (PR #82).
       - name: zotero-library-curator
         directory: zotero-library-curator
         repo_url: https://github.com/WenyuChiou/research-hub
