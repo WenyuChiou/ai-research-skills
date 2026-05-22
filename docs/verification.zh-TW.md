@@ -9,8 +9,10 @@
 [`catalog/skills.yml`](../catalog/skills.yml) 的 `verified_on` 欄位是機器可讀的真實來源。
 
 本次 pass 涵蓋 2026-05-09 當時 catalog 內的 14 支 skill。
-`gap-to-topic`（2026-05-21 新增，catalog v1.5.6）在 YAML 標記為
-`verification_status: not_yet`——dogfood run 尚待執行，會併入下一次驗證 pass。
+`gap-to-topic`（2026-05-21 在 catalog v1.5.6 新增）已於 2026-05-21 單獨做過
+dogfood 驗證——catalog v1.5.7 記錄其 `verification_status: pass`（tier T1），
+詳見 [`catalog/skills.yml`](../catalog/skills.yml) 的 `verification_notes`。
+會併入下一次完整驗證 pass。
 
 ## 本次 pass 變更
 

@@ -168,7 +168,7 @@ by ~35 agent runtimes.
 
 | What | Status |
 |---|---|
-| 15 SKILL.md pass strict-minimum spec (`name` + `description`, ≤500 lines) | ✅ 14/15 spec-verified (gap-to-topic: pending) |
+| 15 SKILL.md pass strict-minimum spec (`name` + `description`, ≤500 lines) | ✅ 15/15 spec-verified |
 | Zero-edit portable across agentskills.io hosts | ✅ 11/14 |
 | Needed cosmetic `<skill-root>` path edits (since landed) | 3/14 |
 | End-to-end install verified on NousResearch/hermes-agent 0.13.0 | ✅ `literature-triage-matrix` — security scan SAFE, registered `enabled` |

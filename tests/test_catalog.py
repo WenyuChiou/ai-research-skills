@@ -218,17 +218,19 @@ def test_verification_counts_match_catalog():
     fail_count = statuses.count("fail")
     not_yet_count = statuses.count("not_yet")
 
-    # YAML-side verification counts: 14 pass + 0 caveat + 0 fail + 1 not_yet = 15.
-    # (gap-to-topic added 2026-05-21 as not_yet — new skill, dogfood run pending.)
+    # YAML-side verification counts: 15 pass + 0 caveat + 0 fail + 0 not_yet = 15.
+    # (gap-to-topic added 2026-05-21 as not_yet; flipped to pass on 2026-05-21
+    # after a dogfood run end-to-end verified the skill — see its
+    # verification_notes.)
     # (codex-delegate caveat resolved upstream 2026-05-09 by
     # https://github.com/WenyuChiou/codex-delegate/pull/1; paper-summarize
     # T2 -> T1 after upstream PR
     # https://github.com/WenyuChiou/research-hub/pull/31 surfaced the
     # existing 23-test end-to-end suite in the skill's Verification section.)
-    assert pass_count == 14, f"expected 14 pass, got {pass_count}"
+    assert pass_count == 15, f"expected 15 pass, got {pass_count}"
     assert caveat_count == 0, f"expected 0 caveat, got {caveat_count}"
     assert fail_count == 0, f"expected 0 fail, got {fail_count}"
-    assert not_yet_count == 1, f"expected 1 not_yet, got {not_yet_count}"
+    assert not_yet_count == 0, f"expected 0 not_yet, got {not_yet_count}"
 
     # README intentionally does NOT advertise verification counts in its
     # body (avoids self-aggrandizing tone). docs/verification.md carries

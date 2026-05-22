@@ -246,13 +246,18 @@ families:
           - A .bib companion (the Gate 1 reference list)
           - A .gaps.yml companion (structured gaps + open questions)
         verified_on: "2026-05-21"
-        verification_status: not_yet
-        verification_tier: T3
+        verification_status: pass
+        verification_tier: T1
         verification_notes: |
-          Added 2026-05-21 with research-hub plugin v0.3.0. SKILL.md and
-          references reviewed by the code-reviewer subagent across two
-          rounds. Not yet dogfood-verified end-to-end; a verification run
-          is pending.
+          Dogfood-verified end-to-end 2026-05-21: a run on the topic
+          "LLM-generated agent profiles in agent-based models" produced a
+          complete five-section topic_dossier.md plus .bib and .gaps.yml
+          companions matching the dossier template. The run surfaced one
+          Gate 1 bug - the .bib instruction relied on `cite`, which
+          resolves only already-ingested Zotero items - fixed upstream in
+          research-hub plugin v0.3.1 (PR #75). SKILL.md and references
+          were also reviewed by the code-reviewer subagent across two
+          rounds when the skill was added.
       - name: zotero-library-curator
         directory: zotero-library-curator
         repo_url: https://github.com/WenyuChiou/research-hub

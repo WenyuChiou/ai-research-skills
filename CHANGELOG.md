@@ -15,6 +15,25 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.7] - 2026-05-21
+
+### Changed
+
+- **`gap-to-topic` verification status `not_yet` → `pass`, tier `T3` → `T1`**
+  (`catalog/skills.yml`). The skill was dogfood-verified end-to-end on
+  2026-05-21: a run on the topic "LLM-generated agent profiles in
+  agent-based models" produced a complete five-section `topic_dossier.md`
+  plus `.bib` and `.gaps.yml` companions matching the dossier template.
+  The run surfaced one Gate 1 bug — the `.bib` instruction relied on
+  `cite`, which resolves only already-ingested Zotero items — fixed
+  upstream in research-hub plugin v0.3.1. YAML-side verification counts
+  are now 15 pass + 0 caveat + 0 not_yet (`test_catalog.py` updated).
+- **`research-workspace` plugin registry version `0.3.0` → `0.3.1`**
+  (`.claude-plugin/marketplace.json`). Mirrors the upstream `research-hub`
+  `.claude-plugin/plugin.json` bump (PR #75) that fixed the `gap-to-topic`
+  Gate 1 `.bib` instruction. `source.ref` unchanged (`master`); skill
+  count unchanged at 11. Catalog metadata version `1.5.6` → `1.5.7`.
+
 ## [1.5.6] - 2026-05-21
 
 ### Changed
