@@ -231,6 +231,28 @@ families:
           unsupported claim, same 5 follow-up prompts. Confirms a fresh
           user who uploads to NotebookLM directly (no research-hub
           workspace) gets the same verification quality.
+      - name: gap-to-topic
+        directory: gap-to-topic
+        repo_url: https://github.com/WenyuChiou/research-hub
+        skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md
+        purpose: Turn a research area into a go/no-go decision dossier for one candidate thesis or proposal topic - a 3-gate verdict (gap open? a contribution? feasible?) with the evidence laid out so the researcher can verify it. Stops short of the verdict, handing the worth-it call back to the researcher and advisor.
+        use_when:
+          - Decide whether a research gap is worth pursuing.
+          - Pick a thesis or proposal topic.
+          - Check whether a research idea is already taken.
+          - Vet a research idea before committing to it.
+        outputs:
+          - .research/topic_dossier.md (the 5-section decision dossier)
+          - A .bib companion (the Gate 1 reference list)
+          - A .gaps.yml companion (structured gaps + open questions)
+        verified_on: "2026-05-21"
+        verification_status: not_yet
+        verification_tier: T3
+        verification_notes: |
+          Added 2026-05-21 with research-hub plugin v0.3.0. SKILL.md and
+          references reviewed by the code-reviewer subagent across two
+          rounds. Not yet dogfood-verified end-to-end; a verification run
+          is pending.
       - name: zotero-library-curator
         directory: zotero-library-curator
         repo_url: https://github.com/WenyuChiou/research-hub

@@ -56,6 +56,7 @@ research-hub notebooklm login
 | `paper-summarize` | You just ran `research-hub auto` and the per-paper Key Findings / Methodology / Relevance sections are still TODO skeletons. Fills them in both Obsidian markdown and Zotero child notes via one LLM call per paper, atomically rolled back if Zotero write fails. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) |
 | `notebooklm-brief-verifier` | You downloaded a NotebookLM brief and want to verify source coverage, unsupported claims, or contradictions. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) |
 | `zotero-library-curator` | You want to audit a Zotero library — find duplicate DOIs, orphan items, propose tag/collection cleanup. Read-only; defers writes to `zotero-skills`. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) |
+| `gap-to-topic` | You're choosing a thesis or proposal topic and need a go/no-go call — produces a decision dossier that runs a candidate through a 3-gate test: is the gap open, is it a contribution, is it feasible. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md) |
 
 ### academic-writing-skills
 

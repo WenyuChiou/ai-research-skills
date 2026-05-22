@@ -57,6 +57,7 @@ research-hub notebooklm login
 | `paper-summarize` | 剛跑完 `research-hub auto`，每篇 paper 的 Key Findings / Methodology / Relevance 區塊還是 TODO 骨架。用一次 LLM call 同時填 Obsidian markdown 跟 Zotero child note,Zotero 寫失敗會 atomic rollback。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) |
 | `notebooklm-brief-verifier` | 下載了 NotebookLM brief，想 verify source 涵蓋、未根據的 claim、矛盾敘述。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) |
 | `zotero-library-curator` | 想 audit Zotero library——找重複 DOI、orphan item、提整理計畫。Read-only；寫操作丟給 `zotero-skills`。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) |
+| `gap-to-topic` | 在選論文或 proposal 題目,需要 go/no-go 判斷——產出決策卷宗,讓候選題目過三閘:缺口開著嗎、算貢獻嗎、做得到嗎。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md) |
 
 ### academic-writing-skills
 
