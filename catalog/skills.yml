@@ -268,7 +268,9 @@ families:
           plus an upgrade/kill test from a Codex evaluation (PR #82).
           Plugin v0.3.6 (PR #86) wired §1 onto the new `search --screen`
           fit-check BM25 relevance gate, and the skill was re-tested
-          end-to-end on the screened pipeline.
+          end-to-end on the screened pipeline. Plugin v0.3.7 (PR #87)
+          reworked the dossier to read as a plain summary report — no
+          machine codes, no glyphs, plain verdicts, an in-document index.
       - name: zotero-library-curator
         directory: zotero-library-curator
         repo_url: https://github.com/WenyuChiou/research-hub
