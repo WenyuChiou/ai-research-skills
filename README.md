@@ -1,6 +1,6 @@
 # AI Research Skills
 
-> 14 Claude Code skills for research workflows — literature triage, research
+> 15 Claude Code skills for research workflows — literature triage, research
 > design, project context, manuscript writing, multi-AI delegation.
 
 Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
@@ -9,13 +9,13 @@ Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 
 <sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="agentskills.io spec compliant" src="https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
 
-![14 AI skills mapped to research workflow stages, with cross-cutting tools (codex-delegate, gemini-delegate, research-hub-multi-ai) usable at every stage](docs/img/pipeline-overview.png)
+![15 AI skills mapped to research workflow stages, with cross-cutting tools (codex-delegate, gemini-delegate, research-hub-multi-ai) usable at every stage](docs/img/pipeline-overview.png)
 
 ---
 
 ## What is this
 
-5 plugins in one Claude Code marketplace, 14 skills total. Built for
+5 plugins in one Claude Code marketplace, 15 skills total. Built for
 graduate students, PhDs, postdocs, and research support staff running real
 research projects with AI in the loop.
 
@@ -36,7 +36,7 @@ Python / Zotero / Git working yet, start with
 [**docs/setup-guide.md**](docs/setup-guide.md).
 
 **If you only have Claude Code** (no Python / Zotero / Codex / Gemini
-CLI), 7 of the 14 skills are pure-reasoning and work immediately
+CLI), 7 of the 15 skills are pure-reasoning and work immediately
 after Step 1 + Step 2 below: 6 `research-workspace` skills —
 `literature-triage-matrix`, `research-design-helper`,
 `research-context-compressor`, `research-project-orienter`,
@@ -52,7 +52,7 @@ Each step is **additive** — stop after any step and use what you've
 installed.
 
 ```bash
-# 1. Marketplace + 10 research-hub skills (6 are immediately usable, pure reasoning)
+# 1. Marketplace + 11 research-hub skills (6 are immediately usable, pure reasoning)
 claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 
@@ -162,13 +162,13 @@ The skills will not do this for you.
 
 ## Compatibility
 
-The 14 SKILL.md files conform to the
+The 15 SKILL.md files conform to the
 [agentskills.io](https://agentskills.io) open spec — the same format used
 by ~35 agent runtimes.
 
 | What | Status |
 |---|---|
-| 14 SKILL.md pass strict-minimum spec (`name` + `description`, ≤500 lines) | ✅ 14/14 verified |
+| 15 SKILL.md pass strict-minimum spec (`name` + `description`, ≤500 lines) | ✅ 14/15 spec-verified (gap-to-topic: pending) |
 | Zero-edit portable across agentskills.io hosts | ✅ 11/14 |
 | Needed cosmetic `<skill-root>` path edits (since landed) | 3/14 |
 | End-to-end install verified on NousResearch/hermes-agent 0.13.0 | ✅ `literature-triage-matrix` — security scan SAFE, registered `enabled` |
@@ -184,7 +184,7 @@ generic-API client, see
 
 ---
 
-## All 14 skills
+## All 15 skills
 
 > `*(Stages X, Y)*` tags below refer to research-workflow stages 1–8 —
 > see [`docs/pipeline.md`](docs/pipeline.md) for the diagram and
@@ -192,7 +192,7 @@ generic-API client, see
 > stage-by-stage breakdown.
 
 <details>
-<summary><b>From <code>research-hub</code> (10 skills)</b> — one install gets all</summary>
+<summary><b>From <code>research-hub</code> (11 skills)</b> — one install gets all</summary>
 
 - [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) — search, ingest, organise papers across Zotero / Obsidian / NotebookLM. *(Stages 1, 2)*
 - [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) — comparison matrix across method, data, claim, limitation. *(Stage 2)*

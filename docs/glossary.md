@@ -21,7 +21,7 @@ skills.
 A single `SKILL.md` file with frontmatter (`name`, `description`) plus
 optional `references/` and `evals/` directories. Claude Code's
 auto-trigger reads the `description` and tries to match your phrasing to
-the right skill. 14 skills total across the 5 plugins in this catalog.
+the right skill. 15 skills total across the 5 plugins in this catalog.
 
 ### Bare name vs qualified name
 

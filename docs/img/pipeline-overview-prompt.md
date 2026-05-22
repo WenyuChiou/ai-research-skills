@@ -11,14 +11,14 @@ short-circuits all that.
 
 ## Pre-conditions before regenerating
 
-1. Confirm canonical 14-skill list against
+1. Confirm canonical 15-skill list against
    [`docs/skill-directory.md`](../skill-directory.md) and
    [`docs/pipeline.md`](../pipeline.md). If the count has changed,
    update the prompt below before sending.
 2. Confirm the badge counts:
-   - Total skills = sum across all 5 plugins (currently 14).
+   - Total skills = sum across all 5 plugins (currently 15).
    - "from research-hub" = `research-hub` plugin count
-     (currently 10: research-hub, research-hub-multi-ai,
+     (currently 11: research-hub, research-hub-multi-ai,
      research-design-helper, research-context-compressor,
      research-project-orienter, literature-triage-matrix,
      paper-memory-builder, paper-summarize,
@@ -32,7 +32,7 @@ short-circuits all that.
 ```
 Create a vertical infographic, 1024×1500 px, titled
 "AI Research Skills" with subtitle
-"14 AI skills catalog organized by research workflow stage".
+"15 AI skills catalog organized by research workflow stage".
 
 Style: soft blue / white background, single teal accent #2DA89C,
 no orange, no warning colors, every stage same color treatment.
@@ -94,8 +94,8 @@ Dotted teal lines from this band back up to the stages each tool
 supports (keep it readable, not all stages need a line).
 
 Bottom legend (left to right):
-- "14 skills total"
-- "10 from research-hub"
+- "15 skills total"
+- "11 from research-hub"
 - "4 standalone repos (academic-writing-skills, zotero-skills,
    codex-delegate, gemini-delegate-skill)"
 - "Repo: github.com/WenyuChiou/ai-research-skills"
@@ -106,7 +106,7 @@ Bottom legend (left to right):
 Same as English, except:
 
 - Title: "AI Research Skills"
-- Subtitle: "14 個 AI skills 的目錄，依研究 workflow 階段組織"
+- Subtitle: "15 個 AI skills 的目錄，依研究 workflow 階段組織"
 - Stage names + quotes in 繁中:
   1. 找文獻 — "別人做過什麼？我該讀什麼？"
   2. 整理比較、找 gap — "gap 在哪？哪 5 篇真的關鍵？"
@@ -129,7 +129,7 @@ Same as English, except:
 - ChatGPT will sometimes drop `research-hub` from Stage 2 — it has
   to be re-listed explicitly. Stage 2 needs **four** chips.
 - ChatGPT will sometimes write the "from research-hub" badge as 8
-  or 9. It must be **10**. Re-emphasize in follow-up if needed.
+  or 9. It must be **11**. Re-emphasize in follow-up if needed.
 - ChatGPT may add a "(you do this)" annotation to a stage title.
   Strip in follow-up.
 - ChatGPT may leak an English quote into a Chinese stage in the

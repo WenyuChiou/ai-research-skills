@@ -1,6 +1,6 @@
 # AI Research Skills
 
-> 14 個 Claude Code skills、覆蓋常見研究任務——文獻整理、研究 design、
+> 15 個 Claude Code skills、覆蓋常見研究任務——文獻整理、研究 design、
 > 專案 context、論文撰寫、多 AI delegation。
 
 語言：[English](README.md) | [繁中](README.zh-TW.md) ·
@@ -9,13 +9,13 @@
 
 <sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="agentskills.io spec compliant" src="https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
 
-![14 個 AI skills 對應研究 workflow 階段，附 cross-cutting tools（codex-delegate、gemini-delegate、research-hub-multi-ai）每階段都可用](docs/img/pipeline-overview.zh-TW.png)
+![15 個 AI skills 對應研究 workflow 階段，附 cross-cutting tools（codex-delegate、gemini-delegate、research-hub-multi-ai）每階段都可用](docs/img/pipeline-overview.zh-TW.png)
 
 ---
 
 ## 這是什麼
 
-1 個 Claude Code marketplace、5 個 plugin、共 14 個 skill。
+1 個 Claude Code marketplace、5 個 plugin、共 15 個 skill。
 給研究生、博士生、博士後、研究人員、研究工程師、研究支援人員用——
 真實研究流程裡把 AI 拉進來、不是 demo。
 
@@ -35,7 +35,7 @@ Python / Zotero / Git 還沒裝起來的話，從
 [**docs/setup-guide.zh-TW.md**](docs/setup-guide.zh-TW.md) 開始。
 
 **只裝 Claude Code 也能用的部分**（沒裝 Python / Zotero / Codex /
-Gemini CLI）：14 支 skills 裡有 7 支是純推理型，做完下面 Step 1 +
+Gemini CLI）：15 支 skills 裡有 7 支是純推理型，做完下面 Step 1 +
 Step 2 後立刻可用——`research-workspace` 裡的 6 支
 （`literature-triage-matrix`、`research-design-helper`、
 `research-context-compressor`、`research-project-orienter`、
@@ -50,7 +50,7 @@ Step 2 後立刻可用——`research-workspace` 裡的 6 支
 每一步**累加**——做到哪裡停都可以、已裝的就能用。
 
 ```bash
-# 1. Marketplace + 10 支 research-hub skills（其中 6 支不用外部設定立刻能用）
+# 1. Marketplace + 11 支 research-hub skills（其中 6 支不用外部設定立刻能用）
 claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 
@@ -157,12 +157,12 @@ library 狀態、prompt 寫法都會影響實際時間。先泡杯咖啡。
 
 ## Compatibility
 
-這 14 支 SKILL.md 符合 [agentskills.io](https://agentskills.io) open
+這 15 支 SKILL.md 符合 [agentskills.io](https://agentskills.io) open
 spec——~35 個採用該規格的 agent runtime 用的同一套格式。
 
 | 項目 | 狀態 |
 |---|---|
-| 14 支 SKILL.md 通過 strict-minimum spec（`name` + `description`、≤500 行）| ✅ 14/14 驗證 |
+| 15 支 SKILL.md 通過 strict-minimum spec（`name` + `description`、≤500 行）| ✅ 14/15 spec-verified（gap-to-topic: pending） |
 | 跨 agentskills.io host 零修改可移植 | ✅ 11/14 |
 | 需要 cosmetic `<skill-root>` example-path 修改（已 landed） | 3/14 |
 | 在 NousResearch/hermes-agent 0.13.0 端對端安裝驗證 | ✅ `literature-triage-matrix` —— 安全掃描 SAFE、`enabled` 註冊 |
@@ -178,14 +178,14 @@ SKILL.md，看
 
 ---
 
-## 全部 14 個 Skills
+## 全部 15 個 Skills
 
 > 下方 `*(階段 X、Y)*` 對應研究 workflow 1-8 階段 ——
 > 圖跟階段對應看 [`docs/pipeline.zh-TW.md`](docs/pipeline.zh-TW.md)
 > 跟 [`docs/glossary.zh-TW.md`](docs/glossary.zh-TW.md) § Phase 數字。
 
 <details>
-<summary><b>來自 <code>research-hub</code>（10 個）</b>——一次安裝全部到位</summary>
+<summary><b>來自 <code>research-hub</code>（11 個）</b>——一次安裝全部到位</summary>
 
 - [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md)：Zotero / Obsidian / NotebookLM 之間搜尋、匯入、整理論文。*(階段 1、2)*
 - [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md)：依 method、data、claim、limitation 做比較表。*(階段 2)*

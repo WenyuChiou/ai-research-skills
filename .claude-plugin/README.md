@@ -73,7 +73,7 @@ root and is exposed via a `.claude-plugin/plugin.json` declaring
 | Just the SKILL.md instructions (skills auto-trigger inside Claude Code) | `claude plugin marketplace add` above — lighter, no Python env |
 | The full research-hub workflow with CLI commands (`research-hub auto`, `research-hub search`, NotebookLM upload automation, etc.) | `pip install research-hub-pipeline` then `research-hub setup` (interactive onboarding) |
 
-Both paths install the same 10 SKILL.md files under
+Both paths install the same 11 SKILL.md files under
 `~/.claude/skills/` — the difference is whether you also get the
 Python CLI.
 

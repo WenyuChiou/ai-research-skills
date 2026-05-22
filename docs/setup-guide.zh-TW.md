@@ -8,7 +8,7 @@
 
 **時間預算：**
 
-- Phase A + B 單獨跑（~20 分鐘）→ 裝好 14 支裡的 10 支；research-workspace plugin 裡 6 支純 reasoning 立刻能用，不需要 Zotero。
+- Phase A + B 單獨跑（~20 分鐘）→ 裝好 15 支裡的 11 支；research-workspace plugin 裡 6 支純 reasoning 立刻能用，不需要 Zotero。
 - Phase A + B + C（~40 分鐘）→ 12 支 wired with Zotero 連接（B-extra 加 academic-writing-skills 拿到第 12 支）。
 - Phase A + B + C + D（~60 分鐘）→ research-hub Python pipeline 接上 13 支；codex / gemini delegate 等 Phase E3。
 
@@ -107,7 +107,7 @@ claude plugin list
 # 預期：research-workspace@ai-research-skills 出現、標 ✔ enabled。
 # （marketplace plugin 不會展到 ~/.claude/skills/;它們住在
 #  ~/.claude/plugins/cache/ai-research-skills/research-workspace/
-#  <version>/skills/<name>/ 底下。這個 plugin 帶 10 個 skill:
+#  <version>/skills/<name>/ 底下。這個 plugin 帶 11 個 skill:
 #  literature-triage-matrix、research-hub、research-design-helper、
 #  paper-memory-builder、paper-summarize、notebooklm-brief-verifier、
 #  research-context-compressor、research-project-orienter、
@@ -140,7 +140,7 @@ Claude 回「我沒有這個 skill」或沒生表 → 看 [F2](#f2-claude-沒-tr
 
 ### Phase B checkpoint
 
-14 支裡的 10 支裝好（research-workspace plugin），有 working literature matrix、不需要任何外部設定。
+15 支裡的 11 支裝好（research-workspace plugin），有 working literature matrix、不需要任何外部設定。
 research-workspace 裡 6 支純 reasoning skill 立刻可用；剩下 4 支（research-hub、research-hub-multi-ai、
 zotero-library-curator 的 apply mode、完整的 literature-triage-matrix 含 paper search）要 Phase C / D / E。
 要寫 / 修稿就接 Phase B-extra；只要文獻整理就跳 Phase C。
@@ -226,7 +226,7 @@ Claude 應該呼叫 Zotero local API、回真的 title。
 
 ### Phase C checkpoint
 
-14 支裡 12 支 wired up（research-workspace 10 支 + Phase B-extra 的 academic-writing-skills + zotero-skills），
+15 支裡 12 支 wired up（research-workspace 11 支 + Phase B-extra 的 academic-writing-skills + zotero-skills），
 zotero-library-curator 從 preview-only 升級成 apply-capable。剩下 2 支（`codex-delegate`、`gemini-delegate`）
 等 Phase E3 裝完對應的 CLI binary 後加進來。Phase D 給 `research-hub`、`research-hub-multi-ai`、
 `literature-triage-matrix` 的 paper-search 模式接上 Python CLI 後台。
@@ -299,7 +299,7 @@ Claude Code 裡：
 
 ### Phase D checkpoint
 
-14 支 skill 全部 wired up，core setup 結束。
+15 支 skill 全部 wired up，core setup 結束。
 
 ---
 
@@ -472,4 +472,4 @@ pip install research-hub-pipeline
 
 - Skill-by-skill 安裝參考：[install.zh-TW.md](install.zh-TW.md)
 - Workflow-by-workflow 指南：[researcher-workflow-checklist.zh-TW.md](researcher-workflow-checklist.zh-TW.md)
-- 14 支 skill 完整 catalog：[skill-directory.zh-TW.md](skill-directory.zh-TW.md)
+- 15 支 skill 完整 catalog：[skill-directory.zh-TW.md](skill-directory.zh-TW.md)

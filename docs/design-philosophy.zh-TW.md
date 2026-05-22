@@ -13,11 +13,11 @@ Catalog 是一份 [Claude Code](https://claude.ai/code) plugin 的 curated
 
 ## Catalog 是什麼
 
-5 個 plugin、安裝完對應到 `~/.claude/skills/` 底下 14 個 SKILL.md:
+5 個 plugin、安裝完對應到 `~/.claude/skills/` 底下 15 個 SKILL.md:
 
 | Plugin | Source repo | 內容 |
 |---|---|---|
-| `research-workspace` | [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) | 10 個 research-hub skill(文獻 triage、專案記憶、NotebookLM brief 驗證、論文整理…) |
+| `research-workspace` | [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) | 11 個 research-hub skill(文獻 triage、專案記憶、NotebookLM brief 驗證、論文整理…) |
 | `academic-writing-skills` | [`WenyuChiou/academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) | 論文修改、banned-word audit、claim-evidence check、journal format、reviewer response |
 | `zotero-skills` | [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | 完整 Zotero CRUD(local + Web API) |
 | `codex-delegate` | [`WenyuChiou/codex-delegate`](https://github.com/WenyuChiou/codex-delegate) | Claude → Codex CLI:把程式重的工作交給 Codex |
@@ -32,7 +32,7 @@ Catalog 是一份 [Claude Code](https://claude.ai/code) plugin 的 curated
 2. **沒有 pipeline orchestrator。** Skill 由研究者個別呼叫,catalog
    不會把它們鏈成 stage-1 → stage-2 的 pipeline。要編排請看
    [`Imbad0202/academic-research-skills`](https://github.com/Imbad0202/academic-research-skills)。
-3. **有觀點的子集、不是窮舉。** 5 個 plugin、14 個 skill 是按
+3. **有觀點的子集、不是窮舉。** 5 個 plugin、15 個 skill 是按
    maintainer 在真實研究裡踩到的洞挑的,而不是把學術人會用到的東西
    都收進來。
 4. **雙語入口。** README、install、verification、pipeline、
@@ -66,7 +66,7 @@ CI 在每次 push、每個 PR 對 `main` 跑。它執行 `python -m pytest tests
 - README 內容 — researcher-facing 受眾用語有出現(Zotero、Obsidian、
   NotebookLM 都被點名);persona 表雙語都有;canonical 安裝指令
   (`research-hub setup`)在 README + 安裝文件 + catalog YAML 一致。
-- Verification 數字 — 14 個 skill、狀態分佈跟
+- Verification 數字 — 15 個 skill、狀態分佈跟
   [`docs/verification.md`](verification.md) 對齊。
 
 CI 紅燈擋 merge。完整檢查清單在

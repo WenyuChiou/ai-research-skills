@@ -16,7 +16,7 @@ contribute, depending on what you want to change.
 
 Upstream source repos:
 
-- [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) — 10 skills (research-workspace plugin)
+- [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) — 11 skills (research-workspace plugin)
 - [`WenyuChiou/academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) — manuscript writing
 - [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) — Zotero CRUD
 - [`WenyuChiou/codex-delegate`](https://github.com/WenyuChiou/codex-delegate) — Codex CLI handoff
@@ -96,7 +96,7 @@ Tests guard:
 - Marketplace JSON structure (5 plugins, expected names, source
   fields).
 - `research-hub setup` documented as the canonical install command.
-- 14 skills total with the documented verification status counts
+- 15 skills total with the documented verification status counts
   (14 pass + 0 caveat per `tests/test_catalog.py::test_verification_counts_match_catalog`).
 
 What tests do **not** guard (manual review needed):
@@ -140,7 +140,7 @@ and have to be set via the GitHub API or UI:
 
 ```bash
 gh api -X PATCH repos/WenyuChiou/ai-research-skills \
-  -f description="14 Claude Code skills for common research tasks — literature triage, research design, project context, manuscript writing, and multi-AI delegation. 5-plugin marketplace, install in one command."
+  -f description="15 Claude Code skills for common research tasks — literature triage, research design, project context, manuscript writing, and multi-AI delegation. 5-plugin marketplace, install in one command."
 
 gh api -X PUT repos/WenyuChiou/ai-research-skills/topics \
   -f 'names[]=claude-code' -f 'names[]=claude-skills' \

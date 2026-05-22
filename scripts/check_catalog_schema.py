@@ -12,7 +12,7 @@ Designed to be called from CI alongside
 `scripts/check_marketplace_consistency.py`. Adds the catalog
 schema-driven validation layer to complement the
 `tests/test_catalog.py` structural checks (which are about
-content invariants like 14 skills total, not field-level shape).
+content invariants like 15 skills total, not field-level shape).
 
 Requires: pyyaml + jsonschema. Both already in the CI install step
 after this commit. Locally:
