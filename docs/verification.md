@@ -12,9 +12,11 @@ This report is point-in-time. The `verified_on` field per skill in
 source of truth for re-runs.
 
 This pass covers the 14 skills in the catalog as of 2026-05-09.
-`gap-to-topic` (added 2026-05-21, catalog v1.5.6) carries
-`verification_status: not_yet` in the YAML — its dogfood run is pending
-and will be folded into the next verification pass.
+`gap-to-topic` (added 2026-05-21 in catalog v1.5.6) was dogfood-verified
+separately on 2026-05-21 — catalog v1.5.7 records its
+`verification_status: pass` (tier T1); see its `verification_notes` in
+[`catalog/skills.yml`](../catalog/skills.yml). It will be folded into the
+next full verification pass.
 
 ## What changed in this pass
 

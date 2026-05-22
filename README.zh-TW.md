@@ -162,7 +162,7 @@ spec——~35 個採用該規格的 agent runtime 用的同一套格式。
 
 | 項目 | 狀態 |
 |---|---|
-| 15 支 SKILL.md 通過 strict-minimum spec（`name` + `description`、≤500 行）| ✅ 14/15 spec-verified（gap-to-topic: pending） |
+| 15 支 SKILL.md 通過 strict-minimum spec（`name` + `description`、≤500 行）| ✅ 15/15 spec-verified |
 | 跨 agentskills.io host 零修改可移植 | ✅ 11/14 |
 | 需要 cosmetic `<skill-root>` example-path 修改（已 landed） | 3/14 |
 | 在 NousResearch/hermes-agent 0.13.0 端對端安裝驗證 | ✅ `literature-triage-matrix` —— 安全掃描 SAFE、`enabled` 註冊 |
