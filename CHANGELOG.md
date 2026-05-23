@@ -15,6 +15,128 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.20] - 2026-05-23
+
+### Added
+
+- **`docs/img/pipeline-overview.png`** regenerated from the existing
+  `docs/img/pipeline-overview-prompt.md` English prompt block.
+  Replaces the 2026-05-12 PNG which had drifted: previous subtitle
+  read *"14 AI skills"* (now 15), bottom badge read *"14 skills total
+  / 10 from research-hub"* (now 15 / 11), Stage 2 chip row had 4
+  chips missing `gap-to-topic` (now 5 chips with `gap-to-topic`
+  inserted between `literature-triage-matrix` and `research-hub`).
+  All other stage chips, the cross-cutting band, icon styles, fonts,
+  color palette, and dotted-line routing preserved verbatim per the
+  reference-image + diff regeneration approach documented in the
+  prompt file's *Known iteration pitfalls* block.
+- **`docs/img/pipeline-overview.zh-TW.png`** regenerated with the
+  same 4 fixes plus the Taiwan-localized stage-title labels (chip
+  names stay in English per the convention).
+- **`docs/img/social-preview.png`** regenerated for the GitHub
+  Open-Graph card. Replaces the previous *"13 AI skills for the full
+  research workflow"* subtitle (drift) with *"15 AI skills for the
+  full research workflow"* (the count `15` rendered in teal #2DA89C
+  for visual emphasis), and replaces the 6-stage simplified pipeline
+  chain (*Discover → Plan → Build → Validate → Write → Submit*) with
+  the 8-stage chain matching the new README §3 narrative
+  (*Discover → Find the Gap → Frame → Plan → Build → Run → Visualise
+  → Submit*). 8 glyph icons (magnifying glass / table grid /
+  light bulb / checklist / wrench / gauge / chart / paper plane)
+  connected by thin teal arrows. Left-third title block (`AI` glyph,
+  *"AI Research Skills"* title, repo URL footer) preserved.
+- **GitHub repo About widget refreshed** (set via `gh repo edit` —
+  this is a network-state change visible immediately on the repo
+  page, not a file change in this PR but recorded here for
+  traceability): description rewritten from *"14 Claude Code skills
+  for common research tasks…"* to *"15 Claude Code skills that fix
+  five research pain points: state loss across AI sessions,
+  hallucinated citations, vague gap analysis, AI-smell prose,
+  cross-AI handoff. 5-plugin marketplace, one install."* (aligned
+  with the new pain-first README §2). Added three topics:
+  `agentic-ai`, `research-workflow`, `multi-agent` (10 existing
+  topics retained).
+
+### Changed
+
+- **`README.md` restructured into a 7-section pain-first narrative.** The
+  previous `What is this → Install → How to use → Pick by goal → All 15
+  skills` flow organised the catalog around its surface area (5 plugins ×
+  N skills) rather than what readers actually want to know (what pain
+  does this fix? how do I install? what's the workflow?). Three views
+  of the same skill list (auto-trigger / goal / source-repo) competed
+  without a single load-bearing **pipeline-as-workflow** narrative
+  carrying the catalog's identity. The 8-stage pipeline lived only in
+  the rendered PNG and `docs/pipeline.md` — invisible to landing-page
+  skimmers who read README body text. New structure:
+  - **§1 Install — get the skills.** Promoted to first content section
+    (was §3). Opens with a 30-second TL;DR (2-line install), then an
+    explicit AI-paste hook ("Reading this in Claude / ChatGPT? Paste
+    this whole §1 into your assistant and ask 'Install all 5 plugins
+    for me and verify.'") so the install block is self-contained for
+    AI-assisted onboarding. Keeps the additive 5-step block and `Verify`
+    section. Adds a collapsed `<details>` "I'd rather clone the repo"
+    block explaining that the catalog is a registry, not a monorepo
+    (lists the 5 source repos).
+  - **§2 Why this catalog exists.** Five pain points (P1–P5) named
+    concretely — *"I keep re-explaining context"*, *"AI cites papers
+    that don't exist"*, *"can't tell which gap is worth a thesis"*,
+    *"AI-written prose smells like AI"*, *"switching Claude/Codex/
+    Gemini wipes my state"* — followed by a three-principle architecture
+    table (`Manifests` / `Schemas with anti-leakage` /
+    `Character-driven routing`) that maps each principle to the pains
+    it solves. Image embed `pipeline-overview.png` moves here from the
+    top, so it lands at the moment the reader is being told *what the
+    catalog is for*, not as decoration above the install commands.
+  - **§3 The pipeline — what each stage delivers to the next.** A
+    9-row table covering Stages 1, 2, 3a, 3b, 4, 5, 6, 7, 8 with
+    explicit `Output → next stage` columns naming the schema files
+    (`topic_dossier.gaps.yml` → `design_brief.md` →
+    `project_manifest.yml` → `.paper/claims.yml`). This is the
+    **主線 (main line)** — a single load-bearing pipeline narrative
+    that previous READMEs delegated entirely to `docs/pipeline.md`.
+    Stage 4 explicitly labelled *cookbook* with the path-split rule
+    (Claude direct ≤4 files, `codex-delegate` ≥5).
+  - **§4 Use it.** Trigger table compressed from 8 rows to 4 (most
+    distinctive use cases); the rest moved to
+    [`docs/skill-directory.md`](docs/skill-directory.md). Keeps `All
+    15 skills` collapsed `<details>` blocks (research-hub / standalone),
+    time-cost table, and the Zotero CRUD backup warning.
+  - **§5 See what each skill produces.** Pure pointer section — 7
+    bullets, each linking to a worked example in
+    [`docs/examples.md`](docs/examples.md). No inlined example
+    content per the design rule that examples live in `docs/`, README
+    only signposts.
+  - **§6 Compatibility, §7 Limitations, License** — preserved
+    unchanged.
+- **"What this is" identity card.** A 6-line plain-text paragraph
+  inserted between the language-switcher row and the badges row at
+  the top of the README — names the catalog ("5 Claude Code plugins,
+  15 skills"), the audience ("grad students, PhDs, postdocs, research
+  support staff"), and the agentskills.io compliance + cross-runtime
+  loadability in one place. This single block answers *"what am I
+  looking at?"* before the reader reaches §1 Install.
+- **`README.zh-TW.md` regenerated from scratch via `gemini-delegate`**
+  to mirror the new EN structure section-by-section (7 sections + License),
+  preserving all skill names, plugin names, file paths, YAML field
+  names, YAML enum values, commands, URLs, and brand names in English
+  per the locale convention. Stage names in §3 follow the canonical
+  Taiwan-localized set (找文獻 / 整理比較、找 gap / 框問題 / 寫計畫 /
+  設計與建模 / 執行、校正、驗證 / 視覺化與結果解讀 / 論文撰寫與修改 /
+  投稿、回覆審查、收尾) matching the labels rendered in
+  `pipeline-overview.zh-TW.png`. P1–P5 translated in natural Taiwan
+  voice, not formal academic Chinese, matching the EN's direct
+  pain-first register.
+
+### Fixed
+
+- **`docs/img/pipeline-overview.png` subtitle drift** (14 → 15 skills),
+  bottom-badge counts (14 → 15 skills total, 10 → 11 from research-hub),
+  and Stage 2 chip-row count (4 → 5, adding the missing
+  `gap-to-topic` chip). Captured implicitly by the regeneration above
+  but recorded here so a future drift-audit can see the deltas
+  in one place.
+
 ## [1.5.19] - 2026-05-23
 
 ### Added
