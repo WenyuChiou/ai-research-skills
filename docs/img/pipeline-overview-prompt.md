@@ -22,7 +22,8 @@ short-circuits all that.
      research-design-helper, research-context-compressor,
      research-project-orienter, literature-triage-matrix,
      paper-memory-builder, paper-summarize,
-     notebooklm-brief-verifier, zotero-library-curator).
+     notebooklm-brief-verifier, zotero-library-curator,
+     gap-to-topic).
    - "standalone repos" = the other 4 plugins
      (academic-writing-skills, zotero-skills, codex-delegate,
      gemini-delegate-skill).
@@ -52,7 +53,7 @@ Stages and their exact chip sets (must be present, no omissions):
 
 2. Organise & compare, find the gap
    Quote: "Where is the gap? Which 5 papers actually matter?"
-   Chips: literature-triage-matrix, research-hub,
+   Chips: literature-triage-matrix, gap-to-topic, research-hub,
           notebooklm-brief-verifier, zotero-library-curator
 
 3a. Frame the problem
@@ -127,7 +128,9 @@ Same as English, except:
 ## Known iteration pitfalls (from 2026-05-12 regen)
 
 - ChatGPT will sometimes drop `research-hub` from Stage 2 — it has
-  to be re-listed explicitly. Stage 2 needs **four** chips.
+  to be re-listed explicitly. Stage 2 needs **five** chips
+  (literature-triage-matrix, gap-to-topic, research-hub,
+  notebooklm-brief-verifier, zotero-library-curator).
 - ChatGPT will sometimes write the "from research-hub" badge as 8
   or 9. It must be **11**. Re-emphasize in follow-up if needed.
 - ChatGPT may add a "(you do this)" annotation to a stage title.

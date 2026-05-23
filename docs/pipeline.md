@@ -36,6 +36,7 @@ OneNote skill — use Obsidian as the notes layer.)*
 | Skill | What it does |
 |---|---|
 | [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) | Compare papers by method, data, claim, limitation, and relevance — without rereading every PDF. |
+| [`gap-to-topic`](https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md) | 3-gate go/no-go decision dossier for a candidate thesis/proposal topic (open? a contribution? feasible?). Hands `.gaps.yml` to Stage 3a (v0.3.12+). |
 | [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) | Verify a NotebookLM brief against the source bundle. Catches missed sources, unsupported claims, and contradictions. |
 | [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | Build the Obsidian cluster and the NotebookLM source bundle that feed the matrix. |
 | [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) *(optional)* | Audit Zotero before comparison — find duplicate DOIs, orphan items, propose tag/collection cleanup. Read-only. |
@@ -50,7 +51,7 @@ what you'd otherwise leave implicit.
 
 | Skill | What it does |
 |---|---|
-| [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | Walks you through 5 segments — research question → expected mechanism → identifiability check → validation plan → risk register — and writes `.research/design_brief.md`. |
+| [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | Walks you through 5 segments — research question → expected mechanism → identifiability check → validation plan → risk register — and writes `.research/design_brief.md`. **v0.3.12+**: auto-pre-fills segments 1 (RQ) and 5 (risks) from `.research/topic_dossier.gaps.yml` if a recent `gap-to-topic` run is present (verdict-aware candidate selection). |
 
 ## 3b. Plan the project (capture the artifacts)
 

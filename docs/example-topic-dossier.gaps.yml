@@ -1,0 +1,92 @@
+dossier: LLM applications in water resources
+generated: "2026-05-22"
+run_type: gap-to-topic re-test (research-hub plugin v0.3.6 — §1 applies search --screen)
+downstream_consumer: research-design-helper   # v0.3.11+ contract reader (Stage 3a)
+recall:
+  tool: research-hub search --adversarial --screen --json
+  query_phrasings: 6
+  unique_papers: 435
+  tool_confidence: medium
+  dossier_confidence: medium
+  screen:
+    gate: fit-check BM25 relevance gate (search --screen)
+    retrieved: 25
+    kept: 25
+    screened_out: 0
+    tier: cold-start
+    note: >-
+      No blatant >=5x bimodal split in the returned batch, so the gate
+      (conservative by design) kept all 25. The agent still applied
+      relevance judgement when selecting the prior-art corpus.
+  note: >-
+    semantic-scholar backend rate-limited (HTTP 429) part of the run;
+    recall rests on crossref + openalex + arxiv.
+pipeline:
+  - research-hub search --adversarial --screen --json   # §1 step 1
+  - literature-triage-matrix -> literature_matrix.md     # §1 step 2 (on-topic kept:true)
+  - .bib from on-topic search --json results             # §1 step 3
+  - gap-to-topic gates §1-§4
+gaps:
+  - id: G1
+    name: "LLM-driven water resources management"
+    statement: >-
+      Use LLMs / LLM agents for water resources management and decision
+      support - hydrological forecasting, reservoir/river operations,
+      monitoring, planning.
+    type: B
+    open: occupied
+    dead_end_status: not-assessed   # Gate (1) no-go
+    contribution_type: not-assessed # Gate (1) no-go
+    feasibility: not-assessed       # Gate (1) no-go
+    verdict: no-go
+    verdict_reason: >-
+      Fails Gate (1) - occupied, firmly: primary studies plus a hydrology
+      LLM benchmark (HydroLLM), a systematic review (AI in water
+      regulation) and a bibliometric analysis of LLMs in hydrology.
+    linked_claim: null
+  - id: G2
+    name: "LLM agents for human behaviour in socio-hydrology"
+    statement: >-
+      Use LLM agents to represent heterogeneous stakeholder/household
+      decision-making in coupled human-water (socio-hydrology) modeling,
+      calibrated and validated against observed water-use/adaptation
+      behavior.
+    type: B
+    open: open
+    open_confidence: medium
+    dead_end_status: partially-attempted
+    dead_end_evidence: >-
+      Schuck 2026 (10.3389/frwa.2026.1749745) - a peer-reviewed perspective
+      cautioning on LLMs for human data in human-water research - engages
+      the exact G2 premise as a standing caution.
+    contribution_type: borderline
+    borderline_reason: B1   # partial novelty - Batista 2025 (LLM sentiment
+                            # for water governance), Braga 2025, Khaki 2025
+                            # are weaker realised forms of the capability
+    feasibility: feasible-with-effort
+    verdict: conditional-go
+    verdict_reason: >-
+      Open (medium confidence), partially-attempted on dead-end history,
+      borderline/B1 on contribution, feasible-with-effort. Worth-it call
+      handed to researcher + advisor (dossier section 4).
+    linked_claim: null
+open_questions:
+  - id: Q1
+    text: >-
+      Is G2 still open after a full-recall re-run with semantic-scholar
+      enabled? The openness verdict is medium-confidence pending that.
+  - id: Q2
+    text: >-
+      Can G2's validation design answer Schuck 2026's caution AND
+      out-distance Batista 2025's LLM-sentiment approach to water
+      governance? Batista 2025 is now a close in-domain analogue.
+  - id: Q3
+    text: >-
+      Does the empirical-calibration-against-observed-water-behaviour
+      requirement make G2 problem-solving or incremental? Turns on framing
+      (B1).
+  - id: Q4
+    text: >-
+      Can an existing socio-hydrology dataset/model (e.g. Jiang et al. 2026,
+      North China Plain) be reused as the behavioural-validation base, or
+      does G2 need primary data collection? Binding constraint on timeline.

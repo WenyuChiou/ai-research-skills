@@ -172,6 +172,47 @@ The block lands at the existing `## Key Findings` / `## Methodology` /
 
 ---
 
+## `gap-to-topic` — 3-gate decision dossier for a candidate topic
+
+**Input**: A candidate thesis or proposal topic (Socratically articulated
+in §0) — e.g. *"LLM agents for human behaviour in socio-hydrology"* — plus
+the broader area to search (*"LLM applications in water resources"*).
+
+**Output bundle** — 4 files written to `.research/`, plus a matching
+`topic_dossier.docx` emitted via `scripts/dossier_to_docx.js`:
+
+| File | What it is |
+|---|---|
+| `topic_dossier.md` / `.docx` | 7-section + 2-appendix research-grade decision memo: Executive Summary with per-candidate verdict cards → Definitions → Decision Scorecards (3 gates × Likert) → Evidence Base → Gate-by-Gate Assessment → Risks & Kill Tests → Recommended Next Steps → reproducibility-log Appendix A → file-list Appendix B |
+| `topic_dossier.bib` | BibTeX reference list — every cited paper with a resolvable DOI / arXiv ID |
+| `topic_dossier.gaps.yml` | Machine-readable structured export — per-gap `verdict` / `verdict_reason` / `feasibility` / `dead_end_status` plus `open_questions[]`. Read by `research-design-helper` v0.3.12+ for Stage 3a handoff |
+| `literature_matrix.md` | Paper-by-paper comparison table (method / claim / evidence type / limitation / relevance) — built by `literature-triage-matrix` as §1 step 2 |
+
+**Verdict shape** — each candidate gets one of three outcomes:
+
+| Verdict | Meaning | Color in `.docx` |
+|---|---|---|
+| **Do not pursue — as stated** | At least one gate fails (occupied / not a contribution / not feasible). Salvage path optional. | Light red |
+| **Worth pursuing — only if its open conditions hold** | All three gates clear at neutral or better, but conditional on operational follow-ups (e.g. dataset identification, validation pilot). | Light yellow |
+| **Worth pursuing** | All three gates clear unconditionally. | Light green |
+| **Not assessed** | Gate skipped because an earlier gate already failed. | Light grey |
+
+A complete bilingual example, copied from a real dogfood run (LLM
+applications in water resources, two candidates evaluated, one
+`do-not-pursue` + one `conditional-go`), ships in this repo as:
+
+- [`example-topic-dossier.md`](example-topic-dossier.md) / [`.docx`](example-topic-dossier.docx)
+- [`example-topic-dossier.bib`](example-topic-dossier.bib)
+- [`example-topic-dossier.gaps.yml`](example-topic-dossier.gaps.yml)
+- [`example-topic-dossier.zh-TW.md`](example-topic-dossier.zh-TW.md) / [`.zh-TW.docx`](example-topic-dossier.zh-TW.docx)
+
+The `.docx` files render with bilingual verdict colour coding
+(`gen_docx.js` regex matches both English `"do not pursue"` and zh-TW
+`"不予推進"`) and en / zh-TW font auto-selection (Microsoft JhengHei
+when the filename matches `.zh|zh-|zh_|-tw|-cn`, Arial otherwise).
+
+---
+
 ## Putting it together — a full literature-review deliverable
 
 The per-skill samples above are fragments. Run the research-hub literature
