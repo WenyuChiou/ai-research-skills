@@ -15,6 +15,59 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.22] - 2026-05-23
+
+### Added
+
+- **README §4 `### Already use Zotero / Obsidian / NotebookLM?`
+  callout** — surfaces `research-hub`'s library-management integration
+  loop as its own subsection in §4 (between the trigger table and the
+  `All 15 skills` `<details>` blocks). Previously this integration story
+  lived in a single line buried inside the 11-skill bullet list
+  (`research-hub — search, ingest, organise papers across Zotero /
+  Obsidian / NotebookLM`); readers arriving from the 1.5.20 promo cycle
+  (which calls out the 4-tool loop explicitly) had no matching §-level
+  landing point. The callout addresses three things in one block:
+  - **What the loop is** — *search new literature (arXiv, Semantic
+    Scholar) → Zotero metadata + ingest → per-paper notes synced to
+    Obsidian → NotebookLM briefs verified against source bundles.*
+  - **Optionality (critical correction)** — all three tools (Zotero,
+    Obsidian, NotebookLM) are **optional**; `research-hub` adapts to
+    whichever subset the user has connected, or runs in sample-dashboard
+    mode with none. The previous bullet-list line implied the
+    integration required all three.
+  - **Skill route vs MCP route distinction** — the integration runs on
+    the `research-hub` Python CLI (`pip install research-hub-pipeline`),
+    not on third-party MCP servers. Independent MCP servers
+    (`paper-search-mcp`, Zotero / NotebookLM MCPs) coexist for readers
+    who already use them: skills orchestrate workflows, MCPs give raw
+    tool access. The `research-hub` CLI itself also exposes an MCP
+    interface (`research-hub serve`) for hosts that prefer MCP
+    integration; this is one tool, two interfaces.
+  - Closes with a direct link to the
+    [research-hub project README](https://github.com/WenyuChiou/research-hub)
+    so a reader who wants tool-by-tool setup detail lands on the source
+    repo's own onboarding, not on a SKILL.md sub-page.
+- **`README.zh-TW.md` mirror** — Traditional Chinese version of the
+  same callout. All technical terms (`research-hub`, MCP server names,
+  `paper-search-mcp`, `research-hub serve`, `pip install
+  research-hub-pipeline`, sample-dashboard mode) preserved verbatim in
+  English per locale convention; surrounding narrative translated.
+
+### Changed
+
+- **`research-hub` in §4 `All 15 skills` `<details>` summary header is
+  now a hyperlink** to the project root
+  (`https://github.com/WenyuChiou/research-hub`). Previously the term
+  was a `<code>` span with no `<a>` wrapper; the 11 skill bullets
+  inside the `<details>` block link to per-skill SKILL.md sub-pages,
+  but the project root (which renders the upstream README with full
+  setup + end-to-end demos + MCP integration docs) had no surfaced
+  link path from the catalog README outside the collapsed clone block
+  in §1. Now a reader hovering on the section header for "11 skills
+  from research-hub" can one-click into the project itself, not just
+  the sub-pages. Same change applied to `README.zh-TW.md`.
+
 ## [1.5.21] - 2026-05-23
 
 ### Changed

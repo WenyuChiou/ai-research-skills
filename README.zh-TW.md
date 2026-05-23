@@ -208,10 +208,25 @@ catalog 層級的 `CHANGELOG.md`。
 如果自動觸發選錯了 skill，可以直接指名：
 *"用 `literature-triage-matrix` 比較這 5 篇論文。"*
 
+### 已經在用 Zotero / Obsidian / NotebookLM?
+
+> **手上已經有 Zotero / Obsidian / NotebookLM 任何一個?**
+> [`research-hub`](https://github.com/WenyuChiou/research-hub) 把你有的那幾個
+> 串成一個 library-management loop: 搜新文獻 (arXiv, Semantic Scholar) →
+> 存進 Zotero metadata + ingest → 每篇論文筆記同步到 Obsidian →
+> NotebookLM brief 對照原始 bundle 驗證。**三個工具都是 optional** —
+> `research-hub` 根據你有的子集自動調整 (一個都沒有也行,跑 sample-dashboard 模式)。
+> 後端走 Python CLI; `pip install research-hub-pipeline`。
+>
+> 已經在跑這些工具的獨立 MCP server (例如 `paper-search-mcp` / Zotero MCP /
+> NotebookLM MCP)? 共存 — skill 管 workflow 編排, MCP 給原始 tool access。
+> CLI 本身也可以暴露 MCP 介面 (`research-hub serve`)。完整設定 + 各路線:
+> [research-hub project README](https://github.com/WenyuChiou/research-hub)。
+
 ### 全部 15 個 skills
 
 <details>
-<summary><b>來自 <code>research-hub</code> (11 個 skills)</b> — 一次安裝，全部擁有</summary>
+<summary><b>來自 <a href="https://github.com/WenyuChiou/research-hub"><code>research-hub</code></a> (11 個 skills)</b> — 一次安裝，全部擁有</summary>
 
 - [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) — 在 Zotero / Obsidian / NotebookLM 之間搜尋、匯入、整理論文。*(階段 1, 2)*
 - [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) — 根據方法、數據、主張、限制建立比較矩陣。*(階段 2)*

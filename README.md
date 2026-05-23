@@ -244,10 +244,29 @@ Full trigger map (15 rows): [docs/skill-directory.md](docs/skill-directory.md).
 If auto-trigger picks the wrong skill, name it explicitly:
 *"Use `literature-triage-matrix` to compare these 5 papers."*
 
+### Already use Zotero / Obsidian / NotebookLM?
+
+> **Have any of Zotero / Obsidian / NotebookLM in your workflow?**
+> [`research-hub`](https://github.com/WenyuChiou/research-hub) integrates
+> whichever of these you have as one library-management loop: search
+> new literature (arXiv, Semantic Scholar) → Zotero metadata + ingest
+> → per-paper notes synced to Obsidian → NotebookLM briefs verified
+> against source bundles. **All three tools are optional** —
+> `research-hub` adapts to whichever subset you have (or even none, in
+> sample-dashboard mode). Python-CLI-backed;
+> `pip install research-hub-pipeline`.
+>
+> Already run independent MCP servers for these tools (e.g.
+> `paper-search-mcp`, a Zotero MCP, a NotebookLM MCP)? They coexist —
+> the skill orchestrates workflows, the MCPs give raw tool access. The
+> CLI itself also exposes an MCP interface (`research-hub serve`).
+> Full setup + tool-by-tool modes:
+> [research-hub project README](https://github.com/WenyuChiou/research-hub).
+
 ### All 15 skills
 
 <details>
-<summary><b>From <code>research-hub</code> (11 skills)</b> — one install gets all</summary>
+<summary><b>From <a href="https://github.com/WenyuChiou/research-hub"><code>research-hub</code></a> (11 skills)</b> — one install gets all</summary>
 
 - [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) — search, ingest, organise papers across Zotero / Obsidian / NotebookLM. *(Stages 1, 2)*
 - [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) — comparison matrix across method, data, claim, limitation. *(Stage 2)*
