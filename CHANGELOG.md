@@ -15,6 +15,22 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.13] - 2026-05-22
+
+### Changed
+
+- **`research-workspace` plugin registry version `0.3.8` → `0.3.9`**
+  (`.claude-plugin/marketplace.json`). Mirrors upstream `research-hub`
+  PR #92, which reflowed the `gap-to-topic` dossier as a 7-section
+  research-grade decision memo: Executive Summary with per-candidate
+  verdict cards → Candidate Definitions → per-candidate Decision Scorecards
+  → Evidence Base → Gate-by-Gate Assessment (fixed five-field skeleton) →
+  Risks & Upgrade/Kill Tests → Recommended Next Steps → reproducibility-log
+  Appendix A → file-list Appendix B. `source.ref` unchanged (`master`);
+  skill count unchanged at 11. `gap-to-topic` `verification_notes` in
+  `catalog/skills.yml` updated; `verification_status` stays `pass`.
+  Catalog metadata version `1.5.12` → `1.5.13`.
+
 ## [1.5.12] - 2026-05-22
 
 ### Changed
