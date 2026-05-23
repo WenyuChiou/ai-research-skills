@@ -15,6 +15,59 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.16] - 2026-05-23
+
+### Changed
+
+- **`research-workspace` plugin registry version `0.3.12` → `0.3.15`**
+  (`.claude-plugin/marketplace.json`). Bundles three upstream
+  `research-hub` releases:
+  - **PR #97 (v0.3.12 → v0.3.13)** — SKILL.md prose tightenings from
+    the v0.3.12 dogfood. `research-context-compressor` `## Outputs`
+    section now shows an explicit `provenance.from_gap` example block
+    (the wire was registered in the schema doc but the Output example
+    didn't show it — F1). `research-design-helper` §0 explicitly
+    forbids `_PRE-FILL_`-style annotations in the design_brief file
+    content (chat message signals pre-fill, file content stays clean —
+    F2).
+  - **PR #98 (v0.3.13 → v0.3.14)** — `brief_to_docx.js` ships inside
+    `skills/research-design-helper/scripts/` as the sister generator
+    to `dossier_to_docx.js`. `design_brief.md` becomes shareable as a
+    Word document for advisor / committee review — closes F4 from the
+    v0.3.12 dogfood. Not part of the contracted Stage 3a output;
+    downstream skills read the `.md`, the `.docx` is human-only.
+  - **PR #99 (v0.3.14 → v0.3.15)** — codex review tightenings from
+    the independent eval of the v0.3.12-v0.3.14 deliverables. C2:
+    new multi-eligible `.gaps.yml` fixture exercises the §0
+    "2+ candidates → ask the user" branch (was documented in
+    SKILL.md, never run against a real multi-eligible fixture).
+    C4: `design_brief.md` frontmatter gains optional
+    `placeholder_segments: []` field so dogfood / test-fit content
+    can be machine-flagged (downstream tools should refuse to gate
+    research on a brief with non-empty list).
+
+- **Codex C1 fix — `docs/examples.md` verdict-shape table.** The
+  table previously claimed "each candidate gets one of three outcomes"
+  but listed four rows, the fourth being `Not assessed`. Per the
+  codex independent review: `Not assessed` is a *gate-cell status*
+  inside the scorecard table (a gate skipped because an earlier gate
+  failed), NOT a fourth candidate-level verdict. The table is now
+  relabeled to make this distinction explicit: three rows for the
+  three candidate verdicts (`Do not pursue` / `Worth pursuing
+  conditionally` / `Worth pursuing`), and the `Not assessed` row is
+  separated under a sub-heading explaining it applies to gate cells
+  in the per-candidate scorecard, not the candidate-level verdict.
+
+- **`catalog/skills.yml`** — `research-design-helper` +
+  `research-context-compressor` `verification_notes` appended with
+  the v0.3.13 / v0.3.14 / v0.3.15 descriptions (`gap-to-topic`
+  unchanged — PRs #97–#99 made no changes to that skill itself; its
+  notes still end at the v0.3.10 / v0.3.11 history). Both skills'
+  `verification_status` stays `pass`.
+
+`source.ref` unchanged (`master`). Skill count unchanged at 11.
+Catalog metadata version `1.5.15` → `1.5.16`.
+
 ## [1.5.15] - 2026-05-23
 
 ### Added

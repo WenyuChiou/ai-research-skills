@@ -97,6 +97,12 @@ families:
           that gap-id into the manifest's `provenance.from_gap` field
           (registered in `docs/research-workspace-manifest.md`). Pure
           additive: behaviour unchanged when `design_brief.md` is absent.
+          Plugin v0.3.13 (PR #97) adds an explicit `provenance.from_gap`
+          example block to `## Outputs you must produce` (the wire was
+          registered in the schema doc but the Output example didn't
+          show it). Also adds the absent-state rule (omit the
+          `provenance:` block entirely when there's no upstream; do
+          NOT write `provenance: {}` or `null`).
       - name: research-project-orienter
         directory: research-project-orienter
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -154,6 +160,17 @@ families:
           additive: behaviour unchanged when `.gaps.yml` absent. First
           cross-skill handoff integration test ships at
           `tests/test_handoff_gap_to_topic_design_helper.py`.
+          Plugin v0.3.13 (PR #97) clarifies the §0 segment-1 pre-fill
+          rule: write `gaps[].statement` verbatim into the design_brief
+          file, NO `_PRE-FILL_`-style annotation in file content (chat
+          message signals pre-fill instead). Plugin v0.3.14 (PR #98)
+          ships `scripts/brief_to_docx.js` so `design_brief.md` can be
+          converted to a Word document for advisor / committee review —
+          not contracted output, optional human-consumption only. Plugin
+          v0.3.15 (PR #99) ships the multi-eligible fixture exercising
+          the §0 "2+ candidates → ask the user" branch + the optional
+          `placeholder_segments: []` frontmatter field so dogfood /
+          test-fit content can be machine-flagged for downstream tools.
       - name: literature-triage-matrix
         directory: literature-triage-matrix
         repo_url: https://github.com/WenyuChiou/research-hub
