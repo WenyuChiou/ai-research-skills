@@ -15,6 +15,26 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.24] - 2026-05-23
+
+### Added
+
+- **README `## Contents` table-of-contents** — 8-row numbered link list
+  placed between the awesome-agentic-ai-zh callout and `## 1. Install`.
+  After 1.5.20–1.5.23 the README reached 8 numbered sections (Install /
+  Why / Pipeline / Use it / Examples / FAQ / Compatibility / Limitations)
+  plus License; without an anchored TOC, a reader landing from a promo
+  post had to scroll past the entire identity card + image to know what's
+  in the file. The TOC gives a one-screen overview + jump-to-section
+  anchors. Anchors follow GitHub's auto-generated slugs (e.g.
+  `#1-install--get-the-skills`, `#3-the-pipeline--what-each-stage-delivers-to-the-next`)
+  including the double-hyphen artifact where the section header contains
+  an em-dash.
+- **`README.zh-TW.md`** mirrored with `## 目錄 (Contents)`, same 8 rows,
+  zh-TW anchor slugs (Unicode chars preserved per GitHub's slug
+  algorithm, e.g. `#1-安裝-install--取得這套-skills`,
+  `#6-常見問題-faq`).
+
 ## [1.5.23] - 2026-05-23
 
 ### Added

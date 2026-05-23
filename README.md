@@ -24,6 +24,19 @@ into Codex CLI / Gemini CLI / Cursor / Windsurf / Hermes too (see
 
 ---
 
+## Contents
+
+1. [Install — get the skills](#1-install--get-the-skills)
+2. [Why this catalog exists](#2-why-this-catalog-exists)
+3. [The pipeline — what each stage delivers to the next](#3-the-pipeline--what-each-stage-delivers-to-the-next)
+4. [Use it](#4-use-it)
+5. [See what each skill produces](#5-see-what-each-skill-produces)
+6. [FAQ](#6-faq)
+7. [Compatibility](#7-compatibility)
+8. [Limitations](#8-limitations)
+
+---
+
 ## 1. Install — get the skills
 
 **TL;DR — 30 seconds:**
