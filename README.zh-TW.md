@@ -261,17 +261,18 @@ catalog 層級的 `CHANGELOG.md`。
 
 ## 5. 查看每個 skill 的產出 (See what each skill produces)
 
-每個發布的 skill 在 [`docs/examples.md`](docs/examples.md) 中至少有一個實作範例檔案：
+每個發布的 skill 都有實作範例檔案,點下去直接看 artifact 長什麼樣 — 不是描述,是實物。
 
-- 文獻回顧的交付成果 (階段 1–2)
-- 包含三關卡決策的主題檔案 (階段 2)
-- 追溯至主題檔案來源的設計簡報 (階段 3a)
-- 帶有 `provenance.from_gap` 的專案 manifest (階段 3b)
-- **階段 4 cookbook** — 兩種路徑 (Claude-direct 用於 ≤4 個檔案；`codex-delegate` 用於 ≥5 個檔案的骨架)
-- 帶有 `status: gap` 模式 + 圖表哨兵的 Paper-memory `claims.yml` + `figures.yml` (階段 7)
-- 完整的文獻回顧 pipeline 輸出 (所有部分組合而成)
+| 階段 | skill 產出什麼 | 範例檔 |
+|---|---|---|
+| 1–2 | 文獻回顧交付物 (TL;DR + 每篇論文摘要 + tagged gap 分析) | [`example-literature-review-deliverable.md`](docs/example-literature-review-deliverable.md) |
+| 2 | 三關 gap 決策檔 (開放性 / 貢獻度 / 可行性) + machine-readable gap 清單 | [`example-topic-dossier.md`](docs/example-topic-dossier.md) + [`.gaps.yml`](docs/example-topic-dossier.gaps.yml) |
+| 3a | 研究設計簡報 (含 dossier 來源追溯, Socratic 走過 RQ → 機制 → 可識別性 → 驗證 → 風險) | [`example-design-brief.md`](docs/example-design-brief.md) |
+| 3b | 帶 `provenance.from_gap` 的專案 manifest,讓未來 AI sessions 省去重新掃描 | [`example-project-manifest.yml`](docs/example-project-manifest.yml) |
+| 4 | Cookbook — 從 brief 到程式碼骨架的兩條路徑 (Claude-direct 用於 ≤4 個檔案;`codex-delegate` 用於 ≥5) | [`example-design-to-build.md`](docs/example-design-to-build.md) |
+| 7 | 論文 claim 清單 (含 `status: gap` anti-leakage 規則) + 圖表清單 (embedded-in-manuscript sentinel) | [`example-paper-memory-claims.yml`](docs/example-paper-memory-claims.yml) + [`example-paper-memory-figures.yml`](docs/example-paper-memory-figures.yml) |
 
-您可以根據上述階段選擇，或從頭到尾閱讀 [`docs/examples.md`](docs/examples.md)。
+或從頭到尾閱讀 [`docs/examples.md`](docs/examples.md) 看每個 skill 的 input/output 對照表敘述版。
 
 ---
 
