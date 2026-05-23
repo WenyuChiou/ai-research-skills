@@ -11,7 +11,7 @@
 
 **這是什麼。** 這是一套包含 15 個 [agentskills.io](https://agentskills.io) 相容 Markdown skills 的 catalog，專為在研究流程中深度使用 AI 的研究人員設計——包括研究生、博士生、博士後及研究支援人員。Claude Code 可以透過五個 marketplace plugins 安裝並自動觸發；Codex CLI、Gemini CLI、Cursor、Windsurf、Hermes、OpenClaw，以及通用 API client 則可以把同一批 `SKILL.md` 當作 context 或 skill directory 載入（詳見 [§7 相容性 (Compatibility)](#7-相容性-compatibility)）。
 
-<sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="agentskills.io spec compliant" src="https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
+<sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="SKILL.md spec compliant" src="https://img.shields.io/badge/SKILL.md-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
 
 > 📚 本項目為 [agentic AI 學習路線圖](https://github.com/WenyuChiou/awesome-agentic-ai-zh) 的一部分
 > ——收錄於 §13–14 (研究工作流程)。

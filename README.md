@@ -18,7 +18,7 @@ Cursor, Windsurf, Hermes, OpenClaw, and generic API clients can load the
 same `SKILL.md` files as context or skill directories (see
 [§7 Compatibility](#7-compatibility)).
 
-<sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="agentskills.io spec compliant" src="https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
+<sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="SKILL.md spec compliant" src="https://img.shields.io/badge/SKILL.md-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
 
 > 📚 Part of the [agentic AI learning roadmap](https://github.com/WenyuChiou/awesome-agentic-ai-zh)
 > — featured in §13–14 (research workflows).
