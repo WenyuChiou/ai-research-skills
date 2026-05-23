@@ -40,19 +40,19 @@ same `SKILL.md` files as context or skill directories (see
 
 ## 1. Install — get the skills
 
-The core asset is portable `SKILL.md`. Choose the install path for the
-agent you use:
+The core asset is portable `SKILL.md`; Claude Code marketplace support is
+the convenience layer. Use the path that matches your host:
 
-- **Claude Code:** use the marketplace commands below for the fastest
-  install and auto-triggering.
-- **Other agents:** load the canonical repo's `SKILL.md` files directly
-  into the host's skill/rules directory, or inline them into the prompt.
-  Typical user-level locations are `~/.codex/skills/`,
-  `~/.cursor/skills/`, and `~/.openclaw/skills/`. See
-  [docs/install.md → Using these skills outside Claude Code](docs/install.md#using-these-skills-outside-claude-code)
-  for current Codex / Gemini / Cursor / Hermes / generic prompt examples;
-  OpenClaw is documented here as a structurally compatible `SKILL.md`
-  directory target, not a release-verified install path.
+| Host | Path |
+|---|---|
+| Claude Code | Marketplace install below; gets auto-triggering and `claude plugin list` verification. |
+| Codex CLI / Cursor / Windsurf | Load the canonical repo's `SKILL.md` into the host's skills/rules directory, or inline it into the prompt. |
+| Gemini CLI / generic API client | Inline `SKILL.md` as prompt or system context. |
+| Hermes | Install a raw `SKILL.md`; this repo has Hermes 0.13.0 skill-load verification for `literature-triage-matrix`. |
+| OpenClaw | Use a `SKILL.md` directory shape such as `~/.openclaw/skills/<skill>/SKILL.md` when supported; not release-verified here yet. |
+
+Full per-host recipes are in
+[docs/install.md → Using these skills outside Claude Code](docs/install.md#using-these-skills-outside-claude-code).
 
 **Claude Code fastest path — 30 seconds:**
 
@@ -61,26 +61,15 @@ claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 ```
 
-**Windows CMD note:** if you paste a multi-line block into `cmd.exe`,
-it may execute only the first line. Run the commands one at a time, or
-use the single-line form:
+**Windows `cmd.exe`:** run the commands one at a time. If the plugin list
+does not show `research-workspace@ai-research-skills`, your paste probably
+only executed the first line; see [docs/install.md](docs/install.md) for the
+single-line CMD form.
 
-```cmd
-claude plugin marketplace add WenyuChiou/ai-research-skills && claude plugin marketplace update ai-research-skills && claude plugin install research-workspace@ai-research-skills --scope user && claude plugin list
-```
-
-For Claude Code, two commands install 11 `research-hub` skills — 6 of
-them (`literature-triage-matrix`, `research-design-helper`,
-`research-context-compressor`, `research-project-orienter`,
-`paper-memory-builder`, `research-hub-multi-ai`) work immediately
-because they're pure-reasoning. The other 5 wrap external tools
-(Zotero / NotebookLM / the `research-hub-pipeline` Python CLI) and
-need per-tool setup.
-
-> **Reading this in Claude / ChatGPT?** Paste this whole §1 into your
-> assistant and ask *"Install all 5 plugins for me and verify."* The
-> commands below are self-contained — an AI assistant can run them
-> step by step without external lookups.
+For Claude Code, the first two commands install the 11-skill
+`research-workspace` plugin. Add the optional plugins only when you need
+manuscript writing, full Zotero operations, or Claude-to-Codex/Gemini
+delegation.
 
 **Additive install — stop after any step and use what you have:**
 
@@ -115,23 +104,17 @@ pwsh scripts/install-all.ps1       # Windows PowerShell
 
 ```bash
 claude plugin list
-# expected: 5 plugins, each ending in @ai-research-skills, each ✔ enabled.
+# fastest path: research-workspace@ai-research-skills is ✔ enabled.
+# full install: 5 plugins ending in @ai-research-skills are ✔ enabled.
 ```
 
 `claude plugin list` verifies only the Claude Code marketplace install.
 It does not tell you whether Codex, Cursor, OpenClaw, Hermes, or a
-generic API client has loaded the `SKILL.md` files.
+generic API client has loaded the `SKILL.md` files. Marketplace-installed
+plugins live under `~/.claude/plugins/cache/...`, not `~/.claude/skills/`.
 
-Marketplace-installed plugins do **not** extract into `~/.claude/skills/`
-— they live under
-`~/.claude/plugins/cache/ai-research-skills/<plugin>/<version>/skills/<name>/`
-and Claude Code discovers them via each plugin's
-`.claude-plugin/plugin.json`. A bare `ls ~/.claude/skills/` does *not*
-confirm a successful marketplace install — use `claude plugin list`.
-
-Full per-plugin breakdown: [docs/install.md](docs/install.md) ·
-Python / Zotero / Git not set up yet? Start with
-[docs/setup-guide.md](docs/setup-guide.md).
+Per-plugin details: [docs/install.md](docs/install.md). Python / Zotero /
+Git not set up yet? Start with [docs/setup-guide.md](docs/setup-guide.md).
 
 <details>
 <summary><b>I'd rather clone the repo</b> (contributors / debugging)</summary>

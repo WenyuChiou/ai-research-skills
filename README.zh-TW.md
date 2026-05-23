@@ -33,10 +33,19 @@
 
 ## 1. 安裝 (Install) — 取得這套 skills
 
-核心資產是可攜的 `SKILL.md`。請依您使用的 agent 選擇安裝路徑：
+核心資產是可攜的 `SKILL.md`；Claude Code marketplace 是方便安裝層。
+請依您使用的 host 選路徑：
 
-- **Claude Code：** 使用下方 marketplace 指令，這是最快路徑，也會保留自動觸發。
-- **其他 agents：** 直接載入 canonical repo 裡的 `SKILL.md`，放進該 host 的 skill / rules 目錄，或 inline 到 prompt。常見 user-level 位置包括 `~/.codex/skills/`、`~/.cursor/skills/`、`~/.openclaw/skills/`。[docs/install.md → 在 Claude Code 之外使用這些 skills](docs/install.md#using-these-skills-outside-claude-code) 目前提供 Codex / Gemini / Cursor / Hermes / generic prompt 範例；OpenClaw 在這份 README 中先記為結構上相容的 `SKILL.md` directory target，不宣稱已 release-verified。
+| Host | 路徑 |
+|---|---|
+| Claude Code | 使用下方 marketplace 指令；可保留自動觸發，並用 `claude plugin list` 驗證。 |
+| Codex CLI / Cursor / Windsurf | 把 canonical repo 的 `SKILL.md` 放進 host 的 skills / rules 目錄，或 inline 到 prompt。 |
+| Gemini CLI / 通用 API client | 把 `SKILL.md` inline 成 prompt 或 system context。 |
+| Hermes | 安裝 raw `SKILL.md`；本 repo 目前只有 `literature-triage-matrix` 做過 Hermes 0.13.0 skill-load 驗證。 |
+| OpenClaw | 在使用者的 OpenClaw 支援時，使用 `~/.openclaw/skills/<skill>/SKILL.md` 這類 directory 形狀；本 repo 尚未 release-verified。 |
+
+各 host 的完整範例在
+[docs/install.md → 在 Claude Code 之外使用這些 skills](docs/install.md#using-these-skills-outside-claude-code)。
 
 **Claude Code 最快路徑 — 30 秒搞定：**
 
@@ -45,21 +54,13 @@ claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 ```
 
-**Windows CMD 注意：** 如果把多行指令一次貼到 `cmd.exe`，有時只會執行第一行。請逐行執行，或使用下面這個單行版：
+**Windows `cmd.exe`：** 請逐行執行。如果 `claude plugin list` 沒出現
+`research-workspace@ai-research-skills`，通常代表貼上時只執行了第一行；
+單行版 CMD 指令請看 [docs/install.md](docs/install.md)。
 
-```cmd
-claude plugin marketplace add WenyuChiou/ai-research-skills && claude plugin marketplace update ai-research-skills && claude plugin install research-workspace@ai-research-skills --scope user && claude plugin list
-```
-
-對 Claude Code 而言，兩個指令會安裝 11 個 `research-hub` skills — 其中 6 個
-(`literature-triage-matrix`, `research-design-helper`,
-`research-context-compressor`, `research-project-orienter`,
-`paper-memory-builder`, `research-hub-multi-ai`)
-是純推理型，可以立即使用。另外 5 個則需與外部工具（Zotero /
-NotebookLM / `research-hub-pipeline` Python CLI）搭配，需要進行個別設定。
-
-> **正在 Claude / ChatGPT 中閱讀？** 將整個 §1 貼給您的 AI 助理，然後說：*"幫我安裝全部 5 個 plugins 並驗證。"*
-> 下方的指令是自給自足的 — AI 助理可以一步步執行，無需額外查詢。
+對 Claude Code 而言，前兩個指令會安裝 11-skill 的
+`research-workspace` plugin。需要論文寫作、完整 Zotero 操作，或
+Claude-to-Codex/Gemini delegation 時，再加裝選配 plugin。
 
 **漸進式安裝 — 每一步完成後，已安裝的功能即可使用：**
 
@@ -94,17 +95,13 @@ pwsh scripts/install-all.ps1       # Windows PowerShell
 
 ```bash
 claude plugin list
-# 預期輸出：5 個 plugins，名稱皆以 @ai-research-skills 結尾，且狀態為 ✔ enabled。
+# 最快路徑：research-workspace@ai-research-skills 為 ✔ enabled。
+# 完整安裝：5 個 plugins 皆以 @ai-research-skills 結尾，且狀態為 ✔ enabled。
 ```
 
 `claude plugin list` 只驗證 Claude Code marketplace 安裝狀態；它不能代表 Codex、Cursor、OpenClaw、Hermes 或通用 API client 已經載入這些 `SKILL.md`。
-
-從 Marketplace 安裝的 plugins **不會** 被解壓縮到 `~/.claude/skills/`
-— 它們位於
-`~/.claude/plugins/cache/ai-research-skills/<plugin>/<version>/skills/<name>/`
-路徑下，Claude Code 透過每個 plugin 的
-`.claude-plugin/plugin.json` 檔案來發現它們。僅用 `ls ~/.claude/skills/`
-**無法** 確認 Marketplace 是否安裝成功 — 請使用 `claude plugin list`。
+Marketplace 安裝的 plugins 位於 `~/.claude/plugins/cache/...`，不是
+`~/.claude/skills/`。
 
 各 plugin 的詳細資訊：[docs/install.md](docs/install.md) ·
 若尚未設定 Python / Zotero / Git？請從
