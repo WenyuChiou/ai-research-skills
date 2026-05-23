@@ -15,6 +15,52 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.21] - 2026-05-23
+
+### Changed
+
+- **README §5 "See what each skill produces" — bullet list → direct-link
+  table.** Previously the section was 7 descriptive bullets pointing at a
+  single `docs/examples.md` link; readers wanting to *see* the actual
+  artifact (a topic dossier, a design brief, a project manifest, a
+  claims roster) had to click `docs/examples.md`, scroll to the relevant
+  section, then click again. Two clicks of friction per artifact, on
+  the section that exists specifically to lower friction. With 1.5.20's
+  promo cycle calling out the four named deliverables (gap decision
+  table / design brief / project manifest / paper claim roster), the
+  landing path from a Threads / X post → repo → §5 → actual artifact
+  needs to be one click, not three.
+  - **`README.md` §5 restructured into a 6-row table** with three
+    columns: Stage / What the skill produces / Example file. Every
+    bullet now resolves to a direct link to the artifact file in
+    `docs/` (`example-literature-review-deliverable.md`,
+    `example-topic-dossier.md` + `.gaps.yml`, `example-design-brief.md`,
+    `example-project-manifest.yml`, `example-design-to-build.md`,
+    `example-paper-memory-claims.yml` + `figures.yml`). The descriptive
+    text per row carries the *schema feature* that makes the artifact
+    distinctive — the 3-gate decision (open / contribution /
+    feasibility) for Stage 2; the Socratic-walked five-segment shape
+    for Stage 3a; `provenance.from_gap` for Stage 3b; the `status: gap`
+    anti-leakage rule for Stage 7. A reader can now scan the table,
+    pick the artifact closest to what they care about, and land on it
+    in one click. The narrative tour link at the bottom
+    (`docs/examples.md`) is preserved for readers who want the per-skill
+    input/output context.
+  - **`README.zh-TW.md` §5 mirrored** with the same 6-row table
+    structure. All 8 example file paths are byte-identical to EN (no
+    `.zh-TW` variants exist for example YAMLs); the descriptive column
+    is translated to Traditional Chinese with technical terms
+    (`provenance.from_gap`, `status: gap`, `anti-leakage`, sentinel,
+    Socratic) preserved verbatim per the locale convention.
+
+### Fixed
+
+- **README §5 click-depth** for the four named deliverables emphasised
+  in the 1.5.20 promotional copy. The bullet→table change cuts two
+  clicks of friction per artifact, aligning the README's actual click
+  path with the promo copy's implicit promise that the deliverables
+  are *seeable*, not just *describable*.
+
 ## [1.5.20] - 2026-05-23
 
 ### Added

@@ -302,21 +302,20 @@ The skills will not do this for you.
 
 ## 5. See what each skill produces
 
-Every shipping skill has at least one worked-example file in
-[`docs/examples.md`](docs/examples.md):
+Every shipping skill has at least one worked-example file. Click
+through to see the actual artifact a skill emits — not a description.
 
-- Literature-review deliverables (Stages 1–2)
-- Topic dossier with the 3-gate decision (Stage 2)
-- Design brief with provenance to the dossier (Stage 3a)
-- Project manifest with `provenance.from_gap` (Stage 3b)
-- **Stage 4 cookbook** — two paths (Claude-direct for ≤4 files;
-  `codex-delegate` for ≥5-file scaffold)
-- Paper-memory `claims.yml` + `figures.yml` with the `status: gap`
-  pattern + figure sentinels (Stage 7)
-- Full literature-review pipeline output (everything composed)
+| Stage | What the skill produces | Example file |
+|---|---|---|
+| 1–2 | Literature-review deliverable (TL;DR + per-paper synthesis + tagged gap analysis) | [`example-literature-review-deliverable.md`](docs/example-literature-review-deliverable.md) |
+| 2 | Topic dossier with the 3-gate decision (open / contribution / feasibility) + machine-readable gap roster | [`example-topic-dossier.md`](docs/example-topic-dossier.md) + [`.gaps.yml`](docs/example-topic-dossier.gaps.yml) |
+| 3a | Design brief with provenance to the dossier, Socratic-walked RQ → mechanism → identifiability → validation → risk | [`example-design-brief.md`](docs/example-design-brief.md) |
+| 3b | Project manifest carrying `provenance.from_gap` so future AI sessions skip the rescan | [`example-project-manifest.yml`](docs/example-project-manifest.yml) |
+| 4 | Cookbook — two paths from brief to scaffolded code (Claude-direct for ≤4 files; `codex-delegate` for ≥5) | [`example-design-to-build.md`](docs/example-design-to-build.md) |
+| 7 | Paper claims with `status: gap` anti-leakage rule + figure roster with embedded-in-manuscript sentinels | [`example-paper-memory-claims.yml`](docs/example-paper-memory-claims.yml) + [`example-paper-memory-figures.yml`](docs/example-paper-memory-figures.yml) |
 
-Pick by stage above, or read [`docs/examples.md`](docs/examples.md) end
-to end.
+Or read [`docs/examples.md`](docs/examples.md) end to end for the
+narrative tour with per-skill input/output tables.
 
 ---
 
