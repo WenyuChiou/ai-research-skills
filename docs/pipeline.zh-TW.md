@@ -34,6 +34,7 @@ skill，請以 Obsidian 作為筆記層。）*
 | Skill | 用途 |
 |---|---|
 | [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) | 不重讀每一篇 PDF，就能依 method、data、claim、limitation、relevance 比較。 |
+| [`gap-to-topic`](https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md) | 3-gate go/no-go 決策備忘錄 — 對候選論文/提案主題評估「缺口開不開？有貢獻嗎？可不可行？」。v0.3.12+ 起把 `.gaps.yml` 接給 Stage 3a。 |
 | [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) | 把 NotebookLM 的 brief 對回原始 source bundle，抓出漏掉的 source、沒根據的 claim、互相矛盾的描述。 |
 | [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | 建立要餵進 matrix 的 Obsidian cluster 與 NotebookLM source bundle。 |
 | [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) *(optional)* | 比較前先 audit Zotero——找出重複 DOI、orphan items、提出 tag/collection 整理計畫。**Read-only**。 |
@@ -47,7 +48,7 @@ skill，請以 Obsidian 作為筆記層。）*
 
 | Skill | 用途 |
 |---|---|
-| [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | 引導你走過 5 段：研究問題 sharpen → expected mechanism → identifiability check → validation plan → risk register，產出 `.research/design_brief.md`。 |
+| [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | 引導你走過 5 段：研究問題 sharpen → expected mechanism → identifiability check → validation plan → risk register，產出 `.research/design_brief.md`。**v0.3.12+**：若 `.research/topic_dossier.gaps.yml` 存在（前一輪 `gap-to-topic` 跑出來的），自動 pre-fill 段 1 (RQ) 與段 5 (risks)，verdict-aware 挑 candidate。 |
 
 ## 3b. 寫計畫 artifact（讓 AI 幫你記住）
 

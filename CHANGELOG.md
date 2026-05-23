@@ -15,6 +15,83 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.15] - 2026-05-23
+
+### Added
+
+- **`docs/example-topic-dossier.*` published** — six-file example
+  deliverable for `gap-to-topic`, matching the existing
+  `docs/example-literature-review-deliverable.*` pattern:
+  `.md`, `.docx`, `.bib`, `.gaps.yml`, `.zh-TW.md`, `.zh-TW.docx`.
+  Copied from the dogfood at
+  `~/.claude/audits/dogfood_runs/2026-05-21-gap-to-topic-llm-abm-profiles/`
+  (LLM applications in water resources — Candidate 2 conditional-go).
+  `docs/examples.md` gains a corresponding section. Catalog users can
+  now read what the `gap-to-topic` skill emits without installing.
+
+### Changed
+
+- **`research-workspace` plugin registry version `0.3.10` → `0.3.12`**
+  (`.claude-plugin/marketplace.json`). Bundles two upstream
+  `research-hub` releases:
+  - **PR #95 (v0.3.10 → v0.3.11)** — schema reference for
+    `topic_dossier.gaps.yml` refreshed to match what the skill
+    actually emits since v0.3.6 (the `--screen` fit-check) and v0.3.9
+    (the 7-section reflow): now documents top-level `run_type` /
+    `recall` (with full `screen` sub-block) / `pipeline`, plus
+    per-gap `open_confidence` / `dead_end_evidence` /
+    `borderline_reason` / `verdict` / `verdict_reason`. New
+    `downstream_consumer: research-design-helper` top-level key as a
+    forward-compat hook. Companion: `gap-to-topic` made discoverable
+    in research-hub's own `docs/ai-research-skills.md` (it was
+    invisible there since the skill shipped at v0.3.10).
+  - **PR #96 (v0.3.11 → v0.3.12)** — Stage 2 → 3a → 3b handoff
+    wiring. `research-design-helper` now reads
+    `.research/topic_dossier.gaps.yml` as new Input #2: when a recent
+    `gap-to-topic` run is present, segment 1 (RQ) is pre-filled from
+    the chosen `gaps[].statement` and segment 5 (risks) from
+    `open_questions[]` + the specific concern hinted by
+    `gaps[].feasibility`. Segments 2–4 (mechanism / identifiability
+    / validation) are never pre-filled. Candidate selection is
+    verdict-aware (filters `gaps[]` to
+    `verdict in {conditional-go, go}`). `design_brief.md` frontmatter
+    gains optional `source` (URI-fragment pointer to the chosen gap,
+    e.g. `topic_dossier.gaps.yml#G2`) and `gap_verdict` (frozen
+    snapshot of `verdict` + first 60 chars of `verdict_reason`) so
+    provenance is recorded. Companion fix: `research-context-compressor`
+    now reads `.research/design_brief.md` as Input #2 (matching the
+    `pipeline.md` contract) and copies the `source` gap-id to the
+    manifest's `provenance.from_gap` field (registered in
+    `docs/research-workspace-manifest.md` upstream). First cross-skill
+    handoff integration test ships at
+    `tests/test_handoff_gap_to_topic_design_helper.py`.
+
+- **Catalog drift fixed — `gap-to-topic` now visible in all
+  narrative docs.** Since the skill shipped (research-hub PR #93 →
+  catalog `1.5.14` via ai-research-skills PR #30), `README.md`
+  "All 15 skills" details block claimed
+  "11 skills" but only listed 10. `docs/pipeline.md` Stage 2 table
+  omitted it. `docs/img/pipeline-overview-prompt.md` Stage 2 chip set
+  + 11-skill enumeration omitted it. This PR adds `gap-to-topic` to:
+  - `README.md` + `README.zh-TW.md` "All 15 skills" research-hub list
+  - `docs/pipeline.md` + `.zh-TW.md` Stage 2 table (and updated Stage 3a
+    row to reflect the v0.3.12 `.gaps.yml` handoff)
+  - `docs/img/pipeline-overview-prompt.md` Stage 2 chip set + the
+    canonical 11-skill enumeration in the regen pre-conditions
+  - **Hand-off action (not gating this merge):** `docs/img/pipeline-overview.png`
+    and `pipeline-overview.zh-TW.png` need manual regeneration via
+    ChatGPT image-gen using the updated prompt. Until that ships, the
+    image is one chip behind reality.
+
+- **`catalog/skills.yml`** — `research-design-helper` and
+  `research-context-compressor` `verification_notes` appended with the
+  v0.3.12 handoff description. `gap-to-topic` `verification_notes`
+  appended with the v0.3.11 schema refresh description. All three
+  `verification_status` stay `pass`.
+
+`source.ref` unchanged (`master`). Skill count unchanged at 11.
+Catalog metadata version `1.5.14` → `1.5.15`.
+
 ## [1.5.14] - 2026-05-22
 
 ### Changed

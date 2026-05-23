@@ -200,6 +200,7 @@ SKILL.md，看
 - [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md)：按 task 性質做 Claude / Codex / Gemini routing。*(Cross-cutting)*
 - [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md)：產出 `.paper/claims.yml` 與 `.paper/figures.yml` 給寫作流程用。*(階段 7)*
 - [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md)：`research-hub auto` 跑完後、把每篇論文 Key Findings / Methodology / Relevance 同時寫到 Obsidian 跟 Zotero child note。*(階段 2)*
+- [`gap-to-topic`](https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md)：3-gate go/no-go 決策備忘錄 — 對候選論文/提案主題評估「缺口開不開？有貢獻嗎？可不可行？」。v0.3.12+ 起 emit `.gaps.yml` 給 `research-design-helper` Stage 3a 接力。*(階段 2)*
 
 </details>
 
