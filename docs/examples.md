@@ -188,14 +188,19 @@ the broader area to search (*"LLM applications in water resources"*).
 | `topic_dossier.gaps.yml` | Machine-readable structured export — per-gap `verdict` / `verdict_reason` / `feasibility` / `dead_end_status` plus `open_questions[]`. Read by `research-design-helper` v0.3.12+ for Stage 3a handoff |
 | `literature_matrix.md` | Paper-by-paper comparison table (method / claim / evidence type / limitation / relevance) — built by `literature-triage-matrix` as §1 step 2 |
 
-**Verdict shape** — each candidate gets one of three outcomes:
+**Candidate-level verdict** — each candidate gets exactly one of three outcomes:
 
 | Verdict | Meaning | Color in `.docx` |
 |---|---|---|
 | **Do not pursue — as stated** | At least one gate fails (occupied / not a contribution / not feasible). Salvage path optional. | Light red |
 | **Worth pursuing — only if its open conditions hold** | All three gates clear at neutral or better, but conditional on operational follow-ups (e.g. dataset identification, validation pilot). | Light yellow |
 | **Worth pursuing** | All three gates clear unconditionally. | Light green |
-| **Not assessed** | Gate skipped because an earlier gate already failed. | Light grey |
+
+**Gate-cell status** — inside the per-candidate scorecard, individual gate cells can also carry a "skipped" status when an earlier gate in the same candidate fails (the remaining gates are short-circuited):
+
+| Status | Meaning | Color in `.docx` |
+|---|---|---|
+| `Not assessed` | Gate skipped because an earlier gate in the same scorecard already failed. Applies to **cells inside the scorecard table**, NOT to candidate-level verdicts. | Light grey |
 
 A complete bilingual example, copied from a real dogfood run (LLM
 applications in water resources, two candidates evaluated, one
