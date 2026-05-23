@@ -1,0 +1,60 @@
+# Catalog example — Stage 3b output written by `research-context-compressor`
+# (research-workspace plugin v0.3.12+) after reading the upstream
+# `.research/design_brief.md` produced by `research-design-helper`
+# (see companion `example-design-brief.md`).
+#
+# Three schema features visible here that a researcher consuming this
+# manifest should recognise:
+#
+#   1. `provenance.from_gap` — copied from the design_brief's frontmatter
+#      `source` field. Lets downstream tools (project-orienter, future
+#      audit scripts) trace a manifest back to the gap-to-topic dossier
+#      candidate it was framed for, without re-reading the dossier.
+#      Registered in research-hub `docs/research-workspace-manifest.md`.
+#   2. `research_question` is mirrored verbatim from design_brief §1
+#      (the sharpened RQ). The brief is the authority on the
+#      sharpened RQ; the manifest mirrors it so a project-orienter
+#      session reading the manifest alone has the same RQ as a session
+#      that reads the brief.
+#   3. Optional descriptive fields (`tools`, `datasets`, etc.) are empty
+#      in this example because the upstream brief is still at the
+#      design stage; a real research repo with code + data would populate
+#      these via the compressor's Inputs scan (README, scripts/,
+#      data/, pyproject.toml, etc.). Per the compressor's "empty manifest
+#      field is better than an invented one" rule, the empty lists here
+#      are the honest state.
+
+project_name: "LLM agents for human behaviour in socio-hydrology"
+research_area: "socio-hydrology / human-water systems / agent-based modelling"
+
+# Sourced from design_brief.md §1 (Sharpened RQ — verbatim)
+research_question: |
+  LLM agents conditioned on household demographics, prior water-use
+  observations, and local flood history can predict held-out household
+  flood-adaptation adoption decisions (binary: did the household adopt
+  a flood-protection measure within a 2-year window) at AUC > a
+  discrete-choice baseline trained on the same features, by ≥ 0.05
+  (p < 0.05, paired DeLong test).
+
+current_stage: "design"            # design | exploration | experiments | writing
+last_updated: "2026-05-23"
+
+# Sourced from design_brief.md frontmatter `source` field — v0.3.12 wire
+provenance:
+  from_gap: "topic_dossier.gaps.yml#G2"
+
+# Optional descriptive fields — empty in this catalog example because the
+# upstream design_brief is still at the design stage. A real research repo
+# with code and data would populate these.
+description: |
+  Coupled LLM-agent + socio-hydrology modelling for household
+  flood-adaptation prediction. Stage 3a → 3b example demonstrating
+  the provenance wire from a `gap-to-topic` dossier candidate
+  (cross-reference: companion `example-topic-dossier.md` Candidate 2 in
+  this catalog).
+tools: []
+canonical_repos: []
+datasets: []
+entrypoints: {}
+important_outputs: []
+recent_activity: []

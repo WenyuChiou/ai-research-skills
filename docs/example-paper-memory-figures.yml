@@ -1,0 +1,44 @@
+# Catalog example — `paper-memory-builder` output for `.paper/figures.yml`
+# shape (sibling to `example-paper-memory-claims.yml`).
+#
+# Source paper: Kizilkaya et al. 2025, "Toward HydroLLM" (see the claims
+# file's header for full citation and rationale).
+#
+# Figure inventory is intentionally minimal here — abstract-level
+# extraction does not see figures, so this file demonstrates the
+# `embedded-in-manuscript` `file:` sentinel value (paper-memory-builder
+# v0.3.16+) that real Word-based workflows use when figures have no
+# separable source file. A full-manuscript run would replace the
+# sentinel with concrete file paths and add more rows.
+#
+# Schema features demonstrated:
+#
+#   - `figures[].file` with the `embedded-in-manuscript` sentinel
+#     (documented in research-hub `paper-memory-builder` v0.3.16+
+#     yaml-schemas.md sentinel-values table)
+#   - `figures[].supports_claims` cross-referencing claim ids from the
+#     companion `example-paper-memory-claims.yml`
+#   - `figures[].caption_in_manuscript` as a brief identification
+#     anchor, not a verbatim caption (verbatim captions would come
+#     from a full-paper extraction)
+
+figures:
+  - id: "Fig1"
+    file: "embedded-in-manuscript"
+    panels: []
+    key_numbers:
+      - "(benchmark composition counts — to be populated from full paper)"
+    supports_claims: ["C1"]
+    caption_in_manuscript: >-
+      Figure 1 (anticipated). Composition of the HydroLLM benchmark
+      across hydrology subdomains.
+
+  - id: "Fig2"
+    file: "embedded-in-manuscript"
+    panels: []
+    key_numbers:
+      - "(per-model accuracy values — to be populated from full paper)"
+    supports_claims: ["C2", "C3"]
+    caption_in_manuscript: >-
+      Figure 2 (anticipated). Per-model accuracy on HydroLLM by
+      subdomain category.

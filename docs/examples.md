@@ -218,6 +218,101 @@ when the filename matches `.zh|zh-|zh_|-tw|-cn`, Arial otherwise).
 
 ---
 
+## `research-design-helper` — Stage 3a design brief
+
+**Input**: A research idea, typically a `conditional-go` candidate from
+a prior `gap-to-topic` dossier run (companion example below). The skill
+walks the researcher through five Socratic segments and writes the
+result to `.research/design_brief.md`.
+
+**Output bundle** — one Markdown file with YAML frontmatter:
+
+| Section | What it captures |
+|---|---|
+| Frontmatter (`source`, `gap_verdict`, `placeholder_segments`) | Provenance back to the upstream `gap-to-topic` candidate (v0.3.12+ wire); machine-flag list for any segment filled by non-Socratic placeholder content (v0.3.15+) |
+| §1 Research question | Sharpened RQ in one falsifiable sentence + the falsification condition + smallest-1-week-prototype scope |
+| §2 Expected mechanism | Causal chain with explicit "most uncertain step" + "first step you'd bet breaks" annotations |
+| §3 Identifiability check | Discriminating condition, confounders to rule out, missing-data plan |
+| §4 Validation plan | Success metric, baseline being beaten, negative control |
+| §5 Risk register | 3–5 named risks each with early-warning signal + mitigation |
+
+A complete example, pre-filled from a Stage 2 dossier and showing the
+provenance wire + the placeholder-segments convention, ships in this
+repo as:
+
+- [`example-design-brief.md`](example-design-brief.md)
+
+The brief's frontmatter `source: topic_dossier.gaps.yml#G2` points back
+to Candidate 2 of the [`example-topic-dossier.gaps.yml`](example-topic-dossier.gaps.yml)
+that opens the Stage 2 → 3a wire.
+
+---
+
+## `research-context-compressor` — Stage 3b project manifest
+
+**Input**: A research repository, optionally containing a
+`.research/design_brief.md` from a Stage 3a `research-design-helper`
+session. The skill scans the repo and writes
+`.research/project_manifest.yml` as a machine-readable orientation
+file that future AI sessions read instead of re-scanning the repo.
+
+**Output**: one YAML file with these schema features visible in the
+example:
+
+| Field | Notes |
+|---|---|
+| `project_name`, `research_area`, `research_question`, `current_stage`, `last_updated` | Required core fields |
+| `provenance.from_gap` | Copied verbatim from the upstream design_brief frontmatter `source` field (v0.3.12+ wire); lets project-orienter trace the manifest back to the dossier candidate |
+| Optional descriptive fields (`tools`, `datasets`, `entrypoints`, etc.) | Populated from repo-scan inputs (README, `pyproject.toml`, `scripts/`, `data/`); empty list when honestly unknown rather than invented |
+
+A complete example showing the provenance wire (manifest copied the
+`source` from the brief into `provenance.from_gap`) ships as:
+
+- [`example-project-manifest.yml`](example-project-manifest.yml)
+
+The manifest's `research_question` mirrors the sharpened RQ from
+[`example-design-brief.md`](example-design-brief.md) §1 verbatim — the
+brief is the authority; the manifest mirrors it.
+
+---
+
+## `paper-memory-builder` — Stage 7 paper memory
+
+**Input**: A manuscript file (`.docx`, `.tex`, `.md`) plus optional
+figures directory and `.research/` manifests for context. The skill
+extracts paper-level claims and figure inventory into
+`.paper/{claims.yml, figures.yml, revision_history.yml}` so the
+downstream `academic-writing-skills` skill can run claim-evidence
+audits, banned-word passes, and reviewer-response work without
+re-reading the manuscript each time.
+
+**Output bundle** — two YAML files plus an append-only history log:
+
+| File | What it carries |
+|---|---|
+| `claims.yml` | Every paper-level claim with `evidence_artifacts`, `figure_or_table`, `status`, `risk`, `sentence_in_manuscript`. Enforces the anti-leakage rule: claims with empty `evidence_artifacts` carry `status: gap` + a non-empty `gap_reason`. |
+| `figures.yml` | Figure inventory with `file`, `panels`, `key_numbers`, `supports_claims` cross-references. `file:` accepts sentinel values like `embedded-in-manuscript` (v0.3.16+) for Word-based workflows with no separable figure source files. |
+| `revision_history.yml` | Append-only audit trail of which claims were added / changed / dropped each revision round. |
+
+An abstract-level example built around Kizilkaya et al. 2025
+(*"Toward HydroLLM"*) — cross-linked to the
+[`example-topic-dossier.bib`](example-topic-dossier.bib) entry — ships
+as:
+
+- [`example-paper-memory-claims.yml`](example-paper-memory-claims.yml)
+- [`example-paper-memory-figures.yml`](example-paper-memory-figures.yml)
+
+The claims file demonstrates the `gap` status + `gap_reason` pattern
+(claim C5 — scope limitation that the abstract alone cannot back).
+The figures file demonstrates the `embedded-in-manuscript` sentinel.
+
+A real `paper-memory-builder` run against the full Kizilkaya 2025
+manuscript (not just the abstract) would replace these abstract-level
+claims with more granular Methods / Results claims and populate
+`figures[].file` with concrete paths from a `figures/` directory.
+
+---
+
 ## Putting it together — a full literature-review deliverable
 
 The per-skill samples above are fragments. Run the research-hub literature

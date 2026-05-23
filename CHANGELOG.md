@@ -15,6 +15,70 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.18] - 2026-05-23
+
+### Added
+
+- **Three new catalog examples published — Stage 3a, Stage 3b, and
+  Stage 7 outputs.** Prior catalog example coverage was uneven:
+  `example-literature-review-deliverable.*` and `example-topic-dossier.*`
+  covered Stages 1–2, but the planning and writing skills downstream of
+  Stage 2 had no standalone example artifact. A reader who landed on
+  the catalog without intending to run the full pipeline could not
+  preview what `research-design-helper`, `research-context-compressor`,
+  or `paper-memory-builder` actually produce. This release adds
+  per-stage example artifacts so each skill's output is inspectable
+  in isolation.
+  - **`docs/example-design-brief.md`** — `research-design-helper`
+    Stage 3a output for a `conditional-go` candidate carried over
+    from the existing `example-topic-dossier.gaps.yml` (Candidate
+    `G2`, socio-hydrology framing). The frontmatter shows three
+    skill features simultaneously: `source` + `gap_verdict` for the
+    v0.3.12+ provenance wire back to the dossier; `placeholder_segments:
+    [2, 3, 4]` for the v0.3.15+ machine-flag that downstream tools
+    use to refuse to gate real research on AI-generated stub content;
+    and §0 auto-pre-fill in segments 1 and 5 contrasted with
+    dialog-only segments 2-4.
+  - **`docs/example-project-manifest.yml`** — `research-context-compressor`
+    Stage 3b output that mirrors the design brief's sharpened research
+    question into the manifest's `research_question` field and copies
+    the design brief's `source` into `provenance.from_gap` (v0.3.12+
+    wire registered in research-hub `docs/research-workspace-manifest.md`).
+    Empty descriptive fields (`tools: []`, `datasets: []`) honour the
+    compressor's "empty manifest field is better than an invented one"
+    rule rather than fabricating context that the upstream brief
+    does not warrant.
+  - **`docs/example-paper-memory-claims.yml`** +
+    **`docs/example-paper-memory-figures.yml`** —
+    `paper-memory-builder` Stage 7 output illustrated against the
+    publicly cited Kizilkaya et al. 2025 *Toward HydroLLM* paper
+    (already in `example-topic-dossier.bib`; the cross-link lets a
+    reader follow the same paper from the Stage 2 dossier through to
+    its Stage 7 paper-memory). The claims file demonstrates the
+    anti-leakage rule in action (claim C5 — a scope limitation the
+    abstract alone cannot back — carries `status: gap` + a non-empty
+    `gap_reason`); the figures file demonstrates the v0.3.16+
+    `embedded-in-manuscript` `file:` sentinel. The claims are
+    abstract-level because the example is built from the public
+    abstract, not the full manuscript — a real
+    `paper-memory-builder` run against the full paper would produce
+    more granular Methods / Results claims with concrete figure
+    paths.
+
+- **`docs/examples.md` — three new sections.** One per new example
+  family (`## research-design-helper — Stage 3a design brief`, `##
+  research-context-compressor — Stage 3b project manifest`, `##
+  paper-memory-builder — Stage 7 paper memory`), each showing the
+  Input shape, Output schema-feature table, and cross-references to
+  the upstream example artifacts. The sections are placed between
+  the existing `## gap-to-topic` section and the closing
+  `## Putting it together` synthesis paragraph, preserving the
+  pipeline-stage ordering of the existing document.
+
+- No `marketplace.json` plugin version changes — this release adds
+  catalog-side documentation only; no upstream plugin code shipped.
+  Catalog metadata version `1.5.17 → 1.5.18`.
+
 ## [1.5.17] - 2026-05-23
 
 ### Changed
