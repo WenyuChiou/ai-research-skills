@@ -275,7 +275,11 @@ families:
           researcher value — a Likert scorecard, a "what it would
           contribute" claim and a validation sketch in Gate 2, design /
           scale / proposal-vs-dissertation feasibility in Gate 3, and a
-          method-note Appendix.
+          method-note Appendix. Plugin v0.3.9 (PR #92) reflowed the dossier
+          as a 7-section research-grade decision memo (Executive Summary
+          with verdict cards → Definitions → Per-candidate Scorecards →
+          Evidence Base → Gate-by-Gate → Risks & Kill Tests → Next Steps →
+          reproducibility-log Appendix).
       - name: zotero-library-curator
         directory: zotero-library-curator
         repo_url: https://github.com/WenyuChiou/research-hub
