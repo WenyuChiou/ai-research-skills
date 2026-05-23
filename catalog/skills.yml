@@ -279,7 +279,12 @@ families:
           as a 7-section research-grade decision memo (Executive Summary
           with verdict cards → Definitions → Per-candidate Scorecards →
           Evidence Base → Gate-by-Gate → Risks & Kill Tests → Next Steps →
-          reproducibility-log Appendix).
+          reproducibility-log Appendix). Plugin v0.3.10 (PR #93) ships
+          `dossier_to_docx.js` inside the skill so `.docx` is a contracted
+          deliverable (was operator-local) — bilingual verdict-cell colour
+          coding (en / zh-TW), en / zh-TW font auto-select, and Markdown
+          separator-row skip so `|---|---|` never leaks as literal "---"
+          cells in Word. Prereq: `npm install -g docx`.
       - name: zotero-library-curator
         directory: zotero-library-curator
         repo_url: https://github.com/WenyuChiou/research-hub
