@@ -15,6 +15,50 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.23] - 2026-05-23
+
+### Added
+
+- **README §6 FAQ section** — new section between §5 (See what each
+  skill produces) and §7 (Compatibility, was §6). Two pre-empted
+  questions, deliberately short to avoid bloating the README:
+  - *"Does this work with Chinese-language literature?"* — yes, skills
+    are language-agnostic; output language follows the user's prompt;
+    NotebookLM / Claude / Gemini all handle Traditional + Simplified
+    Chinese.
+  - *"How do I export to `.docx` for an advisor?"* — Stage 2 dossier
+    and Stage 1–2 literature-review deliverable ship with `.docx`
+    generators; direct links in the §5 table. Other stages
+    (`design_brief.md`, `project_manifest.yml`, `claims.yml`) emit
+    Markdown / YAML; pipe through `pandoc` or Word's "Open Markdown".
+  - Both questions surfaced from the 1.5.20 promo cycle pre-flight:
+    Taiwan / international researchers ask "中文行不行?" before
+    installing anything, and non-AI-using advisors / committees need
+    `.docx` not Markdown. Without the FAQ readers bounce off or ask
+    in promo-post comments (where the answer doesn't scale).
+- **§5 deliverable table — `.docx` inline links** for Stage 1–2 and
+  Stage 2 rows (the two stages that currently ship `.docx`
+  generators). Format: existing Markdown / YAML link · `.docx` link
+  appended in the same cell, so a reader scanning §5 can pick
+  Markdown-for-AI or Word-for-advisor in one glance. zh-TW table
+  uses the `.zh-TW.docx` variants
+  (`example-topic-dossier.zh-TW.docx`,
+  `example-literature-review-deliverable.zh-TW.docx`); EN uses the
+  base variants. Stages without `.docx` generators (3a brief, 3b
+  manifest, 4 cookbook, 7 claims) are not linked — adding empty
+  `.docx` cells would imply incomplete coverage; the FAQ answer
+  explicitly names the pandoc fallback for those stages.
+
+### Changed
+
+- **Section renumbering**: `## 6. Compatibility → ## 7. Compatibility`,
+  `## 7. Limitations → ## 8. Limitations` (both READMEs) to make room
+  for the new FAQ at §6. Internal anchor links updated correspondingly:
+  the "What this is" identity card line 18 now points to
+  `(#7-compatibility)` (EN) and `(#7-相容性-compatibility)` (zh-TW)
+  instead of `#6-`. No other internal cross-references touch these
+  sections.
+
 ## [1.5.22] - 2026-05-23
 
 ### Added
