@@ -9,7 +9,7 @@
 [範例](docs/examples.md) ·
 [詞彙表](docs/glossary.md)
 
-**這是什麼。** 這是一套包含五個 Claude Code plugins（總共 15 個 skills）的組合，專為在研究流程中深度使用 AI 的研究人員設計——包括研究生、博士生、博士後及研究支援人員。這些 Skills 是符合 [agentskills.io](https://agentskills.io) 規範的 Markdown 檔案；它們會根據您在 Claude Code 中的語句自動觸發，並且也能載入到 Codex CLI / Gemini CLI / Cursor / Windsurf / Hermes 中（詳見 [§6 相容性 (Compatibility)](#6-相容性-compatibility)）。
+**這是什麼。** 這是一套包含五個 Claude Code plugins（總共 15 個 skills）的組合，專為在研究流程中深度使用 AI 的研究人員設計——包括研究生、博士生、博士後及研究支援人員。這些 Skills 是符合 [agentskills.io](https://agentskills.io) 規範的 Markdown 檔案；它們會根據您在 Claude Code 中的語句自動觸發，並且也能載入到 Codex CLI / Gemini CLI / Cursor / Windsurf / Hermes 中（詳見 [§7 相容性 (Compatibility)](#7-相容性-compatibility)）。
 
 <sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="agentskills.io spec compliant" src="https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
 
@@ -280,8 +280,8 @@ catalog 層級的 `CHANGELOG.md`。
 
 | 階段 | skill 產出什麼 | 範例檔 |
 |---|---|---|
-| 1–2 | 文獻回顧交付物 (TL;DR + 每篇論文摘要 + tagged gap 分析) | [`example-literature-review-deliverable.md`](docs/example-literature-review-deliverable.md) |
-| 2 | 三關 gap 決策檔 (開放性 / 貢獻度 / 可行性) + machine-readable gap 清單 | [`example-topic-dossier.md`](docs/example-topic-dossier.md) + [`.gaps.yml`](docs/example-topic-dossier.gaps.yml) |
+| 1–2 | 文獻回顧交付物 (TL;DR + 每篇論文摘要 + tagged gap 分析) | [`example-literature-review-deliverable.md`](docs/example-literature-review-deliverable.md) · [`.docx`](docs/example-literature-review-deliverable.zh-TW.docx) |
+| 2 | 三關 gap 決策檔 (開放性 / 貢獻度 / 可行性) + machine-readable gap 清單 | [`example-topic-dossier.md`](docs/example-topic-dossier.md) + [`.gaps.yml`](docs/example-topic-dossier.gaps.yml) · [`.docx`](docs/example-topic-dossier.zh-TW.docx) |
 | 3a | 研究設計簡報 (含 dossier 來源追溯, Socratic 走過 RQ → 機制 → 可識別性 → 驗證 → 風險) | [`example-design-brief.md`](docs/example-design-brief.md) |
 | 3b | 帶 `provenance.from_gap` 的專案 manifest,讓未來 AI sessions 省去重新掃描 | [`example-project-manifest.yml`](docs/example-project-manifest.yml) |
 | 4 | Cookbook — 從 brief 到程式碼骨架的兩條路徑 (Claude-direct 用於 ≤4 個檔案;`codex-delegate` 用於 ≥5) | [`example-design-to-build.md`](docs/example-design-to-build.md) |
@@ -291,7 +291,23 @@ catalog 層級的 `CHANGELOG.md`。
 
 ---
 
-## 6. 相容性 (Compatibility)
+## 6. 常見問題 (FAQ)
+
+### 中文文獻也適用嗎?
+
+可以 — 這套 skills 是語言中立的。用中文跑,輸出就是中文。NotebookLM、
+Claude、Gemini 都能處理繁中跟簡中。
+
+### 怎麼把輸出存成 .docx 給指導老師看?
+
+Stage 2 dossier 跟 Stage 1–2 文獻回顧交付物有 `.docx` 生成器 — §5
+上方表格有直接連結。其他階段 (`design_brief.md`、`project_manifest.yml`、
+`claims.yml`) 目前只出 Markdown / YAML,需要 .docx 用 `pandoc` 或 Word
+的「開啟 Markdown」轉。
+
+---
+
+## 7. 相容性 (Compatibility)
 
 這 15 個 SKILL.md 檔案均遵循 [agentskills.io](https://agentskills.io) 開放規格 — 約 35 個 agent runtime 都使用相同的格式。
 
@@ -314,7 +330,7 @@ catalog 層級的 `CHANGELOG.md`。
 
 ---
 
-## 7. 限制 (Limitations)
+## 8. 限制 (Limitations)
 
 - 由一位研究生研究員組裝和測試；未經大規模語料庫驗證。
 - 領域偏向水資源和代理人基模擬；未在社會科學、機器學習或臨床寫作領域進行驗證。

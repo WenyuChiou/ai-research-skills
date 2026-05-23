@@ -15,7 +15,7 @@ PhDs, postdocs, and research support staff. Skills are
 [agentskills.io](https://agentskills.io)-compliant Markdown files;
 they auto-trigger inside Claude Code from your phrasing, and load
 into Codex CLI / Gemini CLI / Cursor / Windsurf / Hermes too (see
-[§6 Compatibility](#6-compatibility)).
+[§7 Compatibility](#7-compatibility)).
 
 <sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="agentskills.io spec compliant" src="https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
 
@@ -326,8 +326,8 @@ through to see the actual artifact a skill emits — not a description.
 
 | Stage | What the skill produces | Example file |
 |---|---|---|
-| 1–2 | Literature-review deliverable (TL;DR + per-paper synthesis + tagged gap analysis) | [`example-literature-review-deliverable.md`](docs/example-literature-review-deliverable.md) |
-| 2 | Topic dossier with the 3-gate decision (open / contribution / feasibility) + machine-readable gap roster | [`example-topic-dossier.md`](docs/example-topic-dossier.md) + [`.gaps.yml`](docs/example-topic-dossier.gaps.yml) |
+| 1–2 | Literature-review deliverable (TL;DR + per-paper synthesis + tagged gap analysis) | [`example-literature-review-deliverable.md`](docs/example-literature-review-deliverable.md) · [`.docx`](docs/example-literature-review-deliverable.docx) |
+| 2 | Topic dossier with the 3-gate decision (open / contribution / feasibility) + machine-readable gap roster | [`example-topic-dossier.md`](docs/example-topic-dossier.md) + [`.gaps.yml`](docs/example-topic-dossier.gaps.yml) · [`.docx`](docs/example-topic-dossier.docx) |
 | 3a | Design brief with provenance to the dossier, Socratic-walked RQ → mechanism → identifiability → validation → risk | [`example-design-brief.md`](docs/example-design-brief.md) |
 | 3b | Project manifest carrying `provenance.from_gap` so future AI sessions skip the rescan | [`example-project-manifest.yml`](docs/example-project-manifest.yml) |
 | 4 | Cookbook — two paths from brief to scaffolded code (Claude-direct for ≤4 files; `codex-delegate` for ≥5) | [`example-design-to-build.md`](docs/example-design-to-build.md) |
@@ -338,7 +338,25 @@ narrative tour with per-skill input/output tables.
 
 ---
 
-## 6. Compatibility
+## 6. FAQ
+
+### Does this work with Chinese-language literature?
+
+Yes — skills are language-agnostic. Run them in Chinese, the output is
+Chinese. NotebookLM, Claude, and Gemini all handle Traditional /
+Simplified Chinese well.
+
+### How do I export to `.docx` for an advisor?
+
+Stage 2 dossier and Stage 1–2 literature-review deliverable ship with
+`.docx` generators — direct links in §5 above. Other stages
+(`design_brief.md`, `project_manifest.yml`, `claims.yml`) emit
+Markdown / YAML; pipe through `pandoc` or Word's "Open Markdown" if
+needed.
+
+---
+
+## 7. Compatibility
 
 The 15 SKILL.md files conform to the
 [agentskills.io](https://agentskills.io) open spec — the same format used
@@ -366,7 +384,7 @@ any generic-API client, see
 
 ---
 
-## 7. Limitations
+## 8. Limitations
 
 - Assembled and tested by one graduate-student researcher; not
   corpus-scale-validated.
