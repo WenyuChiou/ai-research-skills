@@ -1,0 +1,127 @@
+# Catalog example — `paper-memory-builder` (research-workspace plugin) output
+# for `.paper/claims.yml` shape.
+#
+# Source paper used as illustration: Kizilkaya et al. 2025 — "Toward
+# HydroLLM: a benchmark dataset for hydrology-specific knowledge
+# assessment for large language models" (DOI: 10.1017/eds.2025.10006).
+# This paper is cited in `example-topic-dossier.bib` and characterised
+# in `example-topic-dossier.md` as the field-maturity-signal benchmark
+# that closed Candidate 1 of the "LLM applications in water resources"
+# dossier; using its public abstract here lets the catalog show the
+# Stage 2 → Stage 7 long-range wire end-to-end.
+#
+# The claims below are abstract-level — a real `paper-memory-builder`
+# run against the full manuscript would extract more granular claims
+# from the Methods and Results sections. They are written to demonstrate:
+#
+#   - the schema fields (`status`, `evidence_artifacts`, `risk`,
+#     `sentence_in_manuscript`, `figure_or_table`, `linked_claim`)
+#   - the anti-leakage rule (every claim with empty `evidence_artifacts`
+#     carries `status: gap` + a non-empty `gap_reason`)
+#   - the four valid `status` values (`draft`, `supported`, `rejected`,
+#     `gap`) and how they map to allowed certainty language per
+#     `academic-writing-skills` `claim_evidence_audit.md` (v0.2.1+).
+#
+# Each claim text below uses hedged verbs consistent with abstract-level
+# evidence (the underlying full-paper artifacts — figures, tables,
+# evaluation logs — are not extracted in this example).
+
+claims:
+  - id: C1
+    text: >-
+      HydroLLM is a benchmark dataset that evaluates large language
+      models on hydrology-specific knowledge across multiple subdomain
+      categories of water resources.
+    evidence_artifacts:
+      - "Abstract sentence 1 of Kizilkaya 2025 (10.1017/eds.2025.10006)"
+    figure_or_table: []
+    status: draft
+    risk: >-
+      "Multiple subdomain categories" is hedged because the catalog
+      example does not enumerate them; a real `paper-memory-builder`
+      run against the full paper should populate `figure_or_table`
+      with the benchmark-composition figure / table and lift this
+      claim to `status: supported`.
+    sentence_in_manuscript: >-
+      "Toward HydroLLM: a benchmark dataset for hydrology-specific
+      knowledge assessment for large language models."
+    linked_claim: null
+
+  - id: C2
+    text: >-
+      LLM performance on HydroLLM is associated with model architecture
+      and parameter count, with larger commercial-grade models
+      outperforming smaller open-source models on benchmark accuracy.
+    evidence_artifacts:
+      - "Abstract — evaluation-results sentence in Kizilkaya 2025"
+    figure_or_table: []
+    status: draft
+    risk: >-
+      "Associated with" is appropriately hedged for a benchmark-style
+      empirical comparison; reviewers may push for a multivariate
+      analysis disentangling model size from training-corpus
+      hydrology coverage. Cite the per-model accuracy table from
+      the full paper when promoting to `supported`.
+    sentence_in_manuscript: >-
+      "(abstract excerpt to be added when full-paper extraction
+      runs; held verbatim from the published abstract)"
+    linked_claim: null
+
+  - id: C3
+    text: >-
+      HydroLLM identifies specific hydrology subdomains where current
+      LLMs systematically underperform, suggesting targeted training
+      data gaps rather than uniformly poor coverage.
+    evidence_artifacts:
+      - "Abstract — discussion sentence in Kizilkaya 2025"
+    figure_or_table: []
+    status: draft
+    risk: >-
+      "Targeted training data gaps" is interpretive — the abstract
+      observation is that scores vary by subdomain; the gap framing
+      is one of several explanations (vocabulary mismatch, reasoning
+      depth, training-cutoff lag). Soften to "consistent with
+      targeted training data gaps" if the full paper does not test
+      alternative explanations.
+    sentence_in_manuscript: >-
+      "(abstract excerpt to be added when full-paper extraction
+      runs; held verbatim from the published abstract)"
+    linked_claim: null
+
+  - id: C4
+    text: >-
+      The benchmark provides a reproducible evaluation protocol that
+      allows future hydrology-targeted LLMs (or fine-tuned variants
+      of general-purpose LLMs) to be compared against the same task
+      set.
+    evidence_artifacts:
+      - "Abstract — utility / contribution sentence in Kizilkaya 2025"
+    figure_or_table: []
+    status: draft
+    risk: >-
+      Reproducibility hinges on dataset availability and evaluation
+      script release. Verify against the paper's data-availability
+      statement before treating this as a method contribution.
+    sentence_in_manuscript: >-
+      "(abstract excerpt to be added when full-paper extraction
+      runs; held verbatim from the published abstract)"
+    linked_claim: null
+
+  - id: C5
+    text: >-
+      Scope limitation — HydroLLM measures hydrology knowledge as
+      question-answering accuracy, not as deployed-tool capability
+      (e.g. operational forecasting, real-time decision support).
+    evidence_artifacts: []
+    figure_or_table: []
+    status: gap
+    gap_reason: >-
+      This is an explicit scope claim that the catalog example
+      cannot back from the abstract alone — the limitation framing
+      comes from how `example-topic-dossier.md` characterises the
+      benchmark ("knowledge test, not a deployed tool") rather than
+      from a verbatim Kizilkaya 2025 sentence. Either find the
+      limitation paragraph in the published paper and populate
+      `evidence_artifacts` (then lift to `draft`), or rephrase the
+      claim more cautiously as third-party characterisation.
+    linked_claim: null
