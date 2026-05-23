@@ -10,7 +10,7 @@ Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 [Glossary](docs/glossary.md)
 
 **What this is.** Five Claude Code plugins (15 skills total) for
-researchers running real projects with AI in the loop — grad students,
+researchers running real projects with AI in the loop — graduate students,
 PhDs, postdocs, and research support staff. Skills are
 [agentskills.io](https://agentskills.io)-compliant Markdown files;
 they auto-trigger inside Claude Code from your phrasing, and load
@@ -213,6 +213,22 @@ Full narrative + per-stage tool tables: [docs/pipeline.md](docs/pipeline.md).
 ---
 
 ## 4. Use it
+
+### Pick by goal
+
+If you'd rather not read the full pipeline above, jump in by your
+immediate goal:
+
+| Your immediate goal | Skills you'll use |
+|---|---|
+| **Find & compare literature** | `research-hub` + `literature-triage-matrix` |
+| **Write or revise a paper** | `paper-memory-builder` + `academic-writing-skills` |
+| **Manage a research project** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` |
+
+> **Helping others adopt AI for research** (librarian / RA / advisor)?
+> No install needed — share this README plus [docs/install.md](docs/install.md).
+
+### Or, just describe what you want
 
 Describe what you want in plain language — Claude Code matches your
 phrasing to a skill. You don't need to remember skill names.

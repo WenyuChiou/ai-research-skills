@@ -178,6 +178,23 @@ catalog 層級的 `CHANGELOG.md`。
 
 ## 4. 使用方法 (Use it)
 
+### 找到你的起點
+
+如果你不想讀完整 pipeline,可以直接從目標切入:
+
+| 你目前的目標 | 你會用到的 skills |
+|---|---|
+| **找文獻、比較文獻** | `research-hub` + `literature-triage-matrix` |
+| **寫論文 / 改稿** | `paper-memory-builder` + `academic-writing-skills` |
+| **管理研究專案** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` |
+
+> **協助別人用 AI 做研究** (圖書館員 / RA / 指導老師)?
+> 不需要安裝 — 把這份 README + [docs/install.md](docs/install.md) 給他們即可。
+
+完整 pipeline 敘述:[docs/pipeline.zh-TW.md](docs/pipeline.zh-TW.md)。
+
+### 或者,直接描述你想做的事
+
 用自然的語言描述您想做的事 — Claude Code 會將您的語句與對應的 skill 進行匹配。您不需要記住 skill 的名稱。
 
 | 當您說… | 觸發的 Skill |
