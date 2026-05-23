@@ -15,6 +15,28 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.14] - 2026-05-22
+
+### Changed
+
+- **`research-workspace` plugin registry version `0.3.9` → `0.3.10`**
+  (`.claude-plugin/marketplace.json`). Mirrors upstream `research-hub`
+  PR #93, which ships `dossier_to_docx.js` as a first-class artifact
+  inside the `gap-to-topic` skill (`skills/gap-to-topic/scripts/`). The
+  `.docx` is now a contracted deliverable, not an operator-local
+  post-processing step: the script handles Markdown table-separator
+  skipping (so `|---|---|` rows do not leak as literal "---" cells in
+  Word), bilingual verdict-cell colour coding (light red "do not pursue"
+  / "不予推進", light yellow conditional "worth pursuing … only if" /
+  "值得推進 … 須其待決條件成立", light green unconditional, light grey
+  "not assessed" / "未評估"), and en / zh-TW font auto-selection
+  (Microsoft JhengHei when the filename matches `.zh|zh-|zh_|-tw|-cn`,
+  Arial otherwise). Prereq: `npm install -g docx` (one-time global) or
+  per-skill `npm install docx`. `source.ref` unchanged (`master`); skill
+  count unchanged at 11. `gap-to-topic` `verification_notes` in
+  `catalog/skills.yml` updated; `verification_status` stays `pass`.
+  Catalog metadata version `1.5.13` → `1.5.14`.
+
 ## [1.5.13] - 2026-05-22
 
 ### Changed
