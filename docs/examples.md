@@ -313,6 +313,41 @@ claims with more granular Methods / Results claims and populate
 
 ---
 
+## Stage 4 — design brief to scaffolded code (cookbook, two paths)
+
+**Input**: [`example-design-brief.md`](example-design-brief.md) from
+Stage 3a. **Output**: a scaffold of prompt files, scripts, analysis
+modules, and a test harness in *your* project repo — not a YAML
+manifest with a fixed schema. Because the output is code, Stage 4 is
+intentionally **not a dedicated skill**; the handoff is operator-glue,
+and a cookbook documents it.
+
+The cookbook ships [two paths](example-design-to-build.md) — choose by
+scaffold size and how mechanical the work is:
+
+| Path | When | Tooling |
+|---|---|---|
+| **A — Claude-direct** | ≤ 4 files OR judgment-heavy (architecture, library picks, prompt-shape iteration) | Claude's `Write` / `Edit` |
+| **B — `codex-delegate`** | ≥ 5 files AND stable pattern (test skeletons, baseline variants, scripted layout) | `codex-delegate` skill; Codex executes, Claude reviews the diff |
+
+Both paths start from the same brief and produce structurally similar
+scaffolds. The decision is about where the token cost lands — see the
+`codex-delegate` *"~1× (don't bother)"* anti-pattern for the single-file
+case. The cookbook documents the **exact acceptance commands** for each
+path (e.g. `python -m py_compile $(git ls-files '*.py')`,
+`grep -c "design_brief" ...`) so the scaffold's traceability to the
+brief is mechanically verifiable.
+
+A mixed scaffold (mechanical files + judgment files) is split between
+the two paths; both get gated by the same `code-reviewer` pass before
+commit.
+
+See [`example-design-to-build.md`](example-design-to-build.md) for the
+full cookbook including the codex brief template, wrapper invocation,
+review checklist, and the anti-patterns table.
+
+---
+
 ## Putting it together — a full literature-review deliverable
 
 The per-skill samples above are fragments. Run the research-hub literature

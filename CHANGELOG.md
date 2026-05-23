@@ -15,6 +15,60 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.19] - 2026-05-23
+
+### Added
+
+- **Stage 4 design-to-build cookbook published — fills the Stage 3a → 4
+  handoff gap.** Stage 4 (*"Design and build the model"*) is intentionally
+  not a dedicated skill in this catalog: its input is the Stage 3a
+  `design_brief.md` and its output is **code in the operator's project
+  repo** (prompt files, runnable scripts, analysis modules, a test
+  harness), not a YAML manifest with a fixed schema. A skill-shaped
+  abstraction would over-constrain that output. Until now the handoff
+  was operator-glue without a worked example; this release adds a
+  cookbook documenting it.
+  - **`docs/example-design-to-build.md`** — A pedagogical cookbook
+    that takes the existing `example-design-brief.md` (1.5.18) as its
+    shared starting point and shows **two paths** for producing the
+    Stage 4 scaffold:
+    - **Path A — Claude-direct** (no codex): for scaffolds ≤ 4 files
+      OR judgment-heavy work (architecture decisions, library picks,
+      tight prompt-shape iteration). Uses Claude's `Write` / `Edit`
+      tools in-conversation; acceptance is `python -m py_compile` +
+      a mock-API smoke test + diff review.
+    - **Path B — `codex-delegate`** (with codex): for scaffolds ≥ 5
+      files AND a stable pattern (parameterised test skeletons,
+      baseline variants, scripted directory layout). Includes a
+      complete codex brief template (`.ai/codex_task_stage4_scaffold.md`
+      shape) listing exact file paths and acceptance commands; the
+      wrapper invocation; the `.result.json` inspection step; the
+      mandatory `code-reviewer` gate per CLAUDE.md trigger #1
+      (≥ 5 files).
+    - Decision table mapping scaffold characteristics to the right
+      path (file count, judgment density, pattern stability,
+      mixed-work split rule).
+    - Anti-patterns table covering the failure modes the cookbook
+      prevents: skipping the brief re-read; sending Codex an
+      open-ended scaffold prompt (F11 over-application risk);
+      letting Codex implement business logic in the first pass;
+      committing scaffold without a `code-reviewer` run; mixing
+      scaffold and business-logic work in one commit.
+- **`docs/examples.md`** — New `## Stage 4 — design brief to
+  scaffolded code (cookbook, two paths)` section inserted between
+  the Stage 7 section and the "Putting it together" section, with
+  the same two-path decision table and a pointer into the full
+  cookbook. Surfaces the cookbook from the catalog's main examples
+  index so a researcher browsing the per-stage examples sees Stage
+  4 has documented coverage even though the form is a cookbook
+  rather than an artifact file.
+
+### Changed
+
+- **`.claude-plugin/marketplace.json`** — `metadata.version`
+  `1.5.18 → 1.5.19`. No plugin version changes (documentation-only
+  release).
+
 ## [1.5.18] - 2026-05-23
 
 ### Added
