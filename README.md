@@ -1,20 +1,21 @@
 # AI Research Skills
 
-> A catalog of 15 Claude Code skills for the full research workflow —
+> A universal `SKILL.md` catalog for the full research workflow —
 > literature → research design → build → run → manuscript → submit,
-> with cross-AI delegation built in.
+> with cross-agent delegation built in.
 
 Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 [Pipeline](docs/pipeline.md) ·
 [Examples](docs/examples.md) ·
 [Glossary](docs/glossary.md)
 
-**What this is.** Five Claude Code plugins (15 skills total) for
+**What this is.** A catalog of 15
+[agentskills.io](https://agentskills.io)-compatible Markdown skills for
 researchers running real projects with AI in the loop — graduate students,
-PhDs, postdocs, and research support staff. Skills are
-[agentskills.io](https://agentskills.io)-compliant Markdown files;
-they auto-trigger inside Claude Code from your phrasing, and load
-into Codex CLI / Gemini CLI / Cursor / Windsurf / Hermes too (see
+PhDs, postdocs, and research support staff. Claude Code can install them
+as five marketplace plugins with auto-triggering; Codex CLI, Gemini CLI,
+Cursor, Windsurf, Hermes, OpenClaw, and generic API clients can load the
+same `SKILL.md` files as context or skill directories (see
 [§7 Compatibility](#7-compatibility)).
 
 <sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="agentskills.io spec compliant" src="https://img.shields.io/badge/agentskills.io-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
@@ -39,14 +40,36 @@ into Codex CLI / Gemini CLI / Cursor / Windsurf / Hermes too (see
 
 ## 1. Install — get the skills
 
-**TL;DR — 30 seconds:**
+The core asset is portable `SKILL.md`. Choose the install path for the
+agent you use:
+
+- **Claude Code:** use the marketplace commands below for the fastest
+  install and auto-triggering.
+- **Other agents:** load the canonical repo's `SKILL.md` files directly
+  into the host's skill/rules directory, or inline them into the prompt.
+  Typical user-level locations are `~/.codex/skills/`,
+  `~/.cursor/skills/`, and `~/.openclaw/skills/`. See
+  [docs/install.md → Using these skills outside Claude Code](docs/install.md#using-these-skills-outside-claude-code)
+  for current Codex / Gemini / Cursor / Hermes / generic prompt examples;
+  OpenClaw is documented here as a structurally compatible `SKILL.md`
+  directory target, not a release-verified install path.
+
+**Claude Code fastest path — 30 seconds:**
 
 ```bash
 claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 ```
 
-Two commands. You now have 11 `research-hub` skills installed — 6 of
+**Windows CMD note:** if you paste a multi-line block into `cmd.exe`,
+it may execute only the first line. Run the commands one at a time, or
+use the single-line form:
+
+```cmd
+claude plugin marketplace add WenyuChiou/ai-research-skills && claude plugin marketplace update ai-research-skills && claude plugin install research-workspace@ai-research-skills --scope user && claude plugin list
+```
+
+For Claude Code, two commands install 11 `research-hub` skills — 6 of
 them (`literature-triage-matrix`, `research-design-helper`,
 `research-context-compressor`, `research-project-orienter`,
 `paper-memory-builder`, `research-hub-multi-ai`) work immediately
@@ -94,6 +117,10 @@ pwsh scripts/install-all.ps1       # Windows PowerShell
 claude plugin list
 # expected: 5 plugins, each ending in @ai-research-skills, each ✔ enabled.
 ```
+
+`claude plugin list` verifies only the Claude Code marketplace install.
+It does not tell you whether Codex, Cursor, OpenClaw, Hermes, or a
+generic API client has loaded the `SKILL.md` files.
 
 Marketplace-installed plugins do **not** extract into `~/.claude/skills/`
 — they live under
@@ -371,29 +398,32 @@ needed.
 
 ## 7. Compatibility
 
-The 15 SKILL.md files conform to the
-[agentskills.io](https://agentskills.io) open spec — the same format used
-by ~35 agent runtimes.
+The portable layer is the `SKILL.md` instruction file plus any bundled
+`references/`, `scripts/`, and workflow contracts. Claude Code
+marketplace support is one host-specific packaging layer, not the only
+way to use the skills.
 
-| What | Status |
-|---|---|
-| 15 SKILL.md pass strict-minimum spec (`name` + `description`, ≤500 lines) | ✅ 15/15 spec-verified |
-| Zero-edit portable across agentskills.io hosts | ✅ 11/14 |
-| Needed cosmetic `<skill-root>` path edits (since landed) | 3/14 |
-| End-to-end install verified on NousResearch/hermes-agent 0.13.0 | ✅ `literature-triage-matrix` — security scan SAFE, registered `enabled` |
-| Inference loop on Hermes | ⚠ not tested (auth-gated; out of scope) |
-| Other 34 listed agentskills.io hosts | not individually tested |
+| Layer | What is portable | Status |
+|---|---|---|
+| Universal `SKILL.md` layer | Skill instructions, trigger descriptions, references, scripts, and `.research/` / `.paper/` handoff contracts | 15/15 pass strict-minimum spec (`name` + `description`, ≤500 lines) |
+| Host-specific behavior | Auto-triggering, plugin marketplace install, `claude plugin list`, skill discovery, and rules-directory conventions | Depends on the agent host; use that host's own list/discovery check |
+| Current portability audit | agentskills.io-style hosts | 11/14 zero-edit portable in the 2026-05-10 audit; 3/14 needed cosmetic `<skill-root>` path edits that have since landed |
+| Verified host install | NousResearch/hermes-agent 0.13.0 | `literature-triage-matrix` installed end to end, security scan SAFE, registered `enabled`; Hermes inference loop not tested |
+| OpenClaw | `SKILL.md`-style directories such as `~/.openclaw/skills/<skill>/SKILL.md` when supported by the user's OpenClaw install | Structurally compatible target, but not release-grade verified by this repo yet |
+| Other agents | Codex CLI, Gemini CLI, Cursor, Windsurf, generic API clients, and other agentskills.io hosts | Load the same `SKILL.md` as context or into the host's skill/rules directory; not all hosts are individually tested |
 
-The `n/14` portability rows reflect the audit run 2026-05-10, when the
-catalog had 14 skills; `gap-to-topic` (added 2026-05-21, the 15th) is
-not yet portability-audited.
+The `11/14` portability figure reflects the audit run on 2026-05-10,
+when the catalog had 14 skills; `gap-to-topic` (added 2026-05-21, the
+15th) is not yet portability-audited.
 
 Calibrated audit + experiment transcripts:
 [`.research/hermes-compatibility-audit.md`](.research/hermes-compatibility-audit.md).
 
-For loading SKILL.md on Codex CLI / Gemini CLI / Cursor / Windsurf or
-any generic-API client, see
+For documented Codex CLI / Gemini CLI / Cursor / Windsurf / Hermes and
+generic-API examples, see
 [docs/install.md → Using these skills outside Claude Code](docs/install.md#using-these-skills-outside-claude-code).
+For OpenClaw, use the `SKILL.md` directory shape above until this repo adds
+release-grade OpenClaw verification.
 
 ---
 
