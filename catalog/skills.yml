@@ -211,6 +211,23 @@ families:
           C5 marked status:draft (non-significant trend). figures.yml
           intentionally empty per "don't fabricate" rule, with
           run_notes documenting the abstract-only scope.
+          Plugin v0.3.16 (PR #100) records two doc improvements
+          surfaced by the 2026-05-23 Stage 7-8 dogfood on the
+          LLM-ABM R2 manuscript: (a) `references/yaml-schemas.md`
+          adds a sentinel-values table for `figures[].file` covering
+          three documented values (`embedded-in-manuscript`,
+          `embedded-in-supporting-information`,
+          `embedded-in-presentation`) so figures with no separable
+          source file have an honest representation rather than a
+          placeholder; (b) SKILL.md Inputs gains a "Scanning the
+          paper repo for evidence artifacts" sub-section listing
+          four typical non-figure artifact types (simulation outputs,
+          analysis scripts, drawio sources, reviewer-response files)
+          with a concrete YAML example mirroring the LLM-ABM
+          chi-squared claim's CSV + script + manuscript-anchor
+          evidence chain. Pure additive doc change; mirrored in
+          skills_data; sentinel additions are documented as
+          limitation rather than permanent solution.
       - name: paper-summarize
         directory: paper-summarize
         repo_url: https://github.com/WenyuChiou/research-hub
@@ -400,6 +417,25 @@ families:
           ("address this gap"). Correctly did NOT flag "tended to"
           (recommended replacement, not banned), proving the audit
           reads the rules rather than naive keyword-matching.
+          Plugin v0.2.1 (PR #6) makes `references/claim_evidence_audit.md`
+          schema-aware of `.paper/claims.yml`. Before v0.2.1 the
+          SKILL.md description said the skill should "use
+          `.paper/claims.yml` as ground truth instead of re-reading
+          the manuscript" but the workflow reference made no mention
+          of any schema field, so a consuming agent had no documented
+          field-to-column mapping. The new section maps
+          `claims[].sentence_in_manuscript` → "Claim",
+          `claims[].evidence_artifacts` + `figure_or_table` →
+          "Evidence Source", `claims[].status` → "Certainty Allowed",
+          and `claims[].risk` → "Problem"; it also records the
+          `status → certainty allowed` mapping (`supported` →
+          direct verbs OK; `draft` → hedged verbs only; `gap` →
+          NONE, must apply Disposition 1-5) and the four audit-driven
+          status transitions
+          (`draft ↔ supported`, `draft → gap` for anti-leakage,
+          `any → rejected`). Pure additive doc change; readers
+          without `.paper/claims.yml` follow the legacy generic-audit
+          workflow unchanged.
 
   - id: zotero-operations
     name: Zotero operations
