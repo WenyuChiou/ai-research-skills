@@ -15,6 +15,76 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.17] - 2026-05-23
+
+### Changed
+
+- **Two upstream plugin bumps propagated: `academic-writing-skills`
+  `0.2.0 → 0.2.1` and `research-workspace` `0.3.15 → 0.3.16`.**
+  This release bundles the producer-side and consumer-side halves of a
+  single cross-plugin contract fix surfaced by the 2026-05-23 Stage 7-8
+  dogfood (`paper-memory-builder` → `academic-writing-skills` claim
+  handoff). The two plugins ship in lockstep here because the dogfood
+  identified one friction split across them; shipping either alone
+  would leave the chain partial.
+  - **`academic-writing-skills 0.2.1` (PR #6, `5a1cbe0` on `main`)** —
+    `references/claim_evidence_audit.md` gains a `## When .paper/claims.yml
+    is present (schema-aware audit, v0.2.1+)` section. Before this PR,
+    the skill's `SKILL.md` description said *"use `.paper/claims.yml`
+    as ground truth instead of re-reading the manuscript"*, but the
+    actual workflow reference (`claim_evidence_audit.md`) had no
+    mentions of any schema field. A consuming agent walking the
+    reference would either re-read the manuscript (defeating the
+    contract) or guess the field-to-column mapping. The new section
+    maps `claims[].sentence_in_manuscript` → "Claim" column,
+    `claims[].evidence_artifacts` + `figure_or_table` → "Evidence
+    Source", `claims[].status` → "Certainty Allowed", and
+    `claims[].risk` → "Problem"; it also documents the
+    `status → certainty allowed` enum mapping and the four
+    audit-driven status transitions
+    (`draft ↔ supported`, `draft → gap`, `any → rejected`). The fix is
+    pure additive — readers without `.paper/claims.yml` follow the
+    pre-existing generic-audit workflow unchanged.
+  - **`research-workspace 0.3.16` (research-hub PR #100, `d45acac` on
+    `master`)** — `paper-memory-builder` documents two
+    producer-side improvements that the same dogfood identified:
+    - `references/yaml-schemas.md` adds a `### file: sentinel values
+      (v0.3.16+)` section recording three documented sentinels for
+      `figures[].file` when the figure is embedded inside the
+      manuscript with no separable source file:
+      `embedded-in-manuscript`, `embedded-in-supporting-information`,
+      and `embedded-in-presentation`. The dogfood used the first
+      sentinel for all 10 LLM-ABM manuscript figures; without
+      documentation, downstream consumers would have no way to
+      distinguish an honest sentinel from a typo. The section also
+      states explicitly that sentinels are a documented limitation
+      rather than a permanent solution, leaving room for a future
+      pre-processing step that extracts embedded figures to a
+      `.paper/figures/` subdirectory.
+    - `SKILL.md` adds a `### Scanning the paper repo for evidence
+      artifacts (v0.3.16+)` sub-section under Inputs. The previous
+      Inputs list described figures and manifest files but did not
+      address non-figure evidence (simulation CSVs, analysis scripts,
+      drawio sources, reviewer-response artifacts) — exactly the
+      artifact types that populate `claims[].evidence_artifacts` for
+      a statistical claim like the LLM-ABM chi-squared test (the
+      evidence is the per-agent decision log, not a figure). The
+      new sub-section lists four typical artifact types with a
+      concrete YAML example mirroring the dogfood C8 claim
+      (CSV + script + manuscript anchor).
+
+- **`catalog/skills.yml` `verification_notes` appended for the two
+  changed skills** (`paper-memory-builder` + `academic-writing-skills`).
+  `gap-to-topic` is unchanged because PRs #97–#99 made no changes to
+  that skill itself; its notes still end at the v0.3.10 / v0.3.11
+  history. (PR #100 in research-hub is a `paper-memory-builder` PR,
+  not gap-to-topic.) Both updated skills' `verification_status` stays
+  `pass`.
+
+`source.ref` for all plugins remains `master` / `main` (no ref-pinning
+introduced). Skill count remains 15. Catalog metadata version
+`1.5.16 → 1.5.17`.
+
 ## [1.5.16] - 2026-05-23
 
 ### Changed
