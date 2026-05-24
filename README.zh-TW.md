@@ -7,9 +7,13 @@
 語言：[English](README.md) | [繁中](README.zh-TW.md) ·
 [Pipeline](docs/pipeline.md) ·
 [範例](docs/examples.md) ·
+[Runtime contract](docs/runtime-contract.zh-TW.md) ·
 [詞彙表](docs/glossary.md)
 
 **這是什麼。** 這是一套包含 15 個 [agentskills.io](https://agentskills.io) 相容 Markdown skills 的 catalog，專為在研究流程中深度使用 AI 的研究人員設計——包括研究生、博士生、博士後及研究支援人員。Claude Code 可以透過五個 marketplace plugins 安裝並自動觸發；Codex CLI、Gemini CLI、Cursor、Windsurf、Hermes、OpenClaw，以及通用 API client 則可以把同一批 `SKILL.md` 當作 context 或 skill directory 載入（詳見 [§7 相容性 (Compatibility)](#7-相容性-compatibility)）。
+做文獻自動化時，`SKILL.md` catalog 與可執行的 `research-hub` runtime
+是兩層不同東西；請看
+[docs/runtime-contract.zh-TW.md](docs/runtime-contract.zh-TW.md)。
 
 <sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="SKILL.md spec compliant" src="https://img.shields.io/badge/SKILL.md-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
 
@@ -81,7 +85,9 @@ claude plugin install gemini-delegate@ai-research-skills
 
 # 5. 文獻 pipeline 自動化 (research-hub skills 背後的 Python CLI)
 pip install research-hub-pipeline
-research-hub setup
+research-hub setup --persona researcher
+research-hub doctor
+research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
 
 一次安裝全部 5 個 plugins：
@@ -106,6 +112,8 @@ Marketplace 安裝的 plugins 位於 `~/.claude/plugins/cache/...`，不是
 各 plugin 的詳細資訊：[docs/install.md](docs/install.md) ·
 若尚未設定 Python / Zotero / Git？請從
 [docs/setup-guide.md](docs/setup-guide.md) 開始。
+想確認哪些 skill 是 prompt-only、哪些需要 Python runtime？
+請看 [docs/runtime-contract.zh-TW.md](docs/runtime-contract.zh-TW.md)。
 
 <details>
 <summary><b>我想 clone 這個 repo</b> (貢獻者 / 除錯用)</summary>

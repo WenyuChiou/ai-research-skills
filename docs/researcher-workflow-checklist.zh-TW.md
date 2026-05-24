@@ -1,6 +1,8 @@
 # 研究者 Workflow Checklist
 
 英文版：[researcher-workflow-checklist.md](researcher-workflow-checklist.md)。
+`SKILL.md` 與 `research-hub` CLI runtime 的分工，請搭配
+[runtime-contract.zh-TW.md](runtime-contract.zh-TW.md) 閱讀。
 
 很多研究者的 setup 是：論文放 Zotero、筆記寫在 Obsidian、NotebookLM
 產出 source-grounded 摘要、稿子寫在 Word / LaTeX / Markdown。這份
@@ -26,7 +28,9 @@ checklist 對應這個 setup。
 claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 pip install research-hub-pipeline
-research-hub setup
+research-hub setup --persona researcher
+research-hub doctor
+research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
 
 用這些 skill：
@@ -53,7 +57,7 @@ claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 pip install "research-hub-pipeline[playwright]"
 research-hub setup        # 互動時選 analyst persona（無 Zotero）
-research-hub notebooklm login
+research-hub notebooklm login --auto-detect
 ```
 
 用這些 skill：
@@ -80,7 +84,7 @@ claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 pip install "research-hub-pipeline[playwright]"
 research-hub setup        # researcher persona
-research-hub notebooklm login
+research-hub notebooklm login --auto-detect
 ```
 
 用這些 skill：
@@ -98,7 +102,7 @@ claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 pip install "research-hub-pipeline[playwright]"
 research-hub setup        # researcher persona
-research-hub notebooklm login
+research-hub notebooklm login --auto-detect
 ```
 
 核心 skill：

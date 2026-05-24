@@ -18,6 +18,8 @@ point the model at the relevant `SKILL.md` explicitly.
 
 For a complete inventory with direct skill links, see
 [skill-directory.md](skill-directory.md).
+For the split between portable `SKILL.md` instructions and executable
+runtime requirements, see [runtime-contract.md](runtime-contract.md).
 
 ## Choose an install path
 
@@ -61,6 +63,8 @@ two-tool subset.
 ```bash
 pip install research-hub-pipeline
 research-hub setup --persona researcher   # or: analyst | humanities | internal
+research-hub doctor
+research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
 
 `setup` is one interactive command that runs `init` + `install`, prompts for
@@ -110,14 +114,19 @@ yes when prompted):
 
 ```bash
 pip install "research-hub-pipeline[playwright]"
-research-hub notebooklm login
+research-hub notebooklm login --auto-detect
 ```
 
 First smoke test without NotebookLM:
 
 ```bash
-research-hub auto "agent-based modeling" --no-nlm
+research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
+
+Before asking any AI host to run literature discovery, use this runtime
+preflight: `research-hub describe --json`, `research-hub doctor`, then the
+small `auto ... --no-nlm` smoke test above. Installing this catalog or
+copying a `SKILL.md` file does not install the Python CLI.
 
 ### Already ran the bare `install` command?
 

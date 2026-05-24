@@ -7,6 +7,7 @@
 Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 [Pipeline](docs/pipeline.md) ·
 [Examples](docs/examples.md) ·
+[Runtime contract](docs/runtime-contract.md) ·
 [Glossary](docs/glossary.md)
 
 **What this is.** A catalog of 15
@@ -17,6 +18,9 @@ as five marketplace plugins with auto-triggering; Codex CLI, Gemini CLI,
 Cursor, Windsurf, Hermes, OpenClaw, and generic API clients can load the
 same `SKILL.md` files as context or skill directories (see
 [§7 Compatibility](#7-compatibility)).
+For literature automation, the `SKILL.md` catalog and the executable
+`research-hub` runtime are separate layers; see
+[docs/runtime-contract.md](docs/runtime-contract.md).
 
 <sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="SKILL.md spec compliant" src="https://img.shields.io/badge/SKILL.md-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
 
@@ -90,7 +94,9 @@ claude plugin install gemini-delegate@ai-research-skills
 
 # 5. Literature pipeline automation (Python CLI behind research-hub skills)
 pip install research-hub-pipeline
-research-hub setup
+research-hub setup --persona researcher
+research-hub doctor
+research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
 
 Batch all 5 plugins in one go:
@@ -115,6 +121,8 @@ plugins live under `~/.claude/plugins/cache/...`, not `~/.claude/skills/`.
 
 Per-plugin details: [docs/install.md](docs/install.md). Python / Zotero /
 Git not set up yet? Start with [docs/setup-guide.md](docs/setup-guide.md).
+Need to know whether a skill is prompt-only or needs the Python runtime?
+See [docs/runtime-contract.md](docs/runtime-contract.md).
 
 <details>
 <summary><b>I'd rather clone the repo</b> (contributors / debugging)</summary>

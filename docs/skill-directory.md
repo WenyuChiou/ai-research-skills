@@ -6,6 +6,8 @@ use, then install the skill that matches your workflow.
 For a checklist organized around Zotero, Obsidian, NotebookLM, manuscript work,
 and AI assistants, see
 [researcher-workflow-checklist.md](researcher-workflow-checklist.md).
+For which skills need `research-hub-pipeline` versus only Markdown
+instructions, see [runtime-contract.md](runtime-contract.md).
 
 ## Choose By Tool Combination
 
@@ -41,7 +43,7 @@ Optional NotebookLM automation (also handled by `setup` if you say yes):
 
 ```bash
 pip install "research-hub-pipeline[playwright]"
-research-hub notebooklm login
+research-hub notebooklm login --auto-detect
 ```
 
 | Skill | Use when | Direct skill link |

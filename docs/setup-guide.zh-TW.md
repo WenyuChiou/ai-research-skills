@@ -285,17 +285,19 @@ research-hub doctor
 預期 output：checklist、Python 版本、Zotero local API 連接（Phase C 有做的話）、skill 目錄存在都打勾。
 你沒做的 optional integration 顯示黃色 warning 沒關係。
 
-### D4. End-to-end smoke test
+### D4. Runtime smoke test
 
-Claude Code 裡：
+先跑一個不碰 NotebookLM 的小型流程：
 
+```bash
+research-hub describe --json
+research-hub doctor
+research-hub auto "agent-based flood modeling" --max-papers 3 --no-nlm
 ```
-用 research-hub discover 找 5 篇關於 "agent-based flood modeling" 的近期 paper，
-然後出 literature triage matrix。
-```
 
-預期：Claude 呼叫 `research-hub discover`、拿到 paper list、把 list 丟給
-`literature-triage-matrix`、寫出 `.research/literature_matrix.md`。
+預期：CLI 會回報 capabilities，health check 會說明缺哪些 optional
+service；`auto` 會匯入一個小 cluster，或在缺 LLM CLI 時用可執行的
+訊息停下。這條路徑正常後，再加入 NotebookLM。
 
 ### Phase D checkpoint
 
@@ -331,7 +333,7 @@ research-hub config get obsidian.vault_path
    ```
 2. 跑一次 browser login：
    ```bash
-   research-hub notebooklm login
+   research-hub notebooklm login --auto-detect
    ```
    瀏覽器會打開、用有 NotebookLM access 的 Google 帳號登入。
    登入完畢跳轉之後關掉瀏覽器。

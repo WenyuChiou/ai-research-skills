@@ -320,18 +320,20 @@ Zotero local API connectivity (if Phase C done), and skill directory
 presence. Yellow warnings for optional integrations you skipped are
 fine.
 
-### D4. End-to-end smoke test
+### D4. Runtime smoke test
 
-In Claude Code:
+Run a small first pass without NotebookLM:
 
+```bash
+research-hub describe --json
+research-hub doctor
+research-hub auto "agent-based flood modeling" --max-papers 3 --no-nlm
 ```
-Use research-hub discover to find 5 recent papers on
-"agent-based flood modeling", then make a literature triage matrix.
-```
 
-Expected: Claude calls `research-hub discover`, gets a paper list, then
-hands the list to `literature-triage-matrix`, and writes
-`.research/literature_matrix.md`.
+Expected: the CLI reports capabilities, the health check explains any
+missing optional services, and `auto` either ingests a small cluster or
+stops with an actionable missing-LLM-CLI message. Add NotebookLM only
+after this path works.
 
 ### Phase D checkpoint
 
@@ -367,7 +369,7 @@ research-hub config get obsidian.vault_path
    ```
 2. Run the one-time browser login:
    ```bash
-   research-hub notebooklm login
+   research-hub notebooklm login --auto-detect
    ```
    This opens a browser. Sign in to your Google account that has
    NotebookLM access. Close the browser when redirected.

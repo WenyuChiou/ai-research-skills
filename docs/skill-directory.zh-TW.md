@@ -5,6 +5,8 @@
 
 按工具組合 / 寫稿 / AI assistant 找對應 skill 的 checklist：
 [researcher-workflow-checklist.zh-TW.md](researcher-workflow-checklist.zh-TW.md)。
+哪些 skill 只需要 Markdown 指令、哪些需要 `research-hub-pipeline`，
+請看 [runtime-contract.zh-TW.md](runtime-contract.zh-TW.md)。
 
 ## 按你的工具組合挑
 
@@ -42,7 +44,7 @@ collection（`analyst` 略過）、會問你要不要登入 NotebookLM。
 
 ```bash
 pip install "research-hub-pipeline[playwright]"
-research-hub notebooklm login
+research-hub notebooklm login --auto-detect
 ```
 
 | Skill | 何時用 | SKILL.md |

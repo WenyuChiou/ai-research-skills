@@ -3,6 +3,9 @@
 Use this checklist if you work like many researchers: papers live in Zotero,
 notes live in Obsidian, source-grounded summaries come from NotebookLM, and
 manuscript work happens in Word, LaTeX, or Markdown.
+Read [runtime-contract.md](runtime-contract.md) alongside this checklist
+to distinguish portable `SKILL.md` instructions from the executable
+`research-hub` CLI runtime.
 
 ## Quick Tool Checklist
 
@@ -23,6 +26,8 @@ Install:
 ```bash
 pip install research-hub-pipeline
 research-hub setup --persona researcher
+research-hub doctor
+research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
 
 Use these skills:
@@ -47,7 +52,7 @@ Install:
 ```bash
 pip install "research-hub-pipeline[playwright]"
 research-hub setup --persona analyst   # no Zotero in this combo
-research-hub notebooklm login
+research-hub notebooklm login --auto-detect
 ```
 
 Use these skills:
@@ -72,7 +77,7 @@ Install:
 ```bash
 pip install "research-hub-pipeline[playwright]"
 research-hub setup --persona researcher
-research-hub notebooklm login
+research-hub notebooklm login --auto-detect
 ```
 
 Use these skills:
@@ -88,7 +93,7 @@ Install `research-hub` first:
 ```bash
 pip install "research-hub-pipeline[playwright]"
 research-hub setup --persona researcher
-research-hub notebooklm login
+research-hub notebooklm login --auto-detect
 ```
 
 Core skills:
