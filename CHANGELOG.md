@@ -15,6 +15,38 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.25] - 2026-05-26
+
+### Added
+
+- **`docs/examples.zh-TW.md` backfill** — 5 missing per-skill example
+  sections added to bring zh-TW examples to parity with the EN file:
+  - `## \`gap-to-topic\` — 候選主題的 3-gate 決策檔` (added EN
+    1.5.16, missing in zh-TW until now)
+  - `## \`research-design-helper\` — Stage 3a 設計簡報` (added EN
+    1.5.18)
+  - `## \`research-context-compressor\` — Stage 3b 專案 manifest`
+    (added EN 1.5.18)
+  - `## \`paper-memory-builder\` — Stage 7 論文 memory` (added EN
+    1.5.18)
+  - `## Stage 4 — 從設計簡報到鷹架程式碼 (cookbook, 兩條路徑)`
+    (added EN 1.5.19)
+  - Translation via `gemini-delegate`. All skill names, file paths,
+    YAML field names + enum values, technical terms (Socratic, BibTeX,
+    DOI, arXiv, frontmatter, sentinel, anti-leakage, Likert,
+    confounders, etc.), and `.docx` colour names (`Light red`,
+    `Light yellow`, `Light green`, `Light grey`) preserved verbatim
+    in English per locale convention. Table column headers translated
+    (`File` → `檔案`, `What it captures` → `捕捉的內容`, etc.).
+    Existing zh-TW sections (`literature-triage-matrix`,
+    `academic-writing-skills`, `zotero-library-curator`,
+    `paper-summarize`, `把它組起來`, `上面範例**沒**展示的`) preserved
+    unchanged.
+- Pre-commit fix: Gemini drift detected on review — pre-existing line
+  107 had its DOI `doi:10.1175/jhm-d-19-0157.1` truncated to
+  `doi:1175/...` (Gemini dropped the `10.` registrar prefix). Manually
+  reverted before commit so the diff is pure addition (+123, -0).
+
 ## [1.5.24] - 2026-05-23
 
 ### Added
