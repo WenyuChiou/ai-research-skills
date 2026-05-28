@@ -15,6 +15,41 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.27] - 2026-05-28
+
+### Removed
+
+- **Two README badges dropped** as overclaiming / off-positioning:
+  - `SKILL.md spec compliant` (https://img.shields.io/badge/SKILL.md-spec_compliant-2DA89C)
+    — there is no canonical maintained "SKILL.md spec". The original
+    `agentskills.io spec compliant` badge was renamed to `SKILL.md` in
+    a prior pass to de-emphasize agentskills.io, but the rename
+    accidentally produced a self-asserted spec claim with no upstream
+    referee. The badge linked to `.research/hermes-compatibility-audit.md`
+    even though that audit document is about Hermes runtime
+    verification, not about a SKILL.md format spec — link semantics
+    didn't match label.
+  - `Hermes 0.13.0 skill-load verified` (https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C)
+    — the verification covered exactly one skill
+    (`literature-triage-matrix`) at the 2026-05-10 audit, when the
+    catalog had 14 skills; `gap-to-topic` (the 15th) was added later
+    and isn't covered. Hermes is also not a host most readers
+    recognize, so the badge functioned as weak trust signal rather
+    than credible portability evidence.
+- Both badges also conflicted with the 1.5.26 gap-first repositioning:
+  the new tagline carries researcher-pain identity, and the badges
+  carried agent-infrastructure technical detail. Different audiences,
+  diluted the tagline's force.
+
+### Preserved
+
+- `License: MIT` badge kept (the only standard, unambiguous claim
+  among the three).
+- Cross-runtime evidence preserved at higher resolution **inside §7
+  Compatibility** — the table row for Hermes still lists the
+  `literature-triage-matrix` audit with all its caveats; readers who
+  want runtime evidence see the actual scope, not an oversold badge.
+
 ## [1.5.26] - 2026-05-28
 
 ### Changed
@@ -1262,7 +1297,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.6...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.27...HEAD
+[1.5.27]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.26...v1.5.27
 [1.5.6]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.5...v1.5.6
 [1.5.5]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.3...v1.5.4
