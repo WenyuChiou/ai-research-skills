@@ -15,6 +15,44 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.26] - 2026-05-28
+
+### Changed
+
+- **Repositioned the catalog around `gap-to-topic` (the 3-gate
+  decision dossier) as the unique differentiator.** Previously the
+  README tagline + "What this is" framed the catalog as a generic
+  "research workflow" tool — same shape as many AI-for-research
+  catalogs. The differentiator that's actually unique is the
+  Stage-2 `gap-to-topic` skill, which emits a structured decision
+  dossier with three gates (open / contribution / feasibility) and
+  gates downstream stages on a candidate clearing all three. New
+  tagline leads with the punchier framing: *"a skill catalog that
+  won't let you spend 6 months on a research gap that's already
+  closed, isn't a real contribution, or isn't feasible."* New
+  "What this is" reframes as *"15 skills built around one stubborn
+  question most research-AI tools dodge: is this research gap
+  actually worth doing?"* Cross-runtime loading (Codex CLI, Gemini
+  CLI, Cursor, Windsurf, Hermes, OpenClaw, generic API) demoted
+  from identity-claim to capability-line at the end of the
+  paragraph. Audience naming (graduate students / PhDs / postdocs /
+  research support staff) preserved. The `For literature automation,
+  the SKILL.md catalog and the executable research-hub runtime are
+  separate layers` runtime-contract sentence preserved verbatim
+  (unchanged operator addition).
+- **§7 Compatibility — soften remaining `agentskills.io` identity
+  references.** Two table rows used `agentskills.io-style hosts` /
+  `other agentskills.io hosts` as the audit-cohort name. Renamed to
+  `Generic \`SKILL.md\`-loading hosts` / `other \`SKILL.md\`-loading
+  hosts` so the catalog's identity stays around the file format
+  (the asset) rather than the namesake org/spec. The
+  `agentskills.io` spec is still mentioned in `.research/hermes-
+  compatibility-audit.md`-linked transcripts; no claim of
+  incompatibility, just lower identity prominence.
+- Both changes mirrored to `README.zh-TW.md`; same 3 edits with
+  technical terms (`gap-to-topic`, `SKILL.md`, `Codex CLI` etc.)
+  preserved verbatim in English per locale convention.
+
 ## [1.5.25] - 2026-05-26
 
 ### Added
