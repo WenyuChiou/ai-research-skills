@@ -2,10 +2,9 @@
 
 > A skill catalog that won't let you spend 6 months on a research gap
 > that's already closed, isn't a real contribution, or isn't feasible.
-> The `gap-to-topic` skill runs a 3-gate decision dossier on every
-> candidate thesis topic — and the rest of the pipeline (literature →
-> design → build → run → write → submit) only flows from candidates
-> that pass.
+> Every candidate thesis topic goes through a 3-gate decision dossier
+> first — and the rest of the pipeline (literature → design → build
+> → run → write → submit) only flows from candidates that pass.
 
 Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 [Pipeline](docs/pipeline.md) ·
@@ -15,11 +14,10 @@ Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 
 **What this is.** A catalog of 15 Claude Code skills built around one
 stubborn question most research-AI tools dodge: *is this research gap
-actually worth doing?* `gap-to-topic` (Stage 2 in the 8-stage pipeline)
-emits a structured decision dossier with three gates — open /
-contribution / feasibility — and downstream stages (research design,
-manuscript drafting, reviewer response) only fire on a candidate that
-clears all three. Built for graduate students, PhDs, postdocs, and
+actually worth doing?* The pipeline opens with a structured decision
+dossier — three gates: open / contribution / feasibility — and
+downstream stages (research design, manuscript drafting, reviewer
+response) only fire on a candidate that clears all three. Built for graduate students, PhDs, postdocs, and
 research support staff. Five plugins, one marketplace install — and
 the same `SKILL.md` files load into Codex CLI, Gemini CLI, Cursor,
 Windsurf, Hermes, OpenClaw, and generic API clients too (see
