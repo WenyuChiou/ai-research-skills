@@ -24,7 +24,7 @@ Windsurf、Hermes、OpenClaw,以及通用 API client (詳見
 是兩層不同東西;請看
 [docs/runtime-contract.zh-TW.md](docs/runtime-contract.zh-TW.md)。
 
-<sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="SKILL.md spec compliant" src="https://img.shields.io/badge/SKILL.md-spec_compliant-2DA89C"></a> <a href=".research/hermes-compatibility-audit.md"><img alt="Hermes 0.13.0 skill-load verified" src="https://img.shields.io/badge/Hermes_0.13.0-skill--load_verified-2DA89C"></a></sub>
+<sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a></sub>
 
 > 📚 本項目為 [agentic AI 學習路線圖](https://github.com/WenyuChiou/awesome-agentic-ai-zh) 的一部分
 > ——收錄於 §13–14 (研究工作流程)。
