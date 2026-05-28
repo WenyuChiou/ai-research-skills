@@ -1,8 +1,11 @@
 # AI Research Skills
 
-> A universal `SKILL.md` catalog for the full research workflow —
-> literature → research design → build → run → manuscript → submit,
-> with cross-agent delegation built in.
+> A skill catalog that won't let you spend 6 months on a research gap
+> that's already closed, isn't a real contribution, or isn't feasible.
+> The `gap-to-topic` skill runs a 3-gate decision dossier on every
+> candidate thesis topic — and the rest of the pipeline (literature →
+> design → build → run → write → submit) only flows from candidates
+> that pass.
 
 Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 [Pipeline](docs/pipeline.md) ·
@@ -10,13 +13,16 @@ Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 [Runtime contract](docs/runtime-contract.md) ·
 [Glossary](docs/glossary.md)
 
-**What this is.** A catalog of 15
-[agentskills.io](https://agentskills.io)-compatible Markdown skills for
-researchers running real projects with AI in the loop — graduate students,
-PhDs, postdocs, and research support staff. Claude Code can install them
-as five marketplace plugins with auto-triggering; Codex CLI, Gemini CLI,
-Cursor, Windsurf, Hermes, OpenClaw, and generic API clients can load the
-same `SKILL.md` files as context or skill directories (see
+**What this is.** A catalog of 15 Claude Code skills built around one
+stubborn question most research-AI tools dodge: *is this research gap
+actually worth doing?* `gap-to-topic` (Stage 2 in the 8-stage pipeline)
+emits a structured decision dossier with three gates — open /
+contribution / feasibility — and downstream stages (research design,
+manuscript drafting, reviewer response) only fire on a candidate that
+clears all three. Built for graduate students, PhDs, postdocs, and
+research support staff. Five plugins, one marketplace install — and
+the same `SKILL.md` files load into Codex CLI, Gemini CLI, Cursor,
+Windsurf, Hermes, OpenClaw, and generic API clients too (see
 [§7 Compatibility](#7-compatibility)).
 For literature automation, the `SKILL.md` catalog and the executable
 `research-hub` runtime are separate layers; see
@@ -398,10 +404,10 @@ way to use the skills.
 |---|---|---|
 | Universal `SKILL.md` layer | Skill instructions, trigger descriptions, references, scripts, and `.research/` / `.paper/` handoff contracts | 15/15 pass strict-minimum spec (`name` + `description`, ≤500 lines) |
 | Host-specific behavior | Auto-triggering, plugin marketplace install, `claude plugin list`, skill discovery, and rules-directory conventions | Depends on the agent host; use that host's own list/discovery check |
-| Current portability audit | agentskills.io-style hosts | 11/14 zero-edit portable in the 2026-05-10 audit; 3/14 needed cosmetic `<skill-root>` path edits that have since landed |
+| Current portability audit | Generic `SKILL.md`-loading hosts | 11/14 zero-edit portable in the 2026-05-10 audit; 3/14 needed cosmetic `<skill-root>` path edits that have since landed |
 | Verified host install | NousResearch/hermes-agent 0.13.0 | `literature-triage-matrix` installed end to end, security scan SAFE, registered `enabled`; Hermes inference loop not tested |
 | OpenClaw | `SKILL.md`-style directories such as `~/.openclaw/skills/<skill>/SKILL.md` when supported by the user's OpenClaw install | Structurally compatible target, but not release-grade verified by this repo yet |
-| Other agents | Codex CLI, Gemini CLI, Cursor, Windsurf, generic API clients, and other agentskills.io hosts | Load the same `SKILL.md` as context or into the host's skill/rules directory; not all hosts are individually tested |
+| Other agents | Codex CLI, Gemini CLI, Cursor, Windsurf, generic API clients, and other `SKILL.md`-loading hosts | Load the same `SKILL.md` as context or into the host's skill/rules directory; not all hosts are individually tested |
 
 The `11/14` portability figure reflects the audit run on 2026-05-10,
 when the catalog had 14 skills; `gap-to-topic` (added 2026-05-21, the
