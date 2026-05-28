@@ -15,6 +15,34 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.28] - 2026-05-28
+
+### Changed
+
+- **README opening abstracted — no longer names a specific skill in
+  the tagline or "What this is" paragraph.** The 1.5.26 gap-first
+  repositioning mentioned `gap-to-topic` twice in the opening (once
+  in the tagline, once in "What this is" with a `Stage 2 in the
+  8-stage pipeline` callout). Reader feedback: naming a single skill
+  in the identity-density opening (a) makes the catalog look like
+  "one skill is the whole story" — flattening the other 14 skills
+  into supporting cast, (b) creates a maintenance liability if the
+  skill is ever renamed, (c) adds friction for new readers who don't
+  yet know what `gap-to-topic` is.
+  - Tagline now reads "Every candidate thesis topic goes through a
+    3-gate decision dossier first" — capability-focused, no skill
+    handle.
+  - "What this is" now reads "The pipeline opens with a structured
+    decision dossier — three gates: open / contribution /
+    feasibility" — capability-focused, no skill handle, no
+    `Stage 2 in the 8-stage pipeline` callout.
+  - Per-skill names continue to appear in §3 Pipeline table,
+    §4 Use it trigger table, §4 All-15-skills `<details>` block,
+    §5 deliverable table — these are reference contexts where
+    naming the skill is the point. Only the opening identity
+    paragraphs are abstracted.
+- Both changes mirrored to `README.zh-TW.md`.
+
 ## [1.5.27] - 2026-05-28
 
 ### Removed
@@ -1297,7 +1325,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.27...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.28...HEAD
+[1.5.28]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.27...v1.5.28
 [1.5.27]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.26...v1.5.27
 [1.5.6]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.5...v1.5.6
 [1.5.5]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.4...v1.5.5

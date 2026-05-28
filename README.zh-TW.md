@@ -1,9 +1,9 @@
 # AI Research Skills
 
 > 一套 skill catalog,專門阻止你花 6 個月做一個其實已經被別人做掉、
-> 算不上真貢獻、或時間根本做不完的 research gap。`gap-to-topic` skill
-> 會對每個候選 thesis 主題跑一份三關決策 dossier — 通過了,後面的
-> pipeline (文獻 → 設計 → 實作 → 執行 → 撰寫 → 投稿) 才開始動。
+> 算不上真貢獻、或時間根本做不完的 research gap。每個候選 thesis
+> 主題,先過一份三關決策 dossier — 通過了,後面的 pipeline (文獻 →
+> 設計 → 實作 → 執行 → 撰寫 → 投稿) 才開始動。
 
 語言：[English](README.md) | [繁中](README.zh-TW.md) ·
 [Pipeline](docs/pipeline.md) ·
@@ -13,9 +13,9 @@
 
 **這是什麼。** 一套 15 個 Claude Code skills 的 catalog,圍繞著一個
 大部分研究 AI 工具迴避的問題:*這個 research gap 真的值得做嗎?*
-`gap-to-topic` (8-stage pipeline 的 Stage 2) 產出一份帶三關的結構化
-決策 dossier — 開放性 / 貢獻度 / 可行性 — 通過三關的候選主題,
-後段 stage (研究設計、論文撰寫、回覆審稿人) 才會啟動。設計給研究生、
+Pipeline 開頭就是一份帶三關的結構化決策 dossier — 開放性 / 貢獻度 /
+可行性 — 通過三關的候選主題,後段 stage (研究設計、論文撰寫、
+回覆審稿人) 才會啟動。設計給研究生、
 博士生、博士後與研究支援人員使用。五個 plugins,一次 marketplace
 安裝完 — 同一批 `SKILL.md` 也能載到 Codex CLI、Gemini CLI、Cursor、
 Windsurf、Hermes、OpenClaw,以及通用 API client (詳見
