@@ -316,7 +316,7 @@ catalog 層級的 `CHANGELOG.md`。
 
 ## 5. 查看每個 skill 的產出 (See what each skill produces)
 
-每個發布的 skill 都有實作範例檔案,點下去直接看 artifact 長什麼樣 — 不是描述,是實物。
+每個 pipeline 階段的交付物都有實作範例檔案,點下去直接看 artifact 長什麼樣 — 不是描述,是實物。
 
 | 階段 | skill 產出什麼 | 範例檔 |
 |---|---|---|
@@ -326,6 +326,11 @@ catalog 層級的 `CHANGELOG.md`。
 | 3b | 帶 `provenance.from_gap` 的專案 manifest,讓未來 AI sessions 省去重新掃描 | [`example-project-manifest.yml`](docs/example-project-manifest.yml) |
 | 4 | Cookbook — 從 brief 到程式碼骨架的兩條路徑 (Claude-direct 用於 ≤4 個檔案;`codex-delegate` 用於 ≥5) | [`example-design-to-build.md`](docs/example-design-to-build.md) |
 | 7 | 論文 claim 清單 (含 `status: gap` anti-leakage 規則) + 圖表清單 (embedded-in-manuscript sentinel) | [`example-paper-memory-claims.yml`](docs/example-paper-memory-claims.yml) + [`example-paper-memory-figures.yml`](docs/example-paper-memory-figures.yml) |
+
+跨領域與編排型的 skills (`research-hub` ingestion、`research-project-orienter`、`research-hub-multi-ai`、`notebooklm-brief-verifier`) 不對應單一階段交付物 — 它們在 [`test-corpus/`](test-corpus/) 的真實 dogfood run 裡端到端跑過:一份
+[orientation memo](test-corpus/ai-agents-social-interaction/.research/orientation_memo.md)、
+一份 [multi-AI routing decision](test-corpus/ai-agents-social-interaction/.research/multi-ai-routing-decision.md)、
+以及一份 [NotebookLM brief 驗證](test-corpus/ai-agents-social-interaction/.research_hub/brief-verify-20260426T001559Z.md)。
 
 或從頭到尾閱讀 [`docs/examples.md`](docs/examples.md) 看每個 skill 的 input/output 對照表敘述版。
 
