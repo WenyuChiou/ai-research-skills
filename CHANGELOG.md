@@ -15,6 +15,39 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.29] - 2026-05-28
+
+### Fixed
+
+- **P0 — dangling cross-reference in a shipped example
+  (`docs/example-literature-review-deliverable.gaps.yml`).** Gaps G1
+  and G2 carried `linked_claim: C6` and `linked_claim: C5`, but this
+  synthetic cognitive-biases deliverable ships **no companion
+  `.paper/claims.yml`** — the `example-paper-memory-claims.yml` (C1–C5)
+  is a different, unrelated example (HydroLLM / water resources). C6
+  resolves to nothing anywhere in the corpus, and even C5 was a
+  cross-topic mis-link. A researcher copying the example would wire a
+  research gap to a claim that doesn't exist — the exact
+  producer↔consumer drift the catalog advertises it prevents. Both
+  set to `null`, matching the convention `example-topic-dossier.gaps.yml`
+  already uses (a gaps file with no same-topic claims companion uses
+  `linked_claim: null`). Surfaced by the catalog quality audit
+  (2026-05-28); a regression test (`tests/test_example_artifacts.py`)
+  ships in 1.5.30 to keep it fixed.
+- **P0 — false headline claim in README §5.** "Every shipping skill
+  has at least one worked-example file" was untrue: the §5 table is
+  organized by **pipeline stage deliverable**, not per-skill, so the
+  orchestration / cross-cutting skills (`research-hub`,
+  `research-project-orienter`, `research-hub-multi-ai`,
+  `notebooklm-brief-verifier`) had no linked artifact despite being
+  demonstrated end-to-end. Reworded to "Each pipeline stage's
+  deliverable has a worked-example file" (accurate) and added a
+  pointer to the committed `test-corpus/` dogfood run that exercises
+  those four skills — surfacing already-validated evidence
+  (`orientation_memo.md`, `multi-ai-routing-decision.md`, the
+  NotebookLM `brief-verify-*.md`) that the README had been ignoring.
+  Mirrored to `README.zh-TW.md`.
+
 ## [1.5.28] - 2026-05-28
 
 ### Changed
@@ -1325,7 +1358,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.28...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.29...HEAD
+[1.5.29]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.28...v1.5.29
 [1.5.28]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.27...v1.5.28
 [1.5.27]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.26...v1.5.27
 [1.5.6]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.5...v1.5.6

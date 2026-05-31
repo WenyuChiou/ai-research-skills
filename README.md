@@ -356,7 +356,7 @@ The skills will not do this for you.
 
 ## 5. See what each skill produces
 
-Every shipping skill has at least one worked-example file. Click
+Each pipeline stage's deliverable has a worked-example file. Click
 through to see the actual artifact a skill emits — not a description.
 
 | Stage | What the skill produces | Example file |
@@ -367,6 +367,15 @@ through to see the actual artifact a skill emits — not a description.
 | 3b | Project manifest carrying `provenance.from_gap` so future AI sessions skip the rescan | [`example-project-manifest.yml`](docs/example-project-manifest.yml) |
 | 4 | Cookbook — two paths from brief to scaffolded code (Claude-direct for ≤4 files; `codex-delegate` for ≥5) | [`example-design-to-build.md`](docs/example-design-to-build.md) |
 | 7 | Paper claims with `status: gap` anti-leakage rule + figure roster with embedded-in-manuscript sentinels | [`example-paper-memory-claims.yml`](docs/example-paper-memory-claims.yml) + [`example-paper-memory-figures.yml`](docs/example-paper-memory-figures.yml) |
+
+The cross-cutting and orchestration skills (`research-hub` ingestion,
+`research-project-orienter`, `research-hub-multi-ai`,
+`notebooklm-brief-verifier`) don't map to a single stage deliverable —
+they're exercised end-to-end in [`test-corpus/`](test-corpus/) from a
+real dogfood run: an
+[orientation memo](test-corpus/ai-agents-social-interaction/.research/orientation_memo.md),
+a [multi-AI routing decision](test-corpus/ai-agents-social-interaction/.research/multi-ai-routing-decision.md),
+and a [NotebookLM brief verification](test-corpus/ai-agents-social-interaction/.research_hub/brief-verify-20260426T001559Z.md).
 
 Or read [`docs/examples.md`](docs/examples.md) end to end for the
 narrative tour with per-skill input/output tables.

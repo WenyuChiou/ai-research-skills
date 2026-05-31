@@ -16,14 +16,14 @@ gaps:
     statement: "No standardized free-response effect size for LLM anchoring."
     evidence: "S1 uses numeric-estimation tasks; S3 uses multiple-choice; neither reports a free-response effect size."
     closes_via: "A free-response anchoring pilot reporting a standardized effect size."
-    linked_claim: C6      # .paper/claims.yml — status: gap
+    linked_claim: null    # no .paper/claims.yml ships for this synthetic deliverable; set once a paper memory exists
     status: open
 
   - id: G2
     statement: "The anchor effect's dependence on anchor plausibility is untested."
     evidence: "No corpus paper grades anchor plausibility; all use fixed anchors."
     closes_via: "A graded-anchor pilot testing a monotonic dose-response."
-    linked_claim: C5      # .paper/claims.yml — status: gap
+    linked_claim: null    # no .paper/claims.yml ships for this synthetic deliverable; set once a paper memory exists
     status: open
 
   - id: G3
