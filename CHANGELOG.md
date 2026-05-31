@@ -15,6 +15,35 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.32] - 2026-05-28
+
+### Added
+
+- **`docs/RELEASING.md`** — the catalog had no release runbook (unlike
+  research-hub). Documents the bump → CHANGELOG-entry-with-footer-link →
+  CI-green flow, names the mechanical gate (`test_release_hygiene.py`
+  asserts CHANGELOG completeness + version freshness + plugin-version
+  sync on every PR), and the plugin-version-bump rule (the
+  `marketplace.json` version string is the only cache-buster under
+  `ref:<branch>` pinning). Closes the audit's "catalog has no
+  RELEASING.md" gap (the gate is "those tests must be green," so no shell
+  scaffolding is needed).
+- **`scripts/check_skill_drift.py`** — monthly, report-only drift sweep:
+  the slow-moving counterpart to the per-PR gate. Owns the checks a build
+  shouldn't (flaky/machine-local): `skill_url`/`repo_url` HEAD-request
+  reachability, installed plugin-cache top version vs the marketplace pin
+  (surfaces the 0.2.0-vs-0.3.16 install-cache staleness the audit found on
+  the maintainer's machine), `verified_on` staleness (`--max-age-days`),
+  and a CHANGELOG heading↔footer diff. `--strict` exits non-zero on
+  drift; default is report + exit 0. Runs via cron / Task Scheduler.
+  Network link-checking lives here (report-only) rather than in required
+  CI, so transient throttling never blocks a PR.
+
+This is the close-the-loop layer of the 2026-05-28 quality audit: every
+load-bearing guarantee the audit found defended only by prose is now
+either a per-PR test (1.5.30) or a monthly mechanical sweep (this
+release), with the release flow documented end to end.
+
 ## [1.5.31] - 2026-05-28
 
 ### Fixed
@@ -1415,7 +1444,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.31...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.32...HEAD
+[1.5.32]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.31...v1.5.32
 [1.5.31]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.30...v1.5.31
 [1.5.30]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.29...v1.5.30
 [1.5.29]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.28...v1.5.29
