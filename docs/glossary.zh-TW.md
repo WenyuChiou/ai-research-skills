@@ -92,7 +92,9 @@ generation。需要 `pip install research-hub-pipeline`。上面那層 skill 讓
 對 prompt-based skill 而言,T3 不是「比 T1 弱」—— 是「不同的 check」,
 不是嚴格層級。完整 nuance 看 verification 文件。
 
-目前比例(看 `docs/verification.md` 2026-05-09 header):13 個 T1、1 個 T2。
+目前比例(看 `docs/verification.md` 2026-05-09 header):13 個 T1、1 個 T2 ——
+即當天稽核的 14 個 skill。`gap-to-topic`(第 15 個,2026-05-21 才加)另外
+單獨驗證,見它在 `catalog/skills.yml` 的 `verification_notes`。
 Tier 跟 `verification_status`(pass/caveat/fail/not_yet)是兩個獨立 axis ——
 兩個維度描述不同的事。
 
@@ -122,11 +124,14 @@ Claude Code 把你的自然語言對應到 SKILL.md 的機制 —— 看 frontma
 - **Stages 1-2** —— Discovery + 文獻 triage
 - **Stage 3a** —— 研究問題收斂
 - **Stage 3b** —— 專案 manifest / context 壓縮
-- **Stage 4** —— Design 對話
-- **Stage 5** —— 實作(orient + replay context)
-- **Stage 6** —— 跨切 delegation(Codex / Gemini handoff)
+- **Stage 4** —— 設計與建模 (design + scaffold)
+- **Stage 5** —— 執行、校正、驗證
+- **Stage 6** —— 視覺化與結果解讀
 - **Stage 7** —— Manuscript memory + 寫作
 - **Stage 8** —— 投稿 / reviewer response
+
+(Codex / Gemini delegation 是*跨領域*的 —— 每個階段都能用,不是單一
+階段 —— 見 `docs/pipeline.md`。)
 
 完整圖看 `docs/pipeline.md`;README skill 列表的 stage 數字都指這。
 

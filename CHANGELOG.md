@@ -15,6 +15,33 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.31] - 2026-05-28
+
+### Fixed
+
+- **`docs/glossary.md` stage map contradicted the canonical pipeline
+  (O6).** Stages 4/5/6 read "Design dialog / Implementation
+  (orient + replay context) / Cross-cutting delegation (Codex / Gemini
+  handoff)" — a stale mapping. README §3 and `docs/pipeline.md` (the
+  canonical source) agree on 4 = Build the model, 5 = Run & validate,
+  6 = Visualise & interpret. A reader decoding a `*(Stages 3a, 4)*`
+  skill tag got the wrong pipeline model. Aligned to canonical + added
+  a note that Codex/Gemini delegation is cross-cutting (every stage),
+  not Stage 6. Mirrored to `docs/glossary.zh-TW.md` (using the canonical
+  Taiwan stage names 設計與建模 / 執行、校正、驗證 / 視覺化與結果解讀).
+- **`docs/glossary.md` skill-count inconsistency (O7).** Said "15 skills
+  total" but then "13 at T1, 1 at T2" (= 14) with no reconciling note.
+  Added: those 14 are the skills audited on the 2026-05-09 verification
+  header; `gap-to-topic` (the 15th, added 2026-05-21) was verified
+  separately. Mirrored to zh-TW.
+- **`docs/pipeline.md` dead anchor (O8).** Intro linked
+  `../README.md#pick-your-starting-point`, which no longer exists after
+  the README restructure. Repointed to `../README.md#pick-by-goal` (the
+  `### Pick by goal` section in README §4). The zh-TW pipeline.md already
+  links the correct `#找到你的起點` anchor — EN-only fix.
+
+All three surfaced by the catalog quality audit (2026-05-28).
+
 ## [1.5.30] - 2026-05-28
 
 ### Added
@@ -1388,7 +1415,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.30...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.31...HEAD
+[1.5.31]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.30...v1.5.31
 [1.5.30]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.29...v1.5.30
 [1.5.29]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.28...v1.5.29
 [1.5.28]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.27...v1.5.28

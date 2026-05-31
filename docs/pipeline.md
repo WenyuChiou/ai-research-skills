@@ -2,7 +2,7 @@
 
 The 8 stages of a research project, with the skills that fit each one.
 This is the comprehensive reference — most users get what they need
-from the [README's persona table](../README.md#pick-your-starting-point)
+from the [README's Pick-by-goal table](../README.md#pick-by-goal)
 and never need to read this.
 
 繁中: [pipeline.zh-TW.md](pipeline.zh-TW.md)

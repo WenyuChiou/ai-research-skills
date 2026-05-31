@@ -111,7 +111,9 @@ qualitatively different checks rather than a strict hierarchy. See
 the verification doc for the full nuance.
 
 Current mix (per `docs/verification.md` 2026-05-09 header): 13 at T1,
-1 at T2. Tier is independent of `verification_status`
+1 at T2 — the 14 skills audited on that date. `gap-to-topic` (the 15th,
+added 2026-05-21) was verified separately; see its `verification_notes`
+in `catalog/skills.yml`. Tier is independent of `verification_status`
 (pass/caveat/fail/not_yet) — the two axes describe different things.
 
 ### Skill router / auto-trigger
@@ -144,11 +146,14 @@ locates it on that pipeline:
 - **Stages 1-2** — Discovery + literature triage
 - **Stage 3a** — Research-question sharpening
 - **Stage 3b** — Project manifest / context compression
-- **Stage 4** — Design dialog
-- **Stage 5** — Implementation (orient + replay context)
-- **Stage 6** — Cross-cutting delegation (Codex / Gemini handoff)
+- **Stage 4** — Build the model (design + scaffold)
+- **Stage 5** — Run, calibrate & validate
+- **Stage 6** — Visualise & interpret results
 - **Stage 7** — Manuscript memory + writing
 - **Stage 8** — Submission / reviewer response
+
+(Codex / Gemini delegation is *cross-cutting* — available at every
+stage, not a single stage — see `docs/pipeline.md`.)
 
 Open `docs/pipeline.md` for the diagram; the stage numbers in the
 README skill list point at it.
