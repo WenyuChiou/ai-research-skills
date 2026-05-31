@@ -15,6 +15,36 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.30] - 2026-05-28
+
+### Added
+
+- **`tests/test_example_artifacts.py`** — closes the catalog's silent-failure
+  surface: until now nothing opened the `docs/example-*` artifacts the catalog
+  ships (which is how the 1.5.29 dangling `linked_claim: C6` reached users).
+  Asserts: every `example-*.yml` parses; every non-null `linked_claim` resolves
+  to a real claim id in `example-paper-memory-claims.yml` (the O1 regression
+  net); every `figures[].supports_claims` id resolves to a claim (figure↔claim
+  reciprocity); the topic-dossier gaps file names its `downstream_consumer` and
+  every gap carries a `verdict`.
+- **`tests/test_release_hygiene.py`** — closes the version-drift surface. Asserts:
+  every `## [x.y.z]` CHANGELOG heading has a matching `[x.y.z]:` footer
+  compare-link (and vice versa); versions strictly descend; `marketplace.json`
+  `metadata.version` equals the newest heading; the 5-plugin set + semver shape
+  are well-formed; and — best-effort, skip-clean on CI — each marketplace plugin
+  version matches its sibling source `plugin.json` when that repo is cloned (the
+  only cache-buster under `ref:<branch>` pinning). Both test files run on every
+  PR via the existing `pytest tests/` CI step — no new wiring.
+
+### Fixed
+
+- **CHANGELOG footer comparison-link backfill (1.5.7 – 1.5.26).** 20 version
+  headings rendered as dead, non-hyperlinked text on GitHub because their
+  `[x.y.z]:` compare-link footers were never added (drift that accumulated
+  silently from 1.5.7 onward — exactly because no test referenced the CHANGELOG).
+  All 20 backfilled; `test_changelog_heading_footer_parity` now keeps the footer
+  complete on every future release.
+
 ## [1.5.29] - 2026-05-28
 
 ### Fixed
@@ -1358,10 +1388,31 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.29...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.30...HEAD
+[1.5.30]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.29...v1.5.30
 [1.5.29]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.28...v1.5.29
 [1.5.28]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.27...v1.5.28
 [1.5.27]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.26...v1.5.27
+[1.5.26]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.25...v1.5.26
+[1.5.25]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.24...v1.5.25
+[1.5.24]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.23...v1.5.24
+[1.5.23]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.22...v1.5.23
+[1.5.22]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.21...v1.5.22
+[1.5.21]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.20...v1.5.21
+[1.5.20]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.19...v1.5.20
+[1.5.19]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.18...v1.5.19
+[1.5.18]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.17...v1.5.18
+[1.5.17]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.16...v1.5.17
+[1.5.16]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.15...v1.5.16
+[1.5.15]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.14...v1.5.15
+[1.5.14]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.13...v1.5.14
+[1.5.13]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.12...v1.5.13
+[1.5.12]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.11...v1.5.12
+[1.5.11]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.10...v1.5.11
+[1.5.10]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.9...v1.5.10
+[1.5.9]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.8...v1.5.9
+[1.5.8]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.7...v1.5.8
+[1.5.7]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.6...v1.5.7
 [1.5.6]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.5...v1.5.6
 [1.5.5]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.3...v1.5.4
