@@ -15,6 +15,19 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.33] - 2026-06-07
+
+### Changed
+
+- **`academic-writing-skills` plugin pin `0.2.1 → 0.2.2`** in
+  `marketplace.json`. The source repo shipped writing principle §1.7
+  "Emphasis In The Subject (End-Focus)" (a sentence-level extension of
+  §1.1 findings-first) in its `references/writing_principles.md`. Under
+  `ref:main` pinning the `marketplace.json` version string is the only
+  cache-buster, so the pin moves with the source `plugin.json` bump —
+  keeping `test_release_hygiene.py`'s cross-source version-sync check
+  green and ensuring the next install/update re-clones the updated skill.
+
 ## [1.5.32] - 2026-05-28
 
 ### Added
@@ -1444,7 +1457,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.32...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.33...HEAD
+[1.5.33]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.32...v1.5.33
 [1.5.32]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.31...v1.5.32
 [1.5.31]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.30...v1.5.31
 [1.5.30]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.29...v1.5.30
