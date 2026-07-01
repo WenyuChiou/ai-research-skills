@@ -15,6 +15,23 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.34] - 2026-06-30
+
+### Changed
+
+- **`academic-writing-skills` plugin pin `0.2.3 → 0.3.0`** in
+  `marketplace.json` (and catalog `metadata.version 1.5.33 → 1.5.34`). The
+  source repo shipped a corpus-calibrated content release: a new Study Area
+  section checklist, writing principle §1.9 (paragraph-to-question alignment),
+  a `style_overrides_customization.md` template, a figure-first Results
+  carve-out on §1.1, a reporting-frame exemption on §2.1, and a Field-Native
+  Exemptions block (with permitted-but-hedged `novel`/`first` in body sections)
+  in `banned_words.md`. Under `ref:main` pinning the `marketplace.json` version
+  string is the only cache-buster, so the pin moves with the source
+  `plugin.json` bump — keeping `test_release_hygiene.py`'s cross-source
+  version-sync check green and ensuring the next install or update re-clones
+  the updated skill.
+
 ## [1.5.33] - 2026-06-07
 
 ### Changed
@@ -1457,7 +1474,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.33...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.34...HEAD
+[1.5.34]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.33...v1.5.34
 [1.5.33]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.32...v1.5.33
 [1.5.32]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.31...v1.5.32
 [1.5.31]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.30...v1.5.31
