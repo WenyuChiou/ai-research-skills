@@ -493,21 +493,35 @@ families:
           - Codex task brief at .ai/codex_task_<name>.md
           - Wrapper result.json contract (status / files_changed / summary / risks)
           - Supervisor review checklist
-        verified_on: "2026-05-09"
+        verified_on: "2026-07-03"
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          T1 promoted. The earlier T2 caveat (codex-cli 0.121.0 default
-          model gpt-5.5 aborting) is now resolved at the skill itself via
-          upstream PR https://github.com/WenyuChiou/codex-delegate/pull/1:
-          new ## Model Selection section documents the -m gpt-5.4
-          workaround and ~/.codex/config.toml override; new ## Non-
-          Interactive Shell Note documents the < /dev/null requirement;
-          new ## Quota Fallback formalizes the .fallback_claude sentinel
-          mechanism; new ## Multi-Agent Coordination clarifies the leaf
-          role; new ## Five Workflow Patterns + references/patterns.md
-          document context file / parallel / resume / structured output /
-          review mode. The shipped wrappers already default to gpt-5.4.
+          Re-verified 2026-07-03 (T1 held; model + environment re-run this
+          pass). The gpt-5.4 workaround in the prior pass below is now
+          OBSOLETE: codex-cli is 0.137.0, ~/.codex/config.toml sets
+          model = "gpt-5.5", and the shipped run_codex.sh / run_codex.ps1
+          default MODEL to gpt-5.5. Executed smoke test
+          `codex exec --sandbox read-only -m gpt-5.5` returned the model
+          reply with exit 0 — default gpt-5.5 no longer aborts. Wrapper
+          result.json / .fallback_claude / stdin-close logic re-confirmed by
+          code inspection; live quota-fallback + multi-agent coordination
+          carried from the 2026-05-09 pass, NOT re-executed this round.
+          (Observed but unrelated: codex logged a Linear-MCP OAuth
+          invalid_token warning; non-blocking, did not affect the model run.)
+
+          Prior pass (2026-05-09, T1 promoted): T1 promoted. The earlier T2
+          caveat (codex-cli 0.121.0 default model gpt-5.5 aborting) is now
+          resolved at the skill itself via upstream PR
+          https://github.com/WenyuChiou/codex-delegate/pull/1: new ## Model
+          Selection section documents the -m gpt-5.4 workaround and
+          ~/.codex/config.toml override; new ## Non-Interactive Shell Note
+          documents the < /dev/null requirement; new ## Quota Fallback
+          formalizes the .fallback_claude sentinel mechanism; new ## Multi-
+          Agent Coordination clarifies the leaf role; new ## Five Workflow
+          Patterns + references/patterns.md document context file / parallel /
+          resume / structured output / review mode. The shipped wrappers
+          already default to gpt-5.4.
       - name: gemini-delegate
         directory: .
         repo_url: https://github.com/WenyuChiou/gemini-delegate-skill
