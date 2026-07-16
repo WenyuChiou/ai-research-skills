@@ -15,6 +15,34 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.36] - 2026-07-16
+
+### Changed
+
+- **`zotero-skills` plugin pin `0.1.0 → 0.2.0`** in `marketplace.json` (and
+  catalog `metadata.version 1.5.35 → 1.5.36`). The source repo shipped a
+  security & correctness audit release (v0.2.0): hardened shared client (item
+  version read from the authoritative Web API, per-item `delete_items` to avoid
+  a batch 412, recoverable `trash_item`/`trash_items`, credential precedence
+  env → `~/.claude/.env` → `config.json`, write-failure surfacing via
+  `ZoteroWriteError`), a SKILL.md agent-safety rules section, corrected
+  reference docs, `LICENSE` + `requirements.txt`, and a 59-test suite. Under
+  `ref:master` pinning the `marketplace.json` version string is the only
+  cache-buster, so the pin moves with the source `plugin.json` bump — keeping
+  `test_release_hygiene.py`'s cross-source version-sync check green. The
+  frontmatter/marketplace description was also scoped (PDF upload is via raw
+  pyzotero, not a tested `ZoteroDualClient` method).
+
+## [1.5.35] - 2026-07-10
+
+### Changed
+
+- **`research-workspace` plugin pin `→ 0.3.17`** in `marketplace.json` (catalog
+  `metadata.version 1.5.34 → 1.5.35`). Source repo shipped a codex-fatal YAML
+  frontmatter fix. (CHANGELOG entry backfilled — the pin/metadata bump in
+  `675fa92` shipped without one, leaving `test_release_hygiene.py`'s
+  newest-heading-equals-metadata check red until now.)
+
 ## [1.5.34] - 2026-06-30
 
 ### Changed
@@ -1474,7 +1502,9 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.34...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.36...HEAD
+[1.5.36]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.35...v1.5.36
+[1.5.35]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.34...v1.5.35
 [1.5.34]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.33...v1.5.34
 [1.5.33]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.32...v1.5.33
 [1.5.32]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.31...v1.5.32

@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Catalog of AI skills for the research workflow — researcher-led, AI-assisted",
-    "version": "1.5.35"
+    "version": "1.5.36"
   },
   "plugins": [
     {
@@ -38,10 +38,10 @@
     },
     {
       "name": "zotero-skills",
-      "description": "Full Zotero CRUD: search, add, update, delete items with notes, tags, collections, and PDF attachments. Dual local/Web API routing.",
+      "description": "Full Zotero CRUD: search, add, update, delete items with notes, tags, and collections (PDF upload via raw pyzotero). Dual local/Web API routing.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/zotero-skills",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "strict": true,
       "source": {
         "source": "url",
