@@ -12,7 +12,7 @@ Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 [Runtime contract](docs/runtime-contract.md) ·
 [Glossary](docs/glossary.md)
 
-**What this is.** A catalog of 15 Claude Code skills built around one
+**What this is.** A catalog of 16 Claude Code skills built around one
 stubborn question most research-AI tools dodge: *is this research gap
 actually worth doing?* The pipeline opens with a structured decision
 dossier — three gates: open / contribution / feasibility — and
@@ -140,7 +140,7 @@ This catalog is the **registry**, not a monorepo. Each plugin's source
 code lives in its own repo:
 
 - `github.com/WenyuChiou/research-hub` — 11 `research-workspace` skills
-- `github.com/WenyuChiou/academic-writing-skills` — 1 skill
+- `github.com/WenyuChiou/academic-writing-skills` — 2 skills
 - `github.com/WenyuChiou/zotero-skills` — 1 skill
 - `github.com/WenyuChiou/codex-delegate` — 1 skill
 - `github.com/WenyuChiou/gemini-delegate-skill` — 1 skill
@@ -196,7 +196,7 @@ where real time disappears.
 
 ---
 
-### Three design principles, applied across 15 skills
+### Three design principles, applied across 16 skills
 
 The catalog is arranged around three load-bearing ideas, not a feature
 list:
@@ -210,7 +210,7 @@ list:
 The 8-stage pipeline below is these three principles applied to a
 real research workflow.
 
-![15 AI skills mapped to 8 research workflow stages, with cross-cutting tools (codex-delegate, gemini-delegate, research-hub-multi-ai) usable at every stage](docs/img/pipeline-overview.png)
+![Research skills mapped to 8 workflow stages, with cross-cutting tools usable at every stage](docs/img/pipeline-overview.png)
 
 ---
 
@@ -275,7 +275,7 @@ phrasing to a skill. You don't need to remember skill names.
 | "Walk me through my research design before I start coding" | `research-design-helper` |
 | "Audit this paragraph for banned words and overclaim" | `academic-writing-skills` |
 
-Full trigger map (15 rows): [docs/skill-directory.md](docs/skill-directory.md).
+Full trigger map (16 rows): [docs/skill-directory.md](docs/skill-directory.md).
 If auto-trigger picks the wrong skill, name it explicitly:
 *"Use `literature-triage-matrix` to compare these 5 papers."*
 
@@ -298,7 +298,7 @@ If auto-trigger picks the wrong skill, name it explicitly:
 > Full setup + tool-by-tool modes:
 > [research-hub project README](https://github.com/WenyuChiou/research-hub).
 
-### All 15 skills
+### All 16 skills
 
 <details>
 <summary><b>From <a href="https://github.com/WenyuChiou/research-hub"><code>research-hub</code></a> (11 skills)</b> — one install gets all</summary>
@@ -320,7 +320,8 @@ If auto-trigger picks the wrong skill, name it explicitly:
 <details>
 <summary><b>Standalone repos (4 plugins)</b> — one plugin install each</summary>
 
-- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — manuscript revision, claim-evidence audit (schema-aware against `.paper/claims.yml`), banned-word / humanize, journal format, reviewer response. *(Stages 7, 8)*
+- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — lifecycle-aware manuscript integrity, evidence alignment, cross-artifact revision, and release readiness. *(Stages 7, 8)*
+- [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — evidence-safe Ethan-style water, CNHS, ABM, flood/hydrodynamic, uncertainty, and LLM review overlay. *(Stages 7, 8)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — Claude → Codex CLI handoff for code-heavy / mechanical work. *(Cross-cutting, also Stages 4, 6)*
 - [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting, also Stages 6, 7)*
@@ -409,7 +410,7 @@ way to use the skills.
 
 | Layer | What is portable | Status |
 |---|---|---|
-| Universal `SKILL.md` layer | Skill instructions, trigger descriptions, references, scripts, and `.research/` / `.paper/` handoff contracts | 15/15 pass strict-minimum spec (`name` + `description`, ≤500 lines) |
+| Universal `SKILL.md` layer | Skill instructions, trigger descriptions, references, scripts, and project handoff contracts | 16/16 pass strict-minimum spec (`name` + `description`, ≤500 lines) |
 | Host-specific behavior | Auto-triggering, plugin marketplace install, `claude plugin list`, skill discovery, and rules-directory conventions | Depends on the agent host; use that host's own list/discovery check |
 | Current portability audit | Generic `SKILL.md`-loading hosts | 11/14 zero-edit portable in the 2026-05-10 audit; 3/14 needed cosmetic `<skill-root>` path edits that have since landed |
 | Verified host install | NousResearch/hermes-agent 0.13.0 | `literature-triage-matrix` installed end to end, security scan SAFE, registered `enabled`; Hermes inference loop not tested |
@@ -417,8 +418,9 @@ way to use the skills.
 | Other agents | Codex CLI, Gemini CLI, Cursor, Windsurf, generic API clients, and other `SKILL.md`-loading hosts | Load the same `SKILL.md` as context or into the host's skill/rules directory; not all hosts are individually tested |
 
 The `11/14` portability figure reflects the audit run on 2026-05-10,
-when the catalog had 14 skills; `gap-to-topic` (added 2026-05-21, the
-15th) is not yet portability-audited.
+when the catalog had 14 skills; `gap-to-topic` (added 2026-05-21) and
+`paper-review` (added 2026-08-02 as the 16th) are not yet
+portability-audited.
 
 Calibrated audit + experiment transcripts:
 [`.research/hermes-compatibility-audit.md`](.research/hermes-compatibility-audit.md).

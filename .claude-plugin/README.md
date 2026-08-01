@@ -36,16 +36,15 @@ fail on machines without a configured GitHub SSH key.
 
 ## Plugins shipped
 
-The marketplace ships **5 plugins** — one bundle (`research-workspace`)
-that auto-discovers its skills from a `skills/<name>/SKILL.md` layout,
-plus 4 standalone single-skill plugins whose SKILL.md sits at the repo
-root and is exposed via a `.claude-plugin/plugin.json` declaring
-`"skills": ["./"]`.
+The marketplace ships **5 plugins** — one research bundle
+(`research-workspace`), the two-skill `academic-writing-skills` plugin,
+and 3 standalone single-skill plugins. Skills are discovered from each source
+repository's `skills/<name>/SKILL.md` layout.
 
 | Plugin | Source repo | Skills it ships |
 |---|---|---|
 | `research-workspace` | `WenyuChiou/research-hub` | 11 skills auto-discovered from `skills/<name>/SKILL.md`: research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder, paper-summarize, gap-to-topic |
-| `academic-writing-skills` | `WenyuChiou/academic-writing-skills` | Single skill: manuscript revision, banned-word audit, claim-evidence check, journal format, reviewer response |
+| `academic-writing-skills` | `WenyuChiou/academic-writing-skills` | 2 skills: lifecycle-aware `academic-writing-skills` core and evidence-safe Ethan-style `paper-review` overlay |
 | `zotero-skills` | `WenyuChiou/zotero-skills` | Single skill: full Zotero CRUD (local + Web API) |
 | `codex-delegate` | `WenyuChiou/codex-delegate` | Single skill: hand token-heavy mechanical work to Codex CLI |
 | `gemini-delegate` | `WenyuChiou/gemini-delegate-skill` | Single skill: hand long-context / CJK output to Gemini CLI |

@@ -135,14 +135,15 @@ claude plugin install academic-writing-skills@ai-research-skills
 用這些 skill：
 
 - [paper-memory-builder](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md)：抽出 `.paper/claims.yml` 與 `.paper/figures.yml`。
-- [academic-writing-skills](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md)：論文文字修改、claim-evidence audit、reviewer response、figure / journal format 檢查。
+- [academic-writing-skills](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md)：管理 manuscript lifecycle、evidence alignment、跨檔案 revision 與 release readiness。
+- [paper-review](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md)：為相關 water、modeling 或 LLM 論文加入證據安全的 Ethan-style review overlay。
 
 建議 manuscript workflow：
 
 ```text
 manuscript + figures -> paper-memory-builder
-.paper/claims.yml + .paper/figures.yml -> academic-writing-skills
-revised manuscript -> reviewer response / submission checklist
+.paper/claims.yml + .paper/figures.yml -> academic-writing-skills 的 authority sources
+revised manuscript -> 視需要使用 paper-review -> release checks
 ```
 
 ## 多 AI assistant

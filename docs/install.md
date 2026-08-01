@@ -166,14 +166,12 @@ claude plugin install academic-writing-skills@ai-research-skills
 <summary>Legacy alternative: manual <code>git clone</code> / raw <code>SKILL.md</code> checkout</summary>
 
 ```bash
-git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills
+git clone https://github.com/WenyuChiou/academic-writing-skills
 ```
 
-Project-level:
-
-```bash
-git clone https://github.com/WenyuChiou/academic-writing-skills <project>/.claude/skills/academic-writing-skills
-```
+Use the inner `skills/academic-writing-skills/` and
+`skills/paper-review/` directories. Cloning the repository root directly
+into one skill directory does not expose both `SKILL.md` files correctly.
 
 Use the manual path only when you need the SKILL.md outside Claude
 Code (Codex CLI, Cursor, Hermes, etc.) — see *Using these skills

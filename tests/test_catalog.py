@@ -130,11 +130,9 @@ def test_claude_plugin_marketplace_is_well_formed():
     Code plugin marketplace. Guard its basic structure so future edits
     don't silently break `/plugin marketplace add`.
 
-    Ships 5 plugins: research-workspace (9 skills auto-discovered from
-    research-hub's skills/ subdir), academic-writing-skills, plus 3
-    single-skill plugins (zotero-skills, codex-delegate, gemini-delegate)
-    whose source repos declare {"skills": ["./"]} in their
-    .claude-plugin/plugin.json so the root SKILL.md is picked up.
+    Ships 5 plugins: research-workspace, the two-skill
+    academic-writing-skills plugin, plus 3 single-skill plugins
+    (zotero-skills, codex-delegate, gemini-delegate).
     See .claude-plugin/README.md for the full story."""
     import json
     marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"
@@ -206,11 +204,11 @@ def test_canonical_install_command_consistent_across_sources_of_truth():
 
 
 def test_verification_counts_match_catalog():
-    """The catalog enumerates 15 skills with a specific verification-status
+    """The catalog enumerates 16 skills with a specific verification-status
     split. The machine-readable YAML must agree on the count."""
     data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
     total_skills = sum(len(family["skills"]) for family in data["families"])
-    assert total_skills == 15, f"catalog has {total_skills} skills; expected 15"
+    assert total_skills == 16, f"catalog has {total_skills} skills; expected 16"
 
     statuses = [s.get("verification_status") for f in data["families"] for s in f["skills"]]
     pass_count = statuses.count("pass")
@@ -218,7 +216,7 @@ def test_verification_counts_match_catalog():
     fail_count = statuses.count("fail")
     not_yet_count = statuses.count("not_yet")
 
-    # YAML-side verification counts: 15 pass + 0 caveat + 0 fail + 0 not_yet = 15.
+    # YAML-side verification counts: 16 pass + 0 caveat + 0 fail + 0 not_yet = 16.
     # (gap-to-topic added 2026-05-21 as not_yet; flipped to pass on 2026-05-21
     # after a dogfood run end-to-end verified the skill — see its
     # verification_notes.)
@@ -227,7 +225,7 @@ def test_verification_counts_match_catalog():
     # T2 -> T1 after upstream PR
     # https://github.com/WenyuChiou/research-hub/pull/31 surfaced the
     # existing 23-test end-to-end suite in the skill's Verification section.)
-    assert pass_count == 15, f"expected 15 pass, got {pass_count}"
+    assert pass_count == 16, f"expected 16 pass, got {pass_count}"
     assert caveat_count == 0, f"expected 0 caveat, got {caveat_count}"
     assert fail_count == 0, f"expected 0 fail, got {fail_count}"
     assert not_yet_count == 0, f"expected 0 not_yet, got {not_yet_count}"

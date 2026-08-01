@@ -15,6 +15,23 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.37] - 2026-08-02
+
+### Added
+
+- Registered `paper-review` as the second skill shipped by the
+  `academic-writing-skills` plugin. The catalog now enumerates 16 skills.
+
+### Changed
+
+- Updated the `academic-writing-skills` marketplace pin from 0.3.0 to 1.0.0
+  and the catalog metadata version from 1.5.36 to 1.5.37.
+- Replaced the legacy banned-word and fixed-checklist positioning with the
+  lifecycle-aware manuscript-integrity core and evidence-safe Ethan-style
+  review overlay.
+- Synchronized the machine-readable catalog, marketplace documentation,
+  bilingual top-level READMEs, skill directory, and verification counts.
+
 ## [1.5.36] - 2026-07-16
 
 ### Changed
@@ -1502,7 +1519,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.36...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.37...HEAD
+[1.5.37]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.36...v1.5.37
 [1.5.36]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.35...v1.5.36
 [1.5.35]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.34...v1.5.35
 [1.5.34]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.33...v1.5.34

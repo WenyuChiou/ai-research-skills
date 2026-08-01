@@ -152,7 +152,7 @@ rm -rf ~/.claude/skills/knowledge-base
 ```bash
 claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills        # 11 skills
-claude plugin install academic-writing-skills@ai-research-skills   # +1
+claude plugin install academic-writing-skills@ai-research-skills   # +2
 claude plugin install zotero-skills@ai-research-skills             # +1
 claude plugin install codex-delegate@ai-research-skills            # +1
 claude plugin install gemini-delegate@ai-research-skills           # +1

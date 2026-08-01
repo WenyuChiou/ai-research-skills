@@ -11,7 +11,7 @@
 [Runtime contract](docs/runtime-contract.zh-TW.md) ·
 [詞彙表](docs/glossary.md)
 
-**這是什麼。** 一套 15 個 Claude Code skills 的 catalog,圍繞著一個
+**這是什麼。** 一套 16 個 Claude Code skills 的 catalog,圍繞著一個
 大部分研究 AI 工具迴避的問題:*這個 research gap 真的值得做嗎?*
 Pipeline 開頭就是一份帶三關的結構化決策 dossier — 開放性 / 貢獻度 /
 可行性 — 通過三關的候選主題,後段 stage (研究設計、論文撰寫、
@@ -136,7 +136,7 @@ cd ai-research-skills
 plugin 的原始碼都放在各自的 repo 中：
 
 - `github.com/WenyuChiou/research-hub` — 11 個 `research-workspace` skills
-- `github.com/WenyuChiou/academic-writing-skills` — 1 個 skill
+- `github.com/WenyuChiou/academic-writing-skills` — 2 個 skills
 - `github.com/WenyuChiou/zotero-skills` — 1 個 skill
 - `github.com/WenyuChiou/codex-delegate` — 1 個 skill
 - `github.com/WenyuChiou/gemini-delegate-skill` — 1 個 skill
@@ -176,7 +176,7 @@ catalog 層級的 `CHANGELOG.md`。
 
 ---
 
-### 三個設計原則，應用於 15 個 skills
+### 三個設計原則，應用於 16 個 skills
 
 這個 catalog 圍繞三個有力的核心理念構建，而不只是一張功能清單：
 
@@ -188,7 +188,7 @@ catalog 層級的 `CHANGELOG.md`。
 
 下方八階段的 pipeline 就是將這三個原則應用於真實研究工作流程的成果。
 
-![15 個 AI skills 對應到 8 個研究工作流程階段，並有可於各階段使用的跨領域工具 (codex-delegate, gemini-delegate, research-hub-multi-ai)](docs/img/pipeline-overview.zh-TW.png)
+![研究 skills 對應到 8 個工作流程階段，並有可於各階段使用的跨領域工具](docs/img/pipeline-overview.zh-TW.png)
 
 ---
 
@@ -244,7 +244,7 @@ catalog 層級的 `CHANGELOG.md`。
 | "在我開始寫程式前，帶我走一遍我的研究設計" | `research-design-helper` |
 | "審核這段文字，檢查是否有禁用詞和過度宣稱" | `academic-writing-skills` |
 
-完整的觸發對照表 (15 列)：[docs/skill-directory.md](docs/skill-directory.md)。
+完整的觸發對照表 (16 列)：[docs/skill-directory.md](docs/skill-directory.md)。
 如果自動觸發選錯了 skill，可以直接指名：
 *"用 `literature-triage-matrix` 比較這 5 篇論文。"*
 
@@ -263,7 +263,7 @@ catalog 層級的 `CHANGELOG.md`。
 > CLI 本身也可以暴露 MCP 介面 (`research-hub serve`)。完整設定 + 各路線:
 > [research-hub project README](https://github.com/WenyuChiou/research-hub)。
 
-### 全部 15 個 skills
+### 全部 16 個 skills
 
 <details>
 <summary><b>來自 <a href="https://github.com/WenyuChiou/research-hub"><code>research-hub</code></a> (11 個 skills)</b> — 一次安裝，全部擁有</summary>
@@ -285,7 +285,8 @@ catalog 層級的 `CHANGELOG.md`。
 <details>
 <summary><b>獨立 repos (4 個 plugins)</b> — 每個 plugin 需單獨安裝</summary>
 
-- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — 稿件修訂、claim-evidence 審核 (與 `.paper/claims.yml` schema 對應)、禁用詞/語氣潤飾、期刊格式、審稿人回覆。*(階段 7, 8)*
+- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — manuscript lifecycle、evidence alignment、跨檔案 revision 與 release readiness。*(階段 7, 8)*
+- [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — 證據安全的 Ethan-style water、CNHS、ABM、flood／hydrodynamic、uncertainty 與 LLM review overlay。*(階段 7, 8)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — 完整的 Zotero CRUD、批次處理 metadata、文獻庫維護。*(階段 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — 從 Claude → Codex CLI 的交接，處理程式碼密集 / 機械性工作。*(跨領域, 也用於階段 4, 6)*
 - [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) — 從 Claude → Gemini CLI 的交接，處理長文脈、多語言或中日韓語工作。*(跨領域, 也用於階段 6, 7)*
@@ -358,14 +359,14 @@ Stage 2 dossier 跟 Stage 1–2 文獻回顧交付物有 `.docx` 生成器 — �
 
 | 層級 | 可攜內容 | 狀態 |
 |---|---|---|
-| 通用 `SKILL.md` 層 | Skill instructions、trigger descriptions、references、scripts，以及 `.research/` / `.paper/` handoff contracts | 15/15 通過最低規格要求 (`name` + `description`, ≤500 行) |
+| 通用 `SKILL.md` 層 | Skill instructions、trigger descriptions、references、scripts，以及 project handoff contracts | 16/16 通過最低規格要求 (`name` + `description`, ≤500 行) |
 | Host-specific 行為 | 自動觸發、plugin marketplace 安裝、`claude plugin list`、skill discovery、rules-directory 慣例 | 依 agent host 而定；請使用該 host 自己的 list / discovery 檢查 |
 | 目前 portability audit | 通用 `SKILL.md`-loading hosts | 2026-05-10 審核中 11/14 可零編輯移植；3/14 只需要外觀性的 `<skill-root>` 路徑修改，且已完成 |
 | 已驗證 host install | NousResearch/hermes-agent 0.13.0 | `literature-triage-matrix` 已端到端安裝，安全掃描 SAFE，註冊為 `enabled`；Hermes inference loop 尚未測試 |
 | OpenClaw | 在使用者的 OpenClaw 安裝支援時，可使用 `~/.openclaw/skills/<skill>/SKILL.md` 這類 `SKILL.md` directory 形狀 | 結構上相容，但本 repo 尚未做 release-grade verification |
 | 其他 agents | Codex CLI、Gemini CLI、Cursor、Windsurf、通用 API clients，以及其他 `SKILL.md`-loading hosts | 載入同一份 `SKILL.md` 作為 context，或放進 host 的 skill / rules 目錄；並非每個 host 都已個別測試 |
 
-`11/14` 的可移植性數據反映了 2026-05-10 的審核結果，當時 catalog 只有 14 個 skills；`gap-to-topic`（於 2026-05-21 新增，成為第 15 個）尚未進行可移植性審核。
+`11/14` 的可移植性數據反映了 2026-05-10 的審核結果，當時 catalog 只有 14 個 skills；之後新增的 `gap-to-topic` 與 2026-08-02 成為第 16 個 skill 的 `paper-review` 尚未進行可移植性審核。
 
 校準審核 + 實驗記錄：
 [`.research/hermes-compatibility-audit.md`](.research/hermes-compatibility-audit.md)。

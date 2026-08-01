@@ -383,9 +383,9 @@ families:
     canonical_repo: https://github.com/WenyuChiou/academic-writing-skills
     default_branch: main
     install:
-      summary: Clone the standalone skill into your AI assistant skills directory.
+      summary: Install the two-skill academic-writing plugin from the marketplace.
       commands:
-        - git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills
+        - claude plugin install academic-writing-skills@ai-research-skills
     tools:
       - Word
       - LaTeX
@@ -393,49 +393,55 @@ families:
       - Obsidian
     skills:
       - name: academic-writing-skills
-        directory: .
+        directory: skills/academic-writing-skills
         repo_url: https://github.com/WenyuChiou/academic-writing-skills
         skill_url: https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md
-        purpose: Manuscript revision, claim-evidence audit, reviewer response, figure-text consistency, and submission checks.
+        purpose: Lifecycle-aware manuscript development, evidence alignment, cross-artifact revision, and submission release checks.
         use_when:
-          - Rewrite or audit manuscript sections.
-          - Build reviewer response tables.
-          - Check claims against evidence and figures.
-          - Prepare journal submission or resubmission materials.
+          - Plan, draft, review, revise, or proofread manuscript content.
+          - Audit methods, evidence, claims, terminology, figures, and companion files.
+          - Manage multi-artifact revisions or prepare an exact release candidate.
+          - Review empirical, qualitative, computational, AI, synthesis, conceptual, framework, methods, or data papers.
         outputs:
           - Revised manuscript prose
-          - Claim-evidence audit
-          - Reviewer response table
-          - Submission checklist
-        verified_on: "2026-04-25"
+          - Evidence and alignment audit
+          - Managed manuscript state
+          - Release-readiness report
+          - Functional-completeness retrospective
+        verified_on: "2026-08-02"
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          T1 promoted. Output committed to test-corpus/ai-agents-social-interaction/.paper/lim-2025/audit-lim-2025-abstract.md.
-          Banned-word audit on Lim 2025 abstract found 3 banned
-          (leveraging, crucial, highlight) + 1 borderline filler
-          ("address this gap"). Correctly did NOT flag "tended to"
-          (recommended replacement, not banned), proving the audit
-          reads the rules rather than naive keyword-matching.
-          Plugin v0.2.1 (PR #6) makes `references/claim_evidence_audit.md`
-          schema-aware of `.paper/claims.yml`. Before v0.2.1 the
-          SKILL.md description said the skill should "use
-          `.paper/claims.yml` as ground truth instead of re-reading
-          the manuscript" but the workflow reference made no mention
-          of any schema field, so a consuming agent had no documented
-          field-to-column mapping. The new section maps
-          `claims[].sentence_in_manuscript` → "Claim",
-          `claims[].evidence_artifacts` + `figure_or_table` →
-          "Evidence Source", `claims[].status` → "Certainty Allowed",
-          and `claims[].risk` → "Problem"; it also records the
-          `status → certainty allowed` mapping (`supported` →
-          direct verbs OK; `draft` → hedged verbs only; `gap` →
-          NONE, must apply Disposition 1-5) and the four audit-driven
-          status transitions
-          (`draft ↔ supported`, `draft → gap` for anti-leakage,
-          `any → rejected`). Pure additive doc change; readers
-          without `.paper/claims.yml` follow the legacy generic-audit
-          workflow unchanged.
+          Version 1.0 passed both skill validators, 11 package-integrity
+          tests, and 9 deterministic audit regressions. Forward tests covered
+          theoretical, qualitative, and computational manuscripts without
+          forcing IMRAD or unsupported mechanisms. The managed-project release
+          gate was also smoke-tested on active manuscript and supplementary
+          artifacts.
+      - name: paper-review
+        directory: skills/paper-review
+        repo_url: https://github.com/WenyuChiou/academic-writing-skills
+        skill_url: https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md
+        purpose: Evidence-safe Ethan-style internal review for water, CNHS, ABM, flood and hydrodynamic, uncertainty, and AI or LLM papers.
+        use_when:
+          - Review a relevant manuscript for Prof. Ethan Yang's students or collaborators.
+          - Calibrate a developmental, substantive, integration, submission, or explicit R1-R4 review.
+          - Check water, coupled-model, ABM, flood, hydrodynamic, uncertainty, or LLM-specific reporting.
+          - Compare a current revision with supplied prior PI comments.
+        outputs:
+          - Priority-ranked Ethan-style internal review memo
+          - MUST, SHOULD, QUERY, and PREFERENCE classifications
+          - Cross-round status when prior evidence is available
+          - Functional-completeness retrospective
+        verified_on: "2026-08-02"
+        verification_status: pass
+        verification_tier: T1
+        verification_notes: |
+          Overlay-specific forward tests confirmed that unnumbered science
+          questions remain a preference, jurisdiction-specific mandated policy
+          is checked against its own authority, unrelated manuscripts route
+          back to the universal core, and unsupported mechanisms are not
+          invented to satisfy a request for "why."
 
   - id: zotero-operations
     name: Zotero operations
