@@ -274,7 +274,7 @@ phrasing to a skill. You don't need to remember skill names.
 | "Is this gap worth a thesis? Walk me through the three gates" | `gap-to-topic` |
 | "Walk me through my research design before I start coding" | `research-design-helper` |
 | "Check this paragraph's terminology, repeated wording, flow, and overclaim" | `academic-writing-skills` |
-| "Review this paper and load the relevant SEM, LLM, water, or flood checks" | `paper-review` |
+| "Review this paper and load the relevant notation, display, SEM, LLM, water, or flood checks" | `paper-review` |
 
 Full trigger map (16 rows): [docs/skill-directory.md](docs/skill-directory.md).
 If auto-trigger picks the wrong skill, name it explicitly:
@@ -322,7 +322,7 @@ If auto-trigger picks the wrong skill, name it explicitly:
 <summary><b>Standalone repos (4 plugins)</b> — one plugin install each</summary>
 
 - [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — extended outlines, paragraph and section drafting, evidence alignment, terminology, repetition, flow, cross-artifact revision, and release readiness. *(Stages 7, 8)*
-- [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — general scientific review with progressively selected psychometrics/SEM, AI/LLM, water/CNHS, flood/hydrodynamics, round, and explicit reviewer modules. *(Stages 7, 8)*
+- [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — general scientific review with progressively selected equation/display provenance, psychometrics/SEM, AI/LLM, water/CNHS, flood/hydrodynamics, round, and explicit reviewer modules. *(Stages 7, 8)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — Claude → Codex CLI handoff for code-heavy / mechanical work. *(Cross-cutting, also Stages 4, 6)*
 - [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting, also Stages 6, 7)*

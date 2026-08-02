@@ -15,6 +15,18 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.39] - 2026-08-02
+
+### Changed
+
+- Updated the `academic-writing-skills` marketplace cache-buster from 1.1.0
+  to 1.1.1 and the catalog metadata version from 1.5.38 to 1.5.39.
+- Added selectively loaded equation-notation and derived-display provenance
+  review, including symbol-ledger and source-to-claim tracing checks.
+- Strengthened prior-comment regression review so author replies and resolved
+  threads require verification in the current manuscript and affected
+  companion artifacts before an issue is classified as resolved.
+
 ## [1.5.38] - 2026-08-02
 
 ### Changed
@@ -1535,7 +1547,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.38...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.39...HEAD
+[1.5.39]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.38...v1.5.39
 [1.5.38]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.37...v1.5.38
 [1.5.37]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.36...v1.5.37
 [1.5.36]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.35...v1.5.36
