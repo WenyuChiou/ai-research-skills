@@ -396,12 +396,12 @@ families:
         directory: skills/academic-writing-skills
         repo_url: https://github.com/WenyuChiou/academic-writing-skills
         skill_url: https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md
-        purpose: Lifecycle-aware manuscript development, evidence alignment, cross-artifact revision, and submission release checks.
+        purpose: Lifecycle-aware outlining, paragraph and section drafting, evidence alignment, prose consistency, cross-artifact revision, and submission release checks.
         use_when:
-          - Plan, draft, review, revise, or proofread manuscript content.
-          - Audit methods, evidence, claims, terminology, figures, and companion files.
+          - Build an extended outline or draft and integrate manuscript paragraphs and sections.
+          - Audit methods, evidence, claims, terminology, repeated wording, stock phrasing, flow, figures, and companion files.
           - Manage multi-artifact revisions or prepare an exact release candidate.
-          - Review empirical, qualitative, computational, AI, synthesis, conceptual, framework, methods, or data papers.
+          - Apply accepted review comments and rebuild summaries from the stabilized evidence map.
         outputs:
           - Revised manuscript prose
           - Evidence and alignment audit
@@ -412,36 +412,38 @@ families:
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          Version 1.0 passed both skill validators, 11 package-integrity
-          tests, and 9 deterministic audit regressions. Forward tests covered
-          theoretical, qualitative, and computational manuscripts without
-          forcing IMRAD or unsupported mechanisms. The managed-project release
-          gate was also smoke-tested on active manuscript and supplementary
-          artifacts.
+          Version 1.1 passed both skill validators, 11 package-integrity
+          tests, and 10 deterministic audit regressions. Forward tests cover
+          outline-to-paragraph contracts, technical-term preservation,
+          nontechnical repetition, prose-flow diagnostics, theoretical,
+          qualitative, and computational manuscripts, and exact-package
+          release gates without forcing IMRAD or unsupported mechanisms.
       - name: paper-review
         directory: skills/paper-review
         repo_url: https://github.com/WenyuChiou/academic-writing-skills
         skill_url: https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md
-        purpose: Evidence-safe Ethan-style internal review for water, CNHS, ABM, flood and hydrodynamic, uncertainty, and AI or LLM papers.
+        purpose: Cross-disciplinary, evidence-safe scientific review with progressively loaded method, domain, round, and optional reviewer modules.
         use_when:
-          - Review a relevant manuscript for Prof. Ethan Yang's students or collaborators.
+          - Critique an outline, section, manuscript, supplement, or exact submission package without editing it.
+          - Review psychometrics or SEM, AI or LLM, water or CNHS, flood or hydrodynamic, computational, or hybrid studies.
           - Calibrate a developmental, substantive, integration, submission, or explicit R1-R4 review.
-          - Check water, coupled-model, ABM, flood, hydrodynamic, uncertainty, or LLM-specific reporting.
-          - Compare a current revision with supplied prior PI comments.
+          - Compare a current revision with supplied prior comments or explicitly request an Ethan-style lab review.
         outputs:
-          - Priority-ranked Ethan-style internal review memo
-          - MUST, SHOULD, QUERY, and PREFERENCE classifications
+          - Priority-ranked scientific review memo
+          - Selected-module and review-basis header
+          - Scope, severity, evidence-status, and blocking-stage classifications
           - Cross-round status when prior evidence is available
           - Functional-completeness retrospective
         verified_on: "2026-08-02"
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          Overlay-specific forward tests confirmed that unnumbered science
-          questions remain a preference, jurisdiction-specific mandated policy
-          is checked against its own authority, unrelated manuscripts route
-          back to the universal core, and unsupported mechanisms are not
-          invented to satisfy a request for "why."
+          Version 1.1 routing tests confirmed hybrid psychometrics-plus-LLM
+          module composition, one-question handling of materially ambiguous
+          study design, neutral water review without Ethan-style activation,
+          explicit-only reviewer composition, round assessment without
+          invented prior comments, and evidence-safe treatment of mechanisms
+          and observable formulaic prose.
 
   - id: zotero-operations
     name: Zotero operations

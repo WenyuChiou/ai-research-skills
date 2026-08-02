@@ -73,8 +73,8 @@ claude plugin install academic-writing-skills@ai-research-skills
 
 | Skill | 何時用 | SKILL.md |
 |---|---|---|
-| `academic-writing-skills` | 需要 lifecycle-aware manuscript 規劃、revision、evidence alignment、跨檔案檢查或 release readiness。 | [SKILL.md](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) |
-| `paper-review` | 需要針對相關 water、CNHS、ABM、flood／hydrodynamic、uncertainty 或 LLM 稿件進行證據安全的 Ethan-style internal review。 | [SKILL.md](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) |
+| `academic-writing-skills` | 需要 extended outline、逐段或逐節撰寫、術語與流暢度檢查、revision、evidence alignment、跨檔案檢查或 release readiness。 | [SKILL.md](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) |
+| `paper-review` | 需要 review-only 科學審查，並依稿件按需選用 psychometrics／SEM、AI／LLM、水資源／CNHS、洪水／hydrodynamic、round 或明確指定的 reviewer modules。 | [SKILL.md](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) |
 
 ### zotero-skills
 

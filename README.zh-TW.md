@@ -82,7 +82,7 @@ Claude-to-Codex/Gemini delegation 時，再加裝選配 plugin。
 claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 
-# 2. 論文寫作 — claim-evidence audit, banned-word, reviewer response
+# 2. 論文寫作 — outline、逐段撰寫、文字與證據稽核、科學審查
 claude plugin install academic-writing-skills@ai-research-skills
 
 # 3. Zotero CRUD (請先在 Zotero 桌面版啟用 local API — 見 docs/setup-guide.md §C)
@@ -242,7 +242,8 @@ catalog 層級的 `CHANGELOG.md`。
 | "比較這 5 篇論文的方法、數據、限制" | `literature-triage-matrix` |
 | "這個 gap 是否值得做成一篇學位論文？帶我走過三個檢核關卡" | `gap-to-topic` |
 | "在我開始寫程式前，帶我走一遍我的研究設計" | `research-design-helper` |
-| "審核這段文字，檢查是否有禁用詞和過度宣稱" | `academic-writing-skills` |
+| "檢查這段的術語一致性、重複用詞、流暢度與過度宣稱" | `academic-writing-skills` |
+| "審查這篇論文，依內容載入 SEM、LLM、水資源或洪水檢查" | `paper-review` |
 
 完整的觸發對照表 (16 列)：[docs/skill-directory.md](docs/skill-directory.md)。
 如果自動觸發選錯了 skill，可以直接指名：
@@ -285,8 +286,8 @@ catalog 層級的 `CHANGELOG.md`。
 <details>
 <summary><b>獨立 repos (4 個 plugins)</b> — 每個 plugin 需單獨安裝</summary>
 
-- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — manuscript lifecycle、evidence alignment、跨檔案 revision 與 release readiness。*(階段 7, 8)*
-- [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — 證據安全的 Ethan-style water、CNHS、ABM、flood／hydrodynamic、uncertainty 與 LLM review overlay。*(階段 7, 8)*
+- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — extended outline、逐段與逐節撰寫、evidence alignment、術語、重複、流暢度、跨檔案 revision 與 release readiness。*(階段 7, 8)*
+- [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — 通用科學審查，會按需選用 psychometrics／SEM、AI／LLM、水資源／CNHS、洪水／hydrodynamics、round 與明確指定的 reviewer modules。*(階段 7, 8)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — 完整的 Zotero CRUD、批次處理 metadata、文獻庫維護。*(階段 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — 從 Claude → Codex CLI 的交接，處理程式碼密集 / 機械性工作。*(跨領域, 也用於階段 4, 6)*
 - [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) — 從 Claude → Gemini CLI 的交接，處理長文脈、多語言或中日韓語工作。*(跨領域, 也用於階段 6, 7)*
@@ -301,7 +302,7 @@ catalog 層級的 `CHANGELOG.md`。
 |---|---|---|---|
 | 比較 5 篇論文 (`literature-triage-matrix`) | 1–3 分鐘 | 1–2 | 與論文數量成正比；20 篇約 5 分鐘 |
 | 3 關卡 gap 決策 (`gap-to-topic`) | 5–15 分鐘 | 3–6 | 取決於候選主題數量及文獻回溯深度 |
-| 審核一段文字的禁用詞 (`academic-writing-skills`) | <1 分鐘 | 1 | 與稿件總長度無關 |
+| 審核單一段落的術語、重複與流暢度 (`academic-writing-skills`) | <1 分鐘 | 1 | 與稿件總長度無關 |
 | 回覆審稿人意見 (6 則) (`academic-writing-skills`) | 3–8 分鐘 | 3–5 | 取決於意見深度及所需修改幅度 |
 | 審核 800 條的 Zotero 文獻庫 (`zotero-library-curator`) | 2–4 分鐘 | 1 | 唯讀；標籤多樣性比文獻庫大小影響更大 |
 | 為每個叢集摘要 5 篇論文 (`paper-summarize`) | 4–10 分鐘 | 1 | 每篇論文一次 LLM call；失敗時會針對單篇論文進行回滾 |

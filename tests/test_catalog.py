@@ -125,6 +125,24 @@ def test_no_model_project_specific_positioning():
     assert not re.search(forbidden, text)
 
 
+def test_paper_review_is_generic_with_progressive_and_explicit_overlays():
+    data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
+    academic = next(f for f in data["families"] if f["id"] == "academic-writing")
+    review = next(s for s in academic["skills"] if s["name"] == "paper-review")
+    use_when = " ".join(review["use_when"])
+
+    assert "Cross-disciplinary" in review["purpose"]
+    assert "progressively loaded" in review["purpose"]
+    assert "psychometrics or SEM" in use_when
+    assert "hybrid studies" in use_when
+    assert "explicitly request an Ethan-style" in use_when
+
+    marketplace = (ROOT / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8")
+    pipeline = (ROOT / "docs" / "pipeline.md").read_text(encoding="utf-8")
+    assert "general scientific review" in marketplace
+    assert "only when explicitly requested" in pipeline
+
+
 def test_claude_plugin_marketplace_is_well_formed():
     """The .claude-plugin/marketplace.json file makes the catalog a Claude
     Code plugin marketplace. Guard its basic structure so future edits

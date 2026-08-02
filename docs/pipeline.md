@@ -127,8 +127,8 @@ router so the plan and per-task briefs stay in sync.
 | Skill | What it does |
 |---|---|
 | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) | Extract `.paper/claims.yml` and `.paper/figures.yml` so writing tools see the same numbers as the figures. |
-| [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) | Lifecycle-aware manuscript integrity, evidence alignment, cross-artifact revision, and release checks. |
-| [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) | Evidence-safe Ethan-style review overlay for relevant water, modeling, uncertainty, and LLM manuscripts. |
+| [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) | Extended outlines, paragraph and section drafting, evidence alignment, terminology, repetition, flow, cross-artifact revision, and release checks. |
+| [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) | General scientific review that progressively selects the applicable psychometrics/SEM, AI/LLM, water/CNHS, flood/hydrodynamics, or hybrid modules. |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *(optional)* | Deep-edit bibliography entries when the writing skill flags references that need cleanup. |
 
 For long-form bilingual rewrites or 繁中 / CJK drafts, use the
@@ -142,7 +142,7 @@ For long-form bilingual rewrites or 繁中 / CJK drafts, use the
 | Skill | What it does |
 |---|---|
 | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) | Cross-file synchronization, submission-package checks, and blocking release readiness. |
-| [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) | Round-calibrated Ethan-style internal review and prior-comment regression checks. |
+| [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) | Round-calibrated top-to-bottom review and prior-comment regression checks; Ethan-style activates only when explicitly requested. |
 | [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | Freeze the project's final state so future AI sessions (or future you) can resume in seconds. |
 
 ## Cross-cutting tools — used at every stage

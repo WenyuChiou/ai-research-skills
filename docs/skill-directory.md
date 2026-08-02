@@ -72,8 +72,8 @@ claude plugin install academic-writing-skills@ai-research-skills
 
 | Skill | Use when | Direct skill link |
 |---|---|---|
-| `academic-writing-skills` | You need lifecycle-aware manuscript planning, revision, evidence alignment, cross-artifact checks, or release readiness. | [SKILL.md](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) |
-| `paper-review` | You need an evidence-safe Ethan-style internal review for a relevant water, CNHS, ABM, flood/hydrodynamic, uncertainty, or LLM manuscript. | [SKILL.md](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) |
+| `academic-writing-skills` | You need an extended outline, paragraph or section drafting, terminology and flow checks, revision, evidence alignment, cross-artifact checks, or release readiness. | [SKILL.md](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) |
+| `paper-review` | You need a review-only scientific critique with progressively selected psychometrics/SEM, AI/LLM, water/CNHS, flood/hydrodynamic, round, or explicitly requested reviewer modules. | [SKILL.md](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) |
 
 ### zotero-skills
 

@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Catalog of AI skills for the research workflow — researcher-led, AI-assisted",
-    "version": "1.5.37"
+    "version": "1.5.38"
   },
   "plugins": [
     {
@@ -25,10 +25,10 @@
     },
     {
       "name": "academic-writing-skills",
-      "description": "Lifecycle-aware manuscript integrity, evidence alignment, release audits, and an evidence-safe Ethan-style water and modeling review overlay.",
+      "description": "Lifecycle-aware manuscript development and general scientific review with progressively loaded psychometrics, AI/LLM, water, flood, round, and optional reviewer modules.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/academic-writing-skills",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "strict": true,
       "source": {
         "source": "url",

@@ -15,6 +15,22 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.38] - 2026-08-02
+
+### Changed
+
+- Updated the `academic-writing-skills` marketplace cache-buster from 1.0.0
+  to 1.1.0 and the catalog metadata version from 1.5.37 to 1.5.38.
+- Generalized `paper-review` into a cross-disciplinary reviewer that
+  progressively loads only the applicable psychometrics and SEM, AI and LLM,
+  water and CNHS, flood and hydrodynamics, round, or explicit reviewer modules.
+- Expanded the writing-core description to cover extended outlines,
+  paragraph contracts, terminology consistency, repeated wording, observable
+  stock phrasing, flow, and top-to-bottom review.
+- Kept Ethan-style review as an explicit-only overlay rather than a default for
+  water or modeling manuscripts, and synchronized the active bilingual catalog
+  documentation with that boundary.
+
 ## [1.5.37] - 2026-08-02
 
 ### Added
@@ -1519,7 +1535,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.37...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.38...HEAD
+[1.5.38]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.37...v1.5.38
 [1.5.37]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.36...v1.5.37
 [1.5.36]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.35...v1.5.36
 [1.5.35]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.34...v1.5.35

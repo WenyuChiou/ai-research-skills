@@ -126,15 +126,16 @@ claude plugin install academic-writing-skills@ai-research-skills
 Use these skills:
 
 - [paper-memory-builder](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md): extract `.paper/claims.yml` and `.paper/figures.yml`.
-- [academic-writing-skills](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md): manage manuscript lifecycle, evidence alignment, cross-artifact revision, and release readiness.
-- [paper-review](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md): add an evidence-safe Ethan-style review overlay for relevant water, modeling, or LLM papers.
+- [academic-writing-skills](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md): build extended outlines, draft and integrate paragraphs, manage evidence alignment and prose consistency, revise across artifacts, and verify release readiness.
+- [paper-review](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md): run a general scientific review that progressively loads only the applicable method, domain, round, or explicitly requested reviewer modules.
 
 Recommended manuscript workflow:
 
 ```text
 manuscript + figures -> paper-memory-builder
 .paper/claims.yml + .paper/figures.yml -> authority sources in academic-writing-skills
-revised manuscript -> paper-review when applicable -> release checks
+completed milestone -> paper-review with inferred modules -> accepted comments
+accepted comments -> academic-writing-skills revision -> top-to-bottom review -> release checks
 ```
 
 ## If You Use Multiple AI Assistants

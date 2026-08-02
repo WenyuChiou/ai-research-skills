@@ -86,7 +86,7 @@ delegation.
 claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 
-# 2. Manuscript work — claim-evidence audit, banned-word, reviewer response
+# 2. Manuscript work — outline, drafting, prose and evidence audit, scientific review
 claude plugin install academic-writing-skills@ai-research-skills
 
 # 3. Zotero CRUD (enable local API in Zotero desktop first — docs/setup-guide.md §C)
@@ -273,7 +273,8 @@ phrasing to a skill. You don't need to remember skill names.
 | "Compare these 5 papers by method, data, limitations" | `literature-triage-matrix` |
 | "Is this gap worth a thesis? Walk me through the three gates" | `gap-to-topic` |
 | "Walk me through my research design before I start coding" | `research-design-helper` |
-| "Audit this paragraph for banned words and overclaim" | `academic-writing-skills` |
+| "Check this paragraph's terminology, repeated wording, flow, and overclaim" | `academic-writing-skills` |
+| "Review this paper and load the relevant SEM, LLM, water, or flood checks" | `paper-review` |
 
 Full trigger map (16 rows): [docs/skill-directory.md](docs/skill-directory.md).
 If auto-trigger picks the wrong skill, name it explicitly:
@@ -320,8 +321,8 @@ If auto-trigger picks the wrong skill, name it explicitly:
 <details>
 <summary><b>Standalone repos (4 plugins)</b> — one plugin install each</summary>
 
-- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — lifecycle-aware manuscript integrity, evidence alignment, cross-artifact revision, and release readiness. *(Stages 7, 8)*
-- [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — evidence-safe Ethan-style water, CNHS, ABM, flood/hydrodynamic, uncertainty, and LLM review overlay. *(Stages 7, 8)*
+- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — extended outlines, paragraph and section drafting, evidence alignment, terminology, repetition, flow, cross-artifact revision, and release readiness. *(Stages 7, 8)*
+- [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — general scientific review with progressively selected psychometrics/SEM, AI/LLM, water/CNHS, flood/hydrodynamics, round, and explicit reviewer modules. *(Stages 7, 8)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — Claude → Codex CLI handoff for code-heavy / mechanical work. *(Cross-cutting, also Stages 4, 6)*
 - [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting, also Stages 6, 7)*
@@ -336,7 +337,7 @@ Rough envelope from in-session use — adjust to your input size:
 |---|---|---|---|
 | Compare 5 papers (`literature-triage-matrix`) | 1–3 min | 1–2 | Linear in paper count; 20 papers ≈ 5 min |
 | 3-gate gap decision (`gap-to-topic`) | 5–15 min | 3–6 | Scales with candidate count + literature-recall depth |
-| Banned-word audit on 1 paragraph (`academic-writing-skills`) | <1 min | 1 | Independent of manuscript size |
+| Terminology, repetition, and flow audit on 1 paragraph (`academic-writing-skills`) | <1 min | 1 | Independent of manuscript size |
 | Reviewer response (6 comments) (`academic-writing-skills`) | 3–8 min | 3–5 | Scales with comment depth + revision required |
 | Audit 800-item Zotero library (`zotero-library-curator`) | 2–4 min | 1 | Read-only; library size matters less than tag diversity |
 | Summarize 5 papers per cluster (`paper-summarize`) | 4–10 min | 1 | One LLM call per paper; rolls back per-paper on failure |

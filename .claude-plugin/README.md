@@ -44,7 +44,7 @@ repository's `skills/<name>/SKILL.md` layout.
 | Plugin | Source repo | Skills it ships |
 |---|---|---|
 | `research-workspace` | `WenyuChiou/research-hub` | 11 skills auto-discovered from `skills/<name>/SKILL.md`: research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder, paper-summarize, gap-to-topic |
-| `academic-writing-skills` | `WenyuChiou/academic-writing-skills` | 2 skills: lifecycle-aware `academic-writing-skills` core and evidence-safe Ethan-style `paper-review` overlay |
+| `academic-writing-skills` | `WenyuChiou/academic-writing-skills` | 2 skills: lifecycle-aware writing core and general `paper-review` orchestrator with progressive method, domain, round, and optional reviewer modules |
 | `zotero-skills` | `WenyuChiou/zotero-skills` | Single skill: full Zotero CRUD (local + Web API) |
 | `codex-delegate` | `WenyuChiou/codex-delegate` | Single skill: hand token-heavy mechanical work to Codex CLI |
 | `gemini-delegate` | `WenyuChiou/gemini-delegate-skill` | Single skill: hand long-context / CJK output to Gemini CLI |

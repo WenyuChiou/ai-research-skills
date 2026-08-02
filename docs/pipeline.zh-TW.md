@@ -109,8 +109,8 @@ Gemini 之間的分工。
 | Skill | 用途 |
 |---|---|
 | [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) | 抽出 `.paper/claims.yml` 與 `.paper/figures.yml`，讓寫作工具看到的數字跟圖完全一致。 |
-| [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) | Lifecycle-aware manuscript integrity、evidence alignment、跨檔案 revision 與 release checks。 |
-| [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) | 適用於相關 water、modeling、uncertainty 與 LLM 稿件的證據安全 Ethan-style review overlay。 |
+| [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) | Extended outline、逐段與逐節撰寫、evidence alignment、術語、重複、流暢度、跨檔案 revision 與 release checks。 |
+| [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) | 通用科學審查，會按需選用 psychometrics／SEM、AI／LLM、水資源／CNHS、洪水／hydrodynamics 或混合 modules。 |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *(optional)* | 寫作 skill 標出來的引文 metadata 有問題時，深度編輯 Zotero entry——修 citation 欄位、補缺、附 PDF。 |
 
 長段重寫、中英／CJK 草稿、文字風格的第二意見，請用下方 **Cross-cutting
@@ -124,7 +124,7 @@ tools** 的 `gemini-delegate`。
 | Skill | 用途 |
 |---|---|
 | [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) | 跨檔案同步、submission package 檢查與 blocking release readiness。 |
-| [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) | 依 round 校準的 Ethan-style internal review 與 prior-comment regression checks。 |
+| [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) | 依 round 校準的 top-to-bottom review 與 prior-comment regression checks；只有明確要求時才套用 Ethan-style。 |
 | [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) | 把專案最終狀態凍結進 `.research/` manifests，讓未來 AI session（或未來的你）幾秒就能回到狀況。 |
 
 ## Cross-cutting tools——每個階段都會用到
