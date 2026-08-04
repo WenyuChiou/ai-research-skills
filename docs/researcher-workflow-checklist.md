@@ -115,6 +115,35 @@ verified sources -> literature matrix
 literature matrix -> manuscript claims
 ```
 
+## If Your Evidence Includes Public X/Twitter Posts
+
+For social-interaction, creator-economy, crisis-informatics, or
+platform-governance projects, treat public X/Twitter material as a
+source bundle, not as free-floating prompt context.
+
+Use TweetClaw only to capture an explicit, reviewable packet before the
+research skills run:
+
+- Search query, account, list, or monitor scope.
+- Capture date and time range.
+- Public post URLs or IDs.
+- Visible metrics at capture time.
+- Replies, quotes, or thread context included in the analysis.
+- Exclusions, sampling limits, and known missing context.
+
+Then save the packet as Markdown or CSV under your research workspace
+and feed it to the normal verification path:
+
+```text
+TweetClaw public X/Twitter packet -> Obsidian source note
+source note -> notebooklm-brief-verifier or literature-triage-matrix
+verified matrix -> design brief / claims audit
+```
+
+Keep interpretation in the research skills. Keep any account action,
+posting, reply, direct-message, monitor, webhook, or giveaway operation
+inside TweetClaw/OpenClaw with explicit user approval.
+
 ## If You Are Writing A Paper
 
 Install:
