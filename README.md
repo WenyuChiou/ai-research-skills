@@ -1,10 +1,13 @@
 # AI Research Skills
 
-> A skill catalog that won't let you spend 6 months on a research gap
-> that's already closed, isn't a real contribution, or isn't feasible.
-> Every candidate thesis topic goes through a 3-gate decision dossier
-> first — and the rest of the pipeline (literature → design → build
-> → run → write → submit) only flows from candidates that pass.
+> **The catalog, installation, and visual layer for a Vertical AI Research Reference Harness.**
+> Move from research orientation to release through 17 portable skills,
+> an eight-stage lifecycle, evidence-aware handoffs, and explicit human gates.
+
+Built for graduate students, PhDs, postdocs, research support staff, and
+agent/harness builders who need inspectable research workflows rather than a black box.
+The portable skills live in this repository; `research-hub` supplies the executable
+runtime, while the optional `agent-collab-harness` adds policy/checkpoint governance.
 
 Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 [Pipeline](docs/pipeline.md) ·
@@ -13,28 +16,38 @@ Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 [Glossary](docs/glossary.md) ·
 [For Agent/Harness Builders](docs/for-agent-harness-builders.md)
 
-**What this is.** A catalog of 17 Claude Code skills built around one
-stubborn question most research-AI tools dodge: *is this research gap
-actually worth doing?* The pipeline opens with a structured decision
-dossier — three gates: open / contribution / feasibility — and
-downstream stages (research design, manuscript drafting, reviewer
-response) only fire on a candidate that clears all three. Built for graduate students, PhDs, postdocs, and
-research support staff. Five plugins, one marketplace install — and
-the same `SKILL.md` files load into Codex CLI, Gemini CLI, Cursor,
-Windsurf, Hermes, OpenClaw, and generic API clients too (see
-[§7 Compatibility](#7-compatibility)).
-For literature automation, the `SKILL.md` catalog and the executable
-`research-hub` runtime are separate layers; see
-[docs/runtime-contract.md](docs/runtime-contract.md).
-
-> **Optional harness extension.** The 17-skill core is unchanged. Agent and
-> harness builders can add the public `agent-collab-harness` policy/checkpoint
-> layer; see [the architecture and compatibility guide](docs/for-agent-harness-builders.md).
-
 <sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a></sub>
 
 > 📚 Part of the [agentic AI learning roadmap](https://github.com/WenyuChiou/awesome-agentic-ai-zh)
 > — featured in §13–14 (research workflows).
+
+---
+
+## See the system before installing
+
+### 1. Research lifecycle — from literature to release
+
+[![Seventeen research skills mapped to an eight-stage workflow from literature discovery to manuscript release](docs/img/pipeline-overview.png)](docs/pipeline.md)
+
+<sub>The 17-skill core is organized around durable handoffs: each stage produces the next stage's input, while cross-cutting tools preserve context, verification, and delegation boundaries.</sub>
+
+### 2. Harness architecture — deterministic control around semantic work
+
+[![Vertical AI Research Reference Harness architecture showing users, research-hub runtime, role agents, evidence packets, truth stores, human gates, and the optional agent-collab policy layer](docs/img/harness-architecture.png)](docs/for-agent-harness-builders.md)
+
+<sub>`research-hub` owns the research-domain runtime and recoverable state. Role agents do semantic work; deterministic validators, evidence contracts, and the optional `agent-collab-harness` policy/checkpoint layer control what may proceed.</sub>
+
+### 3. Human-in-the-loop — where automation must pause
+
+[![Human-in-the-loop workflow state machine showing automatic reversible work, approval gates, decline and revise paths, recovery, and release authorization](docs/img/hitl-state-machine.png)](docs/for-agent-harness-builders.md)
+
+<sub>Read-only and reversible steps can continue automatically. Breaking contracts, skill removal, external writes, semantic acceptance, and release authorization remain explicit human decisions.</sub>
+
+| If you are… | Start here |
+|---|---|
+| A researcher or research team | [Install the skills](#1-install--get-the-skills), then follow the [eight-stage pipeline](#3-the-pipeline--what-each-stage-delivers-to-the-next). |
+| An agent or harness builder | Read the [architecture, state, HITL, recovery, and evaluation guide](docs/for-agent-harness-builders.md). |
+| Evaluating portability or trust boundaries | Review [compatibility](#7-compatibility), the [runtime contract](docs/runtime-contract.md), and [limitations](#8-limitations). |
 
 ---
 
@@ -213,10 +226,8 @@ list:
 | **2. Schemas with anti-leakage rules** | Every cross-skill artifact has a YAML schema. A claim with empty `evidence_artifacts` is **forced** to carry `status: gap` + a `gap_reason` — never `supported`. A topic candidate with `verdict: do-not-pursue` is structurally separated from `worth-pursuing` ones. Downstream tools refuse to ship overconfident output. | P2, P3, P4 |
 | **3. Character-driven routing** | Token-heavy mechanical bulk → Codex. Bounded non-honesty-critical mechanical work → Antigravity. Long-context, CJK, judgment, governance, and final review stay with the primary model. The router (`research-hub-multi-ai`) writes a coordination file so each delegate reads its own brief, not the parent context. | P5 |
 
-The 8-stage pipeline below is these three principles applied to a
-real research workflow.
-
-![Research skills mapped to 8 workflow stages, with cross-cutting tools usable at every stage](docs/img/pipeline-overview.png)
+The eight-stage visual map above shows these three principles applied
+to a real research workflow.
 
 ---
 
