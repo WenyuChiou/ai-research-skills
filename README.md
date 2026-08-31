@@ -10,9 +10,10 @@ Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 [Pipeline](docs/pipeline.md) ·
 [Examples](docs/examples.md) ·
 [Runtime contract](docs/runtime-contract.md) ·
-[Glossary](docs/glossary.md)
+[Glossary](docs/glossary.md) ·
+[For Agent/Harness Builders](docs/for-agent-harness-builders.md)
 
-**What this is.** A catalog of 16 Claude Code skills built around one
+**What this is.** A catalog of 17 Claude Code skills built around one
 stubborn question most research-AI tools dodge: *is this research gap
 actually worth doing?* The pipeline opens with a structured decision
 dossier — three gates: open / contribution / feasibility — and
@@ -25,6 +26,10 @@ Windsurf, Hermes, OpenClaw, and generic API clients too (see
 For literature automation, the `SKILL.md` catalog and the executable
 `research-hub` runtime are separate layers; see
 [docs/runtime-contract.md](docs/runtime-contract.md).
+
+> **Optional harness extension.** The 17-skill core is unchanged. Agent and
+> harness builders can add the public `agent-collab-harness` policy/checkpoint
+> layer; see [the architecture and compatibility guide](docs/for-agent-harness-builders.md).
 
 <sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a></sub>
 

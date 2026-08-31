@@ -19,7 +19,7 @@ from pathlib import Path
 
 import pytest
 import yaml
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, FormatChecker
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,7 +41,7 @@ def catalog() -> dict:
 
 @pytest.fixture
 def validator(schema):
-    return Draft202012Validator(schema)
+    return Draft202012Validator(schema, format_checker=FormatChecker())
 
 
 def test_schema_itself_is_valid_draft_2020_12(schema):
@@ -69,11 +69,39 @@ def test_missing_top_level_version_fails(validator, catalog):
     assert list(validator.iter_errors(bad)), "schema must require top-level 'version'"
 
 
-@pytest.mark.parametrize("version", [1, 2, 4])
-def test_catalog_rejects_non_v3_schema_versions(validator, catalog, version):
+@pytest.mark.parametrize("version", [1, 2, 3, 5])
+def test_catalog_rejects_non_v4_schema_versions(validator, catalog, version):
     bad = copy.deepcopy(catalog)
     bad["version"] = version
-    assert list(validator.iter_errors(bad)), "schema must accept exactly catalog version 3"
+    assert list(validator.iter_errors(bad)), "schema must accept exactly catalog version 4"
+
+
+def test_optional_extension_contract_is_required_and_fail_closed(validator, catalog):
+    extension = catalog["extensions"][0]
+    assert extension["id"] == "agent-collab-harness"
+    assert extension["required"] is False
+    for field in ("type", "source_repository", "install", "capabilities", "compatibility", "verification", "checked_on"):
+        bad = copy.deepcopy(catalog)
+        del bad["extensions"][0][field]
+        assert list(validator.iter_errors(bad)), f"extension.{field} must be required"
+
+
+def test_required_harness_extension_is_rejected(validator, catalog):
+    bad = copy.deepcopy(catalog)
+    bad["extensions"][0]["required"] = True
+    assert list(validator.iter_errors(bad))
+
+
+def test_extension_checked_on_must_be_real_date(validator, catalog):
+    bad = copy.deepcopy(catalog)
+    bad["extensions"][0]["checked_on"] = "2026-99-99"
+    assert list(validator.iter_errors(bad))
+
+
+def test_duplicate_extensions_are_rejected(validator, catalog):
+    bad = copy.deepcopy(catalog)
+    bad["extensions"].append(copy.deepcopy(bad["extensions"][0]))
+    assert list(validator.iter_errors(bad))
 
 
 def test_invalid_updated_date_format_fails(validator, catalog):

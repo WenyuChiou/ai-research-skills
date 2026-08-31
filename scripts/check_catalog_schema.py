@@ -27,7 +27,7 @@ import sys
 from pathlib import Path
 
 import yaml
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, FormatChecker
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -64,7 +64,7 @@ def main() -> int:
     with CATALOG_PATH.open(encoding="utf-8") as f:
         catalog = yaml.safe_load(f)
 
-    validator = Draft202012Validator(schema)
+    validator = Draft202012Validator(schema, format_checker=FormatChecker())
     errors = sorted(validator.iter_errors(catalog), key=lambda e: list(e.absolute_path))
 
     if errors:

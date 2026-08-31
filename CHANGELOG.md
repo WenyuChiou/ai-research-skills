@@ -15,6 +15,29 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-08-31
+
+### Added
+
+- Added catalog schema v4 `extensions[]` and the optional
+  `agent-collab-harness` v0.4.0 policy/checkpoint extension without changing the
+  17-skill core.
+- Added a deterministic v3 compatibility view, bilingual agent/harness builder
+  guide, current official-project landscape, editable bilingual Mermaid
+  architecture/state-machine diagrams, and a 12-case behavior-invariant corpus.
+
+### Changed
+
+- Updated the research-workspace marketplace pin to 0.5.0 for the released
+  `research-hub` workflow runtime.
+- Marked all retained Gemini verification commands as historical evidence;
+  `gemini-delegate` remains absent from active catalog, install, and routing.
+
+### Fixed
+
+- Corrected the English README's stale 16-skill introduction and added an
+  explicit boundary between core skills and the optional harness extension.
+
 ## [1.6.0] - 2026-08-30
 
 ### Added
@@ -1577,7 +1600,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.39...v1.6.0
 [1.5.39]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.38...v1.5.39
 [1.5.38]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.37...v1.5.38

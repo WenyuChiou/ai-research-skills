@@ -1,0 +1,21 @@
+flowchart TD
+  S((開始)) --> I[Initialized] --> R[Running]
+  R -->|重大動作| D{等待決策}
+  D -->|接受| R
+  D -->|以新 hash 修訂| R
+  D -->|拒絕| X[Declined]
+  D -->|取消| C[Cancelled]
+  R -->|crash / timeout| Y[Recovery]
+  Y -->|reconcile / resume| R
+  Y -->|retry 用盡| B[Blocked]
+  R -->|階段完成| L{等待 release}
+  L -->|接受 authorization| O[Completed]
+  L -->|拒絕| X
+  X --> Z((結束))
+  C --> Z
+  B --> Z
+  O --> Z
+  classDef active fill:#0B2742,color:#fff,stroke:#2DA89C,stroke-width:2px;
+  classDef gate fill:#E8F7F5,color:#0B2742,stroke:#2DA89C,stroke-width:2px;
+  class I,R,Y,O active;
+  class D,L,X,C,B gate;
