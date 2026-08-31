@@ -1,8 +1,11 @@
 # Canonical Prompt — `pipeline-overview.png`
 
-This is the working ChatGPT-image-gen prompt used to produce
-`pipeline-overview.png` (EN) and `pipeline-overview.zh-TW.png` (繁中)
-in 2026-05-12. Reuse when the skill count or stage mapping changes.
+This is the canonical content prompt for `pipeline-overview.png` (EN) and
+`pipeline-overview.zh-TW.png` (繁中). The current assets were regenerated with
+OpenAI Image 2.0 on 2026-08-31, using the previous reviewed image as the content
+reference and the constraints below as the no-drift contract. See
+[`image-2-generation.md`](image-2-generation.md) for the reviewed output hashes,
+H3 scope, and cross-diagram style prompt.
 
 **Why save the prompt**: getting the chip placement right took
 multiple iterations (paper-summarize missing, research-hub missing
@@ -128,7 +131,7 @@ Same as English, except:
 - Skill chip names stay in English (skill names don't translate).
 - Stage 7 includes the `paper-review` chip.
 
-## Known iteration pitfalls (from 2026-05-12 regen)
+## Known iteration pitfalls (confirmed again in the 2026-08-31 Image 2.0 run)
 
 - ChatGPT will sometimes drop `research-hub` from Stage 2 — it has
   to be re-listed explicitly. Stage 2 needs **five** chips
