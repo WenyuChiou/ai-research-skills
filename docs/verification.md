@@ -1,6 +1,11 @@
 # Skill Verification Report
 
-**Current catalog sync:** 2026-08-30 for catalog 1.6.0 docs.
+> **Current support boundary (2026-08-31).** `gemini-delegate` is retired and
+> absent from active catalog, marketplace, installation, and routing surfaces.
+> Gemini commands below are preserved historical evidence only. Current machine
+> status is catalog v4 plus the optional `agent-collab-harness` extension.
+
+**Current catalog sync:** 2026-08-31 for catalog 1.7.0 docs.
 Current machine-readable status lives in
 [`catalog/skills.yml`](../catalog/skills.yml): 17 active skills across
 5 plugins; `research-workspace` contains 12 skills including
@@ -287,7 +292,7 @@ This is the deepest test in the batch — full cycle from ingest to verify.
   unless they invoke `codex` directly.
 - **Pass:** ✓
 
-### 11. gemini-delegate
+### 11. gemini-delegate — archived evidence, do not run for current installs
 
 - **Command 1:** `gemini --version` → `0.38.2` ✓
 - **Command 2:** `gemini -p "Say only the word PING and nothing else."`
@@ -380,6 +385,9 @@ Most checks are reproducible with these commands:
 ```bash
 # Environment
 codex --version
+> **Archived command transcript.** The following Gemini commands document a
+> retired 2026-05-09 run and are not current install or routing instructions.
+
 gemini --version
 python -m research_hub --help | head -5
 

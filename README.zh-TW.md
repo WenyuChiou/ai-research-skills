@@ -9,7 +9,8 @@
 [Pipeline](docs/pipeline.md) ·
 [範例](docs/examples.md) ·
 [Runtime contract](docs/runtime-contract.zh-TW.md) ·
-[詞彙表](docs/glossary.md)
+[詞彙表](docs/glossary.md) ·
+[給 Agent/Harness 建構者](docs/for-agent-harness-builders.zh-TW.md)
 
 **這是什麼。** 一套 17 個 Claude Code skills 的 catalog,圍繞著一個
 大部分研究 AI 工具迴避的問題:*這個 research gap 真的值得做嗎?*
@@ -23,6 +24,10 @@ Windsurf、Hermes、OpenClaw,以及通用 API client (詳見
 做文獻自動化時,`SKILL.md` catalog 與可執行的 `research-hub` runtime
 是兩層不同東西;請看
 [docs/runtime-contract.zh-TW.md](docs/runtime-contract.zh-TW.md)。
+
+> **選配 harness extension。** 17 個核心 skills 不變。Agent 與 harness 建構者可加裝
+> 公開的 `agent-collab-harness` policy/checkpoint layer；請看
+> [架構與相容性指南](docs/for-agent-harness-builders.zh-TW.md)。
 
 <sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a></sub>
 

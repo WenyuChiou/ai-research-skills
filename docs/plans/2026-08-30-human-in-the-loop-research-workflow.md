@@ -81,8 +81,8 @@ Delivered by [research-hub PR #128](https://github.com/WenyuChiou/research-hub/p
 
 Repository: `WenyuChiou/ai-research-skills`
 
-- Use catalog schema v3 with per-skill lifecycle, stage, runtime, mutation,
-  human-gate, and integration metadata.
+- Upgrade to catalog schema v4 with per-skill lifecycle metadata and an
+  `extensions[]` surface; preserve a deterministic v3 compatibility view.
 - Pin the current upstream plugin versions and require all 17 skills to be
   active, reachable, and represented in bilingual directory/pipeline docs.
 - Fetch every active source repository's public metadata and plugin manifest;

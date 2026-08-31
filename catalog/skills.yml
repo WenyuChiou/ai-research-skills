@@ -1,7 +1,25 @@
-version: 3
-updated: "2026-08-30"
+version: 4
+updated: "2026-08-31"
 catalog_name: ai-research-skills
 description: Curated AI skills for research workflows, literature management, academic writing, and multi-agent delegation.
+
+extensions:
+  - id: agent-collab-harness
+    type: optional-harness
+    required: false
+    source_repository: https://github.com/WenyuChiou/agent-collab-skills
+    install:
+      - pip install agent-collab-harness==0.4.0
+    capabilities:
+      - policy-validation
+      - policy-evaluation
+      - checkpoint-validation
+      - fail-closed-doctor
+    compatibility: Legacy v3 consumers can run `python scripts/catalog_v3_view.py`; the extension is omitted and all 17 core skills remain unchanged.
+    verification:
+      status: locally-verified
+      evidence: v0.4.0 release; 60 offline tests passed; wheel and sdist checksums recorded in the release.
+    checked_on: "2026-08-31"
 
 families:
   - id: research-workspace

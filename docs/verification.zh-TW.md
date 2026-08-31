@@ -1,6 +1,10 @@
 # Skill 驗證報告（zh-TW 摘要）
 
-**目前 catalog 同步：** 2026-08-30，對應 catalog 1.6.0 文件。
+> **目前支援邊界（2026-08-31）。** `gemini-delegate` 已 retired，且不在 active
+> catalog、marketplace、install 或 routing surface。下方 Gemini 指令只保留為歷史
+> 證據。目前 machine-readable 狀態是 catalog v4 與選配 `agent-collab-harness`。
+
+**目前 catalog 同步：** 2026-08-31，對應 catalog 1.7.0 文件。
 機器可讀狀態以 [`catalog/skills.yml`](../catalog/skills.yml) 為準：
 5 個 plugin、17 個 active skills；`research-workspace` 有 12 個 skills，
 包含 `research-workflow-orchestrator`；15 個 skill 是 T1，
@@ -57,7 +61,7 @@ T3 不代表較弱，只是反映純推理 skill 性質不同。對這類 skill 
 | 9 | `academic-writing-skills` | T1 | ✓ pass | banned-word 稽核找到 `leveraging`、`crucial`、`highlight`（符合 `banned_words.md`） |
 | 10 | `zotero-skills` | T1 | ✓ pass | local API 回傳 `我的文獻庫` 真實 collection；test corpus ingest 走過 |
 | 11 | `codex-delegate` | T1 | ✓ pass | `gpt-5.5` caveat 已解；wrappers 預設 `-m gpt-5.4`；leaf 角色寫進 SKILL.md |
-| 12 | `gemini-delegate` | T2 | ✓ pass | `gemini -p "Say only PING"` 回傳 `PING` |
+| 12 | `gemini-delegate`（歷史、已 retired） | T2 | ✓ historical pass | `gemini -p "Say only PING"` 回傳 `PING`；不要作為目前安裝指令 |
 | 13 | `research-design-helper` | T1 | ✓ pass | `design_brief.md` 5 段都填好，含 Cliff's δ 等具體可證偽條件 |
 | 14 | `zotero-library-curator` | T1 | ✓ pass | 抓出真實 vault 的 10 個重複 DOI、44 對 case-only 重複 tag、435 個 sparse tag |
 

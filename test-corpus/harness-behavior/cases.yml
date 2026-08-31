@@ -1,0 +1,50 @@
+schema_version: 1
+cases:
+  - id: doi-metadata-conflict
+    kind: source_identity
+    input: {doi: 10.1000/example, observed_titles: [Alpha study, Different study]}
+    expected: {status: unverified, reason: metadata_conflict}
+  - id: unsupported-citation
+    kind: claim_support
+    input: {support_flags: [false, false]}
+    expected: {status: rejected, reason: unsupported_claim}
+  - id: contradictory-papers
+    kind: contradiction
+    input: {supporting_source_ids: [S1], opposing_source_ids: [S2]}
+    expected: {status: preserved, reason: opposing_evidence_present}
+  - id: paywall-api-unavailable
+    kind: provider
+    input: {provider_status: unavailable}
+    expected: {status: degraded, reason: provider_unavailable}
+  - id: prompt-injection-paper
+    kind: untrusted_content
+    input: {contains_instruction: true, source_type: paper}
+    expected: {status: filtered, reason: untrusted_instruction}
+  - id: human-decline
+    kind: decision
+    input: {decision: decline}
+    expected: {status: terminal, reason: declined}
+  - id: human-revise
+    kind: revision
+    input: {previous_hash: abc123, proposed_hash: abc123}
+    expected: {status: blocked, reason: new_hash_required}
+  - id: cancel-resume
+    kind: decision
+    input: {decision: cancel, requested_action: resume_same_workflow}
+    expected: {status: terminal, reason: cancelled}
+  - id: crash-after-external-write
+    kind: idempotency
+    input: {applied_hashes: [write-001], retry_hash: write-001}
+    expected: {status: reconciled, reason: duplicate_write_prevented}
+  - id: duplicate-retry
+    kind: idempotency
+    input: {applied_hashes: [write-002], retry_hash: write-002}
+    expected: {status: reconciled, reason: duplicate_write_prevented}
+  - id: policy-budget-exhaustion
+    kind: policy
+    input: {observed: 5, limit: 5}
+    expected: {status: stop, reason: budget_exhausted}
+  - id: notebooklm-unsupported-claim
+    kind: claim_support
+    input: {support_flags: [false], source: notebooklm_brief}
+    expected: {status: rejected, reason: unsupported_claim}

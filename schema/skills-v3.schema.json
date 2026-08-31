@@ -4,12 +4,12 @@
   "title": "ai-research-skills catalog schema",
   "description": "JSON Schema (Draft 2020-12) for catalog/skills.yml. Run scripts/check_catalog_schema.py to validate.",
   "type": "object",
-  "required": ["version", "updated", "catalog_name", "description", "extensions", "families"],
+  "required": ["version", "updated", "catalog_name", "description", "families"],
   "additionalProperties": false,
   "properties": {
     "version": {
       "type": "integer",
-      "const": 4,
+      "const": 3,
       "description": "Catalog schema version. Bump when the schema itself changes shape."
     },
     "updated": {
@@ -19,11 +19,6 @@
     },
     "catalog_name": {"type": "string", "minLength": 1},
     "description": {"type": "string", "minLength": 1},
-    "extensions": {
-      "type": "array",
-      "uniqueItems": true,
-      "items": {"$ref": "#/$defs/extension"}
-    },
     "families": {
       "type": "array",
       "minItems": 1,
@@ -36,43 +31,6 @@
     }
   },
   "$defs": {
-    "extension": {
-      "type": "object",
-      "required": ["id", "type", "required", "source_repository", "install", "capabilities", "compatibility", "verification", "checked_on"],
-      "additionalProperties": false,
-      "properties": {
-        "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
-        "type": {"const": "optional-harness"},
-        "required": {"const": false},
-        "source_repository": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^https://github\\.com/[^/]+/[^/]+/?$"
-        },
-        "install": {
-          "type": "array",
-          "minItems": 1,
-          "items": {"type": "string", "minLength": 1}
-        },
-        "capabilities": {
-          "type": "array",
-          "minItems": 1,
-          "uniqueItems": true,
-          "items": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"}
-        },
-        "compatibility": {"type": "string", "minLength": 1},
-        "verification": {
-          "type": "object",
-          "required": ["status", "evidence"],
-          "additionalProperties": false,
-          "properties": {
-            "status": {"enum": ["documented", "locally-verified", "degraded"]},
-            "evidence": {"type": "string", "minLength": 1}
-          }
-        },
-        "checked_on": {"type": "string", "format": "date", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"}
-      }
-    },
     "family": {
       "type": "object",
       "required": ["id", "name", "canonical_repo", "default_branch", "install", "tools", "skills"],
