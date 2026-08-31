@@ -104,5 +104,6 @@ def test_bilingual_mermaid_topology_and_exports_match():
 def test_mermaid_sources_match_reviewed_export_hash_manifest():
     for line in (ROOT / "docs/img/diagram-sources.sha256").read_text(encoding="utf-8").splitlines():
         expected, relative = line.split(maxsplit=1)
-        actual = hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
+        canonical = (ROOT / relative).read_text(encoding="utf-8").encode("utf-8")
+        actual = hashlib.sha256(canonical).hexdigest()
         assert actual == expected, f"regenerate and visually review exports for {relative}"
