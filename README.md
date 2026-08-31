@@ -23,29 +23,56 @@ Languages: [English](README.md) | [繁中](README.zh-TW.md) ·
 
 ---
 
-## See the system before installing
+## Start here — Why, what, and how
 
-### 1. Research lifecycle — from literature to release
+### See the whole research lifecycle first
 
 [![Seventeen research skills mapped to an eight-stage workflow from literature discovery to manuscript release](docs/img/pipeline-overview.png)](docs/pipeline.md)
 
 <sub>The 17-skill core is organized around durable handoffs: each stage produces the next stage's input, while cross-cutting tools preserve context, verification, and delegation boundaries.</sub>
 
-### 2. Harness architecture — deterministic control around semantic work
+| Your first question | Short answer | Go deeper |
+|---|---|---|
+| **Why use these skills?** | Keep research context durable, verify evidence before claims move downstream, and pause automation at meaningful human decisions. | [Problems this catalog solves](#2-why-this-catalog-exists) |
+| **What is included?** | 17 portable skills, 8 lifecycle stages, 5 installable plugins, an executable research runtime, and an optional policy/checkpoint harness. | [Skill outputs](#5-see-what-each-skill-produces) |
+| **How do I use it?** | Install the 12-skill research workspace, then ask for a concrete research outcome in natural language. Add writing, Zotero, or delegation plugins only when needed. | [30-second install](#1-install--get-the-skills) · [Usage patterns](#4-use-it) |
+
+| 17 core skills | 8 research stages | 5 optional-by-need plugins | 3 truth-store integrations |
+|---:|---:|---:|---:|
+| Portable `SKILL.md` contracts | Orientation → release | Start with 1; grow to 5 | Zotero · Obsidian · NotebookLM |
+
+### Try the smallest useful path
+
+```bash
+claude plugin marketplace add WenyuChiou/ai-research-skills
+claude plugin install research-workspace@ai-research-skills
+```
+
+Then ask, for example:
+
+> Build a literature triage matrix for human-in-the-loop research agents. Verify identifiers, preserve contradictions, and show me the evidence gaps before recommending next steps.
+
+Need an executable, resumable workflow instead of prompt-only skills? Continue
+with `pip install research-hub-pipeline`, then run `research-hub setup` and
+`research-hub doctor`. The full path is in [Install](#1-install--get-the-skills).
+
+### Understand the two control layers
+
+#### Harness architecture — deterministic control around semantic work
 
 [![Vertical AI Research Reference Harness architecture showing users, research-hub runtime, role agents, evidence packets, truth stores, human gates, and the optional agent-collab policy layer](docs/img/harness-architecture.png)](docs/for-agent-harness-builders.md)
 
 <sub>`research-hub` owns the research-domain runtime and recoverable state. Role agents do semantic work; deterministic validators, evidence contracts, and the optional `agent-collab-harness` policy/checkpoint layer control what may proceed.</sub>
 
-### 3. Human-in-the-loop — where automation must pause
+#### Human-in-the-loop — where automation must pause
 
 [![Human-in-the-loop workflow state machine showing automatic reversible work, approval gates, decline and revise paths, recovery, and release authorization](docs/img/hitl-state-machine.png)](docs/for-agent-harness-builders.md)
 
 <sub>Read-only and reversible steps can continue automatically. Breaking contracts, skill removal, external writes, semantic acceptance, and release authorization remain explicit human decisions.</sub>
 
-| If you are… | Start here |
+| If you are… | Best next page |
 |---|---|
-| A researcher or research team | [Install the skills](#1-install--get-the-skills), then follow the [eight-stage pipeline](#3-the-pipeline--what-each-stage-delivers-to-the-next). |
+| A researcher or research team | Follow the [eight-stage pipeline](#3-the-pipeline--what-each-stage-delivers-to-the-next) after the quick install above. |
 | An agent or harness builder | Read the [architecture, state, HITL, recovery, and evaluation guide](docs/for-agent-harness-builders.md). |
 | Evaluating portability or trust boundaries | Review [compatibility](#7-compatibility), the [runtime contract](docs/runtime-contract.md), and [limitations](#8-limitations). |
 

@@ -23,29 +23,56 @@
 
 ---
 
-## 安裝前先看懂整套系統
+## 從這裡開始 — Why、What、How
 
-### 1. 研究生命週期 — 從文獻探索到成果發布
+### 先看完整研究生命週期
 
 [![17 個研究 skills 對應到從文獻探索至成果發布的八階段工作流程](docs/img/pipeline-overview.zh-TW.png)](docs/pipeline.zh-TW.md)
 
 <sub>17 個核心 skills 以可保存的交接產物串連：每個階段產出下一階段的輸入，跨階段工具則維持文脈、驗證與 delegation 邊界。</sub>
 
-### 2. Harness 架構 — 以 deterministic control 圍住 semantic work
+| 您最先想問的問題 | 短答 | 深入閱讀 |
+|---|---|---|
+| **為什麼使用這些 skills？** | 保存研究文脈，在 claim 進入下游前驗證 evidence，並讓自動化在重要的人類決策點停下。 | [這個 catalog 解決的問題](#2-為什麼存在這個-catalog-why-this-catalog-exists) |
+| **裡面有什麼？** | 17 個 portable skills、8 個 lifecycle stages、5 個可安裝 plugins、可執行的研究 runtime，以及選配的 policy/checkpoint harness。 | [每個 skill 的產出](#5-查看每個-skill-的產出-see-what-each-skill-produces) |
+| **怎麼使用？** | 先安裝 12-skill research workspace，再用自然語言描述具體研究成果；需要時才加裝 writing、Zotero 或 delegation plugins。 | [30 秒安裝](#1-安裝-install--取得這套-skills) · [使用模式](#4-使用方法-use-it) |
+
+| 17 個核心 skills | 8 個研究階段 | 5 個依需求選裝的 plugins | 3 個 truth-store integrations |
+|---:|---:|---:|---:|
+| Portable `SKILL.md` contracts | 研究定向 → release | 從 1 個開始，最多擴充至 5 個 | Zotero · Obsidian · NotebookLM |
+
+### 先走最小可用路徑
+
+```bash
+claude plugin marketplace add WenyuChiou/ai-research-skills
+claude plugin install research-workspace@ai-research-skills
+```
+
+接著可以直接提出這類需求：
+
+> 為 human-in-the-loop research agents 建立文獻分流矩陣；驗證 identifiers、保留互相矛盾的結果，並在建議下一步前列出 evidence gaps。
+
+若需要可執行、可恢復的 workflow，而不只是 prompt-only skills，接著安裝
+`research-hub-pipeline`，再執行 `research-hub setup` 與 `research-hub doctor`。
+完整路徑請看[安裝章節](#1-安裝-install--取得這套-skills)。
+
+### 看懂兩個控制層
+
+#### Harness 架構 — 以 deterministic control 圍住 semantic work
 
 [![Vertical AI Research Reference Harness 架構，呈現使用者、research-hub runtime、role agents、evidence packets、truth stores、human gates 與選配的 agent-collab policy layer](docs/img/harness-architecture.zh-TW.png)](docs/for-agent-harness-builders.zh-TW.md)
 
 <sub>`research-hub` 負責研究領域 runtime 與可恢復狀態。Role agents 處理語意工作；deterministic validators、evidence contracts 與選配的 `agent-collab-harness` policy/checkpoint layer 控制工作是否能繼續。</sub>
 
-### 3. Human-in-the-loop — 自動流程必須在哪裡暫停
+#### Human-in-the-loop — 自動流程必須在哪裡暫停
 
 [![Human-in-the-loop 工作流程狀態機，呈現自動化可逆工作、核准 gates、decline 與 revise 路徑、恢復流程及 release authorization](docs/img/hitl-state-machine.zh-TW.png)](docs/for-agent-harness-builders.zh-TW.md)
 
 <sub>Read-only 與可逆步驟可自動繼續；breaking contract、skill removal、external writes、semantic acceptance 與 release authorization 一律保留明確的人類決策。</sub>
 
-| 您是… | 建議入口 |
+| 您是… | 最適合的下一頁 |
 |---|---|
-| 研究者或研究團隊 | 先[安裝 skills](#1-安裝-install--取得這套-skills)，再依[八階段 pipeline](#3-the-pipeline--每個階段為下一階段交付什麼)執行。 |
+| 研究者或研究團隊 | 完成上方快速安裝後，依[八階段 pipeline](#3-the-pipeline--每個階段為下一階段交付什麼)執行。 |
 | Agent 或 harness 建構者 | 閱讀[架構、狀態、HITL、恢復與 evaluation 指南](docs/for-agent-harness-builders.zh-TW.md)。 |
 | 正在評估可攜性或 trust boundaries | 查看[相容性](#7-相容性-compatibility)、[runtime contract](docs/runtime-contract.zh-TW.md)與[限制](#8-限制-limitations)。 |
 
