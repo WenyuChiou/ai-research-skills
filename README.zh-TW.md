@@ -1,9 +1,13 @@
 # AI Research Skills
 
-> 一套 skill catalog,專門阻止你花 6 個月做一個其實已經被別人做掉、
-> 算不上真貢獻、或時間根本做不完的 research gap。每個候選 thesis
-> 主題,先過一份三關決策 dossier — 通過了,後面的 pipeline (文獻 →
-> 設計 → 實作 → 執行 → 撰寫 → 投稿) 才開始動。
+> **Vertical AI Research Reference Harness 的 catalog、安裝與視覺導覽層。**
+> 透過 17 個可攜式 skills、八階段 lifecycle、evidence-aware handoffs
+> 與明確 human gates，從研究定向一路推進到 release。
+
+設計給研究生、博士生、博士後、研究支援人員，以及需要可檢查研究流程、
+而非黑盒子的 agent/harness 建構者使用。
+本 repo 收錄 portable skills；`research-hub` 提供可執行的 runtime，選配的
+`agent-collab-harness` 則加入 policy/checkpoint 治理層。
 
 語言：[English](README.md) | [繁中](README.zh-TW.md) ·
 [Pipeline](docs/pipeline.md) ·
@@ -12,27 +16,38 @@
 [詞彙表](docs/glossary.md) ·
 [給 Agent/Harness 建構者](docs/for-agent-harness-builders.zh-TW.md)
 
-**這是什麼。** 一套 17 個 Claude Code skills 的 catalog,圍繞著一個
-大部分研究 AI 工具迴避的問題:*這個 research gap 真的值得做嗎?*
-Pipeline 開頭就是一份帶三關的結構化決策 dossier — 開放性 / 貢獻度 /
-可行性 — 通過三關的候選主題,後段 stage (研究設計、論文撰寫、
-回覆審稿人) 才會啟動。設計給研究生、
-博士生、博士後與研究支援人員使用。五個 plugins,一次 marketplace
-安裝完 — 同一批 `SKILL.md` 也能載到 Codex CLI、Gemini CLI、Cursor、
-Windsurf、Hermes、OpenClaw,以及通用 API client (詳見
-[§7 相容性 (Compatibility)](#7-相容性-compatibility))。
-做文獻自動化時,`SKILL.md` catalog 與可執行的 `research-hub` runtime
-是兩層不同東西;請看
-[docs/runtime-contract.zh-TW.md](docs/runtime-contract.zh-TW.md)。
-
-> **選配 harness extension。** 17 個核心 skills 不變。Agent 與 harness 建構者可加裝
-> 公開的 `agent-collab-harness` policy/checkpoint layer；請看
-> [架構與相容性指南](docs/for-agent-harness-builders.zh-TW.md)。
-
 <sub><a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a></sub>
 
 > 📚 本項目為 [agentic AI 學習路線圖](https://github.com/WenyuChiou/awesome-agentic-ai-zh) 的一部分
 > ——收錄於 §13–14 (研究工作流程)。
+
+---
+
+## 安裝前先看懂整套系統
+
+### 1. 研究生命週期 — 從文獻探索到成果發布
+
+[![17 個研究 skills 對應到從文獻探索至成果發布的八階段工作流程](docs/img/pipeline-overview.zh-TW.png)](docs/pipeline.zh-TW.md)
+
+<sub>17 個核心 skills 以可保存的交接產物串連：每個階段產出下一階段的輸入，跨階段工具則維持文脈、驗證與 delegation 邊界。</sub>
+
+### 2. Harness 架構 — 以 deterministic control 圍住 semantic work
+
+[![Vertical AI Research Reference Harness 架構，呈現使用者、research-hub runtime、role agents、evidence packets、truth stores、human gates 與選配的 agent-collab policy layer](docs/img/harness-architecture.zh-TW.png)](docs/for-agent-harness-builders.zh-TW.md)
+
+<sub>`research-hub` 負責研究領域 runtime 與可恢復狀態。Role agents 處理語意工作；deterministic validators、evidence contracts 與選配的 `agent-collab-harness` policy/checkpoint layer 控制工作是否能繼續。</sub>
+
+### 3. Human-in-the-loop — 自動流程必須在哪裡暫停
+
+[![Human-in-the-loop 工作流程狀態機，呈現自動化可逆工作、核准 gates、decline 與 revise 路徑、恢復流程及 release authorization](docs/img/hitl-state-machine.zh-TW.png)](docs/for-agent-harness-builders.zh-TW.md)
+
+<sub>Read-only 與可逆步驟可自動繼續；breaking contract、skill removal、external writes、semantic acceptance 與 release authorization 一律保留明確的人類決策。</sub>
+
+| 您是… | 建議入口 |
+|---|---|
+| 研究者或研究團隊 | 先[安裝 skills](#1-安裝-install--取得這套-skills)，再依[八階段 pipeline](#3-the-pipeline--每個階段為下一階段交付什麼)執行。 |
+| Agent 或 harness 建構者 | 閱讀[架構、狀態、HITL、恢復與 evaluation 指南](docs/for-agent-harness-builders.zh-TW.md)。 |
+| 正在評估可攜性或 trust boundaries | 查看[相容性](#7-相容性-compatibility)、[runtime contract](docs/runtime-contract.zh-TW.md)與[限制](#8-限制-limitations)。 |
 
 ---
 
@@ -191,9 +206,7 @@ catalog 層級的 `CHANGELOG.md`。
 | **2. 帶有 anti-leakage 規則的 Schemas** | 每個跨 skill 的產出物都有一個 YAML schema。一個 `evidence_artifacts` 為空的 claim **會被強制** 標記為 `status: gap` 並附上 `gap_reason` — 絕不會是 `supported`。一個 `verdict: do-not-pursue` 的候選主題會與 `worth-pursuing` 的主題在結構上被分開。下游工具會拒絕傳遞過度自信的輸出。 | P2, P3, P4 |
 | **3. Character-driven routing (依任務性質分流)** | token 重的機械性批量工作 → Codex。有邊界、非誠實性關鍵的機械性工作 → Antigravity。長文脈、CJK、判斷、治理與最終審查留在 primary model。路由工具 (`research-hub-multi-ai`) 會寫一個協調檔案，讓每個代理只讀取自己的任務簡報，而非上層的完整文脈。 | P5 |
 
-下方八階段的 pipeline 就是將這三個原則應用於真實研究工作流程的成果。
-
-![研究 skills 對應到 8 個工作流程階段，並有可於各階段使用的跨領域工具](docs/img/pipeline-overview.zh-TW.png)
+上方的八階段視覺圖就是將這三個原則應用於真實研究工作流程的成果。
 
 ---
 
