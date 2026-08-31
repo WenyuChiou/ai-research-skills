@@ -50,12 +50,19 @@ def test_builder_docs_and_diagrams_have_bilingual_parity():
     pairs = [
         ("docs/for-agent-harness-builders.md", "docs/for-agent-harness-builders.zh-TW.md"),
         ("docs/skill-lifecycle.md", "docs/skill-lifecycle.zh-TW.md"),
+        ("docs/round2-dogfood-benchmark.md", "docs/round2-dogfood-benchmark.zh-TW.md"),
     ]
     required = ["research-hub", "agent-collab-harness", "ResearchEvidencePacket", "Zotero", "Obsidian", "NotebookLM"]
     for en_path, zh_path in pairs:
         en = (ROOT / en_path).read_text(encoding="utf-8")
         zh = (ROOT / zh_path).read_text(encoding="utf-8")
-        for term in required if "for-agent" in en_path else ["gemini-delegate", "codex-delegate", "antigravity-delegate"]:
+        if "for-agent" in en_path:
+            pair_required = required
+        elif "skill-lifecycle" in en_path:
+            pair_required = ["gemini-delegate", "codex-delegate", "antigravity-delegate"]
+        else:
+            pair_required = ["research-hub", "NotebookLM", "reconcile_required"]
+        for term in pair_required:
             assert term in en and term in zh, term
         assert en.count("\n## ") == zh.count("\n## ")
         assert en.count("\n|---") == zh.count("\n|---")
@@ -64,6 +71,45 @@ def test_builder_docs_and_diagrams_have_bilingual_parity():
     zh_builder = (ROOT / "docs/for-agent-harness-builders.zh-TW.md").read_text(encoding="utf-8")
     for term in ("continue", "checkpoint", "stop"):
         assert term in en_builder and term in zh_builder
+
+
+def test_round2_report_preserves_failure_evidence_and_measured_counts():
+    paths = (
+        ROOT / "docs/round2-dogfood-benchmark.md",
+        ROOT / "docs/round2-dogfood-benchmark.zh-TW.md",
+    )
+    required = (
+        "3,348", "12/12 PASS", "3/3", "0/3", "1/1",
+        "HTTP 429", "degraded/SKIP", "reconcile_required",
+        "USD 0", "research-hub/pull/130",
+    )
+    for path in paths:
+        text = path.read_text(encoding="utf-8")
+        for term in required:
+            assert term in text, f"{path.name}: missing {term}"
+        assert "not a general ranking" in text or "不是通用排名" in text
+        assert "no-write action" in text
+        assert "Duplicate no-write retries rejected" in text or "duplicate no-write retry" in text
+        assert "Duplicate external actions prevented" not in text
+        assert "避免的 duplicate external action" not in text
+
+
+def test_readme_first_screen_routes_why_what_and_how_in_both_locales():
+    pairs = (
+        ROOT / "README.md",
+        ROOT / "README.zh-TW.md",
+    )
+    required = (
+        "Why", "What", "How", "pipeline-overview", "harness-architecture",
+        "hitl-state-machine", "17", "8", "Zotero", "Obsidian", "NotebookLM",
+        "claude plugin install research-workspace@ai-research-skills",
+    )
+    for path in pairs:
+        text = path.read_text(encoding="utf-8")
+        first_screen = text[:7000]
+        for term in required:
+            assert term in first_screen, f"{path.name}: first-screen route missing {term}"
+        assert first_screen.index("pipeline-overview") < first_screen.index("## Contents") if path.name == "README.md" else first_screen.index("pipeline-overview") < first_screen.index("## 目錄")
 
 
 def test_builder_docs_resolve_relative_markdown_links():

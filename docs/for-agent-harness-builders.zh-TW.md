@@ -78,5 +78,6 @@ truth stores、claim/evidence identity、可恢復外部寫入與語意 release 
 - Memory output 只能是 proposal，需明確人類決策才能進 canonical memory。
 - Live experiment 與外部 mutation 為 opt-in；CI 預設只跑 offline replay。
 
-另見 [skill lifecycle](skill-lifecycle.zh-TW.md)、[behavior corpus](../test-corpus/harness-behavior/cases.yml)
+另見 [第二輪 H3 dogfood 與失敗基準](round2-dogfood-benchmark.zh-TW.md)、
+[skill lifecycle](skill-lifecycle.zh-TW.md)、[behavior corpus](../test-corpus/harness-behavior/cases.yml)
 與 [research-hub runtime contract](https://github.com/WenyuChiou/research-hub/blob/master/docs/workflow-runtime.md)。

@@ -82,5 +82,6 @@ recoverable external writes, and semantic release authorization.
 - Memory output is proposal-only until a recorded human decision.
 - Live experiments and external mutations are opt-in; offline replay is the CI default.
 
-See [skill lifecycle](skill-lifecycle.md), [behavior corpus](../test-corpus/harness-behavior/cases.yml),
+See the [Round 2 H3 dogfood and failure benchmark](round2-dogfood-benchmark.md),
+[skill lifecycle](skill-lifecycle.md), [behavior corpus](../test-corpus/harness-behavior/cases.yml),
 and the [research-hub runtime contract](https://github.com/WenyuChiou/research-hub/blob/master/docs/workflow-runtime.md).
