@@ -107,3 +107,27 @@ def test_mermaid_sources_match_reviewed_export_hash_manifest():
         canonical = (ROOT / relative).read_text(encoding="utf-8").encode("utf-8")
         actual = hashlib.sha256(canonical).hexdigest()
         assert actual == expected, f"regenerate and visually review exports for {relative}"
+
+
+def test_image2_assets_match_reviewed_hash_manifest():
+    manifest = ROOT / "docs/img/image-2-assets.sha256"
+    entries = manifest.read_text(encoding="utf-8").splitlines()
+    assert len(entries) == 6
+    expected_paths = {
+        "docs/img/pipeline-overview.png",
+        "docs/img/pipeline-overview.zh-TW.png",
+        "docs/img/harness-architecture.png",
+        "docs/img/harness-architecture.zh-TW.png",
+        "docs/img/hitl-state-machine.png",
+        "docs/img/hitl-state-machine.zh-TW.png",
+    }
+    manifest_paths = [line.split(maxsplit=1)[1] for line in entries]
+    assert len(set(manifest_paths)) == 6
+    assert set(manifest_paths) == expected_paths
+    for line in entries:
+        expected, relative = line.split(maxsplit=1)
+        asset = (ROOT / relative).resolve()
+        assert asset.is_relative_to(ROOT.resolve())
+        assert asset.exists() and asset.suffix == ".png"
+        actual = hashlib.sha256(asset.read_bytes()).hexdigest()
+        assert actual == expected, f"visually review Image 2.0 asset before accepting {relative}"
