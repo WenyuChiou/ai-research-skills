@@ -144,19 +144,19 @@ Install one or both:
 
 ```bash
 git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
-git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
+git clone https://github.com/WenyuChiou/antigravity-delegate ~/.claude/skills/antigravity-delegate
 ```
 
 Use these skills:
 
 - [codex-delegate](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md): coding-heavy, repetitive, or many-file implementation work.
-- [gemini-delegate](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md): long-context reading, bilingual or CJK writing, source synthesis, and second-opinion reviews.
-- [research-hub-multi-ai](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md): decide how Claude, Codex, and Gemini should share research-hub work.
+- [antigravity-delegate](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md): bounded non-honesty-critical mechanical work under Claude supervision.
+- [research-hub-multi-ai](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md): decide how the primary model, Codex, and Antigravity should share bounded mechanical research-hub work.
 
 ## Minimal Recommendations
 
 - [ ] Most researchers: install `research-hub` and `academic-writing-skills`.
 - [ ] Heavy Zotero users: add `zotero-skills`.
 - [ ] Heavy coding users: add `codex-delegate`.
-- [ ] Long-context or bilingual users: add `gemini-delegate`.
+- [ ] Bounded mechanical Antigravity users: add `antigravity-delegate`.
 - [ ] NotebookLM users: always use `notebooklm-brief-verifier` before trusting a brief.

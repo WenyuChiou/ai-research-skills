@@ -91,12 +91,12 @@ OpenClaw 與 generic API client 目前請使用
 [在 Claude Code 之外用這些 skills](#在-claude-code-之外用這些-skills)
 的 raw `SKILL.md` 路徑；本 repo 尚未加入 release-grade OpenClaw 驗證。
 
-在 Claude Code 預設路徑下，裝完之後 11 個 skill 出現在
+在 Claude Code 預設路徑下，裝完之後 12 個 skill 出現在
 `~/.claude/skills/` 底下：`research-hub`、`research-design-helper`、
 `research-context-compressor`、`research-project-orienter`、
 `research-hub-multi-ai`、`literature-triage-matrix`、
 `paper-memory-builder`、`paper-summarize`、`notebooklm-brief-verifier`、
-`zotero-library-curator`、`gap-to-topic`。
+`zotero-library-curator`、`gap-to-topic`、`research-workflow-orchestrator`。
 
 *註*: 這條 Python-CLI 路徑(`research-hub setup`)**會**把 skill 展到
 `~/.claude/skills/` 底下。Claude Code marketplace 路徑(`claude plugin
@@ -151,11 +151,11 @@ rm -rf ~/.claude/skills/knowledge-base
 
 ```bash
 claude plugin marketplace add WenyuChiou/ai-research-skills
-claude plugin install research-workspace@ai-research-skills        # 11 skills
-claude plugin install academic-writing-skills@ai-research-skills   # +2
-claude plugin install zotero-skills@ai-research-skills             # +1
-claude plugin install codex-delegate@ai-research-skills            # +1
-claude plugin install gemini-delegate@ai-research-skills           # +1
+claude plugin install research-workspace@ai-research-skills        # 12/17
+claude plugin install academic-writing-skills@ai-research-skills   # 14/17
+claude plugin install zotero-skills@ai-research-skills             # 15/17
+claude plugin install codex-delegate@ai-research-skills            # 16/17
+claude plugin install antigravity-delegate@ai-research-skills      # 17/17
 ```
 
 ## 建議最小組合
@@ -168,7 +168,7 @@ academic-writing-skills
 ```
 
 如果有大量 Zotero library 要管，再加 `zotero-skills`。如果跟 Codex
-或 Gemini 配合用，再加 delegation skill。
+或 Antigravity 配合處理有邊界的機械性工作，再加 delegation skill。
 
 ---
 
@@ -186,11 +186,12 @@ git clone https://github.com/WenyuChiou/research-hub
 git clone https://github.com/WenyuChiou/academic-writing-skills
 git clone https://github.com/WenyuChiou/zotero-skills
 git clone https://github.com/WenyuChiou/codex-delegate
-git clone https://github.com/WenyuChiou/gemini-delegate-skill
+git clone https://github.com/WenyuChiou/antigravity-delegate
 ```
 
 每個 repo 的 `SKILL.md` 都在 `skills/<skill-name>/` 底下。`research-hub`
-有 11 份 skill；其他 4 個 repo 各 1 份。
+有 12 份 skill；`academic-writing-skills` 有 2 份；`zotero-skills`、
+`codex-delegate`、`antigravity-delegate` 各 1 份。
 
 ### 2. 各 host 載入方式
 
@@ -255,5 +256,6 @@ cp <repo>/skills/literature-triage-matrix/SKILL.md \
   `SKILL.md` 本身只是 routing contract。
 - `research-hub` 與 `research-hub-multi-ai` 不論哪個 AI 讀取 skill，
   都要先讓 `research-hub-pipeline` Python CLI 在 PATH 上。
-- `codex-delegate` / `gemini-delegate` 主要適合 Claude Code 對外
-  delegation；如果你已經在 Codex 或 Gemini 裡，通常直接用目標 skill 即可。
+- `codex-delegate` / `antigravity-delegate` 主要適合 Claude Code 對外
+  delegation，處理有邊界的機械性工作；如果你已經在 Codex 或 Antigravity 裡，
+  通常直接用目標 skill 即可。

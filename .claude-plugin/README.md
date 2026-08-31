@@ -43,26 +43,29 @@ repository's `skills/<name>/SKILL.md` layout.
 
 | Plugin | Source repo | Skills it ships |
 |---|---|---|
-| `research-workspace` | `WenyuChiou/research-hub` | 11 skills auto-discovered from `skills/<name>/SKILL.md`: research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder, paper-summarize, gap-to-topic |
+| `research-workspace` | `WenyuChiou/research-hub` | 12 skills auto-discovered from `skills/<name>/SKILL.md`: research-hub, literature-triage-matrix, notebooklm-brief-verifier, zotero-library-curator, research-design-helper, research-context-compressor, research-project-orienter, research-hub-multi-ai, paper-memory-builder, paper-summarize, gap-to-topic, research-workflow-orchestrator |
 | `academic-writing-skills` | `WenyuChiou/academic-writing-skills` | 2 skills: lifecycle-aware writing core and general `paper-review` orchestrator with progressive display-provenance, method, domain, round, and optional reviewer modules |
 | `zotero-skills` | `WenyuChiou/zotero-skills` | Single skill: full Zotero CRUD (local + Web API) |
 | `codex-delegate` | `WenyuChiou/codex-delegate` | Single skill: hand token-heavy mechanical work to Codex CLI |
-| `gemini-delegate` | `WenyuChiou/gemini-delegate-skill` | Single skill: hand long-context / CJK output to Gemini CLI |
+| `antigravity-delegate` | `WenyuChiou/antigravity-delegate` | Single skill: hand bounded non-honesty-critical mechanical work to Antigravity CLI |
 
 ### What each plugin gets you out of the box
 
-- **`research-workspace`** — 5 of its 11 skills work fully without any
+- **`research-workspace`** — 5 of its 12 skills work fully without any
   extra setup (`literature-triage-matrix`, `research-design-helper`,
   `research-context-compressor`, `research-project-orienter`,
   `paper-memory-builder`). 1 works in fallback mode
-  (`notebooklm-brief-verifier`). 4 are CLI wrappers and need
+  (`notebooklm-brief-verifier`). The `research-workflow-orchestrator`
+  coordinates orient/scope/discover/synthesize/design/execute/write/release,
+  proceeds automatically for read-only or reversible work, and pauses at the
+  catalog human gates. CLI-backed skills need
   `pip install research-hub-pipeline` to actually run; without it they
   print a setup hint instead of hallucinating output.
 - **`academic-writing-skills`** — works fully on its own.
 - **`zotero-skills`** + **`zotero-library-curator`** (in
   `research-workspace`) — need Zotero connectivity (local API on port
   23119, or Web API key).
-- **`codex-delegate`** / **`gemini-delegate`** — need their respective
+- **`codex-delegate`** / **`antigravity-delegate`** — need their respective
   CLI binaries installed; see each source repo's README.
 
 ## Marketplace install vs. `pip install research-hub-pipeline`

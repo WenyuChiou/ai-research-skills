@@ -15,6 +15,36 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-08-30
+
+### Added
+
+- Registered the 12th research-workspace skill,
+  `research-workflow-orchestrator`, with an eight-stage resumable HITL contract,
+  scoped decision gates, provenance state, and MCP/CLI fallback guidance.
+- Added schema-v3 lifecycle, workflow-stage, runtime, mutation, human-gate, and
+  integration metadata for all 17 active skills.
+- Added a report-only monthly health workflow: it checks source lifecycle,
+  SKILL frontmatter identity, URL/cache/date drift, uploads artifacts, and opens
+  or refreshes one human-review issue. It never auto-fixes, opens a PR, merges,
+  publishes, or deletes.
+
+### Changed
+
+- Removed the archived, read-only `gemini-delegate` plugin from the active
+  catalog and replaced it with the maintained `antigravity-delegate` bounded
+  mechanical lane. Long-context, CJK, research judgment, governance, and final
+  review remain with the primary model rather than being reassigned.
+- Updated research-workspace to plugin 0.4.0 and academic-writing-skills to
+  1.1.6; synchronized catalog metadata, install scripts, bilingual docs, and
+  the 17-skill pipeline/social visuals.
+
+### Fixed
+
+- Corrected the previous 15/16-skill artwork drift and added the missing
+  `paper-review` plus the new orchestrator to both English and Traditional
+  Chinese workflow graphics.
+
 ## [1.5.39] - 2026-08-02
 
 ### Changed
@@ -1547,7 +1577,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.39...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.39...v1.6.0
 [1.5.39]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.38...v1.5.39
 [1.5.38]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.37...v1.5.38
 [1.5.37]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.36...v1.5.37

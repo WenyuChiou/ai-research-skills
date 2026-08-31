@@ -69,6 +69,13 @@ def test_missing_top_level_version_fails(validator, catalog):
     assert list(validator.iter_errors(bad)), "schema must require top-level 'version'"
 
 
+@pytest.mark.parametrize("version", [1, 2, 4])
+def test_catalog_rejects_non_v3_schema_versions(validator, catalog, version):
+    bad = copy.deepcopy(catalog)
+    bad["version"] = version
+    assert list(validator.iter_errors(bad)), "schema must accept exactly catalog version 3"
+
+
 def test_invalid_updated_date_format_fails(validator, catalog):
     bad = copy.deepcopy(catalog)
     bad["updated"] = "May 19, 2026"  # not YYYY-MM-DD
@@ -87,6 +94,32 @@ def test_skill_missing_verification_status_fails(validator, catalog):
     bad = copy.deepcopy(catalog)
     del bad["families"][0]["skills"][0]["verification_status"]
     assert list(validator.iter_errors(bad)), "verification_status must be required"
+
+
+def test_skill_missing_lifecycle_metadata_fails(validator, catalog):
+    for field in (
+        "lifecycle_status",
+        "workflow_stages",
+        "runtime_mode",
+        "mutation_class",
+        "human_gates",
+        "integrations",
+    ):
+        bad = copy.deepcopy(catalog)
+        del bad["families"][0]["skills"][0][field]
+        assert list(validator.iter_errors(bad)), f"{field} must be required"
+
+
+def test_invalid_workflow_stage_fails(validator, catalog):
+    bad = copy.deepcopy(catalog)
+    bad["families"][0]["skills"][0]["workflow_stages"] = ["magic"]
+    assert list(validator.iter_errors(bad))
+
+
+def test_invalid_mutation_class_fails(validator, catalog):
+    bad = copy.deepcopy(catalog)
+    bad["families"][0]["skills"][0]["mutation_class"] = "whatever"
+    assert list(validator.iter_errors(bad))
 
 
 def test_skill_invalid_verification_status_fails(validator, catalog):

@@ -1,6 +1,16 @@
 # Skill 驗證報告（zh-TW 摘要）
 
-**最近一次跑：** 2026-05-09（delegate 清理 pass；接續 2026-04-25 T1 升級 pass）
+**目前 catalog 同步：** 2026-08-30，對應 catalog 1.6.0 文件。
+機器可讀狀態以 [`catalog/skills.yml`](../catalog/skills.yml) 為準：
+5 個 plugin、17 個 active skills；`research-workspace` 有 12 個 skills，
+包含 `research-workflow-orchestrator`；15 個 skill 是 T1，
+`research-workflow-orchestrator` 與 `antigravity-delegate` 是 T2。這次 2026-08-30 文件同步沒有重跑
+live external-service tests。
+
+下方保留 point-in-time 歷史稽核證據，包含 2026-05-09 archived
+`gemini-delegate` checks。
+
+**最近一次完整歷史 run：** 2026-05-09（delegate 清理 pass；接續 2026-04-25 T1 升級 pass）
 **測試環境：** Windows 11、Python 3.14、`research-hub-pipeline` 0.45.0、`codex-cli` 0.121.0、`gemini` 0.38.2。
 **測試者：** Claude（Opus 4.7），對使用者真實工作區（`knowledge-base` 1100+ 篇論文、活躍 Zotero 庫、現役 NotebookLM session）執行。
 

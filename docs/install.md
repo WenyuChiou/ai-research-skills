@@ -95,12 +95,12 @@ OpenClaw and generic API clients should use the raw `SKILL.md` loading
 path in [Using these skills outside Claude Code](#using-these-skills-outside-claude-code)
 until this repo adds release-grade OpenClaw verification.
 
-On the Claude Code default path, a fresh setup writes 11 skills under
+On the Claude Code default path, a fresh setup writes 12 skills under
 `~/.claude/skills/`: `research-hub`, `research-design-helper`,
 `research-context-compressor`, `research-project-orienter`,
 `research-hub-multi-ai`, `literature-triage-matrix`,
 `paper-memory-builder`, `paper-summarize`, `notebooklm-brief-verifier`,
-`zotero-library-curator`, `gap-to-topic`.
+`zotero-library-curator`, `gap-to-topic`, `research-workflow-orchestrator`.
 
 *Note*: this Python-CLI path (`research-hub setup`) DOES extract skills
 into `~/.claude/skills/`. The Claude Code marketplace path
@@ -216,23 +216,23 @@ git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-de
 ```
 </details>
 
-## 5. gemini-delegate
+## 5. antigravity-delegate
 
 **Canonical path** (Claude Code marketplace):
 
 ```bash
-claude plugin install gemini-delegate@ai-research-skills
+claude plugin install antigravity-delegate@ai-research-skills
 ```
 
-**Note**: the source repo is named `gemini-delegate-skill` but the
-plugin name (and `Skill()` invocation name) is `gemini-delegate`. This
-asymmetry is intentional — see [`CONTRIBUTING.md`](../CONTRIBUTING.md) §3.
+Use this only for bounded non-honesty-critical mechanical work. It does
+not take over long-context, bilingual/CJK, synthesis, or review work;
+those stay with the primary model.
 
 <details>
 <summary>Legacy alternative: manual <code>git clone</code></summary>
 
 ```bash
-git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate
+git clone https://github.com/WenyuChiou/antigravity-delegate ~/.claude/skills/antigravity-delegate
 ```
 </details>
 
@@ -246,7 +246,8 @@ academic-writing-skills
 ```
 
 Add `zotero-skills` if you maintain a large Zotero library. Add delegation
-skills if you actively use Codex or Gemini alongside Claude.
+skills if you actively use Codex or Antigravity alongside Claude for bounded
+mechanical execution.
 
 ---
 
@@ -265,11 +266,12 @@ git clone https://github.com/WenyuChiou/research-hub
 git clone https://github.com/WenyuChiou/academic-writing-skills
 git clone https://github.com/WenyuChiou/zotero-skills
 git clone https://github.com/WenyuChiou/codex-delegate
-git clone https://github.com/WenyuChiou/gemini-delegate-skill
+git clone https://github.com/WenyuChiou/antigravity-delegate
 ```
 
 Each repo's `SKILL.md` files live under `skills/<skill-name>/`. For
-`research-hub`, that includes 11 skills; the other four repos have one
+`research-hub`, that includes 12 skills. `academic-writing-skills` has two
+skills; `zotero-skills`, `codex-delegate`, and `antigravity-delegate` have one
 skill each.
 
 ### 2. Load per host
@@ -336,6 +338,6 @@ cp <repo>/skills/literature-triage-matrix/SKILL.md \
 - `research-hub` and `research-hub-multi-ai` need the
   `research-hub-pipeline` Python CLI on PATH regardless of which AI host
   reads the skill.
-- `codex-delegate` and `gemini-delegate` are most useful from Claude Code
-  delegating outward; if you are already inside Codex or Gemini, use the
-  target skill directly.
+- `codex-delegate` and `antigravity-delegate` are most useful from Claude Code
+  delegating bounded mechanical work outward; if you are already inside Codex
+  or Antigravity, use the target skill directly.

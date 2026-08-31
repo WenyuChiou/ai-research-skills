@@ -20,7 +20,7 @@ instructions, see [runtime-contract.md](runtime-contract.md).
 | Manuscript drafts | `academic-writing-skills` | `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` |
 | Large Zotero library cleanup | `zotero-skills` | `git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills` |
 | Coding-heavy AI handoff | `codex-delegate` | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate` |
-| Long-context or bilingual handoff | `gemini-delegate` | `git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill` |
+| Bounded mechanical AI handoff | `antigravity-delegate` | `git clone https://github.com/WenyuChiou/antigravity-delegate ~/.claude/skills/antigravity-delegate` |
 
 ## Complete Skill Inventory
 
@@ -49,7 +49,7 @@ research-hub notebooklm login --auto-detect
 | Skill | Use when | Direct skill link |
 |---|---|---|
 | `research-hub` | You want the AI to find papers, ingest sources, operate Zotero/Obsidian/NotebookLM, open dashboards, or maintain a vault. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) |
-| `research-hub-multi-ai` | You want Claude, Codex, Gemini, or another assistant to split research-hub work cleanly (cross-cutting routing). | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) |
+| `research-hub-multi-ai` | You want the primary model, Codex, and Antigravity to split bounded mechanical research-hub work cleanly (cross-cutting routing). | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) |
 | `research-design-helper` | You want to sharpen a research question through 5 Socratic segments (RQ → mechanism → identifiability → validation → risks) and produce `.research/design_brief.md`. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) |
 | `research-context-compressor` | You want to create `.research/` manifests so future AI sessions do not rescan the whole repo. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) |
 | `research-project-orienter` | The project already has `.research/` manifests and you want a fast orientation memo. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) |
@@ -59,6 +59,7 @@ research-hub notebooklm login --auto-detect
 | `notebooklm-brief-verifier` | You downloaded a NotebookLM brief and want to verify source coverage, unsupported claims, or contradictions. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) |
 | `zotero-library-curator` | You want to audit a Zotero library — find duplicate DOIs, orphan items, propose tag/collection cleanup. Read-only; defers writes to `zotero-skills`. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) |
 | `gap-to-topic` | You're choosing a thesis or proposal topic and need a go/no-go call — produces a decision dossier that runs a candidate through a 3-gate test: is the gap open, is it a contribution, is it feasible. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md) |
+| `research-workflow-orchestrator` | You need a resumable controller for orient, scope, discover, synthesize, design, execute, write, and release, with automatic read-only/reversible steps and pauses at human gates. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-workflow-orchestrator/SKILL.md) |
 
 ### academic-writing-skills
 
@@ -92,25 +93,25 @@ git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-sk
 ### AI delegation skills
 
 Repos: [codex-delegate](https://github.com/WenyuChiou/codex-delegate),
-[gemini-delegate-skill](https://github.com/WenyuChiou/gemini-delegate-skill)
+[antigravity-delegate](https://github.com/WenyuChiou/antigravity-delegate)
 
 Install:
 
 ```bash
 git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
-git clone https://github.com/WenyuChiou/gemini-delegate-skill ~/.claude/skills/gemini-delegate-skill
+git clone https://github.com/WenyuChiou/antigravity-delegate ~/.claude/skills/antigravity-delegate
 ```
 
 | Skill | Use when | Direct skill link |
 |---|---|---|
 | `codex-delegate` | Coding work is repetitive, implementation-heavy, or spans many files, and Claude should supervise while Codex executes. | [SKILL.md](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) |
-| `gemini-delegate` | Work is long-context, synthesis-heavy, bilingual/CJK-heavy, or needs a second-opinion review. | [SKILL.md](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) |
+| `antigravity-delegate` | Work is bounded, mechanical, and non-honesty-critical, and Claude should supervise while Antigravity executes. | [SKILL.md](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md) |
 
 ## Quick Recommendations
 
 - New research workspace: install `research-hub`.
 - Writing a paper: install `academic-writing-skills`.
 - Cleaning Zotero: install `zotero-skills`.
-- Using multiple AI CLIs: install `codex-delegate` and/or `gemini-delegate`.
+- Using multiple AI CLIs for bounded mechanical work: install `codex-delegate` and/or `antigravity-delegate`.
 - Publishing a workflow to collaborators: send this directory first, then point
   them to the exact skill repo they need.

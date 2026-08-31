@@ -77,11 +77,11 @@ then generate implementation scaffolding.
 |---|---|
 | [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | Same skill as 3a — re-read `.research/design_brief.md` here when translating "what to model" into "how to model". |
 
-For implementation scaffolding (test harness, plotting, batch edits)
-and design review by long-context reading, use the **Cross-cutting
-tools** (`codex-delegate`, `gemini-delegate`) below. If a single round
-of work needs both delegates (e.g. Codex writes the test harness *and*
-Gemini drafts the design-review memo), route through the
+For implementation scaffolding (test harness, plotting, batch edits),
+use the **Cross-cutting tools** (`codex-delegate`, `antigravity-delegate`)
+below. Long-context design review stays with the primary model. If a
+single round of work needs both delegates (e.g. Codex writes the test
+harness *and* Antigravity performs bounded fixture maintenance), route through the
 [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md)
 router first — it writes `.coord/multi_ai_plan.md` and the leaves read
 their per-task brief.
@@ -112,10 +112,12 @@ Tools: **matplotlib / plotly / your plotting stack of choice.**
 | Skill | What it does |
 |---|---|
 | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) | Generate or refactor plotting scripts (consistent style across N figures, batch re-renders). |
-| [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) | Pair a figure with a draft caption / interpretation paragraph using long-context reading. |
+| [`antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md) | Handle bounded non-honesty-critical mechanical plotting cleanups or fixture maintenance under Claude supervision. |
 
-When a figure pass needs both delegates same round (e.g. Codex
-re-renders N figures and Gemini drafts captions), use the
+Captioning, interpretation, and figure-to-claim honesty checks stay with
+the primary model. When a figure pass needs both delegates same round
+(e.g. Codex re-renders N figures and Antigravity applies bounded
+mechanical fixture edits), use the
 [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md)
 router so the plan and per-task briefs stay in sync.
 
@@ -131,8 +133,8 @@ router so the plan and per-task briefs stay in sync.
 | [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) | General scientific review that progressively selects the applicable psychometrics/SEM, AI/LLM, water/CNHS, flood/hydrodynamics, or hybrid modules. |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *(optional)* | Deep-edit bibliography entries when the writing skill flags references that need cleanup. |
 
-For long-form bilingual rewrites or 繁中 / CJK drafts, use the
-**Cross-cutting tool** `gemini-delegate` below.
+Long-form bilingual rewrites, 繁中 / CJK drafts, and review judgments stay
+with the primary model.
 
 ## 8. Submit, respond to reviewers, wrap up
 
@@ -153,5 +155,5 @@ Three skills don't belong to a specific stage — they're triggered by
 | Skill | Trigger | What it does |
 |---|---|---|
 | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) | Token-heavy mechanical work | Hand batch edits, scaffolding, refactors, test generation, plotting scripts to Codex CLI. |
-| [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) | Long-context reading or 繁中 / CJK output | Hand long-PDF synthesis, bilingual rewrites, second-opinion review to Gemini CLI. |
-| [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) | "Who should do this?" | Stage-agnostic, character-driven routing — produces a delegation plan + handoff prompts. |
+| [`antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md) | Bounded non-honesty-critical mechanical work | Hand tightly scoped mechanical edits to Antigravity CLI under Claude supervision. |
+| [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) | "Who should do this?" | Stage-agnostic routing across Codex and Antigravity leaves — produces a delegation plan + handoff prompts. |

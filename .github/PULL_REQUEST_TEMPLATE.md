@@ -6,7 +6,7 @@
 
 If this PR coordinates with a change in `WenyuChiou/research-hub`,
 `academic-writing-skills`, `zotero-skills`, `codex-delegate`, or
-`gemini-delegate-skill`, link the upstream PR(s) here. Per
+`antigravity-delegate`, link the upstream PR(s) here. Per
 [CONTRIBUTING.md](../CONTRIBUTING.md), source-dir renames and
 artifact-contract changes need lockstep updates here.
 
@@ -24,6 +24,11 @@ artifact-contract changes need lockstep updates here.
       `docs/skill-directory.md`, `catalog/skills.yml`) updated
 - [ ] If user-facing wording changed in `README.md`: mirrored in
       `README.zh-TW.md`
+- [ ] If workflow stages, mutation class, or a human gate changed: schema,
+      fixtures, and report-only automation were rechecked
+- [ ] Remote source manifest version/default ref and SKILL.md paths pass
+      `python scripts/check_skill_health.py --strict`
+- [ ] EN/zh-TW skill counts and pipeline/social visual counts still agree
 - [ ] CONTRIBUTING.md updated if the catalog ↔ upstream contract
       changed
 

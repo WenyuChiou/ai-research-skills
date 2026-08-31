@@ -13,15 +13,15 @@ Catalog 是一份 [Claude Code](https://claude.ai/code) plugin 的 curated
 
 ## Catalog 是什麼
 
-5 個 plugin、安裝完對應到 `~/.claude/skills/` 底下 15 個 SKILL.md:
+5 個 plugin、安裝完對應到 `~/.claude/skills/` 底下 17 個 SKILL.md:
 
 | Plugin | Source repo | 內容 |
 |---|---|---|
-| `research-workspace` | [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) | 11 個 research-hub skill(文獻 triage、專案記憶、NotebookLM brief 驗證、論文整理…) |
+| `research-workspace` | [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) | 12 個 research-hub skill，包含 `research-workflow-orchestrator`、文獻 triage、專案記憶、NotebookLM brief 驗證、論文整理… |
 | `academic-writing-skills` | [`WenyuChiou/academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) | 論文修改、banned-word audit、claim-evidence check、journal format、reviewer response |
 | `zotero-skills` | [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | 完整 Zotero CRUD(local + Web API) |
 | `codex-delegate` | [`WenyuChiou/codex-delegate`](https://github.com/WenyuChiou/codex-delegate) | Claude → Codex CLI:把程式重的工作交給 Codex |
-| `gemini-delegate` | [`WenyuChiou/gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill) | Claude → Gemini CLI:長 context / CJK 交給 Gemini |
+| `antigravity-delegate` | [`WenyuChiou/antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate) | Claude → Antigravity CLI:只交付有邊界、非誠實性關鍵的機械性工作 |
 
 ---
 
@@ -29,10 +29,12 @@ Catalog 是一份 [Claude Code](https://claude.ai/code) plugin 的 curated
 
 1. **Curated、不是 auto-discover。** Catalog 裡每個 plugin 都是針對
    具體研究情境手挑的,maintainer 在進行中的研究專案實際在用。
-2. **沒有 pipeline orchestrator。** Skill 由研究者個別呼叫,catalog
-   不會把它們鏈成 stage-1 → stage-2 的 pipeline。要編排請看
-   [`Imbad0202/academic-research-skills`](https://github.com/Imbad0202/academic-research-skills)。
-3. **有觀點的子集、不是窮舉。** 5 個 plugin、15 個 skill 是按
+2. **有 human gates 的 lifecycle orchestration。** Skill 仍可由研究者個別呼叫，
+   但 `research-workflow-orchestrator` 會協調 orient、scope、discover、
+   synthesize、design、execute、write、release。read-only 或可逆工作可自動前進；
+   scope commitment、external write、experiment authorization、semantic revision、
+   release authorization 會暫停等人確認。
+3. **有觀點的子集、不是窮舉。** 5 個 plugin、17 個 skill 是按
    maintainer 在真實研究裡踩到的洞挑的,而不是把學術人會用到的東西
    都收進來。
 4. **雙語入口。** README、install、verification、pipeline、
@@ -66,7 +68,7 @@ CI 在每次 push、每個 PR 對 `main` 跑。它執行 `python -m pytest tests
 - README 內容 — researcher-facing 受眾用語有出現(Zotero、Obsidian、
   NotebookLM 都被點名);persona 表雙語都有;canonical 安裝指令
   (`research-hub setup`)在 README + 安裝文件 + catalog YAML 一致。
-- Verification 數字 — 15 個 skill、狀態分佈跟
+- Verification 數字 — 17 個 skill、狀態分佈跟
   [`docs/verification.md`](verification.md) 對齊。
 
 CI 紅燈擋 merge。完整檢查清單在
@@ -126,8 +128,7 @@ CI 紅燈擋 merge。完整檢查清單在
 Catalog 還有未完工項目跟坦承的 gap。看 open issues + PR 進度。下面
 這些目前**沒有**任何版本承諾要做:
 
-- Cross-model 獨立 judge(讓 Codex / Gemini 對 skill 行為 eval 給第
-  二意見)。
+- Primary model 與機械性 delegate executors 之外的獨立行為評估。
 - 任何 plugin 的 corpus-scale FNR/FPR 校準。
 - maintainer 領域(水資源、agent-based modeling)以外的泛化驗證。
 - 內部 reference 檔的翻譯(依慣例只有 top-level 文件雙語)。

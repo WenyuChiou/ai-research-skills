@@ -45,7 +45,7 @@ EXPECTED_PLUGIN_NAMES = [
     "academic-writing-skills",
     "zotero-skills",
     "codex-delegate",
-    "gemini-delegate",
+    "antigravity-delegate",
 ]
 
 

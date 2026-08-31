@@ -1,6 +1,17 @@
 # Skill Verification Report
 
-**Last run:** 2026-05-09 (delegate cleanup pass; supersedes 2026-04-25 T1 promotion pass)
+**Current catalog sync:** 2026-08-30 for catalog 1.6.0 docs.
+Current machine-readable status lives in
+[`catalog/skills.yml`](../catalog/skills.yml): 17 active skills across
+5 plugins; `research-workspace` contains 12 skills including
+`research-workflow-orchestrator`; 15 skills are T1 and
+`research-workflow-orchestrator` plus `antigravity-delegate` are T2. This 2026-08-30 doc sync did
+not re-run live external-service tests.
+
+Historical audit sections below preserve point-in-time evidence, including
+the 2026-05-09 archived `gemini-delegate` checks.
+
+**Last full historical run:** 2026-05-09 (delegate cleanup pass; supersedes 2026-04-25 T1 promotion pass)
 **Tested on:** Windows 11, Python 3.14, `research-hub-pipeline` 0.45.0,
 `codex-cli` 0.121.0, `gemini` 0.38.2.
 **Tester:** Claude (Opus 4.7) against the user's real workspace (1100+

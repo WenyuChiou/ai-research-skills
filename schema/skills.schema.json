@@ -9,7 +9,7 @@
   "properties": {
     "version": {
       "type": "integer",
-      "minimum": 1,
+      "const": 3,
       "description": "Catalog schema version. Bump when the schema itself changes shape."
     },
     "updated": {
@@ -92,7 +92,13 @@
         "verified_on",
         "verification_status",
         "verification_tier",
-        "verification_notes"
+        "verification_notes",
+        "lifecycle_status",
+        "workflow_stages",
+        "runtime_mode",
+        "mutation_class",
+        "human_gates",
+        "integrations"
       ],
       "additionalProperties": false,
       "properties": {
@@ -145,6 +151,42 @@
           "type": "string",
           "minLength": 1,
           "description": "Free-text notes on what was checked and how."
+        },
+        "lifecycle_status": {
+          "enum": ["active", "deprecated", "retired"],
+          "description": "Whether new users should install and route work to this skill."
+        },
+        "workflow_stages": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["orient", "scope", "discover", "synthesize", "design", "execute", "write", "release", "cross-cutting"]
+          }
+        },
+        "runtime_mode": {
+          "enum": ["instructions", "cli", "mcp", "hybrid"],
+          "description": "Primary execution surface: prompt instructions, CLI, MCP/API, or a negotiated hybrid."
+        },
+        "mutation_class": {
+          "enum": ["read-only", "local-reversible", "external-write", "mixed"],
+          "description": "Highest normal mutation class; individual actions may still need stricter gating."
+        },
+        "human_gates": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": ["scope_commitment", "external_write", "experiment_authorization", "semantic_revision", "release_authorization"]
+          }
+        },
+        "integrations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          }
         }
       }
     }

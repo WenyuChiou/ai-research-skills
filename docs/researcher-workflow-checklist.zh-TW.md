@@ -16,7 +16,7 @@ checklist 對應這個 setup。
 - [ ] Obsidian：Markdown 筆記、project memory、cluster dashboard。
 - [ ] NotebookLM：source-grounded 摘要、audio、mind map、Q&A。
 - [ ] Word / LaTeX / Markdown：論文草稿。
-- [ ] Claude / Codex / Gemini：AI 輔助研究工作。
+- [ ] Claude / Codex / Antigravity：AI 輔助研究工作。
 
 然後對照下面安裝對應的 skill。
 
@@ -153,19 +153,19 @@ manuscript + figures -> paper-memory-builder
 
 ```bash
 claude plugin install codex-delegate@ai-research-skills
-claude plugin install gemini-delegate@ai-research-skills
+claude plugin install antigravity-delegate@ai-research-skills
 ```
 
 用這些 skill：
 
 - [codex-delegate](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md)：code-heavy、機械性、跨多檔案的 implementation 工作。
-- [gemini-delegate](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md)：長 context 閱讀、雙語 / CJK 寫作、source synthesis、second-opinion review。
-- [research-hub-multi-ai](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md)：決定 Claude / Codex / Gemini 怎麼分 research-hub 工作。
+- [antigravity-delegate](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md)：在 Claude 監督下處理有邊界、非誠實性關鍵的機械性工作。
+- [research-hub-multi-ai](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md)：決定 primary model / Codex / Antigravity 怎麼分擔有邊界的機械性 research-hub 工作。
 
 ## 最小建議
 
-- [ ] 大部分研究者：裝 `research-workspace`（含 9 個）+ `academic-writing-skills`。
+- [ ] 大部分研究者：裝 `research-workspace`（含 12 個）+ `academic-writing-skills`。
 - [ ] Zotero 重度使用者：再加 `zotero-skills`。
 - [ ] Coding 重度使用者：再加 `codex-delegate`。
-- [ ] 長 context / 雙語使用者：再加 `gemini-delegate`。
+- [ ] 有邊界的機械性 Antigravity 使用者：再加 `antigravity-delegate`。
 - [ ] NotebookLM 使用者：產出 brief 後一定要先過 `notebooklm-brief-verifier`，再採用。

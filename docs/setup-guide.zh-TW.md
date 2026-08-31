@@ -8,9 +8,9 @@
 
 **時間預算：**
 
-- Phase A + B 單獨跑（~20 分鐘）→ 裝好 15 支裡的 11 支；research-workspace plugin 裡 6 支純 reasoning 立刻能用，不需要 Zotero。
-- Phase A + B + C（~40 分鐘）→ 12 支 wired with Zotero 連接（B-extra 加 academic-writing-skills 拿到第 12 支）。
-- Phase A + B + C + D（~60 分鐘）→ research-hub Python pipeline 接上 13 支；codex / gemini delegate 等 Phase E3。
+- Phase A + B 單獨跑（~20 分鐘）→ 裝好 17 支裡的 12 支；research-workspace plugin 裡的 prompt-only 與 workspace-file skills 立刻能用，不需要 Zotero。
+- Phase A + B + C（~40 分鐘）→ 15 支 wired with Zotero 連接（B-extra 加 academic-writing-skills，Phase C 加 zotero-skills）。
+- Phase A + B + C + D（~60 分鐘）→ research-workspace skills 接上 research-hub Python pipeline；codex / antigravity delegate 等 Phase E3。
 
 任何一個 phase 收手都可以、用裝好的就行。
 
@@ -107,11 +107,12 @@ claude plugin list
 # 預期：research-workspace@ai-research-skills 出現、標 ✔ enabled。
 # （marketplace plugin 不會展到 ~/.claude/skills/;它們住在
 #  ~/.claude/plugins/cache/ai-research-skills/research-workspace/
-#  <version>/skills/<name>/ 底下。這個 plugin 帶 11 個 skill:
+#  <version>/skills/<name>/ 底下。這個 plugin 帶 12 個 skill:
 #  literature-triage-matrix、research-hub、research-design-helper、
 #  paper-memory-builder、paper-summarize、notebooklm-brief-verifier、
 #  research-context-compressor、research-project-orienter、
-#  research-hub-multi-ai、zotero-library-curator。)
+#  research-hub-multi-ai、zotero-library-curator、gap-to-topic、
+#  research-workflow-orchestrator。)
 ```
 
 ### B3. Smoke test：3 篇 paper 出表
@@ -140,9 +141,9 @@ Claude 回「我沒有這個 skill」或沒生表 → 看 [F2](#f2-claude-沒-tr
 
 ### Phase B checkpoint
 
-15 支裡的 11 支裝好（research-workspace plugin），有 working literature matrix、不需要任何外部設定。
-research-workspace 裡 6 支純 reasoning skill 立刻可用；剩下 4 支（research-hub、research-hub-multi-ai、
-zotero-library-curator 的 apply mode、完整的 literature-triage-matrix 含 paper search）要 Phase C / D / E。
+17 支裡的 12 支裝好（research-workspace plugin），有 working literature matrix、不需要任何外部設定。
+research-workspace 裡的 prompt-only 與 workspace-file skills 立刻可用；runtime-backed flows（research-hub、research-hub-multi-ai、
+zotero-library-curator 的 apply mode、完整的 literature-triage-matrix 含 paper search、external-write workflow stages）要 Phase C / D / E。
 要寫 / 修稿就接 Phase B-extra；只要文獻整理就跳 Phase C。
 
 ### B-extra. academic-writing-skills（選擇性，~1 分鐘）
@@ -160,7 +161,7 @@ claude plugin list
 # (marketplace plugin 不展到 ~/.claude/skills/ —— 看 README 它們實際住哪。)
 ```
 
-裝完是第 11 支 — banned-word audit、claim-evidence check、journal format、reviewer response。
+裝完後進到 14/17 — banned-word audit、claim-evidence check、journal format、reviewer response，並包含 `paper-review`。
 只要做 lit triage / lit review 就跳過。
 
 ---
@@ -226,8 +227,8 @@ Claude 應該呼叫 Zotero local API、回真的 title。
 
 ### Phase C checkpoint
 
-15 支裡 12 支 wired up（research-workspace 11 支 + Phase B-extra 的 academic-writing-skills + zotero-skills），
-zotero-library-curator 從 preview-only 升級成 apply-capable。剩下 2 支（`codex-delegate`、`gemini-delegate`）
+17 支裡 15 支 wired up（research-workspace 12 支 + Phase B-extra 的 2 支 academic-writing-skills + zotero-skills），
+zotero-library-curator 從 preview-only 升級成 apply-capable。剩下 2 支（`codex-delegate`、`antigravity-delegate`）
 等 Phase E3 裝完對應的 CLI binary 後加進來。Phase D 給 `research-hub`、`research-hub-multi-ai`、
 `literature-triage-matrix` 的 paper-search 模式接上 Python CLI 後台。
 
@@ -301,7 +302,7 @@ service；`auto` 會匯入一個小 cluster，或在缺 LLM CLI 時用可執行�
 
 ### Phase D checkpoint
 
-15 支 skill 全部 wired up，core setup 結束。
+15/17 支 skill wired up，core research setup 結束；Phase E3 再加兩個選用 delegation skills。
 
 ---
 
@@ -344,7 +345,7 @@ research-hub notebooklm status
 # 預期：印出 "logged in" + 你的 Google 帳號
 ```
 
-### E3. Codex CLI / Gemini CLI（多 AI delegation）
+### E3. Codex CLI / Antigravity CLI（多 AI delegation）
 
 **前置**: Node.js 18+ — 兩個 CLI 都靠 `npm` 裝。`node --version` 驗證;
 缺的話從 [nodejs.org](https://nodejs.org) 裝。(如果 npm 裝完不在 PATH,重開 shell。)
@@ -353,26 +354,27 @@ research-hub notebooklm status
 
 - [Codex CLI (OpenAI 官方)](https://github.com/openai/codex) →
   `npm install -g @openai/codex`
-- [Gemini CLI (Google 官方)](https://github.com/google-gemini/gemini-cli) →
-  `npm install -g @google/gemini-cli`
+- Antigravity CLI (`agy`) → 依
+  [antigravity-delegate](https://github.com/WenyuChiou/antigravity-delegate)
+  source repo 的最新說明安裝。
 
 把工作 delegate 給這些 CLI 的 skill wrapper 住在
 [`WenyuChiou/codex-delegate`](https://github.com/WenyuChiou/codex-delegate)
 跟
-[`WenyuChiou/gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill)
+[`WenyuChiou/antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate)
 —— 跟 CLI binary 本身是兩件事。
 
 然後裝 delegate plugin：
 
 ```bash
 claude plugin install codex-delegate@ai-research-skills
-claude plugin install gemini-delegate@ai-research-skills
+claude plugin install antigravity-delegate@ai-research-skills
 ```
 
 ```bash
 # verify
 codex --version
-gemini --version
+agy --version
 # 預期：兩個都印出版本字串
 ```
 
@@ -474,4 +476,4 @@ pip install research-hub-pipeline
 
 - Skill-by-skill 安裝參考：[install.zh-TW.md](install.zh-TW.md)
 - Workflow-by-workflow 指南：[researcher-workflow-checklist.zh-TW.md](researcher-workflow-checklist.zh-TW.md)
-- 15 支 skill 完整 catalog：[skill-directory.zh-TW.md](skill-directory.zh-TW.md)
+- 17 支 skill 完整 catalog：[skill-directory.zh-TW.md](skill-directory.zh-TW.md)

@@ -22,7 +22,7 @@
 | Workspace-file skills | `research-context-compressor`、`research-project-orienter`、`paper-memory-builder` | 能讀寫專案檔案，或由使用者手動提供 context |
 | Runtime-backed research automation | `research-hub`、`paper-summarize`、部分 `notebooklm-brief-verifier`、Zotero-backed curation flows | `pip install research-hub-pipeline`，再加上需要的 Zotero、Obsidian、NotebookLM、LLM CLI、MCP 或 REST 設定 |
 | Deep Zotero CRUD | `zotero-skills` | Zotero local/Web API credentials，且 host 能呼叫 API |
-| Delegation skills | `codex-delegate`、`gemini-delegate`、`research-hub-multi-ai` | 目標 CLI 已安裝且在 `PATH`，或改用手動 handoff prompt |
+| Delegation skills | `codex-delegate`、`antigravity-delegate`、`research-hub-multi-ai` | 目標 CLI 已安裝且在 `PATH`，或改用手動 handoff prompt |
 
 ## 文獻搜尋前的 Agent Preflight
 

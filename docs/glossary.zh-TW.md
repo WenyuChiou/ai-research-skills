@@ -11,14 +11,14 @@ Catalog 用幾個「AI 工具」一般領域不會有的慣例。在這定義一
 
 Claude Code marketplace 的一筆 entry —— `.claude-plugin/marketplace.json`
 裡的一列。Catalog 有 5 個:`research-workspace`、`academic-writing-skills`、
-`zotero-skills`、`codex-delegate`、`gemini-delegate`。一個 plugin 可以包一個
+`zotero-skills`、`codex-delegate`、`antigravity-delegate`。一個 plugin 可以包一個
 或多個 skill。
 
 ### Skill
 
 一支 `SKILL.md` 加 frontmatter(`name`、`description`)加可選的
 `references/`、`evals/` 資料夾。Claude Code 的 auto-trigger 讀 `description`、
-嘗試把你說的話 match 到對的 skill。Catalog 5 個 plugin 共 15 個 skill。
+嘗試把你說的話 match 到對的 skill。Catalog 5 個 plugin 共 17 個 skill。
 
 ### Bare name(裸名)vs qualified name(限定名)
 
@@ -92,9 +92,8 @@ generation。需要 `pip install research-hub-pipeline`。上面那層 skill 讓
 對 prompt-based skill 而言,T3 不是「比 T1 弱」—— 是「不同的 check」,
 不是嚴格層級。完整 nuance 看 verification 文件。
 
-目前比例(看 `docs/verification.md` 2026-05-09 header):13 個 T1、1 個 T2 ——
-即當天稽核的 14 個 skill。`gap-to-topic`(第 15 個,2026-05-21 才加)另外
-單獨驗證,見它在 `catalog/skills.yml` 的 `verification_notes`。
+目前 catalog 1.6.0 比例：15 個 T1、2 個 T2；每個 skill 的最新記錄以
+`catalog/skills.yml` 的 `verification_notes` 為準。
 Tier 跟 `verification_status`(pass/caveat/fail/not_yet)是兩個獨立 axis ——
 兩個維度描述不同的事。
 
@@ -130,8 +129,8 @@ Claude Code 把你的自然語言對應到 SKILL.md 的機制 —— 看 frontma
 - **Stage 7** —— Manuscript memory + 寫作
 - **Stage 8** —— 投稿 / reviewer response
 
-(Codex / Gemini delegation 是*跨領域*的 —— 每個階段都能用,不是單一
-階段 —— 見 `docs/pipeline.md`。)
+(Codex / Antigravity delegation 是針對有邊界機械性工作的*跨領域*工具 ——
+每個階段都能用,不是單一階段 —— 見 `docs/pipeline.md`。)
 
 完整圖看 `docs/pipeline.md`;README skill 列表的 stage 數字都指這。
 
