@@ -150,7 +150,7 @@ def test_claude_plugin_marketplace_is_well_formed():
 
     Ships 5 plugins: research-workspace, the two-skill
     academic-writing-skills plugin, plus 3 single-skill plugins
-    (zotero-skills, codex-delegate, gemini-delegate).
+        (zotero-skills, codex-delegate, antigravity-delegate).
     See .claude-plugin/README.md for the full story."""
     import json
     marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"
@@ -170,7 +170,7 @@ def test_claude_plugin_marketplace_is_well_formed():
         "academic-writing-skills",
         "zotero-skills",
         "codex-delegate",
-        "gemini-delegate",
+        "antigravity-delegate",
     ]
 
     # Per-plugin required fields
@@ -222,11 +222,11 @@ def test_canonical_install_command_consistent_across_sources_of_truth():
 
 
 def test_verification_counts_match_catalog():
-    """The catalog enumerates 16 skills with a specific verification-status
+    """The catalog enumerates 17 skills with a specific verification-status
     split. The machine-readable YAML must agree on the count."""
     data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
     total_skills = sum(len(family["skills"]) for family in data["families"])
-    assert total_skills == 16, f"catalog has {total_skills} skills; expected 16"
+    assert total_skills == 17, f"catalog has {total_skills} skills; expected 17"
 
     statuses = [s.get("verification_status") for f in data["families"] for s in f["skills"]]
     pass_count = statuses.count("pass")
@@ -234,7 +234,7 @@ def test_verification_counts_match_catalog():
     fail_count = statuses.count("fail")
     not_yet_count = statuses.count("not_yet")
 
-    # YAML-side verification counts: 16 pass + 0 caveat + 0 fail + 0 not_yet = 16.
+    # YAML-side verification counts: 17 pass + 0 caveat + 0 fail + 0 not_yet = 17.
     # (gap-to-topic added 2026-05-21 as not_yet; flipped to pass on 2026-05-21
     # after a dogfood run end-to-end verified the skill — see its
     # verification_notes.)
@@ -243,7 +243,7 @@ def test_verification_counts_match_catalog():
     # T2 -> T1 after upstream PR
     # https://github.com/WenyuChiou/research-hub/pull/31 surfaced the
     # existing 23-test end-to-end suite in the skill's Verification section.)
-    assert pass_count == 16, f"expected 16 pass, got {pass_count}"
+    assert pass_count == 17, f"expected 17 pass, got {pass_count}"
     assert caveat_count == 0, f"expected 0 caveat, got {caveat_count}"
     assert fail_count == 0, f"expected 0 fail, got {fail_count}"
     assert not_yet_count == 0, f"expected 0 not_yet, got {not_yet_count}"
@@ -251,3 +251,64 @@ def test_verification_counts_match_catalog():
     # README intentionally does NOT advertise verification counts in its
     # body (avoids self-aggrandizing tone). docs/verification.md carries
     # the per-skill detail; this test only guards the YAML-side counts.
+
+
+def test_verification_tier_counts_match_bilingual_glossary():
+    data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
+    tiers = [skill["verification_tier"] for family in data["families"] for skill in family["skills"]]
+    assert tiers.count("T1") == 15
+    assert tiers.count("T2") == 2
+    assert tiers.count("T3") == 0
+
+    glossary = (ROOT / "docs" / "glossary.md").read_text(encoding="utf-8")
+    glossary_zh = (ROOT / "docs" / "glossary.zh-TW.md").read_text(encoding="utf-8")
+    assert "15 at T1, 2 at T2" in glossary
+    assert "15 個 T1、2 個 T2" in glossary_zh
+
+
+def test_active_catalog_has_no_failed_or_retired_skills():
+    data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
+    for family in data["families"]:
+        for skill in family["skills"]:
+            assert skill["lifecycle_status"] == "active", skill["name"]
+            assert skill["verification_status"] not in {"fail", "not_yet"}, skill["name"]
+
+
+def test_hitl_metadata_covers_end_to_end_workflow():
+    data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
+    stages = {
+        stage
+        for family in data["families"]
+        for skill in family["skills"]
+        for stage in skill["workflow_stages"]
+    }
+    assert {
+        "orient",
+        "scope",
+        "discover",
+        "synthesize",
+        "design",
+        "execute",
+        "write",
+        "release",
+    } <= stages
+
+
+def test_write_capable_skills_declare_a_human_gate():
+    data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
+    for family in data["families"]:
+        for skill in family["skills"]:
+            if skill["mutation_class"] in {"external-write", "mixed"}:
+                assert skill["human_gates"], skill["name"]
+
+
+def test_retired_gemini_is_replaced_by_healthy_antigravity_lane():
+    data = yaml.safe_load((ROOT / "catalog" / "skills.yml").read_text(encoding="utf-8"))
+    names = {
+        skill["name"]
+        for family in data["families"]
+        for skill in family["skills"]
+    }
+    assert "gemini-delegate" not in names
+    assert "antigravity-delegate" in names
+    assert "research-workflow-orchestrator" in names

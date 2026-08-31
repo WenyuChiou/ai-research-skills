@@ -9,9 +9,9 @@ already have Claude Code, Python, and Zotero working, skip to
 
 **Time budget**:
 
-- Phase A + B alone (~20 min) → 11 of 15 skills installed; the 6 pure-reasoning ones inside the research-workspace plugin work immediately, no Zotero needed.
-- Phase A + B + C (~40 min) → 12 of 15 skills wired with Zotero connectivity (add academic-writing-skills in B-extra for the 12th).
-- Phase A + B + C + D (~60 min) → research-hub Python pipeline behind 13 skills; codex/gemini delegates wait for Phase E3.
+- Phase A + B alone (~20 min) → 12 of 17 skills installed; the prompt-only and workspace-file skills inside the research-workspace plugin work immediately, no Zotero needed.
+- Phase A + B + C (~40 min) → 15 of 17 skills wired with Zotero connectivity (add academic-writing-skills in B-extra, then zotero-skills in Phase C).
+- Phase A + B + C + D (~60 min) → research-workspace skills connect to the research-hub Python pipeline; codex/antigravity delegates wait for Phase E3.
 
 Stop after any phase and use what you've installed.
 
@@ -117,11 +117,12 @@ claude plugin list
 # expected: research-workspace@ai-research-skills shows up with ✔ enabled.
 # (Marketplace plugins do NOT extract into ~/.claude/skills/; they live
 #  under ~/.claude/plugins/cache/ai-research-skills/research-workspace/
-#  <version>/skills/<name>/. The plugin ships 11 skills:
+#  <version>/skills/<name>/. The plugin ships 12 skills:
 #  literature-triage-matrix, research-hub, research-design-helper,
 #  paper-memory-builder, paper-summarize, notebooklm-brief-verifier,
 #  research-context-compressor, research-project-orienter,
-#  research-hub-multi-ai, zotero-library-curator.)
+#  research-hub-multi-ai, zotero-library-curator, gap-to-topic,
+#  research-workflow-orchestrator.)
 ```
 
 ### B3. Smoke test: literature matrix from 3 papers
@@ -151,11 +152,12 @@ output, see [F2](#f2-claude-doesnt-trigger-the-skill).
 
 ### Phase B checkpoint
 
-You have 11 of 15 skills installed (the research-workspace plugin) and
-a working literature matrix without any external setup. The 6 pure-
-reasoning skills inside research-workspace work immediately; the other
-4 (research-hub, research-hub-multi-ai, zotero-library-curator's apply
-mode, and full literature-triage-matrix with paper search) need
+You have 12 of 17 skills installed (the research-workspace plugin) and
+a working literature matrix without any external setup. The prompt-only
+and workspace-file skills inside research-workspace work immediately; the
+runtime-backed flows (research-hub, research-hub-multi-ai,
+zotero-library-curator's apply mode, full literature-triage-matrix with
+paper search, and external-write workflow stages) need
 Phase C / D / E. Continue to Phase B-extra if you also want manuscript
 work tooling, or skip to Phase C for Zotero.
 
@@ -175,9 +177,9 @@ claude plugin list
 #  for where they actually land.)
 ```
 
-This adds the 11th skill — banned-word audit, claim-evidence check,
-journal format, reviewer response. Skip if you only need literature
-triage / lit review.
+This brings the setup to 14 of 17 skills — banned-word audit,
+claim-evidence check, journal format, reviewer response, and
+`paper-review`. Skip if you only need literature triage / lit review.
 
 ---
 
@@ -249,10 +251,10 @@ see [F4](#f4-zotero-skill-cant-find-items).
 
 ### Phase C checkpoint
 
-You have 12 of 15 skills wired up (11 from research-workspace +
-academic-writing-skills from Phase B-extra + zotero-skills), and the
+You have 15 of 17 skills wired up (12 from research-workspace +
+2 from academic-writing-skills in Phase B-extra + zotero-skills), and the
 zotero-library-curator skill is upgraded from preview-only to
-apply-capable. The remaining 2 (`codex-delegate`, `gemini-delegate`)
+apply-capable. The remaining 2 (`codex-delegate`, `antigravity-delegate`)
 are installed in Phase E3 once you've installed their CLI binaries.
 Phase D activates the full power of `research-hub`,
 `research-hub-multi-ai`, and `literature-triage-matrix`'s paper-search
@@ -337,7 +339,8 @@ after this path works.
 
 ### Phase D checkpoint
 
-All 15 skills are wired up. You're done with the core setup.
+15 of 17 skills are wired up. You're done with the core research setup;
+Phase E3 adds the two optional delegation skills.
 
 ---
 
@@ -380,7 +383,7 @@ research-hub notebooklm status
 # expected: "logged in" with your Google account email
 ```
 
-### E3. Codex CLI / Gemini CLI (multi-AI delegation)
+### E3. Codex CLI / Antigravity CLI (multi-AI delegation)
 
 **Prereq**: Node.js 18+ — both CLIs install via `npm`. Verify with
 `node --version`; install from [nodejs.org](https://nodejs.org) if
@@ -390,26 +393,27 @@ Install the CLI binaries from their official upstream sources:
 
 - [Codex CLI (OpenAI)](https://github.com/openai/codex) →
   `npm install -g @openai/codex`
-- [Gemini CLI (Google)](https://github.com/google-gemini/gemini-cli) →
-  `npm install -g @google/gemini-cli`
+- Antigravity CLI (`agy`) → install from the
+  [antigravity-delegate](https://github.com/WenyuChiou/antigravity-delegate)
+  source repo's current instructions.
 
 The skill wrappers that delegate work TO these CLIs live in
 [`WenyuChiou/codex-delegate`](https://github.com/WenyuChiou/codex-delegate)
 and
-[`WenyuChiou/gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill)
+[`WenyuChiou/antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate)
 — those are different from the CLI binaries themselves.
 
 Then install the delegate plugins:
 
 ```bash
 claude plugin install codex-delegate@ai-research-skills
-claude plugin install gemini-delegate@ai-research-skills
+claude plugin install antigravity-delegate@ai-research-skills
 ```
 
 ```bash
 # verify
 codex --version
-gemini --version
+agy --version
 # expected: a version string for each
 ```
 
@@ -530,4 +534,4 @@ for what's verified and what's host-specific.
 
 - Skill-by-skill install reference: [install.md](install.md)
 - Workflow-by-workflow guide: [researcher-workflow-checklist.md](researcher-workflow-checklist.md)
-- Catalog of all 15 skills: [skill-directory.md](skill-directory.md)
+- Catalog of all 17 skills: [skill-directory.md](skill-directory.md)

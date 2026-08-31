@@ -1,7 +1,7 @@
 # Contributing
 
 This is the public catalog index for `ai-research-skills`. Skills
-themselves live in 5 upstream repos. The split affects how you
+themselves live in 5 active upstream repos. The split affects how you
 contribute, depending on what you want to change.
 
 ## Where the change belongs
@@ -16,11 +16,11 @@ contribute, depending on what you want to change.
 
 Upstream source repos:
 
-- [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) — 11 skills (research-workspace plugin)
+- [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) — 12 skills (research-workspace plugin)
 - [`WenyuChiou/academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) — manuscript writing
 - [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) — Zotero CRUD
 - [`WenyuChiou/codex-delegate`](https://github.com/WenyuChiou/codex-delegate) — Codex CLI handoff
-- [`WenyuChiou/gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill) — Gemini CLI handoff
+- [`WenyuChiou/antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate) — bounded Antigravity CLI handoff
 
 ## Interop rules — read before renaming anything
 
@@ -68,12 +68,12 @@ is the only gate.
 ### 3. Plugin name in marketplace ↔ source repo plugin.json must match
 
 `.claude-plugin/marketplace.json` references each plugin by name
-(e.g. `gemini-delegate`). The upstream
+(e.g. `antigravity-delegate`). The upstream
 `<repo>/.claude-plugin/plugin.json` must declare the same `name`.
 A mismatch causes `claude plugin install` to fail at validation.
 
-The plugin name is **not** required to match the repo name. Example:
-the repo `gemini-delegate-skill` ships a plugin named `gemini-delegate`.
+The plugin name is **not** required to match the repo name, although all
+currently active catalog plugins do match their source repository names.
 
 ### 4. Default branch ↔ marketplace.json `ref` must match
 
@@ -86,7 +86,7 @@ If you change a source repo's default branch (e.g. `master` →
 ```bash
 git clone https://github.com/WenyuChiou/ai-research-skills
 cd ai-research-skills
-python -m pytest tests/ -q   # 25 tests, < 1s
+python -m pytest tests/ -q
 ```
 
 Tests guard:
@@ -96,14 +96,37 @@ Tests guard:
 - Marketplace JSON structure (5 plugins, expected names, source
   fields).
 - `research-hub setup` documented as the canonical install command.
-- 15 skills total with the documented verification status counts
-  (15 pass + 0 caveat per
+- 17 skills total with the documented verification status counts
+  (17 pass + 0 caveat per
   `tests/test_catalog.py::test_verification_counts_match_catalog`).
 
+What scheduled health checks guard (human review on drift):
+- Upstream SKILL.md URLs, frontmatter identity, plugin manifests, versions,
+  default refs, and archived repository state.
+
 What tests do **not** guard (manual review needed):
-- Upstream SKILL.md URLs being live (network test would be flaky).
-- Upstream `skills/<plugin>/SKILL.md` paths actually existing.
 - Cross-skill artifact contract (e.g. `.paper/claims.yml` schema).
+
+## Automated health report and human repair loop
+
+`.github/workflows/monthly-skill-health.yml` runs monthly and on manual
+dispatch. It reads public source metadata and emits immutable health, drift,
+and exit-code artifacts. If a source is archived, a default ref changes, a
+manifest name/version drifts, a SKILL path/frontmatter breaks, or either checker
+crashes, it opens or refreshes the exact labeled issue
+`[skill-health] Human review required` and includes the Actions run URL.
+
+The workflow is report-only: it cannot install, edit, open a repair PR, merge,
+publish, or delete. A maintainer reviews the evidence, chooses whether the
+catalog or upstream source is authoritative, and applies the repair through a
+normal reviewed PR. A later green run comments on and closes the same issue.
+
+Before a source/version catalog PR, run:
+
+```bash
+python scripts/check_skill_health.py --strict
+python -m pytest tests/test_skill_health.py -q
+```
 
 ## Adding a new skill
 
@@ -141,7 +164,7 @@ and have to be set via the GitHub API or UI:
 
 ```bash
 gh api -X PATCH repos/WenyuChiou/ai-research-skills \
-  -f description="15 Claude Code skills for common research tasks — literature triage, research design, project context, manuscript writing, and multi-AI delegation. 5-plugin marketplace, install in one command."
+  -f description="17 Claude Code skills for common research tasks — literature triage, research design, project context, manuscript writing, and bounded multi-AI delegation. 5-plugin marketplace, install in one command."
 
 gh api -X PUT repos/WenyuChiou/ai-research-skills/topics \
   -f 'names[]=claude-code' -f 'names[]=claude-skills' \

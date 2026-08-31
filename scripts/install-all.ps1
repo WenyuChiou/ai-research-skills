@@ -23,7 +23,7 @@ $Plugins = @(
   "academic-writing-skills"
   "zotero-skills"
   "codex-delegate"
-  "gemini-delegate"
+  "antigravity-delegate"
 )
 
 if (-not (Get-Command claude -ErrorAction SilentlyContinue)) {

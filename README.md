@@ -74,27 +74,27 @@ does not show `research-workspace@ai-research-skills`, your paste probably
 only executed the first line; see [docs/install.md](docs/install.md) for the
 single-line CMD form.
 
-For Claude Code, the first two commands install the 11-skill
+For Claude Code, the first two commands install the 12-skill
 `research-workspace` plugin. Add the optional plugins only when you need
-manuscript writing, full Zotero operations, or Claude-to-Codex/Gemini
+manuscript writing, full Zotero operations, or Claude-to-Codex/Antigravity
 delegation.
 
 **Additive install — stop after any step and use what you have:**
 
 ```bash
-# 1. Marketplace + 11 research-hub skills (6 immediately usable, pure reasoning)
+# 1. Marketplace + 12 research-hub skills
 claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 
-# 2. Manuscript work — outline, drafting, prose and evidence audit, scientific review
+# 2. Manuscript work — outline, drafting, prose and evidence audit, scientific review (14/17)
 claude plugin install academic-writing-skills@ai-research-skills
 
-# 3. Zotero CRUD (enable local API in Zotero desktop first — docs/setup-guide.md §C)
+# 3. Zotero CRUD (15/17; enable local API in Zotero desktop first — docs/setup-guide.md §C)
 claude plugin install zotero-skills@ai-research-skills
 
-# 4. Multi-CLI delegation (install codex / gemini CLI binaries first)
+# 4. Multi-CLI delegation (17/17; install codex / agy CLI binaries first)
 claude plugin install codex-delegate@ai-research-skills
-claude plugin install gemini-delegate@ai-research-skills
+claude plugin install antigravity-delegate@ai-research-skills
 
 # 5. Literature pipeline automation (Python CLI behind research-hub skills)
 pip install research-hub-pipeline
@@ -139,11 +139,11 @@ cd ai-research-skills
 This catalog is the **registry**, not a monorepo. Each plugin's source
 code lives in its own repo:
 
-- `github.com/WenyuChiou/research-hub` — 11 `research-workspace` skills
+- `github.com/WenyuChiou/research-hub` — 12 `research-workspace` skills
 - `github.com/WenyuChiou/academic-writing-skills` — 2 skills
 - `github.com/WenyuChiou/zotero-skills` — 1 skill
 - `github.com/WenyuChiou/codex-delegate` — 1 skill
-- `github.com/WenyuChiou/gemini-delegate-skill` — 1 skill
+- `github.com/WenyuChiou/antigravity-delegate` — 1 skill
 
 If you're hacking on a plugin, clone **its** source repo, not this
 catalog. This catalog only maintains `marketplace.json`, docs, image
@@ -187,16 +187,17 @@ them.
 committed claim. Reviewers (and senior co-authors) catch the smell in
 two paragraphs, and the manuscript drops in their priority list.
 
-### P5 — "Switching Claude / Codex / Gemini wipes my state"
+### P5 — "Switching Claude / Codex / Antigravity wipes my state"
 
 You design the prompt with Claude, hand it to Codex to scaffold the
-code, switch to Gemini for the long-context paper synthesis. Each
-switch costs five minutes of re-onboarding. The cross-AI handoff is
-where real time disappears.
+code, then use Antigravity only for bounded mechanical follow-up work.
+Long-context synthesis, CJK drafting, judgment, governance, and final
+review stay with the primary model. Each switch still costs five
+minutes of re-onboarding unless the handoff is explicit and durable.
 
 ---
 
-### Three design principles, applied across 16 skills
+### Three design principles, applied across 17 skills
 
 The catalog is arranged around three load-bearing ideas, not a feature
 list:
@@ -205,7 +206,7 @@ list:
 |---|---|---|
 | **1. Manifests** (`.research/`, `.paper/`) | Research state lives in checked-in YAML / Markdown files. A new AI session reads the manifest and re-onboards itself — you don't re-explain context. | P1, P5 |
 | **2. Schemas with anti-leakage rules** | Every cross-skill artifact has a YAML schema. A claim with empty `evidence_artifacts` is **forced** to carry `status: gap` + a `gap_reason` — never `supported`. A topic candidate with `verdict: do-not-pursue` is structurally separated from `worth-pursuing` ones. Downstream tools refuse to ship overconfident output. | P2, P3, P4 |
-| **3. Character-driven routing** | Mechanical bulk → Codex. Long-context / CJK → Gemini. Judgment / governance → Claude. The router (`research-hub-multi-ai`) writes a coordination file so each delegate reads its own brief, not the parent context. | P5 |
+| **3. Character-driven routing** | Token-heavy mechanical bulk → Codex. Bounded non-honesty-critical mechanical work → Antigravity. Long-context, CJK, judgment, governance, and final review stay with the primary model. The router (`research-hub-multi-ai`) writes a coordination file so each delegate reads its own brief, not the parent context. | P5 |
 
 The 8-stage pipeline below is these three principles applied to a
 real research workflow.
@@ -220,6 +221,11 @@ Eight stages from *"I should read about X"* to *"the manuscript
 shipped"*. Each stage's output is the next stage's input — the
 handoff is mechanical, not vibes.
 
+Use `research-workflow-orchestrator` when the whole lifecycle needs one
+stateful controller: it coordinates orient, scope, discover, synthesize,
+design, execute, write, and release; proceeds automatically for
+read-only or reversible work; and pauses at the five human gates.
+
 | # | Stage | Skill(s) | Output → next stage |
 |---|---|---|---|
 | 1 | **Discover literature** | `research-hub`, `paper-summarize` | `.bib` + per-paper Key Findings notes → Stage 2 |
@@ -228,7 +234,7 @@ handoff is mechanical, not vibes.
 | 3b | **Plan the project** | `research-context-compressor`, `research-project-orienter` | `project_manifest.yml` (`provenance.from_gap`) → Stages 4–8 |
 | 4 | **Build the model** | *cookbook* — `codex-delegate` for ≥5-file scaffold, Claude direct for ≤4-file or judgment work | code in your project repo (see [cookbook](docs/example-design-to-build.md)) → Stage 5 |
 | 5 | **Run & validate** | `research-context-compressor`, `research-project-orienter` | `.research/` run manifests so future AI sessions skip the rescan → Stage 6 |
-| 6 | **Visualise & interpret** | `codex-delegate`, `gemini-delegate` | figures + analysis scripts → Stage 7 |
+| 6 | **Visualise & interpret** | `codex-delegate`, `antigravity-delegate`, primary model | figures + analysis scripts → Stage 7 |
 | 7 | **Draft the manuscript** | `paper-memory-builder`, `academic-writing-skills` | `.paper/claims.yml` (with `status` enum + anti-leakage) → Stage 8 |
 | 8 | **Submit + respond** | `academic-writing-skills`, `research-context-compressor` | reviewer-response.md, version-tagged manifests → done |
 
@@ -238,10 +244,11 @@ refuse to process a malformed handoff — and does, when the schema
 violation would otherwise propagate (e.g. `status: gap` claims with no
 `gap_reason` are rejected at Stage 7).
 
-**Cross-cutting (every stage):** `codex-delegate`, `gemini-delegate`,
-`research-hub-multi-ai`. These three sit beside the pipeline, not on
-it — any stage routes mechanical / long-context / multi-AI work
-through them.
+**Cross-cutting (every stage):** `research-workflow-orchestrator`,
+`codex-delegate`, `antigravity-delegate`, `research-hub-multi-ai`.
+These sit beside the pipeline, not on it — the orchestrator preserves
+lifecycle state and gates, while multi-agent routing uses Codex and
+Antigravity leaves for bounded mechanical execution.
 
 Full narrative + per-stage tool tables: [docs/pipeline.md](docs/pipeline.md).
 
@@ -276,7 +283,7 @@ phrasing to a skill. You don't need to remember skill names.
 | "Check this paragraph's terminology, repeated wording, flow, and overclaim" | `academic-writing-skills` |
 | "Review this paper and load the relevant notation, display, SEM, LLM, water, or flood checks" | `paper-review` |
 
-Full trigger map (16 rows): [docs/skill-directory.md](docs/skill-directory.md).
+Full trigger map (17 rows): [docs/skill-directory.md](docs/skill-directory.md).
 If auto-trigger picks the wrong skill, name it explicitly:
 *"Use `literature-triage-matrix` to compare these 5 papers."*
 
@@ -299,10 +306,10 @@ If auto-trigger picks the wrong skill, name it explicitly:
 > Full setup + tool-by-tool modes:
 > [research-hub project README](https://github.com/WenyuChiou/research-hub).
 
-### All 16 skills
+### All 17 skills
 
 <details>
-<summary><b>From <a href="https://github.com/WenyuChiou/research-hub"><code>research-hub</code></a> (11 skills)</b> — one install gets all</summary>
+<summary><b>From <a href="https://github.com/WenyuChiou/research-hub"><code>research-hub</code></a> (12 skills)</b> — one install gets all</summary>
 
 - [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) — search, ingest, organise papers across Zotero / Obsidian / NotebookLM. *(Stages 1, 2)*
 - [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) — comparison matrix across method, data, claim, limitation. *(Stage 2)*
@@ -312,7 +319,8 @@ If auto-trigger picks the wrong skill, name it explicitly:
 - [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) — Socratic dialog through RQ → mechanism → identifiability → validation → risk. Reads `.gaps.yml` to pre-fill segments 1 + 5; Stage 4 [cookbook](docs/example-design-to-build.md) reuses the produced `design_brief.md`. *(Stages 3a, 4)*
 - [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) — `.research/` manifests so future AI sessions skip the rescan. *(Stages 3b, 5, 8)*
 - [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) — fast orientation memo from those manifests. *(Stages 3b, 5)*
-- [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — character-driven routing across Claude / Codex / Gemini. *(Cross-cutting)*
+- [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — character-driven routing across the primary model, Codex, and Antigravity. *(Cross-cutting)*
+- [`research-workflow-orchestrator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-workflow-orchestrator/SKILL.md) — resumable controller for orient → scope → discover → synthesize → design → execute → write → release, automatic for read-only/reversible work and paused at catalog human gates. *(All stages)*
 - [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) — `.paper/claims.yml` + `.paper/figures.yml` (status enum, anti-leakage rule, file sentinels). *(Stage 7)*
 - [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) — fill per-paper Key Findings / Methodology / Relevance in both Obsidian and Zotero child notes after `research-hub auto`. *(Stage 1)*
 
@@ -325,7 +333,7 @@ If auto-trigger picks the wrong skill, name it explicitly:
 - [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — general scientific review with progressively selected equation/display provenance, psychometrics/SEM, AI/LLM, water/CNHS, flood/hydrodynamics, round, and explicit reviewer modules. *(Stages 7, 8)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — Claude → Codex CLI handoff for code-heavy / mechanical work. *(Cross-cutting, also Stages 4, 6)*
-- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) — Claude → Gemini CLI handoff for long-context, multilingual, or CJK work. *(Cross-cutting, also Stages 6, 7)*
+- [`antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md) — Claude → Antigravity CLI handoff for bounded non-honesty-critical mechanical work. *(Cross-cutting, also Stages 4, 6)*
 
 </details>
 

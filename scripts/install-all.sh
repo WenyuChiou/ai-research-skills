@@ -20,7 +20,7 @@ PLUGINS=(
   "academic-writing-skills"
   "zotero-skills"
   "codex-delegate"
-  "gemini-delegate"
+  "antigravity-delegate"
 )
 
 SCOPE="user"

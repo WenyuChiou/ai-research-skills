@@ -13,16 +13,16 @@ Languages: [English](design-philosophy.md) | [繁中](design-philosophy.zh-TW.md
 
 ## What the catalog is
 
-Five plugins that map to 15 SKILL.md files under `~/.claude/skills/`
+Five plugins that map to 17 SKILL.md files under `~/.claude/skills/`
 after install:
 
 | Plugin | Source repo | What's in it |
 |---|---|---|
-| `research-workspace` | [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) | 11 research-hub skills (literature triage, project memory, NotebookLM brief verification, paper summarisation, …) |
+| `research-workspace` | [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) | 12 research-hub skills, including `research-workflow-orchestrator`, literature triage, project memory, NotebookLM brief verification, paper summarisation, … |
 | `academic-writing-skills` | [`WenyuChiou/academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills) | Manuscript revision, banned-word audit, claim-evidence check, journal format, reviewer response |
 | `zotero-skills` | [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | Full Zotero CRUD (local + Web API) |
 | `codex-delegate` | [`WenyuChiou/codex-delegate`](https://github.com/WenyuChiou/codex-delegate) | Claude → Codex CLI handoff for code-heavy work |
-| `gemini-delegate` | [`WenyuChiou/gemini-delegate-skill`](https://github.com/WenyuChiou/gemini-delegate-skill) | Claude → Gemini CLI handoff for long-context / CJK work |
+| `antigravity-delegate` | [`WenyuChiou/antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate) | Claude → Antigravity CLI handoff for bounded non-honesty-critical mechanical work |
 
 ---
 
@@ -31,12 +31,13 @@ after install:
 1. **Curated, not auto-discovered.** Every plugin in the catalog is
    hand-picked for a specific researcher use case, and is used by the
    maintainer in active research projects.
-2. **No pipeline orchestrator.** Skills are invoked individually by the
-   researcher. The catalog does not chain them into a stage-1 →
-   stage-2 pipeline.
-   [`Imbad0202/academic-research-skills`](https://github.com/Imbad0202/academic-research-skills)
-   is the reference point if you want orchestration.
-3. **Opinionated subset, not exhaustive coverage.** Five plugins, 15
+2. **Lifecycle orchestration with human gates.** Skills can still be
+   invoked individually, but `research-workflow-orchestrator` coordinates
+   orient, scope, discover, synthesize, design, execute, write, and release.
+   It advances read-only or reversible work automatically and pauses at
+   scope commitment, external write, experiment authorization, semantic
+   revision, and release authorization.
+3. **Opinionated subset, not exhaustive coverage.** Five plugins, 17
    skills — chosen because they close gaps the maintainer hit in real
    research, not because they cover everything an academic might want.
 4. **Bilingual entry points.** README, install, verification, pipeline,
@@ -73,7 +74,7 @@ CI runs on every push and PR to `main`. It runs `python -m pytest tests/ -q`,
   Obsidian, NotebookLM mentioned by name); persona table present in
   both languages; canonical install command (`research-hub setup`)
   consistent across README + install docs + catalog YAML.
-- Verification counts — 15 skills total with the documented status
+- Verification counts — 17 skills total with the documented status
   split (see [`docs/verification.md`](verification.md)).
 
 A red CI run blocks merge. The full check list is in
@@ -138,8 +139,8 @@ one plugin at a time, this catalog is.
 The catalog has open work and acknowledged gaps. See open issues + PRs
 for current progress. Items not yet promised by any version:
 
-- Cross-model independent judge (Codex / Gemini as second opinion on
-  skill behavioral evals).
+- Independent behavioral evaluation beyond the primary model and delegated
+  mechanical executors.
 - Corpus-scale FNR/FPR calibration of any plugin.
 - Generalisation tested beyond the maintainer's domain (water
   resources, agent-based modeling).

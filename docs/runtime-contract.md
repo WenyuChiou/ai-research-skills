@@ -23,7 +23,7 @@ marketplace state.
 | Workspace-file skills | `research-context-compressor`, `research-project-orienter`, `paper-memory-builder` | File-system access to the project or manually supplied context |
 | Runtime-backed research automation | `research-hub`, `paper-summarize`, parts of `notebooklm-brief-verifier`, Zotero-backed curation flows | `pip install research-hub-pipeline` plus any required Zotero, Obsidian, NotebookLM, LLM CLI, MCP, or REST setup |
 | Deep Zotero CRUD | `zotero-skills` | Zotero local/Web API credentials and a host that can call the API |
-| Delegation skills | `codex-delegate`, `gemini-delegate`, `research-hub-multi-ai` | Target CLI installed and available on `PATH`, or a manual handoff prompt |
+| Delegation skills | `codex-delegate`, `antigravity-delegate`, `research-hub-multi-ai` | Target CLI installed and available on `PATH`, or a manual handoff prompt |
 
 ## Agent Preflight For Literature Search
 

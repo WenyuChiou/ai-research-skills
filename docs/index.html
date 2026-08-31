@@ -250,11 +250,11 @@
     <h2>Composable skills mapped to research workflow stages</h2>
     <p class="section-lede">
       Each skill addresses one workflow stage. Cross-cutting tools (codex-delegate,
-      gemini-delegate, research-hub-multi-ai) work at any stage — usable solo or
+      antigravity-delegate, research-hub-multi-ai) work at any stage — usable solo or
       composed across plugins.
     </p>
-    <img src="img/pipeline-overview.png" alt="15 skills mapped to research workflow stages with cross-cutting delegation tools" class="pipeline-img">
-    <p class="img-caption">15 skills · 5 plugins · cross-cutting delegation primitives at every stage.</p>
+    <img src="img/pipeline-overview.png" alt="17 skills mapped to research workflow stages with cross-cutting delegation tools" class="pipeline-img">
+    <p class="img-caption">17 skills · 5 plugins · cross-cutting delegation primitives at every stage.</p>
   </div>
 </section>
 
@@ -263,7 +263,7 @@
     <div class="section-label">5 plugins</div>
     <h2>Pick the plugin that matches your workflow</h2>
     <p class="section-lede">
-      Each plugin bundles 2–4 skills. Install one at a time as you need them, or
+      Each plugin bundles 1–12 skills. Install one at a time as you need them, or
       grab the full marketplace with one command.
     </p>
     <div class="plugins">
@@ -283,9 +283,9 @@
         <p>Delegate token-heavy, mechanical coding work to Codex CLI while Claude plans, reviews, and accepts. Cost-aware routing pattern for production.</p>
       </div>
       <div class="plugin">
-        <h3>gemini-delegate</h3>
-        <div class="plugin-meta">Multi-LLM · large-context · CJK drafting</div>
-        <p>Delegate large-context synthesis, long-form English/Chinese drafting, and second-opinion review to Google's Gemini CLI. Wrapper-based execution.</p>
+        <h3>antigravity-delegate</h3>
+        <div class="plugin-meta">Multi-LLM · bounded mechanical execution</div>
+        <p>Delegate bounded non-honesty-critical mechanical work to Antigravity CLI while Claude scopes, supervises, and verifies the result.</p>
       </div>
       <div class="plugin">
         <h3>zotero-skills</h3>
@@ -308,10 +308,10 @@
 claude plugin marketplace add WenyuChiou/ai-research-skills
 
 <span class="comment"># Install all 5 plugins (or just the ones you need)</span>
-claude plugin install research-hub@ai-research-skills        <span class="accent">--scope user</span>
+claude plugin install research-workspace@ai-research-skills  <span class="accent">--scope user</span>
 claude plugin install academic-writing-skills@ai-research-skills
 claude plugin install codex-delegate@ai-research-skills
-claude plugin install gemini-delegate@ai-research-skills
+claude plugin install antigravity-delegate@ai-research-skills
 claude plugin install zotero-skills@ai-research-skills</code></pre>
     <p style="margin-top: 24px; font-size: 14px; color: var(--mute);">
       For installation troubleshooting, persona-based setup, and per-skill

@@ -73,9 +73,9 @@ implementation scaffolding。
 |---|---|
 | [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) | 跟 3a 同一個 skill——準備把「要建什麼模型」翻成「怎麼建」時，重新讀 `.research/design_brief.md` 對照。 |
 
-實作 scaffolding（test harness、繪圖、batch edits）和大型 reference
-codebase 的 design review，請用下方 **Cross-cutting tools** 的
-`codex-delegate` 與 `gemini-delegate`。
+實作 scaffolding（test harness、繪圖、batch edits）請用下方
+**Cross-cutting tools** 的 `codex-delegate` 與 `antigravity-delegate`。
+大型 reference codebase 的 design review、長 context 判斷留在 primary model。
 
 ## 5. 執行實驗、校正與驗證 (C&V)
 
@@ -88,8 +88,8 @@ codebase 的 design review，請用下方 **Cross-cutting tools** 的
 
 反覆執行的 sweep、regression test、修完 bug 的 verification 這類
 token 重的工作，請用下方 **Cross-cutting tools**——`codex-delegate`
-做 code-heavy 的執行；`research-hub-multi-ai` 規劃 Claude / Codex /
-Gemini 之間的分工。
+做 code-heavy 的執行；`antigravity-delegate` 只處理有邊界、非誠實性關鍵的
+機械性工作；`research-hub-multi-ai` 規劃 Codex / Antigravity leaves 的分工。
 
 ## 6. 視覺化與結果解讀
 
@@ -100,7 +100,7 @@ Gemini 之間的分工。
 | Skill | 用途 |
 |---|---|
 | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) | 產生或重構繪圖腳本（多張圖統一風格、批次重畫）。 |
-| [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) | 利用長 context，讓圖與草稿 caption / 解讀段落配在一起。 |
+| [`antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md) | 在 Claude 監督下處理有邊界、非誠實性關鍵的繪圖清理或 fixture 維護。 |
 
 ## 7. 論文撰寫與修改
 
@@ -113,8 +113,7 @@ Gemini 之間的分工。
 | [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) | 通用科學審查，會按需選用 psychometrics／SEM、AI／LLM、水資源／CNHS、洪水／hydrodynamics 或混合 modules。 |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *(optional)* | 寫作 skill 標出來的引文 metadata 有問題時，深度編輯 Zotero entry——修 citation 欄位、補缺、附 PDF。 |
 
-長段重寫、中英／CJK 草稿、文字風格的第二意見，請用下方 **Cross-cutting
-tools** 的 `gemini-delegate`。
+長段重寫、中英／CJK 草稿、文字風格與審查判斷留在 primary model。
 
 ## 8. 投稿、回覆審查、收尾
 
@@ -134,5 +133,5 @@ tools** 的 `gemini-delegate`。
 | Skill | 觸發 | 用途 |
 |---|---|---|
 | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) | token 重的機械性工作 | 把 batch edits、scaffolding、refactor、test 生成、繪圖腳本交給 Codex CLI。 |
-| [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) | 長 context 閱讀或繁中／CJK 輸出 | 把長 PDF 摘要、雙語改寫、第二意見 review 交給 Gemini CLI。 |
-| [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) | 「這件事該交給誰？」 | Stage-agnostic、按 task 性質做 routing——產出分工計畫與交接 prompt。 |
+| [`antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md) | 有邊界、非誠實性關鍵的機械性工作 | 在 Claude 監督下把範圍明確的機械性 edits 交給 Antigravity CLI。 |
+| [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) | 「這件事該交給誰？」 | Stage-agnostic routing，在 Codex 與 Antigravity leaves 之間產出分工計畫與交接 prompt。 |

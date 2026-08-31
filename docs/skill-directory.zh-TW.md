@@ -19,7 +19,7 @@
 | 寫論文 | `academic-writing-skills` | `claude plugin install academic-writing-skills@ai-research-skills` |
 | 大型 Zotero library 整理 | `zotero-skills` | `claude plugin install zotero-skills@ai-research-skills` |
 | Code-heavy AI handoff | `codex-delegate` | `claude plugin install codex-delegate@ai-research-skills` |
-| 長 context / 雙語 handoff | `gemini-delegate` | `claude plugin install gemini-delegate@ai-research-skills` |
+| 有邊界的機械性 AI handoff | `antigravity-delegate` | `claude plugin install antigravity-delegate@ai-research-skills` |
 
 ## 完整 skill 清單
 
@@ -50,7 +50,7 @@ research-hub notebooklm login --auto-detect
 | Skill | 何時用 | SKILL.md |
 |---|---|---|
 | `research-hub` | 想讓 AI 找論文、ingest source、操作 Zotero/Obsidian/NotebookLM、開 dashboard、維護 vault。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) |
-| `research-hub-multi-ai` | 想把 research-hub 工作分給 Claude / Codex / Gemini / 其他 assistant 做（cross-cutting routing）。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) |
+| `research-hub-multi-ai` | 想讓 primary model、Codex、Antigravity 分擔有邊界的機械性 research-hub 工作（cross-cutting routing）。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) |
 | `research-design-helper` | 想用 5 段 Socratic 對話 sharpen 研究問題（RQ → mechanism → identifiability → validation → risks），產出 `.research/design_brief.md`。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) |
 | `research-context-compressor` | 想產出 `.research/` manifest，未來 AI session 就不必重掃整個 repo。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) |
 | `research-project-orienter` | repo 已經有 `.research/` manifest，想快速產 orientation 摘要。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) |
@@ -60,6 +60,7 @@ research-hub notebooklm login --auto-detect
 | `notebooklm-brief-verifier` | 下載了 NotebookLM brief，想 verify source 涵蓋、未根據的 claim、矛盾敘述。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) |
 | `zotero-library-curator` | 想 audit Zotero library——找重複 DOI、orphan item、提整理計畫。Read-only；寫操作丟給 `zotero-skills`。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) |
 | `gap-to-topic` | 在選論文或 proposal 題目,需要 go/no-go 判斷——產出決策卷宗,讓候選題目過三閘:缺口開著嗎、算貢獻嗎、做得到嗎。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md) |
+| `research-workflow-orchestrator` | 需要可恢復的 controller，協調 orient、scope、discover、synthesize、design、execute、write、release；read-only / 可逆步驟自動前進，human gates 暫停。 | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-workflow-orchestrator/SKILL.md) |
 
 ### academic-writing-skills
 
@@ -93,24 +94,24 @@ claude plugin install zotero-skills@ai-research-skills
 ### AI delegation skills
 
 Repo：[codex-delegate](https://github.com/WenyuChiou/codex-delegate)、
-[gemini-delegate-skill](https://github.com/WenyuChiou/gemini-delegate-skill)
+[antigravity-delegate](https://github.com/WenyuChiou/antigravity-delegate)
 
 安裝：
 
 ```bash
 claude plugin install codex-delegate@ai-research-skills
-claude plugin install gemini-delegate@ai-research-skills
+claude plugin install antigravity-delegate@ai-research-skills
 ```
 
 | Skill | 何時用 | SKILL.md |
 |---|---|---|
 | `codex-delegate` | Coding 工作 token 重、機械性、跨多檔案，Claude 督導、Codex 實際執行。 | [SKILL.md](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) |
-| `gemini-delegate` | 工作是長 context、synthesis-heavy、雙語 / CJK 重，或需要 second-opinion review。 | [SKILL.md](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) |
+| `antigravity-delegate` | 工作有明確邊界、機械性、非誠實性關鍵，Claude 督導、Antigravity 實際執行。 | [SKILL.md](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md) |
 
 ## 快速建議
 
 - 新研究 workspace：先裝 `research-hub`（research-workspace plugin）。
 - 寫論文：裝 `academic-writing-skills`。
 - 整理 Zotero：裝 `zotero-skills`。
-- 多 AI CLI 並用：裝 `codex-delegate` 跟 / 或 `gemini-delegate`。
+- 多 AI CLI 處理有邊界的機械性工作：裝 `codex-delegate` 跟 / 或 `antigravity-delegate`。
 - 想推給合作者：先送他這份目錄，再指出他需要哪個 skill。

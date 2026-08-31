@@ -11,7 +11,7 @@
 [Runtime contract](docs/runtime-contract.zh-TW.md) ·
 [詞彙表](docs/glossary.md)
 
-**這是什麼。** 一套 16 個 Claude Code skills 的 catalog,圍繞著一個
+**這是什麼。** 一套 17 個 Claude Code skills 的 catalog,圍繞著一個
 大部分研究 AI 工具迴避的問題:*這個 research gap 真的值得做嗎?*
 Pipeline 開頭就是一份帶三關的結構化決策 dossier — 開放性 / 貢獻度 /
 可行性 — 通過三關的候選主題,後段 stage (研究設計、論文撰寫、
@@ -71,26 +71,26 @@ claude plugin install research-workspace@ai-research-skills
 `research-workspace@ai-research-skills`，通常代表貼上時只執行了第一行；
 單行版 CMD 指令請看 [docs/install.md](docs/install.md)。
 
-對 Claude Code 而言，前兩個指令會安裝 11-skill 的
+對 Claude Code 而言，前兩個指令會安裝 12-skill 的
 `research-workspace` plugin。需要論文寫作、完整 Zotero 操作，或
-Claude-to-Codex/Gemini delegation 時，再加裝選配 plugin。
+Claude-to-Codex/Antigravity delegation 時，再加裝選配 plugin。
 
 **漸進式安裝 — 每一步完成後，已安裝的功能即可使用：**
 
 ```bash
-# 1. Marketplace + 11 個 research-hub skills (6 個純推理型，可立即使用)
+# 1. Marketplace + 12 個 research-hub skills
 claude plugin marketplace add WenyuChiou/ai-research-skills
 claude plugin install research-workspace@ai-research-skills
 
-# 2. 論文寫作 — outline、逐段撰寫、文字與證據稽核、科學審查
+# 2. 論文寫作 — outline、逐段撰寫、文字與證據稽核、科學審查 (14/17)
 claude plugin install academic-writing-skills@ai-research-skills
 
-# 3. Zotero CRUD (請先在 Zotero 桌面版啟用 local API — 見 docs/setup-guide.md §C)
+# 3. Zotero CRUD (15/17；請先在 Zotero 桌面版啟用 local API — 見 docs/setup-guide.md §C)
 claude plugin install zotero-skills@ai-research-skills
 
-# 4. 多 CLI 代理 (請先安裝 codex / gemini CLI 執行檔)
+# 4. 多 CLI 代理 (17/17；請先安裝 codex / agy CLI 執行檔)
 claude plugin install codex-delegate@ai-research-skills
-claude plugin install gemini-delegate@ai-research-skills
+claude plugin install antigravity-delegate@ai-research-skills
 
 # 5. 文獻 pipeline 自動化 (research-hub skills 背後的 Python CLI)
 pip install research-hub-pipeline
@@ -135,11 +135,11 @@ cd ai-research-skills
 這個 catalog 是一個 **註冊中心 (registry)**，不是一個 monorepo。每個
 plugin 的原始碼都放在各自的 repo 中：
 
-- `github.com/WenyuChiou/research-hub` — 11 個 `research-workspace` skills
+- `github.com/WenyuChiou/research-hub` — 12 個 `research-workspace` skills
 - `github.com/WenyuChiou/academic-writing-skills` — 2 個 skills
 - `github.com/WenyuChiou/zotero-skills` — 1 個 skill
 - `github.com/WenyuChiou/codex-delegate` — 1 個 skill
-- `github.com/WenyuChiou/gemini-delegate-skill` — 1 個 skill
+- `github.com/WenyuChiou/antigravity-delegate` — 1 個 skill
 
 如果您想修改某個 plugin，請 clone **其** 原始碼 repo，而不是這個
 catalog。本 catalog 只維護 `marketplace.json`、文件、圖片資源以及
@@ -170,13 +170,13 @@ catalog 層級的 `CHANGELOG.md`。
 
 *"此外"、"值得注意的是"*，充滿閃爍其詞、沒有明確主張的句子。審稿人（以及資深共同作者）看兩段就聞到那股味道，然後您的稿件在他們待辦事項列表中的優先級就下降了。
 
-### P5 — "在 Claude / Codex / Gemini 之間切換，每次切換都像失憶"
+### P5 — "在 Claude / Codex / Antigravity 之間切換，每次切換都像失憶"
 
-您用 Claude 設計 prompt，交給 Codex 建立程式碼骨架，再切換到 Gemini 進行長文脈的論文綜合。每一次切換都要花五分鐘重新說明背景。跨 AI 的交接正是時間真正消失的地方。
+您用 Claude 設計 prompt，交給 Codex 建立程式碼骨架，再把有邊界、非誠實性關鍵的機械性後續交給 Antigravity。長文脈綜合、CJK 寫作、判斷、治理與最終審查留在 primary model。若交接沒有明確且可保存的 brief，每一次切換都會花時間重新說明背景。
 
 ---
 
-### 三個設計原則，應用於 16 個 skills
+### 三個設計原則，應用於 17 個 skills
 
 這個 catalog 圍繞三個有力的核心理念構建，而不只是一張功能清單：
 
@@ -184,7 +184,7 @@ catalog 層級的 `CHANGELOG.md`。
 |---|---|---|
 | **1. Manifests** (`.research/`, `.paper/`) | 研究狀態儲存在受版本控制的 YAML / Markdown 檔案中。新的 AI 對話 session 會讀取 manifest 並自行了解背景 — 您不必再重覆解釋。 | P1, P5 |
 | **2. 帶有 anti-leakage 規則的 Schemas** | 每個跨 skill 的產出物都有一個 YAML schema。一個 `evidence_artifacts` 為空的 claim **會被強制** 標記為 `status: gap` 並附上 `gap_reason` — 絕不會是 `supported`。一個 `verdict: do-not-pursue` 的候選主題會與 `worth-pursuing` 的主題在結構上被分開。下游工具會拒絕傳遞過度自信的輸出。 | P2, P3, P4 |
-| **3. Character-driven routing (依任務性質分流)** | 機械性的批量工作 → Codex。長文脈 / 中日韓語 → Gemini。判斷 / 治理 → Claude。路由工具 (`research-hub-multi-ai`) 會寫一個協調檔案，讓每個代理只讀取自己的任務簡報，而非上層的完整文脈。 | P5 |
+| **3. Character-driven routing (依任務性質分流)** | token 重的機械性批量工作 → Codex。有邊界、非誠實性關鍵的機械性工作 → Antigravity。長文脈、CJK、判斷、治理與最終審查留在 primary model。路由工具 (`research-hub-multi-ai`) 會寫一個協調檔案，讓每個代理只讀取自己的任務簡報，而非上層的完整文脈。 | P5 |
 
 下方八階段的 pipeline 就是將這三個原則應用於真實研究工作流程的成果。
 
@@ -196,6 +196,11 @@ catalog 層級的 `CHANGELOG.md`。
 
 從 *"我應該讀讀關於 X 的資料"* 到 *"稿件已送出"* 的八個階段。每個階段的輸出就是下一階段的輸入 — 交接是機械式的，而非憑感覺。
 
+如果要讓整個 lifecycle 有一個可恢復的 controller，使用
+`research-workflow-orchestrator`：它協調 orient、scope、discover、
+synthesize、design、execute、write、release；read-only 或可逆工作可自動前進；
+遇到五個 catalog human gates 時暫停等人確認。
+
 | # | 階段 | Skill(s) | 輸出 → 下一階段 |
 |---|---|---|---|
 | 1 | **找文獻** | `research-hub`, `paper-summarize` | `.bib` + 每篇論文的重點筆記 → 階段 2 |
@@ -204,13 +209,13 @@ catalog 層級的 `CHANGELOG.md`。
 | 3b | **寫計畫** | `research-context-compressor`, `research-project-orienter` | `project_manifest.yml` (`provenance.from_gap`) → 階段 4–8 |
 | 4 | **設計與建模** | *cookbook* — `codex-delegate` 用於 ≥5 個檔案的骨架，Claude 直接用於 ≤4 個檔案或判斷性工作 | 您專案 repo 中的程式碼 (見 [cookbook](docs/example-design-to-build.md)) → 階段 5 |
 | 5 | **執行、校正、驗證** | `research-context-compressor`, `research-project-orienter` | `.research/` run manifests 讓未來的 AI sessions 省去重新掃描 → 階段 6 |
-| 6 | **視覺化與結果解讀** | `codex-delegate`, `gemini-delegate` | 圖表 + 分析腳本 → 階段 7 |
+| 6 | **視覺化與結果解讀** | `codex-delegate`, `antigravity-delegate`, primary model | 圖表 + 分析腳本 → 階段 7 |
 | 7 | **論文撰寫與修改** | `paper-memory-builder`, `academic-writing-skills` | `.paper/claims.yml` (包含 `status` enum + anti-leakage) → 階段 8 |
 | 8 | **投稿、回覆審查、收尾** | `academic-writing-skills`, `research-context-compressor` | reviewer-response.md, 帶有版本標籤的 manifests → 完成 |
 
 跨 skills 的交接 (階段 2 → 3a → 3b → 8; 階段 7 → 8) 是以 **YAML schemas** 文件化的，而非自由文本。下游 skill 可以拒絕處理格式錯誤的交接——當 schema 違規可能傳播時（例如，`status: gap` 的 claims 沒有 `gap_reason` 會在階段 7 被拒絕），它確實會這麼做。
 
-**跨領域 (所有階段):** `codex-delegate`, `gemini-delegate`, `research-hub-multi-ai`。這三者位於 pipeline 旁側，而非在 pipeline 上 — 任何階段都可以透過它們來處理機械性 / 長文脈 / 多 AI 的工作。
+**跨領域 (所有階段):** `research-workflow-orchestrator`, `codex-delegate`, `antigravity-delegate`, `research-hub-multi-ai`。它們位於 pipeline 旁側，而非在 pipeline 上 — orchestrator 保存 lifecycle 狀態與 gates；multi-agent routing 則用 Codex 與 Antigravity 作為有邊界機械性執行的 leaves。
 
 完整的流程敘述 + 各階段工具表：[docs/pipeline.md](docs/pipeline.md)。
 
@@ -245,7 +250,7 @@ catalog 層級的 `CHANGELOG.md`。
 | "檢查這段的術語一致性、重複用詞、流暢度與過度宣稱" | `academic-writing-skills` |
 | "審查這篇論文，依內容載入符號、衍生圖表、SEM、LLM、水資源或洪水檢查" | `paper-review` |
 
-完整的觸發對照表 (16 列)：[docs/skill-directory.md](docs/skill-directory.md)。
+完整的觸發對照表 (17 列)：[docs/skill-directory.md](docs/skill-directory.md)。
 如果自動觸發選錯了 skill，可以直接指名：
 *"用 `literature-triage-matrix` 比較這 5 篇論文。"*
 
@@ -264,10 +269,10 @@ catalog 層級的 `CHANGELOG.md`。
 > CLI 本身也可以暴露 MCP 介面 (`research-hub serve`)。完整設定 + 各路線:
 > [research-hub project README](https://github.com/WenyuChiou/research-hub)。
 
-### 全部 16 個 skills
+### 全部 17 個 skills
 
 <details>
-<summary><b>來自 <a href="https://github.com/WenyuChiou/research-hub"><code>research-hub</code></a> (11 個 skills)</b> — 一次安裝，全部擁有</summary>
+<summary><b>來自 <a href="https://github.com/WenyuChiou/research-hub"><code>research-hub</code></a> (12 個 skills)</b> — 一次安裝，全部擁有</summary>
 
 - [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) — 在 Zotero / Obsidian / NotebookLM 之間搜尋、匯入、整理論文。*(階段 1, 2)*
 - [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) — 根據方法、數據、主張、限制建立比較矩陣。*(階段 2)*
@@ -277,7 +282,8 @@ catalog 層級的 `CHANGELOG.md`。
 - [`research-design-helper`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) — 透過 Socratic dialog 引導完成 RQ → 機制 → 可識別性 → 驗證 → 風險評估。讀取 `.gaps.yml` 以預填第 1 和 5 部分；階段 4 的 [cookbook](docs/example-design-to-build.md) 會重用其產出的 `design_brief.md`。*(階段 3a, 4)*
 - [`research-context-compressor`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) — 產生 `.research/` manifests，讓未來的 AI sessions 省去重新掃描的步驟。*(階段 3b, 5, 8)*
 - [`research-project-orienter`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) — 從那些 manifests 快速生成專案導覽備忘錄。*(階段 3b, 5)*
-- [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — 根據任務性質在 Claude / Codex / Gemini 之間進行 character-driven routing。*(跨領域)*
+- [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — 根據任務性質在 primary model / Codex / Antigravity 之間進行 character-driven routing。*(跨領域)*
+- [`research-workflow-orchestrator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-workflow-orchestrator/SKILL.md) — 可恢復的 controller，協調 orient → scope → discover → synthesize → design → execute → write → release；read-only / 可逆工作自動前進，遇到 catalog human gates 暫停。*(所有階段)*
 - [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) — 產生 `.paper/claims.yml` + `.paper/figures.yml` (包含狀態列舉、anti-leakage 規則、檔案哨兵)。*(階段 7)*
 - [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) — 在 `research-hub auto` 執行後，將每篇論文的重點發現 / 方法 / 關聯性，同時填入 Obsidian 和 Zotero 的子筆記中。*(階段 1)*
 
@@ -290,7 +296,7 @@ catalog 層級的 `CHANGELOG.md`。
 - [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — 通用科學審查，會按需選用 equation／derived-display provenance、psychometrics／SEM、AI／LLM、水資源／CNHS、洪水／hydrodynamics、round 與明確指定的 reviewer modules。*(階段 7, 8)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — 完整的 Zotero CRUD、批次處理 metadata、文獻庫維護。*(階段 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — 從 Claude → Codex CLI 的交接，處理程式碼密集 / 機械性工作。*(跨領域, 也用於階段 4, 6)*
-- [`gemini-delegate`](https://github.com/WenyuChiou/gemini-delegate-skill/blob/master/skills/gemini-delegate/SKILL.md) — 從 Claude → Gemini CLI 的交接，處理長文脈、多語言或中日韓語工作。*(跨領域, 也用於階段 6, 7)*
+- [`antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md) — 從 Claude → Antigravity CLI 的交接，只用於有邊界、非誠實性關鍵的機械性工作。*(跨領域, 也用於階段 4, 6)*
 
 </details>
 
@@ -360,14 +366,14 @@ Stage 2 dossier 跟 Stage 1–2 文獻回顧交付物有 `.docx` 生成器 — �
 
 | 層級 | 可攜內容 | 狀態 |
 |---|---|---|
-| 通用 `SKILL.md` 層 | Skill instructions、trigger descriptions、references、scripts，以及 project handoff contracts | 16/16 通過最低規格要求 (`name` + `description`, ≤500 行) |
+| 通用 `SKILL.md` 層 | Skill instructions、trigger descriptions、references、scripts，以及 project handoff contracts | 17/17 通過最低規格要求 (`name` + `description`, ≤500 行) |
 | Host-specific 行為 | 自動觸發、plugin marketplace 安裝、`claude plugin list`、skill discovery、rules-directory 慣例 | 依 agent host 而定；請使用該 host 自己的 list / discovery 檢查 |
 | 目前 portability audit | 通用 `SKILL.md`-loading hosts | 2026-05-10 審核中 11/14 可零編輯移植；3/14 只需要外觀性的 `<skill-root>` 路徑修改，且已完成 |
 | 已驗證 host install | NousResearch/hermes-agent 0.13.0 | `literature-triage-matrix` 已端到端安裝，安全掃描 SAFE，註冊為 `enabled`；Hermes inference loop 尚未測試 |
 | OpenClaw | 在使用者的 OpenClaw 安裝支援時，可使用 `~/.openclaw/skills/<skill>/SKILL.md` 這類 `SKILL.md` directory 形狀 | 結構上相容，但本 repo 尚未做 release-grade verification |
 | 其他 agents | Codex CLI、Gemini CLI、Cursor、Windsurf、通用 API clients，以及其他 `SKILL.md`-loading hosts | 載入同一份 `SKILL.md` 作為 context，或放進 host 的 skill / rules 目錄；並非每個 host 都已個別測試 |
 
-`11/14` 的可移植性數據反映了 2026-05-10 的審核結果，當時 catalog 只有 14 個 skills；之後新增的 `gap-to-topic` 與 2026-08-02 成為第 16 個 skill 的 `paper-review` 尚未進行可移植性審核。
+`11/14` 的可移植性數據反映了 2026-05-10 的審核結果，當時 catalog 只有 14 個 skills；之後新增的 `gap-to-topic`、`paper-review`、`research-workflow-orchestrator` 與 `antigravity-delegate` 另依 catalog 記錄驗證，未納入那次可移植性審核。
 
 校準審核 + 實驗記錄：
 [`.research/hermes-compatibility-audit.md`](.research/hermes-compatibility-audit.md)。

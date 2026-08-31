@@ -7,15 +7,15 @@
   },
   "metadata": {
     "description": "Catalog of AI skills for the research workflow — researcher-led, AI-assisted",
-    "version": "1.5.39"
+    "version": "1.6.0"
   },
   "plugins": [
     {
       "name": "research-workspace",
-      "description": "11 research-hub skills: literature search, comparison matrix, project orientation, context compression, design dialog, multi-AI routing, NotebookLM brief verification, paper-memory builder, paper-summarize, Zotero curator, gap-to-topic decision dossier. Auto-discovered from the source repo's skills/ subdirectory.",
+      "description": "12 research-hub skills: a resumable human-in-the-loop workflow orchestrator plus literature search, comparison, orientation, context compression, design, verified multi-agent routing, NotebookLM verification, paper memory and summaries, Zotero curation, and gap-to-topic decisions.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/research-hub",
-      "version": "0.3.17",
+      "version": "0.4.0",
       "strict": true,
       "source": {
         "source": "url",
@@ -28,7 +28,7 @@
       "description": "Lifecycle-aware manuscript development and general scientific review with progressively loaded display provenance, psychometrics, AI/LLM, water, flood, round, and optional reviewer modules.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/academic-writing-skills",
-      "version": "1.1.1",
+      "version": "1.1.6",
       "strict": true,
       "source": {
         "source": "url",
@@ -63,15 +63,15 @@
       }
     },
     {
-      "name": "gemini-delegate",
-      "description": "Hand long-context reading, bilingual rewrites, second-opinion review, and Traditional Chinese / CJK output from Claude to Gemini CLI.",
+      "name": "antigravity-delegate",
+      "description": "Bounded cheap-executor lane for non-honesty-critical mechanical edits through Google Antigravity CLI, with brief-first scope and result verification.",
       "category": "productivity",
-      "homepage": "https://github.com/WenyuChiou/gemini-delegate-skill",
-      "version": "0.2.0",
+      "homepage": "https://github.com/WenyuChiou/antigravity-delegate",
+      "version": "0.1.0",
       "strict": true,
       "source": {
         "source": "url",
-        "url": "https://github.com/WenyuChiou/gemini-delegate-skill.git",
+        "url": "https://github.com/WenyuChiou/antigravity-delegate.git",
         "ref": "master"
       }
     }

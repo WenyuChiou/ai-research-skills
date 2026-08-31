@@ -13,7 +13,7 @@ Languages: [English](glossary.md) | [繁中](glossary.zh-TW.md)
 A Claude Code marketplace entry — one row in
 `.claude-plugin/marketplace.json`. Five of them in this catalog:
 `research-workspace`, `academic-writing-skills`, `zotero-skills`,
-`codex-delegate`, `gemini-delegate`. A plugin can bundle one or more
+`codex-delegate`, `antigravity-delegate`. A plugin can bundle one or more
 skills.
 
 ### Skill
@@ -21,7 +21,7 @@ skills.
 A single `SKILL.md` file with frontmatter (`name`, `description`) plus
 optional `references/` and `evals/` directories. Claude Code's
 auto-trigger reads the `description` and tries to match your phrasing to
-the right skill. 15 skills total across the 5 plugins in this catalog.
+the right skill. 17 skills total across the 5 plugins in this catalog.
 
 ### Bare name vs qualified name
 
@@ -110,10 +110,9 @@ For prompt-based skills, T3 is "not weaker" than T1 — they're
 qualitatively different checks rather than a strict hierarchy. See
 the verification doc for the full nuance.
 
-Current mix (per `docs/verification.md` 2026-05-09 header): 13 at T1,
-1 at T2 — the 14 skills audited on that date. `gap-to-topic` (the 15th,
-added 2026-05-21) was verified separately; see its `verification_notes`
-in `catalog/skills.yml`. Tier is independent of `verification_status`
+Current catalog 1.6.0 mix: 15 at T1, 2 at T2. The latest per-skill
+evidence is recorded in `catalog/skills.yml` `verification_notes`.
+Tier is independent of `verification_status`
 (pass/caveat/fail/not_yet) — the two axes describe different things.
 
 ### Skill router / auto-trigger
@@ -152,8 +151,8 @@ locates it on that pipeline:
 - **Stage 7** — Manuscript memory + writing
 - **Stage 8** — Submission / reviewer response
 
-(Codex / Gemini delegation is *cross-cutting* — available at every
-stage, not a single stage — see `docs/pipeline.md`.)
+(Codex / Antigravity delegation is *cross-cutting* for bounded mechanical
+work — available at every stage, not a single stage — see `docs/pipeline.md`.)
 
 Open `docs/pipeline.md` for the diagram; the stage numbers in the
 README skill list point at it.

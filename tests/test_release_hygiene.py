@@ -26,7 +26,7 @@ EXPECTED_PLUGINS = [
     "academic-writing-skills",
     "zotero-skills",
     "codex-delegate",
-    "gemini-delegate",
+    "antigravity-delegate",
 ]
 
 # Best-effort cross-source check: only fires where the sibling source repo is
