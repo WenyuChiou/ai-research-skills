@@ -17,10 +17,10 @@ instructions, see [runtime-contract.md](runtime-contract.md).
 | Obsidian + NotebookLM | `research-hub` | `pip install "research-hub-pipeline[playwright]"` then `research-hub setup --persona analyst` |
 | Zotero + NotebookLM | `research-hub` | `pip install "research-hub-pipeline[playwright]"` then `research-hub setup --persona researcher` |
 | Humanities / qualitative work (Zotero, no code) | `research-hub` | `pip install research-hub-pipeline` then `research-hub setup --persona humanities` |
-| Manuscript drafts | `academic-writing-skills` | `git clone https://github.com/WenyuChiou/academic-writing-skills ~/.claude/skills/academic-writing-skills` |
-| Large Zotero library cleanup | `zotero-skills` | `git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills` |
-| Coding-heavy AI handoff | `codex-delegate` | `git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate` |
-| Bounded mechanical AI handoff | `antigravity-delegate` | `git clone https://github.com/WenyuChiou/antigravity-delegate ~/.claude/skills/antigravity-delegate` |
+| Manuscript drafts | `academic-writing-skills` | `claude plugin install academic-writing-skills@ai-research-skills` |
+| Large Zotero library cleanup | `zotero-skills` | `claude plugin install zotero-skills@ai-research-skills` |
+| Coding-heavy AI handoff | `codex-delegate` | `claude plugin install codex-delegate@ai-research-skills` |
+| Bounded mechanical AI handoff | `antigravity-delegate` | `claude plugin install antigravity-delegate@ai-research-skills` |
 
 ## Complete Skill Inventory
 
@@ -83,7 +83,7 @@ Repo: [zotero-skills](https://github.com/WenyuChiou/zotero-skills)
 Install:
 
 ```bash
-git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
+claude plugin install zotero-skills@ai-research-skills
 ```
 
 | Skill | Use when | Direct skill link |
@@ -98,8 +98,8 @@ Repos: [codex-delegate](https://github.com/WenyuChiou/codex-delegate),
 Install:
 
 ```bash
-git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
-git clone https://github.com/WenyuChiou/antigravity-delegate ~/.claude/skills/antigravity-delegate
+claude plugin install codex-delegate@ai-research-skills
+claude plugin install antigravity-delegate@ai-research-skills
 ```
 
 | Skill | Use when | Direct skill link |

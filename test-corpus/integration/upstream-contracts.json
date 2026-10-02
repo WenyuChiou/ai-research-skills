@@ -1,0 +1,129 @@
+{
+  "checked_on": "2026-10-02",
+  "verification_scope": "source-layout-and-manifest; no live host invocation",
+  "repositories": [
+    {
+      "repo_url": "https://github.com/WenyuChiou/research-hub",
+      "commit": "2368cecc3616f929c052123e25f420cd3732c04e",
+      "default_branch": "master",
+      "plugin": {
+        "name": "research-workspace",
+        "version": "0.5.2"
+      },
+      "skills": [
+        {
+          "name": "research-hub",
+          "directory": "skills/research-hub"
+        },
+        {
+          "name": "research-hub-multi-ai",
+          "directory": "skills/research-hub-multi-ai"
+        },
+        {
+          "name": "research-context-compressor",
+          "directory": "skills/research-context-compressor"
+        },
+        {
+          "name": "research-project-orienter",
+          "directory": "skills/research-project-orienter"
+        },
+        {
+          "name": "research-design-helper",
+          "directory": "skills/research-design-helper"
+        },
+        {
+          "name": "literature-triage-matrix",
+          "directory": "skills/literature-triage-matrix"
+        },
+        {
+          "name": "paper-memory-builder",
+          "directory": "skills/paper-memory-builder"
+        },
+        {
+          "name": "paper-summarize",
+          "directory": "skills/paper-summarize"
+        },
+        {
+          "name": "notebooklm-brief-verifier",
+          "directory": "skills/notebooklm-brief-verifier"
+        },
+        {
+          "name": "gap-to-topic",
+          "directory": "skills/gap-to-topic"
+        },
+        {
+          "name": "zotero-library-curator",
+          "directory": "skills/zotero-library-curator"
+        },
+        {
+          "name": "research-workflow-orchestrator",
+          "directory": "skills/research-workflow-orchestrator"
+        }
+      ]
+    },
+    {
+      "repo_url": "https://github.com/WenyuChiou/academic-writing-skills",
+      "commit": "c28f0dedb312e9c99c0e8e15c37464f542471b43",
+      "default_branch": "main",
+      "plugin": {
+        "name": "academic-writing-skills",
+        "version": "1.2.0"
+      },
+      "skills": [
+        {
+          "name": "academic-writing-skills",
+          "directory": "skills/academic-writing-skills"
+        },
+        {
+          "name": "paper-review",
+          "directory": "skills/paper-review"
+        }
+      ]
+    },
+    {
+      "repo_url": "https://github.com/WenyuChiou/zotero-skills",
+      "commit": "1668aeb49c77d8e88c4132f7306b17ad69bb8206",
+      "default_branch": "master",
+      "plugin": {
+        "name": "zotero-skills",
+        "version": "0.3.0"
+      },
+      "skills": [
+        {
+          "name": "zotero-skills",
+          "directory": "skills/zotero-skills"
+        }
+      ]
+    },
+    {
+      "repo_url": "https://github.com/WenyuChiou/codex-delegate",
+      "commit": "30f6d4ae63935f5b71bd38d4d13466fcff5f33d8",
+      "default_branch": "master",
+      "plugin": {
+        "name": "codex-delegate",
+        "version": "0.1.1"
+      },
+      "skills": [
+        {
+          "name": "codex-delegate",
+          "directory": "skills/codex-delegate"
+        }
+      ]
+    },
+    {
+      "repo_url": "https://github.com/WenyuChiou/antigravity-delegate",
+      "commit": "c3afa59263ea02e40df99097ba5a9c4452e887a8",
+      "default_branch": "master",
+      "plugin": {
+        "name": "antigravity-delegate",
+        "version": "0.1.1"
+      },
+      "skills": [
+        {
+          "name": "antigravity-delegate",
+          "directory": "skills/antigravity-delegate"
+        }
+      ]
+    }
+  ]
+}

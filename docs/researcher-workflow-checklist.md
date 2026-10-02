@@ -7,6 +7,9 @@ Read [runtime-contract.md](runtime-contract.md) alongside this checklist
 to distinguish portable `SKILL.md` instructions from the executable
 `research-hub` CLI runtime.
 
+For end-to-end AI-for-science inputs, outputs, quality evidence, and researcher
+decisions at each existing stage, see [scientific lifecycle and quality gates](scientific-lifecycle.md).
+
 ## Quick Tool Checklist
 
 Check what you use now:
@@ -40,7 +43,7 @@ Use these skills:
 Add if needed:
 
 ```bash
-git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
+claude plugin install zotero-skills@ai-research-skills
 ```
 
 - [zotero-skills](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md): deep Zotero CRUD, batch cleanup, tags, collections, item edits, and PDF attachments.
@@ -143,8 +146,8 @@ accepted comments -> academic-writing-skills revision -> top-to-bottom review ->
 Install one or both:
 
 ```bash
-git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
-git clone https://github.com/WenyuChiou/antigravity-delegate ~/.claude/skills/antigravity-delegate
+claude plugin install codex-delegate@ai-research-skills
+claude plugin install antigravity-delegate@ai-research-skills
 ```
 
 Use these skills:

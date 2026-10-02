@@ -75,23 +75,26 @@ repository's `skills/<name>/SKILL.md` layout.
 | Just the SKILL.md instructions (skills auto-trigger inside Claude Code) | `claude plugin marketplace add` above — lighter, no Python env |
 | The full research-hub workflow with CLI commands (`research-hub auto`, `research-hub search`, NotebookLM upload automation, etc.) | `pip install research-hub-pipeline` then `research-hub setup` (interactive onboarding) |
 
-Both paths install the same 11 SKILL.md files under
-`~/.claude/skills/` — the difference is whether you also get the
-Python CLI.
+The research-workspace plugin and CLI installer expose the same 12 workspace
+skills, but their locations differ: marketplace content lives in the plugin
+cache; the CLI installer writes to the selected host skills directory.
+Neither path proves that another host loaded the instructions.
 
 ## Schema reference
 
 This marketplace follows the [Claude Code plugin marketplace schema](https://code.claude.com/docs/en/plugin-marketplaces).
-The `research-workspace` plugin uses a remote `github` source, so
+The `research-workspace` plugin uses a remote `url` Git source, so
 installing pulls SKILL.md files directly from
 `WenyuChiou/research-hub` — no skill content lives in this catalog
 repo.
 
 ## Updating the marketplace
 
-When `WenyuChiou/research-hub` updates its skills, no change is needed
-here — Claude Code refetches the latest commit on `/plugin marketplace
-update` (the marketplace tracks the source repo's default branch).
+The marketplace tracks source default branches, but plugin versions remain
+cache/discovery metadata. After an accepted upstream change bumps its manifest,
+synchronize the catalog plugin version and run source/contract checks.
+A branch ref is not an immutable content lock, and an update does not certify
+successful host loading.
 
 To change which plugins are exposed, edit `marketplace.json`. The
 repo's `tests/test_catalog.py` guards the file's basic structure

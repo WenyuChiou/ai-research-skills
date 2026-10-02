@@ -15,7 +15,7 @@
       "description": "12 research-hub skills: a resumable human-in-the-loop workflow orchestrator plus literature search, comparison, orientation, context compression, design, verified multi-agent routing, NotebookLM verification, paper memory and summaries, Zotero curation, and gap-to-topic decisions.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/research-hub",
-      "version": "0.5.0",
+      "version": "0.5.2",
       "strict": true,
       "source": {
         "source": "url",
@@ -51,10 +51,10 @@
     },
     {
       "name": "codex-delegate",
-      "description": "Hand token-heavy mechanical work (batch edits, scaffolding, refactors, test generation, plotting scripts) from Claude to Codex CLI.",
+      "description": "Minimal synchronous Codex CLI adapter for legacy on-disk briefs, result/sentinel contracts and Bash/PowerShell portability; supervisor scope/test acceptance remains required.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/codex-delegate",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "strict": true,
       "source": {
         "source": "url",
@@ -67,7 +67,7 @@
       "description": "Bounded cheap-executor lane for non-honesty-critical mechanical edits through Google Antigravity CLI, with brief-first scope and result verification.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/antigravity-delegate",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "strict": true,
       "source": {
         "source": "url",

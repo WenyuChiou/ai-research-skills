@@ -13,7 +13,8 @@ Catalog 是一份 [Claude Code](https://claude.ai/code) plugin 的 curated
 
 ## Catalog 是什麼
 
-5 個 plugin、安裝完對應到 `~/.claude/skills/` 底下 17 個 SKILL.md:
+5 個 plugin、marketplace 安裝後在 plugin cache 對應到 17 個 SKILL.md；
+另外的 research-hub CLI installer 才寫入所選 host 的 skills 目錄：
 
 | Plugin | Source repo | 內容 |
 |---|---|---|

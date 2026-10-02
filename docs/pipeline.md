@@ -13,9 +13,12 @@ and never need to read this.
         →  7. Draft manuscript  →  8. Submit, respond, wrap up
 ```
 
-Three skills don't belong to a specific stage — they're triggered by
+Four skills don't belong to a specific stage — they're triggered by
 *task character*, not pipeline position. See **Cross-cutting tools**
 at the bottom.
+
+For end-to-end AI-for-science inputs, outputs, quality evidence, and researcher
+decisions at each existing stage, see [scientific lifecycle and quality gates](scientific-lifecycle.md).
 
 ## 1. Discover literature
 
@@ -70,8 +73,9 @@ repo.
 
 > *"What architecture, equations, agents, or prompts do I need?"*
 
-Re-read the `design_brief.md` produced in Stage 3a as your model spec,
-then generate implementation scaffolding.
+Re-read `design_brief.md` from Stage 3a as design intent. Develop the
+project-specific implementation specification with the researcher before
+generating scaffolding; the design helper does not invent model architecture.
 
 | Skill | What it does |
 |---|---|
@@ -149,11 +153,12 @@ with the primary model.
 
 ## Cross-cutting tools — used at every stage
 
-Three skills don't belong to a specific stage — they're triggered by
+Four skills don't belong to a specific stage — they're triggered by
 *task character*:
 
 | Skill | Trigger | What it does |
 |---|---|---|
+| [`research-workflow-orchestrator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-workflow-orchestrator/SKILL.md) | Resumable multi-stage workflow | Coordinate existing stages, provenance and explicit human decision gates. |
 | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) | Token-heavy mechanical work | Hand batch edits, scaffolding, refactors, test generation, plotting scripts to Codex CLI. |
 | [`antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md) | Bounded non-honesty-critical mechanical work | Hand tightly scoped mechanical edits to Antigravity CLI under Claude supervision. |
 | [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) | "Who should do this?" | Stage-agnostic routing across Codex and Antigravity leaves — produces a delegation plan + handoff prompts. |

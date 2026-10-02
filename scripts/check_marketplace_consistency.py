@@ -138,6 +138,38 @@ def check_skill_url_shape(catalog: dict) -> list[str]:
     return errors
 
 
+
+def check_skill_paths_and_refs(catalog: dict, marketplace: dict) -> list[str]:
+    """Resolve each repository-relative directory through its source plugin.
+
+    URL shape alone misses the nested-layout failure: a catalog can point to
+    the correct SKILL.md while telling portable consumers to load repo root.
+    This is offline metadata validation, not proof that a host loaded a skill.
+    """
+    plugins = {
+        _normalize_repo(p.get("source", {}).get("url", "")): p
+        for p in marketplace["plugins"]
+    }
+    errors = []
+    for family in catalog["families"]:
+        for skill in family["skills"]:
+            repo = _normalize_repo(skill["repo_url"])
+            plugin = plugins.get(repo)
+            if plugin is None:
+                errors.append(f"skill {skill['name']!r} has no matching plugin source")
+                continue
+            directory = skill["directory"]
+            path = Path(directory)
+            if (path.is_absolute() or ".." in path.parts or "\\" in directory
+                    or directory != path.as_posix()):
+                errors.append(f"skill {skill['name']!r} has unsafe/noncanonical directory {directory!r}")
+                continue
+            ref = plugin["source"]["ref"]
+            expected = f"{repo}/blob/{ref}/{(path / 'SKILL.md').as_posix()}"
+            if skill["skill_url"] != expected:
+                errors.append(f"skill {skill['name']!r} directory/ref resolves to {expected}, not {skill['skill_url']}")
+    return errors
+
 def main() -> int:
     catalog, marketplace = _load()
     all_errors: list[str] = []
@@ -145,6 +177,7 @@ def main() -> int:
     all_errors += check_research_workspace_skill_count(catalog, marketplace)
     all_errors += check_skill_repo_urls_match_marketplace(catalog, marketplace)
     all_errors += check_skill_url_shape(catalog)
+    all_errors += check_skill_paths_and_refs(catalog, marketplace)
 
     if all_errors:
         print("catalog <-> marketplace consistency check FAILED:", file=sys.stderr)

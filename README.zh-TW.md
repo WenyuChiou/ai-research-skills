@@ -435,7 +435,10 @@ Stage 2 dossier 跟 Stage 1–2 文獻回顧交付物有 `.docx` 生成器 — �
 - 在真實世界輸入下的行為正確性是原始碼 repo 的責任，而非本 catalog 的責任。
 - 上游 URL 的存活狀態未經機器檢查；在 PR 時手動驗證。
 - CI 不斷言 `claude plugin install` 的往返過程；marketplace registry 經過結構性檢查，但實際的安裝 + 觸發路徑由維護者在版本發布之間進行驗證（關於涵蓋範圍的詳細資訊，請參見 [docs/verification.md](docs/verification.md)）。
-- `zotero-skills` 同時由兩個 plugins 提供（`research-workspace` 嵌入了一個較舊的版本，同時還有一個獨立的、標準的 `zotero-skills` plugin）。直接以名稱調用 `Skill(skill="zotero-skills")` 會靜默解析到 `research-workspace` 中嵌入的副本。要使用標準的獨立版本，需使用 plugin 限定的形式 `Skill(skill="zotero-skills:zotero-skills")`。重現步驟和延後修復的說明請見 [docs/verification.md §2026-05-20](docs/verification.md#2026-05-20--phase-53b-end-to-end-verification)。
+- 目前 `research-workspace` 原始碼的 12 個 skills 已不含 `zotero-skills`，
+  以獨立 plugin 為 canonical。2026-05-20 的同名衝突屬歷史紀錄；
+  舊的 host cache 仍可能保留內嵌版本，請先檢查已安裝狀態，
+  不要把原始碼修正當成本機已更新。詳見 [verification.md](docs/verification.md)。
 
 完整的設計合約 — 包括哪些是機器檢查的，哪些不是 — 請參閱 [docs/design-philosophy.md](docs/design-philosophy.md)。
 

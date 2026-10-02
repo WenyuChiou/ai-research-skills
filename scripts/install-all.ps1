@@ -1,44 +1,28 @@
-# install-all.ps1 — install every plugin in the ai-research-skills
-# Claude Code marketplace in one go.
-#
-# Usage:
-#   pwsh scripts/install-all.ps1
-#   pwsh scripts/install-all.ps1 -Scope project
-#
-# Default scope is `user` (this OS account, all projects). Pass
-# -Scope project to install only for the current project.
-#
-# Prerequisite: Claude Code CLI on PATH (`claude --version`).
-
+# Install all five Claude marketplace plugins; -DryRun prints without changes.
 param(
   [ValidateSet("user", "project", "local")]
-  [string]$Scope = "user"
+  [string]$Scope = "user",
+  [switch]$DryRun
 )
-
 $ErrorActionPreference = "Stop"
-
 $Marketplace = "WenyuChiou/ai-research-skills"
-$Plugins = @(
-  "research-workspace"
-  "academic-writing-skills"
-  "zotero-skills"
-  "codex-delegate"
-  "antigravity-delegate"
-)
-
-if (-not (Get-Command claude -ErrorAction SilentlyContinue)) {
-  Write-Error "'claude' CLI not found on PATH. Install Claude Code first: https://claude.ai/code"
+$Plugins = @("research-workspace", "academic-writing-skills", "zotero-skills", "codex-delegate", "antigravity-delegate")
+function Invoke-Claude {
+  param([string[]]$Arguments)
+  if ($DryRun) {
+    Write-Output ("claude " + ($Arguments -join " "))
+    return
+  }
+  & claude @Arguments
+  # ErrorActionPreference alone does not catch a native executable's failure.
+  if ($LASTEXITCODE -ne 0) { throw "claude failed with exit code $LASTEXITCODE" }
+}
+if (-not $DryRun -and -not (Get-Command claude -ErrorAction SilentlyContinue)) {
+  Write-Error "'claude' CLI not found on PATH. Install Claude Code: https://claude.ai/code"
   exit 1
 }
-
-Write-Host ">> Adding marketplace: $Marketplace"
-claude plugin marketplace add $Marketplace
-
-Write-Host ""
+Invoke-Claude -Arguments @("plugin", "marketplace", "add", $Marketplace)
 foreach ($p in $Plugins) {
-  Write-Host ">> Installing $p (scope: $Scope)"
-  claude plugin install "$p@ai-research-skills" --scope $Scope
+  Invoke-Claude -Arguments @("plugin", "install", "$p@ai-research-skills", "--scope", $Scope)
 }
-
-Write-Host ""
-Write-Host "Done. Run 'claude plugin list' to confirm all 5 plugins show as ✔ enabled."
+if (-not $DryRun) { Write-Output "Done. Run 'claude plugin list' to verify the installed state." }

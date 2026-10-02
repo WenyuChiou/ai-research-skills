@@ -3,6 +3,9 @@
 This catalog is the skill layer. The executable research workflow lives in
 the source repos, especially `research-hub`.
 
+For end-to-end AI-for-science inputs, outputs, quality evidence, and researcher
+decisions at each existing stage, see [scientific lifecycle and quality gates](scientific-lifecycle.md).
+
 ## What Each Layer Does
 
 | Layer | Provides | Does not provide |

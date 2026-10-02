@@ -15,6 +15,9 @@ English: [pipeline.md](pipeline.md)
 有 3 個 skills 不屬於特定階段——它們的觸發條件是 **task 性質**，不是
 pipeline 位置。見最下方的 **Cross-cutting tools**。
 
+每個既有階段的 AI-for-science 輸入、輸出、品質證據與研究者決策，見
+[科學研究生命週期與品質關卡](scientific-lifecycle.zh-TW.md)。
+
 ## 1. 找文獻
 
 > *「這個題目別人做過什麼？我該讀什麼？」*
@@ -66,8 +69,8 @@ skill，請以 Obsidian 作為筆記層。）*
 
 > *「我需要什麼架構、什麼方程式、什麼 agents、什麼 prompt？」*
 
-把 3a 產出的 `design_brief.md` 讀回來當 model spec，再產生
-implementation scaffolding。
+重新讀 3a 的 `design_brief.md` 作為研究設計意圖，先與研究者建立
+專案的實作規格，再產生 scaffolding；design helper 不會發明 model architecture。
 
 | Skill | 用途 |
 |---|---|
@@ -132,6 +135,7 @@ token 重的工作，請用下方 **Cross-cutting tools**——`codex-delegate`
 
 | Skill | 觸發 | 用途 |
 |---|---|---|
+| [`research-workflow-orchestrator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-workflow-orchestrator/SKILL.md) | 可續接多階段 workflow | 協調既有階段、provenance 與明確 human decision gates。 |
 | [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) | token 重的機械性工作 | 把 batch edits、scaffolding、refactor、test 生成、繪圖腳本交給 Codex CLI。 |
 | [`antigravity-delegate`](https://github.com/WenyuChiou/antigravity-delegate/blob/master/skills/antigravity-delegate/SKILL.md) | 有邊界、非誠實性關鍵的機械性工作 | 在 Claude 監督下把範圍明確的機械性 edits 交給 Antigravity CLI。 |
 | [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) | 「這件事該交給誰？」 | Stage-agnostic routing，在 Codex 與 Antigravity leaves 之間產出分工計畫與交接 prompt。 |

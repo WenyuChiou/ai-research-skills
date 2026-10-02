@@ -26,6 +26,29 @@ agent-collab doctor --json
 research-hub doctor --json
 ```
 
+If your configured registry cannot resolve the optional 0.4.0 package, use
+one alternative: the [official release wheel](https://github.com/WenyuChiou/agent-collab-skills/releases/tag/v0.4.0)
+with its recorded SHA-256. The normal registry option remains valid where that
+index serves it; an environment-specific resolution failure does not prove
+global package unavailability.
+
+```bash
+python -m pip install "https://github.com/WenyuChiou/agent-collab-skills/releases/download/v0.4.0/agent_collab_harness-0.4.0-py3-none-any.whl#sha256=991ca9d92ea0efb5a1282a5d616ab84152a7e0ee472af4ed21acb58389ebe22b"
+```
+
+The released 0.5.1 wheel is also recorded in the
+[artifact snapshot](../test-corpus/integration/harness-release-artifacts.json).
+Both isolated SDKs pass the exercised 22-check hub workflow-runtime legacy-v1
+seam. This does not opt into v2 goal-slice/context maintenance, migrate policy,
+create real authorization keys, or change persistent access. Keep source-build,
+installed-runtime capability, and live-host verification separate.
+
+The accepted [agent-collab source 4aa56e4](https://github.com/WenyuChiou/agent-collab-skills/tree/4aa56e47011b15a416f128b5a1c395baae8d0581)
+adds task-content evidence review bound to the run, baseline and independently
+observed candidate; mtime is advisory. Its presets are declarative contracts,
+not an executable acceptance engine in the Python package. This source-doc
+change does not update the released wheels or migrate the exercised v1 seam.
+
 Catalog v3 consumers can run `python scripts/catalog_v3_view.py`; the generated
 view omits optional extensions while preserving the same 17 core skills.
 
