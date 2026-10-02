@@ -1639,7 +1639,7 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
 - `LICENSE` — MIT.
 
 [Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.2...HEAD
-[1.7.2]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.1...v1.7.2
+[1.7.2]: https://github.com/WenyuChiou/ai-research-skills/compare/b58aad47df9f4b699e8b1c405eaa9c231d583bde...v1.7.2
 [1.7.1]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.39...v1.6.0
