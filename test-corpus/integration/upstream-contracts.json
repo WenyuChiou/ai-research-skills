@@ -4,11 +4,11 @@
   "repositories": [
     {
       "repo_url": "https://github.com/WenyuChiou/research-hub",
-      "commit": "a643aceefc52cbf690264a3801e597d787ebd714",
+      "commit": "2368cecc3616f929c052123e25f420cd3732c04e",
       "default_branch": "master",
       "plugin": {
         "name": "research-workspace",
-        "version": "0.5.1"
+        "version": "0.5.2"
       },
       "skills": [
         {
@@ -82,7 +82,7 @@
     },
     {
       "repo_url": "https://github.com/WenyuChiou/zotero-skills",
-      "commit": "5b219747358a16e068f54d139e408d00ddd755f0",
+      "commit": "1668aeb49c77d8e88c4132f7306b17ad69bb8206",
       "default_branch": "master",
       "plugin": {
         "name": "zotero-skills",
@@ -97,11 +97,11 @@
     },
     {
       "repo_url": "https://github.com/WenyuChiou/codex-delegate",
-      "commit": "438f92e4cf9b0607b25109cebfc427d27d5e1942",
+      "commit": "30f6d4ae63935f5b71bd38d4d13466fcff5f33d8",
       "default_branch": "master",
       "plugin": {
         "name": "codex-delegate",
-        "version": "0.1.0"
+        "version": "0.1.1"
       },
       "skills": [
         {
@@ -112,11 +112,11 @@
     },
     {
       "repo_url": "https://github.com/WenyuChiou/antigravity-delegate",
-      "commit": "a9c60d4e40ddc06d0185ad041dcf0fb7bc398744",
+      "commit": "c3afa59263ea02e40df99097ba5a9c4452e887a8",
       "default_branch": "master",
       "plugin": {
         "name": "antigravity-delegate",
-        "version": "0.1.0"
+        "version": "0.1.1"
       },
       "skills": [
         {

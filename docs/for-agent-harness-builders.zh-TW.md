@@ -40,6 +40,11 @@ python -m pip install "https://github.com/WenyuChiou/agent-collab-skills/release
 更改持續存取。Source build、installed-runtime capability、live-host verification
 須分開記錄。
 
+已接受的 [agent-collab source 4aa56e4](https://github.com/WenyuChiou/agent-collab-skills/tree/4aa56e47011b15a416f128b5a1c395baae8d0581)
+補上綁定 run、baseline 與獨立觀察 candidate 的 task-content evidence review；
+mtime 只作提醒。Preset 是 declarative contract，不是 Python package 內的
+executable acceptance engine。這次 source 文件修改不更新已發布 wheel，
+也不遷移已驗證的 v1 seam。
 
 舊 v3 consumer 可執行 `python scripts/catalog_v3_view.py`；輸出會省略選配
 extension，17 個核心 skills 完全不變。

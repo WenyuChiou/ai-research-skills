@@ -169,3 +169,43 @@ def test_optional_harness_fallback_is_official_checksum_bound_and_keeps_registry
         text = (ROOT / f"docs/for-agent-harness-builders{suffix}.md").read_text()
         assert fallback in text
         assert "0.5.1" in text and "v2" in text
+
+
+def test_accepted_source_matrix_matches_commit_bound_snapshot():
+    snapshot = json.loads((ROOT / "test-corpus/integration/upstream-contracts.json").read_text(encoding="utf-8"))
+    for suffix in ("", ".zh-TW"):
+        text = (ROOT / f"docs/system-assessment{suffix}.md").read_text(encoding="utf-8")
+        for source in snapshot["repositories"]:
+            slug = source["repo_url"].rsplit("/", 1)[1]
+            row = next(line for line in text.splitlines() if line.startswith(f"| {slug} |"))
+            assert f"{source['repo_url']}/tree/{source['commit']}" in row
+            assert source["plugin"]["version"] in row
+
+
+def test_source_audit_and_native_comparison_rollout_limits_remain_explicit():
+    for suffix in ("", ".zh-TW"):
+        text = (ROOT / f"docs/system-assessment{suffix}.md").read_text(encoding="utf-8")
+        for term in ("source_audit", "artifact_root", "research-source-audit-1.0.json",
+                     "codex-plugin-cc", "commandExecution", "fileChange"):
+            assert term in text
+
+
+def test_accepted_harness_source_docs_do_not_imply_a_runtime_engine():
+    catalog, _ = consistency._load()
+    evidence = catalog["extensions"][0]["verification"]["evidence"]
+    assert "4aa56e47011b15a416f128b5a1c395baae8d0581" in evidence
+    assert "declarative" in evidence and "mtime" in evidence
+    assert "not a runtime preset engine" in evidence
+
+
+def test_accepted_source_doc_reads_ignore_locale_default_encoding(monkeypatch):
+    original = Path.read_text
+
+    def require_utf8(path, *args, **kwargs):
+        assert kwargs.get("encoding") == "utf-8"
+        return original(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "read_text", require_utf8)
+    test_accepted_source_matrix_matches_commit_bound_snapshot()
+    test_source_audit_and_native_comparison_rollout_limits_remain_explicit()
+    test_accepted_harness_source_docs_do_not_imply_a_runtime_engine()

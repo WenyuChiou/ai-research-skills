@@ -1,5 +1,10 @@
 # 安裝指引
 
+第一次 live model-backed 測試前，先做
+[執行前確認](live-run-preflight.zh-TW.md)：顯示實際 provider/model、auth mode、
+budget 與 data destination，沿用有效 explicit choices；重要選擇缺資料就先詢問，
+不要先呼叫 model。這是 supervisor 契約，不是已安裝的 runtime enforcement hook。
+
 這個 repo 是一份可攜的 `SKILL.md` catalog。Claude Code marketplace 是
 最快的 packaged install path；Codex CLI、Cursor、Gemini CLI、Hermes、
 OpenClaw、Windsurf 或通用 API client 也可以載入同一批 `SKILL.md`。
@@ -269,3 +274,8 @@ cp <repo>/skills/literature-triage-matrix/SKILL.md \
 - `codex-delegate` / `antigravity-delegate` 主要適合 Claude Code 對外
   delegation，處理有邊界的機械性工作；如果你已經在 Codex 或 Antigravity 裡，
   通常直接用目標 skill 即可。
+- 一般 Claude Code-to-Codex 整合，在 runtime 適用時優先使用
+  [官方 plugin](https://github.com/openai/codex-plugin-cc)。已接受的 codex-delegate
+  0.1.1 保留給既有 on-disk brief、result/sentinel 與 Bash/PowerShell 的同步 adapter。
+  不另造 broker，也不代表 coding quality 或 total model cost 較好；
+  [同條件比較的界線](system-assessment.zh-TW.md#同條件比較與限制) 說明驗證範圍。

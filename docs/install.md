@@ -1,5 +1,11 @@
 # Install Guide
 
+Before the first live model-backed test, follow the
+[first-live-run preflight](live-run-preflight.md): show effective provider/model,
+authentication mode, budget and data destination; reuse valid explicit choices,
+and ask missing material choices before calling a model. This is a supervisor
+contract, not an installed runtime enforcement hook.
+
 This repo is a portable `SKILL.md` catalog. Claude Code marketplace is the
 fastest packaged install path, but the same `SKILL.md` files can also be
 loaded by Codex CLI, Cursor, Gemini CLI, Hermes, OpenClaw, Windsurf, or a
@@ -224,6 +230,13 @@ upstream; do not copy only the Markdown file.
 ```bash
 claude plugin install codex-delegate@ai-research-skills
 ```
+
+For normal Claude Code-to-Codex integration, prefer the
+[official plugin](https://github.com/openai/codex-plugin-cc) when its runtime
+fits. Accepted codex-delegate 0.1.1 is a minimal synchronous adapter for existing
+on-disk brief, result/sentinel and Bash/PowerShell workflows. It does not add a
+second broker or establish better coding quality or total model cost; see the
+[comparison boundary](system-assessment.md#comparable-checks-and-limits).
 
 <details>
 <summary>Portable alternative: clone the canonical repository</summary>

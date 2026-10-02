@@ -43,6 +43,11 @@ seam. This does not opt into v2 goal-slice/context maintenance, migrate policy,
 create real authorization keys, or change persistent access. Keep source-build,
 installed-runtime capability, and live-host verification separate.
 
+The accepted [agent-collab source 4aa56e4](https://github.com/WenyuChiou/agent-collab-skills/tree/4aa56e47011b15a416f128b5a1c395baae8d0581)
+adds task-content evidence review bound to the run, baseline and independently
+observed candidate; mtime is advisory. Its presets are declarative contracts,
+not an executable acceptance engine in the Python package. This source-doc
+change does not update the released wheels or migrate the exercised v1 seam.
 
 Catalog v3 consumers can run `python scripts/catalog_v3_view.py`; the generated
 view omits optional extensions while preserving the same 17 core skills.

@@ -19,7 +19,7 @@ extensions:
     compatibility: Legacy v3 consumers can run `python scripts/catalog_v3_view.py`; the extension is omitted and all 17 core skills remain unchanged.
     verification:
       status: locally-verified
-      evidence: v0.4.0 release artifact SHA-256 verified; actual hub workflow-runtime 22/22 checks pass with isolated 0.4.0 and 0.5.1 wheels. This checks the exercised legacy-v1 seam, not v2 migration or live-host behavior.
+      evidence: v0.4.0 release artifact SHA-256 verified; actual hub workflow-runtime 22/22 checks pass with isolated 0.4.0 and 0.5.1 wheels. This checks the exercised legacy-v1 seam, not v2 migration or live-host behavior. Accepted source 4aa56e47011b15a416f128b5a1c395baae8d0581 adds declarative task-content evidence review with advisory mtime, not a runtime preset engine or a new wheel.
     checked_on: "2026-10-02"
 
 families:
@@ -625,11 +625,11 @@ families:
         directory: skills/codex-delegate
         repo_url: https://github.com/WenyuChiou/codex-delegate
         skill_url: https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md
-        purpose: Leaf delegate for token-heavy mechanical coding work — batch edits, test scaffolding, refactors with clear patterns. Claude supervises; Codex CLI executes.
+        purpose: Minimal synchronous Codex CLI compatibility adapter for bounded mechanical work and existing brief/result/sentinel consumers; the supervisor verifies scope and tests.
         use_when:
-          - Batch-edit many files with a clear pattern.
-          - Generate test scaffolding from an implementation.
-          - Apply a deterministic refactor across a codebase.
+          - Preserve an existing .ai brief and result.json/sentinel consumer contract.
+          - Need Bash/PowerShell distribution for a synchronous mechanical task.
+          - Prefer native Codex or official codex-plugin-cc when it already meets the workflow; do not add another broker.
           - Single delegate this round (one Codex session). For two or more delegates same round, route via research-hub-multi-ai instead.
         outputs:
           - Codex task brief at .ai/codex_task_<name>.md

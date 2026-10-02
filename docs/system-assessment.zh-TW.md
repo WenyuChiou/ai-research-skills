@@ -11,14 +11,16 @@ English: [system-assessment.md](system-assessment.md)
 | Source | 核對 commit | 已接受 package / plugin | 契約與驗證邊界 |
 |---|---|---|---|
 | ai-research-skills | [eee76f8](https://github.com/WenyuChiou/ai-research-skills/tree/eee76f87c3f4fbfe3cf6dcab865a657295985e01) | Catalog 1.7.2 / schema 4 | 17 skills、5 source plugins；legacy-v3 view 排除 optional harness；directory 與 marketplace URL/ref 必須解析同一 SKILL.md |
-| research-hub | [a643ace](https://github.com/WenyuChiou/research-hub/tree/a643aceefc52cbf690264a3801e597d787ebd714) | Python/MCP 1.2.0 / research-workspace plugin 0.5.1 | 12 skills；native papers input、provenance/source_records、preview/idempotence；search audit/source fetch；strict ResearchEvidencePacket v1；workflow state/human gates |
+| research-hub | [2368cec](https://github.com/WenyuChiou/research-hub/tree/2368cecc3616f929c052123e25f420cd3732c04e) | Python/MCP 1.2.0 / research-workspace plugin 0.5.2 | 12 skills；native input/provenance/preview；共用 search/evidence 紀律；選配 versioned source-audit sidecar 與 strict packet v1 並存；須檢查 installed runtime |
 | academic-writing-skills | [c28f0de](https://github.com/WenyuChiou/academic-writing-skills/tree/c28f0dedb312e9c99c0e8e15c37464f542471b43) | Plugin 1.2.0 | Scope-aware writing/review、design adapters、manuscript state、exact-candidate gate、跨檔影響與 release blockers；不為了聲稱整合而重寫 |
-| zotero-skills | [5b21974](https://github.com/WenyuChiou/zotero-skills/tree/5b219747358a16e068f54d139e408d00ddd755f0) | Plugin 0.3.0；核對到的最新 tag 0.2.0 | 內層 skill 搭配 root client；不輸出憑證值的 credentials_status；CRUD/restore/merge/attach；manifest/changelog 與 release tag 是不同版本軸 |
-| codex-delegate | [438f92e](https://github.com/WenyuChiou/codex-delegate/tree/438f92e4cf9b0607b25109cebfc427d27d5e1942) | Plugin 0.1.0 | On-disk brief、wrapper status/result、primary acceptance review；核對 source 時 advertised portable wrapper 路徑不存在 |
-| antigravity-delegate | [a9c60d4](https://github.com/WenyuChiou/antigravity-delegate/tree/a9c60d4e40ddc06d0185ad041dcf0fb7bc398744) | Claude plugin 0.1.0 | Bounded mechanical lane、legacy CLI；目前 Google-native plugin 與 Claude marketplace manifest 是不同表面 |
+| zotero-skills | [1668aeb](https://github.com/WenyuChiou/zotero-skills/tree/1668aeb49c77d8e88c4132f7306b17ad69bb8206) | Plugin 0.3.0；核對到的最新 tag 0.2.0 | 內層 skill 搭配 root client；不輸出憑證值的 credentials_status 指引、修正 client/API 名稱；runtime 與 destructive safeguards 不變 |
+| codex-delegate | [30f6d4a](https://github.com/WenyuChiou/codex-delegate/tree/30f6d4ae63935f5b71bd38d4d13466fcff5f33d8) | Plugin 0.1.1 | 內附 Bash/PowerShell wrappers；穩定 brief/result/sentinel adapter；dirty-content observation 與 sandbox forwarding；由 supervisor 驗收，不另造 broker |
+| antigravity-delegate | [c3afa59](https://github.com/WenyuChiou/antigravity-delegate/tree/c3afa59263ea02e40df99097ba5a9c4452e887a8) | Claude plugin 0.1.1 | Bounded mechanical lane；大量輸出達 log 上限後仍等待 producer 完成；Google-native marker 與 Claude manifest 分開；live native-host loading 未驗證 |
 
 機器可讀的公開 source snapshot：
 [upstream-contracts.json](../test-corpus/integration/upstream-contracts.json)。
+Catalog 列記錄已接受 baseline；其他 source 列已納入審查通過的 merge。
+Source accepted 不等於 Python wheel 已發布。
 已接受 source 與 proposed changes 分開記錄。不能因 preview branch 的 local tests
 通過就當成 stable marketplace；未合併的 research-workspace 提案不是已接受執行契約。
 
@@ -30,6 +32,20 @@ Optional governance dependency 維持 `agent-collab-harness` 0.4.0/v1。
 [Builder guide](for-agent-harness-builders.zh-TW.md) 保留 normal registry option，
 另提供 checksum-bound 0.4.0 release fallback；此處的 registry failure 屬環境相依。
 不進行 v2 migration 或建立新的 trust root。
+
+已接受的 [agent-collab source 4aa56e4](https://github.com/WenyuChiou/agent-collab-skills/tree/4aa56e47011b15a416f128b5a1c395baae8d0581)
+補上 task/run/baseline/current-candidate 證據審查，mtime 只作提醒。
+Preset 是 declarative review contract，不是 Python runtime preset engine；
+這次 source 文件修改不會更動兩版已發布 wheel。
+
+Research-workspace 0.5.2 的已接受 source 包含選配 source-audit profile，
+Python package 版本仍是 1.2.0。Plugin 更新不會替換已安裝的 wheel。
+先檢查 `validate_evidence_packet` 的 `source_audit`、`artifact_root` kwargs，
+以及 packaged `research-source-audit-1.0.json`，做法見
+[installed-runtime 指引](https://github.com/WenyuChiou/research-hub/blob/2368cecc3616f929c052123e25f420cd3732c04e/skills/research-hub/references/source-claim-audit.md#optional-executable-source-audit-profile)。
+若不支援，mechanical audit 維持 unavailable，保留 manual/native source review。
+不得呼叫不存在的 kwargs，也不能把 packet-only validity 說成 source audit。
+不能只憑未變更的版本字串推定新能力已存在。
 
 ## 生命週期涵蓋與科學缺口
 
@@ -50,7 +66,7 @@ topic/design dossiers、可續接 state/gates 與 writing/review 證據鏈。仍
 ## 最小分批修改與依賴
 
 1. **Catalog hygiene 與 resolver acceptance。** 修正 15 個 repo-relative directories、
-   同步已接受 research-workspace 0.5.1、替換錯誤的整個 repo→單一 skill 安裝指令、
+   依已接受 manifest 同步 marketplace version、替換錯誤的整個 repo→單一 skill 安裝指令、
    將 Zotero shadowing 標為歷史。Deterministic CI 檢查 path/ref；可用唯讀 checker
    檢查五個真實 source clones。Installer dry-run 可重跑；錯誤 scope/arguments 與
    native failure 在後續指令前停止
@@ -64,11 +80,18 @@ topic/design dossiers、可續接 state/gates 與 writing/review 證據鏈。仍
    與 strict packet v1 並存，不能偷偷插入額外 properties。不搬 AutoResearch
    ledger/operator 或 paid evaluation framework
 4. **已接受整合。** 真實 producer/consumer fixtures 與 legacy contracts、最終 diff
-   review、完整 required suites 後才開 draft PR。Upstream accepted 後，後續 catalog
-   才能宣告新版本 stable。Merge、release、deploy、本機安裝、科學投稿、私有 upload
+   review、完整 required suites 後才開 draft PR。上述 accepted source commits
+   支持同步的 plugin versions 與 snapshot；未合併 preview 仍不能取代它們。
+   Merge、release、deploy、本機安裝、科學投稿、私有 upload
    各自保留授權
 
 ## 同條件比較與限制
+
+第一次 live model-backed 測試前，先用
+[preflight 契約](live-run-preflight.zh-TW.md) 確認實際 host/provider/model、
+subscription 或 API 模式、已批准 budget、data destination/scope。
+沿用有效 explicit choices；缺重要資料或設定有重要變更，先詢問再呼叫 model。
+Fixtures 只規定 supervisor 行為，不代表 runtime 已強制執行。
 
 Catalog regression 使用同一 17-skill 公開 snapshot 與 installer invocations。
 修改前七個 install-contract cases 失敗：directory、nested-repo install guidance、
@@ -80,12 +103,22 @@ Source 行為檢查要執行 actual validator、wrapper、receipt 或 native ing
 mismatch、provider unavailable、fabricated quote。Structural checks、production
 boundary、live host loading、research-quality evaluation 分開報告。
 
-本次雲端可檢查 Codex CLI help/version，未送 live paid model request。
-Claude、Antigravity executables 不存在，實際 marketplace/native-host loading
-未驗證。已找到既有 PowerShell Core 7.6.6 並在 Linux 執行檢查；native Windows
-行為仍未驗證。Synthetic CLI doubles 只測 wrapper，
-不能證明實際 host interoperability。Source-layout audit 不更新 historical
-verification dates/tiers；不宣稱科學研究效能提升。
+一般 Claude Code 整合，在 runtime 適用時優先使用
+[官方 codex-plugin-cc](https://github.com/openai/codex-plugin-cc/tree/db52e28f4d9ded852ab3942cea316258ae4ef346)。
+Codex-delegate 保留給既有 synchronous brief、sidecar/sentinel 與
+Bash/PowerShell adapter 契約，不另造 broker。
+在只有 `commandExecution`、沒有 `fileChange` 的同條件 protocol fixture 中，
+官方 event-derived touched-file list 為空，wrapper 的 Git observation 記錄實際修改。
+三種 adapter 都產生相同的正確 artifact。這是有條件的 observation coverage，
+不代表真實 shell edits 一律不發事件，也不證明 coding quality 或 total model cost 較好。
+兩條路徑都不會單靠 brief 自動強制 scope。
+
+已檢查 Codex CLI help/version、Linux 上實際 PowerShell Core 7.6.6；
+新 head 的 hosted Windows/Linux process fixtures 已通過。
+Claude、Antigravity executables 不存在，marketplace/native-host loading 未驗證。
+尚無成功的 matched live model quality/cost A/B。Synthetic delegate 只測 transport，
+不證明實際 host interoperability 或 sandbox enforcement。
+Source-layout audit 不更新 historical verification dates/tiers；不宣稱科學研究效能提升。
 
 ## 架構與圖像決策
 
