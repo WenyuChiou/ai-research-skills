@@ -13,8 +13,9 @@ Languages: [English](design-philosophy.md) | [繁中](design-philosophy.zh-TW.md
 
 ## What the catalog is
 
-Five plugins that map to 17 SKILL.md files under `~/.claude/skills/`
-after install:
+Five plugins that map to 17 SKILL.md files in the Claude marketplace cache
+after plugin installation; the separate research-hub CLI installer writes to
+the selected host skills directory:
 
 | Plugin | Source repo | What's in it |
 |---|---|---|

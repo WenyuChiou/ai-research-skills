@@ -499,15 +499,11 @@ release-grade OpenClaw verification.
   trigger path is verified by the maintainer between releases (see
   [docs/verification.md](docs/verification.md) for what is and isn't
   covered).
-- `zotero-skills` is shipped by two plugins simultaneously
-  (`research-workspace` embeds an older copy alongside the canonical
-  standalone `zotero-skills` plugin). A bare-name invocation of
-  `Skill(skill="zotero-skills")` resolves silently to the
-  `research-workspace` embedded copy. To reach the canonical
-  standalone, use the plugin-qualified form
-  `Skill(skill="zotero-skills:zotero-skills")`. See
-  [docs/verification.md §2026-05-20](docs/verification.md#2026-05-20--phase-53b-end-to-end-verification)
-  for the reproduction and the deferred fix.
+- Current research-workspace source no longer embeds `zotero-skills`; the
+  standalone plugin is canonical. The bare-name collision in
+  [the 2026-05-20 verification](docs/verification.md#2026-05-20--phase-53b-end-to-end-verification)
+  is historical. Old host caches can differ from current source, so inspect
+  your installed plugin state before treating the source fix as a local update.
 
 The full design contract — including what is and is not machine-checked
 — is in [docs/design-philosophy.md](docs/design-philosophy.md).

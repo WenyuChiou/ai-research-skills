@@ -15,7 +15,7 @@
       "description": "12 research-hub skills: a resumable human-in-the-loop workflow orchestrator plus literature search, comparison, orientation, context compression, design, verified multi-agent routing, NotebookLM verification, paper memory and summaries, Zotero curation, and gap-to-topic decisions.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/research-hub",
-      "version": "0.5.0",
+      "version": "0.5.1",
       "strict": true,
       "source": {
         "source": "url",

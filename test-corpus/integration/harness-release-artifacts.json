@@ -1,0 +1,20 @@
+{
+  "checked_on": "2026-10-02",
+  "verification_scope": "official release bytes and 22 workflow-runtime legacy-v1 checks per SDK; no v2 migration",
+  "artifacts": [
+    {
+      "tag": "v0.4.0",
+      "release_url": "https://github.com/WenyuChiou/agent-collab-skills/releases/tag/v0.4.0",
+      "asset_url": "https://github.com/WenyuChiou/agent-collab-skills/releases/download/v0.4.0/agent_collab_harness-0.4.0-py3-none-any.whl",
+      "sha256": "991ca9d92ea0efb5a1282a5d616ab84152a7e0ee472af4ed21acb58389ebe22b",
+      "bytes": 20219
+    },
+    {
+      "tag": "v0.5.1",
+      "release_url": "https://github.com/WenyuChiou/agent-collab-skills/releases/tag/v0.5.1",
+      "asset_url": "https://github.com/WenyuChiou/agent-collab-skills/releases/download/v0.5.1/agent_collab_harness-0.5.1-py3-none-any.whl",
+      "sha256": "088fb34363a2bc0f434c4863a47ded95c9f51681caf45f028c36a661c937312d",
+      "bytes": 32411
+    }
+  ]
+}

@@ -8,6 +8,9 @@
 產出 source-grounded 摘要、稿子寫在 Word / LaTeX / Markdown。這份
 checklist 對應這個 setup。
 
+每個既有階段的 AI-for-science 輸入、輸出、品質證據與研究者決策，見
+[科學研究生命週期與品質關卡](scientific-lifecycle.zh-TW.md)。
+
 ## 工具速查
 
 確認你現在用的：

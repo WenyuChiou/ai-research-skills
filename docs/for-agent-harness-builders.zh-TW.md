@@ -24,6 +24,23 @@ agent-collab doctor --json
 research-hub doctor --json
 ```
 
+若 configured registry 無法解析 optional 0.4.0 package，可選擇一個替代方案：
+[官方 release wheel](https://github.com/WenyuChiou/agent-collab-skills/releases/tag/v0.4.0)
+與已記錄 SHA-256。若你的 index 提供該 package，原 registry 指令仍可用；
+單一環境解析失敗不能證明 package 全球不可取得。
+
+```bash
+python -m pip install "https://github.com/WenyuChiou/agent-collab-skills/releases/download/v0.4.0/agent_collab_harness-0.4.0-py3-none-any.whl#sha256=991ca9d92ea0efb5a1282a5d616ab84152a7e0ee472af4ed21acb58389ebe22b"
+```
+
+已 release 的 0.5.1 wheel 也記錄在
+[artifact snapshot](../test-corpus/integration/harness-release-artifacts.json)。
+兩個隔離 SDK 均通過 hub workflow-runtime legacy-v1 的 22 個檢查；不代表
+啟用 v2 goal-slice/context maintenance、migrate policy、建立真實授權 key 或
+更改持續存取。Source build、installed-runtime capability、live-host verification
+須分開記錄。
+
+
 舊 v3 consumer 可執行 `python scripts/catalog_v3_view.py`；輸出會省略選配
 extension，17 個核心 skills 完全不變。
 

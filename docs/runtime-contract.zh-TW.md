@@ -3,6 +3,9 @@
 這個 catalog 是 skill layer。真正可執行的研究流程在各 source repo，
 尤其是 `research-hub`。
 
+每個既有階段的 AI-for-science 輸入、輸出、品質證據與研究者決策，見
+[科學研究生命週期與品質關卡](scientific-lifecycle.zh-TW.md)。
+
 ## 每一層負責什麼
 
 | 層級 | 提供 | 不提供 |

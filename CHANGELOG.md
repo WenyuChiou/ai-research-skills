@@ -15,6 +15,32 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Synchronize the already accepted research-workspace plugin 0.5.1, and correct
+  15 repository-relative skill directories to match their canonical SKILL URLs.
+- Replace invalid whole-repository/single-skill install paths; distinguish
+  marketplace cache from CLI extraction and current Zotero source from its
+  historical shadowing/cache issue.
+- Add deterministic directory/ref resolver checks, a read-only actual-upstream
+  contract checker, public commit-bound snapshots and install regressions.
+- Add repeatable no-write installer plans, strict scope/argument parsing and
+  immediate native-failure propagation; PowerShell Core Linux checks are
+  executable, while native Windows behavior remains separately unverified.
+
+### Added
+
+- Preserve optional harness 0.4.0/v1 and its normal registry install, adding an
+  official checksum-bound release-wheel fallback for environment-specific
+  index resolution failures. Isolated 0.4.0 and current 0.5.1 wheels each pass
+  22 legacy workflow-runtime checks; this does not migrate policy or adopt v2.
+- Bilingual source/version assessment and full scientific lifecycle input,
+  output, evidence and researcher-decision gates. Existing eight-stage diagram
+  topology/style are unchanged; the prose table now includes the orchestrator
+  already shown in the canonical graphic.
+- Staged upstream/dependent integration guidance with explicit structural,
+  production-boundary, host-loading and research-quality verification limits.
+
 ## [1.7.2] - 2026-10-01
 
 ### Changed

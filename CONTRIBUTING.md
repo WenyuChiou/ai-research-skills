@@ -105,7 +105,24 @@ What scheduled health checks guard (human review on drift):
   default refs, and archived repository state.
 
 What tests do **not** guard (manual review needed):
-- Cross-skill artifact contract (e.g. `.paper/claims.yml` schema).
+- Scientific validity and full semantic cross-skill artifact compatibility.
+
+Install/source acceptance now has a public commit-bound fixture in
+`test-corpus/integration/upstream-contracts.json`. To check actual producer
+clones without installing or invoking hosts, supply every source:
+
+```bash
+python scripts/check_upstream_contracts.py \
+  --source research-hub=/path/to/research-hub \
+  --source academic-writing-skills=/path/to/academic-writing-skills \
+  --source zotero-skills=/path/to/zotero-skills \
+  --source codex-delegate=/path/to/codex-delegate \
+  --source antigravity-delegate=/path/to/antigravity-delegate
+```
+
+Missing sources fail closed; source layout/manifests are distinct from host
+loading and research quality. Keep accepted snapshots immutable when preparing
+an upstream draft; update stable catalog pins only after upstream acceptance.
 
 ## Automated health report and human repair loop
 

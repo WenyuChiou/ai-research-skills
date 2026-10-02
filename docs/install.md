@@ -53,6 +53,17 @@ claude plugin marketplace add WenyuChiou/ai-research-skills && claude plugin mar
 not verify whether Codex, Cursor, Hermes, OpenClaw, or a generic API client
 has loaded the `SKILL.md` files.
 
+### Preview all-plugin installation without changes
+
+```bash
+bash scripts/install-all.sh --dry-run --scope project
+```
+
+PowerShell: `pwsh scripts/install-all.ps1 -DryRun -Scope project`.
+The plan needs no Claude binary and writes nothing; repeated output is stable.
+This does not prove real-host install idempotence. Actual installation stops on
+the first CLI failure; scope can be user, project, or local.
+
 ## 1. research-hub
 
 Use this if your workflow includes Zotero, Obsidian, NotebookLM, or any useful
@@ -187,17 +198,23 @@ claude plugin install zotero-skills@ai-research-skills
 ```
 
 Use this only if you need deep Zotero operations beyond research-hub's
-pipeline integration. **Note**: the `research-workspace` plugin
-currently ships an embedded copy of `zotero-skills` from research-hub
-that takes precedence by bare name — see `docs/verification.md`
-§2026-05-20 for the workaround until the upstream collision is resolved.
+pipeline integration. The current research-workspace source contains 12
+skills and does not include `zotero-skills`; the standalone plugin is
+canonical. The collision documented in [verification.md](verification.md)
+§2026-05-20 is historical. An old installed cache may still contain that copy;
+inspect its manifest and update through your host before assuming current
+source layout proves local cache state.
 
 <details>
-<summary>Legacy alternative: manual <code>git clone</code></summary>
+<summary>Portable alternative: clone the canonical repository</summary>
 
 ```bash
-git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
+git clone https://github.com/WenyuChiou/zotero-skills
 ```
+
+Load `skills/zotero-skills/SKILL.md` and its bundled resources. For Zotero,
+keep the repository/plugin root `scripts/` directory available as documented
+upstream; do not copy only the Markdown file.
 </details>
 
 ## 4. codex-delegate
@@ -209,11 +226,15 @@ claude plugin install codex-delegate@ai-research-skills
 ```
 
 <details>
-<summary>Legacy alternative: manual <code>git clone</code></summary>
+<summary>Portable alternative: clone the canonical repository</summary>
 
 ```bash
-git clone https://github.com/WenyuChiou/codex-delegate ~/.claude/skills/codex-delegate
+git clone https://github.com/WenyuChiou/codex-delegate
 ```
+
+Load the inner `skills/codex-delegate/` directory and its bundled resources.
+See the upstream version-specific wrapper contract; repository-root cloning
+into one host skill directory does not expose the nested `SKILL.md`.
 </details>
 
 ## 5. antigravity-delegate
@@ -229,11 +250,15 @@ not take over long-context, bilingual/CJK, synthesis, or review work;
 those stay with the primary model.
 
 <details>
-<summary>Legacy alternative: manual <code>git clone</code></summary>
+<summary>Portable alternative: clone the canonical repository</summary>
 
 ```bash
-git clone https://github.com/WenyuChiou/antigravity-delegate ~/.claude/skills/antigravity-delegate
+git clone https://github.com/WenyuChiou/antigravity-delegate
 ```
+
+Load the inner `skills/antigravity-delegate/` directory and its bundled resources.
+See the upstream version-specific wrapper contract; repository-root cloning
+into one host skill directory does not expose the nested `SKILL.md`.
 </details>
 
 ## Suggested Minimal Set

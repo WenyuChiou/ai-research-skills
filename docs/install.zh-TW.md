@@ -52,6 +52,16 @@ claude plugin marketplace add WenyuChiou/ai-research-skills && claude plugin mar
 `claude plugin list` 只驗證 Claude Code marketplace 狀態；它不能代表
 Codex、Cursor、Hermes、OpenClaw 或通用 API client 已經載入 `SKILL.md`。
 
+### 不改動狀態的全 plugin 安裝預覽
+
+```bash
+bash scripts/install-all.sh --dry-run --scope project
+```
+
+PowerShell：`pwsh scripts/install-all.ps1 -DryRun -Scope project`。
+Plan 不需要 Claude binary、不寫檔，重跑輸出一致；不代表 actual host 安裝
+idempotence 已驗證。實際安裝在第一個 CLI failure 停止；scope 可為 user/project/local。
+
 ## 路徑 B — research-hub Python CLI（要 literature pipeline 自動化時加）
 
 使用 Zotero、Obsidian、NotebookLM 或這 3 個任一兩個的組合時用：
