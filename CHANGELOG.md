@@ -15,6 +15,36 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.7.1] - 2026-10-01
+
+### Changed
+
+- **`zotero-skills` plugin pin `0.2.0 → 0.3.0`** in `marketplace.json` (and
+  catalog `metadata.version 1.7.0 → 1.7.1`). The source repo merged PR #6 to
+  `master` (`5b219747`); `.claude-plugin/plugin.json` now reports version
+  0.3.0. Under `ref:master` pinning the `marketplace.json` version string is
+  the only cache-buster, so the pin moves with the source `plugin.json`
+  bump; `check_skill_health.py`'s `plugin_version_drift` check confirms the
+  match. The catalog `description` field was also synced verbatim to the
+  0.3.0 `plugin.json` description.
+
+  Capability changes in 0.3.0:
+
+  | Area | What changed |
+  |---|---|
+  | Credentials | New `credentials_status()` reports which credential source is active. |
+  | Restore | New `restore_item()` / `restore_items()` pull trashed items back out of Zotero trash. |
+  | PDF attach | New `attach_pdf()` writes to a safe, short temp filename, sets a readable title, and raises on failure instead of failing silently. |
+  | Duplicate merge | New `merge_duplicates()` reproduces the core of a Zotero desktop merge over the Web API, not all of it: it refuses a self-merge or child or trashed items, refuses DOI/title mismatches unless `require_same_doi=False`, raises `ZoteroWriteError` naming what already happened if a step fails, and ends by trashing the duplicate (recoverable with `restore_item()`). |
+  | Triggers | 8 more Chinese and 4 more English trigger phrases (merge, attach, download, trash, metadata fixes). |
+
+  `SKILL.md` adds a capability table and a 'Common false negatives' list: an
+  empty shell env var, the read-only `zotero` MCP server (configured
+  separately, not bundled), or the missing merge endpoint is not proof a
+  task is impossible, and a PDF not found yet does not mean a manual
+  download; the key resolves env var, then `~/.claude/.env`, then
+  `config.json`.
+
 ## [1.7.0] - 2026-08-31
 
 ### Added
@@ -1600,7 +1630,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.0...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.1...HEAD
+[1.7.1]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.39...v1.6.0
 [1.5.39]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.5.38...v1.5.39
