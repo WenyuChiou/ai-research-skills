@@ -1,6 +1,6 @@
 # 系統評估與分階段整合
 
-於 **2026-10-02** 核對以下公開 source revisions。這是 AI-for-science
+於 **2026-10-03** 核對以下公開 source revisions。這是 AI-for-science
 生命週期評估，不是自主系統完成研究的證據。Catalog 維持 registry/routing layer；
 production contracts 由各 source repositories 負責。
 
@@ -11,7 +11,7 @@ English: [system-assessment.md](system-assessment.md)
 | Source | 核對 commit | 已接受 package / plugin | 契約與驗證邊界 |
 |---|---|---|---|
 | ai-research-skills | [eee76f8](https://github.com/WenyuChiou/ai-research-skills/tree/eee76f87c3f4fbfe3cf6dcab865a657295985e01) | Catalog 1.7.2 / schema 4 | 17 skills、5 source plugins；legacy-v3 view 排除 optional harness；directory 與 marketplace URL/ref 必須解析同一 SKILL.md |
-| research-hub | [2368cec](https://github.com/WenyuChiou/research-hub/tree/2368cecc3616f929c052123e25f420cd3732c04e) | Python/MCP 1.2.0 / research-workspace plugin 0.5.2 | 12 skills；native input/provenance/preview；共用 search/evidence 紀律；選配 versioned source-audit sidecar 與 strict packet v1 並存；須檢查 installed runtime |
+| research-hub | [7e04638](https://github.com/WenyuChiou/research-hub/tree/7e046383368d85acb8dfbf0d734ecaaae335cf0a) | Python/MCP 1.2.0 / research-workspace plugin 0.5.4 | 12 skills；native input/provenance/preview；選配 source-audit 與 offline direction-review 契約；explicit human topic choice；strict packet v1 不變；須檢查 installed runtime |
 | academic-writing-skills | [c28f0de](https://github.com/WenyuChiou/academic-writing-skills/tree/c28f0dedb312e9c99c0e8e15c37464f542471b43) | Plugin 1.2.0 | Scope-aware writing/review、design adapters、manuscript state、exact-candidate gate、跨檔影響與 release blockers；不為了聲稱整合而重寫 |
 | zotero-skills | [1668aeb](https://github.com/WenyuChiou/zotero-skills/tree/1668aeb49c77d8e88c4132f7306b17ad69bb8206) | Plugin 0.3.0；核對到的最新 tag 0.2.0 | 內層 skill 搭配 root client；不輸出憑證值的 credentials_status 指引、修正 client/API 名稱；runtime 與 destructive safeguards 不變 |
 | codex-delegate | [30f6d4a](https://github.com/WenyuChiou/codex-delegate/tree/30f6d4ae63935f5b71bd38d4d13466fcff5f33d8) | Plugin 0.1.1 | 內附 Bash/PowerShell wrappers；穩定 brief/result/sentinel adapter；dirty-content observation 與 sandbox forwarding；由 supervisor 驗收，不另造 broker |
@@ -38,14 +38,43 @@ Optional governance dependency 維持 `agent-collab-harness` 0.4.0/v1。
 Preset 是 declarative review contract，不是 Python runtime preset engine；
 這次 source 文件修改不會更動兩版已發布 wheel。
 
-Research-workspace 0.5.2 的已接受 source 包含選配 source-audit profile，
+Research-workspace 0.5.4 的已接受 source 保留選配 source-audit profile，
 Python package 版本仍是 1.2.0。Plugin 更新不會替換已安裝的 wheel。
 先檢查 `validate_evidence_packet` 的 `source_audit`、`artifact_root` kwargs，
 以及 packaged `research-source-audit-1.0.json`，做法見
-[installed-runtime 指引](https://github.com/WenyuChiou/research-hub/blob/2368cecc3616f929c052123e25f420cd3732c04e/skills/research-hub/references/source-claim-audit.md#optional-executable-source-audit-profile)。
+[installed-runtime 指引](https://github.com/WenyuChiou/research-hub/blob/7e046383368d85acb8dfbf0d734ecaaae335cf0a/skills/research-hub/references/source-claim-audit.md#optional-executable-source-audit-profile)。
 若不支援，mechanical audit 維持 unavailable，保留 manual/native source review。
 不得呼叫不存在的 kwargs，也不能把 packet-only validity 說成 source audit。
 不能只憑未變更的版本字串推定新能力已存在。
+
+已接受的 [direction-review 契約](https://github.com/WenyuChiou/research-hub/blob/7e046383368d85acb8dfbf0d734ecaaae335cf0a/docs/direction-review-contract.md)
+新增選配 offline `paper direction-check`，檢查呼叫者提供的 records：
+
+- 以 `candidate_version`、`candidate_sha256` 綁定完整 candidate，evidence 綁定
+  實際 source bytes。保留 material-level provenance；local note 不等於原始全文。
+  Publication version 只是記錄，未驗證真偽；explicit unknown 仍是 unknown。
+  Candidate content/version 或 source bytes 改變後須重查，並保留舊 record
+- 涵蓋 data/tool/model/license/cost/premise/validation-path，明列
+  supported/contradicted/unknown/not-applicable。Unknown 須附 bounded next check；
+  理論研究可保留有理由的 not-applicable
+- 在明列的 candidate scope 中加總 resource components；共用工作需 explicit
+  `sharing_basis`。不換算單位，缺 required units、demand 或 capacity 維持 unknown。
+  Stale binding 使當前 resource 結論失效；保留的算術結果僅供診斷
+- `semantic_assessment: not-performed`、`runtime_budget_verification: not-performed`、
+  `human_selection: outside-checker`、`execution_authorized: false`。Exit 0 仍可有
+  unknown、contradiction 或超出預算的 estimates，不是研究核准。Checker 不讀取 Hub
+  configuration、不呼叫 model/network、不寫檔，也不啟動下一階段
+
+沒有 optional review 仍可使用原 dossier 與 standalone design dialogue。
+只有一個 eligible candidate 也不代表可自動 pre-fill design brief：沿用明確的
+prior human selection，否則先問。保留 human edits，替換 provenance 前先詢問。
+Guidance 現在記錄 prospective outcomes/time boundaries、two-occasion 與 vignette
+的 claim limits、適用時的 matched-information comparison、minimum worthwhile gain、
+smallest answerable version 及 nonclaims；固定一週 prototype 不能證明可行性。
+這是 source contract 同步，並非新的品質結果：一組 guidance comparison pair
+結果未定，historical T1 dates/tiers 不變，不宣稱整體科學研究能力提升。
+Plugin 0.5.4 不證明已安裝 Python wheel 支援此 command；使用前檢查實際 CLI
+capability，若不存在就保留原本的 ordinary/manual 路徑。
 
 ## 生命週期涵蓋與科學缺口
 

@@ -1,5 +1,5 @@
 version: 4
-updated: "2026-10-02"
+updated: "2026-10-03"
 catalog_name: ai-research-skills
 description: Curated AI skills for research workflows, literature management, academic writing, and multi-agent delegation.
 
@@ -172,7 +172,7 @@ families:
         directory: skills/research-design-helper
         repo_url: https://github.com/WenyuChiou/research-hub
         skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md
-        purpose: Guide a researcher through 5 Socratic segments (research question sharpening, expected mechanism, identifiability check, validation plan, risk register) and produce .research/design_brief.md. Does NOT write the model spec or invent the research question - guides the human to articulate them.
+        purpose: Guide a researcher through 5 Socratic segments (research question sharpening, expected mechanism, identifiability check, validation plan, risk register) after an explicit human topic choice, and produce .research/design_brief.md. Does NOT write the model spec or invent the research question - guides the human to articulate them.
         use_when:
           - Frame a vague interest into a falsifiable research question.
           - Sharpen a hypothesis before designing a model.
@@ -184,7 +184,7 @@ families:
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          T1 promoted. Output committed to
+          Historical T1 evidence (2026-04-25). Output committed to
           test-corpus/ai-agents-social-interaction/.research/design_brief.md.
           5-segment Socratic dialog completed all sections (no _TODO_
           left): RQ sharpened with concrete falsification condition
@@ -192,17 +192,17 @@ families:
           each with early-warning + mitigation. Skill correctly did not
           invent the RQ (built on Lin & Hou 2026's claim) and did not
           propose model architecture (Stage 4 boundary respected).
-          Plugin v0.3.12 (PR #96) wires the Stage 2 → 3a handoff: new
+          Historical plugin v0.3.12 (PR #96) wired the Stage 2 → 3a handoff:
           Input #2 reads `.research/topic_dossier.gaps.yml` (from
           `gap-to-topic`); new Workflow §0 preamble pre-fills segment 1
           (RQ) from the chosen `gaps[].statement` and segment 5 (risks)
           from `open_questions[]` + the specific concern hinted by
           `gaps[].feasibility`. Segments 2–4 (mechanism / identifiability
           / validation) are never pre-filled — dossier doesn't carry that
-          material. Candidate selection is verdict-aware (filters
-          `gaps[]` to `verdict in {conditional-go, go}`):
-          exactly 1 → auto-pre-fill; 2+ → ask the user; 0 → halt with
-          "nothing to frame". Provenance flows forward via
+          material. That historical test filtered `gaps[]` to
+          `verdict in {conditional-go, go}` and auto-prefilled a sole
+          eligible candidate; this selection rule is superseded by the
+          explicit-choice contract below. Provenance flows forward via
           `design_brief.md` frontmatter (`source`, `gap_verdict`). Pure
           additive: behaviour unchanged when `.gaps.yml` absent. First
           cross-skill handoff integration test ships at
@@ -218,6 +218,22 @@ families:
           the §0 "2+ candidates → ask the user" branch + the optional
           `placeholder_segments: []` frontmatter field so dogfood /
           test-fit content can be machine-flagged for downstream tools.
+          Current accepted source contract (plugin 0.5.4): require explicit
+          human choice before pre-filling, even one eligible candidate;
+          reuse a clear prior selection without asking again. Preserve a
+          chosen no-go option while surfacing its blocking assessment,
+          rather than silently substituting another direction. Missing
+          dossier/review retains the standalone/legacy dialogue. Optional
+          direction-review handoff preserves candidate_version, complete
+          candidate-content hash, review path and unresolved limitations;
+          changed candidate content/version or source bytes require a
+          recheck before reliance. Preserve human edits and ask before
+          replacing provenance. Record claim/time boundaries, an applicable
+          matched-information comparison, minimum worthwhile gain and the
+          smallest answerable version with nonclaims. No fixed prototype
+          duration establishes feasibility. This source-contract sync does
+          not refresh the historical verification date/tier or establish
+          a research-quality improvement.
         lifecycle_status: active
         workflow_stages: [scope, design]
         runtime_mode: instructions
@@ -368,21 +384,24 @@ families:
         directory: skills/gap-to-topic
         repo_url: https://github.com/WenyuChiou/research-hub
         skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md
-        purpose: Turn a research area into a go/no-go decision dossier for one candidate thesis or proposal topic - a 3-gate verdict (gap open? a contribution? feasible?) with the evidence laid out so the researcher can verify it. Stops short of the verdict, handing the worth-it call back to the researcher and advisor.
+        purpose: Turn a research area into a go/no-go decision dossier for candidate thesis or proposal topics, allowing zero or multiple justified options - a 3-gate verdict (gap open? a contribution? feasible?) with the evidence laid out so the researcher can verify it. Hands the final worth-it call and topic choice back to the researcher and advisor.
         use_when:
           - Decide whether a research gap is worth pursuing.
           - Pick a thesis or proposal topic.
           - Check whether a research idea is already taken.
           - Vet a research idea before committing to it.
         outputs:
-          - .research/topic_dossier.md (the 5-section decision dossier)
+          - .research/topic_dossier.md (the 7-section decision memo plus appendices)
+          - .research/topic_dossier.docx (the matching Word deliverable)
           - A .bib companion (the Gate 1 reference list)
           - A .gaps.yml companion (structured gaps + open questions)
+          - An optional .direction-review.json companion (supplied records for offline checks; not required for an ordinary dossier)
         verified_on: "2026-05-21"
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          Dogfood-verified end-to-end 2026-05-21: a run on the topic
+          Historical T1 evidence: dogfood-verified end-to-end 2026-05-21;
+          a run on the topic
           "LLM-generated agent profiles in agent-based models" produced a
           complete five-section topic_dossier.md plus .bib and .gaps.yml
           companions matching the dossier template. The run surfaced one
@@ -426,6 +445,24 @@ families:
           `verdict` / `verdict_reason`. New `downstream_consumer:
           research-design-helper` top-level key as forward-compat hook
           recording the contract reader (Stage 3a wired in v0.3.12).
+          Current accepted source contract (plugin 0.5.4): optional offline
+          `paper direction-check` validates candidate_version and a hash of
+          the complete candidate, plus separate bindings to source bytes,
+          retaining actual material level and recorded publication-version
+          limits. Checks cover
+          data/tool/model/license/cost/premise/validation-path; unknown
+          stays explicit with a bounded next check. Aggregate components
+          only for declared candidate scope, with an explicit sharing basis
+          for shared work and no unit conversion; missing required units,
+          demand or capacity remain unknown. Revisions require rechecking;
+          source provenance and ordinary legacy dossiers remain intact.
+          `human_selection: outside-checker` and `execution_authorized: false`;
+          record validity does not verify semantic support, publication
+          authenticity, scientific feasibility or actual runtime spending.
+          Probe installed CLI capability before use: plugin 0.5.4 does not
+          update an installed Python wheel or establish command availability.
+          This source-contract sync does not refresh the historical T1
+          evidence or establish a research-quality improvement.
         lifecycle_status: active
         workflow_stages: [scope, discover]
         runtime_mode: hybrid

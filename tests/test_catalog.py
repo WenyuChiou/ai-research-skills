@@ -312,3 +312,33 @@ def test_retired_gemini_is_replaced_by_healthy_antigravity_lane():
     assert "gemini-delegate" not in names
     assert "antigravity-delegate" in names
     assert "research-workflow-orchestrator" in names
+
+
+def test_direction_handoff_requires_human_choice_without_refreshing_historical_tiers():
+    data = yaml.safe_load((ROOT / "catalog/skills.yml").read_text(encoding="utf-8"))
+    skills = {skill["name"]: skill for family in data["families"] for skill in family["skills"]}
+    for name, date in (("gap-to-topic", "2026-05-21"), ("research-design-helper", "2026-04-25")):
+        skill = skills[name]
+        assert skill["verified_on"] == date
+        assert skill["verification_tier"] == "T1"
+        assert skill["human_gates"] == ["scope_commitment"]
+        assert "Historical T1 evidence" in skill["verification_notes"]
+        assert "Current accepted source contract (plugin 0.5.4)" in skill["verification_notes"]
+    notes = " ".join(skills["research-design-helper"]["verification_notes"].split())
+    for term in ("explicit human choice", "even one eligible candidate", "clear prior selection",
+                 "standalone/legacy dialogue", "candidate_version", "source bytes", "recheck"):
+        assert term in notes
+    assert "exactly 1 → auto-pre-fill" not in notes
+    assert "superseded" in notes
+
+
+def test_optional_direction_check_is_not_research_or_execution_approval():
+    data = yaml.safe_load((ROOT / "catalog/skills.yml").read_text(encoding="utf-8"))
+    gap = next(skill for family in data["families"] for skill in family["skills"] if skill["name"] == "gap-to-topic")
+    notes = " ".join(gap["verification_notes"].split())
+    for term in ("optional", "paper direction-check", "candidate_version", "complete candidate",
+                 "source bytes", "data/tool/model/license/cost/premise/validation-path",
+                 "unknown", "sharing basis", "no unit conversion", "missing required units",
+                 "human_selection: outside-checker", "execution_authorized: false",
+                 "Probe installed CLI capability", "installed Python wheel"):
+        assert term in notes

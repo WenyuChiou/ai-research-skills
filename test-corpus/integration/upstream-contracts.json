@@ -1,14 +1,14 @@
 {
-  "checked_on": "2026-10-02",
+  "checked_on": "2026-10-03",
   "verification_scope": "source-layout-and-manifest; no live host invocation",
   "repositories": [
     {
       "repo_url": "https://github.com/WenyuChiou/research-hub",
-      "commit": "2368cecc3616f929c052123e25f420cd3732c04e",
+      "commit": "7e046383368d85acb8dfbf0d734ecaaae335cf0a",
       "default_branch": "master",
       "plugin": {
         "name": "research-workspace",
-        "version": "0.5.2"
+        "version": "0.5.4"
       },
       "skills": [
         {

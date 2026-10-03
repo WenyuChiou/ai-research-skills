@@ -182,6 +182,25 @@ def test_accepted_source_matrix_matches_commit_bound_snapshot():
             assert source["plugin"]["version"] in row
 
 
+def test_accepted_direction_review_source_identity_and_install_ref():
+    _, marketplace = consistency._load()
+    snapshot = json.loads((ROOT / "test-corpus/integration/upstream-contracts.json").read_text(encoding="utf-8"))
+    source = next(item for item in snapshot["repositories"] if item["repo_url"].endswith("/research-hub"))
+    assert source["commit"] == "7e046383368d85acb8dfbf0d734ecaaae335cf0a"
+    assert source["plugin"] == {"name": "research-workspace", "version": "0.5.4"}
+    plugin = next(item for item in marketplace["plugins"] if item["name"] == "research-workspace")
+    assert plugin["version"] == source["plugin"]["version"]
+    assert plugin["source"]["ref"] == source["default_branch"] == "master"
+    contract_url = f"{source['repo_url']}/blob/{source['commit']}/docs/direction-review-contract.md"
+    for suffix in ("", ".zh-TW"):
+        text = (ROOT / f"docs/system-assessment{suffix}.md").read_text(encoding="utf-8")
+        for term in (contract_url, "paper direction-check", "candidate_version", "candidate_sha256",
+                     "data/tool/model/license/cost/premise/validation-path", "sharing_basis",
+                     "human_selection: outside-checker", "execution_authorized: false",
+                     "semantic_assessment: not-performed", "runtime_budget_verification: not-performed"):
+            assert term in text
+
+
 def test_source_audit_and_native_comparison_rollout_limits_remain_explicit():
     for suffix in ("", ".zh-TW"):
         text = (ROOT / f"docs/system-assessment{suffix}.md").read_text(encoding="utf-8")

@@ -1,6 +1,6 @@
 # System assessment and staged integration
 
-Checked against the public source revisions below on **2026-10-02**. This is an
+Checked against the public source revisions below on **2026-10-03**. This is an
 AI-for-science lifecycle assessment, not evidence that an autonomous system has
 completed a research project. The catalog remains a registry/routing layer;
 production contracts live in the source repositories.
@@ -12,7 +12,7 @@ production contracts live in the source repositories.
 | Source | Checked commit | Accepted package / plugin | Contract and verification boundary |
 |---|---|---|---|
 | ai-research-skills | [eee76f8](https://github.com/WenyuChiou/ai-research-skills/tree/eee76f87c3f4fbfe3cf6dcab865a657295985e01) | Catalog 1.7.2 / schema 4 | 17 skills, 5 source plugins; optional harness omitted by the legacy-v3 view; source directory and marketplace URL/ref must resolve the same SKILL.md |
-| research-hub | [2368cec](https://github.com/WenyuChiou/research-hub/tree/2368cecc3616f929c052123e25f420cd3732c04e) | Python/MCP package 1.2.0 / research-workspace plugin 0.5.2 | 12 skills; native input/provenance/preview; shared search/evidence discipline; optional versioned source-audit sidecar alongside unchanged strict packet v1; installed runtime must be probed |
+| research-hub | [7e04638](https://github.com/WenyuChiou/research-hub/tree/7e046383368d85acb8dfbf0d734ecaaae335cf0a) | Python/MCP package 1.2.0 / research-workspace plugin 0.5.4 | 12 skills; native input/provenance/preview; optional source-audit and offline direction-review contracts; explicit human topic choice; strict packet v1 unchanged; installed runtime must be probed |
 | academic-writing-skills | [c28f0de](https://github.com/WenyuChiou/academic-writing-skills/tree/c28f0dedb312e9c99c0e8e15c37464f542471b43) | Plugin 1.2.0 | Scope-aware writing/review, design adapters, manuscript state, exact-candidate gate, cross-artifact changes and release blockers; no rewrite needed merely to claim integration |
 | zotero-skills | [1668aeb](https://github.com/WenyuChiou/zotero-skills/tree/1668aeb49c77d8e88c4132f7306b17ad69bb8206) | Plugin 0.3.0; latest checked tag 0.2.0 | Nested skill plus root client; value-free credentials_status guidance and corrected client/API names; runtime and destructive safeguards unchanged |
 | codex-delegate | [30f6d4a](https://github.com/WenyuChiou/codex-delegate/tree/30f6d4ae63935f5b71bd38d4d13466fcff5f33d8) | Plugin 0.1.1 | Bundled Bash/PowerShell wrappers; stable brief/result/sentinel adapter; dirty-content observation and sandbox forwarding; independent supervisor acceptance, not a second broker |
@@ -42,14 +42,48 @@ adds task/run/baseline/current-candidate evidence review and makes mtime advisor
 Its presets are declarative review contracts, not a Python runtime preset
 engine; this source-doc change does not modify either released wheel.
 
-Research-workspace 0.5.2 includes the optional source-audit profile in accepted
+Research-workspace 0.5.4 retains the optional source-audit profile in accepted
 source, while Python package version remains 1.2.0. A plugin update does not
 replace an installed wheel. Probe `validate_evidence_packet` for `source_audit`
 and `artifact_root` kwargs plus packaged `research-source-audit-1.0.json`, as in
-the [installed-runtime instructions](https://github.com/WenyuChiou/research-hub/blob/2368cecc3616f929c052123e25f420cd3732c04e/skills/research-hub/references/source-claim-audit.md#optional-executable-source-audit-profile).
+the [installed-runtime instructions](https://github.com/WenyuChiou/research-hub/blob/7e046383368d85acb8dfbf0d734ecaaae335cf0a/skills/research-hub/references/source-claim-audit.md#optional-executable-source-audit-profile).
 Missing capability remains unavailable for mechanical audit; retain manual/native
 source review instead of calling unsupported kwargs or relabeling packet-only
 validity. Do not infer that capability from the unchanged version string.
+
+The accepted [direction-review contract](https://github.com/WenyuChiou/research-hub/blob/7e046383368d85acb8dfbf0d734ecaaae335cf0a/docs/direction-review-contract.md)
+adds optional offline `paper direction-check` over supplied records:
+
+- Bind `candidate_version` and `candidate_sha256` to the complete candidate,
+  and evidence to actual source bytes. Preserve material-level provenance;
+  a local note is not original full text. Publication version is recorded,
+  not authenticated; explicit unknown remains unknown. Changed candidate
+  content/version or source bytes require rechecking, retaining the old record
+- Cover data/tool/model/license/cost/premise/validation-path with explicit
+  supported/contradicted/unknown/not-applicable assessments. Unknown needs a
+  bounded next check; justified not-applicable remains valid for theoretical work
+- Sum declared resource components across the reviewed candidate scope; shared
+  work needs explicit `sharing_basis`. No unit conversion occurs. Missing
+  required units, demand or capacity remain unknown. Stale bindings invalidate
+  current resource conclusions; supplied arithmetic is only diagnostic
+- `semantic_assessment: not-performed`, `runtime_budget_verification: not-performed`,
+  `human_selection: outside-checker`, `execution_authorized: false`. Exit 0 can
+  include unknowns, contradictions or over-budget estimates. It is not research
+  approval. The checker reads no Hub configuration, calls no model/network,
+  writes no files and starts no next stage
+
+The ordinary dossier and standalone design dialogue still work without the
+optional review. A sole eligible candidate does not authorize pre-filling a
+design brief: use the human's clear prior selection, otherwise ask. Preserve
+human edits and ask before replacing provenance. Guidance now records prospective
+outcomes/time boundaries, two-occasion and vignette claim limits, an applicable
+matched-information comparison, minimum worthwhile gain and the smallest
+answerable version with nonclaims; no fixed one-week prototype establishes
+feasibility. These are source contracts, not a new quality finding: one guidance
+comparison pair was inconclusive, and historical T1 dates/tiers remain unchanged.
+No overall scientific improvement is claimed. Plugin 0.5.4 does not establish
+that an installed Python wheel exposes this command; inspect its actual CLI
+capability before use and keep the ordinary/manual path if unavailable.
 
 ## Lifecycle coverage and remaining scientific gaps
 
