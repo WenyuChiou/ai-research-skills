@@ -29,7 +29,7 @@ Claude Code 的 `Skill()` call 裡:
 - **Qualified name** —— `<plugin>:<skill>` 形式,例如
   `Skill(skill="zotero-skills:zotero-skills")`。兩個 plugin 都 ship 同名
   skill(silent shadowing)時用,明說選哪一個。目前已知一個 case 看
-  [`docs/verification.md` § 找到一個靜默的 skill-name 碰撞](verification.md#找到一個靜默的-skill-name-碰撞zotero-skills)。
+  [`docs/verification.md` § 找到一個靜默的 skill-name 碰撞](verification.md#silent-skill-name-collision-found-zotero-skills)。
 
 ### `.research/` 慣例
 
@@ -92,7 +92,7 @@ generation。需要 `pip install research-hub-pipeline`。上面那層 skill 讓
 對 prompt-based skill 而言,T3 不是「比 T1 弱」—— 是「不同的 check」,
 不是嚴格層級。完整 nuance 看 verification 文件。
 
-目前 catalog 1.7.2 比例：15 個 T1、2 個 T2；每個 skill 的最新記錄以
+目前 catalog 1.7.3 比例：15 個 T1、2 個 T2；每個 skill 的最新記錄以
 `catalog/skills.yml` 的 `verification_notes` 為準。
 Tier 跟 `verification_status`(pass/caveat/fail/not_yet)是兩個獨立 axis ——
 兩個維度描述不同的事。
