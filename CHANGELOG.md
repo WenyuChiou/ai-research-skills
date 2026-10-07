@@ -17,6 +17,12 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Qualify the historical May 22 topic dossier and its bilingual Word/YAML
+  companions: bounded search evidence and neutral scores are not a current
+  novelty finding or researcher selection. Preserve original observations.
+- Align bilingual catalog compatibility counts and explain report-only
+  machine health checks without renewing human verification dates.
+
 - Synchronize the already accepted research-workspace plugin 0.5.1, and correct
   15 repository-relative skill directories to match their canonical SKILL URLs.
 - Replace invalid whole-repository/single-skill install paths; distinguish

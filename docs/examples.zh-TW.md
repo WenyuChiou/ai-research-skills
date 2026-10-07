@@ -171,13 +171,13 @@ Block 落在現有的 `## Key Findings` / `## Methodology` / `## Relevance`
 | `topic_dossier.gaps.yml` | 機器可讀的結構化匯出 — 每個 gap 的 `verdict` / `verdict_reason` / `feasibility` / `dead_end_status` 加上 `open_questions[]`。由 `research-design-helper` v0.3.12+ 讀取以進行 Stage 3a 交接 |
 | `literature_matrix.md` | 逐篇論文比較表 (方法 / 論點 / 證據類型 / 限制 / 相關性) — 由 `literature-triage-matrix` 在 §1 步驟 2 建立 |
 
-**候選者層級的結論** — 每個候選者只會得到三種結果之一：
+**歷史候選者層級的結論** — 2026-05-22 範例依照以下三種標籤的架構撰寫。範例中的結論描述當時的篩選結果，不代表目前的人類選題決定；中立分數本身不等於 gate 通過。
 
 | 結論 | 意義 | `.docx` 中的顏色 |
 |---|---|---|
 | **Do not pursue — as stated** | 至少有一個 gate 未通過 (已被佔據 / 不構成貢獻 / 不可行)。可選的補救路徑。 | Light red |
-| **Worth pursuing — only if its open conditions hold** | 所有三個 gate 都達到中立或更佳，但取決於後續的操作性跟進 (例如，資料集識別、驗證性試點)。 | Light yellow |
-| **Worth pursuing** | 所有三個 gate 都無條件通過。 | Light green |
+| **Worth pursuing — only if its open conditions hold** | 歷史性的有條件建議；檢索、貢獻與可行性仍有待驗證。中立分數不等於接受。 | Light yellow |
+| **Worth pursuing** | 歷史性的正面建議標籤；目前使用仍需證據審查與研究者明確選擇。 | Light green |
 
 **Gate-cell 狀態** — 在每個候選者的 scorecard 內部，單獨的 gate cell 也可以帶有 "skipped" 狀態，當同一候選者中較早的 gate 失敗時 (剩餘的 gate 會被短路)：
 
@@ -185,7 +185,7 @@ Block 落在現有的 `## Key Findings` / `## Methodology` / `## Relevance`
 |---|---|---|
 | `Not assessed` | Gate 被跳過，因為同一個 scorecard 中較早的 gate 已經失敗。適用於 **scorecard 表格內的 cell**，而非候選者層級的結論。 | Light grey |
 
-一個完整的雙語範例，複製自一個真實的 dogfood 執行 (LLM 在水資源中的應用，評估了兩個候選者，一個 `do-not-pursue` + 一個 `conditional-go`)，作為以下檔案包含在此 repo 中：
+以下雙語歷史範例來自 2026-05-22 的 dogfood 執行（LLM 在水資源中的應用，兩個候選者，一個 `no-go`、一個 `conditional-go`）。原始檢索日期、數量、分數與機器可讀結論均保留，並以註記區分目前的未知事項；沒有宣稱已重新檢索或完成人類選題。
 
 - [`example-topic-dossier.md`](example-topic-dossier.md) / [`.docx`](example-topic-dossier.docx)
 - [`example-topic-dossier.bib`](example-topic-dossier.bib)

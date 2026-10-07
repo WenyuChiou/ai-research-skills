@@ -411,7 +411,7 @@ Stage 2 dossier 跟 Stage 1–2 文獻回顧交付物有 `.docx` 生成器 — �
 
 | 層級 | 可攜內容 | 狀態 |
 |---|---|---|
-| 通用 `SKILL.md` 層 | Skill instructions、trigger descriptions、references、scripts，以及 project handoff contracts | 17/17 通過最低規格要求 (`name` + `description`, ≤500 行) |
+| 通用 `SKILL.md` 層 | Skill instructions、trigger descriptions、references、scripts，以及 project handoff contracts | 收錄 17 個 skills；既有原始碼路徑／manifest 檢查不代表 live host 行為已驗證 |
 | Host-specific 行為 | 自動觸發、plugin marketplace 安裝、`claude plugin list`、skill discovery、rules-directory 慣例 | 依 agent host 而定；請使用該 host 自己的 list / discovery 檢查 |
 | 目前 portability audit | 通用 `SKILL.md`-loading hosts | 2026-05-10 審核中 11/14 可零編輯移植；3/14 只需要外觀性的 `<skill-root>` 路徑修改，且已完成 |
 | 已驗證 host install | NousResearch/hermes-agent 0.13.0 | `literature-triage-matrix` 已端到端安裝，安全掃描 SAFE，註冊為 `enabled`；Hermes inference loop 尚未測試 |
@@ -433,7 +433,7 @@ Stage 2 dossier 跟 Stage 1–2 文獻回顧交付物有 `.docx` 生成器 — �
 - 由一位研究生研究員組裝和測試；未經大規模語料庫驗證。
 - 領域偏向水資源和代理人基模擬；未在社會科學、機器學習或臨床寫作領域進行驗證。
 - 在真實世界輸入下的行為正確性是原始碼 repo 的責任，而非本 catalog 的責任。
-- 上游 URL 的存活狀態未經機器檢查；在 PR 時手動驗證。
+- 每月 report-only health／drift 檢查會檢視上游 repositories、manifests、skill URLs 與驗證日期。HTTP 回應成功或原始碼路徑檢查通過，不代表 live host 行為已驗證，也不會更新人工驗證日期；未解決的發現仍需人工審查。
 - CI 不斷言 `claude plugin install` 的往返過程；marketplace registry 經過結構性檢查，但實際的安裝 + 觸發路徑由維護者在版本發布之間進行驗證（關於涵蓋範圍的詳細資訊，請參見 [docs/verification.md](docs/verification.md)）。
 - 目前 `research-workspace` 原始碼的 12 個 skills 已不含 `zotero-skills`，
   以獨立 plugin 為 canonical。2026-05-20 的同名衝突屬歷史紀錄；
