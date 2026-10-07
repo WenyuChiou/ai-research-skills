@@ -462,7 +462,7 @@ way to use the skills.
 
 | Layer | What is portable | Status |
 |---|---|---|
-| Universal `SKILL.md` layer | Skill instructions, trigger descriptions, references, scripts, and project handoff contracts | 16/16 pass strict-minimum spec (`name` + `description`, ≤500 lines) |
+| Universal `SKILL.md` layer | Skill instructions, trigger descriptions, references, scripts, and project handoff contracts | 17 catalogued skills; recorded source-layout/manifest checks do not establish live host behavior |
 | Host-specific behavior | Auto-triggering, plugin marketplace install, `claude plugin list`, skill discovery, and rules-directory conventions | Depends on the agent host; use that host's own list/discovery check |
 | Current portability audit | Generic `SKILL.md`-loading hosts | 11/14 zero-edit portable in the 2026-05-10 audit; 3/14 needed cosmetic `<skill-root>` path edits that have since landed |
 | Verified host install | NousResearch/hermes-agent 0.13.0 | `literature-triage-matrix` installed end to end, security scan SAFE, registered `enabled`; Hermes inference loop not tested |
@@ -470,9 +470,9 @@ way to use the skills.
 | Other agents | Codex CLI, Gemini CLI, Cursor, Windsurf, generic API clients, and other `SKILL.md`-loading hosts | Load the same `SKILL.md` as context or into the host's skill/rules directory; not all hosts are individually tested |
 
 The `11/14` portability figure reflects the audit run on 2026-05-10,
-when the catalog had 14 skills; `gap-to-topic` (added 2026-05-21) and
-`paper-review` (added 2026-08-02 as the 16th) are not yet
-portability-audited.
+when the catalog had 14 skills. Later additions (`gap-to-topic`,
+`paper-review`, `research-workflow-orchestrator`, and `antigravity-delegate`)
+have separate catalog records and were not part of that portability audit.
 
 Calibrated audit + experiment transcripts:
 [`.research/hermes-compatibility-audit.md`](.research/hermes-compatibility-audit.md).
@@ -493,7 +493,10 @@ release-grade OpenClaw verification.
   validated for social sciences, ML, or clinical writing.
 - Behavioral correctness on real-world inputs is the source repo's
   responsibility, not this catalog's.
-- Upstream URL liveness is not machine-checked; verified manually on PRs.
+- Report-only monthly health/drift checks inspect upstream repositories,
+  manifests, skill URLs, and verification-age records. A successful HTTP
+  response or source-layout check does not establish live host behavior or
+  renew a human verification date; unresolved findings need human review.
 - No `claude plugin install` round-trip is asserted by CI; the
   marketplace registry is checked structurally, the actual install +
   trigger path is verified by the maintainer between releases (see

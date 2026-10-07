@@ -188,13 +188,16 @@ the broader area to search (*"LLM applications in water resources"*).
 | `topic_dossier.gaps.yml` | Machine-readable structured export — per-gap `verdict` / `verdict_reason` / `feasibility` / `dead_end_status` plus `open_questions[]`. Read by `research-design-helper` v0.3.12+ for Stage 3a handoff |
 | `literature_matrix.md` | Paper-by-paper comparison table (method / claim / evidence type / limitation / relevance) — built by `literature-triage-matrix` as §1 step 2 |
 
-**Candidate-level verdict** — each candidate gets exactly one of three outcomes:
+**Historical candidate-level verdicts** — the 2026-05-22 example was
+written against the three-label scheme below. Its verdicts describe that
+screening run, not a current
+researcher selection. Neutral scores do not by themselves clear a gate.
 
 | Verdict | Meaning | Color in `.docx` |
 |---|---|---|
 | **Do not pursue — as stated** | At least one gate fails (occupied / not a contribution / not feasible). Salvage path optional. | Light red |
-| **Worth pursuing — only if its open conditions hold** | All three gates clear at neutral or better, but conditional on operational follow-ups (e.g. dataset identification, validation pilot). | Light yellow |
-| **Worth pursuing** | All three gates clear unconditionally. | Light green |
+| **Worth pursuing — only if its open conditions hold** | Historical conditional recommendation; unresolved search, contribution, and feasibility checks remain. A neutral score is not acceptance. | Light yellow |
+| **Worth pursuing** | Historical label for a positive recommendation; current use still requires evidence review and explicit researcher selection. | Light green |
 
 **Gate-cell status** — inside the per-candidate scorecard, individual gate cells can also carry a "skipped" status when an earlier gate in the same candidate fails (the remaining gates are short-circuited):
 
@@ -202,9 +205,11 @@ the broader area to search (*"LLM applications in water resources"*).
 |---|---|---|
 | `Not assessed` | Gate skipped because an earlier gate in the same scorecard already failed. Applies to **cells inside the scorecard table**, NOT to candidate-level verdicts. | Light grey |
 
-A complete bilingual example, copied from a real dogfood run (LLM
-applications in water resources, two candidates evaluated, one
-`do-not-pursue` + one `conditional-go`), ships in this repo as:
+A bilingual historical example from the 2026-05-22 dogfood run (LLM
+applications in water resources, two candidates, one `no-go` + one
+`conditional-go`) ships below. The original search date, counts, scores,
+and machine-readable verdicts are retained; annotations distinguish them
+from current unknowns. No new search or human selection is claimed.
 
 - [`example-topic-dossier.md`](example-topic-dossier.md) / [`.docx`](example-topic-dossier.docx)
 - [`example-topic-dossier.bib`](example-topic-dossier.bib)

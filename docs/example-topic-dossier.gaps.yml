@@ -2,6 +2,33 @@ dossier: LLM applications in water resources
 generated: "2026-05-22"
 run_type: gap-to-topic re-test (research-hub plugin v0.3.6 — §1 applies search --screen)
 downstream_consumer: research-design-helper   # v0.3.11+ contract reader (Stage 3a)
+record_status: historical-screening-example
+interpretation_context:
+  historical_search_date: "2026-05-22"
+  legacy_fields: >-
+    The gap statuses, scores described in the companion dossier, verdicts,
+    reasons, and open questions below preserve the original screening record.
+    They are historical assertions, not a current reassessment or human
+    topic-selection decision. In particular, G2's open and conditional-go
+    labels do not establish present openness or authorize downstream selection.
+  bounded_absence: >-
+    No matching G2 implementation was identified in the selected 13-paper
+    corpus. Absence from that corpus is not proof of absence from the wider
+    literature. The 435 retrieved and 25 screened counts are not exhaustive
+    coverage guarantees; adding a search backend cannot guarantee full recall.
+  neutral_scores: >-
+    The original 3/5 neutral scores indicate unresolved evidence. They do not
+    mean that a gate passed or that contribution and feasibility were verified.
+  current_status: unknown
+  new_search_performed: false
+  current_feasibility_verified: false
+  researcher_selection:
+    status: not-recorded
+    selected_gap_id: null
+    requirement: >-
+      A researcher must explicitly select, revise, defer, or reject a candidate
+      after reviewing updated evidence and unresolved conditions, with advisor
+      input as appropriate. A historical conditional-go is not that selection.
 recall:
   tool: research-hub search --adversarial --screen --json
   query_phrasings: 6
