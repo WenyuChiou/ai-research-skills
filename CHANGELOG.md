@@ -41,6 +41,15 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.4] - 2026-10-07
+
+### Changed
+
+- Synchronize the `academic-writing-skills` marketplace version from 1.3.4 to
+  1.3.6 for the released first-draft execution and handoff acceptance checks.
+  Its source remains upstream `main`; plugin names, refs, other versions, and
+  existing unreleased catalog changes are unchanged.
+
 ## [1.7.3] - 2026-10-05
 
 ### Changed
@@ -1673,7 +1682,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.3...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.4...HEAD
+[1.7.4]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.3...v1.7.4
 [1.7.3]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.2...v1.7.3
 [1.7.2]: https://github.com/WenyuChiou/ai-research-skills/compare/b58aad47df9f4b699e8b1c405eaa9c231d583bde...v1.7.2
 [1.7.1]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.0...v1.7.1

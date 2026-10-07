@@ -6,7 +6,7 @@ completed a research project. The catalog remains a registry/routing layer;
 production contracts live in the source repositories.
 
 The academic-writing-skills row and snapshot were refreshed to the reviewed
-1.3.4 release on 2026-10-05. Other source identities retain the assessment above.
+1.3.6 release on 2026-10-07. Other source identities retain the assessment above.
 
 繁中: [system-assessment.zh-TW.md](system-assessment.zh-TW.md)
 
@@ -16,7 +16,7 @@ The academic-writing-skills row and snapshot were refreshed to the reviewed
 |---|---|---|---|
 | ai-research-skills | [eee76f8](https://github.com/WenyuChiou/ai-research-skills/tree/eee76f87c3f4fbfe3cf6dcab865a657295985e01) | Catalog 1.7.2 / schema 4 | 17 skills, 5 source plugins; optional harness omitted by the legacy-v3 view; source directory and marketplace URL/ref must resolve the same SKILL.md |
 | research-hub | [7e04638](https://github.com/WenyuChiou/research-hub/tree/7e046383368d85acb8dfbf0d734ecaaae335cf0a) | Python/MCP package 1.2.0 / research-workspace plugin 0.5.4 | 12 skills; native input/provenance/preview; optional source-audit and offline direction-review contracts; explicit human topic choice; strict packet v1 unchanged; installed runtime must be probed |
-| academic-writing-skills | [66a35fc](https://github.com/WenyuChiou/academic-writing-skills/tree/66a35fcf8d6d8996364572650ba79c0c4259b7c1) | Plugin 1.3.4 | Scope-aware writing/review, design adapters, manuscript state, exact-candidate gate, cross-artifact changes and release blockers; no rewrite needed merely to claim integration |
+| academic-writing-skills | [8a5de83](https://github.com/WenyuChiou/academic-writing-skills/tree/8a5de8324c9761b89c681745967833f08e2c3061) | Plugin 1.3.6 | Scope-aware writing/review and first-draft handoff checks; optional coverage/hash validation is not editorial or scientific certification; no live host update is established here |
 | zotero-skills | [1668aeb](https://github.com/WenyuChiou/zotero-skills/tree/1668aeb49c77d8e88c4132f7306b17ad69bb8206) | Plugin 0.3.0; latest checked tag 0.2.0 | Nested skill plus root client; value-free credentials_status guidance and corrected client/API names; runtime and destructive safeguards unchanged |
 | codex-delegate | [30f6d4a](https://github.com/WenyuChiou/codex-delegate/tree/30f6d4ae63935f5b71bd38d4d13466fcff5f33d8) | Plugin 0.1.1 | Bundled Bash/PowerShell wrappers; stable brief/result/sentinel adapter; dirty-content observation and sandbox forwarding; independent supervisor acceptance, not a second broker |
 | antigravity-delegate | [c3afa59](https://github.com/WenyuChiou/antigravity-delegate/tree/c3afa59263ea02e40df99097ba5a9c4452e887a8) | Claude plugin 0.1.1 | Bounded mechanical lane; capped-log producer completion; minimal Google-native marker distinct from the Claude manifest; live native-host loading unverified |
