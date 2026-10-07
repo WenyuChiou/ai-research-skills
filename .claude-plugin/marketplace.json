@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Catalog of AI skills for the research workflow — researcher-led, AI-assisted",
-    "version": "1.7.4"
+    "version": "1.7.5"
   },
   "plugins": [
     {
@@ -41,7 +41,7 @@
       "description": "Full Zotero CRUD: search, add, update, tag, trash/restore, delete, merge duplicates, and attach PDFs via pyzotero. Dual local/Web API routing; writes work even when the separately configured zotero MCP server is read-only.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/zotero-skills",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "strict": true,
       "source": {
         "source": "url",

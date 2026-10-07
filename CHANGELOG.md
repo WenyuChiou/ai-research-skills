@@ -47,6 +47,24 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.5] - 2026-10-07
+
+### Changed
+
+- **`zotero-skills` plugin pin `0.3.0 → 0.3.1`** in `marketplace.json` (and
+  catalog `metadata.version 1.7.4 → 1.7.5`). The source repo merged PR #8 to
+  `master` (`f5772f8b`); `.claude-plugin/plugin.json` now reports version
+  0.3.1. Under `ref:master` pinning the `marketplace.json` version string is
+  the only cache-buster, so the pin moves with the source `plugin.json`
+  bump; `check_skill_health.py`'s `plugin_version_drift` check confirms the
+  match. The catalog `description` field is already verbatim-identical to
+  the 0.3.1 `plugin.json` description, so no text change was needed there.
+
+### Fixed
+
+- zotero-skills 0.3.1: attach_pdf sends a bare filename; it failed on every
+  call in 0.3.0 (WenyuChiou/zotero-skills#8).
+
 ## [1.7.4] - 2026-10-07
 
 ### Changed
@@ -1688,7 +1706,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.4...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.5...HEAD
+[1.7.5]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.4...v1.7.5
 [1.7.4]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.3...v1.7.4
 [1.7.3]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.2...v1.7.3
 [1.7.2]: https://github.com/WenyuChiou/ai-research-skills/compare/b58aad47df9f4b699e8b1c405eaa9c231d583bde...v1.7.2
