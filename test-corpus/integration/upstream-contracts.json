@@ -1,6 +1,6 @@
 {
   "checked_on": "2026-10-03",
-  "verification_scope": "source-layout-and-manifest; academic-writing-skills refreshed on 2026-10-07; other source identities retained from the 2026-10-03 snapshot; no live host invocation",
+  "verification_scope": "source-layout-and-manifest; academic-writing-skills refreshed on 2026-10-07; zotero-skills refreshed on 2026-10-07; other source identities retained from the 2026-10-03 snapshot; no live host invocation",
   "repositories": [
     {
       "repo_url": "https://github.com/WenyuChiou/research-hub",
@@ -82,11 +82,11 @@
     },
     {
       "repo_url": "https://github.com/WenyuChiou/zotero-skills",
-      "commit": "1668aeb49c77d8e88c4132f7306b17ad69bb8206",
+      "commit": "f5772f8b62410858d41436efe11e85529b5dee8c",
       "default_branch": "master",
       "plugin": {
         "name": "zotero-skills",
-        "version": "0.3.0"
+        "version": "0.3.1"
       },
       "skills": [
         {

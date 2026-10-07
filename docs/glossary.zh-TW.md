@@ -92,7 +92,7 @@ generation。需要 `pip install research-hub-pipeline`。上面那層 skill 讓
 對 prompt-based skill 而言,T3 不是「比 T1 弱」—— 是「不同的 check」,
 不是嚴格層級。完整 nuance 看 verification 文件。
 
-目前 catalog 1.7.4 比例：15 個 T1、2 個 T2；每個 skill 的最新記錄以
+目前 catalog 1.7.5 比例：15 個 T1、2 個 T2；每個 skill 的最新記錄以
 `catalog/skills.yml` 的 `verification_notes` 為準。
 Tier 跟 `verification_status`(pass/caveat/fail/not_yet)是兩個獨立 axis ——
 兩個維度描述不同的事。

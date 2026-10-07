@@ -5,7 +5,8 @@
 production contracts 由各 source repositories 負責。
 
 academic-writing-skills 列與 snapshot 已於 2026-10-07 更新至審查通過的
-1.3.6 release；其他 source identities 保留上述評估。
+1.3.6 release；zotero-skills 列與 snapshot 已於 2026-10-07 更新至審查通過的
+0.3.1 release；其他 source identities 保留上述評估。
 
 English: [system-assessment.md](system-assessment.md)
 
@@ -16,7 +17,7 @@ English: [system-assessment.md](system-assessment.md)
 | ai-research-skills | [eee76f8](https://github.com/WenyuChiou/ai-research-skills/tree/eee76f87c3f4fbfe3cf6dcab865a657295985e01) | Catalog 1.7.2 / schema 4 | 17 skills、5 source plugins；legacy-v3 view 排除 optional harness；directory 與 marketplace URL/ref 必須解析同一 SKILL.md |
 | research-hub | [7e04638](https://github.com/WenyuChiou/research-hub/tree/7e046383368d85acb8dfbf0d734ecaaae335cf0a) | Python/MCP 1.2.0 / research-workspace plugin 0.5.4 | 12 skills；native input/provenance/preview；選配 source-audit 與 offline direction-review 契約；explicit human topic choice；strict packet v1 不變；須檢查 installed runtime |
 | academic-writing-skills | [8a5de83](https://github.com/WenyuChiou/academic-writing-skills/tree/8a5de8324c9761b89c681745967833f08e2c3061) | Plugin 1.3.6 | Scope-aware writing/review 與初稿交付檢查；選用的 coverage/hash 驗證不是編輯或科學認證；此處不代表 live host 已更新 |
-| zotero-skills | [1668aeb](https://github.com/WenyuChiou/zotero-skills/tree/1668aeb49c77d8e88c4132f7306b17ad69bb8206) | Plugin 0.3.0；核對到的最新 tag 0.2.0 | 內層 skill 搭配 root client；不輸出憑證值的 credentials_status 指引、修正 client/API 名稱；runtime 與 destructive safeguards 不變 |
+| zotero-skills | [f5772f8](https://github.com/WenyuChiou/zotero-skills/tree/f5772f8b62410858d41436efe11e85529b5dee8c) | Plugin 0.3.1；核對到的最新 tag 0.2.0 | 內層 skill 搭配 root client；attach_pdf 改用 upload_attachments(basedir=...) 傳送單純檔名，修正 0.3.0 每次呼叫都失敗的 HTTP 400；runtime 與 destructive safeguards 不變 |
 | codex-delegate | [30f6d4a](https://github.com/WenyuChiou/codex-delegate/tree/30f6d4ae63935f5b71bd38d4d13466fcff5f33d8) | Plugin 0.1.1 | 內附 Bash/PowerShell wrappers；穩定 brief/result/sentinel adapter；dirty-content observation 與 sandbox forwarding；由 supervisor 驗收，不另造 broker |
 | antigravity-delegate | [c3afa59](https://github.com/WenyuChiou/antigravity-delegate/tree/c3afa59263ea02e40df99097ba5a9c4452e887a8) | Claude plugin 0.1.1 | Bounded mechanical lane；大量輸出達 log 上限後仍等待 producer 完成；Google-native marker 與 Claude manifest 分開；live native-host loading 未驗證 |
 
