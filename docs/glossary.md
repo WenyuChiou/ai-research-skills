@@ -110,7 +110,7 @@ For prompt-based skills, T3 is "not weaker" than T1 — they're
 qualitatively different checks rather than a strict hierarchy. See
 the verification doc for the full nuance.
 
-Current catalog 1.7.5 mix: 15 at T1, 2 at T2. The latest per-skill
+Current catalog 1.7.6 mix: 15 at T1, 2 at T2. The latest per-skill
 evidence is recorded in `catalog/skills.yml` `verification_notes`.
 Tier is independent of `verification_status`
 (pass/caveat/fail/not_yet) — the two axes describe different things.
