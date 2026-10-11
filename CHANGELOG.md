@@ -15,6 +15,13 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Synchronize the academic-writing-skills marketplace cache version and
+  source-contract snapshot to upstream 1.3.9 at `edc5ede`. The reviewed source
+  strengthens sentence-to-sentence continuity checks and limitation triage;
+  this catalog sync does not verify local installation or live host loading.
+
 ### Fixed
 
 - Qualify the historical May 22 topic dossier and its bilingual Word/YAML

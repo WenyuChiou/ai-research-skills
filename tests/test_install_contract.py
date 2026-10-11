@@ -6,6 +6,7 @@ checker can additionally inspect supplied real clones without installing them.
 from pathlib import Path
 import json
 import os
+import shutil
 import subprocess
 
 import pytest
@@ -14,6 +15,39 @@ import yaml
 from scripts import check_marketplace_consistency as consistency
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _bash_executable():
+    """Select a shell whose path conventions match the test arguments."""
+    if os.name == "nt":
+        roots = []
+        git = shutil.which("git")
+        if git:
+            roots.extend((Path(git).resolve().parent, *Path(git).resolve().parents))
+        for variable in ("ProgramFiles", "ProgramFiles(x86)"):
+            if os.environ.get(variable):
+                roots.append(Path(os.environ[variable]) / "Git")
+        for root in roots:
+            candidate = root / "usr" / "bin" / "bash.exe"
+            if candidate.is_file():
+                return str(candidate)
+        raise RuntimeError(
+            "Windows Bash contract tests require Git for Windows Bash "
+            "(usr/bin/bash.exe); WSL's bash launcher uses different path conventions."
+        )
+    return shutil.which("bash") or "bash"
+
+
+def _bash_script_arg(path: Path) -> str:
+    """Pass a MSYS-friendly absolute path when Python runs on Windows."""
+    if os.name == "nt":
+        drive, tail = os.path.splitdrive(str(path))
+        if drive:
+            return f"/{drive[0].lower()}{tail.replace(os.sep, '/')}"
+    return str(path)
+
+
+_BASH = _bash_executable()
 
 
 def test_catalog_directories_and_marketplace_match_checked_upstreams():
@@ -45,7 +79,7 @@ def test_canonical_installs_do_not_clone_nested_repo_as_a_single_skill():
 
 def test_bash_dry_run_is_repeatable_without_cli_or_mutation(tmp_path):
     env = dict(os.environ, HOME=str(tmp_path))
-    command = ["bash", str(ROOT / "scripts/install-all.sh"), "--dry-run", "--scope", "project"]
+    command = [_BASH, _bash_script_arg(ROOT / "scripts/install-all.sh"), "--dry-run", "--scope", "project"]
     first = subprocess.run(command, env=env, cwd=tmp_path, capture_output=True, text=True)
     second = subprocess.run(command, env=env, cwd=tmp_path, capture_output=True, text=True)
     assert first.returncode == second.returncode == 0, first.stderr
@@ -57,7 +91,7 @@ def test_bash_dry_run_is_repeatable_without_cli_or_mutation(tmp_path):
 
 @pytest.mark.parametrize("args", [["--scope"], ["--scope", "invalid"], ["--unknown"], ["--dry-run", "trailing"]])
 def test_bash_rejects_invalid_arguments_before_cli(args, tmp_path):
-    result = subprocess.run(["bash", str(ROOT / "scripts/install-all.sh"), *args], cwd=tmp_path, capture_output=True, text=True)
+    result = subprocess.run([_BASH, _bash_script_arg(ROOT / "scripts/install-all.sh"), *args], cwd=tmp_path, capture_output=True, text=True)
     assert result.returncode == 2
     assert "argument" in result.stderr or "scope" in result.stderr
 
@@ -93,8 +127,8 @@ def test_installer_stops_on_first_failed_native_command(tmp_path):
     fake = tmp_path / "claude"
     fake.write_text('#!/bin/sh\nprintf "%s\\n" "$*" >> "$HOME/calls"\nexit 17\n')
     fake.chmod(0o755)
-    env = dict(os.environ, HOME=str(tmp_path), PATH=f"{tmp_path}:{os.environ['PATH']}")
-    result = subprocess.run(["bash", str(ROOT / "scripts/install-all.sh")], env=env, cwd=tmp_path, capture_output=True, text=True)
+    env = dict(os.environ, HOME=str(tmp_path), PATH=os.pathsep.join((str(tmp_path), os.environ["PATH"])))
+    result = subprocess.run([_BASH, _bash_script_arg(ROOT / "scripts/install-all.sh")], env=env, cwd=tmp_path, capture_output=True, text=True)
     assert result.returncode == 17
     assert (tmp_path / "calls").read_text().splitlines() == ["plugin marketplace add WenyuChiou/ai-research-skills"]
 
