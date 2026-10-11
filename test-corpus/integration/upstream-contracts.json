@@ -1,6 +1,6 @@
 {
-  "checked_on": "2026-10-03",
-  "verification_scope": "source-layout-and-manifest; academic-writing-skills refreshed on 2026-10-07; zotero-skills refreshed on 2026-10-07; other source identities retained from the 2026-10-03 snapshot; no live host invocation",
+  "checked_on": "2026-10-11",
+  "verification_scope": "source-layout-and-manifest; academic-writing-skills refreshed on 2026-10-11; zotero-skills refreshed on 2026-10-07; other source identities retained from the 2026-10-03 snapshot; no live host invocation",
   "repositories": [
     {
       "repo_url": "https://github.com/WenyuChiou/research-hub",
@@ -63,11 +63,11 @@
     },
     {
       "repo_url": "https://github.com/WenyuChiou/academic-writing-skills",
-      "commit": "061d73ea4014e0486c2c753dbe9602dd9c3bb8ef",
+      "commit": "edc5ede61a7900ae51a9959ad35a5fffab296c66",
       "default_branch": "main",
       "plugin": {
         "name": "academic-writing-skills",
-        "version": "1.3.7"
+        "version": "1.3.9"
       },
       "skills": [
         {
