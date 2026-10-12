@@ -5,10 +5,18 @@ AI-for-science lifecycle assessment, not evidence that an autonomous system has
 completed a research project. The catalog remains a registry/routing layer;
 production contracts live in the source repositories.
 
-The academic-writing-skills row and snapshot were refreshed to the reviewed
-1.3.9 release on 2026-10-11. The zotero-skills row and snapshot were refreshed
-to the reviewed 0.3.1 release on 2026-10-07. Other source identities retain
-the assessment above.
+The academic-writing-skills row and source snapshot were refreshed to upstream
+1.3.12 on 2026-10-12. Since 1.3.9, the writing guidance retains its
+sentence-continuity and limitation-triage checks and adds context-sensitive
+noun-chain and cross-disciplinary clarity guidance, an on-demand
+independent-reader guide, and a checklist limited to supplied rubrics, coded
+reviews, or version comparisons. The portable adapter remains v1.0.0 with
+state schema 1.1; skill identities, entrypoints, and operation signatures are
+unchanged while the skill version and file-hash registry are refreshed. The
+source check covers manifest and layout only; live host loading, general
+comprehension, and research quality remain unverified. The zotero-skills row
+and snapshot were refreshed to the reviewed 0.3.1 release on 2026-10-07. Other
+source identities retain the assessment above.
 
 繁中: [system-assessment.zh-TW.md](system-assessment.zh-TW.md)
 
@@ -18,7 +26,7 @@ the assessment above.
 |---|---|---|---|
 | ai-research-skills | [eee76f8](https://github.com/WenyuChiou/ai-research-skills/tree/eee76f87c3f4fbfe3cf6dcab865a657295985e01) | Catalog 1.7.2 / schema 4 | 17 skills, 5 source plugins; optional harness omitted by the legacy-v3 view; source directory and marketplace URL/ref must resolve the same SKILL.md |
 | research-hub | [7e04638](https://github.com/WenyuChiou/research-hub/tree/7e046383368d85acb8dfbf0d734ecaaae335cf0a) | Python/MCP package 1.2.0 / research-workspace plugin 0.5.4 | 12 skills; native input/provenance/preview; optional source-audit and offline direction-review contracts; explicit human topic choice; strict packet v1 unchanged; installed runtime must be probed |
-| academic-writing-skills | [edc5ede](https://github.com/WenyuChiou/academic-writing-skills/tree/edc5ede61a7900ae51a9959ad35a5fffab296c66) | Plugin 1.3.9 | Before the first handoff and after substantive revisions, each adjacent sentence pair receives a reader-continuity check; limitation triage separates supported precision effects, measurement-comparability uncertainty, documented inference boundaries, and fixable errors; no general writing-quality or live host certification is established here |
+| academic-writing-skills | [dc70625](https://github.com/WenyuChiou/academic-writing-skills/tree/dc70625a35e7a6d43ae9785c3add0c1d32f896c5) | Plugin 1.3.12; adapter 1.0.0 / state schema 1.1 | Retains sentence-continuity and limitation triage; adds context-sensitive noun-chain and cross-disciplinary clarity, an on-demand independent-reader guide with scoped findings/no-change outcomes, and a checklist only for supplied rubrics, coded reviews, or version comparisons—not grammar-only edits. Skill identities, entrypoints, and operation signatures are unchanged. Source layout/manifest checked; live host loading, general comprehension, and research quality are not established |
 | zotero-skills | [f5772f8](https://github.com/WenyuChiou/zotero-skills/tree/f5772f8b62410858d41436efe11e85529b5dee8c) | Plugin 0.3.1; latest checked tag 0.2.0 | Nested skill plus root client; attach_pdf now sends a bare filename via upload_attachments(basedir=...), fixing an HTTP 400 that failed every 0.3.0 call; runtime and destructive safeguards unchanged |
 | codex-delegate | [30f6d4a](https://github.com/WenyuChiou/codex-delegate/tree/30f6d4ae63935f5b71bd38d4d13466fcff5f33d8) | Plugin 0.1.1 | Bundled Bash/PowerShell wrappers; stable brief/result/sentinel adapter; dirty-content observation and sandbox forwarding; independent supervisor acceptance, not a second broker |
 | antigravity-delegate | [c3afa59](https://github.com/WenyuChiou/antigravity-delegate/tree/c3afa59263ea02e40df99097ba5a9c4452e887a8) | Claude plugin 0.1.1 | Bounded mechanical lane; capped-log producer completion; minimal Google-native marker distinct from the Claude manifest; live native-host loading unverified |

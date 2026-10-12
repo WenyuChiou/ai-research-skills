@@ -4,9 +4,14 @@
 生命週期評估，不是自主系統完成研究的證據。Catalog 維持 registry/routing layer；
 production contracts 由各 source repositories 負責。
 
-academic-writing-skills 列與 snapshot 已於 2026-10-11 更新至審查通過的
-1.3.9 release；zotero-skills 列與 snapshot 已於 2026-10-07 更新至審查通過的
-0.3.1 release；其他 source identities 保留上述評估。
+academic-writing-skills 列與 source snapshot 已於 2026-10-12 更新至上游
+1.3.12。自 1.3.9 起，保留句間連貫與限制判別檢查，並新增依語境判斷的名詞鏈
+與跨領域清晰度指引、按需使用的獨立讀者指引，以及僅在提供 rubric、編碼審查或
+版本比較時啟用的檢核表。Portable adapter 維持 v1.0.0 與 state schema 1.1；
+skill 身分、entrypoint 與操作介面簽章不變，並更新 skill 版本及檔案 hash 清單。
+本次 source check 僅核對 manifest 與目錄；live host 載入、普遍讀者理解與研究品質
+未經驗證。zotero-skills 列與 snapshot 仍為 2026-10-07 審查通過的 0.3.1 release；
+其他 source identities 保留原有評估。
 
 English: [system-assessment.md](system-assessment.md)
 
@@ -16,7 +21,7 @@ English: [system-assessment.md](system-assessment.md)
 |---|---|---|---|
 | ai-research-skills | [eee76f8](https://github.com/WenyuChiou/ai-research-skills/tree/eee76f87c3f4fbfe3cf6dcab865a657295985e01) | Catalog 1.7.2 / schema 4 | 17 skills、5 source plugins；legacy-v3 view 排除 optional harness；directory 與 marketplace URL/ref 必須解析同一 SKILL.md |
 | research-hub | [7e04638](https://github.com/WenyuChiou/research-hub/tree/7e046383368d85acb8dfbf0d734ecaaae335cf0a) | Python/MCP 1.2.0 / research-workspace plugin 0.5.4 | 12 skills；native input/provenance/preview；選配 source-audit 與 offline direction-review 契約；explicit human topic choice；strict packet v1 不變；須檢查 installed runtime |
-| academic-writing-skills | [edc5ede](https://github.com/WenyuChiou/academic-writing-skills/tree/edc5ede61a7900ae51a9959ad35a5fffab296c66) | Plugin 1.3.9 | 首次交付前及每次實質修訂後，都檢查相鄰句的讀者連貫性；限制說明區分有根據的精確度影響、測量可比性的不確定、已記錄的推論邊界與可修正錯誤；此處不代表一般寫作品質認證或 live host 已載入 |
+| academic-writing-skills | [dc70625](https://github.com/WenyuChiou/academic-writing-skills/tree/dc70625a35e7a6d43ae9785c3add0c1d32f896c5) | Plugin 1.3.12；adapter 1.0.0 / state schema 1.1 | 保留句間連貫與限制判別；新增依語境判斷的名詞鏈與跨領域清晰度、按需且範圍明確的獨立讀者指引（含無需修改的結論），以及僅供已提供 rubric、編碼審查或版本比較使用的檢核表，純文法編輯不觸發全文檢查。skill 身分、entrypoint 與操作介面簽章不變。已核對來源目錄與 manifest；未驗證 live host 載入、普遍理解或研究品質 |
 | zotero-skills | [f5772f8](https://github.com/WenyuChiou/zotero-skills/tree/f5772f8b62410858d41436efe11e85529b5dee8c) | Plugin 0.3.1；核對到的最新 tag 0.2.0 | 內層 skill 搭配 root client；attach_pdf 改用 upload_attachments(basedir=...) 傳送單純檔名，修正 0.3.0 每次呼叫都失敗的 HTTP 400；runtime 與 destructive safeguards 不變 |
 | codex-delegate | [30f6d4a](https://github.com/WenyuChiou/codex-delegate/tree/30f6d4ae63935f5b71bd38d4d13466fcff5f33d8) | Plugin 0.1.1 | 內附 Bash/PowerShell wrappers；穩定 brief/result/sentinel adapter；dirty-content observation 與 sandbox forwarding；由 supervisor 驗收，不另造 broker |
 | antigravity-delegate | [c3afa59](https://github.com/WenyuChiou/antigravity-delegate/tree/c3afa59263ea02e40df99097ba5a9c4452e887a8) | Claude plugin 0.1.1 | Bounded mechanical lane；大量輸出達 log 上限後仍等待 producer 完成；Google-native marker 與 Claude manifest 分開；live native-host loading 未驗證 |
