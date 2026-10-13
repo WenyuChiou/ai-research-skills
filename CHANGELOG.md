@@ -17,10 +17,14 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Synchronize the academic-writing-skills marketplace cache version and
-  source-contract snapshot to upstream 1.3.9 at `edc5ede`. The reviewed source
-  strengthens sentence-to-sentence continuity checks and limitation triage;
-  this catalog sync does not verify local installation or live host loading.
+- Refresh the academic-writing-skills marketplace version and commit-bound
+  source snapshot to upstream 1.3.12 at `dc70625`. Across 1.3.10–1.3.12, the
+  source adds context-sensitive noun-chain and cross-disciplinary clarity
+  guidance, an on-demand independent-reader guide, and a checklist routed only
+  for supplied rubrics, coded reviews, or version comparisons. The portable
+  adapter remains v1.0.0 with state schema 1.1 and unchanged operation
+  signatures; the source check covers manifest and layout, not live host
+  loading, general comprehension, or research quality.
 
 ### Fixed
 
