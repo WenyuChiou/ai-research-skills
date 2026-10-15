@@ -17,6 +17,12 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Synchronize academic-writing-skills 1.3.13 after upstream PR #32 was
+  accepted at `2732ed8`. Update only its marketplace version and immutable
+  source-layout/manifest snapshot; other plugin identities remain unchanged.
+  Upstream adds limitations, Results orientation, and terminology safeguards.
+  This snapshot does not certify research quality or live host loading.
+
 - Refresh the academic-writing-skills marketplace version and commit-bound
   source snapshot to upstream 1.3.12 at `dc70625`. Across 1.3.10–1.3.12, the
   source adds context-sensitive noun-chain and cross-disciplinary clarity
