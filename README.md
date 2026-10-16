@@ -372,7 +372,7 @@ If auto-trigger picks the wrong skill, name it explicitly:
 <details>
 <summary><b>Standalone repos (4 plugins)</b> — one plugin install each</summary>
 
-- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — extended outlines, paragraph and section drafting, evidence alignment, terminology, repetition, flow, cross-artifact revision, and release readiness. *(Stages 7, 8)*
+- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — extended outlines, scoped pre-draft plans and post-edit checks, chapter closure, shared terminology records, four-pass manuscript review, cross-artifact revision, and release readiness. *(Stages 7, 8)*
 - [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — general scientific review with progressively selected equation/display provenance, psychometrics/SEM, AI/LLM, water/CNHS, flood/hydrodynamics, round, and explicit reviewer modules. *(Stages 7, 8)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — full Zotero CRUD, batch metadata, library maintenance. *(Stages 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — Claude → Codex CLI handoff for code-heavy / mechanical work. *(Cross-cutting, also Stages 4, 6)*
