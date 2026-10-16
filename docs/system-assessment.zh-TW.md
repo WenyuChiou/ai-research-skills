@@ -5,7 +5,7 @@
 production contracts 由各 source repositories 負責。
 
 academic-writing-skills 列與 source snapshot 已於 2026-10-15 更新至上游
-1.3.14。自 1.3.9 起，保留句間連貫與限制判別檢查，並新增依語境判斷的名詞鏈
+1.3.15。自 1.3.9 起，保留句間連貫與限制判別檢查，並新增依語境判斷的名詞鏈
 與跨領域清晰度指引、按需使用的獨立讀者指引，以及僅在提供 rubric、編碼審查或
 版本比較時啟用的檢核表。Portable adapter 維持 v1.0.0 與 state schema 1.1；
 skill 身分、entrypoint 與操作介面簽章不變，並更新 skill 版本及檔案 hash 清單。
@@ -21,7 +21,7 @@ English: [system-assessment.md](system-assessment.md)
 |---|---|---|---|
 | ai-research-skills | [eee76f8](https://github.com/WenyuChiou/ai-research-skills/tree/eee76f87c3f4fbfe3cf6dcab865a657295985e01) | Catalog 1.7.2 / schema 4 | 17 skills、5 source plugins；legacy-v3 view 排除 optional harness；directory 與 marketplace URL/ref 必須解析同一 SKILL.md |
 | research-hub | [7e04638](https://github.com/WenyuChiou/research-hub/tree/7e046383368d85acb8dfbf0d734ecaaae335cf0a) | Python/MCP 1.2.0 / research-workspace plugin 0.5.4 | 12 skills；native input/provenance/preview；選配 source-audit 與 offline direction-review 契約；explicit human topic choice；strict packet v1 不變；須檢查 installed runtime |
-| academic-writing-skills | [ac45259](https://github.com/WenyuChiou/academic-writing-skills/tree/ac45259e102ce69c51de0b76ca61601b5f4afd8a) | Plugin 1.3.14；adapter 1.0.0 / state schema 1.1 | 保留既有清晰度與範圍明確的讀者指引；新增依作者偏好安排的限制結構、循序導讀結果圖表，以及含角色範圍檢查和來源綁定紀錄的專案詞彙防護。另加按語境判讀的證據案例與來源檢查；尚未證明診斷效果提升。skill 身分、entrypoint 與操作介面簽章不變。已核對來源目錄與 manifest；未驗證 live host 載入、普遍理解、研究品質或完整詞彙涵蓋率 |
+| academic-writing-skills | [b5b9c40](https://github.com/WenyuChiou/academic-writing-skills/tree/b5b9c40d53dc2b4a066ee57b6e5a9be428e04913) | Plugin 1.3.15；adapter 1.0.0 / state schema 1.1 | 保留既有清晰度與範圍明確的讀者指引；新增依作者偏好安排的限制結構、循序導讀結果圖表，以及含角色範圍檢查和來源綁定紀錄的專案詞彙防護。另加按語境判讀的證據案例與來源檢查；尚未證明診斷效果提升。新增分階段檢查紀錄、依任務選用的 checklist 與共用術語紀錄；前後配對文字測試皆為 8/8，未證明品質或效率提升。skill 身分、entrypoint 與操作介面簽章不變。已核對來源目錄與 manifest；未驗證 live host 載入、普遍理解、研究品質或完整詞彙涵蓋率 |
 | zotero-skills | [f5772f8](https://github.com/WenyuChiou/zotero-skills/tree/f5772f8b62410858d41436efe11e85529b5dee8c) | Plugin 0.3.1；核對到的最新 tag 0.2.0 | 內層 skill 搭配 root client；attach_pdf 改用 upload_attachments(basedir=...) 傳送單純檔名，修正 0.3.0 每次呼叫都失敗的 HTTP 400；runtime 與 destructive safeguards 不變 |
 | codex-delegate | [30f6d4a](https://github.com/WenyuChiou/codex-delegate/tree/30f6d4ae63935f5b71bd38d4d13466fcff5f33d8) | Plugin 0.1.1 | 內附 Bash/PowerShell wrappers；穩定 brief/result/sentinel adapter；dirty-content observation 與 sandbox forwarding；由 supervisor 驗收，不另造 broker |
 | antigravity-delegate | [c3afa59](https://github.com/WenyuChiou/antigravity-delegate/tree/c3afa59263ea02e40df99097ba5a9c4452e887a8) | Claude plugin 0.1.1 | Bounded mechanical lane；大量輸出達 log 上限後仍等待 producer 完成；Google-native marker 與 Claude manifest 分開；live native-host loading 未驗證 |

@@ -337,7 +337,7 @@ synthesize、design、execute、write、release；read-only 或可逆工作可�
 <details>
 <summary><b>獨立 repos (4 個 plugins)</b> — 每個 plugin 需單獨安裝</summary>
 
-- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — extended outline、逐段與逐節撰寫、evidence alignment、術語、重複、流暢度、跨檔案 revision 與 release readiness。*(階段 7, 8)*
+- [`academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/academic-writing-skills/SKILL.md) — extended outline、依任務選用的寫前規劃與改後檢查、章節收尾、共用術語紀錄、四輪整稿 review、跨檔案 revision 與 release readiness。*(階段 7, 8)*
 - [`paper-review`](https://github.com/WenyuChiou/academic-writing-skills/blob/main/skills/paper-review/SKILL.md) — 通用科學審查，會按需選用 equation／derived-display provenance、psychometrics／SEM、AI／LLM、水資源／CNHS、洪水／hydrodynamics、round 與明確指定的 reviewer modules。*(階段 7, 8)*
 - [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) — 完整的 Zotero CRUD、批次處理 metadata、文獻庫維護。*(階段 1, 2, 7)*
 - [`codex-delegate`](https://github.com/WenyuChiou/codex-delegate/blob/master/skills/codex-delegate/SKILL.md) — 從 Claude → Codex CLI 的交接，處理程式碼密集 / 機械性工作。*(跨領域, 也用於階段 4, 6)*
