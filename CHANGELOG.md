@@ -17,6 +17,17 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Synchronize codex-delegate 0.1.3 (accepted at `73eb7d8`) and
+  antigravity-delegate 0.1.2 (accepted at `6dbe89d`). codex-delegate adds an
+  optional `--effort` / `-Effort` (default from `CODEX_DELEGATE_EFFORT`) that
+  passes `-c model_reasoning_effort=<level>`, and result.json reports
+  `reasoning_effort`; antigravity-delegate adds an optional `--model <id>`
+  passed through to agy. Without the flag (or, for codex-delegate,
+  `CODEX_DELEGATE_EFFORT`), each CLI's own configured default applies, and
+  neither wrapper names a default model. Refresh the marketplace
+  versions, immutable source pins, bilingual references and verification
+  notes.
+
 - Synchronize codex-delegate 0.1.2, accepted at `8207498`: the wrappers no
   longer pass a built-in `-m gpt-5.5` (HTTP 400 on accounts without it), so
   Codex uses its own configured default unless `--model` / `-Model` is given;

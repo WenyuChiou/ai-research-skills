@@ -11,7 +11,7 @@ academic-writing-skills 列與 source snapshot 已於 2026-10-16 更新至上游
 skill 身分、entrypoint 與操作介面簽章不變，並更新 skill 版本及檔案 hash 清單。
 本次 source check 僅核對 manifest 與目錄；live host 載入、普遍讀者理解與研究品質
 未經驗證。zotero-skills 列與 snapshot 仍為 2026-10-07 審查通過的 0.3.1 release；
-codex-delegate 列與 snapshot 已於 2026-10-17 更新至 0.1.2；其他 source identities 保留原有評估。
+codex-delegate 與 antigravity-delegate 列與 snapshot 已於 2026-10-17 分別更新至 0.1.3 與 0.1.2；其他 source identities 保留原有評估。
 
 English: [system-assessment.md](system-assessment.md)
 
@@ -23,8 +23,8 @@ English: [system-assessment.md](system-assessment.md)
 | research-hub | [7e04638](https://github.com/WenyuChiou/research-hub/tree/7e046383368d85acb8dfbf0d734ecaaae335cf0a) | Python/MCP 1.2.0 / research-workspace plugin 0.5.4 | 12 skills；native input/provenance/preview；選配 source-audit 與 offline direction-review 契約；explicit human topic choice；strict packet v1 不變；須檢查 installed runtime |
 | academic-writing-skills | [06fbdfd](https://github.com/WenyuChiou/academic-writing-skills/tree/06fbdfd75b5f92165d9dd3b832d7382ab37a095f) | Plugin 1.3.17；adapter 1.0.0 / state schema 1.1 | 保留既有清晰度與範圍明確的讀者指引；新增依作者偏好安排的限制結構、循序導讀結果圖表，以及含角色範圍檢查和來源綁定紀錄的專案詞彙防護。另加按語境判讀的證據案例與來源檢查；尚未證明診斷效果提升。新增分階段檢查紀錄、依任務選用的 checklist 與共用術語紀錄；前後配對文字測試皆為 8/8，未證明品質或效率提升。1.3.16 新增封面、social preview 與精簡中英文 README；寫作／審查行為不變。1.3.17 明列 README 支援的 agents 並移除測試標章；圖片不變。skill 身分、entrypoint 與操作介面簽章不變。已核對來源目錄與 manifest；未驗證 live host 載入、普遍理解、研究品質或完整詞彙涵蓋率 |
 | zotero-skills | [f5772f8](https://github.com/WenyuChiou/zotero-skills/tree/f5772f8b62410858d41436efe11e85529b5dee8c) | Plugin 0.3.1；核對到的最新 tag 0.2.0 | 內層 skill 搭配 root client；attach_pdf 改用 upload_attachments(basedir=...) 傳送單純檔名，修正 0.3.0 每次呼叫都失敗的 HTTP 400；runtime 與 destructive safeguards 不變 |
-| codex-delegate | [8207498](https://github.com/WenyuChiou/codex-delegate/tree/8207498e45127260a6a0de7694254e966285eb61) | Plugin 0.1.2 | 內附 Bash/PowerShell wrappers；不內建預設 model；穩定 brief/result/sentinel adapter；dirty-content observation 與 sandbox forwarding；由 supervisor 驗收，不另造 broker |
-| antigravity-delegate | [c3afa59](https://github.com/WenyuChiou/antigravity-delegate/tree/c3afa59263ea02e40df99097ba5a9c4452e887a8) | Claude plugin 0.1.1 | Bounded mechanical lane；大量輸出達 log 上限後仍等待 producer 完成；Google-native marker 與 Claude manifest 分開；live native-host loading 未驗證 |
+| codex-delegate | [73eb7d8](https://github.com/WenyuChiou/codex-delegate/tree/73eb7d87fe54b54c34f5d40695774f24cb7a59ff) | Plugin 0.1.3 | 內附 Bash/PowerShell wrappers；不內建預設 model 或 reasoning effort（可選 `--model` / `--effort`，分別轉為 `-m` 與 `-c model_reasoning_effort` 傳給 Codex）；穩定 brief/result/sentinel adapter；dirty-content observation 與 sandbox forwarding；由 supervisor 驗收，不另造 broker |
+| antigravity-delegate | [6dbe89d](https://github.com/WenyuChiou/antigravity-delegate/tree/6dbe89dde991d4a5c5298014e284ce78e7091fc8) | Claude plugin 0.1.2 | Bounded mechanical lane；可選 `--model` 直接轉給 agy，未指定時用 agy 自己的預設；大量輸出達 log 上限後仍等待 producer 完成；Google-native marker 與 Claude manifest 分開；live native-host loading 未驗證 |
 
 機器可讀的公開 source snapshot：
 [upstream-contracts.json](../test-corpus/integration/upstream-contracts.json)。

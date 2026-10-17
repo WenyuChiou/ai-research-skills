@@ -676,6 +676,12 @@ families:
         verification_status: pass
         verification_tier: T1
         verification_notes: |
+          2026-10-17 (0.1.3, `73eb7d8`): optional `--effort` / `-Effort`
+          (default from CODEX_DELEGATE_EFFORT) passes
+          `-c model_reasoning_effort=<level>`; with neither the flag nor the
+          env var, Codex's configured effort applies. Upstream CI green (run
+          39013327485, ubuntu+windows x py3.10-3.12) plus one live smoke
+          (`--effort low` reached Codex); T1 status not re-run.
           2026-10-17 (0.1.2, `8207498`): wrappers pass no `-m` unless
           `--model` / `-Model` is given, so Codex uses its own configured
           default; the gpt-5.5 default described below no longer applies.
@@ -726,7 +732,12 @@ families:
         verified_on: "2026-08-30"
         verification_status: pass
         verification_tier: T2
-        verification_notes: Upstream 5/5 reliability gate plus local 17/17 shell wrapper regressions; the cited mc12 audit corpus is maintained outside this repository, so this catalog conservatively records T2 rather than T1.
+        verification_notes: |
+          2026-10-17 (0.1.2, `6dbe89d`): optional `--model <id>` passed
+          through as `agy --model`; without it agy's own default applies.
+          Upstream shell suite 33/33 plus one live smoke on agy 1.4.0 with
+          `--model` and the verify flags; T2 status unchanged.
+          2026-08-30 pass: upstream 5/5 reliability gate plus local 17/17 shell wrapper regressions; the cited mc12 audit corpus is maintained outside this repository, so this catalog conservatively records T2 rather than T1.
         lifecycle_status: active
         workflow_stages: [execute, cross-cutting]
         runtime_mode: cli
