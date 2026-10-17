@@ -276,6 +276,6 @@ cp <repo>/skills/literature-triage-matrix/SKILL.md \
   通常直接用目標 skill 即可。
 - 一般 Claude Code-to-Codex 整合，在 runtime 適用時優先使用
   [官方 plugin](https://github.com/openai/codex-plugin-cc)。已接受的 codex-delegate
-  0.1.1 保留給既有 on-disk brief、result/sentinel 與 Bash/PowerShell 的同步 adapter。
+  0.1.2 保留給既有 on-disk brief、result/sentinel 與 Bash/PowerShell 的同步 adapter。
   不另造 broker，也不代表 coding quality 或 total model cost 較好；
   [同條件比較的界線](system-assessment.zh-TW.md#同條件比較與限制) 說明驗證範圍。

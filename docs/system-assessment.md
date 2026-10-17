@@ -15,7 +15,8 @@ state schema 1.1; skill identities, entrypoints, and operation signatures are
 unchanged while the skill version and file-hash registry are refreshed. The
 source check covers manifest and layout only; live host loading, general
 comprehension, and research quality remain unverified. The zotero-skills row
-and snapshot were refreshed to the reviewed 0.3.1 release on 2026-10-07. Other
+and snapshot were refreshed to the reviewed 0.3.1 release on 2026-10-07. The
+codex-delegate row and snapshot were refreshed to 0.1.2 on 2026-10-17. Other
 source identities retain the assessment above.
 
 繁中: [system-assessment.zh-TW.md](system-assessment.zh-TW.md)
@@ -28,7 +29,7 @@ source identities retain the assessment above.
 | research-hub | [7e04638](https://github.com/WenyuChiou/research-hub/tree/7e046383368d85acb8dfbf0d734ecaaae335cf0a) | Python/MCP package 1.2.0 / research-workspace plugin 0.5.4 | 12 skills; native input/provenance/preview; optional source-audit and offline direction-review contracts; explicit human topic choice; strict packet v1 unchanged; installed runtime must be probed |
 | academic-writing-skills | [06fbdfd](https://github.com/WenyuChiou/academic-writing-skills/tree/06fbdfd75b5f92165d9dd3b832d7382ab37a095f) | Plugin 1.3.17; adapter 1.0.0 / state schema 1.1 | Retains prior clarity and scoped-reader guidance; adds author-scoped limitations structure, progressive Results orientation, and project-specific terminology safeguards with role-aware checks and source-bound receipts. Adds contextual evidence cases and narrow provenance checks; diagnostic improvement is not established. Adds staged coverage records, task-scoped checklists and shared terminology records; paired synthetic prose results remain 8/8 versus 8/8, not demonstrated quality or efficiency improvement. 1.3.16 adds workflow/social graphics and concise bilingual READMEs without changing writing/review behavior. 1.3.17 names supported README clients and removes its testing badge; graphics are unchanged. Skill identities, entrypoints, and operation signatures are unchanged. Source layout/manifest checked; live host loading, general comprehension, research quality, and complete terminology coverage are not established |
 | zotero-skills | [f5772f8](https://github.com/WenyuChiou/zotero-skills/tree/f5772f8b62410858d41436efe11e85529b5dee8c) | Plugin 0.3.1; latest checked tag 0.2.0 | Nested skill plus root client; attach_pdf now sends a bare filename via upload_attachments(basedir=...), fixing an HTTP 400 that failed every 0.3.0 call; runtime and destructive safeguards unchanged |
-| codex-delegate | [30f6d4a](https://github.com/WenyuChiou/codex-delegate/tree/30f6d4ae63935f5b71bd38d4d13466fcff5f33d8) | Plugin 0.1.1 | Bundled Bash/PowerShell wrappers; stable brief/result/sentinel adapter; dirty-content observation and sandbox forwarding; independent supervisor acceptance, not a second broker |
+| codex-delegate | [8207498](https://github.com/WenyuChiou/codex-delegate/tree/8207498e45127260a6a0de7694254e966285eb61) | Plugin 0.1.2 | Bundled Bash/PowerShell wrappers; no built-in default model; stable brief/result/sentinel adapter; dirty-content observation and sandbox forwarding; independent supervisor acceptance, not a second broker |
 | antigravity-delegate | [c3afa59](https://github.com/WenyuChiou/antigravity-delegate/tree/c3afa59263ea02e40df99097ba5a9c4452e887a8) | Claude plugin 0.1.1 | Bounded mechanical lane; capped-log producer completion; minimal Google-native marker distinct from the Claude manifest; live native-host loading unverified |
 
 The machine-readable public-source snapshot is

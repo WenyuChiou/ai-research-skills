@@ -54,7 +54,7 @@
       "description": "Minimal synchronous Codex CLI adapter for legacy on-disk briefs, result/sentinel contracts and Bash/PowerShell portability; supervisor scope/test acceptance remains required.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/codex-delegate",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "strict": true,
       "source": {
         "source": "url",

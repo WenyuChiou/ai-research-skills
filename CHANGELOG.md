@@ -17,6 +17,13 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Synchronize codex-delegate 0.1.2, accepted at `8207498`: the wrappers no
+  longer pass a built-in `-m gpt-5.5` (HTTP 400 on accounts without it), so
+  Codex uses its own configured default unless `--model` / `-Model` is given;
+  `model_used`, the `[MODEL_USED]` log line and `.done` then report
+  `codex/default`. Refresh the marketplace version, immutable source pin,
+  bilingual references and verification dates.
+
 - Synchronize academic-writing-skills 1.3.17 after upstream PR #36 was
   accepted at `06fbdfd`. Refresh the target marketplace version, immutable
   source pin and bilingual references. README openings now name supported

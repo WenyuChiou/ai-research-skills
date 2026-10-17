@@ -676,6 +676,10 @@ families:
         verification_status: pass
         verification_tier: T1
         verification_notes: |
+          2026-10-17 (0.1.2, `8207498`): wrappers pass no `-m` unless
+          `--model` / `-Model` is given, so Codex uses its own configured
+          default; the gpt-5.5 default described below no longer applies.
+          Not re-run live.
           Re-verified 2026-07-03 (T1 held; model + environment re-run this
           pass). The gpt-5.4 workaround in the prior pass below is now
           OBSOLETE: codex-cli is 0.137.0, ~/.codex/config.toml sets
