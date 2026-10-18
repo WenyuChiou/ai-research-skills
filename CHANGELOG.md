@@ -15,6 +15,40 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Qualify the historical May 22 topic dossier and its bilingual Word/YAML
+  companions: bounded search evidence and neutral scores are not a current
+  novelty finding or researcher selection. Preserve original observations.
+- Align bilingual catalog compatibility counts and explain report-only
+  machine health checks without renewing human verification dates.
+
+- Synchronize the already accepted research-workspace plugin 0.5.1, and correct
+  15 repository-relative skill directories to match their canonical SKILL URLs.
+- Replace invalid whole-repository/single-skill install paths; distinguish
+  marketplace cache from CLI extraction and current Zotero source from its
+  historical shadowing/cache issue.
+- Add deterministic directory/ref resolver checks, a read-only actual-upstream
+  contract checker, public commit-bound snapshots and install regressions.
+- Add repeatable no-write installer plans, strict scope/argument parsing and
+  immediate native-failure propagation; PowerShell Core Linux checks are
+  executable, while native Windows behavior remains separately unverified.
+
+### Added
+
+- Preserve optional harness 0.4.0/v1 and its normal registry install, adding an
+  official checksum-bound release-wheel fallback for environment-specific
+  index resolution failures. Isolated 0.4.0 and current 0.5.1 wheels each pass
+  22 legacy workflow-runtime checks; this does not migrate policy or adopt v2.
+- Bilingual source/version assessment and full scientific lifecycle input,
+  output, evidence and researcher-decision gates. Existing eight-stage diagram
+  topology/style are unchanged; the prose table now includes the orchestrator
+  already shown in the canonical graphic.
+- Staged upstream/dependent integration guidance with explicit structural,
+  production-boundary, host-loading and research-quality verification limits.
+
+## [1.7.7] - 2026-10-17
+
 ### Changed
 
 - Synchronize codex-delegate 0.1.3 (accepted at `73eb7d8`) and
@@ -75,37 +109,23 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   signatures; the source check covers manifest and layout, not live host
   loading, general comprehension, or research quality.
 
+- Synchronize academic-writing-skills from the prior catalog release's 1.3.7
+  through 1.3.17. The 1.3.9 snapshot at `edc5ede` adds adjacent-sentence
+  reader-continuity checks and limitation triage; the later accepted updates
+  are detailed above. Refresh the commit-bound snapshot and bilingual
+  assessment, README and install references without claiming live loading.
+
 ### Fixed
 
-- Qualify the historical May 22 topic dossier and its bilingual Word/YAML
-  companions: bounded search evidence and neutral scores are not a current
-  novelty finding or researcher selection. Preserve original observations.
-- Align bilingual catalog compatibility counts and explain report-only
-  machine health checks without renewing human verification dates.
-
-- Synchronize the already accepted research-workspace plugin 0.5.1, and correct
-  15 repository-relative skill directories to match their canonical SKILL URLs.
-- Replace invalid whole-repository/single-skill install paths; distinguish
-  marketplace cache from CLI extraction and current Zotero source from its
-  historical shadowing/cache issue.
-- Add deterministic directory/ref resolver checks, a read-only actual-upstream
-  contract checker, public commit-bound snapshots and install regressions.
-- Add repeatable no-write installer plans, strict scope/argument parsing and
-  immediate native-failure propagation; PowerShell Core Linux checks are
-  executable, while native Windows behavior remains separately unverified.
+- Make installer contract tests use Git for Windows Bash and MSYS-compatible
+  script paths on Windows, with the native PATH separator for command doubles.
+- Restore UTF-8 bytes in this changelog after the 1.3.12 catalog sync.
 
 ### Added
 
-- Preserve optional harness 0.4.0/v1 and its normal registry install, adding an
-  official checksum-bound release-wheel fallback for environment-specific
-  index resolution failures. Isolated 0.4.0 and current 0.5.1 wheels each pass
-  22 legacy workflow-runtime checks; this does not migrate policy or adopt v2.
-- Bilingual source/version assessment and full scientific lifecycle input,
-  output, evidence and researcher-decision gates. Existing eight-stage diagram
-  topology/style are unchanged; the prose table now includes the orchestrator
-  already shown in the canonical graphic.
-- Staged upstream/dependent integration guidance with explicit structural,
-  production-boundary, host-loading and research-quality verification limits.
+- Repository-local code-review rules for catalog/source identities, integration
+  contracts, bilingual parity and verification limits; every PR merge requires
+  separate explicit user consent after reviewing changes and actual tests.
 
 ## [1.7.6] - 2026-10-07
 
@@ -1777,7 +1797,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.6...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.7...HEAD
+[1.7.7]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.6...v1.7.7
 [1.7.6]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.5...v1.7.6
 [1.7.5]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.4...v1.7.5
 [1.7.4]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.3...v1.7.4
