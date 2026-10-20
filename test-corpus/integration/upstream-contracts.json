@@ -59,6 +59,17 @@
           "name": "research-workflow-orchestrator",
           "directory": "skills/research-workflow-orchestrator"
         }
+      ],
+      "tree": "cb437e52f23f2448bb9b5a259ed683c2e7788a18",
+      "shared_references": [
+        "skills/research-hub/references/research-protocol.md",
+        "skills/research-hub/references/source-claim-audit.md",
+        "skills/gap-to-topic/references/dossier-template.md",
+        "skills/gap-to-topic/references/dead-end-history.md",
+        "skills/gap-to-topic/references/contribution-typing.md",
+        "skills/research-design-helper/references/socratic-segments.md",
+        "skills/research-design-helper/references/design_brief_template.md",
+        "docs/direction-review-contract.md"
       ]
     },
     {
@@ -78,7 +89,9 @@
           "name": "paper-review",
           "directory": "skills/paper-review"
         }
-      ]
+      ],
+      "tree": "0ccfc8df0e814c84a2070c1734afad2401468f18",
+      "shared_references": []
     },
     {
       "repo_url": "https://github.com/WenyuChiou/zotero-skills",
@@ -93,7 +106,9 @@
           "name": "zotero-skills",
           "directory": "skills/zotero-skills"
         }
-      ]
+      ],
+      "tree": "22031bb6b67bca5d409182ee3d83f25ba657042a",
+      "shared_references": []
     },
     {
       "repo_url": "https://github.com/WenyuChiou/codex-delegate",
@@ -108,7 +123,9 @@
           "name": "codex-delegate",
           "directory": "skills/codex-delegate"
         }
-      ]
+      ],
+      "tree": "2392c7284d4180111189cf2b668e0d61f4182eb0",
+      "shared_references": []
     },
     {
       "repo_url": "https://github.com/WenyuChiou/antigravity-delegate",
@@ -123,7 +140,9 @@
           "name": "antigravity-delegate",
           "directory": "skills/antigravity-delegate"
         }
-      ]
+      ],
+      "tree": "9971b1cd638dcf275c72971ab7103fc62e103593",
+      "shared_references": []
     }
   ]
 }
