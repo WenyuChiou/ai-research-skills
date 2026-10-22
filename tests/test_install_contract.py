@@ -164,9 +164,17 @@ _POWERSHELL = __import__("shutil").which("pwsh") or __import__("shutil").which("
 
 def _assert_powershell_scope_rejected(result):
     # PowerShell diagnostics are localized and need not use Python's encoding.
-    # Check the invariant ASCII error ID in raw bytes, not translated prose.
+    # Windows PowerShell exposes the error ID; newer pwsh concise diagnostics
+    # can omit it. Keep the observed English concise fallback scope-specific.
     assert result.returncode != 0
-    assert b"ParameterArgumentValidationError" in result.stderr
+    stderr = result.stderr
+    if b"FullyQualifiedErrorId" in stderr:
+        assert b"ParameterArgumentValidationError" in stderr
+    else:
+        assert all(token in stderr for token in (
+            b"Cannot validate argument on parameter 'Scope'",
+            b'"invalid"', b"ValidateSet", b'"user,project,local"',
+        ))
 
 
 @pytest.mark.parametrize("encoding", ["cp950", "utf-8"])
@@ -184,6 +192,36 @@ def test_powershell_scope_diagnostic_encoding_contract(encoding):
         _assert_powershell_scope_rejected(subprocess.CompletedProcess(
             [], 1, b"", stderr.replace(b"ParameterArgumentValidationError", b"CommandNotFoundException")
         ))
+
+
+_CONCISE_SCOPE_DIAGNOSTIC = (
+    b"\x1b[31;1minstall-all.ps1: Cannot validate argument on parameter 'Scope'. "
+    b'The argument "invalid" does not belong to the set "user,project,local" '
+    b"specified by the ValidateSet attribute.\x1b[0m\n"
+)
+
+
+def test_powershell_concise_scope_diagnostic_contract():
+    """Synthetic known concise shape, not a captured/untruncated CI payload."""
+    _assert_powershell_scope_rejected(subprocess.CompletedProcess(
+        [], 1, b"", _CONCISE_SCOPE_DIAGNOSTIC
+    ))
+
+
+@pytest.mark.parametrize("stderr,returncode", [
+    (_CONCISE_SCOPE_DIAGNOSTIC, 0),
+    (_CONCISE_SCOPE_DIAGNOSTIC.replace(b"'Scope'", b"'Other'"), 1),
+    (_CONCISE_SCOPE_DIAGNOSTIC.replace(b'"invalid"', b'"other"'), 1),
+    (_CONCISE_SCOPE_DIAGNOSTIC.replace(b"ValidateSet", b"ValidatePattern"), 1),
+    (_CONCISE_SCOPE_DIAGNOSTIC.replace(b'"user,project,local"', b'"other"'), 1),
+    (_CONCISE_SCOPE_DIAGNOSTIC.replace(b"Cannot validate argument", b"Unrelated error"), 1),
+    (b"CommandNotFoundException: install-all.ps1", 1),
+    (_CONCISE_SCOPE_DIAGNOSTIC + b"FullyQualifiedErrorId : CommandNotFoundException", 1),
+    (b"", 1),
+])
+def test_powershell_unrelated_diagnostics_are_not_scope_rejection(stderr, returncode):
+    with pytest.raises(AssertionError):
+        _assert_powershell_scope_rejected(subprocess.CompletedProcess([], returncode, b"", stderr))
 
 
 @pytest.mark.skipif(_POWERSHELL is None, reason="PowerShell runtime not available")
