@@ -162,18 +162,79 @@ def test_scientific_lifecycle_docs_preserve_all_stages_gates_and_limits():
 _POWERSHELL = __import__("shutil").which("pwsh") or __import__("shutil").which("powershell")
 
 
+def _assert_powershell_scope_rejected(result):
+    # PowerShell diagnostics are localized and need not use Python's encoding.
+    # Windows PowerShell exposes the error ID; newer pwsh concise diagnostics
+    # can omit it. Keep the observed English concise fallback scope-specific.
+    assert result.returncode != 0
+    stderr = result.stderr
+    if b"FullyQualifiedErrorId" in stderr:
+        assert b"ParameterArgumentValidationError" in stderr
+    else:
+        assert all(token in stderr for token in (
+            b"Cannot validate argument on parameter 'Scope'",
+            b'"invalid"', b"ValidateSet", b'"user,project,local"',
+        ))
+
+
+@pytest.mark.parametrize("encoding", ["cp950", "utf-8"])
+def test_powershell_scope_diagnostic_encoding_contract(encoding):
+    """Synthetic diagnostics only: neither runs nor emulates PowerShell."""
+    stderr = (
+        "無法驗證 'Scope' 參數上的引數。\r\n"
+        "    + FullyQualifiedErrorId : ParameterArgumentValidationError,install-all.ps1\r\n"
+    ).encode(encoding)
+    result = subprocess.CompletedProcess([], 1, b"", stderr)
+    _assert_powershell_scope_rejected(result)
+    with pytest.raises(AssertionError):
+        _assert_powershell_scope_rejected(subprocess.CompletedProcess([], 0, b"", stderr))
+    with pytest.raises(AssertionError):
+        _assert_powershell_scope_rejected(subprocess.CompletedProcess(
+            [], 1, b"", stderr.replace(b"ParameterArgumentValidationError", b"CommandNotFoundException")
+        ))
+
+
+_CONCISE_SCOPE_DIAGNOSTIC = (
+    b"\x1b[31;1minstall-all.ps1: Cannot validate argument on parameter 'Scope'. "
+    b'The argument "invalid" does not belong to the set "user,project,local" '
+    b"specified by the ValidateSet attribute.\x1b[0m\n"
+)
+
+
+def test_powershell_concise_scope_diagnostic_contract():
+    """Synthetic known concise shape, not a captured/untruncated CI payload."""
+    _assert_powershell_scope_rejected(subprocess.CompletedProcess(
+        [], 1, b"", _CONCISE_SCOPE_DIAGNOSTIC
+    ))
+
+
+@pytest.mark.parametrize("stderr,returncode", [
+    (_CONCISE_SCOPE_DIAGNOSTIC, 0),
+    (_CONCISE_SCOPE_DIAGNOSTIC.replace(b"'Scope'", b"'Other'"), 1),
+    (_CONCISE_SCOPE_DIAGNOSTIC.replace(b'"invalid"', b'"other"'), 1),
+    (_CONCISE_SCOPE_DIAGNOSTIC.replace(b"ValidateSet", b"ValidatePattern"), 1),
+    (_CONCISE_SCOPE_DIAGNOSTIC.replace(b'"user,project,local"', b'"other"'), 1),
+    (_CONCISE_SCOPE_DIAGNOSTIC.replace(b"Cannot validate argument", b"Unrelated error"), 1),
+    (b"CommandNotFoundException: install-all.ps1", 1),
+    (_CONCISE_SCOPE_DIAGNOSTIC + b"FullyQualifiedErrorId : CommandNotFoundException", 1),
+    (b"", 1),
+])
+def test_powershell_unrelated_diagnostics_are_not_scope_rejection(stderr, returncode):
+    with pytest.raises(AssertionError):
+        _assert_powershell_scope_rejected(subprocess.CompletedProcess([], returncode, b"", stderr))
+
+
 @pytest.mark.skipif(_POWERSHELL is None, reason="PowerShell runtime not available")
 def test_powershell_plan_is_repeatable_and_invalid_scope_rejected(tmp_path):
     env = dict(os.environ, HOME=str(tmp_path), XDG_CACHE_HOME=str(tmp_path / "cache"))
     command = [_POWERSHELL, "-NoLogo", "-NoProfile", "-File", str(ROOT / "scripts/install-all.ps1"), "-DryRun", "-Scope", "project"]
-    first = subprocess.run(command, env=env, cwd=tmp_path, capture_output=True, text=True)
-    second = subprocess.run(command, env=env, cwd=tmp_path, capture_output=True, text=True)
+    first = subprocess.run(command, env=env, cwd=tmp_path, capture_output=True)
+    second = subprocess.run(command, env=env, cwd=tmp_path, capture_output=True)
     assert first.returncode == second.returncode == 0, first.stderr
     assert first.stdout == second.stdout
-    assert first.stdout.count("claude plugin install") == 5
-    rejected = subprocess.run(command[:-1] + ["invalid"], env=env, cwd=tmp_path, capture_output=True, text=True)
-    assert rejected.returncode != 0
-    assert "Cannot validate argument" in rejected.stderr
+    assert first.stdout.count(b"claude plugin install") == 5
+    rejected = subprocess.run(command[:-1] + ["invalid"], env=env, cwd=tmp_path, capture_output=True)
+    _assert_powershell_scope_rejected(rejected)
 
 
 @pytest.mark.skipif(_POWERSHELL is None or os.name == "nt", reason="POSIX-native failure double requires PowerShell on POSIX")
@@ -262,3 +323,48 @@ def test_accepted_source_doc_reads_ignore_locale_default_encoding(monkeypatch):
     test_accepted_source_matrix_matches_commit_bound_snapshot()
     test_source_audit_and_native_comparison_rollout_limits_remain_explicit()
     test_accepted_harness_source_docs_do_not_imply_a_runtime_engine()
+
+
+@pytest.mark.parametrize("skill,owner", [
+    ("literature-triage-matrix", "research-hub"),
+    ("gap-to-topic", "research-hub"),
+    ("research-design-helper", "research-hub"),
+    ("paper-memory-builder", "research-hub"),
+    ("paper-summarize", "research-hub"),
+    ("research-hub", "research-hub"),
+    ("academic-writing-skills", "academic-writing-skills"),
+    ("paper-review", "academic-writing-skills"),
+    ("zotero-skills", "zotero-skills"),
+    ("codex-delegate", "codex-delegate"),
+    ("antigravity-delegate", "antigravity-delegate"),
+])
+def test_task_entry_links_resolve_to_catalog_source_owner(skill, owner):
+    """Static route examples: link ownership, not model routing/host invocation."""
+    import re
+    catalog, _ = consistency._load()
+    entries = {s["name"]: s for f in catalog["families"] for s in f["skills"]}
+    text = (ROOT / "docs/install.md").read_text(encoding="utf-8")
+    route_table = text.split("## Choose your task first", 1)[1].split("## Choose an install path", 1)[0]
+    references = dict(re.findall(r"^\[([^]]+)\]: (\S+)$", route_table, re.MULTILINE))
+    assert entries[skill]["repo_url"] == f"https://github.com/WenyuChiou/{owner}"
+    assert references[skill] == entries[skill]["skill_url"]
+    assert any(f"[{skill}]" in line for line in route_table.splitlines() if line.startswith("|"))
+
+
+@pytest.mark.parametrize("relative", ["docs/install.md", "docs/runtime-contract.md"])
+def test_runtime_route_local_links_and_examples_resolve(relative):
+    """Catch broken local handoffs without fetching sources or invoking tools."""
+    import re
+    path = ROOT / relative
+    text = path.read_text(encoding="utf-8")
+    for target in re.findall(r"\[[^]]+\]\(([^)]+)\)", text):
+        if target.startswith(("https://", "http://", "#")):
+            continue
+        file, _, fragment = target.partition("#")
+        linked = path.parent / file
+        assert linked.is_file(), target
+        if fragment:
+            linked_text = linked.read_text(encoding="utf-8")
+            headings = re.findall(r"^#+ (.+)$", linked_text, re.MULTILINE)
+            anchors = {re.sub(r"[^\w\- ]", "", h.lower()).replace(" ", "-") for h in headings}
+            assert fragment in anchors or f'id="{fragment}"' in linked_text, target
