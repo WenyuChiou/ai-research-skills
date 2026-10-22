@@ -54,3 +54,42 @@ requires probing the actual Hub callable/schema before claiming optional
 source-audit support. A plugin version or a matching source file does not prove
 that an installed wheel has those capabilities. No runtime probe is performed
 by this checker; missing capability remains unavailable.
+
+## Manifest-only cache metadata observations
+
+The marketplace follows upstream branches, while the accepted snapshot above
+remains historical. `test-corpus/integration/manifest-observations.json` records
+**only** newer observed plugin manifests for cache-version alignment. Run:
+
+```bash
+python scripts/check_manifest_observations.py
+```
+
+An unchanged accepted version needs no observation. Every changed marketplace
+version requires exactly one record matching canonical repository, plugin name,
+version and branch ref, plus full commit/tree/manifest-blob identities and the
+observed UTF-8 manifest text. Missing, duplicate, malformed, stale or mismatched
+records fail closed, even when no sibling source clones are present. Synthetic
+records in tests are not upstream evidence.
+
+The offline validator binds recorded manifest bytes to their Git blob hash.
+Commit/tree IDs are recorded provenance: it does **not** independently prove
+commit-to-tree-to-path linkage or remote origin. A maintainer must verify that
+linkage from the canonical source before adding a real observation. The Zotero
+0.4.0 observation comes from commit `e390313c82e76856a525e87a0ae2d0281499e3ab`;
+that is an unpublished source candidate, not a published release (latest checked
+release v0.2.0). The Hub 0.5.6 observation comes from merged master commit
+`01e796d3201349367ebc9297f1f2448a4d9851a3`. Neither record is a local-only
+candidate substitution or an absent-sibling skip.
+
+These observations never update accepted commits, trees, `checked_on`, human
+verification dates, historical source tables or skill-content acceptance.
+`--accepted-source` is intentionally unchanged: it first compares the accepted
+manifest identity with the **current marketplace**, then checks source identity
+and relevant content. After a cache version advances beyond the accepted
+snapshot, this check fails even for the exact historical checkout. It is not a
+way to certify the old baseline against changed current metadata. A matching
+newer manifest can pass the default source-layout check but still cannot pass
+`--accepted-source`; separate reviewed-source acceptance is required. Manifest
+observations alone establish neither host installation, runtime behavior,
+scientific quality nor release publication.

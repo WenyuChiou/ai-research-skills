@@ -34,6 +34,7 @@ EXPECTED_PLUGINS = [
 SIBLING_PLUGIN_JSON = {
     "research-workspace": ROOT.parent / "research-hub" / ".claude-plugin" / "plugin.json",
     "academic-writing-skills": ROOT.parent / "academic-writing-skills" / ".claude-plugin" / "plugin.json",
+    "zotero-skills": ROOT.parent / "zotero-skills" / ".claude-plugin" / "plugin.json",
 }
 
 
@@ -95,8 +96,13 @@ def test_marketplace_version_matches_source_when_present():
     cache-buster). Skips cleanly on CI where the sibling is absent — no assertion
     on how many were checked."""
     pins = {p["name"]: p["version"] for p in _marketplace()["plugins"]}
+    _assert_source_versions_match(pins, SIBLING_PLUGIN_JSON)
+
+
+def _assert_source_versions_match(pins, source_paths):
+    """Offline check shared with synthetic sibling-manifest regressions."""
     checked = []
-    for name, path in SIBLING_PLUGIN_JSON.items():
+    for name, path in source_paths.items():
         if not path.exists():
             continue
         src = json.loads(path.read_text(encoding="utf-8"))
@@ -107,3 +113,42 @@ def test_marketplace_version_matches_source_when_present():
         checked.append(name)
     if not checked:
         pytest.skip("no sibling source repos cloned; cross-source version check skipped (expected on CI)")
+
+
+def test_zotero_sibling_mapping_uses_canonical_manifest():
+    assert SIBLING_PLUGIN_JSON["zotero-skills"] == (
+        ROOT.parent / "zotero-skills" / ".claude-plugin" / "plugin.json"
+    )
+
+
+def test_zotero_sibling_matching_version_passes(tmp_path):
+    manifest = tmp_path / "plugin.json"
+    manifest.write_text(json.dumps({"version": "0.4.0"}), encoding="utf-8")
+    _assert_source_versions_match(
+        {"zotero-skills": "0.4.0"}, {"zotero-skills": manifest}
+    )
+
+
+def test_zotero_sibling_version_drift_fails(tmp_path):
+    manifest = tmp_path / "plugin.json"
+    manifest.write_text(json.dumps({"version": "0.4.0"}), encoding="utf-8")
+    with pytest.raises(AssertionError, match=r"zotero-skills 0\.3\.1 != source plugin.json 0\.4\.0"):
+        _assert_source_versions_match(
+            {"zotero-skills": "0.3.1"}, {"zotero-skills": manifest}
+        )
+
+
+def test_absent_sibling_manifests_skip_without_network(tmp_path):
+    with pytest.raises(pytest.skip.Exception, match="no sibling source repos cloned"):
+        _assert_source_versions_match(
+            {"zotero-skills": "0.4.0"}, {"zotero-skills": tmp_path / "absent.json"}
+        )
+
+
+def test_absent_zotero_sibling_does_not_skip_present_source(tmp_path):
+    manifest = tmp_path / "plugin.json"
+    manifest.write_text(json.dumps({"version": "0.5.6"}), encoding="utf-8")
+    _assert_source_versions_match(
+        {"research-workspace": "0.5.6", "zotero-skills": "0.4.0"},
+        {"research-workspace": manifest, "zotero-skills": tmp_path / "absent.json"},
+    )

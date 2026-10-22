@@ -47,6 +47,30 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.11] - 2026-10-22
+
+### Fixed
+
+- Separate installation checks from opt-in live smoke runs in bilingual entrypoints;
+  require preflight and applicable data, cost, and write authorization before live work.
+- Clarify that multi-AI plans require Hub CLI only when they call Hub; delegate-only
+  plans still require available leaf/wrapper tools and authorized runtime preflight.
+
+- Align Zotero marketplace metadata to source-manifest version 0.4.0 at
+  `e390313c82e76856a525e87a0ae2d0281499e3ab`, an unpublished source candidate;
+  the latest published Zotero release remains v0.2.0. This is metadata alignment,
+  not a Zotero release or a refresh of accepted-source evidence.
+- Coordinate research-workspace metadata 0.5.6 with its curator install-path
+  correction. Preserve canonical repositories, branch refs, nested Zotero skill
+  paths, and immutable accepted-source snapshots; no skill content is vendored.
+- Include optional sibling Zotero manifests in offline version-drift checks,
+  with deterministic matching, stale-version and absent-sibling regressions.
+  These checks do not establish live host loading or installation.
+- Separate manifest-only cache-version observations from historical accepted
+  source snapshots. Changed metadata requires a matching immutable observation;
+  the accepted-source checker, dates, source tables and content guards remain
+  unchanged. Manifest evidence never promotes source or runtime acceptance.
+
 ## [1.7.10] - 2026-10-21
 
 ### Changed
@@ -1836,7 +1860,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.10...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.11...HEAD
+[1.7.11]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.10...v1.7.11
 [1.7.10]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.9...v1.7.10
 [1.7.9]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.8...v1.7.9
 [1.7.8]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.7...v1.7.8

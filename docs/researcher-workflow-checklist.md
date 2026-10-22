@@ -30,6 +30,16 @@ Install:
 pip install research-hub-pipeline
 research-hub setup --persona researcher
 research-hub doctor
+```
+
+**Separate live smoke (not installation):**
+
+This is a **live** literature workflow, not an offline install check.
+`--no-nlm` disables NotebookLM only; it does not disable other network calls,
+models, or writes. Complete the [live-run preflight](live-run-preflight.md)
+and obtain the applicable data/cost/write authorization before running:
+
+```bash
 research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
 

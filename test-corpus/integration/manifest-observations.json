@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "observations": [
+    {
+      "repo_url": "https://github.com/WenyuChiou/research-hub",
+      "plugin": {
+        "name": "research-workspace",
+        "version": "0.5.6"
+      },
+      "ref": "master",
+      "commit": "01e796d3201349367ebc9297f1f2448a4d9851a3",
+      "tree": "a31954357e52b9d057ab0afa975dae2d1cbb0221",
+      "manifest_blob": "93843409b3be9648a5bbef004a7c76c054bc0c24",
+      "manifest_text": "{\n  \"name\": \"research-workspace\",\n  \"description\": \"12 research-hub skills, including a resumable human-in-the-loop workflow orchestrator, literature triage, context compression, project orientation, research design, verified multi-agent routing, NotebookLM brief verification, paper memory and summaries, Zotero curation, gap-to-topic decisions, and the research-hub CLI operator. Auto-discovered from skills/<name>/SKILL.md.\",\n  \"version\": \"0.5.6\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/research-hub\",\n  \"repository\": \"https://github.com/WenyuChiou/research-hub\",\n  \"license\": \"MIT\",\n  \"keywords\": [\"research\", \"zotero\", \"obsidian\", \"notebooklm\", \"literature-review\", \"academic\"]\n}\n",
+      "scope": "manifest-only; not accepted-source or published-release verification"
+    },
+    {
+      "repo_url": "https://github.com/WenyuChiou/zotero-skills",
+      "plugin": {
+        "name": "zotero-skills",
+        "version": "0.4.0"
+      },
+      "ref": "master",
+      "commit": "e390313c82e76856a525e87a0ae2d0281499e3ab",
+      "tree": "34b3d35da77abc822acb349a0cda75ad63c76025",
+      "manifest_blob": "eaabcb7b42c437f8cf052b4079d44001f2228a60",
+      "manifest_text": "{\n  \"name\": \"zotero-skills\",\n  \"description\": \"Full Zotero CRUD: search, add, update, tag, trash/restore, delete, merge duplicates, and attach PDFs via pyzotero. Dual local/Web API routing; writes work even when the separately configured zotero MCP server is read-only.\",\n  \"version\": \"0.4.0\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/zotero-skills\",\n  \"repository\": \"https://github.com/WenyuChiou/zotero-skills\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"zotero\",\n    \"research\",\n    \"citations\",\n    \"literature-management\"\n  ]\n}\n",
+      "scope": "manifest-only; not accepted-source or published-release verification"
+    }
+  ]
+}

@@ -239,3 +239,37 @@ def test_recorded_hub_dependency_coverage_does_not_change_snapshot_or_install_re
     assert set(hub["shared_references"]) == expected
     marketplace = json.loads((root / ".claude-plugin/marketplace.json").read_text(encoding="utf-8"))
     assert marketplace["plugins"][0]["source"]["ref"] == "master"
+
+
+def test_matching_newer_manifest_is_not_accepted_source(source):
+    """A valid observation/default check cannot upgrade historical acceptance."""
+    import hashlib
+    from scripts import check_manifest_observations as observations
+
+    root, catalog, marketplace, snapshot = source
+    manifest = root / ".claude-plugin/plugin.json"
+    raw = json.dumps({"name": "research-workspace", "version": "0.5.6"}).encode()
+    manifest.write_bytes(raw)
+    git(root, "add", ".claude-plugin/plugin.json")
+    git(root, "commit", "-qm", "Synthetic newer manifest")
+    marketplace["plugins"][0]["version"] = "0.5.6"
+    record = {"repo_url": snapshot["repositories"][0]["repo_url"],
+              "plugin": {"name": "research-workspace", "version": "0.5.6"}, "ref": "master",
+              "commit": git(root, "rev-parse", "HEAD"), "tree": git(root, "rev-parse", "HEAD^{tree}"),
+              "manifest_blob": hashlib.sha1(b"blob " + str(len(raw)).encode() + b"\0" + raw).hexdigest(),
+              "manifest_text": raw.decode(), "scope": observations.SCOPE}
+    before = copy.deepcopy(snapshot)
+    assert observations.validate(marketplace, snapshot, {"schema_version": 1, "observations": [record]}) == []
+    assert report(source, accepted=False)["status"] == "pass"
+    result = report(source)
+    assert result["status"] == "fail"
+    assert any("reviewed manifest identity differs" in finding for finding in result["accepted_sources"][0]["findings"])
+    assert snapshot == before
+
+
+def test_historical_checkout_cannot_pass_accepted_check_with_current_version_drift(source):
+    """Current-marketplace equality is checked before historical Git identity."""
+    source[2]["plugins"][0]["version"] = "0.5.6"
+    result = report(source)
+    assert result["status"] == "fail"
+    assert any("reviewed manifest identity differs" in finding for finding in result["accepted_sources"][0]["findings"])
