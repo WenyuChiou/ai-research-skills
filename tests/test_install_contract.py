@@ -162,18 +162,41 @@ def test_scientific_lifecycle_docs_preserve_all_stages_gates_and_limits():
 _POWERSHELL = __import__("shutil").which("pwsh") or __import__("shutil").which("powershell")
 
 
+def _assert_powershell_scope_rejected(result):
+    # PowerShell diagnostics are localized and need not use Python's encoding.
+    # Check the invariant ASCII error ID in raw bytes, not translated prose.
+    assert result.returncode != 0
+    assert b"ParameterArgumentValidationError" in result.stderr
+
+
+@pytest.mark.parametrize("encoding", ["cp950", "utf-8"])
+def test_powershell_scope_diagnostic_encoding_contract(encoding):
+    """Synthetic diagnostics only: neither runs nor emulates PowerShell."""
+    stderr = (
+        "無法驗證 'Scope' 參數上的引數。\r\n"
+        "    + FullyQualifiedErrorId : ParameterArgumentValidationError,install-all.ps1\r\n"
+    ).encode(encoding)
+    result = subprocess.CompletedProcess([], 1, b"", stderr)
+    _assert_powershell_scope_rejected(result)
+    with pytest.raises(AssertionError):
+        _assert_powershell_scope_rejected(subprocess.CompletedProcess([], 0, b"", stderr))
+    with pytest.raises(AssertionError):
+        _assert_powershell_scope_rejected(subprocess.CompletedProcess(
+            [], 1, b"", stderr.replace(b"ParameterArgumentValidationError", b"CommandNotFoundException")
+        ))
+
+
 @pytest.mark.skipif(_POWERSHELL is None, reason="PowerShell runtime not available")
 def test_powershell_plan_is_repeatable_and_invalid_scope_rejected(tmp_path):
     env = dict(os.environ, HOME=str(tmp_path), XDG_CACHE_HOME=str(tmp_path / "cache"))
     command = [_POWERSHELL, "-NoLogo", "-NoProfile", "-File", str(ROOT / "scripts/install-all.ps1"), "-DryRun", "-Scope", "project"]
-    first = subprocess.run(command, env=env, cwd=tmp_path, capture_output=True, text=True)
-    second = subprocess.run(command, env=env, cwd=tmp_path, capture_output=True, text=True)
+    first = subprocess.run(command, env=env, cwd=tmp_path, capture_output=True)
+    second = subprocess.run(command, env=env, cwd=tmp_path, capture_output=True)
     assert first.returncode == second.returncode == 0, first.stderr
     assert first.stdout == second.stdout
-    assert first.stdout.count("claude plugin install") == 5
-    rejected = subprocess.run(command[:-1] + ["invalid"], env=env, cwd=tmp_path, capture_output=True, text=True)
-    assert rejected.returncode != 0
-    assert "Cannot validate argument" in rejected.stderr
+    assert first.stdout.count(b"claude plugin install") == 5
+    rejected = subprocess.run(command[:-1] + ["invalid"], env=env, cwd=tmp_path, capture_output=True)
+    _assert_powershell_scope_rejected(rejected)
 
 
 @pytest.mark.skipif(_POWERSHELL is None or os.name == "nt", reason="POSIX-native failure double requires PowerShell on POSIX")
