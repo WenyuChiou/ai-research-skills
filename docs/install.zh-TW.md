@@ -269,8 +269,13 @@ cp <repo>/skills/literature-triage-matrix/SKILL.md \
 - `notebooklm-brief-verifier` 的 manual fallback 模式任何 host 都能跑。
 - `zotero-skills` 需要 AI host 能呼叫 Zotero local 或 Web API；
   `SKILL.md` 本身只是 routing contract。
-- `research-hub` 與 `research-hub-multi-ai` 不論哪個 AI 讀取 skill，
-  都要先讓 `research-hub-pipeline` Python CLI 在 PATH 上。
+- `research-hub` 不論哪個 AI 讀取 skill，都要先讓
+  `research-hub-pipeline` Python CLI 在 PATH 上。
+- `research-hub-multi-ai` 只有計畫會呼叫 `research-hub` 時，才需要 Hub CLI
+  能力與 `research-hub doctor`。缺少 Hub 時不要產生 Hub 命令；健康的
+  delegate-only 計畫不需 Hub 即可繼續。仍須確認每個指定的 leaf skill 與
+  wrapper 可用、執行其文件規定的 preflight，並在 delegation 前保留適用的
+  資料、費用與寫入授權檢查。
 - `codex-delegate` / `antigravity-delegate` 主要適合 Claude Code 對外
   delegation，處理有邊界的機械性工作；如果你已經在 Codex 或 Antigravity 裡，
   通常直接用目標 skill 即可。

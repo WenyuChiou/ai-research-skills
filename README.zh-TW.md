@@ -143,6 +143,15 @@ claude plugin install antigravity-delegate@ai-research-skills
 pip install research-hub-pipeline
 research-hub setup --persona researcher
 research-hub doctor
+```
+
+**獨立的 live smoke（非安裝步驟）:**
+
+這是 **live** 文獻工作流程，不是離線安裝檢查。`--no-nlm` 只停用 NotebookLM；
+不會停用其他網路呼叫、模型或寫入。先完成 [live-run preflight](docs/live-run-preflight.zh-TW.md)，
+並取得適用的資料、費用與寫入授權，再執行：
+
+```bash
 research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
 

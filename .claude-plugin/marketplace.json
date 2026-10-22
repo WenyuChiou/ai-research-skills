@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Catalog of AI skills for the research workflow — researcher-led, AI-assisted",
-    "version": "1.7.10"
+    "version": "1.7.11"
   },
   "plugins": [
     {
@@ -15,7 +15,7 @@
       "description": "12 research-hub skills: a resumable human-in-the-loop workflow orchestrator plus literature search, comparison, orientation, context compression, design, verified multi-agent routing, NotebookLM verification, paper memory and summaries, Zotero curation, and gap-to-topic decisions.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/research-hub",
-      "version": "0.5.4",
+      "version": "0.5.6",
       "strict": true,
       "source": {
         "source": "url",
@@ -41,7 +41,7 @@
       "description": "Full Zotero CRUD: search, add, update, tag, trash/restore, delete, merge duplicates, and attach PDFs via pyzotero. Dual local/Web API routing; writes work even when the separately configured zotero MCP server is read-only.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/zotero-skills",
-      "version": "0.3.1",
+      "version": "0.4.0",
       "strict": true,
       "source": {
         "source": "url",

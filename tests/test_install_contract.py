@@ -13,6 +13,7 @@ import pytest
 import yaml
 
 from scripts import check_marketplace_consistency as consistency
+from scripts import check_manifest_observations as observations
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -64,7 +65,8 @@ def test_catalog_directories_and_marketplace_match_checked_upstreams():
         source = by_repo[plugin["source"]["url"].removesuffix(".git")]
         assert plugin["source"]["ref"] == source["default_branch"]
         assert plugin["name"] == source["plugin"]["name"]
-        assert plugin["version"] == source["plugin"]["version"]
+    observed = json.loads(observations.OBSERVATIONS.read_text(encoding="utf-8"))
+    assert observations.validate(marketplace, snapshot, observed) == []
 
 
 def test_canonical_installs_do_not_clone_nested_repo_as_a_single_skill():
@@ -284,7 +286,9 @@ def test_accepted_direction_review_source_identity_and_install_ref():
     assert source["commit"] == "7e046383368d85acb8dfbf0d734ecaaae335cf0a"
     assert source["plugin"] == {"name": "research-workspace", "version": "0.5.4"}
     plugin = next(item for item in marketplace["plugins"] if item["name"] == "research-workspace")
-    assert plugin["version"] == source["plugin"]["version"]
+    # Current cache metadata is separately checked by the manifest-only guard;
+    # historical commit, version and linked content remain bound above/below.
+    assert plugin["name"] == source["plugin"]["name"]
     assert plugin["source"]["ref"] == source["default_branch"] == "master"
     contract_url = f"{source['repo_url']}/blob/{source['commit']}/docs/direction-review-contract.md"
     for suffix in ("", ".zh-TW"):

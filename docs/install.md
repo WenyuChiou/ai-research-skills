@@ -408,9 +408,13 @@ cp <repo>/skills/literature-triage-matrix/SKILL.md \
 - `notebooklm-brief-verifier` works anywhere in manual-fallback mode.
 - `zotero-skills` needs an AI host that can call Zotero local or Web API
   tools; the `SKILL.md` itself is only the routing contract.
-- `research-hub` and `research-hub-multi-ai` need the
-  `research-hub-pipeline` Python CLI on PATH regardless of which AI host
-  reads the skill.
+- `research-hub` needs the `research-hub-pipeline` Python CLI on PATH
+  regardless of which AI host reads the skill.
+- `research-hub-multi-ai` requires Hub CLI capability and `research-hub doctor`
+  only when the plan calls `research-hub`. If Hub is missing, do not emit Hub
+  commands; healthy delegate-only plans may proceed without Hub. Verify every
+  named leaf skill and wrapper, run its documented preflight, and retain the
+  applicable data/cost/write permission checks before delegation.
 - `codex-delegate` and `antigravity-delegate` are most useful from Claude Code
   delegating bounded mechanical work outward; if you are already inside Codex
   or Antigravity, use the target skill directly.
