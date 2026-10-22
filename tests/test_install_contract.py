@@ -262,3 +262,48 @@ def test_accepted_source_doc_reads_ignore_locale_default_encoding(monkeypatch):
     test_accepted_source_matrix_matches_commit_bound_snapshot()
     test_source_audit_and_native_comparison_rollout_limits_remain_explicit()
     test_accepted_harness_source_docs_do_not_imply_a_runtime_engine()
+
+
+@pytest.mark.parametrize("skill,owner", [
+    ("literature-triage-matrix", "research-hub"),
+    ("gap-to-topic", "research-hub"),
+    ("research-design-helper", "research-hub"),
+    ("paper-memory-builder", "research-hub"),
+    ("paper-summarize", "research-hub"),
+    ("research-hub", "research-hub"),
+    ("academic-writing-skills", "academic-writing-skills"),
+    ("paper-review", "academic-writing-skills"),
+    ("zotero-skills", "zotero-skills"),
+    ("codex-delegate", "codex-delegate"),
+    ("antigravity-delegate", "antigravity-delegate"),
+])
+def test_task_entry_links_resolve_to_catalog_source_owner(skill, owner):
+    """Static route examples: link ownership, not model routing/host invocation."""
+    import re
+    catalog, _ = consistency._load()
+    entries = {s["name"]: s for f in catalog["families"] for s in f["skills"]}
+    text = (ROOT / "docs/install.md").read_text(encoding="utf-8")
+    route_table = text.split("## Choose your task first", 1)[1].split("## Choose an install path", 1)[0]
+    references = dict(re.findall(r"^\[([^]]+)\]: (\S+)$", route_table, re.MULTILINE))
+    assert entries[skill]["repo_url"] == f"https://github.com/WenyuChiou/{owner}"
+    assert references[skill] == entries[skill]["skill_url"]
+    assert any(f"[{skill}]" in line for line in route_table.splitlines() if line.startswith("|"))
+
+
+@pytest.mark.parametrize("relative", ["docs/install.md", "docs/runtime-contract.md"])
+def test_runtime_route_local_links_and_examples_resolve(relative):
+    """Catch broken local handoffs without fetching sources or invoking tools."""
+    import re
+    path = ROOT / relative
+    text = path.read_text(encoding="utf-8")
+    for target in re.findall(r"\[[^]]+\]\(([^)]+)\)", text):
+        if target.startswith(("https://", "http://", "#")):
+            continue
+        file, _, fragment = target.partition("#")
+        linked = path.parent / file
+        assert linked.is_file(), target
+        if fragment:
+            linked_text = linked.read_text(encoding="utf-8")
+            headings = re.findall(r"^#+ (.+)$", linked_text, re.MULTILINE)
+            anchors = {re.sub(r"[^\w\- ]", "", h.lower()).replace(" ", "-") for h in headings}
+            assert fragment in anchors or f'id="{fragment}"' in linked_text, target
