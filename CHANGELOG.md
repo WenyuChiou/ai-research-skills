@@ -47,6 +47,21 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.12] - 2026-10-24
+
+### Changed
+
+- Synchronize academic-writing-skills 1.3.22 to accepted source commit
+  `0cd848b402daadb5a21f3a334c8c534b0dd7ce1b`: scoped comment revisions,
+  comparison-layer acceptance, corrected Word selection projection and portable
+  Unicode JSON output. Adapter 1.0.0, state 1.1 and six operations are unchanged.
+- Refresh only the writing source identity/version/date and bilingual assessment.
+  The paired ten-case writing exercise met local criteria in both versions, not
+  demonstrated improvement; scope cases remain proposals, not Word/layout proof.
+  Source tests passed 339 cases with 2 skipped, plus 27 bundled checks.
+- Update catalog version labels to 1.7.12. Preserve other accepted-source pins,
+  historical verification dates and the separate manifest-observation contract.
+
 ## [1.7.11] - 2026-10-22
 
 ### Fixed
@@ -1860,7 +1875,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.11...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.12...HEAD
+[1.7.12]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.10...v1.7.12
 [1.7.11]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.10...v1.7.11
 [1.7.10]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.9...v1.7.10
 [1.7.9]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.8...v1.7.9
