@@ -11,7 +11,7 @@ academic-writing-skills 列與 source snapshot 已於 2026-10-24 更新至上游
 skill 身分、entrypoint 與操作介面簽章不變，並更新 skill 版本及檔案 hash 清單。
 本次 source check 僅核對 manifest 與目錄；live host 載入、普遍讀者理解與研究品質
 未經驗證。zotero-skills 列與 snapshot 仍為 2026-10-07 審查通過的 0.3.1 release；
-codex-delegate 與 antigravity-delegate 列與 snapshot 已於 2026-10-17 分別更新至 0.1.3 與 0.1.2；其他 source identities 保留原有評估。
+codex-delegate 列與 snapshot 已於 2026-10-25 更新至審查接受的 0.1.5 release；antigravity-delegate 列與 snapshot 維持 2026-10-17 核對的 0.1.2；其他 source identities 保留原有評估。
 
 English: [system-assessment.md](system-assessment.md)
 
@@ -23,7 +23,7 @@ English: [system-assessment.md](system-assessment.md)
 | research-hub | [7e04638](https://github.com/WenyuChiou/research-hub/tree/7e046383368d85acb8dfbf0d734ecaaae335cf0a) | Python/MCP 1.2.0 / research-workspace plugin 0.5.4 | 12 skills；native input/provenance/preview；選配 source-audit 與 offline direction-review 契約；explicit human topic choice；strict packet v1 不變；須檢查 installed runtime |
 | academic-writing-skills | [0cd848b](https://github.com/WenyuChiou/academic-writing-skills/tree/0cd848b402daadb5a21f3a334c8c534b0dd7ce1b) | Plugin 1.3.22；adapter 1.0.0 / state schema 1.1 | 保留範圍明確的清晰度、限制、圖表導讀、術語、語境案例及分階段檢查指引。1.3.18 新增以段落開頭組織的 extended outline；1.3.19 明確化分層的證據到意義單元及跨章節銜接，不另建 checklist 或固定句型儀式。較早 1.3.19 的單輪 18 案例配對文字測試兩版皆達 72/72 判準，未證明改善；另發現一處首次用詞問題，獨立記錄依回饋所做的修正。1.3.20 整合 SM 引用功能與範圍控制；十個假設前向案例有一處 review-only 過改，修正後僅對該例定向複查，未聲稱配對改善。1.3.21 整合流程的輸入／動作／輸出銜接，區分初始設定、重複更新及條件／診斷分支；單輪十二個假設案例經獨立 agent 執行及主 agent 核對，並非配對改善或人類讀者驗證。 較早的 8/8 對 8/8 證據同樣未證明品質或效率提升。README 保留支援的 clients 名稱、不放測試標章；圖片不變。1.3.22 綁定目前的留言選取範圍，釐清比較層次的貢獻，並修正文字／欄位投影與非 UTF-8 JSON 輸出。十案例配對測試兩版皆符合局部判準，未證明改善；十六個範圍案例是修改提案，不是已完成的 Word 編輯。修正後來源測試為 339 passed／2 skipped，另有 27 項 bundled checks。skill 身分、entrypoint 與操作介面簽章不變。已核對來源目錄與 manifest；未驗證 live host 載入、普遍人類讀者理解、研究品質或完整詞彙涵蓋率 |
 | zotero-skills | [f5772f8](https://github.com/WenyuChiou/zotero-skills/tree/f5772f8b62410858d41436efe11e85529b5dee8c) | Plugin 0.3.1；核對到的最新 tag 0.2.0 | 內層 skill 搭配 root client；attach_pdf 改用 upload_attachments(basedir=...) 傳送單純檔名，修正 0.3.0 每次呼叫都失敗的 HTTP 400；runtime 與 destructive safeguards 不變 |
-| codex-delegate | [73eb7d8](https://github.com/WenyuChiou/codex-delegate/tree/73eb7d87fe54b54c34f5d40695774f24cb7a59ff) | Plugin 0.1.3 | 內附 Bash/PowerShell wrappers；不內建預設 model 或 reasoning effort（可選 `--model` / `--effort`，分別轉為 `-m` 與 `-c model_reasoning_effort` 傳給 Codex）；穩定 brief/result/sentinel adapter；dirty-content observation 與 sandbox forwarding；由 supervisor 驗收，不另造 broker |
+| codex-delegate | [5592763](https://github.com/WenyuChiou/codex-delegate/tree/5592763dcca0cf25cc841c0806d7b328886e8e73) | Plugin 0.1.5；release v0.1.5 | 內附 Bash/PowerShell wrappers；不內建預設 model、reasoning effort 或 service tier（可選 `--model` / `--effort` / `--service-tier` 直接傳給 Codex）；穩定 brief/result/sentinel adapter；dirty-content observation 與 sandbox forwarding；由 supervisor 驗收，不另造 broker。0.1.5 將具期限的測試 session shell 啟動與原有 wrapper 案例分開；runtime／skill 內容不變。已核對來源目錄與 manifest；此 snapshot 不代表已驗證 live model 執行、普遍啟動可靠性或 host 載入 |
 | antigravity-delegate | [6dbe89d](https://github.com/WenyuChiou/antigravity-delegate/tree/6dbe89dde991d4a5c5298014e284ce78e7091fc8) | Claude plugin 0.1.2 | Bounded mechanical lane；可選 `--model` 直接轉給 agy，未指定時用 agy 自己的預設；大量輸出達 log 上限後仍等待 producer 完成；Google-native marker 與 Claude manifest 分開；live native-host loading 未驗證 |
 
 機器可讀的公開 source snapshot：
