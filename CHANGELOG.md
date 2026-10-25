@@ -52,9 +52,10 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Align codex-delegate marketplace metadata and accepted source snapshot with
-  release 0.1.4 at `3e243605e7f42265dbcf7c0dd3bfcff7dc5180e5` (upstream PR #14).
-  This formalizes previously merged patches including optional service-tier
-  pass-through; it does not change runtime defaults, routing or permissions.
+  release 0.1.5 at `5592763dcca0cf25cc841c0806d7b328886e8e73` (upstream PRs #14–#15).
+  This collects previously merged patches including optional service-tier
+  pass-through and separates bounded test-session shell startup from unchanged
+  wrapper cases; runtime defaults, routing and permissions do not change.
 - Refresh only the codex-delegate assessment date and bilingual version notes.
   Retain other accepted source identities, historical dates and manifest-only
   observations; source checks do not establish live model execution or host loading.

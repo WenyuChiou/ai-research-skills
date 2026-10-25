@@ -112,11 +112,11 @@
     },
     {
       "repo_url": "https://github.com/WenyuChiou/codex-delegate",
-      "commit": "3e243605e7f42265dbcf7c0dd3bfcff7dc5180e5",
+      "commit": "5592763dcca0cf25cc841c0806d7b328886e8e73",
       "default_branch": "master",
       "plugin": {
         "name": "codex-delegate",
-        "version": "0.1.4"
+        "version": "0.1.5"
       },
       "skills": [
         {
@@ -124,7 +124,7 @@
           "directory": "skills/codex-delegate"
         }
       ],
-      "tree": "fa7f64832572aafb1b7bab88c8ae6e7b1e8f241f",
+      "tree": "9a1f07fee30d2cd57e05dd65aa34aa611762dd9a",
       "shared_references": []
     },
     {
