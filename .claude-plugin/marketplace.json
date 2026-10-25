@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Catalog of AI skills for the research workflow — researcher-led, AI-assisted",
-    "version": "1.7.13"
+    "version": "1.7.14"
   },
   "plugins": [
     {
@@ -67,7 +67,7 @@
       "description": "Bounded cheap-executor lane for non-honesty-critical mechanical edits through Google Antigravity CLI, with brief-first scope and result verification.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/antigravity-delegate",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "strict": true,
       "source": {
         "source": "url",

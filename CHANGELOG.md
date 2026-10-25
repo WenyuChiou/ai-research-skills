@@ -47,6 +47,20 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.14] - 2026-10-25
+
+### Changed
+
+- Align antigravity-delegate marketplace metadata and accepted source snapshot
+  with release 0.1.3 at `49d95696b5393b8faaa472d84e999c75ca5cdeff`
+  (upstream PR #3): independent optional `--effort`, alone or with
+  `--model`, including Argon selection; no default, permission or global
+  settings change. Native CLI validates model-specific effort support.
+- Refresh only that source assessment and current bilingual catalog labels.
+  Preserve other accepted identities, historical dates and manifest-only
+  observations. Two pytest tests and 62 synthetic assertions per wrapper passed;
+  native metadata lists Argon, without live generation or renewed reliability proof.
+
 ## [1.7.13] - 2026-10-25
 
 ### Changed
@@ -1888,7 +1902,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.13...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.14...HEAD
+[1.7.14]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.13...v1.7.14
 [1.7.13]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.12...v1.7.13
 [1.7.12]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.10...v1.7.12
 [1.7.11]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.10...v1.7.11
