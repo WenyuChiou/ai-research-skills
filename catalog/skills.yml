@@ -733,6 +733,11 @@ families:
         verification_status: pass
         verification_tier: T2
         verification_notes: |
+          2026-10-25 source refresh (0.1.3, accepted `49d9569`): independent
+          optional `--effort` with Argon `--model` forwarding; no default,
+          permission or global-setting changes. Two pytest tests and 62 synthetic
+          assertions per wrapper passed. agy 1.4.7 metadata lists Argon;
+          no generation, account-support or renewed reliability claim; T2 unchanged.
           2026-10-17 (0.1.2, `6dbe89d`): optional `--model <id>` passed
           through as `agy --model`; without it agy's own default applies.
           Upstream shell suite 33/33 plus one live smoke on agy 1.4.0 with
