@@ -1,6 +1,6 @@
 {
   "checked_on": "2026-10-19",
-  "verification_scope": "source-layout-and-manifest; academic-writing-skills refreshed on 2026-10-24; zotero-skills refreshed on 2026-10-07; codex-delegate and antigravity-delegate refreshed on 2026-10-17; other source identities retained from the 2026-10-03 snapshot; no live host invocation",
+  "verification_scope": "source-layout-and-manifest; academic-writing-skills refreshed on 2026-10-24; zotero-skills refreshed on 2026-10-07; codex-delegate refreshed on 2026-10-25; antigravity-delegate refreshed on 2026-10-17; other source identities retained from the 2026-10-03 snapshot; no live host invocation",
   "repositories": [
     {
       "repo_url": "https://github.com/WenyuChiou/research-hub",
@@ -112,11 +112,11 @@
     },
     {
       "repo_url": "https://github.com/WenyuChiou/codex-delegate",
-      "commit": "73eb7d87fe54b54c34f5d40695774f24cb7a59ff",
+      "commit": "3e243605e7f42265dbcf7c0dd3bfcff7dc5180e5",
       "default_branch": "master",
       "plugin": {
         "name": "codex-delegate",
-        "version": "0.1.3"
+        "version": "0.1.4"
       },
       "skills": [
         {
@@ -124,7 +124,7 @@
           "directory": "skills/codex-delegate"
         }
       ],
-      "tree": "2392c7284d4180111189cf2b668e0d61f4182eb0",
+      "tree": "fa7f64832572aafb1b7bab88c8ae6e7b1e8f241f",
       "shared_references": []
     },
     {

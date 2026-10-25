@@ -268,7 +268,7 @@ claude plugin install codex-delegate@ai-research-skills
 
 For normal Claude Code-to-Codex integration, prefer the
 [official plugin](https://github.com/openai/codex-plugin-cc) when its runtime
-fits. Accepted codex-delegate 0.1.3 is a minimal synchronous adapter for existing
+fits. Accepted codex-delegate 0.1.4 is a minimal synchronous adapter for existing
 on-disk brief, result/sentinel and Bash/PowerShell workflows. It does not add a
 second broker or establish better coding quality or total model cost; see the
 [comparison boundary](system-assessment.md#comparable-checks-and-limits).

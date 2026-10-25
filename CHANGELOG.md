@@ -47,6 +47,18 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.13] - 2026-10-25
+
+### Changed
+
+- Align codex-delegate marketplace metadata and accepted source snapshot with
+  release 0.1.4 at `3e243605e7f42265dbcf7c0dd3bfcff7dc5180e5` (upstream PR #14).
+  This formalizes previously merged patches including optional service-tier
+  pass-through; it does not change runtime defaults, routing or permissions.
+- Refresh only the codex-delegate assessment date and bilingual version notes.
+  Retain other accepted source identities, historical dates and manifest-only
+  observations; source checks do not establish live model execution or host loading.
+
 ## [1.7.12] - 2026-10-24
 
 ### Changed
@@ -1875,7 +1887,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.12...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.13...HEAD
+[1.7.13]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.12...v1.7.13
 [1.7.12]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.10...v1.7.12
 [1.7.11]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.10...v1.7.11
 [1.7.10]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.9...v1.7.10
