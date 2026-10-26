@@ -78,8 +78,11 @@ commit-to-tree-to-path linkage or remote origin. A maintainer must verify that
 linkage from the canonical source before adding a real observation. The Zotero
 0.4.0 observation comes from commit `e390313c82e76856a525e87a0ae2d0281499e3ab`;
 that is an unpublished source candidate, not a published release (latest checked
-release v0.2.0). The Hub 0.5.6 observation comes from merged master commit
-`01e796d3201349367ebc9297f1f2448a4d9851a3`. Neither record is a local-only
+release v0.2.0). The Hub 0.5.10 observation comes from merged master commit
+[`068596faeb8cf0227556ad95fa1de318ab00db46`](https://github.com/WenyuChiou/research-hub/commit/068596faeb8cf0227556ad95fa1de318ab00db46),
+tree `a7bd8458c8316eeffbaf4f0d86e9c34d9e0f2251`, with
+[`plugin.json`](https://github.com/WenyuChiou/research-hub/blob/068596faeb8cf0227556ad95fa1de318ab00db46/.claude-plugin/plugin.json)
+blob `96dbb9233f2121ecae3642bf6bed1846d0b0a24c`. Neither record is a local-only
 candidate substitution or an absent-sibling skip.
 
 These observations never update accepted commits, trees, `checked_on`, human

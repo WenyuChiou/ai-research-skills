@@ -320,6 +320,11 @@ immediate goal:
 | **Write or revise a paper** | `paper-memory-builder` + `academic-writing-skills` |
 | **Manage a research project** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` |
 
+For literature discovery, start with the search and source-reading capabilities
+actually available in Codex or Claude Code. Zotero, Obsidian and NotebookLM are
+optional, not a required setup detour; follow the existing
+[Stage 1 evidence handoff](docs/pipeline.md#1-discover-literature).
+
 > **Helping others adopt AI for research** (librarian / RA / advisor)?
 > No install needed — share this README plus [docs/install.md](docs/install.md).
 

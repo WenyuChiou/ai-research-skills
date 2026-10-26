@@ -47,6 +47,23 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.15] - 2026-10-26
+
+### Fixed
+
+- Align Stage 1 catalog discovery entrypoints with the existing Hub protocol:
+  use available native Codex / Claude Code search and reading capabilities,
+  retain source versions, actual reading levels, closest/contrary work and
+  unresolved evidence, and keep storage integrations optional.
+- Correct abstract-only `paper-summarize` output claims: remote unknown outcomes
+  and guarded best-effort local compensation are not atomic cross-system writes.
+- Observe merged Hub `068596fa` plugin 0.5.10 for marketplace cache metadata only;
+  preserve the accepted `7e046383` snapshot and historical verification dates.
+  No canonical skill copy, runtime/host installation or scientific revalidation.
+
+Stage 3a's older auto-selection wording in the pipeline docs is a known separate
+follow-up; this Stage 1-only change does not modify that stage or its behavior.
+
 ## [1.7.14] - 2026-10-25
 
 ### Changed
@@ -1902,7 +1919,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.14...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.15...HEAD
+[1.7.15]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.14...v1.7.15
 [1.7.14]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.13...v1.7.14
 [1.7.13]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.12...v1.7.13
 [1.7.12]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.10...v1.7.12

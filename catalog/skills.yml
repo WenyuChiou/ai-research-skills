@@ -45,16 +45,18 @@ families:
         directory: skills/research-hub
         repo_url: https://github.com/WenyuChiou/research-hub
         skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md
-        purpose: Operate research-hub workflows for discovery, ingest, organization, NotebookLM, dashboard, and maintenance.
+        purpose: Guide literature discovery with available host-native search and source reading; operate configured research-hub ingest, organization, NotebookLM, dashboard, and maintenance workflows when needed.
         use_when:
           - Find papers about a topic and organize them.
+          - Plan searches and retain version-bound source evidence, actual reading levels, closest or contrary work, and unresolved needs using available Codex or Claude Code capabilities.
           - Ingest local files into an Obsidian vault.
           - Upload a cluster to NotebookLM and download a brief.
           - Inspect or maintain a research-hub vault.
         outputs:
-          - Zotero collections and tags
-          - Obsidian Markdown notes
-          - NotebookLM bundles and briefs
+          - Literature evidence handoff with source versions, reading levels, locators, closest or contrary work, and not-read or unknown limitations
+          - Optional Zotero collections and tags (configured and authorized writes only)
+          - Optional Obsidian Markdown notes (configured and authorized writes only)
+          - Optional NotebookLM bundles and briefs (configured and authorized use only)
           - research-hub dashboards
         verified_on: "2026-04-25"
         verification_status: pass
@@ -313,29 +315,36 @@ families:
         directory: skills/paper-summarize
         repo_url: https://github.com/WenyuChiou/research-hub
         skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md
-        purpose: Fill per-paper Key Findings / Methodology / Relevance in both Obsidian markdown and Zotero child notes after `research-hub auto` ingests a cluster.
+        purpose: Fill abstract-only per-paper Key Findings / Methodology / Relevance in enabled Obsidian and Zotero destinations after `research-hub auto` ingests a cluster; not full-text reading or source verification.
         use_when:
           - "User says: \"summarize the papers in cluster X\" or \"fill the TODO Key Findings\"."
           - Just ran `research-hub auto` and per-paper notes are still TODO skeletons.
-          - Want Zotero notes and Obsidian markdown to stay in sync per paper.
+          - Prepare per-paper abstract summaries and inspect each enabled destination's confirmed or unknown write outcome.
         outputs:
           - Obsidian markdown blocks (`## Key Findings`, `## Methodology`, `## Relevance` per paper)
-          - Zotero child note HTML (one per paper, atomically rolled back if write fails)
+          - Owned Zotero summary child note HTML (confirmed or unknown outcome; guarded best-effort local compensation, not atomic rollback)
           - Fallback prompt at `<vault>/.research_hub/artifacts/<slug>/summarize-prompt.md` when no LLM CLI on PATH
         verified_on: "2026-05-09"
         verification_status: pass
         verification_tier: T1
         verification_notes: |
-          T1 promoted. The skill ships with 23 end-to-end tests across
+          Historical T1 evidence (2026-05-09). The recorded suite had 23 tests across
           three files (`tests/test_v069_summarize.py` 17 cases,
           `tests/test_v073_parallel_summarize.py` 3 cases,
           `tests/test_v080_resummarize.py` 3 cases) that stub the LLM CLI
           but execute real Obsidian markdown writes against fixture vaults
-          and the Zotero rollback invariant. Upstream PR
+          and a mocked Zotero failure/rollback case, not cross-system atomicity. Upstream PR
           https://github.com/WenyuChiou/research-hub/pull/31 surfaces this
           coverage in the skill's own ## Verification section so the T1
           claim is visible to consumers. Real-vault smoke runs remain a
           manual fallback rather than a primary verification path.
+          Current source wording at research-hub 068596fa (plugin 0.5.10)
+          states that this is not a distributed transaction: remote writes
+          without confirmation remain unknown; local compensation is guarded
+          and best-effort, preserving newer observed edits. Reconcile before
+          an explicit retry; do not retry unknown outcomes automatically.
+          This catalog correction does not refresh the historical date/tier
+          or establish live-provider acceptance.
         lifecycle_status: active
         workflow_stages: [synthesize]
         runtime_mode: hybrid

@@ -287,6 +287,10 @@ synthesize、design、execute、write、release；read-only 或可逆工作可�
 | **寫論文 / 改稿** | `paper-memory-builder` + `academic-writing-skills` |
 | **管理研究專案** | `research-design-helper` + `research-context-compressor` + `zotero-library-curator` |
 
+找文獻時，先用 Codex 或 Claude Code 實際可用的搜尋與原文閱讀能力。
+Zotero、Obsidian、NotebookLM 都是可選整合，不必為此多走設定流程；
+依既有 [Stage 1 證據交接](docs/pipeline.zh-TW.md#1-找文獻) 保留閱讀與來源依據。
+
 > **協助別人用 AI 做研究** (圖書館員 / RA / 指導老師)?
 > 不需要安裝 — 把這份 README + [docs/install.md](docs/install.md) 給他們即可。
 

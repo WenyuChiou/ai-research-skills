@@ -24,13 +24,115 @@ decisions at each existing stage, see [scientific lifecycle and quality gates](s
 
 > *"What has been done? What should I read?"*
 
-Tools you probably use: **Zotero · NotebookLM · Obsidian** *(no native
-OneNote skill — use Obsidian as the notes layer.)*
+Start with the search, deep-research, reading, citation and relevant skills
+actually available in **Codex or Claude Code**. Do not assume that either host
+exposes every capability: record what was used, available but untested, or
+unavailable here. Follow the canonical [research protocol](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/references/research-protocol.md)
+and [source-claim audit guidance](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/references/source-claim-audit.md),
+not a second catalog-owned search engine.
+
+**Research Hub itself is optional.** Native AI Skills discovery and source
+reading can use the host's available tools without installing or configuring
+Research Hub. Shared protocol references are instructions, not a requirement
+to run Hub. If the user chooses Hub, it offers an optional route for
+organization, persistence and selected workflow/integration operations.
+Check only the setup and access needed for those selected operations;
+do not add mandatory Hub CLI setup, integration accounts, API keys or logins
+to the native route. Host tool access still depends on the host's actual
+authorized capabilities.
+
+### Agree the round and search routes
+
+Take the topic, target count and reading depth in natural language. Reuse
+preferences already supplied; ask only about missing choices that matter. For
+example, "about 12 papers, abstracts first, then read two core papers closely"
+already supplies both count and depth. Do not repeat those intake questions or
+require a form. When a count is needed but unspecified, propose a need-based
+round of **10–20 relevant distinct papers**, adjusted to the question and
+available evidence. This is not a quota or a 30-paper default: do not pad weak
+matches, duplicate versions or inaccessible papers to reach a number. Report
+shortfalls and uncovered needs; a smaller useful set may be the right outcome.
+
+Decompose the question into concepts, keywords, synonyms, abbreviations and
+adjacent terminology. Try multiple relevant search routes and query variants,
+then backward and forward citation chasing. Record routes actually used and
+their results or failures; a single query is not evidence of broad coverage.
+Explain each relevant role: **classic** for foundational context, **core** for
+the present question, **nearest** for the closest topical comparator,
+**methodological** for a method/data contribution, and **contrary** for evidence
+that challenges the working claim. Roles may overlap; age, citation count or
+method similarity alone does not make a paper core or nearest.
+
+### Keep counts and reading evidence separate
+
+Report raw hits separately from distinct works **discovered**, works
+**screened**, works **included**, **reading-depth counts**, and the **core
+count**. Deduplicate preprint/journal/revision versions at work level while
+preserving version identities, links and the exact version read. Do not count
+versions as extra papers; if genuinely distinct studies share a lineage,
+explain the distinction. Outside an explicitly public-fulltext-only round,
+inclusion may record relevance separately from full-body access: important
+pending/background works may remain included with access limits visible.
+A core selection is not a claim that it was read.
+Reading levels such as `not-read`, `abstract-only`, `selected-sections` and
+`full-text` describe actual reading, not file availability or storage status.
+Bind every summary and consequential claim to that source/version and the
+sections actually read; do not transfer support across versions unchecked.
+
+For a user-chosen public-fulltext-only round, formal inclusion requires both
+assessed relevance and a lawfully publicly accessible full body actually
+obtained and validated for the intended work/version. Apply this to the formal
+included count, delivered list, and archive/NotebookLM lists when those
+destinations are selected. Landing/abstract-only, private, login/paywall,
+blocked or missing-body responses are not formal papers. Retain important
+items in a separate excluded/background leads section, never padding the formal
+included count. A fetched full text may still be only partly read: report actual
+reading depth/sections; availability proves neither full reading nor academic
+relevance.
+
+The handoff records search needs/queries and their observed results, source
+identity and version/date, actual reading level and claim locators, closest or
+contrary work, and remaining `not-read` / `unknown` items. Read the relevant
+methods/results before relying on a full-text claim; an abstract-only summary,
+search hit, filled locator or structural check is not source-level verification.
+Distinguish an author-maintained query ledger from retained invocation receipts;
+do not rerun a search merely to manufacture a missing historical receipt.
+
+### Check full-body eligibility before archiving or NotebookLM
+
+Archive/NotebookLM eligibility requires a **lawfully publicly accessible full
+body**, with the actual PDF or substantive body validated for the intended
+work/version. Inspect the response and readable content/pages; a `.pdf` URL,
+HTTP 200, MIME label or PDF signature alone is insufficient. A login page,
+abstract/landing page, paywall or error payload is not the paper's full body.
+Keep important inaccessible works as pending/background with the access limit
+and next safe route recorded; do not discard them, label them fully read, or
+upload them as full text. Do not bypass access restrictions. Having a validated
+full body still does not establish that every section was read.
+
+**Zotero · NotebookLM · Obsidian are optional integrations**, not prerequisites
+for this discovery pass. Use configured storage/automation only when needed and
+authorized; do not add accounts or setup steps just to conduct the literature
+review. Missing Hub CLI access in one executor does not establish a missing
+product capability. A portable/manual handoff is not an executed Hub pipeline.
+
+Let the user choose destinations, including none or later. Keep a separate
+receipt for each requested destination/action: source/version, destination
+identity, and confirmed success, failure, unknown or skipped outcome. This
+catalog specifies guidance; it does not implement those provider capabilities.
+**Saved does not mean semantically completed.** A file or upload receipt does
+not finish reading, relevance assessment or claim verification. Technical
+pending work is not automatically a human-only decision: continue safe bounded
+diagnosis/remediation within existing authorization, retaining the blocker when
+no safe route remains. Ask the researcher only for a genuine scope/scientific
+choice, access permission, resource commitment or separately required write
+authorization; do not silently install tools or require optional accounts.
 
 | Skill | What it does |
 |---|---|
-| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | Search arXiv / Semantic Scholar / CrossRef / PubMed, ingest metadata, write paper notes into Obsidian. |
-| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) | Add, tag, deduplicate, and clean Zotero items beyond the research-hub pipeline. |
+| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | Use available native discovery and source reading under the shared protocol; optionally use configured arXiv / Semantic Scholar / CrossRef / PubMed search and authorized ingest/storage. |
+| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *(optional)* | Fill abstract-only per-paper notes after ingest; does not read PDFs or verify the paper's full-text claims. |
+| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *(optional)* | Add, tag, deduplicate, and clean Zotero items when those separately authorized library operations are needed. |
 
 ## 2. Organise & compare literature, find the gap
 

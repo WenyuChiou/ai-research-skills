@@ -1,8 +1,15 @@
 # Researcher Workflow Checklist
 
-Use this checklist if you work like many researchers: papers live in Zotero,
-notes live in Obsidian, source-grounded summaries come from NotebookLM, and
-manuscript work happens in Word, LaTeX, or Markdown.
+For native Codex or Claude Code literature discovery, start with the existing
+[Stage 1 evidence handoff](pipeline.md#1-discover-literature): inventory available
+search/reading tools, retain source versions and actual reading levels, and
+record closest/contrary work and unresolved evidence. Tool availability is not
+proof of an executed search or source assessment.
+
+The combinations below are optional routes for researchers whose papers live in
+Zotero, notes in Obsidian, briefs in NotebookLM, and manuscripts in Word, LaTeX,
+or Markdown. They are not prerequisites for the native discovery pass; do not
+add accounts or install integrations merely to start reading literature.
 Read [runtime-contract.md](runtime-contract.md) alongside this checklist
 to distinguish portable `SKILL.md` instructions from the executable
 `research-hub` CLI runtime.

@@ -22,13 +22,90 @@ pipeline 位置。見最下方的 **Cross-cutting tools**。
 
 > *「這個題目別人做過什麼？我該讀什麼？」*
 
-常用工具：**Zotero · NotebookLM · Obsidian** *（目前沒有 OneNote 對應的
-skill，請以 Obsidian 作為筆記層。）*
+先用 **Codex 或 Claude Code** 當前實際提供的搜尋、deep-research、閱讀、
+引文工具與相關 skills。不要假設兩個 host 都有所有能力；記錄本輪已使用、
+可用但未測、或在此環境不可用的項目。遵循上游的
+[research protocol](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/references/research-protocol.md)
+與 [source-claim audit guidance](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/references/source-claim-audit.md)，
+不在 catalog 另建一套搜尋引擎。
+
+**Research Hub 本身是可選的。** 原生 AI Skills 的搜尋與原文閱讀，不需要安裝或設定
+Research Hub，可直接使用 host 實際可用的工具。共用 protocol 連結是研究指引，
+不表示必須執行 Hub。使用者選擇 Hub 時，再依需要使用它提供的整理、持久儲存、
+workflow／整合路線。只檢查所選動作需要的設定與存取，不把 Hub CLI 設定、整合
+帳號、API key 或 login 變成原生路線的必要前提；host 工具仍依其實際可用且已授權
+的能力執行。
+
+### 確認本輪需求與搜尋路線
+
+用自然語言接收主題、目標篇數與閱讀深度。沿用已提供的偏好，只問真正缺少且
+影響結果的選項。例如「約 12 篇，先看摘要，再精讀兩篇核心文獻」已同時交代
+篇數與深度，不要重問，也不要求填表。需要篇數但尚未指定時，可提議一輪
+**10–20 篇相關且不重複的論文**，按問題與可得證據調整。這不是配額，也不是
+預設 30 篇；不要用低相關文獻、重複版本或無法取得的論文湊數。交代不足與未
+涵蓋需求；較少但有用的集合也可能是合適結果。
+
+把問題拆成概念、關鍵字、同義詞、縮寫與相鄰術語，嘗試多條適合的搜尋路線及
+查詢變體，再做向後與向前 citation chasing。記錄真正使用的路線、結果與失敗；
+單次查詢不代表廣泛涵蓋。逐篇說明角色：**classic** 提供奠基背景、**core**
+直接服務目前問題、**nearest** 是最接近的主題比較、**methodological** 提供
+方法或資料貢獻、**contrary** 挑戰目前主張。角色可以重疊；年代、被引次數或
+只有方法相似，都不會自動使論文成為核心或最近前作。
+
+### 分開篇數與閱讀證據
+
+原始命中數與不同 works 的 **discovered**、**screened**、**included**、
+**reading-depth counts**、**core count** 要分開記錄。Preprint、期刊版與修訂版
+在 work 層級去重，但保留版本身分、互連與實際閱讀的版本，不把版本算成額外
+篇數；同一沿革若確實包含不同研究，要交代理由。未限定 public-fulltext-only 的
+一般發現輪次，納入可記錄相關性而與全文可得性分開；重要的 pending/background
+作品仍可保留納入，但須揭露存取限制。
+選為 core 不代表已讀。
+`not-read`、`abstract-only`、`selected-sections`、`full-text` 描述實際閱讀，
+不是檔案可得性或儲存狀態。每份摘要與重要 claim 都須對應來源／版本與真正
+讀過的章節；未核對前，不跨版本搬用支持證據。
+
+當使用者選擇 public-fulltext-only（僅公開全文）範圍時，正式納入須同時符合
+已評估的學術相關性，以及已實際取得且核驗為所選 work/version 的合法公開完整
+正文。此條件適用於正式 included count、交付清單，以及選用目的地的歸檔／
+NotebookLM 清單。Landing／abstract-only、非公開、登入／付費牆、blocked 或缺少
+正文的回應都不能當正式論文。重要者另列未納入／背景線索，不計入正式篇數、
+不湊數。取得全文仍可能只讀了部分章節，須如實標示閱讀層級／章節；可得性不
+證明全文已讀或學術相關。
+
+交接需保留搜尋需求／查詢與實際觀察結果、來源身分與版本／日期、實際閱讀
+層級與 claim locator、最接近或相反的研究，以及 `not-read`／`unknown`。
+依賴全文 claim 前須讀相關方法與結果；abstract-only 摘要、搜尋命中、填好的
+locator 或結構檢查都不等於原文驗證。作者自行維護的 query ledger 與留存的
+工具呼叫 receipt 要分開；不要只為補造歷史 receipt 而要求重跑搜尋。
+
+### 歸檔或進入 NotebookLM 前先驗證全文資格
+
+歸檔／NotebookLM 須有**合法公開可取得的完整正文**，並核對實際 PDF 或實質
+正文符合目標 work/version。檢查回應與可讀內容／頁面；只有 `.pdf` 網址、
+HTTP 200、MIME 標籤或 PDF 檔頭都不充分。登入頁、摘要／landing page、付費牆
+與錯誤回應不是論文全文。重要但無法取得的作品保留為 pending/background，
+記錄存取限制與下一個安全路線，不丟棄、不標成全文已讀，也不當全文上傳。
+不得繞過存取限制；已驗證有完整正文，仍不代表每個章節都已讀過。
+
+**Zotero · NotebookLM · Obsidian 都是可選整合**，不是這輪找文獻的前提。
+只有需要且已獲授權時，才使用設定好的儲存／自動化；不要為文獻研究額外
+要求帳號或設定步驟。某個 executor 沒有 Hub CLI，不代表產品沒有該能力；
+可攜／手動交接也不等於已執行 Hub pipeline。
+
+由使用者選擇目的地，包括不用或稍後再存。每個指定的目的地／動作各留獨立
+receipt，包含來源／版本、目的地身分，以及已確認成功、失敗、未知或跳過的
+結果。本 catalog 提供指引，不實作這些 provider 能力。**已儲存不等於語義上
+已完成**；檔案或上傳 receipt 不會完成閱讀、相關性判斷或 claim 驗證。技術性
+pending 不會自動變成人才能決定的問題：在既有授權內繼續安全、有界的診斷／
+修補，沒有安全路線時保留 blocker。只有真正的範圍／科學選擇、存取許可、
+資源承諾或另需寫入授權時才問研究者；不暗中安裝工具或要求選用帳號。
 
 | Skill | 用途 |
 |---|---|
-| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | 在 arXiv / Semantic Scholar / CrossRef / PubMed 搜尋論文，匯入 metadata，自動寫成 Obsidian 筆記。 |
-| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) | research-hub pipeline 不夠時，做更深的 Zotero 加項、tag、去重、清理。 |
+| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | 按共用 protocol 使用可用的原生搜尋與原文閱讀；需要時才用已設定的 arXiv / Semantic Scholar / CrossRef / PubMed 搜尋與獲授權的匯入／儲存。 |
+| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *（可選）* | 匯入後補寫逐篇 abstract-only 摘要；不讀 PDF，也不驗證論文全文 claim。 |
+| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *（可選）* | 需要且另行獲授權時，才做 Zotero 加項、tag、去重、清理。 |
 
 ## 2. 整理、比較文獻、找出 research gap
 
