@@ -31,6 +31,16 @@ unavailable here. Follow the canonical [research protocol](https://github.com/We
 and [source-claim audit guidance](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/references/source-claim-audit.md),
 not a second catalog-owned search engine.
 
+**Research Hub itself is optional.** Native AI Skills discovery and source
+reading can use the host's available tools without installing or configuring
+Research Hub. Shared protocol references are instructions, not a requirement
+to run Hub. If the user chooses Hub, it offers an optional route for
+organization, persistence and selected workflow/integration operations.
+Check only the setup and access needed for those selected operations;
+do not add mandatory Hub CLI setup, integration accounts, API keys or logins
+to the native route. Host tool access still depends on the host's actual
+authorized capabilities.
+
 ### Agree the round and search routes
 
 Take the topic, target count and reading depth in natural language. Reuse

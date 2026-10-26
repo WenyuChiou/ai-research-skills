@@ -5,11 +5,17 @@
     "target_count": 12,
     "initial_depth": "abstract-only",
     "close_read_count": 2,
+    "hub_selected": false,
+    "required_hub_setup": [],
     "destinations": [],
     "repeat_supplied_questions": [],
     "round_status": "partial; continue relevant search without quota padding"
   },
   "guidance": {
+    "hub_optional": {
+      "en": ["Research Hub itself is optional", "without installing or configuring Research Hub", "not a requirement to run Hub", "If the user chooses Hub", "organization, persistence and selected workflow/integration operations", "Check only the setup and access needed for those selected operations", "do not add mandatory Hub CLI setup, integration accounts, API keys or logins to the native route", "Host tool access still depends on the host's actual authorized capabilities"],
+      "zh-TW": ["Research Hub 本身是可選的", "不需要安裝或設定 Research Hub", "不表示必須執行 Hub", "使用者選擇 Hub 時", "整理、持久儲存、workflow／整合", "只檢查所選動作需要的設定與存取", "不把 Hub CLI 設定、整合帳號、API key 或 login 變成原生路線的必要前提", "host 工具仍依其實際可用且已授權的能力執行"]
+    },
     "intake": {
       "en": ["natural language", "Reuse", "already supplied", "ask only", "10–20", "not a quota or a 30-paper default", "do not pad"],
       "zh-TW": ["自然語言", "沿用已提供", "只問真正缺少", "10–20", "這不是配額", "預設 30 篇", "湊數"]

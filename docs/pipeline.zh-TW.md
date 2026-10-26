@@ -29,6 +29,13 @@ pipeline 位置。見最下方的 **Cross-cutting tools**。
 與 [source-claim audit guidance](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/references/source-claim-audit.md)，
 不在 catalog 另建一套搜尋引擎。
 
+**Research Hub 本身是可選的。** 原生 AI Skills 的搜尋與原文閱讀，不需要安裝或設定
+Research Hub，可直接使用 host 實際可用的工具。共用 protocol 連結是研究指引，
+不表示必須執行 Hub。使用者選擇 Hub 時，再依需要使用它提供的整理、持久儲存、
+workflow／整合路線。只檢查所選動作需要的設定與存取，不把 Hub CLI 設定、整合
+帳號、API key 或 login 變成原生路線的必要前提；host 工具仍依其實際可用且已授權
+的能力執行。
+
 ### 確認本輪需求與搜尋路線
 
 用自然語言接收主題、目標篇數與閱讀深度。沿用已提供的偏好，只問真正缺少且

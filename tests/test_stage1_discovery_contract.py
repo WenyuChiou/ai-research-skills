@@ -54,6 +54,7 @@ def test_clause_checks_accept_harmless_reflow_in_text_or_requirement(text, claus
     ("Saveddoes not mean semantically completed.", "Saved does not mean semantically completed"),
     ("Technical pending work is automatically a human-only decision.", "not automatically a human-only decision"),
     ("A file was saved.", "Saved does not mean semantically completed"),
+    ("Research Hub is required for native AI Skills research.", "Research Hub itself is optional"),
 ])
 def test_clause_checks_still_reject_missing_semantics_or_merged_words(text, clause):
     with pytest.raises(AssertionError, match="missing required clause"):
@@ -75,6 +76,7 @@ def test_supplied_preferences_example_needs_no_repeat_or_forced_storage():
     assert str(intake["target_count"]) in intake["request"]
     assert intake["close_read_count"] == 2
     assert intake["repeat_supplied_questions"] == []
+    assert intake["hub_selected"] is False and intake["required_hub_setup"] == []
     assert intake["destinations"] == []
     assert "partial" in intake["round_status"]
     # Fewer relevant inclusions are reported, not padded to the user's target.
