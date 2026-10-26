@@ -57,11 +57,51 @@ def test_stage1_routes_to_canonical_shared_contracts(document):
     ("README.zh-TW.md", "docs/pipeline.zh-TW.md#1-找文獻"),
     ("docs/skill-directory.md", "pipeline.md#1-discover-literature"),
     ("docs/researcher-workflow-checklist.md", "pipeline.md#1-discover-literature"),
+    ("docs/setup-guide.md", "pipeline.md#1-discover-literature"),
+    ("docs/setup-guide.zh-TW.md", "pipeline.zh-TW.md#1-找文獻"),
 ])
 def test_discovery_entrypoints_link_to_stage1_not_a_new_parallel_skill(document, target):
     text = (ROOT / document).read_text(encoding="utf-8")
     assert target in re.findall(r"\[[^]]+\]\(([^)]+)\)", text)
     assert (ROOT / document).parent.joinpath(target.split("#")[0]).is_file()
+
+
+@pytest.mark.parametrize("document,clauses,foundation,checkpoint", [
+    ("setup-guide.md", [
+        "Research Hub itself is optional",
+        "no Claude Code, Python or Git installation is required for this native route",
+        "stop without Zotero or any storage destination",
+        "Native-route users skip Phases A–F below",
+    ], "For the optional Claude Code/plugin and Hub CLI route",
+     "Native Stage 1 discovery does not require Phase C / D / E"),
+    ("setup-guide.zh-TW.md", [
+        "Research Hub 本身是可選的",
+        "這條原生路線不要求安裝 Claude Code、Python 或 Git",
+        "可以不使用 Zotero 或任何儲存目的地，直接停在此處",
+        "原生路線使用者跳過下方 Phase A–F",
+    ], "只有選用 Claude Code/plugin 與 Hub CLI 路線時",
+     "原生 Stage 1 發現文獻不需要 Phase C / D / E"),
+])
+def test_setup_guides_offer_native_route_before_optional_installation(
+        document, clauses, foundation, checkpoint):
+    text = (ROOT / "docs" / document).read_text(encoding="utf-8")
+    before_install, installation = text.split("## Phase A", 1)
+    for clause in clauses:
+        assert clause in " ".join(before_install.split())
+    assert foundation in " ".join(installation.split("### A1.", 1)[0].split())
+    phase_b = text.split("### Phase B checkpoint", 1)[1].split("### B-extra.", 1)[0]
+    assert checkpoint in " ".join(phase_b.split())
+
+
+@pytest.mark.parametrize("document,target,heading", [
+    ("setup-guide.md", "../README.md#7-compatibility", "## 7. Compatibility"),
+    ("setup-guide.zh-TW.md", "../README.zh-TW.md#7-相容性-compatibility", "## 7. 相容性 (Compatibility)"),
+])
+def test_setup_cross_host_help_links_to_current_compatibility_section(document, target, heading):
+    text = (ROOT / "docs" / document).read_text(encoding="utf-8")
+    help_section = text.split("### F7.", 1)[1]
+    assert target in re.findall(r"\[[^]]+\]\(([^)]+)\)", help_section)
+    assert heading in (ROOT / "docs" / target.split("#")[0]).read_text(encoding="utf-8")
 
 
 @pytest.mark.parametrize("document,conditional,scope", [

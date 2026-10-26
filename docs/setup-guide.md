@@ -2,12 +2,24 @@
 
 Languages: [English](setup-guide.md) | [繁中](setup-guide.zh-TW.md)
 
-This is the step-by-step path from "I don't have anything installed" to
-"I can ask Claude to make a literature matrix and it works." If you
-already have Claude Code, Python, and Zotero working, skip to
-[install.md](install.md) — it covers the plugin install only.
+Choose a route before installing anything. This guide covers native Stage 1
+research and an optional Claude Code/plugin or Research Hub CLI setup. If you
+already use the Claude Code installation path, [install.md](install.md)
+covers the plugin install only.
 
-**Time budget**:
+## Choose a route before installing
+
+- **Native AI Skills research:** Follow [Stage 1 — Discover literature](pipeline.md#1-discover-literature)
+  with your host's actually available and authorized search/reading tools.
+  Research Hub itself is optional; no Claude Code, Python or Git installation is required for this native route.
+  Finish the discovery handoff and stop without Zotero or any storage destination.
+  Native-route users skip Phases A–F below; missing optional integrations do not block this route.
+- **Optional installation path:** Use Phases A–F for the Claude Code plugins
+  and only the Hub CLI/integrations you select. Phase C is for Zotero; Phase D
+  adds the Hub CLI and does not require Phase C. Install each selected component
+  only when its operations are needed.
+
+**Optional installation path time budget**:
 
 - Phase A + B alone (~20 min) → 12 of 17 skills installed; the prompt-only and workspace-file skills inside the research-workspace plugin work immediately, no Zotero needed.
 - Phase A + B + C (~40 min) → 15 of 17 skills wired with Zotero connectivity (add academic-writing-skills in B-extra, then zotero-skills in Phase C).
@@ -23,9 +35,10 @@ fails, see [Phase F — Troubleshooting](#phase-f--troubleshooting).
 
 ## Phase A — Foundation (install the runtimes)
 
-You need three command-line tools before anything else: **Claude Code**,
-**Python 3.10+**, and **Git**. If `python` and `git` already work in
-your terminal, you can skip A2 and A3.
+For the optional Claude Code/plugin and Hub CLI route, the tools below are
+**Claude Code**, **Python 3.10+**, and **Git**. They are not prerequisites for
+native Stage 1 research. If `python` and `git` already work in your terminal,
+you can skip A2 and A3.
 
 ### A1. Install Claude Code
 
@@ -153,13 +166,14 @@ output, see [F2](#f2-claude-doesnt-trigger-the-skill).
 ### Phase B checkpoint
 
 You have 12 of 17 skills installed (the research-workspace plugin) and
-a working literature matrix without any external setup. The prompt-only
-and workspace-file skills inside research-workspace work immediately; the
-runtime-backed flows (research-hub, research-hub-multi-ai,
-zotero-library-curator's apply mode, full literature-triage-matrix with
-paper search, and external-write workflow stages) need
-Phase C / D / E. Continue to Phase B-extra if you also want manuscript
-work tooling, or skip to Phase C for Zotero.
+a working literature matrix without Zotero or other external integrations.
+Native Stage 1 discovery does not require Phase C / D / E; use the
+[native discovery route](pipeline.md#1-discover-literature) and stop when the
+handoff meets your needs. Selected runtime-backed operations need only their
+corresponding setup: Phase C for Zotero CRUD/apply, Phase D for Hub CLI
+operations, and Phase E for selected add-ons. Continue to Phase B-extra for
+manuscript tooling, or to Phase C only if you want Zotero library operations;
+otherwise stop here or select Phase D directly.
 
 ### B-extra. academic-writing-skills (optional, ~1 min)
 
@@ -256,15 +270,16 @@ You have 15 of 17 skills wired up (12 from research-workspace +
 zotero-library-curator skill is upgraded from preview-only to
 apply-capable. The remaining 2 (`codex-delegate`, `antigravity-delegate`)
 are installed in Phase E3 once you've installed their CLI binaries.
-Phase D activates the full power of `research-hub`,
-`research-hub-multi-ai`, and `literature-triage-matrix`'s paper-search
-mode by adding the Python CLI behind them.
+Phase D adds the optional Hub CLI route for selected pipeline operations.
+Native discovery and paper search do not require Zotero or the Hub CLI;
+you can select Phase D without completing Phase C.
 
 ---
 
 ## Phase D — research-hub Python CLI (full pipeline)
 
-Adds paper discovery (arxiv / semantic scholar / pubmed search),
+This is the optional Hub CLI path; native-only users skip this phase.
+It adds Hub-backed paper discovery (arxiv / semantic scholar / pubmed search),
 Obsidian / NotebookLM integration, cluster management, and the
 backfill / dedup operations the curator skill defers to.
 
@@ -324,7 +339,14 @@ fine.
 
 ### D4. Runtime smoke test
 
-Run a small first pass without NotebookLM:
+Native-only users skip this step. For the optional Hub CLI route, complete the
+[first-live-run preflight](live-run-preflight.md) before running `auto`.
+Reuse valid approved choices; resolve only missing material model,
+authentication, budget and data-scope choices.
+
+`--no-nlm` disables only NotebookLM; it does not disable other network requests, model calls or local/external writes.
+This is a live integration smoke test, not a read-only or offline test.
+Run it only for the selected operations within existing authorization:
 
 ```bash
 research-hub describe --json
@@ -332,15 +354,17 @@ research-hub doctor
 research-hub auto "agent-based flood modeling" --max-papers 3 --no-nlm
 ```
 
-Expected: the CLI reports capabilities, the health check explains any
-missing optional services, and `auto` either ingests a small cluster or
-stops with an actionable missing-LLM-CLI message. Add NotebookLM only
-after this path works.
+Record the actual capability/health results and any model, ingest or write
+outcomes. Missing setup remains blocked; a command example or offline fixture
+pass is not evidence that the live workflow ran. Add NotebookLM only when
+separately selected and authorized.
 
 ### Phase D checkpoint
 
-15 of 17 skills are wired up. You're done with the core research setup;
-Phase E3 adds the two optional delegation skills.
+With Phase B-extra and Phase C completed, 15 of 17 skills are wired up.
+Without Zotero, use only the Hub operations you selected; an unselected
+integration is not a prerequisite for native research. Phase E3 adds the two
+optional delegation skills.
 
 ---
 
@@ -523,7 +547,7 @@ explicitly:
 
 If you're running these skills under Codex CLI, Gemini CLI, Cursor,
 Hermes, or another agentskills.io-compliant host, see
-[README → Using these skills outside Claude Code](../README.md#using-these-skills-outside-claude-code)
+[README → Compatibility](../README.md#7-compatibility)
 and the
 [Hermes compatibility audit](../.research/hermes-compatibility-audit.md)
 for what's verified and what's host-specific.
