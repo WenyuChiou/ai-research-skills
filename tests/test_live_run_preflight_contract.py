@@ -58,9 +58,34 @@ def test_bilingual_preflight_surfaces_material_choices_and_has_no_runtime_claim(
                      "Data destination/scope", "fallback", "secret", "hook"):
             assert term in text
     for suffix in ("", ".zh-TW"):
-        for stem in ("install", "system-assessment"):
+        for stem in ("install", "system-assessment", "setup-guide"):
             text = (ROOT / f"docs/{stem}{suffix}.md").read_text(encoding="utf-8")
             assert f"live-run-preflight{suffix}.md" in text
+
+
+@pytest.mark.parametrize("suffix,clauses", [
+    ("", [
+        "Native-only users skip this step",
+        "before running `auto`",
+        "`--no-nlm` disables only NotebookLM",
+        "does not disable other network requests, model calls or local/external writes",
+        "not a read-only or offline test",
+    ]),
+    (".zh-TW", [
+        "只走原生路線的使用者跳過此步驟",
+        "執行 `auto` 前",
+        "`--no-nlm` 只停用 NotebookLM",
+        "不會停用其他網路請求、模型呼叫或本機／外部寫入",
+        "不是唯讀或離線測試",
+    ]),
+])
+def test_setup_auto_smoke_test_surfaces_live_boundary_before_invocation(suffix, clauses):
+    text = (ROOT / f"docs/setup-guide{suffix}.md").read_text(encoding="utf-8")
+    smoke = text.split("### D4. Runtime smoke test", 1)[1].split("### Phase D checkpoint", 1)[0]
+    before_auto = smoke.split('research-hub auto "agent-based flood modeling"', 1)[0]
+    assert f"live-run-preflight{suffix}.md" in before_auto
+    for clause in clauses:
+        assert clause in " ".join(before_auto.split())
 
 
 def test_first_use_requires_choices_even_when_observed_defaults_are_available():

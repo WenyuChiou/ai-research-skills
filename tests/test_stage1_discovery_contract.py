@@ -4,6 +4,7 @@ The synthetic handoff is illustrative; it does not introduce a Hub schema or
 validate a real PDF, search, model, research claim, or provider write.
 """
 from collections import Counter
+from copy import deepcopy
 import json
 from pathlib import Path
 import re
@@ -125,14 +126,54 @@ def test_worked_access_cases_require_public_validated_body(case):
 
 
 @pytest.mark.parametrize("record", EXAMPLE["public_fulltext_only_round"]["records"], ids=lambda record: record["id"])
-def test_public_fulltext_only_formal_inclusion_requires_verified_relevant_version(record):
+def test_public_fulltext_only_formal_inclusion_requires_verified_relevant_work_version(record):
     access = next(case for case in EXAMPLE["access_cases"] if case["case"] == record["access_case"])
-    expected = (bool(record["requested_version"] and record["verified_body_version"])
-                and record["relevant"] and access["lawful_public"] and access["body_validated"]
-                and access["body_kind"] in {"pdf-body", "html-body"}
-                and record["verified_body_version"] == record["requested_version"])
+    expected = _formal_inclusion_fixture(record, access)
     assert record["formal_included"] == expected
     assert record["background_lead"] == (record["important"] and not expected)
+
+
+def _formal_inclusion_fixture(record, access):
+    """Illustrate declared identity requirements; labels do not verify a real body."""
+    identity = ("requested_work", "verified_body_work", "requested_version", "verified_body_version")
+    known = all(isinstance(record.get(field), str)
+                and record[field].strip().casefold() not in {"", "unknown"}
+                for field in identity)
+    return (known and record["requested_work"] == record["verified_body_work"]
+            and record["requested_version"] == record["verified_body_version"]
+            and record["relevant"] is True and access["lawful_public"] is True
+            and access["body_validated"] is True
+            and access["body_kind"] in {"pdf-body", "html-body"})
+
+
+def test_wrong_work_cannot_qualify_with_the_same_version_label():
+    record = next(r for r in EXAMPLE["public_fulltext_only_round"]["records"]
+                  if r["id"] == "synthetic-wrong-work")
+    assert record["requested_version"] == record["verified_body_version"]
+    assert record["requested_work"] != record["verified_body_work"]
+    assert not record["formal_included"] and record["background_lead"]
+
+
+@pytest.mark.parametrize("requested,verified", [
+    ("requested_work", "verified_body_work"),
+    ("requested_version", "verified_body_version"),
+])
+@pytest.mark.parametrize("unknown", [None, "", "unknown", " UNKNOWN "])
+def test_equal_unresolved_identity_labels_are_not_verification(requested, verified, unknown):
+    record = deepcopy(EXAMPLE["public_fulltext_only_round"]["records"][0])
+    record[requested] = record[verified] = unknown
+    access = next(case for case in EXAMPLE["access_cases"] if case["case"] == record["access_case"])
+    assert not _formal_inclusion_fixture(record, access)
+
+
+@pytest.mark.parametrize("field", [
+    "requested_work", "verified_body_work", "requested_version", "verified_body_version",
+])
+def test_missing_work_or_version_identity_cannot_be_formally_included(field):
+    record = deepcopy(EXAMPLE["public_fulltext_only_round"]["records"][0])
+    record.pop(field)
+    access = next(case for case in EXAMPLE["access_cases"] if case["case"] == record["access_case"])
+    assert not _formal_inclusion_fixture(record, access)
 
 
 def test_public_fulltext_only_lists_and_counts_keep_leads_out_of_formal_delivery():

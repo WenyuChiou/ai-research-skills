@@ -2,11 +2,23 @@
 
 語言：[English](setup-guide.md) | [繁中](setup-guide.zh-TW.md)
 
-這份文件帶你從「什麼都沒裝」走到「能叫 Claude 幫我整理 paper、會跑」。
-如果你 Claude Code / Python / Zotero 都已經 work，跳到
-[install.zh-TW.md](install.zh-TW.md) 就好（那篇只講 plugin install）。
+安裝前先選路線。這份文件涵蓋原生 Stage 1 研究，以及可選的
+Claude Code/plugin 或 Research Hub CLI 安裝。
+已經選用 Claude Code 安裝路線的使用者，可直接看
+[install.zh-TW.md](install.zh-TW.md)（那篇只講 plugin install）。
 
-**時間預算：**
+## 安裝前先選路線
+
+- **原生 AI Skills 研究：** 依照 [Stage 1 — 發現文獻](pipeline.zh-TW.md#1-找文獻)，
+  使用 host 實際可用且已授權的搜尋／閱讀工具。
+  Research Hub 本身是可選的；這條原生路線不要求安裝 Claude Code、Python 或 Git。
+  完成文獻發現交接後，可以不使用 Zotero 或任何儲存目的地，直接停在此處。
+  原生路線使用者跳過下方 Phase A–F；缺少選用整合不會阻擋這條路線。
+- **可選的安裝路線：** 下方 Phase A–F 適用於 Claude Code plugins，
+  以及你選擇的 Hub CLI／整合。Phase C 是 Zotero；Phase D 加入 Hub CLI，
+  不以 Phase C 為前提。只在需要相關動作時安裝所選元件。
+
+**可選安裝路線的時間預算：**
 
 - Phase A + B 單獨跑（~20 分鐘）→ 裝好 17 支裡的 12 支；research-workspace plugin 裡的 prompt-only 與 workspace-file skills 立刻能用，不需要 Zotero。
 - Phase A + B + C（~40 分鐘）→ 15 支 wired with Zotero 連接（B-extra 加 academic-writing-skills，Phase C 加 zotero-skills）。
@@ -21,7 +33,8 @@
 
 ## Phase A — Foundation（裝 runtime）
 
-需要 3 個 CLI 工具：**Claude Code**、**Python 3.10+**、**Git**。
+只有選用 Claude Code/plugin 與 Hub CLI 路線時，才需要下列
+**Claude Code**、**Python 3.10+**、**Git** 工具；它們不是原生 Stage 1 研究的必要前提。
 如果你 terminal 裡打 `python` 跟 `git` 已經有反應，A2 / A3 可以跳過。
 
 ### A1. 安裝 Claude Code
@@ -141,10 +154,14 @@ Claude 回「我沒有這個 skill」或沒生表 → 看 [F2](#f2-claude-沒-tr
 
 ### Phase B checkpoint
 
-17 支裡的 12 支裝好（research-workspace plugin），有 working literature matrix、不需要任何外部設定。
-research-workspace 裡的 prompt-only 與 workspace-file skills 立刻可用；runtime-backed flows（research-hub、research-hub-multi-ai、
-zotero-library-curator 的 apply mode、完整的 literature-triage-matrix 含 paper search、external-write workflow stages）要 Phase C / D / E。
-要寫 / 修稿就接 Phase B-extra；只要文獻整理就跳 Phase C。
+17 支裡的 12 支裝好（research-workspace plugin），有 working literature matrix，
+不需要 Zotero 或其他外部整合。
+原生 Stage 1 發現文獻不需要 Phase C / D / E；依照
+[原生文獻發現路線](pipeline.zh-TW.md#1-找文獻)，交接符合需求就可停下。
+選定的 runtime-backed 動作只需要對應設定：Phase C 用於 Zotero CRUD／apply，
+Phase D 用於 Hub CLI 動作，Phase E 用於所選 add-on。
+要寫／修稿才接 Phase B-extra；只有需要 Zotero library 動作才接 Phase C；
+否則停在這裡，或直接選擇 Phase D。
 
 ### B-extra. academic-writing-skills（選擇性，~1 分鐘）
 
@@ -229,14 +246,15 @@ Claude 應該呼叫 Zotero local API、回真的 title。
 
 17 支裡 15 支 wired up（research-workspace 12 支 + Phase B-extra 的 2 支 academic-writing-skills + zotero-skills），
 zotero-library-curator 從 preview-only 升級成 apply-capable。剩下 2 支（`codex-delegate`、`antigravity-delegate`）
-等 Phase E3 裝完對應的 CLI binary 後加進來。Phase D 給 `research-hub`、`research-hub-multi-ai`、
-`literature-triage-matrix` 的 paper-search 模式接上 Python CLI 後台。
+等 Phase E3 裝完對應的 CLI binary 後加進來。Phase D 為所選 pipeline 動作加入可選的 Hub CLI 路線。
+原生文獻發現與 paper search 不需要 Zotero 或 Hub CLI；不用完成 Phase C 也可選擇 Phase D。
 
 ---
 
 ## Phase D — research-hub Python CLI（完整 pipeline）
 
-加完之後有 paper discovery（arxiv / semantic scholar / pubmed 搜尋）、
+這是可選的 Hub CLI 路線；只走原生路線的使用者跳過本階段。
+加完之後有 Hub-backed paper discovery（arxiv / semantic scholar / pubmed 搜尋）、
 Obsidian / NotebookLM 整合、cluster 管理、curator skill 會 defer 給它的 backfill / dedup operation。
 
 ### D1. 安裝 package
@@ -288,7 +306,13 @@ research-hub doctor
 
 ### D4. Runtime smoke test
 
-先跑一個不碰 NotebookLM 的小型流程：
+只走原生路線的使用者跳過此步驟。選擇 Hub CLI 路線時，執行 `auto` 前，
+先完成[首次 live-run preflight](live-run-preflight.zh-TW.md)。
+沿用仍有效的已授權選擇，只補問真正缺少的模型、驗證模式、預算與資料範圍選項。
+
+`--no-nlm` 只停用 NotebookLM；不會停用其他網路請求、模型呼叫或本機／外部寫入。
+這是 live integration smoke test，不是唯讀或離線測試。
+只有所選動作已在既有授權內，才執行：
 
 ```bash
 research-hub describe --json
@@ -296,13 +320,15 @@ research-hub doctor
 research-hub auto "agent-based flood modeling" --max-papers 3 --no-nlm
 ```
 
-預期：CLI 會回報 capabilities，health check 會說明缺哪些 optional
-service；`auto` 會匯入一個小 cluster，或在缺 LLM CLI 時用可執行的
-訊息停下。這條路徑正常後，再加入 NotebookLM。
+記錄實際的 capability／health 結果，以及模型、匯入或寫入的結果。
+缺少設定時保留 blocker；命令範例或離線 fixture 通過，不代表 live workflow 已執行。
+NotebookLM 只在另外選擇且授權後加入。
 
 ### Phase D checkpoint
 
-15/17 支 skill wired up，core research setup 結束；Phase E3 再加兩個選用 delegation skills。
+完成 Phase B-extra 與 Phase C 時，共 15/17 支 skill wired up。
+不使用 Zotero 時，只執行選定的 Hub 動作；未選用的整合不是原生研究的必要前提。
+Phase E3 再加兩個選用 delegation skills。
 
 ---
 
@@ -467,7 +493,7 @@ pip install research-hub-pipeline
 ### F7. 非 Claude Code host 上的 skill 安裝
 
 要在 Codex CLI / Gemini CLI / Cursor / Hermes 等 agentskills.io 相容 host 上用這些 skill，
-看 [README → 在 Claude Code 之外用這些 skills](../README.zh-TW.md#在-claude-code-之外用這些-skills)
+看 [README → 相容性](../README.zh-TW.md#7-相容性-compatibility)
 跟 [Hermes 相容性審計](../.research/hermes-compatibility-audit.md) 了解什麼經過驗證、什麼是 host-specific。
 
 ---
