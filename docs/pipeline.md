@@ -70,13 +70,25 @@ Report raw hits separately from distinct works **discovered**, works
 count**. Deduplicate preprint/journal/revision versions at work level while
 preserving version identities, links and the exact version read. Do not count
 versions as extra papers; if genuinely distinct studies share a lineage,
-explain the distinction. Inclusion records relevance, not full-body access:
-important pending/background works may remain included with access limits
-visible. A core selection is not a claim that it was read.
+explain the distinction. Outside an explicitly public-fulltext-only round,
+inclusion may record relevance separately from full-body access: important
+pending/background works may remain included with access limits visible.
+A core selection is not a claim that it was read.
 Reading levels such as `not-read`, `abstract-only`, `selected-sections` and
 `full-text` describe actual reading, not file availability or storage status.
 Bind every summary and consequential claim to that source/version and the
 sections actually read; do not transfer support across versions unchecked.
+
+For a user-chosen public-fulltext-only round, formal inclusion requires both
+assessed relevance and a lawfully publicly accessible full body actually
+obtained and validated for the intended work/version. Apply this to the formal
+included count, delivered list, and archive/NotebookLM lists when those
+destinations are selected. Landing/abstract-only, private, login/paywall,
+blocked or missing-body responses are not formal papers. Retain important
+items in a separate excluded/background leads section, never padding the formal
+included count. A fetched full text may still be only partly read: report actual
+reading depth/sections; availability proves neither full reading nor academic
+relevance.
 
 The handoff records search needs/queries and their observed results, source
 identity and version/date, actual reading level and claim locators, closest or

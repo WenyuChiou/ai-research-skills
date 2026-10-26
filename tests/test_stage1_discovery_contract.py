@@ -84,6 +84,7 @@ def test_supplied_preferences_example_needs_no_repeat_or_forced_storage():
 
 
 def test_worked_handoff_counts_versions_depth_and_core_separately():
+    assert EXAMPLE["intake"]["round_scope"] == "general-discovery"
     works = EXAMPLE["works"]
     versions = EXAMPLE["versions"]
     counts = EXAMPLE["counts"]
@@ -121,6 +122,47 @@ def test_worked_access_cases_require_public_validated_body(case):
     expected = (case["lawful_public"] and case["body_validated"]
                 and case["body_kind"] in {"pdf-body", "html-body"})
     assert case["archive_nlm_eligible"] == expected
+
+
+@pytest.mark.parametrize("record", EXAMPLE["public_fulltext_only_round"]["records"], ids=lambda record: record["id"])
+def test_public_fulltext_only_formal_inclusion_requires_verified_relevant_version(record):
+    access = next(case for case in EXAMPLE["access_cases"] if case["case"] == record["access_case"])
+    expected = (bool(record["requested_version"] and record["verified_body_version"])
+                and record["relevant"] and access["lawful_public"] and access["body_validated"]
+                and access["body_kind"] in {"pdf-body", "html-body"}
+                and record["verified_body_version"] == record["requested_version"])
+    assert record["formal_included"] == expected
+    assert record["background_lead"] == (record["important"] and not expected)
+
+
+def test_public_fulltext_only_lists_and_counts_keep_leads_out_of_formal_delivery():
+    example = EXAMPLE["public_fulltext_only_round"]
+    records = example["records"]
+    formal = [record for record in records if record["formal_included"]]
+    leads = [record for record in records if record["background_lead"]]
+    formal_ids = {record["id"] for record in formal}
+    lead_ids = {record["id"] for record in leads}
+    assert not formal_ids & lead_ids
+    assert set(example["formal_delivery_ids"]) == formal_ids
+    assert set(example["eligible_for_archive_nlm_ids"]) == formal_ids
+    assert set(example["background_lead_ids"]) == lead_ids
+    assert example["counts"]["discovered"] == len({record["id"] for record in records}) == len(records)
+    assert example["counts"]["screened"] == len(records)
+    assert example["counts"]["formal_included"] == len(formal) < example["target_count"]
+    assert example["counts"]["background_leads"] == len(leads)
+    assert example["counts"]["excluded_irrelevant"] == sum(not record["relevant"] for record in records)
+    assert example["counts"]["reading_depth_formal"] == dict(Counter(record["reading_level"] for record in formal))
+    assert not example["runtime_executed"]
+
+
+def test_public_body_availability_proves_neither_full_reading_nor_relevance():
+    records = EXAMPLE["public_fulltext_only_round"]["records"]
+    partial = next(record for record in records if record["id"] == "synthetic-partly-read")
+    irrelevant = next(record for record in records if record["id"] == "synthetic-irrelevant")
+    assert partial["access_case"] == irrelevant["access_case"] == "public-pdf-body"
+    assert partial["formal_included"] and partial["reading_level"] == "selected-sections"
+    assert partial["read_sections"] == ["methods", "results"]
+    assert not irrelevant["relevant"] and not irrelevant["formal_included"]
 
 
 def test_saved_and_technical_pending_example_does_not_claim_completion():

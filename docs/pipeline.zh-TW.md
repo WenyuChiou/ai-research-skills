@@ -57,12 +57,21 @@ workflow／整合路線。只檢查所選動作需要的設定與存取，不把
 原始命中數與不同 works 的 **discovered**、**screened**、**included**、
 **reading-depth counts**、**core count** 要分開記錄。Preprint、期刊版與修訂版
 在 work 層級去重，但保留版本身分、互連與實際閱讀的版本，不把版本算成額外
-篇數；同一沿革若確實包含不同研究，要交代理由。納入記錄相關性，不代表已取得
-全文；重要的 pending/background 作品仍可保留納入，但須揭露存取限制。
+篇數；同一沿革若確實包含不同研究，要交代理由。未限定 public-fulltext-only 的
+一般發現輪次，納入可記錄相關性而與全文可得性分開；重要的 pending/background
+作品仍可保留納入，但須揭露存取限制。
 選為 core 不代表已讀。
 `not-read`、`abstract-only`、`selected-sections`、`full-text` 描述實際閱讀，
 不是檔案可得性或儲存狀態。每份摘要與重要 claim 都須對應來源／版本與真正
 讀過的章節；未核對前，不跨版本搬用支持證據。
+
+當使用者選擇 public-fulltext-only（僅公開全文）範圍時，正式納入須同時符合
+已評估的學術相關性，以及已實際取得且核驗為所選 work/version 的合法公開完整
+正文。此條件適用於正式 included count、交付清單，以及選用目的地的歸檔／
+NotebookLM 清單。Landing／abstract-only、非公開、登入／付費牆、blocked 或缺少
+正文的回應都不能當正式論文。重要者另列未納入／背景線索，不計入正式篇數、
+不湊數。取得全文仍可能只讀了部分章節，須如實標示閱讀層級／章節；可得性不
+證明全文已讀或學術相關。
 
 交接需保留搜尋需求／查詢與實際觀察結果、來源身分與版本／日期、實際閱讀
 層級與 claim locator、最接近或相反的研究，以及 `not-read`／`unknown`。
