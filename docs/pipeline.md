@@ -31,6 +31,43 @@ unavailable here. Follow the canonical [research protocol](https://github.com/We
 and [source-claim audit guidance](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/references/source-claim-audit.md),
 not a second catalog-owned search engine.
 
+### Agree the round and search routes
+
+Take the topic, target count and reading depth in natural language. Reuse
+preferences already supplied; ask only about missing choices that matter. For
+example, "about 12 papers, abstracts first, then read two core papers closely"
+already supplies both count and depth. Do not repeat those intake questions or
+require a form. When a count is needed but unspecified, propose a need-based
+round of **10–20 relevant distinct papers**, adjusted to the question and
+available evidence. This is not a quota or a 30-paper default: do not pad weak
+matches, duplicate versions or inaccessible papers to reach a number. Report
+shortfalls and uncovered needs; a smaller useful set may be the right outcome.
+
+Decompose the question into concepts, keywords, synonyms, abbreviations and
+adjacent terminology. Try multiple relevant search routes and query variants,
+then backward and forward citation chasing. Record routes actually used and
+their results or failures; a single query is not evidence of broad coverage.
+Explain each relevant role: **classic** for foundational context, **core** for
+the present question, **nearest** for the closest topical comparator,
+**methodological** for a method/data contribution, and **contrary** for evidence
+that challenges the working claim. Roles may overlap; age, citation count or
+method similarity alone does not make a paper core or nearest.
+
+### Keep counts and reading evidence separate
+
+Report raw hits separately from distinct works **discovered**, works
+**screened**, works **included**, **reading-depth counts**, and the **core
+count**. Deduplicate preprint/journal/revision versions at work level while
+preserving version identities, links and the exact version read. Do not count
+versions as extra papers; if genuinely distinct studies share a lineage,
+explain the distinction. Inclusion records relevance, not full-body access:
+important pending/background works may remain included with access limits
+visible. A core selection is not a claim that it was read.
+Reading levels such as `not-read`, `abstract-only`, `selected-sections` and
+`full-text` describe actual reading, not file availability or storage status.
+Bind every summary and consequential claim to that source/version and the
+sections actually read; do not transfer support across versions unchecked.
+
 The handoff records search needs/queries and their observed results, source
 identity and version/date, actual reading level and claim locators, closest or
 contrary work, and remaining `not-read` / `unknown` items. Read the relevant
@@ -39,11 +76,35 @@ search hit, filled locator or structural check is not source-level verification.
 Distinguish an author-maintained query ledger from retained invocation receipts;
 do not rerun a search merely to manufacture a missing historical receipt.
 
+### Check full-body eligibility before archiving or NotebookLM
+
+Archive/NotebookLM eligibility requires a **lawfully publicly accessible full
+body**, with the actual PDF or substantive body validated for the intended
+work/version. Inspect the response and readable content/pages; a `.pdf` URL,
+HTTP 200, MIME label or PDF signature alone is insufficient. A login page,
+abstract/landing page, paywall or error payload is not the paper's full body.
+Keep important inaccessible works as pending/background with the access limit
+and next safe route recorded; do not discard them, label them fully read, or
+upload them as full text. Do not bypass access restrictions. Having a validated
+full body still does not establish that every section was read.
+
 **Zotero · NotebookLM · Obsidian are optional integrations**, not prerequisites
 for this discovery pass. Use configured storage/automation only when needed and
 authorized; do not add accounts or setup steps just to conduct the literature
 review. Missing Hub CLI access in one executor does not establish a missing
 product capability. A portable/manual handoff is not an executed Hub pipeline.
+
+Let the user choose destinations, including none or later. Keep a separate
+receipt for each requested destination/action: source/version, destination
+identity, and confirmed success, failure, unknown or skipped outcome. This
+catalog specifies guidance; it does not implement those provider capabilities.
+**Saved does not mean semantically completed.** A file or upload receipt does
+not finish reading, relevance assessment or claim verification. Technical
+pending work is not automatically a human-only decision: continue safe bounded
+diagnosis/remediation within existing authorization, retaining the blocker when
+no safe route remains. Ask the researcher only for a genuine scope/scientific
+choice, access permission, resource commitment or separately required write
+authorization; do not silently install tools or require optional accounts.
 
 | Skill | What it does |
 |---|---|

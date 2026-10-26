@@ -1,0 +1,85 @@
+{
+  "scope": "Synthetic worked handoff and catalog guidance regression only; not a Hub schema, actual research receipt, PDF-parser test or provider implementation.",
+  "intake": {
+    "request": "About 12 papers, abstracts first, then read two core papers closely; no storage yet.",
+    "target_count": 12,
+    "initial_depth": "abstract-only",
+    "close_read_count": 2,
+    "destinations": [],
+    "repeat_supplied_questions": [],
+    "round_status": "partial; continue relevant search without quota padding"
+  },
+  "guidance": {
+    "intake": {
+      "en": ["natural language", "Reuse", "already supplied", "ask only", "10–20", "not a quota or a 30-paper default", "do not pad"],
+      "zh-TW": ["自然語言", "沿用已提供", "只問真正缺少", "10–20", "這不是配額", "預設 30 篇", "湊數"]
+    },
+    "search": {
+      "en": ["keywords, synonyms, abbreviations", "multiple relevant search routes", "backward and forward citation chasing"],
+      "zh-TW": ["關鍵字、同義詞、縮寫", "多條適合的搜尋路線", "向後與向前 citation chasing"]
+    },
+    "roles": {
+      "en": ["Explain each relevant role", "classic", "core", "nearest", "methodological", "contrary", "Roles may overlap"],
+      "zh-TW": ["逐篇說明角色", "classic", "core", "nearest", "methodological", "contrary", "角色可以重疊"]
+    },
+    "counts": {
+      "en": ["raw hits", "discovered", "screened", "included", "reading-depth counts", "core count", "Deduplicate", "exact version read"],
+      "zh-TW": ["原始命中數", "discovered", "screened", "included", "reading-depth counts", "core count", "去重", "實際閱讀的版本"]
+    },
+    "reading": {
+      "en": ["not-read", "abstract-only", "selected-sections", "full-text", "source/version", "sections actually read", "not file availability or storage status"],
+      "zh-TW": ["not-read", "abstract-only", "selected-sections", "full-text", "來源／版本", "讀過的章節", "不是檔案可得性或儲存狀態"]
+    },
+    "full_body": {
+      "en": ["lawfully publicly accessible full body", "actual PDF", "HTTP 200", "alone is insufficient", "login page", "abstract/landing page", "pending/background", "Do not bypass access restrictions"],
+      "zh-TW": ["合法公開可取得的完整正文", "實際 PDF", "HTTP 200", "都不充分", "登入頁", "摘要／landing page", "pending/background", "不得繞過存取限制"]
+    },
+    "destinations": {
+      "en": ["Let the user choose destinations", "including none or later", "separate receipt", "confirmed success, failure, unknown or skipped", "does not implement those provider capabilities"],
+      "zh-TW": ["由使用者選擇目的地", "包括不用或稍後再存", "獨立 receipt", "成功、失敗、未知或跳過", "不實作這些 provider 能力"]
+    },
+    "completion": {
+      "en": ["Saved does not mean semantically completed", "not automatically a human-only decision", "within existing authorization", "no safe route remains"],
+      "zh-TW": ["已儲存不等於語義上已完成", "不會自動變成人才能決定", "既有授權內", "沒有安全路線時保留 blocker"]
+    }
+  },
+  "versions": [
+    {"work": "classic", "version": "preprint-v1"},
+    {"work": "classic", "version": "journal-v2"},
+    {"work": "nearest", "version": "journal-v1"},
+    {"work": "method", "version": "journal-v1"},
+    {"work": "contrary", "version": "preprint-v3"},
+    {"work": "pending", "version": "journal-v1"},
+    {"work": "unscreened", "version": "preprint-v1"}
+  ],
+  "works": [
+    {"id": "classic", "version_read": "journal-v2", "screened": true, "included": true, "core": true, "roles": ["classic", "core"], "reason": "Foundational mechanism directly informs the present question.", "reading_level": "selected-sections", "read_sections": ["methods", "results"], "summary_version": "journal-v2", "summary_sections": ["results"], "semantically_completed": false},
+    {"id": "nearest", "version_read": "journal-v1", "screened": true, "included": true, "core": true, "roles": ["nearest", "core"], "reason": "Closest topical comparison in the same population.", "reading_level": "full-text", "read_sections": ["abstract", "introduction", "methods", "results", "discussion"], "summary_version": "journal-v1", "summary_sections": ["methods", "results", "discussion"], "semantically_completed": false},
+    {"id": "method", "version_read": "journal-v1", "screened": true, "included": false, "core": false, "roles": ["methodological"], "reason": "Useful method background, outside the requested topical population.", "reading_level": "abstract-only", "read_sections": ["abstract"], "summary_version": "journal-v1", "summary_sections": ["abstract"], "semantically_completed": false},
+    {"id": "contrary", "version_read": "preprint-v3", "screened": true, "included": true, "core": false, "roles": ["contrary"], "reason": "Reports a contrary result under a stated boundary condition.", "reading_level": "selected-sections", "read_sections": ["methods", "results"], "summary_version": "preprint-v3", "summary_sections": ["results"], "semantically_completed": false},
+    {"id": "pending", "version_read": "journal-v1", "screened": true, "included": true, "core": false, "roles": ["nearest"], "reason": "Important topical candidate; substantive claim remains unassessed without the body.", "reading_level": "abstract-only", "read_sections": ["abstract"], "summary_version": "journal-v1", "summary_sections": ["abstract"], "access_status": "pending/background", "semantically_completed": false},
+    {"id": "unscreened", "version_read": null, "screened": false, "included": false, "core": false, "roles": [], "reason": "Metadata discovered; relevance not yet assessed.", "reading_level": "not-read", "read_sections": [], "summary_version": null, "summary_sections": [], "semantically_completed": false}
+  ],
+  "counts": {"raw_version_records": 7, "discovered": 6, "screened": 5, "included": 4, "core": 2, "reading_depth_included": {"abstract-only": 1, "selected-sections": 2, "full-text": 1}},
+  "access_cases": [
+    {"case": "public-pdf-body", "lawful_public": true, "body_validated": true, "body_kind": "pdf-body", "archive_nlm_eligible": true},
+    {"case": "public-html-body", "lawful_public": true, "body_validated": true, "body_kind": "html-body", "archive_nlm_eligible": true},
+    {"case": "pdf-url-returns-login-html", "lawful_public": true, "body_validated": false, "body_kind": "login-html", "archive_nlm_eligible": false},
+    {"case": "abstract-only-http-200", "lawful_public": true, "body_validated": false, "body_kind": "abstract", "archive_nlm_eligible": false},
+    {"case": "private-access-pdf", "lawful_public": false, "body_validated": true, "body_kind": "pdf-body", "archive_nlm_eligible": false}
+  ],
+  "optional_write_example": {
+    "separately_authorized_destinations": ["Zotero", "NotebookLM"],
+    "work": "classic",
+    "version": "journal-v2",
+    "receipts": [
+      {"destination": "Zotero", "object_id": "synthetic-item", "outcome": "success"},
+      {"destination": "NotebookLM", "object_id": null, "outcome": "failure", "reason": "technical route unavailable"}
+    ],
+    "overall_storage_outcome": "partial",
+    "semantically_completed": false,
+    "technical_pending": true,
+    "human_decision_required": false,
+    "next_step": "bounded diagnosis within existing authorization; retain pending if no safe route remains"
+  }
+}
