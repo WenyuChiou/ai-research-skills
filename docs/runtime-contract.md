@@ -24,7 +24,8 @@ marketplace state.
 |---|---|---|
 | Prompt-only workflow skills | `gap-to-topic`, `research-design-helper`, `literature-triage-matrix`, `academic-writing-skills` | Any host that can read the needed files and follow the output contract |
 | Workspace-file skills | `research-context-compressor`, `research-project-orienter`, `paper-memory-builder` | File-system access to the project or manually supplied context |
-| Runtime-backed research automation | `research-hub`, `paper-summarize`, parts of `notebooklm-brief-verifier`, Zotero-backed curation flows | `pip install research-hub-pipeline` plus any required Zotero, Obsidian, NotebookLM, LLM CLI, MCP, or REST setup |
+| Native literature discovery | Discovery guidance in `research-hub` and its shared research protocol | The search/reading tools actually exposed by Codex or Claude Code; no Hub CLI or storage account required for this route |
+| Runtime-backed research automation | Configured `research-hub` automation, `paper-summarize`, parts of `notebooklm-brief-verifier`, Zotero-backed curation flows | `pip install research-hub-pipeline` plus any required Zotero, Obsidian, NotebookLM, LLM CLI, MCP, or REST setup |
 | Deep Zotero CRUD | `zotero-skills` | Zotero local/Web API credentials and a host that can call the API |
 | Delegation skills | `codex-delegate`, `antigravity-delegate`, `research-hub-multi-ai` | Target CLI installed and available on `PATH`, or a manual handoff prompt |
 
@@ -90,6 +91,11 @@ Concrete compatibility examples (source observations, not new acceptance):
 
 ## Agent Preflight For Literature Search
 
+For native discovery, follow [Stage 1](pipeline.md#1-discover-literature): inspect
+the host's available search/reading capabilities and retain evidence at its
+actual level. The CLI checks below apply only to a requested Hub automation
+route; they are not prerequisites for native research or a manual handoff.
+
 This is a **live** literature workflow, not a catalog or local-workspace test.
 `--no-nlm` disables NotebookLM only; it does not disable other network calls,
 models, or writes. Complete the [live-run preflight](live-run-preflight.md) and
@@ -102,7 +108,11 @@ research-hub doctor
 research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
 
-If `research-hub` is not found:
+If `research-hub` is not found, only the CLI route is unavailable here. Inspect
+any exposed MCP/REST/native Hub interfaces separately; a route not invoked
+remains untested, not proof that Hub automation is unavailable. Keep the
+native/manual route. Only if Hub automation is requested and setup is
+authorized, use the existing installation route:
 
 ```bash
 pip install research-hub-pipeline

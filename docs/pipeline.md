@@ -24,13 +24,32 @@ decisions at each existing stage, see [scientific lifecycle and quality gates](s
 
 > *"What has been done? What should I read?"*
 
-Tools you probably use: **Zotero · NotebookLM · Obsidian** *(no native
-OneNote skill — use Obsidian as the notes layer.)*
+Start with the search, deep-research, reading, citation and relevant skills
+actually available in **Codex or Claude Code**. Do not assume that either host
+exposes every capability: record what was used, available but untested, or
+unavailable here. Follow the canonical [research protocol](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/references/research-protocol.md)
+and [source-claim audit guidance](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/references/source-claim-audit.md),
+not a second catalog-owned search engine.
+
+The handoff records search needs/queries and their observed results, source
+identity and version/date, actual reading level and claim locators, closest or
+contrary work, and remaining `not-read` / `unknown` items. Read the relevant
+methods/results before relying on a full-text claim; an abstract-only summary,
+search hit, filled locator or structural check is not source-level verification.
+Distinguish an author-maintained query ledger from retained invocation receipts;
+do not rerun a search merely to manufacture a missing historical receipt.
+
+**Zotero · NotebookLM · Obsidian are optional integrations**, not prerequisites
+for this discovery pass. Use configured storage/automation only when needed and
+authorized; do not add accounts or setup steps just to conduct the literature
+review. Missing Hub CLI access in one executor does not establish a missing
+product capability. A portable/manual handoff is not an executed Hub pipeline.
 
 | Skill | What it does |
 |---|---|
-| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | Search arXiv / Semantic Scholar / CrossRef / PubMed, ingest metadata, write paper notes into Obsidian. |
-| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) | Add, tag, deduplicate, and clean Zotero items beyond the research-hub pipeline. |
+| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | Use available native discovery and source reading under the shared protocol; optionally use configured arXiv / Semantic Scholar / CrossRef / PubMed search and authorized ingest/storage. |
+| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *(optional)* | Fill abstract-only per-paper notes after ingest; does not read PDFs or verify the paper's full-text claims. |
+| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *(optional)* | Add, tag, deduplicate, and clean Zotero items when those separately authorized library operations are needed. |
 
 ## 2. Organise & compare literature, find the gap
 

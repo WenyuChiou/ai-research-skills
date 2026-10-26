@@ -1,7 +1,14 @@
 # Skill Directory
 
-This page is the practical index. Start with the tool combination you already
-use, then install the skill that matches your workflow.
+This page is the practical index. For discovery, start with the capabilities
+already available in your host; use the tool-combination installs only when
+you need their integrations.
+
+**Native Codex / Claude Code discovery:** follow the existing
+[Stage 1 evidence handoff](pipeline.md#1-discover-literature) and canonical
+`research-hub` skill. No Zotero, Obsidian or NotebookLM account is required for
+that pass. Availability, actual source reading and retained execution evidence
+are separate from installing a plugin or running Hub automation.
 
 For a checklist organized around Zotero, Obsidian, NotebookLM, manuscript work,
 and AI assistants, see
@@ -48,14 +55,14 @@ research-hub notebooklm login --auto-detect
 
 | Skill | Use when | Direct skill link |
 |---|---|---|
-| `research-hub` | You want the AI to find papers, ingest sources, operate Zotero/Obsidian/NotebookLM, open dashboards, or maintain a vault. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) |
+| `research-hub` | You want native-capability-aware literature discovery and version-bound source reading, or optional configured ingest, Zotero/Obsidian/NotebookLM, dashboards and vault maintenance. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) |
 | `research-hub-multi-ai` | You want the primary model, Codex, and Antigravity to split bounded mechanical research-hub work cleanly (cross-cutting routing). | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) |
 | `research-design-helper` | You want to sharpen a research question through 5 Socratic segments (RQ → mechanism → identifiability → validation → risks) and produce `.research/design_brief.md`. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-design-helper/SKILL.md) |
 | `research-context-compressor` | You want to create `.research/` manifests so future AI sessions do not rescan the whole repo. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-context-compressor/SKILL.md) |
 | `research-project-orienter` | The project already has `.research/` manifests and you want a fast orientation memo. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-project-orienter/SKILL.md) |
 | `literature-triage-matrix` | You want a compact comparison table across a Zotero collection, Obsidian cluster, or manual paper list. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) |
 | `paper-memory-builder` | You want `.paper/claims.yml` and `.paper/figures.yml` before manuscript writing or revision. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) |
-| `paper-summarize` | You just ran `research-hub auto` and the per-paper Key Findings / Methodology / Relevance sections are still TODO skeletons. Fills them in both Obsidian markdown and Zotero child notes via one LLM call per paper, atomically rolled back if Zotero write fails. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) |
+| `paper-summarize` | Fill TODO Key Findings / Methodology / Relevance after ingest from abstracts only, not full-text reading or verification. Enabled Obsidian/Zotero writes are not a distributed transaction: unconfirmed remote writes remain unknown; local compensation is guarded and best-effort, with no automatic retry of unknown outcomes. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) |
 | `notebooklm-brief-verifier` | You downloaded a NotebookLM brief and want to verify source coverage, unsupported claims, or contradictions. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) |
 | `zotero-library-curator` | You want to audit a Zotero library — find duplicate DOIs, orphan items, propose tag/collection cleanup. Read-only; defers writes to `zotero-skills`. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) |
 | `gap-to-topic` | You're choosing a thesis or proposal topic and need a go/no-go call — produces a decision dossier that runs a candidate through a 3-gate test: is the gap open, is it a contribution, is it feasible. | [SKILL.md](https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md) |

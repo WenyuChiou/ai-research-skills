@@ -23,14 +23,20 @@
 |---|---|---|
 | Prompt-only workflow skills | `gap-to-topic`、`research-design-helper`、`literature-triage-matrix`、`academic-writing-skills` | 任何能讀必要檔案並遵守輸出 contract 的 host |
 | Workspace-file skills | `research-context-compressor`、`research-project-orienter`、`paper-memory-builder` | 能讀寫專案檔案，或由使用者手動提供 context |
-| Runtime-backed research automation | `research-hub`、`paper-summarize`、部分 `notebooklm-brief-verifier`、Zotero-backed curation flows | `pip install research-hub-pipeline`，再加上需要的 Zotero、Obsidian、NotebookLM、LLM CLI、MCP 或 REST 設定 |
+| 原生文獻搜尋 | `research-hub` 的 discovery 指引與共用 research protocol | Codex 或 Claude Code 實際提供的搜尋／閱讀工具；這條路徑不要求 Hub CLI 或儲存帳號 |
+| Runtime-backed research automation | 已設定的 `research-hub` 自動化、`paper-summarize`、部分 `notebooklm-brief-verifier`、Zotero-backed curation flows | `pip install research-hub-pipeline`，再加上需要的 Zotero、Obsidian、NotebookLM、LLM CLI、MCP 或 REST 設定 |
 | Deep Zotero CRUD | `zotero-skills` | Zotero local/Web API credentials，且 host 能呼叫 API |
 | Delegation skills | `codex-delegate`、`antigravity-delegate`、`research-hub-multi-ai` | 目標 CLI 已安裝且在 `PATH`，或改用手動 handoff prompt |
 
 ## 文獻搜尋前的 Agent Preflight
 
-Claude Code、Codex、Gemini CLI、Cursor、OpenClaw、Hermes 或 generic API
-client 要跑文獻流程前，先確認 executable layer：
+原生搜尋先依 [Stage 1](pipeline.zh-TW.md#1-找文獻) 確認 host 實際可用的搜尋／
+閱讀能力，並按實際證據層級記錄。以下 CLI 檢查只適用於已要求的 Hub 自動化
+路徑，不是原生文獻研究或手動交接的前提。
+
+下面是 **live** 文獻流程，不是離線安裝檢查。`--no-nlm` 只關閉 NotebookLM，
+不會停用其他網路呼叫、模型或寫入。執行前遵守
+[live-run preflight](live-run-preflight.zh-TW.md)，並取得適用的資料／費用／寫入授權：
 
 ```bash
 research-hub describe --json
@@ -38,7 +44,9 @@ research-hub doctor
 research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
 
-如果找不到 `research-hub`：
+如果找不到 `research-hub`，只代表此環境的 CLI 路徑不可用；另行檢視已提供的
+MCP/REST/native Hub 介面。未呼叫的路徑維持未測，不等於 Hub 自動化不可用。
+保留原生／手動路徑；只有要求了 Hub 自動化且已授權設定時，才用既有安裝路徑：
 
 ```bash
 pip install research-hub-pipeline

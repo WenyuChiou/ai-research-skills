@@ -22,13 +22,29 @@ pipeline 位置。見最下方的 **Cross-cutting tools**。
 
 > *「這個題目別人做過什麼？我該讀什麼？」*
 
-常用工具：**Zotero · NotebookLM · Obsidian** *（目前沒有 OneNote 對應的
-skill，請以 Obsidian 作為筆記層。）*
+先用 **Codex 或 Claude Code** 當前實際提供的搜尋、deep-research、閱讀、
+引文工具與相關 skills。不要假設兩個 host 都有所有能力；記錄本輪已使用、
+可用但未測、或在此環境不可用的項目。遵循上游的
+[research protocol](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/references/research-protocol.md)
+與 [source-claim audit guidance](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/references/source-claim-audit.md)，
+不在 catalog 另建一套搜尋引擎。
+
+交接需保留搜尋需求／查詢與實際觀察結果、來源身分與版本／日期、實際閱讀
+層級與 claim locator、最接近或相反的研究，以及 `not-read`／`unknown`。
+依賴全文 claim 前須讀相關方法與結果；abstract-only 摘要、搜尋命中、填好的
+locator 或結構檢查都不等於原文驗證。作者自行維護的 query ledger 與留存的
+工具呼叫 receipt 要分開；不要只為補造歷史 receipt 而要求重跑搜尋。
+
+**Zotero · NotebookLM · Obsidian 都是可選整合**，不是這輪找文獻的前提。
+只有需要且已獲授權時，才使用設定好的儲存／自動化；不要為文獻研究額外
+要求帳號或設定步驟。某個 executor 沒有 Hub CLI，不代表產品沒有該能力；
+可攜／手動交接也不等於已執行 Hub pipeline。
 
 | Skill | 用途 |
 |---|---|
-| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | 在 arXiv / Semantic Scholar / CrossRef / PubMed 搜尋論文，匯入 metadata，自動寫成 Obsidian 筆記。 |
-| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) | research-hub pipeline 不夠時，做更深的 Zotero 加項、tag、去重、清理。 |
+| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | 按共用 protocol 使用可用的原生搜尋與原文閱讀；需要時才用已設定的 arXiv / Semantic Scholar / CrossRef / PubMed 搜尋與獲授權的匯入／儲存。 |
+| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *（可選）* | 匯入後補寫逐篇 abstract-only 摘要；不讀 PDF，也不驗證論文全文 claim。 |
+| [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *（可選）* | 需要且另行獲授權時，才做 Zotero 加項、tag、去重、清理。 |
 
 ## 2. 整理、比較文獻、找出 research gap
 
