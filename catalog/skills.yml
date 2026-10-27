@@ -54,6 +54,7 @@ families:
           - Inspect or maintain a research-hub vault.
         outputs:
           - Literature evidence handoff with source versions, reading levels, locators, closest or contrary work, and not-read or unknown limitations
+          - Optional native reader from supplied observations and language content; text-only handoff remains usable if the helper is unavailable
           - Optional Zotero collections and tags (configured and authorized writes only)
           - Optional Obsidian Markdown notes (configured and authorized writes only)
           - Optional NotebookLM bundles and briefs (configured and authorized use only)

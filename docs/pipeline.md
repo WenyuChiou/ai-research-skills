@@ -41,6 +41,25 @@ do not add mandatory Hub CLI setup, integration accounts, API keys or logins
 to the native route. Host tool access still depends on the host's actual
 authorized capabilities.
 
+### Optional native reader handoff
+
+The [pinned Hub reader guidance](https://github.com/WenyuChiou/research-hub/blob/0d17f7e47f5bf37bf7b9dd5ace86d180ca8e7959/skills/research-hub/references/native-discovery-export.md) describes an optional
+local helper for already selected observations and supplied prose, when requested.
+It is a public source reference, not an accepted-source update or proof that the
+loaded skill includes it. Resolve the helper from the host-identified loaded
+skill and use existing Python. If either is unavailable, retain the native text
+report and identify the unavailable helper; do not guess paths, silently install
+Hub or ask the researcher to reconstruct JSON. Only supplied language content
+produces `reader.en.html` or `reader.zh-TW.html`; missing languages are recorded,
+not translated. Generation also writes `native-reader.json`, `references.bib`,
+and `manifest.json`. `references.bib`
+has no entries when no bibliography is supplied; it still has a header. Check-only
+writes no files. These outputs do not establish source support, reading, or
+translation parity. For an interrupted or unknown invocation, preserve inputs
+and output; matching manifest hashes alone do not prove success. Require a zero
+exit and generated acknowledgment with `manifest_sha256`; where permitted, retry
+verified unchanged inputs in a fresh directory.
+
 ### Agree the round and search routes
 
 Take the topic, target count and reading depth in natural language. Reuse
