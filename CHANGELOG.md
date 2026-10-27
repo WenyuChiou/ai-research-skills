@@ -47,6 +47,26 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.16] - 2026-10-27
+
+### Changed
+
+- Align academic-writing-skills with accepted release1.3.23 at
+  `eb69430767383b2515c2185d8c00e923a7b0b6b5` (upstream PR44): explicit
+  study-identity preparation and concern closure separate from edit completion,
+  using the existing ledger and progressive guides rather than a new schema.
+- Clarify writing discovery descriptions and refresh only its source identity
+  and bilingual current assessment. Preserve all other accepted pins, manifest
+  observations and historical verification dates.
+- Source verification:344passed/2skipped,27bundled checks and52-file adapter
+  source/extraction checks. Paired8-case writing and12-case concern exercises
+  did not demonstrate improvement; editorial uncertainties remain explicit.
+  Private manuscript text and unapproved candidates were not published.
+
+Known pre-existing live-health finding:research-workspace marketplace0.5.10
+versus source0.5.12. This scoped writing update does not repair that separate
+version drift or claim whole-catalog live health is green.
+
 ## [1.7.15] - 2026-10-26
 
 ### Fixed
@@ -1919,7 +1939,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.15...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.16...HEAD
+[1.7.16]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.15...v1.7.16
 [1.7.15]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.14...v1.7.15
 [1.7.14]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.13...v1.7.14
 [1.7.13]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.12...v1.7.13
