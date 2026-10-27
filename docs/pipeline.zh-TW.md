@@ -36,6 +36,20 @@ workflow／整合路線。只檢查所選動作需要的設定與存取，不把
 帳號、API key 或 login 變成原生路線的必要前提；host 工具仍依其實際可用且已授權
 的能力執行。
 
+### 可選的原生閱讀頁交接
+
+[固定版本的 Hub 閱讀頁指引](https://github.com/WenyuChiou/research-hub/blob/0d17f7e47f5bf37bf7b9dd5ace86d180ca8e7959/skills/research-hub/references/native-discovery-export.md) 說明在使用者需要時，如何用已選定的觀察與
+提供的文字產生本機交接。這是公開原始碼參考，不代表已更新 accepted source，也不保證
+目前載入的 skill 含有此工具。由 host 指明的已載入 skill 位置解析工具，並使用既有的
+Python；若任一不可用，保留原生文字報告並指出工具不可用，不猜路徑、靜默安裝 Hub
+或要求研究者重建 JSON。只有提供內容的語言會產生 `reader.en.html` 或
+`reader.zh-TW.html`；缺少的語言會被記錄，不會自動翻譯。產生時也寫入
+`native-reader.json`、`references.bib` 和 `manifest.json`。未提供書目時，
+`references.bib` 沒有條目但仍有標頭。check-only 不寫入檔案。
+成果不證明來源支持、實際閱讀或翻譯語意對等。執行中斷或結果未知時，保留原始輸入與
+輸出；manifest 雜湊相符本身不證明成功。須確認零退出碼及含 `manifest_sha256` 的
+generated 回應；在允許時，將確認未變的輸入重試到新的目錄。
+
 ### 確認本輪需求與搜尋路線
 
 用自然語言接收主題、目標篇數與閱讀深度。沿用已提供的偏好，只問真正缺少且
