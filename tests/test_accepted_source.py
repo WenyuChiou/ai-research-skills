@@ -273,3 +273,84 @@ def test_historical_checkout_cannot_pass_accepted_check_with_current_version_dri
     result = report(source)
     assert result["status"] == "fail"
     assert any("reviewed manifest identity differs" in finding for finding in result["accepted_sources"][0]["findings"])
+
+
+@pytest.fixture
+def native_reader_source(source):
+    """Synthetic 23-path candidate; never rewrite the catalog's accepted snapshot."""
+    root, catalog, marketplace, snapshot = source
+    recorded = json.loads(checker.SNAPSHOT.read_text(encoding="utf-8"))["repositories"][0]
+    future = json.loads((checker.SNAPSHOT.parent / "native-reader-future-contract.json").read_text(encoding="utf-8"))
+    assert len(recorded["skills"]) == 12 and len(recorded["shared_references"]) == 8
+    assert len(future["candidate_dependencies"]) == 3
+    shared = [*recorded["shared_references"], *future["candidate_dependencies"]]
+    assert len(shared) == len(set(shared)) == 11
+    repo_url = recorded["repo_url"]
+    skills = [{"name": skill["name"], "directory": skill["directory"], "repo_url": repo_url,
+               "skill_url": repo_url + "/blob/master/" + skill["directory"] + "/SKILL.md"}
+              for skill in recorded["skills"]]
+    paths = [".claude-plugin/plugin.json", *(skill["directory"] + "/SKILL.md" for skill in skills), *shared]
+    for skill in skills:
+        path = root / skill["directory"] / "SKILL.md"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(f"---\nname: {skill['name']}\n---\nAuthored synthetic candidate only.\n", encoding="utf-8", newline="\n")
+    for relative in shared:
+        path = root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        text = '{"synthetic": true}\n' if relative.endswith(".json") else "# Authored synthetic dependency; not executed\n"
+        path.write_text(text, encoding="utf-8", newline="\n")
+    manifest = {"name": "research-workspace", "version": "0.0.1"}
+    (root / paths[0]).write_text(json.dumps(manifest), encoding="utf-8")
+    git(root, "add", "--", *paths)
+    git(root, "commit", "-qm", "Synthetic future coverage fixture")
+    catalog["families"][0]["skills"] = skills
+    marketplace["plugins"][0]["version"] = manifest["version"]
+    row = snapshot["repositories"][0]
+    row.update(plugin=manifest, skills=copy.deepcopy(recorded["skills"]), shared_references=shared,
+               commit=git(root, "rev-parse", "HEAD"), tree=git(root, "rev-parse", "HEAD^{tree}"))
+    snapshot.update(checked_on="2000-01-01", verification_scope="Synthetic future candidate fixture only")
+    return root, catalog, marketplace, snapshot
+
+
+def test_future_native_reader_candidate_checks_23_paths_plus_manifest(native_reader_source):
+    before = checker.SNAPSHOT.read_bytes()
+    result = report(native_reader_source)
+    assert result["status"] == "pass"
+    assert result["skills_checked"] == 12
+    assert result["accepted_sources"][0]["files_checked"] == 24
+    assert result["snapshot_checked_on"] == "2000-01-01"
+    assert checker.SNAPSHOT.read_bytes() == before
+
+
+@pytest.mark.parametrize("relative", [
+    "skills/research-hub/references/native-discovery-export.md",
+    "skills/research-hub/scripts/render_native_reader.py",
+    "src/research_hub/schemas/research-discovery-observations-1.0.json",
+])
+@pytest.mark.parametrize("change", ["missing", "modified-hidden-from-status"])
+def test_future_native_reader_dependencies_fail_closed(native_reader_source, relative, change):
+    root = native_reader_source[0]
+    if change == "missing":
+        (root / relative).unlink()
+    else:
+        git(root, "update-index", "--assume-unchanged", relative)
+        (root / relative).write_bytes((root / relative).read_bytes() + b"changed synthetic bytes\n")
+        assert git(root, "status", "--porcelain", "--", relative) == ""
+    assert report(native_reader_source, accepted=False)["status"] == "pass"
+    result = report(native_reader_source)
+    assert result["status"] == "fail"
+    expected = "required file missing" if change == "missing" else "content differs"
+    assert any(relative in reason and expected in reason for reason in result["accepted_sources"][0]["findings"])
+
+
+@pytest.mark.parametrize("field,value", [("name", "wrong-producer"), ("version", "0.0.2")])
+def test_future_native_reader_manifest_drift_is_not_layout_or_source_acceptance(native_reader_source, field, value):
+    root = native_reader_source[0]
+    manifest = root / ".claude-plugin/plugin.json"
+    payload = json.loads(manifest.read_bytes())
+    payload[field] = value
+    manifest.write_text(json.dumps(payload), encoding="utf-8")
+    result = report(native_reader_source)
+    assert result["status"] == "fail"
+    assert any("manifest " + field in finding for finding in result["findings"])
+    assert any("content differs" in finding for finding in result["accepted_sources"][0]["findings"])

@@ -1,0 +1,32 @@
+{
+  "scope": "Authored synthetic future-source and portable handoff contract only; not upstream acceptance, real research evidence, renderer execution, host installation or scientific validation.",
+  "status": "future-candidate-contract-only",
+  "updates_accepted_source": false,
+  "candidate_dependencies": [
+    "skills/research-hub/references/native-discovery-export.md",
+    "skills/research-hub/scripts/render_native_reader.py",
+    "src/research_hub/schemas/research-discovery-observations-1.0.json"
+  ],
+  "delivery": {
+    "round_scope": "general-discovery",
+    "languages_supplied": ["en", "zh-TW"],
+    "entrypoints": {"en": "reader.en.html", "zh-TW": "reader.zh-TW.html"},
+    "required_attachments": ["assessment-status.sidecar.json", "README.md"],
+    "counts": {"raw_hits": null, "discovered": null, "cohort_distinct_works": 2, "raw_version_records": 3, "screened": 1, "included": 1, "core": 1, "reading_depth_included": {"abstract-only": 1}},
+    "versions": [{"work_id": "synthetic-a", "version": "v1"}, {"work_id": "synthetic-a", "version": "v2"}, {"work_id": "synthetic-b", "version": null}],
+    "works": [
+      {"work_id": "synthetic-a", "version_read": "v2", "screened": true, "included": true, "core": true, "roles": ["core", "nearest"], "reading_level": "abstract-only", "access": "restricted", "summary": null},
+      {"work_id": "synthetic-b", "version_read": null, "screened": false, "included": false, "core": false, "roles": [], "reading_level": "not-read", "access": "unknown", "summary": null}
+    ],
+    "assessment_statuses": [
+      {"work_id": "synthetic-a", "version": "v2", "status": "synthetic-recorded-assessment"},
+      {"work_id": "synthetic-b", "version": null, "status": "not-assessed"}
+    ],
+    "files": {
+      "reader.en.html": "<!doctype html><html lang=\"en\"><h1>Authored synthetic handoff</h1><a href=\"assessment-status.sidecar.json\">Recorded assessments</a><a href=\"README.md\">Limits</a><pre id=\"recorded-counts\">{\"raw_hits\":null,\"discovered\":null,\"cohort_distinct_works\":2,\"raw_version_records\":3,\"screened\":1,\"included\":1,\"core\":1,\"reading_depth_included\":{\"abstract-only\":1}}</pre></html>",
+      "reader.zh-TW.html": "<!doctype html><html lang=\"zh-TW\"><h1>Authored synthetic zh-TW fixture; no translation claim</h1><a href=\"assessment-status.sidecar.json\">Recorded assessments</a><a href=\"README.md\">Limits</a><pre id=\"recorded-counts\">{\"raw_hits\":null,\"discovered\":null,\"cohort_distinct_works\":2,\"raw_version_records\":3,\"screened\":1,\"included\":1,\"core\":1,\"reading_depth_included\":{\"abstract-only\":1}}</pre></html>",
+      "assessment-status.sidecar.json": "{\"counts\":{\"raw_hits\":null,\"discovered\":null,\"cohort_distinct_works\":2,\"raw_version_records\":3,\"screened\":1,\"included\":1,\"core\":1,\"reading_depth_included\":{\"abstract-only\":1}},\"assessment_statuses\":[{\"work_id\":\"synthetic-a\",\"version\":\"v2\",\"status\":\"synthetic-recorded-assessment\"},{\"work_id\":\"synthetic-b\",\"version\":null,\"status\":\"not-assessed\"}]}",
+      "README.md": "Synthetic consumer-contract fixture only. No scientific evidence, accepted upstream, model output, installed host behavior or translation parity is established."
+    }
+  }
+}
