@@ -69,6 +69,20 @@ def test_catalog_directories_and_marketplace_match_checked_upstreams():
     assert observations.validate(marketplace, snapshot, observed) == []
 
 
+def test_future_native_reader_fixture_does_not_advance_install_or_accepted_pins():
+    future = json.loads((ROOT / "test-corpus/integration/native-reader-future-contract.json").read_text(encoding="utf-8"))
+    accepted = json.loads((ROOT / "test-corpus/integration/upstream-contracts.json").read_text(encoding="utf-8"))
+    _, marketplace = consistency._load()
+    hub = next(row for row in accepted["repositories"] if row["repo_url"].endswith("/research-hub"))
+    install = next(plugin for plugin in marketplace["plugins"] if plugin["name"] == "research-workspace")
+    assert future["status"] == "future-candidate-contract-only" and future["updates_accepted_source"] is False
+    assert accepted["checked_on"] == "2026-10-19"
+    assert hub["commit"] == "7e046383368d85acb8dfbf0d734ecaaae335cf0a" and hub["plugin"]["version"] == "0.5.4"
+    assert len(hub["skills"]) == 12 and len(hub["shared_references"]) == 8
+    assert set(future["candidate_dependencies"]).isdisjoint(hub["shared_references"])
+    assert install["version"] == "0.5.10" and install["source"]["ref"] == "master"
+
+
 def test_canonical_installs_do_not_clone_nested_repo_as_a_single_skill():
     catalog, _ = consistency._load()
     for family in catalog["families"]:

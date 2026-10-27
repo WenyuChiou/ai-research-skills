@@ -1,5 +1,9 @@
 """Catalog routing/claim regressions, not execution or scientific-quality tests."""
 from pathlib import Path
+from collections import Counter
+from copy import deepcopy
+from html.parser import HTMLParser
+import json
 import re
 
 import pytest
@@ -7,6 +11,7 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
+FUTURE_READER = json.loads((ROOT / "test-corpus/integration/native-reader-future-contract.json").read_text(encoding="utf-8"))
 
 
 def _skill(name):
@@ -113,3 +118,114 @@ def test_missing_path_cli_does_not_hide_other_hub_interfaces(document, condition
     missing_cli_guidance = text.split(conditional, 1)[1].split("```", 1)[0]
     assert scope in missing_cli_guidance
     assert "MCP/REST/native Hub" in missing_cli_guidance
+
+
+class _ReaderEntry(HTMLParser):
+    """Inspect authored fixture text/links only; this is not a browser or renderer."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.links, self.count_text, self.count_blocks, self.in_counts = [], [], 0, False
+
+    def handle_starttag(self, tag, attributes):
+        attrs = dict(attributes)
+        if tag == "a":
+            self.links.append(attrs.get("href", ""))
+        if tag == "pre" and attrs.get("id") == "recorded-counts":
+            self.count_blocks += 1
+            self.in_counts = True
+
+    def handle_endtag(self, tag):
+        if tag == "pre":
+            self.in_counts = False
+
+    def handle_data(self, text):
+        if self.in_counts:
+            self.count_text.append(text)
+
+
+def _assert_future_reader_handoff(delivery):
+    """Check preservation of supplied synthetic decisions, never decide eligibility."""
+    files = delivery["files"]
+    for name in delivery["required_attachments"]:
+        assert name in files, "missing required attachment"
+    sidecar = json.loads(files["assessment-status.sidecar.json"])
+    assert sidecar["counts"] == delivery["counts"], "recorded counts changed"
+    assert sidecar["assessment_statuses"] == delivery["assessment_statuses"], "assessment identity/status changed"
+    for language in delivery["languages_supplied"]:
+        name = delivery["entrypoints"][language]
+        assert name in files, "missing supplied-language entrypoint"
+        entry = _ReaderEntry()
+        entry.feed(files[name])
+        entry.close()
+        assert set(delivery["required_attachments"]) <= set(entry.links), "required attachment not discoverable"
+        assert all(target in files for target in entry.links), "unresolved local fixture link"
+        assert entry.count_blocks == 1, "recorded counts not visible exactly once"
+        assert json.loads("".join(entry.count_text)) == delivery["counts"], "visible recorded counts changed"
+
+
+def test_future_reader_fixture_preserves_unknown_counts_versions_and_recorded_decisions():
+    delivery = FUTURE_READER["delivery"]
+    _assert_future_reader_handoff(delivery)
+    works, counts = delivery["works"], delivery["counts"]
+    assert counts["raw_hits"] is counts["discovered"] is None
+    assert counts["raw_version_records"] == len(delivery["versions"]) == 3
+    assert counts["cohort_distinct_works"] == len({work["work_id"] for work in works}) == 2
+    assert counts["screened"] == sum(work["screened"] for work in works)
+    included = [work for work in works if work["included"]]
+    assert counts["included"] == len(included)
+    assert counts["core"] == sum(work["core"] for work in included)
+    assert counts["reading_depth_included"] == dict(Counter(work["reading_level"] for work in included))
+    assert included[0]["roles"] == ["core", "nearest"] and included[0]["access"] == "restricted"
+    assert delivery["round_scope"] == "general-discovery" and all(work["summary"] is None for work in works)
+    assert {(row["work_id"], row["version"]) for row in delivery["assessment_statuses"]} == {
+        (work["work_id"], work["version_read"]) for work in works}
+
+
+@pytest.mark.parametrize("language", ["en", "zh-TW"])
+@pytest.mark.parametrize("attachment", ["assessment-status.sidecar.json", "README.md"])
+def test_future_reader_requires_attachment_discoverability_not_just_valid_links(language, attachment):
+    delivery = deepcopy(FUTURE_READER["delivery"])
+    name = delivery["entrypoints"][language]
+    delivery["files"][name] = delivery["files"][name].replace('href="' + attachment + '"', 'href="reader.en.html"')
+    entry = _ReaderEntry()
+    entry.feed(delivery["files"][name])
+    assert all(target in delivery["files"] for target in entry.links)
+    with pytest.raises(AssertionError, match="not discoverable"):
+        _assert_future_reader_handoff(delivery)
+
+
+@pytest.mark.parametrize("language", ["en", "zh-TW"])
+@pytest.mark.parametrize("before,after", [('"discovered":null', '"discovered":0'), ('"included":1', '"included":2'), ('"raw_version_records":3', '"raw_version_records":2')])
+def test_future_reader_rejects_changed_visible_counts(language, before, after):
+    delivery = deepcopy(FUTURE_READER["delivery"])
+    name = delivery["entrypoints"][language]
+    delivery["files"][name] = delivery["files"][name].replace(before, after)
+    with pytest.raises(AssertionError, match="visible recorded counts changed"):
+        _assert_future_reader_handoff(delivery)
+
+
+@pytest.mark.parametrize("field,value", [("status", "silently-upgraded"), ("version", "wrong-version")])
+def test_future_reader_rejects_assessment_status_or_identity_loss(field, value):
+    delivery = deepcopy(FUTURE_READER["delivery"])
+    sidecar = json.loads(delivery["files"]["assessment-status.sidecar.json"])
+    sidecar["assessment_statuses"][0][field] = value
+    delivery["files"]["assessment-status.sidecar.json"] = json.dumps(sidecar)
+    with pytest.raises(AssertionError, match="assessment identity/status changed"):
+        _assert_future_reader_handoff(delivery)
+
+
+@pytest.mark.parametrize("missing", ["README.md", "assessment-status.sidecar.json", "reader.zh-TW.html"])
+def test_future_reader_missing_declared_delivery_files_are_errors(missing):
+    delivery = deepcopy(FUTURE_READER["delivery"])
+    del delivery["files"][missing]
+    with pytest.raises(AssertionError, match="missing"):
+        _assert_future_reader_handoff(delivery)
+
+
+def test_future_reader_acceptance_guidance_keeps_catalog_counts_and_statuses_discoverable():
+    text = (ROOT / "docs/accepted-source-verification.md").read_text(encoding="utf-8")
+    section = " ".join(text.split("## Future native-reader source and handoff coverage", 1)[1].split("## ", 1)[0].split())
+    for relative in FUTURE_READER["candidate_dependencies"]:
+        assert relative in section
+    for term in ("23", "24", "raw hits", "discovered", "screened", "included", "reading-depth counts", "core count", "each supplied language", "assessment-status.sidecar.json", "README.md", "not current accepted-source verification"):
+        assert term in section

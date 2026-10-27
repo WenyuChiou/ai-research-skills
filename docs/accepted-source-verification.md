@@ -37,6 +37,44 @@ design. Checking their source identity prevents an incomplete local copy from
 earning stronger verification. It does not execute or semantically validate
 those scientific checks. The catalog does not duplicate Hub implementation.
 
+## Future native-reader source and handoff coverage
+
+The fixture `test-corpus/integration/native-reader-future-contract.json` is an
+authored synthetic consumer contract, **not current accepted-source verification**.
+It does not advance the historical Hub commit/tree/date/version, marketplace
+cache metadata or manifest-only observation. The catalog owns this acceptance
+guidance; the upstream Hub owns its schema, renderer and skill content.
+
+For a separately reviewed future native-reader source, retain all 12 SKILL files
+and eight existing references, then cover these three additional exact paths:
+
+- `skills/research-hub/references/native-discovery-export.md`
+- `skills/research-hub/scripts/render_native_reader.py`
+- `src/research_hub/schemas/research-discovery-observations-1.0.json`
+
+That is 23 skill/dependency paths plus the plugin manifest: 24 checked files.
+The existing checker can compare Markdown, Python and JSON bytes using an
+explicit candidate reference list. Synthetic Git tests exercise missing files,
+content changes hidden by index flags, and manifest drift without editing the
+active accepted snapshot. Default layout success is weaker than source
+acceptance. Matching cache metadata does not accept new skill content.
+
+A future actual renderer handoff must retain supplied raw hits, discovered,
+screened, included, reading-depth counts and core count, including unknown totals
+and the distinction between works and versions. Preserve overlapping roles,
+reading/access limits and existing assessment decisions; do not infer inclusion
+or invent summaries. In each supplied language entrypoint, expose the supplied
+counts and discoverable links to the selected `assessment-status.sidecar.json`
+and `README.md` when those are part of the delivery. Check required links as
+well as whether links already present resolve; JSON existing elsewhere is not
+discoverability. Preserve original work/version-bound statuses in the sidecar.
+
+The small HTML/JSON fixtures test these consumer requirements with authored data;
+they do not execute the Hub renderer, install a host, read a paper, authenticate
+evidence, validate the upstream JSON schema or establish translation parity.
+Actual candidate output inspection and exact reviewed-source acceptance remain
+separate gates. No source-content acceptance is earned by these fixture passes.
+
 ## Keep historical and runtime claims separate
 
 The Hub commit `7e046383` is a **reviewed snapshot, not an installation pin**.
