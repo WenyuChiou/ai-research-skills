@@ -47,6 +47,23 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.17] - 2026-10-28
+
+### Fixed
+
+- Align research-workspace with the accepted upstream plugin manifest 0.5.18
+  at `c1ab382e1bc4bfdb1d5df6a230d1ab4509a50d2a`, replacing the stale 0.5.14
+  marketplace version and accepted-source commit/tree. Preserve the default
+  `master` ref, all twelve skill identities and existing artifact contracts.
+- Synchronize current bilingual source references and catalog-version labels;
+  retain historical verification dates and every other plugin/source record.
+- Advance the active source guards and acceptance-history record together,
+  preserving the preceding 0.5.14 review and its evidence as explicit history.
+- Keep version domains separate: research-workspace 0.5.18 is the plugin
+  manifest version, while the Python project remains 1.2.0. This catalog-only
+  correction does not publish or install a Python wheel, invoke a live research
+  workflow, or establish scientific quality.
+
 ## [1.7.16] - 2026-10-28
 
 ### Changed
@@ -1939,7 +1956,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.16...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.17...HEAD
+[1.7.17]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.16...v1.7.17
 [1.7.16]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.14...v1.7.16
 [1.7.15]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.14...v1.7.15
 [1.7.14]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.13...v1.7.14
