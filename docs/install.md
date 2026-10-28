@@ -39,7 +39,8 @@ as needed; a single wording edit does not require a whole-project workflow.
 | Review without editing | [paper-review] | A review report; review-only does not authorize manuscript edits or release |
 | Manage local projects, artifacts, tasks, and a workspace UI | [Hub workspace guide](https://github.com/WenyuChiou/research-hub/blob/master/docs/workspace-guide.md) | A Hub runtime that actually exposes the workspace commands; catalog installation is not runtime installation |
 | Run manuscript audits in that workspace | [Writing adapter boundary](runtime-contract.md#local-workspace-and-writing-adapter) | An explicitly trusted, verified writing bundle configured in Hub; not required for ordinary skill guidance |
-| Discover, ingest, or summarize literature through tools | [research-hub], [paper-summarize] | Hub runtime plus the connectors/model required by the selected operation; NotebookLM is optional, and `--no-nlm` is still live work |
+| Discover or read literature with host tools | [Native literature route](pipeline.md#1-discover-literature) | Use the host’s available, authorized capabilities; Hub is optional. Record access and actual reading evidence. |
+| Use Hub to ingest or summarize literature | [research-hub], [paper-summarize] | Hub runtime plus the connectors/model required by the selected operation; NotebookLM is optional, and `--no-nlm` is still live work |
 | Maintain Zotero records beyond the Hub pipeline | [zotero-skills] | Its API setup and explicit authorization for the exact write; not required for a local manuscript |
 | Delegate a bounded task | [codex-delegate], [antigravity-delegate] | The target CLI and its prerequisites, or a portable handoff; an absent CLI is unavailable, not permission to install another service |
 
@@ -175,7 +176,7 @@ First **live** smoke test without NotebookLM (only after the
 research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
 
-Before asking any AI host to run literature discovery, use this runtime
+Before asking an AI host to run the Hub literature pipeline, use this Hub runtime
 preflight: `research-hub describe --json`, `research-hub doctor`, then the
 small `auto ... --no-nlm` smoke test above. Installing this catalog or
 copying a `SKILL.md` file does not install the Python CLI.
