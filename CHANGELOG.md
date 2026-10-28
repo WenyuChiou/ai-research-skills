@@ -47,6 +47,26 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.16] - 2026-10-28
+
+### Changed
+
+- Align academic-writing-skills with accepted release 1.3.24 at
+  `586a5aa5cce3c32eb69629bfc0a631e95867c769` (upstream PR #46), including
+  the preceding 1.3.23 research-identity and concern-closure clarifications.
+- Refresh only the writing plugin version, immutable source commit/tree and
+  bilingual assessment. The result-to-explanation check stays inside the existing
+  reader walkthrough and cold-reader procedure, preserving useful short prose
+  and rejecting invented mechanisms or connector-only repairs.
+- Record verification limits: 347 source tests passed, two Windows symlink
+  privilege skips, 27 bundled checks and a 52-file adapter round-trip. Both
+  versions met the same 32 local criteria in eight fictional paired requests;
+  one anonymous AI reader found no definite obstruction in 16 passages. This is
+  not demonstrated improvement, human validation or universal reliability.
+- Preserve all other accepted-source records and verification dates. Strict
+  live health still reports the pre-existing research-workspace version drift;
+  this scoped writing update is not an all-catalog health pass.
+
 ## [1.7.15] - 2026-10-26
 
 ### Fixed
@@ -1919,7 +1939,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.15...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.16...HEAD
+[1.7.16]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.14...v1.7.16
 [1.7.15]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.14...v1.7.15
 [1.7.14]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.13...v1.7.14
 [1.7.13]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.12...v1.7.13
