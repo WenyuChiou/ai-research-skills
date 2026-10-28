@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "previous_accepted_hub": {
+    "repo_url": "https://github.com/WenyuChiou/research-hub",
+    "commit": "7e046383368d85acb8dfbf0d734ecaaae335cf0a",
+    "default_branch": "master",
+    "plugin": {
+      "name": "research-workspace",
+      "version": "0.5.4"
+    },
+    "skills": [
+      {
+        "name": "research-hub",
+        "directory": "skills/research-hub"
+      },
+      {
+        "name": "research-hub-multi-ai",
+        "directory": "skills/research-hub-multi-ai"
+      },
+      {
+        "name": "research-context-compressor",
+        "directory": "skills/research-context-compressor"
+      },
+      {
+        "name": "research-project-orienter",
+        "directory": "skills/research-project-orienter"
+      },
+      {
+        "name": "research-design-helper",
+        "directory": "skills/research-design-helper"
+      },
+      {
+        "name": "literature-triage-matrix",
+        "directory": "skills/literature-triage-matrix"
+      },
+      {
+        "name": "paper-memory-builder",
+        "directory": "skills/paper-memory-builder"
+      },
+      {
+        "name": "paper-summarize",
+        "directory": "skills/paper-summarize"
+      },
+      {
+        "name": "notebooklm-brief-verifier",
+        "directory": "skills/notebooklm-brief-verifier"
+      },
+      {
+        "name": "gap-to-topic",
+        "directory": "skills/gap-to-topic"
+      },
+      {
+        "name": "zotero-library-curator",
+        "directory": "skills/zotero-library-curator"
+      },
+      {
+        "name": "research-workflow-orchestrator",
+        "directory": "skills/research-workflow-orchestrator"
+      }
+    ],
+    "tree": "cb437e52f23f2448bb9b5a259ed683c2e7788a18",
+    "shared_references": [
+      "skills/research-hub/references/research-protocol.md",
+      "skills/research-hub/references/source-claim-audit.md",
+      "skills/gap-to-topic/references/dossier-template.md",
+      "skills/gap-to-topic/references/dead-end-history.md",
+      "skills/gap-to-topic/references/contribution-typing.md",
+      "skills/research-design-helper/references/socratic-segments.md",
+      "skills/research-design-helper/references/design_brief_template.md",
+      "docs/direction-review-contract.md"
+    ]
+  },
+  "previous_hub_manifest_observation": {
+    "repo_url": "https://github.com/WenyuChiou/research-hub",
+    "plugin": {
+      "name": "research-workspace",
+      "version": "0.5.10"
+    },
+    "ref": "master",
+    "commit": "068596faeb8cf0227556ad95fa1de318ab00db46",
+    "tree": "a7bd8458c8316eeffbaf4f0d86e9c34d9e0f2251",
+    "manifest_blob": "96dbb9233f2121ecae3642bf6bed1846d0b0a24c",
+    "manifest_text": "{\n  \"name\": \"research-workspace\",\n  \"description\": \"12 research-hub skills, including a resumable human-in-the-loop workflow orchestrator, literature triage, context compression, project orientation, research design, verified multi-agent routing, NotebookLM brief verification, paper memory and summaries, Zotero curation, gap-to-topic decisions, and the research-hub CLI operator. Auto-discovered from skills/<name>/SKILL.md.\",\n  \"version\": \"0.5.10\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/research-hub\",\n  \"repository\": \"https://github.com/WenyuChiou/research-hub\",\n  \"license\": \"MIT\",\n  \"keywords\": [\"research\", \"zotero\", \"obsidian\", \"notebooklm\", \"literature-review\", \"academic\"]\n}\n",
+    "scope": "manifest-only; not accepted-source or published-release verification"
+  },
+  "current_hub_source_review": {
+    "reviewed_on": "2026-10-28",
+    "commit": "4d83b8b772da5fbb232272aa2829573c3c05b45e",
+    "tree": "0bb138414ccd5fea465d808cee8ad4760b22c533",
+    "plugin": {
+      "name": "research-workspace",
+      "version": "0.5.14"
+    },
+    "manifest_blob": "a97e15ab29d2a7d714deb66434c28421516f77de",
+    "manifest_sha256": "4985c71bb329ef405ac92dd971a9971925a50fe9aed1eecfdb535aa2f6e712fd",
+    "manifest_text": "{\n  \"name\": \"research-workspace\",\n  \"description\": \"12 research-hub skills, including a resumable human-in-the-loop workflow orchestrator, literature triage, context compression, project orientation, research design, verified multi-agent routing, NotebookLM brief verification, paper memory and summaries, Zotero curation, gap-to-topic decisions, and the research-hub CLI operator. Auto-discovered from skills/<name>/SKILL.md.\",\n  \"version\": \"0.5.14\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/research-hub\",\n  \"repository\": \"https://github.com/WenyuChiou/research-hub\",\n  \"license\": \"MIT\",\n  \"keywords\": [\"research\", \"zotero\", \"obsidian\", \"notebooklm\", \"literature-review\", \"academic\"]\n}\n",
+    "scope": "12 skills, 12 shared references and plugin manifest; 25 paths total",
+    "evidence": "Independent cloud source verification: real clean Git checkouts and fsck, 1 Hub / 12 skills / 25 files; independent byte and 22 mirror/schema parity review.",
+    "reproduction_script_sha256": "88ab9cf7b146676c51c6bdebe957f94a00116f7c1dccc64d0ddabaa6409284fb",
+    "report_sha256": "4bf4ded0f04b133404b428552d30a6191298b79a96ce9a59d801d614ed8ab4fd",
+    "exclusions": "Memory/summary dependency closure beyond the 25 paths, other repositories, installed host, model execution and scientific end-to-end acceptance are not certified."
+  }
+}

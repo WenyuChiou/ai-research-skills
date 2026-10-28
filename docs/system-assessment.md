@@ -19,7 +19,9 @@ and snapshot were refreshed to the reviewed 0.3.1 release on 2026-10-07. The
 codex-delegate row and snapshot were refreshed to the accepted 0.1.5 release
 on 2026-10-25; the antigravity-delegate row and snapshot were refreshed to
 accepted release 0.1.3 on 2026-10-25. Other
-source identities retain the assessment above.
+source identities retain the assessment above, except research-hub: its 25-path
+bounded source review is dated 2026-10-28. This does not refresh runtime or
+catalog verification dates.
 
 繁中: [system-assessment.zh-TW.md](system-assessment.zh-TW.md)
 
@@ -28,7 +30,7 @@ source identities retain the assessment above.
 | Source | Checked commit | Accepted package / plugin | Contract and verification boundary |
 |---|---|---|---|
 | ai-research-skills | [eee76f8](https://github.com/WenyuChiou/ai-research-skills/tree/eee76f87c3f4fbfe3cf6dcab865a657295985e01) | Catalog 1.7.2 / schema 4 | 17 skills, 5 source plugins; optional harness omitted by the legacy-v3 view; source directory and marketplace URL/ref must resolve the same SKILL.md |
-| research-hub | [7e04638](https://github.com/WenyuChiou/research-hub/tree/7e046383368d85acb8dfbf0d734ecaaae335cf0a) | Python/MCP package 1.2.0 / research-workspace plugin 0.5.4 | 12 skills; native input/provenance/preview; optional source-audit and offline direction-review contracts; explicit human topic choice; strict packet v1 unchanged; installed runtime must be probed |
+| research-hub | [4d83b8b](https://github.com/WenyuChiou/research-hub/tree/4d83b8b772da5fbb232272aa2829573c3c05b45e) | Python/MCP source version 1.2.0 / research-workspace plugin 0.5.14 | 12 skills; native input/provenance/preview; optional source-audit and offline direction-review contracts; explicit human topic choice; strict packet v1 unchanged; installed runtime must be probed |
 | academic-writing-skills | [0cd848b](https://github.com/WenyuChiou/academic-writing-skills/tree/0cd848b402daadb5a21f3a334c8c534b0dd7ce1b) | Plugin 1.3.22; adapter 1.0.0 / state schema 1.1 | Retains scoped clarity, limitations, display-orientation, terminology, context cases, and staged coverage guidance. 1.3.18 adds paragraph-opening extended outlines; 1.3.19 clarifies layered evidence-to-meaning units and all-section bridges without a second checklist or prose ritual. The earlier 1.3.19 paired 18-case synthetic run met 72/72 criteria in both versions, not demonstrated improvement; one additional first-use issue received a separately disclosed feedback correction. 1.3.20 integrates supplementary-reference functions and scope controls; one of ten hypothetical forward cases exposed a review-only over-edit, corrected and rechecked only for that case, without a paired improvement claim. 1.3.21 integrates input/action/output handoffs, initial versus repeated actions, and conditional/diagnostic branches; a single twelve-case hypothetical batch received independent-agent execution and parent assessment, not a paired improvement or human-reader validation. Earlier 8/8 versus 8/8 evidence likewise established no quality or efficiency gain. Supported clients remain named in the README, with no testing badge; graphics are unchanged. 1.3.22 binds current comment selections and clarifies comparison-layer contributions; it corrects lexical/field projection and non-UTF-8 JSON output. The paired ten-case exercise met local criteria in both versions, not demonstrated improvement; sixteen scope proposals are not completed Word edits. Corrected source verification: 339 passed/2 skipped and 27 bundled checks. Skill identities, entrypoints, and operation signatures are unchanged. Source layout/manifest checked; live host loading, general human comprehension, research quality, and complete terminology coverage are not established |
 | zotero-skills | [f5772f8](https://github.com/WenyuChiou/zotero-skills/tree/f5772f8b62410858d41436efe11e85529b5dee8c) | Plugin 0.3.1; latest checked tag 0.2.0 | Nested skill plus root client; attach_pdf now sends a bare filename via upload_attachments(basedir=...), fixing an HTTP 400 that failed every 0.3.0 call; runtime and destructive safeguards unchanged |
 | codex-delegate | [5592763](https://github.com/WenyuChiou/codex-delegate/tree/5592763dcca0cf25cc841c0806d7b328886e8e73) | Plugin 0.1.5; release v0.1.5 | Bundled Bash/PowerShell wrappers; no built-in default model, reasoning effort or service tier (optional `--model` / `--effort` / `--service-tier` pass through to Codex); stable brief/result/sentinel adapter; dirty-content observation and sandbox forwarding; independent supervisor acceptance, not a second broker. 0.1.5 separates bounded test-session shell startup from unchanged wrapper cases; runtime/skill payloads are unchanged. Source layout/manifest checked; this snapshot does not establish live model execution, general startup reliability or host loading |
@@ -58,16 +60,16 @@ adds task/run/baseline/current-candidate evidence review and makes mtime advisor
 Its presets are declarative review contracts, not a Python runtime preset
 engine; this source-doc change does not modify either released wheel.
 
-Research-workspace 0.5.4 retains the optional source-audit profile in accepted
+Research-workspace 0.5.14 retains the optional source-audit profile in accepted
 source, while Python package version remains 1.2.0. A plugin update does not
 replace an installed wheel. Probe `validate_evidence_packet` for `source_audit`
 and `artifact_root` kwargs plus packaged `research-source-audit-1.0.json`, as in
-the [installed-runtime instructions](https://github.com/WenyuChiou/research-hub/blob/7e046383368d85acb8dfbf0d734ecaaae335cf0a/skills/research-hub/references/source-claim-audit.md#optional-executable-source-audit-profile).
+the [installed-runtime instructions](https://github.com/WenyuChiou/research-hub/blob/4d83b8b772da5fbb232272aa2829573c3c05b45e/skills/research-hub/references/source-claim-audit.md#optional-executable-source-audit-profile).
 Missing capability remains unavailable for mechanical audit; retain manual/native
 source review instead of calling unsupported kwargs or relabeling packet-only
 validity. Do not infer that capability from the unchanged version string.
 
-The accepted [direction-review contract](https://github.com/WenyuChiou/research-hub/blob/7e046383368d85acb8dfbf0d734ecaaae335cf0a/docs/direction-review-contract.md)
+The accepted [direction-review contract](https://github.com/WenyuChiou/research-hub/blob/4d83b8b772da5fbb232272aa2829573c3c05b45e/docs/direction-review-contract.md)
 adds optional offline `paper direction-check` over supplied records:
 
 - Bind `candidate_version` and `candidate_sha256` to the complete candidate,
@@ -97,7 +99,7 @@ matched-information comparison, minimum worthwhile gain and the smallest
 answerable version with nonclaims; no fixed one-week prototype establishes
 feasibility. These are source contracts, not a new quality finding: one guidance
 comparison pair was inconclusive, and historical T1 dates/tiers remain unchanged.
-No overall scientific improvement is claimed. Plugin 0.5.4 does not establish
+No overall scientific improvement is claimed. Plugin 0.5.14 does not establish
 that an installed Python wheel exposes this command; inspect its actual CLI
 capability before use and keep the ordinary/manual path if unavailable.
 
