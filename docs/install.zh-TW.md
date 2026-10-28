@@ -23,6 +23,11 @@ OpenClaw、Windsurf 或通用 API client 也可以載入同一批 `SKILL.md`。
 可攜 `SKILL.md` 指令與可執行 runtime 需求的分界，請看
 [runtime-contract.zh-TW.md](runtime-contract.zh-TW.md)。
 
+原生文獻搜尋與閱讀可使用 host 實際提供且已授權的工具，不需安裝或設定
+Research Hub；請記錄存取情況與實際閱讀證據。若選擇 Hub pipeline，才需
+確認所選操作的 Hub runtime 與相關整合。詳見[原生文獻路線](pipeline.zh-TW.md#1-找文獻)，
+包括可選閱讀頁工具的前提與文字 fallback。
+
 ## 先選安裝路徑
 
 | 使用情境 | 建議路徑 | 驗證方式 |
@@ -133,7 +138,7 @@ research-hub notebooklm login --auto-detect
 research-hub auto "agent-based modeling" --max-papers 3 --no-nlm
 ```
 
-在要求任何 AI host 跑文獻搜尋前，先做 runtime preflight：
+在要求 AI host 執行 Hub 文獻 pipeline 前，先做 Hub runtime preflight：
 `research-hub describe --json`、`research-hub doctor`，再跑上面的
 小型 `auto ... --no-nlm` smoke test。安裝這個 catalog 或複製
 `SKILL.md`，不等於已安裝 Python CLI。
