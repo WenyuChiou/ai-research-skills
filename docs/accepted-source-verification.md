@@ -11,7 +11,7 @@ Detached exact revisions are supported. The checker does not clone, fetch,
 checkout, install, call a model or change the clones. Git must support
 `--no-lazy-fetch`; missing Git, missing objects or missing worktree metadata
 remain `unavailable`, never accepted. A known identity/content mismatch is a
-failure, even when the plugin version is still 0.5.4.
+failure, even when the plugin version is unchanged.
 
 The bounded relevant set is the plugin manifest, each catalog SKILL.md and
 the repository's explicit `shared_references` list (at most 32). Relevant staged,
@@ -83,13 +83,16 @@ separate gates. No source-content acceptance is earned by these fixture passes.
 
 ## Keep historical and runtime claims separate
 
-The Hub commit `7e046383` is a **reviewed snapshot, not an installation pin**.
-Marketplace `source.ref` remains `master`. A newer local clone fails this exact
-snapshot check until separately reviewed; do not replace the snapshot, its
-`checked_on`, catalog `verified_on` dates or install refs to turn a failure green.
-Reports repeat the historical snapshot date, not a new verification date.
-The fixture's existing source-layout scope remains its historical statement;
-the opt-in report separately labels its stronger, bounded check.
+The bounded Hub source review dated 2026-10-28 records commit `4d83b8b`
+(plugin source metadata 0.5.14), covering 12 skills, 12 shared references and
+the manifest. Its provenance and the earlier 0.5.4 acceptance are preserved in
+[Hub source history](../test-corpus/integration/hub-source-acceptance-history.json).
+The shared `checked_on` remains the historical 2026-10-19 date; it is not a
+new review date for the other repositories. Marketplace `source.ref` remains
+`master`: the reviewed commit is not an installation pin. The 25-path check
+does not cover the full memory/summary dependency closure, an installed host,
+model execution or scientific end-to-end acceptance. Plugin metadata 0.5.14
+is not a Python package release or an installed-host version.
 
 Neither mode verifies live models, installed host loading, runtime capability,
 scientific quality or continuing validity. The existing
@@ -122,12 +125,10 @@ commit-to-tree-to-path linkage or remote origin. A maintainer must verify that
 linkage from the canonical source before adding a real observation. The Zotero
 0.4.0 observation comes from commit `e390313c82e76856a525e87a0ae2d0281499e3ab`;
 that is an unpublished source candidate, not a published release (latest checked
-release v0.2.0). The Hub 0.5.10 observation comes from merged master commit
-[`068596faeb8cf0227556ad95fa1de318ab00db46`](https://github.com/WenyuChiou/research-hub/commit/068596faeb8cf0227556ad95fa1de318ab00db46),
-tree `a7bd8458c8316eeffbaf4f0d86e9c34d9e0f2251`, with
-[`plugin.json`](https://github.com/WenyuChiou/research-hub/blob/068596faeb8cf0227556ad95fa1de318ab00db46/.claude-plugin/plugin.json)
-blob `96dbb9233f2121ecae3642bf6bed1846d0b0a24c`. Neither record is a local-only
-candidate substitution or an absent-sibling skip.
+release v0.2.0). The earlier Hub 0.5.10 observation is preserved in the Hub source history,
+not the active list: the current marketplace and accepted Hub versions agree.
+The 0.5.14 manifest bytes and Git identities are recorded in that history.
+The validator still rejects extra records for an unchanged accepted version.
 
 These observations never update accepted commits, trees, `checked_on`, human
 verification dates, historical source tables or skill-content acceptance.

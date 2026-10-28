@@ -1,14 +1,14 @@
 {
   "checked_on": "2026-10-19",
-  "verification_scope": "source-layout-and-manifest; academic-writing-skills refreshed on 2026-10-24; zotero-skills refreshed on 2026-10-07; codex-delegate refreshed on 2026-10-25; antigravity-delegate refreshed on 2026-10-25; other source identities retained from the 2026-10-03 snapshot; no live host invocation",
+  "verification_scope": "source-layout-and-manifest; academic-writing-skills refreshed on 2026-10-24; zotero-skills refreshed on 2026-10-07; codex-delegate refreshed on 2026-10-25; antigravity-delegate refreshed on 2026-10-25; research-hub bounded 25-path source review on 2026-10-28; other source identities retained from the 2026-10-03 snapshot; no live host invocation",
   "repositories": [
     {
       "repo_url": "https://github.com/WenyuChiou/research-hub",
-      "commit": "7e046383368d85acb8dfbf0d734ecaaae335cf0a",
+      "commit": "4d83b8b772da5fbb232272aa2829573c3c05b45e",
       "default_branch": "master",
       "plugin": {
         "name": "research-workspace",
-        "version": "0.5.4"
+        "version": "0.5.14"
       },
       "skills": [
         {
@@ -60,7 +60,7 @@
           "directory": "skills/research-workflow-orchestrator"
         }
       ],
-      "tree": "cb437e52f23f2448bb9b5a259ed683c2e7788a18",
+      "tree": "0bb138414ccd5fea465d808cee8ad4760b22c533",
       "shared_references": [
         "skills/research-hub/references/research-protocol.md",
         "skills/research-hub/references/source-claim-audit.md",
@@ -69,7 +69,11 @@
         "skills/gap-to-topic/references/contribution-typing.md",
         "skills/research-design-helper/references/socratic-segments.md",
         "skills/research-design-helper/references/design_brief_template.md",
-        "docs/direction-review-contract.md"
+        "docs/direction-review-contract.md",
+        "skills/research-hub/references/native-discovery-export.md",
+        "skills/research-hub/scripts/render_native_reader.py",
+        "src/research_hub/schemas/research-discovery-observations-1.0.json",
+        "skills/research-hub/references/research-discovery-observations-1.0.json"
       ]
     },
     {

@@ -223,9 +223,9 @@ def test_recorded_hub_dependency_coverage_does_not_change_snapshot_or_install_re
     root = Path(__file__).resolve().parents[1]
     snapshot = json.loads(checker.SNAPSHOT.read_text(encoding="utf-8"))
     hub = snapshot["repositories"][0]
-    assert hub["commit"] == "7e046383368d85acb8dfbf0d734ecaaae335cf0a"
+    assert hub["commit"] == "4d83b8b772da5fbb232272aa2829573c3c05b45e"
     assert snapshot["checked_on"] == "2026-10-19"
-    assert hub["tree"] == "cb437e52f23f2448bb9b5a259ed683c2e7788a18"
+    assert hub["tree"] == "0bb138414ccd5fea465d808cee8ad4760b22c533"
     expected = {
         "skills/research-hub/references/research-protocol.md",
         "skills/research-hub/references/source-claim-audit.md",
@@ -235,6 +235,7 @@ def test_recorded_hub_dependency_coverage_does_not_change_snapshot_or_install_re
         "skills/research-design-helper/references/socratic-segments.md",
         "skills/research-design-helper/references/design_brief_template.md",
         "docs/direction-review-contract.md",
+        *json.loads((root / "test-corpus/integration/native-reader-future-contract.json").read_text(encoding="utf-8"))["candidate_dependencies"],
     }
     assert set(hub["shared_references"]) == expected
     marketplace = json.loads((root / ".claude-plugin/marketplace.json").read_text(encoding="utf-8"))
@@ -281,9 +282,10 @@ def native_reader_source(source):
     root, catalog, marketplace, snapshot = source
     recorded = json.loads(checker.SNAPSHOT.read_text(encoding="utf-8"))["repositories"][0]
     future = json.loads((checker.SNAPSHOT.parent / "native-reader-future-contract.json").read_text(encoding="utf-8"))
-    assert len(recorded["skills"]) == 12 and len(recorded["shared_references"]) == 8
+    assert len(recorded["skills"]) == 12 and len(recorded["shared_references"]) == 12
     assert len(future["candidate_dependencies"]) == 4
-    shared = [*recorded["shared_references"], *future["candidate_dependencies"]]
+    shared = list(recorded["shared_references"])
+    assert set(future["candidate_dependencies"]).issubset(shared)
     assert len(shared) == len(set(shared)) == 12
     repo_url = recorded["repo_url"]
     skills = [{"name": skill["name"], "directory": skill["directory"], "repo_url": repo_url,
