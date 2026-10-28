@@ -227,5 +227,5 @@ def test_future_reader_acceptance_guidance_keeps_catalog_counts_and_statuses_dis
     section = " ".join(text.split("## Future native-reader source and handoff coverage", 1)[1].split("## ", 1)[0].split())
     for relative in FUTURE_READER["candidate_dependencies"]:
         assert relative in section
-    for term in ("23", "24", "raw hits", "discovered", "screened", "included", "reading-depth counts", "core count", "each supplied language", "assessment-status.sidecar.json", "README.md", "not current accepted-source verification"):
+    for term in ("24", "25", "raw hits", "discovered", "screened", "included", "reading-depth counts", "core count", "each supplied language", "assessment-status.sidecar.json", "README.md", "not current accepted-source verification"):
         assert term in section

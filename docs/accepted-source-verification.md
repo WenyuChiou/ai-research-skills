@@ -46,18 +46,24 @@ cache metadata or manifest-only observation. The catalog owns this acceptance
 guidance; the upstream Hub owns its schema, renderer and skill content.
 
 For a separately reviewed future native-reader source, retain all 12 SKILL files
-and eight existing references, then cover these three additional exact paths:
+and eight existing references, then cover these four additional exact paths:
 
 - `skills/research-hub/references/native-discovery-export.md`
 - `skills/research-hub/scripts/render_native_reader.py`
 - `src/research_hub/schemas/research-discovery-observations-1.0.json`
+- `skills/research-hub/references/research-discovery-observations-1.0.json`
 
-That is 23 skill/dependency paths plus the plugin manifest: 24 checked files.
+That is 24 skill/dependency paths plus the plugin manifest: 25 checked files.
 The existing checker can compare Markdown, Python and JSON bytes using an
 explicit candidate reference list. Synthetic Git tests exercise missing files,
 content changes hidden by index flags, and manifest drift without editing the
 active accepted snapshot. Default layout success is weaker than source
 acceptance. Matching cache metadata does not accept new skill content.
+This bounded set is not the complete memory/summary dependency closure. It does
+not cover the changed paper-memory claims schema, YAML schemas, revision-history
+schema or Zotero summary-note ownership guidance; it cannot establish those
+runtime contracts. Plugin source metadata is not a package release or proof of
+an installed host. Verify actual candidate bytes and packaged mirrors separately.
 
 A future actual renderer handoff must retain supplied raw hits, discovered,
 screened, included, reading-depth counts and core count, including unknown totals

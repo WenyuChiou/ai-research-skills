@@ -277,14 +277,14 @@ def test_historical_checkout_cannot_pass_accepted_check_with_current_version_dri
 
 @pytest.fixture
 def native_reader_source(source):
-    """Synthetic 23-path candidate; never rewrite the catalog's accepted snapshot."""
+    """Synthetic 24-path candidate; never rewrite the catalog's accepted snapshot."""
     root, catalog, marketplace, snapshot = source
     recorded = json.loads(checker.SNAPSHOT.read_text(encoding="utf-8"))["repositories"][0]
     future = json.loads((checker.SNAPSHOT.parent / "native-reader-future-contract.json").read_text(encoding="utf-8"))
     assert len(recorded["skills"]) == 12 and len(recorded["shared_references"]) == 8
-    assert len(future["candidate_dependencies"]) == 3
+    assert len(future["candidate_dependencies"]) == 4
     shared = [*recorded["shared_references"], *future["candidate_dependencies"]]
-    assert len(shared) == len(set(shared)) == 11
+    assert len(shared) == len(set(shared)) == 12
     repo_url = recorded["repo_url"]
     skills = [{"name": skill["name"], "directory": skill["directory"], "repo_url": repo_url,
                "skill_url": repo_url + "/blob/master/" + skill["directory"] + "/SKILL.md"}
@@ -312,12 +312,12 @@ def native_reader_source(source):
     return root, catalog, marketplace, snapshot
 
 
-def test_future_native_reader_candidate_checks_23_paths_plus_manifest(native_reader_source):
+def test_future_native_reader_candidate_checks_24_paths_plus_manifest(native_reader_source):
     before = checker.SNAPSHOT.read_bytes()
     result = report(native_reader_source)
     assert result["status"] == "pass"
     assert result["skills_checked"] == 12
-    assert result["accepted_sources"][0]["files_checked"] == 24
+    assert result["accepted_sources"][0]["files_checked"] == 25
     assert result["snapshot_checked_on"] == "2000-01-01"
     assert checker.SNAPSHOT.read_bytes() == before
 
@@ -326,6 +326,7 @@ def test_future_native_reader_candidate_checks_23_paths_plus_manifest(native_rea
     "skills/research-hub/references/native-discovery-export.md",
     "skills/research-hub/scripts/render_native_reader.py",
     "src/research_hub/schemas/research-discovery-observations-1.0.json",
+    "skills/research-hub/references/research-discovery-observations-1.0.json",
 ])
 @pytest.mark.parametrize("change", ["missing", "modified-hidden-from-status"])
 def test_future_native_reader_dependencies_fail_closed(native_reader_source, relative, change):
