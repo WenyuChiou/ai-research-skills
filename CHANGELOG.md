@@ -47,6 +47,14 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.20] - 2026-10-29
+
+### Fixed
+
+- Align the research-workspace marketplace cache version with Hub 0.5.23.
+  Record only the manifest observation at commit `9cbf601`; this does not
+  advance accepted-source content or establish installed host behavior.
+
 ## [1.7.19] - 2026-10-29
 
 ### Fixed
@@ -1977,7 +1985,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.19...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.20...HEAD
+[1.7.20]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.19...v1.7.20
 [1.7.19]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.18...v1.7.19
 [1.7.18]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.17...v1.7.18
 [1.7.17]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.16...v1.7.17
