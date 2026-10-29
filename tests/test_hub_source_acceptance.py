@@ -67,10 +67,10 @@ def test_hub_cache_observation_is_exact_and_fail_closed():
     marketplace = read('.claude-plugin/marketplace.json')
     observations = read('test-corpus/integration/manifest-observations.json')
     hub = next(r for r in observations['observations'] if r['repo_url'].endswith('/research-hub'))
-    assert hub['plugin'] == {'name': 'research-workspace', 'version': '0.5.22'}
-    assert hub['commit'] == '929904bc84e89bbf1b4f5c350a2ee68a9e071074'
-    assert hub['tree'] == 'a4478474d1539eed64b185dab5417135f675c9af'
-    assert hub['manifest_blob'] == 'ad3b889a7c742c4ffc996c0681e2b548721e0400'
+    assert hub['plugin'] == {'name': 'research-workspace', 'version': '0.5.23'}
+    assert hub['commit'] == '9cbf601cf4f2e9c734f06d2489bbb31b47b1f5c3'
+    assert hub['tree'] == 'f81181fff57b666b6eef74d355a97895558b4f38'
+    assert hub['manifest_blob'] == '6a44c7f4d4afd989bc5b88e70d16dca9fb4ef641'
     assert guard.validate(marketplace, snapshot, observations) == []
     missing = copy.deepcopy(observations)
     missing['observations'].remove(hub)
