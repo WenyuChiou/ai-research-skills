@@ -80,7 +80,7 @@ def test_future_native_reader_fixture_does_not_advance_install_or_accepted_pins(
     assert hub["commit"] == "773650343f638295f96d0fb53bebf145a30e86c7" and hub["plugin"]["version"] == "0.5.20"
     assert len(hub["skills"]) == 12 and len(hub["shared_references"]) == 12
     assert set(future["candidate_dependencies"]).issubset(hub["shared_references"])
-    assert install["version"] == "0.5.20" and install["source"]["ref"] == "master"
+    assert install["version"] == "0.5.22" and install["source"]["ref"] == "master"
 
 
 def test_canonical_installs_do_not_clone_nested_repo_as_a_single_skill():

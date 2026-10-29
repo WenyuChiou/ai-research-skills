@@ -13,6 +13,19 @@
       "manifest_blob": "eaabcb7b42c437f8cf052b4079d44001f2228a60",
       "manifest_text": "{\n  \"name\": \"zotero-skills\",\n  \"description\": \"Full Zotero CRUD: search, add, update, tag, trash/restore, delete, merge duplicates, and attach PDFs via pyzotero. Dual local/Web API routing; writes work even when the separately configured zotero MCP server is read-only.\",\n  \"version\": \"0.4.0\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/zotero-skills\",\n  \"repository\": \"https://github.com/WenyuChiou/zotero-skills\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"zotero\",\n    \"research\",\n    \"citations\",\n    \"literature-management\"\n  ]\n}\n",
       "scope": "manifest-only; not accepted-source or published-release verification"
+    },
+    {
+      "repo_url": "https://github.com/WenyuChiou/research-hub",
+      "plugin": {
+        "name": "research-workspace",
+        "version": "0.5.22"
+      },
+      "ref": "master",
+      "commit": "929904bc84e89bbf1b4f5c350a2ee68a9e071074",
+      "tree": "a4478474d1539eed64b185dab5417135f675c9af",
+      "manifest_blob": "ad3b889a7c742c4ffc996c0681e2b548721e0400",
+      "manifest_text": "{\n  \"name\": \"research-workspace\",\n  \"description\": \"12 research-hub skills, including a resumable human-in-the-loop workflow orchestrator, literature triage, context compression, project orientation, research design, verified multi-agent routing, NotebookLM brief verification, paper memory and summaries, Zotero curation, gap-to-topic decisions, and the research-hub CLI operator. Auto-discovered from skills/<name>/SKILL.md.\",\n  \"version\": \"0.5.22\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/research-hub\",\n  \"repository\": \"https://github.com/WenyuChiou/research-hub\",\n  \"license\": \"MIT\",\n  \"keywords\": [\"research\", \"zotero\", \"obsidian\", \"notebooklm\", \"literature-review\", \"academic\"]\n}\n",
+      "scope": "manifest-only; not accepted-source or published-release verification"
     }
   ]
 }

@@ -46,7 +46,7 @@ def test_hub_bounded_acceptance_and_observation_history():
     assert guard.validate(marketplace, snapshot, observations) == []
     stale = copy.deepcopy(observations)
     stale['observations'].append(history['previous_hub_manifest_observation'])
-    assert any('unexpected repository or unchanged accepted version' in e for e in guard.validate(marketplace, snapshot, stale))
+    assert any('changed version requires exactly one observation (found 2)' in e for e in guard.validate(marketplace, snapshot, stale))
 
 
 def test_hub_source_review_date_is_scoped_consistently():
@@ -60,3 +60,21 @@ def test_hub_source_review_date_is_scoped_consistently():
         assert '2026-10-03' in intro and '2026-10-28' in intro
         assert 'research-hub' in intro and '25' in intro
         assert 'runtime' in intro and 'catalog' in intro.lower()
+
+
+def test_hub_cache_observation_is_exact_and_fail_closed():
+    snapshot = read('test-corpus/integration/upstream-contracts.json')
+    marketplace = read('.claude-plugin/marketplace.json')
+    observations = read('test-corpus/integration/manifest-observations.json')
+    hub = next(r for r in observations['observations'] if r['repo_url'].endswith('/research-hub'))
+    assert hub['plugin'] == {'name': 'research-workspace', 'version': '0.5.22'}
+    assert hub['commit'] == '929904bc84e89bbf1b4f5c350a2ee68a9e071074'
+    assert hub['tree'] == 'a4478474d1539eed64b185dab5417135f675c9af'
+    assert hub['manifest_blob'] == 'ad3b889a7c742c4ffc996c0681e2b548721e0400'
+    assert guard.validate(marketplace, snapshot, observations) == []
+    missing = copy.deepcopy(observations)
+    missing['observations'].remove(hub)
+    assert any('found 0' in e for e in guard.validate(marketplace, snapshot, missing))
+    tampered = copy.deepcopy(observations)
+    next(r for r in tampered['observations'] if r['repo_url'].endswith('/research-hub'))['manifest_text'] += ' '
+    assert any('manifest bytes do not match Git blob' in e for e in guard.validate(marketplace, snapshot, tampered))
