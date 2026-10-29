@@ -77,10 +77,10 @@ def test_future_native_reader_fixture_does_not_advance_install_or_accepted_pins(
     install = next(plugin for plugin in marketplace["plugins"] if plugin["name"] == "research-workspace")
     assert future["status"] == "future-candidate-contract-only" and future["updates_accepted_source"] is False
     assert accepted["checked_on"] == "2026-10-19"
-    assert hub["commit"] == "c1ab382e1bc4bfdb1d5df6a230d1ab4509a50d2a" and hub["plugin"]["version"] == "0.5.18"
+    assert hub["commit"] == "773650343f638295f96d0fb53bebf145a30e86c7" and hub["plugin"]["version"] == "0.5.20"
     assert len(hub["skills"]) == 12 and len(hub["shared_references"]) == 12
     assert set(future["candidate_dependencies"]).issubset(hub["shared_references"])
-    assert install["version"] == "0.5.18" and install["source"]["ref"] == "master"
+    assert install["version"] == "0.5.20" and install["source"]["ref"] == "master"
 
 
 def test_canonical_installs_do_not_clone_nested_repo_as_a_single_skill():
@@ -297,8 +297,8 @@ def test_accepted_direction_review_source_identity_and_install_ref():
     _, marketplace = consistency._load()
     snapshot = json.loads((ROOT / "test-corpus/integration/upstream-contracts.json").read_text(encoding="utf-8"))
     source = next(item for item in snapshot["repositories"] if item["repo_url"].endswith("/research-hub"))
-    assert source["commit"] == "c1ab382e1bc4bfdb1d5df6a230d1ab4509a50d2a"
-    assert source["plugin"] == {"name": "research-workspace", "version": "0.5.18"}
+    assert source["commit"] == "773650343f638295f96d0fb53bebf145a30e86c7"
+    assert source["plugin"] == {"name": "research-workspace", "version": "0.5.20"}
     plugin = next(item for item in marketplace["plugins"] if item["name"] == "research-workspace")
     # Current cache metadata is separately checked by the manifest-only guard;
     # historical commit, version and linked content remain bound above/below.

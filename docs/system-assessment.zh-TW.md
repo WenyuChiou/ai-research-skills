@@ -23,7 +23,7 @@ English: [system-assessment.md](system-assessment.md)
 | Source | 核對 commit | 已接受 package / plugin | 契約與驗證邊界 |
 |---|---|---|---|
 | ai-research-skills | [eee76f8](https://github.com/WenyuChiou/ai-research-skills/tree/eee76f87c3f4fbfe3cf6dcab865a657295985e01) | Catalog 1.7.2 / schema 4 | 17 skills、5 source plugins；legacy-v3 view 排除 optional harness；directory 與 marketplace URL/ref 必須解析同一 SKILL.md |
-| research-hub | [c1ab382](https://github.com/WenyuChiou/research-hub/tree/c1ab382e1bc4bfdb1d5df6a230d1ab4509a50d2a) | Python/MCP source version 1.2.0 / research-workspace plugin 0.5.18 | 12 skills；已接受 manifest 與 bounded source identity 於 2026-10-28 更新；native input/provenance/preview；選配 source-audit 與 offline direction-review 契約；explicit human topic choice；strict packet v1 不變。這次 catalog 對齊不更新已安裝 Python wheel，也不證明研究品質；須檢查 installed runtime |
+| research-hub | [7736503](https://github.com/WenyuChiou/research-hub/tree/773650343f638295f96d0fb53bebf145a30e86c7) | Python/MCP source version 1.2.0 / research-workspace plugin 0.5.20 | 12 skills；已接受 manifest 與 bounded source identity 於 2026-10-28 更新；native input/provenance/preview；選配 source-audit 與 offline direction-review 契約；explicit human topic choice；strict packet v1 不變。這次 catalog 對齊不更新已安裝 Python wheel，也不證明研究品質；須檢查 installed runtime |
 | academic-writing-skills | [586a5aa](https://github.com/WenyuChiou/academic-writing-skills/tree/586a5aa5cce3c32eb69629bfc0a631e95867c769) | Plugin 1.3.24；adapter 1.0.0 / state schema 1.1 | 保留範圍明確的清晰度、限制、圖表導讀、術語、語境案例及分階段檢查指引。1.3.18 新增以段落開頭組織的 extended outline；1.3.19 明確化分層的證據到意義單元及跨章節銜接，不另建 checklist 或固定句型儀式。較早 1.3.19 的單輪 18 案例配對文字測試兩版皆達 72/72 判準，未證明改善；另發現一處首次用詞問題，獨立記錄依回饋所做的修正。1.3.20 整合 SM 引用功能與範圍控制；十個假設前向案例有一處 review-only 過改，修正後僅對該例定向複查，未聲稱配對改善。1.3.21 整合流程的輸入／動作／輸出銜接，區分初始設定、重複更新及條件／診斷分支；單輪十二個假設案例經獨立 agent 執行及主 agent 核對，並非配對改善或人類讀者驗證。 較早的 8/8 對 8/8 證據同樣未證明品質或效率提升。README 保留支援的 clients 名稱、不放測試標章；圖片不變。1.3.22 綁定目前的留言選取範圍，釐清比較層次的貢獻，並修正文字／欄位投影與非 UTF-8 JSON 輸出。十案例配對測試兩版皆符合局部判準，未證明改善；十六個範圍案例是修改提案，不是已完成的 Word 編輯。較早 1.3.22 的來源測試為 339 passed／2 skipped，另有 27 項 bundled checks。1.3.23 保留研究身分，並區分 concern closure 與修改完成。1.3.24 在既有 walkthrough 與獨立冷讀程序中明確檢查結果到解釋的銜接，保留清楚短句與推論界線。八個假設配對案例兩版皆符合 32 項局部判準；一個匿名 AI 讀者在 16 段文字中未發現明確斷裂，不代表已證明改善或人類讀者驗證。目前來源驗證為 347 passed／2 項 Windows symlink 略過、27 項 bundled checks，並完成 52 個檔案的 adapter 打包／解壓／核對。skill 身分、entrypoint 與操作介面簽章不變。已核對來源目錄與 manifest；未驗證 live host 載入、普遍人類讀者理解、研究品質或完整詞彙涵蓋率 |
 | zotero-skills | [f5772f8](https://github.com/WenyuChiou/zotero-skills/tree/f5772f8b62410858d41436efe11e85529b5dee8c) | Plugin 0.3.1；核對到的最新 tag 0.2.0 | 內層 skill 搭配 root client；attach_pdf 改用 upload_attachments(basedir=...) 傳送單純檔名，修正 0.3.0 每次呼叫都失敗的 HTTP 400；runtime 與 destructive safeguards 不變 |
 | codex-delegate | [5592763](https://github.com/WenyuChiou/codex-delegate/tree/5592763dcca0cf25cc841c0806d7b328886e8e73) | Plugin 0.1.5；release v0.1.5 | 內附 Bash/PowerShell wrappers；不內建預設 model、reasoning effort 或 service tier（可選 `--model` / `--effort` / `--service-tier` 直接傳給 Codex）；穩定 brief/result/sentinel adapter；dirty-content observation 與 sandbox forwarding；由 supervisor 驗收，不另造 broker。0.1.5 將具期限的測試 session shell 啟動與原有 wrapper 案例分開；runtime／skill 內容不變。已核對來源目錄與 manifest；此 snapshot 不代表已驗證 live model 執行、普遍啟動可靠性或 host 載入 |
@@ -50,16 +50,16 @@ Optional governance dependency 維持 `agent-collab-harness` 0.4.0/v1。
 Preset 是 declarative review contract，不是 Python runtime preset engine；
 這次 source 文件修改不會更動兩版已發布 wheel。
 
-Research-workspace 0.5.18 的已接受 source 保留選配 source-audit profile，
+Research-workspace 0.5.20 的已接受 source 保留選配 source-audit profile，
 Python package 版本仍是 1.2.0。Plugin 更新不會替換已安裝的 wheel。
 先檢查 `validate_evidence_packet` 的 `source_audit`、`artifact_root` kwargs，
 以及 packaged `research-source-audit-1.0.json`，做法見
-[installed-runtime 指引](https://github.com/WenyuChiou/research-hub/blob/c1ab382e1bc4bfdb1d5df6a230d1ab4509a50d2a/skills/research-hub/references/source-claim-audit.md#optional-executable-source-audit-profile)。
+[installed-runtime 指引](https://github.com/WenyuChiou/research-hub/blob/773650343f638295f96d0fb53bebf145a30e86c7/skills/research-hub/references/source-claim-audit.md#optional-executable-source-audit-profile)。
 若不支援，mechanical audit 維持 unavailable，保留 manual/native source review。
 不得呼叫不存在的 kwargs，也不能把 packet-only validity 說成 source audit。
 不能只憑未變更的版本字串推定新能力已存在。
 
-已接受的 [direction-review 契約](https://github.com/WenyuChiou/research-hub/blob/c1ab382e1bc4bfdb1d5df6a230d1ab4509a50d2a/docs/direction-review-contract.md)
+已接受的 [direction-review 契約](https://github.com/WenyuChiou/research-hub/blob/773650343f638295f96d0fb53bebf145a30e86c7/docs/direction-review-contract.md)
 新增選配 offline `paper direction-check`，檢查呼叫者提供的 records：
 
 - 以 `candidate_version`、`candidate_sha256` 綁定完整 candidate，evidence 綁定
@@ -85,7 +85,7 @@ Guidance 現在記錄 prospective outcomes/time boundaries、two-occasion 與 vi
 smallest answerable version 及 nonclaims；固定一週 prototype 不能證明可行性。
 這是 source contract 同步，並非新的品質結果：一組 guidance comparison pair
 結果未定，historical T1 dates/tiers 不變，不宣稱整體科學研究能力提升。
-Plugin 0.5.18 不證明已安裝 Python wheel 支援此 command；使用前檢查實際 CLI
+Plugin 0.5.20 不證明已安裝 Python wheel 支援此 command；使用前檢查實際 CLI
 capability，若不存在就保留原本的 ordinary/manual 路徑。
 
 ## 生命週期涵蓋與科學缺口

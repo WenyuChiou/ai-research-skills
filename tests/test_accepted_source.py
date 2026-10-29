@@ -223,9 +223,9 @@ def test_recorded_hub_dependency_coverage_does_not_change_snapshot_or_install_re
     root = Path(__file__).resolve().parents[1]
     snapshot = json.loads(checker.SNAPSHOT.read_text(encoding="utf-8"))
     hub = snapshot["repositories"][0]
-    assert hub["commit"] == "c1ab382e1bc4bfdb1d5df6a230d1ab4509a50d2a"
+    assert hub["commit"] == "773650343f638295f96d0fb53bebf145a30e86c7"
     assert snapshot["checked_on"] == "2026-10-19"
-    assert hub["tree"] == "d0de196c2b3f20bd486eb3700dd4eb10207c3941"
+    assert hub["tree"] == "84406c080df5ea50ad9acf16ec685f7537779f64"
     expected = {
         "skills/research-hub/references/research-protocol.md",
         "skills/research-hub/references/source-claim-audit.md",
