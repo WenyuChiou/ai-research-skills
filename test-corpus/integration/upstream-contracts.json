@@ -1,14 +1,14 @@
 {
   "checked_on": "2026-10-19",
-  "verification_scope": "source-layout-and-manifest; academic-writing-skills refreshed on 2026-10-28; zotero-skills refreshed on 2026-10-07; codex-delegate refreshed on 2026-10-25; antigravity-delegate refreshed on 2026-10-25; research-hub accepted 0.5.18 identity and bounded 25-path source review refreshed on 2026-10-28; other source identities retained from the 2026-10-03 snapshot; no live host invocation",
+  "verification_scope": "source-layout-and-manifest; academic-writing-skills refreshed on 2026-10-28; zotero-skills refreshed on 2026-10-07; codex-delegate refreshed on 2026-10-25; antigravity-delegate refreshed on 2026-10-25; research-hub accepted 0.5.20 identity and bounded 25-path source review refreshed on 2026-10-28; other source identities retained from the 2026-10-03 snapshot; no live host invocation",
   "repositories": [
     {
       "repo_url": "https://github.com/WenyuChiou/research-hub",
-      "commit": "c1ab382e1bc4bfdb1d5df6a230d1ab4509a50d2a",
+      "commit": "773650343f638295f96d0fb53bebf145a30e86c7",
       "default_branch": "master",
       "plugin": {
         "name": "research-workspace",
-        "version": "0.5.18"
+        "version": "0.5.20"
       },
       "skills": [
         {
@@ -60,7 +60,7 @@
           "directory": "skills/research-workflow-orchestrator"
         }
       ],
-      "tree": "d0de196c2b3f20bd486eb3700dd4eb10207c3941",
+      "tree": "84406c080df5ea50ad9acf16ec685f7537779f64",
       "shared_references": [
         "skills/research-hub/references/research-protocol.md",
         "skills/research-hub/references/source-claim-audit.md",
