@@ -274,8 +274,10 @@ cp <repo>/skills/literature-triage-matrix/SKILL.md \
 - `notebooklm-brief-verifier` 的 manual fallback 模式任何 host 都能跑。
 - `zotero-skills` 需要 AI host 能呼叫 Zotero local 或 Web API；
   `SKILL.md` 本身只是 routing contract。
-- `research-hub` 不論哪個 AI 讀取 skill，都要先讓
-  `research-hub-pipeline` Python CLI 在 PATH 上。
+- `research-hub` 僅在所選操作會呼叫 `research-hub` 指令時，才需要
+  PATH 上的 `research-hub-pipeline` Python CLI。使用 Codex 或 Claude Code
+  原生工具搜尋與閱讀文獻，不需要 Hub CLI 或建立 Hub 專案；仍須使用
+  host 可用且已授權的工具，遵守共同研究與來源審核規範。
 - `research-hub-multi-ai` 只有計畫會呼叫 `research-hub` 時，才需要 Hub CLI
   能力與 `research-hub doctor`。缺少 Hub 時不要產生 Hub 命令；健康的
   delegate-only 計畫不需 Hub 即可繼續。仍須確認每個指定的 leaf skill 與

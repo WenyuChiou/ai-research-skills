@@ -87,3 +87,32 @@ def test_multi_ai_hub_prerequisite_is_conditional_and_leaves_still_checked(zh):
            "`research-hub` and `research-hub-multi-ai` need")
     with pytest.raises(AssertionError):
         _check_route(text + "\n- " + old, zh)
+
+
+def _check_native_hub_route(text, zh):
+    bullet = next(b for b in text.split("\n- ") if b.startswith("`research-hub` "))
+    terms = (("僅在所選操作會呼叫 `research-hub` 指令時", "Codex 或 Claude Code",
+              "不需要 Hub CLI 或建立 Hub 專案", "已授權的工具", "共同研究與來源審核規範")
+             if zh else ("only for selected operations that invoke `research-hub` commands",
+                         "Codex or Claude Code native tools do not require the Hub CLI or Hub project setup",
+                         "shared research and source-audit contracts", "available, authorized tools"))
+    normalized = " ".join(bullet.split())
+    for term in terms:
+        assert term in normalized
+    old = ("不論哪個 AI 讀取 skill" if zh else "regardless of which AI host reads the skill")
+    assert old not in text
+    return terms, old
+
+
+@pytest.mark.parametrize("zh", [False, True])
+def test_native_discovery_needs_cli_only_for_selected_hub_commands(zh):
+    path = ROOT / ("docs/install.zh-TW.md" if zh else "docs/install.md")
+    text = path.read_text(encoding="utf-8")
+    terms, old = _check_native_hub_route(text, zh)
+    reflowed = text.replace("\n  ", " ")
+    for term in terms:
+        assert term in reflowed
+        with pytest.raises(AssertionError):
+            _check_native_hub_route(reflowed.replace(term, "REMOVED"), zh)
+    with pytest.raises(AssertionError):
+        _check_native_hub_route(text + "\n- " + old, zh)
