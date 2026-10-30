@@ -410,7 +410,10 @@ cp <repo>/skills/literature-triage-matrix/SKILL.md \
 - `zotero-skills` needs an AI host that can call Zotero local or Web API
   tools; the `SKILL.md` itself is only the routing contract.
 - `research-hub` needs the `research-hub-pipeline` Python CLI on PATH
-  regardless of which AI host reads the skill.
+  only for selected operations that invoke `research-hub` commands. Literature
+  search and reading with Codex or Claude Code native tools do not require
+  the Hub CLI or Hub project setup; follow the shared research and source-audit
+  contracts using the host's available, authorized tools.
 - `research-hub-multi-ai` requires Hub CLI capability and `research-hub doctor`
   only when the plan calls `research-hub`. If Hub is missing, do not emit Hub
   commands; healthy delegate-only plans may proceed without Hub. Verify every

@@ -47,6 +47,16 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.21] - 2026-10-30
+
+### Fixed
+
+- Clarify the bilingual install guide: Hub CLI is needed only for selected
+  operations that invoke its commands, not native Codex or Claude Code
+  literature discovery or reading. Preserve shared research/source-audit rules.
+- Add offline documentation regressions for this conditional prerequisite;
+  these checks do not establish host loading or model behavior.
+
 ## [1.7.20] - 2026-10-29
 
 ### Fixed
@@ -1985,7 +1995,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.20...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.21...HEAD
+[1.7.21]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.20...v1.7.21
 [1.7.20]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.19...v1.7.20
 [1.7.19]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.18...v1.7.19
 [1.7.18]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.17...v1.7.18
