@@ -126,8 +126,8 @@ linkage from the canonical source before adding a real observation. The Zotero
 0.4.0 observation comes from commit `e390313c82e76856a525e87a0ae2d0281499e3ab`;
 that is an unpublished source candidate, not a published release (latest checked
 release v0.2.0). The earlier Hub 0.5.10 observation and accepted source reviews through 0.5.20
-are preserved in the Hub source history. The active Hub 0.5.25 record is a
-manifest-only observation at commit `f52800b23abac789bc01e908d20538cc06885085`,
+are preserved in the Hub source history. The active Hub 0.5.26 record is a
+manifest-only observation at commit `bbc22de1cae9cdc3aa082723bd0c08e86d02d138`,
 not an accepted-source review. The accepted Hub baseline remains 0.5.20.
 The validator still rejects extra records for an unchanged accepted version.
 
