@@ -129,6 +129,17 @@ release v0.2.0). The earlier Hub 0.5.10 observation and accepted source reviews 
 are preserved in the Hub source history. The active Hub 0.5.26 record is a
 manifest-only observation at commit `bbc22de1cae9cdc3aa082723bd0c08e86d02d138`,
 not an accepted-source review. The accepted Hub baseline remains 0.5.20.
+The academic-writing-skills 1.4.0 cache observation is bound to commit
+`404eb2aacbd8a4f3f0813053cf615acad8ed68aa`, tree
+`217078a77e90be2590ca9e2192bcd02bd722d6fe` and plugin manifest blob
+`d530f821a8300b1f92cb73b07b5da9c4f5ce7dc6`. The accepted academic snapshot
+remains 1.3.24. At that observed commit, the two cataloged English entrypoints
+remain `skills/academic-writing-skills/SKILL.md` and
+`skills/paper-review/SKILL.md`; upstream also contains four `-zh-tw`/`-zh-cn`
+companion entrypoints. This cache-only update neither adds those companions to
+the 17-skill catalog nor reviews their content, translation parity or host
+loading. The floating installation ref remains `main`; it is not a source pin.
+
 The validator still rejects extra records for an unchanged accepted version.
 
 These observations never update accepted commits, trees, `checked_on`, human
