@@ -26,6 +26,19 @@
       "manifest_blob": "6a44c7f4d4afd989bc5b88e70d16dca9fb4ef641",
       "manifest_text": "{\n  \"name\": \"research-workspace\",\n  \"description\": \"12 research-hub skills, including a resumable human-in-the-loop workflow orchestrator, literature triage, context compression, project orientation, research design, verified multi-agent routing, NotebookLM brief verification, paper memory and summaries, Zotero curation, gap-to-topic decisions, and the research-hub CLI operator. Auto-discovered from skills/<name>/SKILL.md.\",\n  \"version\": \"0.5.23\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/research-hub\",\n  \"repository\": \"https://github.com/WenyuChiou/research-hub\",\n  \"license\": \"MIT\",\n  \"keywords\": [\"research\", \"zotero\", \"obsidian\", \"notebooklm\", \"literature-review\", \"academic\"]\n}\n",
       "scope": "manifest-only; not accepted-source or published-release verification"
+    },
+    {
+      "repo_url": "https://github.com/WenyuChiou/academic-writing-skills",
+      "plugin": {
+        "name": "academic-writing-skills",
+        "version": "1.4.0"
+      },
+      "ref": "main",
+      "commit": "404eb2aacbd8a4f3f0813053cf615acad8ed68aa",
+      "tree": "217078a77e90be2590ca9e2192bcd02bd722d6fe",
+      "manifest_blob": "d530f821a8300b1f92cb73b07b5da9c4f5ce7dc6",
+      "manifest_text": "{\n  \"name\": \"academic-writing-skills\",\n  \"description\": \"Frame research arguments, plan and revise connected paragraphs, and review academic evidence. Progressive section and domain guides cover abstracts, supplements, references and reviewer responses, with checks scoped to a passage, section or revision package.\",\n  \"version\": \"1.4.0\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/academic-writing-skills\",\n  \"repository\": \"https://github.com/WenyuChiou/academic-writing-skills\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"academic-writing\",\n    \"manuscript\",\n    \"psychometrics\",\n    \"research\",\n    \"sem\",\n    \"llm\",\n    \"water-resources\",\n    \"writing\",\n    \"peer-review\"\n  ]\n}\n",
+      "scope": "manifest-only; not accepted-source or published-release verification"
     }
   ]
 }
