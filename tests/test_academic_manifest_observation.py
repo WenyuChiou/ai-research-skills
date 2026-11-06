@@ -30,12 +30,12 @@ def test_academic_cache_observation_keeps_historical_acceptance():
     plugin = next(row for row in market['plugins'] if row['name'] == 'academic-writing-skills')
     assert snapshot['checked_on'] == '2026-10-19'
     assert source['plugin']['version'] == '1.3.24'
-    assert plugin['version'] == record['plugin']['version'] == '1.4.0'
+    assert plugin['version'] == record['plugin']['version'] == '1.4.1'
     assert plugin['source']['ref'] == source['default_branch'] == record['ref'] == 'main'
-    assert record['commit'] == '404eb2aacbd8a4f3f0813053cf615acad8ed68aa'
-    assert record['tree'] == '217078a77e90be2590ca9e2192bcd02bd722d6fe'
+    assert record['commit'] == 'e776ceb893fb719d2f48ca2a8b3e8004264b57ff'
+    assert record['tree'] == '1bdea4e95a371f4d79031bccb7ad2ec0a27cb684'
     raw = record['manifest_text'].encode('utf-8')
-    assert hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest() == record['manifest_blob'] == 'd530f821a8300b1f92cb73b07b5da9c4f5ce7dc6'
+    assert hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest() == record['manifest_blob'] == 'c16f4e3135541019aeacaeb85c791078be45da2c'
     assert len(source['skills']) == 2
     assert guard.validate(market, snapshot, observed) == []
 
@@ -61,7 +61,7 @@ def test_academic_cache_observation_fails_closed(fault):
     assert guard.validate(market, snapshot, observed)
 
 
-@pytest.mark.parametrize('version,drifts', [('1.3.24', True), ('1.4.0', False)])
+@pytest.mark.parametrize('version,drifts', [('1.4.0', True), ('1.4.1', False)])
 def test_academic_version_health_detects_old_cache(version, drifts, monkeypatch, tmp_path):
     """Actual recorded manifest, synthetic metadata/SKILL responses for isolation."""
     market, _, observed = inputs()

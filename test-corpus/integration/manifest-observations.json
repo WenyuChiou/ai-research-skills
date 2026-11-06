@@ -31,13 +31,13 @@
       "repo_url": "https://github.com/WenyuChiou/academic-writing-skills",
       "plugin": {
         "name": "academic-writing-skills",
-        "version": "1.4.0"
+        "version": "1.4.1"
       },
       "ref": "main",
-      "commit": "404eb2aacbd8a4f3f0813053cf615acad8ed68aa",
-      "tree": "217078a77e90be2590ca9e2192bcd02bd722d6fe",
-      "manifest_blob": "d530f821a8300b1f92cb73b07b5da9c4f5ce7dc6",
-      "manifest_text": "{\n  \"name\": \"academic-writing-skills\",\n  \"description\": \"Frame research arguments, plan and revise connected paragraphs, and review academic evidence. Progressive section and domain guides cover abstracts, supplements, references and reviewer responses, with checks scoped to a passage, section or revision package.\",\n  \"version\": \"1.4.0\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/academic-writing-skills\",\n  \"repository\": \"https://github.com/WenyuChiou/academic-writing-skills\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"academic-writing\",\n    \"manuscript\",\n    \"psychometrics\",\n    \"research\",\n    \"sem\",\n    \"llm\",\n    \"water-resources\",\n    \"writing\",\n    \"peer-review\"\n  ]\n}\n",
+      "commit": "e776ceb893fb719d2f48ca2a8b3e8004264b57ff",
+      "tree": "1bdea4e95a371f4d79031bccb7ad2ec0a27cb684",
+      "manifest_blob": "c16f4e3135541019aeacaeb85c791078be45da2c",
+      "manifest_text": "{\n  \"name\": \"academic-writing-skills\",\n  \"description\": \"Frame research arguments, plan and revise connected paragraphs, and review academic evidence. Progressive section and domain guides cover abstracts, supplements, references and reviewer responses, with checks scoped to a passage, section or revision package.\",\n  \"version\": \"1.4.1\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/academic-writing-skills\",\n  \"repository\": \"https://github.com/WenyuChiou/academic-writing-skills\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"academic-writing\",\n    \"manuscript\",\n    \"psychometrics\",\n    \"research\",\n    \"sem\",\n    \"llm\",\n    \"water-resources\",\n    \"writing\",\n    \"peer-review\"\n  ]\n}\n",
       "scope": "manifest-only; not accepted-source or published-release verification"
     }
   ]
