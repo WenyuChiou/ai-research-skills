@@ -81,6 +81,29 @@ If you change a source repo's default branch (e.g. `master` →
 `main`), update the corresponding `source.ref` in
 `.claude-plugin/marketplace.json` here.
 
+## Review and branch maintenance
+
+The review gate is a passing review by an independent subagent that did not
+author or implement the changes, plus author self-check, applicable tests,
+necessary CI for the latest head and no known blocker. Formal GitHub reviewer
+`APPROVED` status is not the repository's process requirement. Record the
+review's exact base/head and outcome; repeat review after head changes. Actual
+GitHub protections and separate merge/publication authorization still apply.
+See [review governance](docs/review-governance.md)
+([繁體中文](docs/review-governance.zh-TW.md)).
+
+For configurable, **report-only** merged-branch cleanup, run:
+
+```bash
+python scripts/plan_branch_cleanup.py
+```
+
+This uses an already configured `gh` CLI for GitHub GET requests. It never
+deletes a branch, changes settings or creates credentials. Customize prefixes,
+PR authors, keep patterns and retention in `.github/branch-cleanup.json` or
+pass `--config /path/to/config.json`. See the governance guide for exclusions
+and the separate authorization needed before any actual cleanup.
+
 ## Local development
 
 ```bash

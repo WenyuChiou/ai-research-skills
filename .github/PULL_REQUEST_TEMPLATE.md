@@ -32,6 +32,21 @@ artifact-contract changes need lockstep updates here.
 - [ ] CONTRIBUTING.md updated if the catalog ↔ upstream contract
       changed
 
+## Independent review gate
+
+- Author self-check: <summary>
+- Independent reviewer: <agent/report identity; must not be the author or implementer>
+- Reviewed base SHA / head SHA: <full SHA> / <full SHA>
+- Reviewed tree SHA and published-head match: <if reviewing a local snapshot>
+- Verdict and findings: <pass, changes requested, or blocked; link evidence>
+- Applicable tests and latest-head CI: <passed / failed / not run, with evidence>
+- Remaining gaps/blockers: <list or none>
+
+A formal GitHub `APPROVED` review is not required by this process. Any new
+head needs a fresh independent review. Actual repository protections and
+separate merge authorization still apply. Do not submit `APPROVE` solely to
+satisfy this checklist. See [review governance](../docs/review-governance.md).
+
 ## Verification
 
 How did you confirm this works end-to-end? (e.g.
