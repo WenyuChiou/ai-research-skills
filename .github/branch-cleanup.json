@@ -1,0 +1,7 @@
+{
+  "repository": "WenyuChiou/ai-research-skills",
+  "allowed_prefixes": ["codex/", "docs/"],
+  "allowed_pr_authors": ["WenyuChiou"],
+  "keep_patterns": ["main", "master", "release/*", "keep/*"],
+  "minimum_age_days": 7
+}

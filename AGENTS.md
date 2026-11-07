@@ -48,6 +48,17 @@ implementation or publication instructions or valid authorization for other task
 - Findings must identify a concrete path and line/symbol, trigger, consequence,
   and evidence. Separate confirmed defects, hypotheses, and verification gaps;
   omit style-only preferences and use the platform's required finding format.
+- The repository review gate is a passing independent subagent review, not a
+  formal GitHub `APPROVED` review. The reviewer must not be the authoring agent
+  or have implemented the changes it reviews. Record the full base/head SHAs,
+  scope, verdict, findings, test evidence and remaining gaps in the PR body or
+  a linked review report. Any head change invalidates that review until the
+  new diff is independently reviewed. Recheck after base changes as needed.
+- Before marking ready or merging, require author self-check, the independent
+  review above, applicable tests and necessary CI on the latest head, and no
+  unresolved blocker. Do not submit `APPROVE` to manufacture this gate. Keep
+  actual GitHub protections in force; report a required approval/settings
+  conflict instead of bypassing it. See `docs/review-governance.md`.
 - A review task itself does not modify code, install dependencies, start paid
   models, or merge. Every PR merge needs separate explicit user consent after
   the user receives the review summary, actual test status, and remaining gaps.
