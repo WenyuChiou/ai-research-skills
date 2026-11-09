@@ -67,10 +67,13 @@ def test_hub_cache_observation_is_exact_and_fail_closed():
     marketplace = read('.claude-plugin/marketplace.json')
     observations = read('test-corpus/integration/manifest-observations.json')
     hub = next(r for r in observations['observations'] if r['repo_url'].endswith('/research-hub'))
-    assert hub['plugin'] == {'name': 'research-workspace', 'version': '0.5.26'}
-    assert hub['commit'] == 'bbc22de1cae9cdc3aa082723bd0c08e86d02d138'
-    assert hub['tree'] == '58e38a10e41c0cdf4ff4ec956889f2445a714c57'
-    assert hub['manifest_blob'] == 'a1cccacf33f7fd23cfbcca79825c893c9f818ac2'
+    assert hub['plugin'] == {'name': 'research-workspace', 'version': '0.5.27'}
+    assert hub['commit'] == '04ca504be494637887903e6eae3f68a2a8999acb'
+    assert hub['tree'] == 'e102d40a25bd25474bbcf14e97239c5c3bbd3f02'
+    assert hub['manifest_blob'] == '19172584c93ce2190e386466ee120196fd54b23d'
+    plugin = next(p for p in marketplace['plugins'] if p['name'] == 'research-workspace')
+    assert plugin['version'] == hub['plugin']['version']
+    assert plugin['source']['ref'] == hub['ref'] == 'master'
     assert guard.validate(marketplace, snapshot, observations) == []
     missing = copy.deepcopy(observations)
     missing['observations'].remove(hub)
@@ -78,3 +81,15 @@ def test_hub_cache_observation_is_exact_and_fail_closed():
     tampered = copy.deepcopy(observations)
     next(r for r in tampered['observations'] if r['repo_url'].endswith('/research-hub'))['manifest_text'] += ' '
     assert any('manifest bytes do not match Git blob' in e for e in guard.validate(marketplace, snapshot, tampered))
+
+
+def test_hub_stale_cache_version_is_rejected():
+    """The previous marketplace cache must not match the new manifest evidence."""
+    snapshot = read('test-corpus/integration/upstream-contracts.json')
+    marketplace = read('.claude-plugin/marketplace.json')
+    observations = read('test-corpus/integration/manifest-observations.json')
+    assert guard.validate(marketplace, snapshot, observations) == []
+    plugin = next(p for p in marketplace['plugins'] if p['name'] == 'research-workspace')
+    plugin['version'] = '0.5.26'
+    assert any('plugin name/version mismatch' in e
+               for e in guard.validate(marketplace, snapshot, observations))
