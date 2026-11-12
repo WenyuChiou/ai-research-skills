@@ -28,11 +28,14 @@ Before marking a PR ready or merging:
    Any head change requires fresh independent review and affected tests/CI.
    If the base changes, review the integration diff and rerun affected checks;
    do not reuse evidence for an incompatible base.
-5. Keep publication and merge authorization separate. The existing `AGENTS.md`
-   requirement for explicit user merge consent after the review/test summary
-   remains in force unless a current explicit user instruction covers the
-   action. Passing review alone is not permission to merge, publish, release,
-   deploy or delete branches.
+5. Follow [Authorized Engineering Execution](../AGENTS.md#authorized-engineering-execution).
+   Within an explicitly assigned engineering task, routine fixes, feature-branch
+   pushes and existing-PR updates do not need repeated confirmation. An existing
+   task PR may be marked ready or merged without a new per-merge question only
+   after the latest-head review, test, CI and protection gates above are met.
+   A review-only or monitoring-only request stays read-only. This policy does
+   not authorize formal `APPROVE`, releases, deployment, branch deletion,
+   expanded scope or permissions; obtain their applicable separate authorization.
 
 Do not submit `APPROVE` to manufacture approval evidence. Do not waive known
 blockers, failed required checks or real GitHub branch protections. If GitHub
