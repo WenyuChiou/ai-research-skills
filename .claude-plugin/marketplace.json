@@ -15,7 +15,7 @@
       "description": "12 research-hub skills: a resumable human-in-the-loop workflow orchestrator plus literature search, comparison, orientation, context compression, design, verified multi-agent routing, NotebookLM verification, paper memory and summaries, Zotero curation, and gap-to-topic decisions.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/research-hub",
-      "version": "0.5.27",
+      "version": "0.5.28",
       "strict": true,
       "source": {
         "source": "url",
@@ -28,7 +28,7 @@
       "description": "Lifecycle-aware manuscript development and general scientific review with progressively loaded display provenance, psychometrics, AI/LLM, water, flood, round, and optional reviewer modules.",
       "category": "productivity",
       "homepage": "https://github.com/WenyuChiou/academic-writing-skills",
-      "version": "1.4.1",
+      "version": "1.4.3",
       "strict": true,
       "source": {
         "source": "url",

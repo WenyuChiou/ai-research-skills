@@ -18,26 +18,26 @@
       "repo_url": "https://github.com/WenyuChiou/research-hub",
       "plugin": {
         "name": "research-workspace",
-        "version": "0.5.27"
+        "version": "0.5.28"
       },
       "ref": "master",
-      "commit": "04ca504be494637887903e6eae3f68a2a8999acb",
-      "tree": "e102d40a25bd25474bbcf14e97239c5c3bbd3f02",
-      "manifest_blob": "19172584c93ce2190e386466ee120196fd54b23d",
-      "manifest_text": "{\n  \"name\": \"research-workspace\",\n  \"description\": \"12 research-hub skills, including a resumable human-in-the-loop workflow orchestrator, literature triage, context compression, project orientation, research design, verified multi-agent routing, NotebookLM brief verification, paper memory and summaries, Zotero curation, gap-to-topic decisions, and the research-hub CLI operator. Auto-discovered from skills/<name>/SKILL.md.\",\n  \"version\": \"0.5.27\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/research-hub\",\n  \"repository\": \"https://github.com/WenyuChiou/research-hub\",\n  \"license\": \"MIT\",\n  \"keywords\": [\"research\", \"zotero\", \"obsidian\", \"notebooklm\", \"literature-review\", \"academic\"]\n}\n",
+      "commit": "e224caf61137042ca9625665a9665b426d682e6b",
+      "tree": "a07ec511041bc2a417dc7d9ccbf974b13e1e7aa0",
+      "manifest_blob": "f58a1328f313cdcbff8c940eef4b5c7dfb2b7c9e",
+      "manifest_text": "{\n  \"name\": \"research-workspace\",\n  \"description\": \"12 research-hub skills, including a resumable human-in-the-loop workflow orchestrator, literature triage, context compression, project orientation, research design, verified multi-agent routing, NotebookLM brief verification, paper memory and summaries, Zotero curation, gap-to-topic decisions, and the research-hub CLI operator. Auto-discovered from skills/<name>/SKILL.md.\",\n  \"version\": \"0.5.28\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/research-hub\",\n  \"repository\": \"https://github.com/WenyuChiou/research-hub\",\n  \"license\": \"MIT\",\n  \"keywords\": [\"research\", \"zotero\", \"obsidian\", \"notebooklm\", \"literature-review\", \"academic\"]\n}\n",
       "scope": "manifest-only; not accepted-source or published-release verification"
     },
     {
       "repo_url": "https://github.com/WenyuChiou/academic-writing-skills",
       "plugin": {
         "name": "academic-writing-skills",
-        "version": "1.4.1"
+        "version": "1.4.3"
       },
       "ref": "main",
-      "commit": "e776ceb893fb719d2f48ca2a8b3e8004264b57ff",
-      "tree": "1bdea4e95a371f4d79031bccb7ad2ec0a27cb684",
-      "manifest_blob": "c16f4e3135541019aeacaeb85c791078be45da2c",
-      "manifest_text": "{\n  \"name\": \"academic-writing-skills\",\n  \"description\": \"Frame research arguments, plan and revise connected paragraphs, and review academic evidence. Progressive section and domain guides cover abstracts, supplements, references and reviewer responses, with checks scoped to a passage, section or revision package.\",\n  \"version\": \"1.4.1\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/academic-writing-skills\",\n  \"repository\": \"https://github.com/WenyuChiou/academic-writing-skills\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"academic-writing\",\n    \"manuscript\",\n    \"psychometrics\",\n    \"research\",\n    \"sem\",\n    \"llm\",\n    \"water-resources\",\n    \"writing\",\n    \"peer-review\"\n  ]\n}\n",
+      "commit": "70e6d20921160fcf541bc4137ec4f6ca2875a069",
+      "tree": "c38f1cf8d83417cf4dc01af010f9dde7c7638917",
+      "manifest_blob": "1d37b49b534336b0dca69ad6575fa8eeff14c7f0",
+      "manifest_text": "{\n  \"name\": \"academic-writing-skills\",\n  \"description\": \"Frame research arguments, plan and revise connected paragraphs, and review academic evidence. Progressive section and domain guides cover abstracts, supplements, references and reviewer responses, with checks scoped to a passage, section or revision package.\",\n  \"version\": \"1.4.3\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/academic-writing-skills\",\n  \"repository\": \"https://github.com/WenyuChiou/academic-writing-skills\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"academic-writing\",\n    \"manuscript\",\n    \"psychometrics\",\n    \"research\",\n    \"sem\",\n    \"llm\",\n    \"water-resources\",\n    \"writing\",\n    \"peer-review\"\n  ]\n}\n",
       "scope": "manifest-only; not accepted-source or published-release verification"
     }
   ]

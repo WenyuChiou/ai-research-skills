@@ -126,16 +126,16 @@ linkage from the canonical source before adding a real observation. The Zotero
 0.4.0 observation comes from commit `e390313c82e76856a525e87a0ae2d0281499e3ab`;
 that is an unpublished source candidate, not a published release (latest checked
 release v0.2.0). The earlier Hub 0.5.10 observation and accepted source reviews through 0.5.20
-are preserved in the Hub source history. The active Hub 0.5.27 record is a
-manifest-only observation at commit `04ca504be494637887903e6eae3f68a2a8999acb`,
-with tree `e102d40a25bd25474bbcf14e97239c5c3bbd3f02` and plugin manifest
-blob `19172584c93ce2190e386466ee120196fd54b23d`, not an accepted-source
+are preserved in the Hub source history. The active Hub 0.5.28 record is a
+manifest-only observation at commit `e224caf61137042ca9625665a9665b426d682e6b`,
+with tree `a07ec511041bc2a417dc7d9ccbf974b13e1e7aa0` and plugin manifest
+blob `f58a1328f313cdcbff8c940eef4b5c7dfb2b7c9e`, not an accepted-source
 review. The accepted Hub baseline remains 0.5.20, and the floating installation
 ref remains `master`. No source-content or host-loading acceptance is renewed.
-The academic-writing-skills 1.4.1 cache observation is bound to commit
-`e776ceb893fb719d2f48ca2a8b3e8004264b57ff`, tree
-`1bdea4e95a371f4d79031bccb7ad2ec0a27cb684` and plugin manifest blob
-`c16f4e3135541019aeacaeb85c791078be45da2c`. The accepted academic snapshot
+The academic-writing-skills 1.4.3 cache observation is bound to commit
+`70e6d20921160fcf541bc4137ec4f6ca2875a069`, tree
+`c38f1cf8d83417cf4dc01af010f9dde7c7638917` and plugin manifest blob
+`1d37b49b534336b0dca69ad6575fa8eeff14c7f0`. The accepted academic snapshot
 remains 1.3.24. At that observed commit, the two cataloged English entrypoints
 remain `skills/academic-writing-skills/SKILL.md` and
 `skills/paper-review/SKILL.md`; upstream also contains four `-zh-tw`/`-zh-cn`
