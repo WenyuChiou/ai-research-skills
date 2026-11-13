@@ -219,9 +219,14 @@ def test_apply_flag_does_not_exist():
     assert exc.value.code == 2
 
 
-def test_governance_preserves_merge_consent_and_distinct_review():
+def test_governance_preserves_authorized_scope_and_distinct_review():
     agents = (cleanup.ROOT / "AGENTS.md").read_text(encoding="utf-8")
-    assert "Every PR merge needs separate explicit user consent" in agents
+    assert "Every PR merge needs separate explicit user consent" not in agents
+    assert "## Authorized Engineering Execution" in agents
+    assert "without a new per-merge question only" in agents
+    assert "applicable tests and necessary CI, no known blocker" in agents
+    assert "A review-only or monitoring-only request remains read-only" in agents
+    assert "It does not authorize formal `APPROVE` submissions" in agents
     assert "passing independent subagent review" in agents
     assert "must not be the authoring agent" in agents
     assert "Keep\n  actual GitHub protections in force" in agents
