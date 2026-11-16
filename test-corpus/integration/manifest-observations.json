@@ -18,13 +18,13 @@
       "repo_url": "https://github.com/WenyuChiou/research-hub",
       "plugin": {
         "name": "research-workspace",
-        "version": "0.5.29"
+        "version": "0.5.30"
       },
       "ref": "master",
-      "commit": "0486cba353abb449063a25c83c30dd3cb63833ac",
-      "tree": "d56a4cd7381cc12ef11ea29be3e45f85ac75688b",
-      "manifest_blob": "21a6736ea8412496d8aaddd63b531ba2737e9c32",
-      "manifest_text": "{\n  \"name\": \"research-workspace\",\n  \"description\": \"12 research-hub skills, including a resumable human-in-the-loop workflow orchestrator, literature triage, context compression, project orientation, research design, verified multi-agent routing, NotebookLM brief verification, paper memory and summaries, Zotero curation, gap-to-topic decisions, and the research-hub CLI operator. Auto-discovered from skills/<name>/SKILL.md.\",\n  \"version\": \"0.5.29\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/research-hub\",\n  \"repository\": \"https://github.com/WenyuChiou/research-hub\",\n  \"license\": \"MIT\",\n  \"keywords\": [\"research\", \"zotero\", \"obsidian\", \"notebooklm\", \"literature-review\", \"academic\"]\n}\n",
+      "commit": "01f6c191a5d0e22e20cb479f906e3b13b426741f",
+      "tree": "665308125592c81019be6880028f819882cf686c",
+      "manifest_blob": "e11f639dd4b37cadf3179c84c1ed1f2c66b5f12e",
+      "manifest_text": "{\n  \"name\": \"research-workspace\",\n  \"description\": \"12 research-hub skills, including a resumable human-in-the-loop workflow orchestrator, literature triage, context compression, project orientation, research design, verified multi-agent routing, NotebookLM brief verification, paper memory and summaries, Zotero curation, gap-to-topic decisions, and the research-hub CLI operator. Auto-discovered from skills/<name>/SKILL.md.\",\n  \"version\": \"0.5.30\",\n  \"author\": {\n    \"name\": \"Wenyu Chiou\"\n  },\n  \"homepage\": \"https://github.com/WenyuChiou/research-hub\",\n  \"repository\": \"https://github.com/WenyuChiou/research-hub\",\n  \"license\": \"MIT\",\n  \"keywords\": [\"research\", \"zotero\", \"obsidian\", \"notebooklm\", \"literature-review\", \"academic\"]\n}\n",
       "scope": "manifest-only; not accepted-source or published-release verification"
     },
     {
