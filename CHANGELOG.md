@@ -47,6 +47,19 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.22] - 2026-11-16
+
+### Changed
+
+- Align the research-workspace cache version with the merged Hub 0.5.29
+  manifest at `0486cba353abb449063a25c83c30dd3cb63833ac`; record its exact
+  tree, manifest blob and bytes in the manifest-only observation.
+- Synchronize observation guidance, bilingual glossary version labels and
+  exact-identity regression expectations. Historical accepted-source pins,
+  human verification dates and floating source refs remain unchanged.
+- This is catalog cache metadata, not a package release, installed-host
+  upgrade or renewed scientific/source-content acceptance.
+
 ## [1.7.21] - 2026-10-30
 
 ### Fixed
@@ -1995,7 +2008,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.21...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.22...HEAD
+[1.7.22]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.21...v1.7.22
 [1.7.21]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.20...v1.7.21
 [1.7.20]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.19...v1.7.20
 [1.7.19]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.18...v1.7.19
