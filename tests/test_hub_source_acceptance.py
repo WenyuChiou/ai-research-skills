@@ -67,10 +67,10 @@ def test_hub_cache_observation_is_exact_and_fail_closed():
     marketplace = read('.claude-plugin/marketplace.json')
     observations = read('test-corpus/integration/manifest-observations.json')
     hub = next(r for r in observations['observations'] if r['repo_url'].endswith('/research-hub'))
-    assert hub['plugin'] == {'name': 'research-workspace', 'version': '0.5.32'}
-    assert hub['commit'] == 'a142b2657d956f53d4c7d1ef60b1755769e1d34d'
-    assert hub['tree'] == '5d80ce9e49756709835e4239cc7fa1d3f093d738'
-    assert hub['manifest_blob'] == '097b5cae5337bb1a33700837922ab55fd553677b'
+    assert hub['plugin'] == {'name': 'research-workspace', 'version': '0.5.33'}
+    assert hub['commit'] == 'd62cd70e120d35a1301fd1f6d861b8deac11798b'
+    assert hub['tree'] == '5b31bc8d84878dbc89cfae802d1fb42b72a4796c'
+    assert hub['manifest_blob'] == '2ce49b737b0497969d202901ef769615ab5f195b'
     plugin = next(p for p in marketplace['plugins'] if p['name'] == 'research-workspace')
     assert plugin['version'] == hub['plugin']['version']
     assert plugin['source']['ref'] == hub['ref'] == 'master'
@@ -90,6 +90,6 @@ def test_hub_stale_cache_version_is_rejected():
     observations = read('test-corpus/integration/manifest-observations.json')
     assert guard.validate(marketplace, snapshot, observations) == []
     plugin = next(p for p in marketplace['plugins'] if p['name'] == 'research-workspace')
-    plugin['version'] = '0.5.30'
+    plugin['version'] = '0.5.32'
     assert any('plugin name/version mismatch' in e
                for e in guard.validate(marketplace, snapshot, observations))

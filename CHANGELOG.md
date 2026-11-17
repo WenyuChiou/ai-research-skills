@@ -51,8 +51,8 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Align the research-workspace cache version with the merged Hub 0.5.32
-  manifest at `a142b2657d956f53d4c7d1ef60b1755769e1d34d`; record its exact
+- Align the research-workspace cache version with the merged Hub 0.5.33
+  manifest at `d62cd70e120d35a1301fd1f6d861b8deac11798b`; record its exact
   tree, manifest blob and bytes in the manifest-only observation.
 - Synchronize observation guidance, bilingual glossary version labels and
   exact-identity regression expectations. Historical accepted-source pins,

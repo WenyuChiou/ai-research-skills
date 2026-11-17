@@ -126,10 +126,10 @@ linkage from the canonical source before adding a real observation. The Zotero
 0.4.0 observation comes from commit `e390313c82e76856a525e87a0ae2d0281499e3ab`;
 that is an unpublished source candidate, not a published release (latest checked
 release v0.2.0). The earlier Hub 0.5.10 observation and accepted source reviews through 0.5.20
-are preserved in the Hub source history. The active Hub 0.5.32 record is a
-manifest-only observation at commit `a142b2657d956f53d4c7d1ef60b1755769e1d34d`,
-with tree `5d80ce9e49756709835e4239cc7fa1d3f093d738` and plugin manifest
-blob `097b5cae5337bb1a33700837922ab55fd553677b`, not an accepted-source
+are preserved in the Hub source history. The active Hub 0.5.33 record is a
+manifest-only observation at commit `d62cd70e120d35a1301fd1f6d861b8deac11798b`,
+with tree `5b31bc8d84878dbc89cfae802d1fb42b72a4796c` and plugin manifest
+blob `2ce49b737b0497969d202901ef769615ab5f195b`, not an accepted-source
 review. The accepted Hub baseline remains 0.5.20, and the floating installation
 ref remains `master`. No source-content or host-loading acceptance is renewed.
 The academic-writing-skills 1.4.3 cache observation is bound to commit
