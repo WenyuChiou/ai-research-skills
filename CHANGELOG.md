@@ -47,6 +47,23 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.23] - 2026-11-25
+
+### Changed
+
+- Align the research-workspace cache version with the merged Hub `0.5.36`
+  manifest at `353c11565ba405852778d285dc14fdc0ef1a869d` (incorporating PR #294
+  MCP stdio guard / Zotero local API reconnect / NLM cookie refresh, PR #295
+  bottom-left Integrations & setup UI / NLM login controls / browser
+  auto-reconnect / `#288` portable Markdown export, and PR #296 verified-only
+  BibTeX export guidance on `literature-triage-matrix`, resolving
+  `WenyuChiou/ai-research-skills#49`); record its exact tree, manifest blob,
+  and bytes in the manifest-only observation.
+- Synchronize `catalog/skills.yml` (`literature-triage-matrix` optional
+  `.research/literature_matrix.bib` output), observation guidance, bilingual
+  glossary version labels, and exact-identity regression expectations.
+  Historical accepted-source pins (`0.5.20`) remain unchanged.
+
 ## [1.7.22] - 2026-11-24
 
 ### Changed
@@ -2010,7 +2027,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.22...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.23...HEAD
+[1.7.23]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.22...v1.7.23
 [1.7.22]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.21...v1.7.22
 [1.7.21]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.20...v1.7.21
 [1.7.20]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.19...v1.7.20

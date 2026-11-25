@@ -253,6 +253,7 @@ families:
           - Decide which papers are central to a literature review.
         outputs:
           - .research/literature_matrix.md
+          - .research/literature_matrix.bib (optional, verified metadata only)
         verified_on: "2026-04-25"
         verification_status: pass
         verification_tier: T1
