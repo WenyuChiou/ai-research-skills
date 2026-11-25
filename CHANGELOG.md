@@ -47,13 +47,15 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
-## [1.7.22] - 2026-11-16
+## [1.7.22] - 2026-11-24
 
 ### Changed
 
-- Align the research-workspace cache version with the merged Hub 0.5.34
-  manifest at `76b2d052f02e3b0173aca4041c37d2170120eaed`; record its exact
-  tree, manifest blob and bytes in the manifest-only observation.
+- Align the research-workspace cache version with the merged Hub 0.5.35
+  manifest at `0f9f6929f9cd217b791ae8538175dc7f9df68aed` (incorporating
+  bilingual README refinement, fail-closed CI path routing, and Host-Agent-first
+  skill refactoring); record its exact tree, manifest blob and bytes in the
+  manifest-only observation.
 - Synchronize observation guidance, bilingual glossary version labels and
   exact-identity regression expectations. Historical accepted-source pins,
   human verification dates and floating source refs remain unchanged.
