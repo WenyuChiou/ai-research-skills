@@ -24,8 +24,8 @@ marketplace state.
 |---|---|---|
 | Prompt-only workflow skills | `gap-to-topic`, `research-design-helper`, `literature-triage-matrix`, `academic-writing-skills` | Any host that can read the needed files and follow the output contract |
 | Workspace-file skills | `research-context-compressor`, `research-project-orienter`, `paper-memory-builder` | File-system access to the project or manually supplied context |
-| Native literature discovery | Discovery guidance in `research-hub` and its shared research protocol | The search/reading tools actually exposed by Codex or Claude Code; no Hub CLI or storage account required for this route |
-| Runtime-backed research automation | Configured `research-hub` automation, `paper-summarize`, parts of `notebooklm-brief-verifier`, Zotero-backed curation flows | `pip install research-hub-pipeline` plus any required Zotero, Obsidian, NotebookLM, LLM CLI, MCP, or REST setup |
+| Native literature discovery & per-paper summaries | Discovery guidance in `research-hub` (shared research protocol) and host-native seven-section full-text summaries in `paper-summarize` | The search/reading tools actually exposed by Codex or Claude Code; no Hub CLI or storage account required for this route |
+| Runtime-backed research automation | Configured `research-hub` automation, abstract-only `paper-summarize` CLI batch mode (`research-hub summarize`), parts of `notebooklm-brief-verifier`, Zotero-backed curation flows | `pip install research-hub-pipeline` plus any required Zotero, Obsidian, NotebookLM, LLM CLI, MCP, or REST setup |
 | Deep Zotero CRUD | `zotero-skills` | Zotero local/Web API credentials and a host that can call the API |
 | Delegation skills | `codex-delegate`, `antigravity-delegate`, `research-hub-multi-ai` | Target CLI installed and available on `PATH`, or a manual handoff prompt |
 

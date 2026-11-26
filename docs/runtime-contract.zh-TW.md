@@ -23,8 +23,8 @@
 |---|---|---|
 | Prompt-only workflow skills | `gap-to-topic`、`research-design-helper`、`literature-triage-matrix`、`academic-writing-skills` | 任何能讀必要檔案並遵守輸出 contract 的 host |
 | Workspace-file skills | `research-context-compressor`、`research-project-orienter`、`paper-memory-builder` | 能讀寫專案檔案，或由使用者手動提供 context |
-| 原生文獻搜尋 | `research-hub` 的 discovery 指引與共用 research protocol | Codex 或 Claude Code 實際提供的搜尋／閱讀工具；這條路徑不要求 Hub CLI 或儲存帳號 |
-| Runtime-backed research automation | 已設定的 `research-hub` 自動化、`paper-summarize`、部分 `notebooklm-brief-verifier`、Zotero-backed curation flows | `pip install research-hub-pipeline`，再加上需要的 Zotero、Obsidian、NotebookLM、LLM CLI、MCP 或 REST 設定 |
+| 原生文獻搜尋與單篇全文摘要 | `research-hub` 的 discovery 指引（共用 research protocol）與 `paper-summarize` 預設的 AI 主機原生七段全文摘要 | Codex 或 Claude Code 實際提供的搜尋／閱讀工具；這條路徑不要求 Hub CLI 或儲存帳號 |
+| Runtime-backed research automation | 已設定的 `research-hub` 自動化、`paper-summarize` 的 abstract-only CLI 批次更新（`research-hub summarize`）、部分 `notebooklm-brief-verifier`、Zotero-backed curation flows | `pip install research-hub-pipeline`，再加上需要的 Zotero、Obsidian、NotebookLM、LLM CLI、MCP 或 REST 設定 |
 | Deep Zotero CRUD | `zotero-skills` | Zotero local/Web API credentials，且 host 能呼叫 API |
 | Delegation skills | `codex-delegate`、`antigravity-delegate`、`research-hub-multi-ai` | 目標 CLI 已安裝且在 `PATH`，或改用手動 handoff prompt |
 
