@@ -347,15 +347,16 @@ If auto-trigger picks the wrong skill, name it explicitly:
 
 ### Already use Zotero / Obsidian / NotebookLM?
 
-> **Have any of Zotero / Obsidian / NotebookLM in your workflow?**
-> [`research-hub`](https://github.com/WenyuChiou/research-hub) integrates
-> whichever of these you have as one library-management loop: search
-> new literature (arXiv, Semantic Scholar) → Zotero metadata + ingest
-> → per-paper notes synced to Obsidian → NotebookLM briefs verified
-> against source bundles. **All three tools are optional** —
-> `research-hub` adapts to whichever subset you have (or even none, in
-> sample-dashboard mode). Python-CLI-backed;
-> `pip install research-hub-pipeline`.
+> **Have any of Zotero / Obsidian / NotebookLM in your workflow — or want a local visual literature workspace?**
+> [`research-hub`](https://github.com/WenyuChiou/research-hub) pairs your AI
+> host's native paper discovery and reading with a local visual workspace
+> (split Reading Desk, sortable Master Literature Table with category overview
+> and Markdown/CSV export, inline category/metadata notes, and a one-command
+> source launcher `research-hub open --demo`) plus optional Zotero status,
+> Obsidian cluster notes, and NotebookLM brief verification. **All three
+> external tools are optional** — `research-hub` adapts to whichever subset
+> you have, or runs completely account-free locally (source workspace features
+> are separate from the older PyPI `1.2.0` package).
 >
 > Already run independent MCP servers for these tools (e.g.
 > `paper-search-mcp`, a Zotero MCP, a NotebookLM MCP)? They coexist —
@@ -380,7 +381,7 @@ If auto-trigger picks the wrong skill, name it explicitly:
 - [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — character-driven routing across the primary model, Codex, and Antigravity. *(Cross-cutting)*
 - [`research-workflow-orchestrator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-workflow-orchestrator/SKILL.md) — resumable controller for orient → scope → discover → synthesize → design → execute → write → release, automatic for read-only/reversible work and paused at catalog human gates. *(All stages)*
 - [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) — `.paper/claims.yml` + `.paper/figures.yml` (status enum, anti-leakage rule, file sentinels). *(Stage 7)*
-- [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) — fill per-paper Key Findings / Methodology / Relevance in both Obsidian and Zotero child notes after `research-hub auto`. *(Stage 1)*
+- [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) — default host-native seven-section full-text paper summaries (with optional Hub CLI import/Markdown export), plus abstract-only Obsidian/Zotero cluster note fills. *(Stage 1)*
 
 </details>
 
@@ -406,7 +407,7 @@ Rough envelope from in-session use — adjust to your input size:
 | Terminology, repetition, and flow audit on 1 paragraph (`academic-writing-skills`) | <1 min | 1 | Independent of manuscript size |
 | Reviewer response (6 comments) (`academic-writing-skills`) | 3–8 min | 3–5 | Scales with comment depth + revision required |
 | Audit 800-item Zotero library (`zotero-library-curator`) | 2–4 min | 1 | Read-only; library size matters less than tag diversity |
-| Summarize 5 papers per cluster (`paper-summarize`) | 4–10 min | 1 | One LLM call per paper; rolls back per-paper on failure |
+| Summarize 5 papers per cluster (`paper-summarize`) | 4–10 min | 1 | Host-native 7-section summary or abstract-only CLI update (per-destination receipts; not a distributed transaction) |
 
 These are **maintainer-observed ranges**, not benchmark numbers. Your
 LLM provider, network, library state, and prompt phrasing all affect

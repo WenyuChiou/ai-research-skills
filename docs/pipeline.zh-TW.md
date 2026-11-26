@@ -118,7 +118,7 @@ pending 不會自動變成人才能決定的問題：在既有授權內繼續安
 | Skill | 用途 |
 |---|---|
 | [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | 按共用 protocol 使用可用的原生搜尋與原文閱讀；需要時才用已設定的 arXiv / Semantic Scholar / CrossRef / PubMed 搜尋與獲授權的匯入／儲存。 |
-| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *（可選）* | 匯入後補寫逐篇 abstract-only 摘要；不讀 PDF，也不驗證論文全文 claim。 |
+| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *（可選）* | 預設由 AI 主機原生精讀產出七段來源綁定全文摘要（免裝 Hub 或額外 LLM CLI），亦保留匯入後的 abstract-only CLI 補寫模式（CLI 模式不讀 PDF，也不驗證論文全文 claim）。 |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *（可選）* | 需要且另行獲授權時，才做 Zotero 加項、tag、去重、清理。 |
 
 ## 2. 整理、比較文獻、找出 research gap

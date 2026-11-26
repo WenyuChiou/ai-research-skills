@@ -314,13 +314,8 @@ Zotero、Obsidian、NotebookLM 都是可選整合，不必為此多走設定流�
 
 ### 已經在用 Zotero / Obsidian / NotebookLM?
 
-> **手上已經有 Zotero / Obsidian / NotebookLM 任何一個?**
-> [`research-hub`](https://github.com/WenyuChiou/research-hub) 把你有的那幾個
-> 串成一個 library-management loop: 搜新文獻 (arXiv, Semantic Scholar) →
-> 存進 Zotero metadata + ingest → 每篇論文筆記同步到 Obsidian →
-> NotebookLM brief 對照原始 bundle 驗證。**三個工具都是 optional** —
-> `research-hub` 根據你有的子集自動調整 (一個都沒有也行,跑 sample-dashboard 模式)。
-> 後端走 Python CLI; `pip install research-hub-pipeline`。
+> **手上已經有 Zotero / Obsidian / NotebookLM 任何一個，或想要本機視覺化文獻整理空間？**
+> [`research-hub`](https://github.com/WenyuChiou/research-hub) 結合你現有 AI 主機的原生找文獻與閱讀能力，搭配本機視覺工作區（閱讀雙欄介面、可排序文獻總表與分類總覽、內建分類與書目筆記、Markdown／CSV 匯出，原始碼版支援 `research-hub open --demo` 一鍵啟動），並可選用 Zotero 收錄狀態、Obsidian 主題筆記與 NotebookLM 簡報驗證。**三個外部工具都是選用** — `research-hub` 依你已有的工具自動調整，也能完全免帳號在純本機運作（原始碼工作區與較早發布的 PyPI `1.2.0` 套件為不同發布線）。
 >
 > 已經在跑這些工具的獨立 MCP server (例如 `paper-search-mcp` / Zotero MCP /
 > NotebookLM MCP)? 共存 — skill 管 workflow 編排, MCP 給原始 tool access。
@@ -343,7 +338,7 @@ Zotero、Obsidian、NotebookLM 都是可選整合，不必為此多走設定流�
 - [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — 根據任務性質在 primary model / Codex / Antigravity 之間進行 character-driven routing。*(跨領域)*
 - [`research-workflow-orchestrator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-workflow-orchestrator/SKILL.md) — 可恢復的 controller，協調 orient → scope → discover → synthesize → design → execute → write → release；read-only / 可逆工作自動前進，遇到 catalog human gates 暫停。*(所有階段)*
 - [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) — 產生 `.paper/claims.yml` + `.paper/figures.yml` (包含狀態列舉、anti-leakage 規則、檔案哨兵)。*(階段 7)*
-- [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) — 在 `research-hub auto` 執行後，將每篇論文的重點發現 / 方法 / 關聯性，同時填入 Obsidian 和 Zotero 的子筆記中。*(階段 1)*
+- [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) — 預設由 AI 主機原生精讀產出七段來源綁定全文摘要（可選用 Hub CLI 匯入／匯出 Markdown），亦支援既有 abstract-only CLI 補寫 Obsidian 與 Zotero 群組筆記。*(階段 1)*
 
 </details>
 
@@ -369,7 +364,7 @@ Zotero、Obsidian、NotebookLM 都是可選整合，不必為此多走設定流�
 | 審核單一段落的術語、重複與流暢度 (`academic-writing-skills`) | <1 分鐘 | 1 | 與稿件總長度無關 |
 | 回覆審稿人意見 (6 則) (`academic-writing-skills`) | 3–8 分鐘 | 3–5 | 取決於意見深度及所需修改幅度 |
 | 審核 800 條的 Zotero 文獻庫 (`zotero-library-curator`) | 2–4 分鐘 | 1 | 唯讀；標籤多樣性比文獻庫大小影響更大 |
-| 為每個叢集摘要 5 篇論文 (`paper-summarize`) | 4–10 分鐘 | 1 | 每篇論文一次 LLM call；失敗時會針對單篇論文進行回滾 |
+| 為每個叢集摘要 5 篇論文 (`paper-summarize`) | 4–10 分鐘 | 1 | 支援 AI 主機原生七段摘要或 abstract-only CLI 更新（分目的地回執，非分散式原子交易） |
 
 這些是 **維護者觀察到的範圍**，並非基準測試數據。您的 LLM 供應商、網路、文獻庫狀態以及 prompt 的寫法都會影響實際時間。
 

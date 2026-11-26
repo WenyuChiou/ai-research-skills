@@ -58,7 +58,7 @@ families:
           - Optional Zotero collections and tags (configured and authorized writes only)
           - Optional Obsidian Markdown notes (configured and authorized writes only)
           - Optional NotebookLM bundles and briefs (configured and authorized use only)
-          - research-hub dashboards
+          - research-hub local visual workspace (split Reading Desk, Master Literature Table, append-only category/metadata notes, Markdown/CSV export) and dashboards
         verified_on: "2026-04-25"
         verification_status: pass
         verification_tier: T1
@@ -317,14 +317,16 @@ families:
         directory: skills/paper-summarize
         repo_url: https://github.com/WenyuChiou/research-hub
         skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md
-        purpose: Fill abstract-only per-paper Key Findings / Methodology / Relevance in enabled Obsidian and Zotero destinations after `research-hub auto` ingests a cluster; not full-text reading or source verification.
+        purpose: Guide host-native seven-section full-text paper summaries without requiring Hub or a separate LLM CLI, and operate the existing abstract-only research-hub summarize CLI to fill Key Findings / Methodology / Relevance in authorized Obsidian and Zotero notes (abstract-only CLI mode is not full-text reading or source verification).
         use_when:
+          - "User asks for a single-paper body/full-text summary (why, objective, methods, results, conclusions, key points, limitations) using the active AI host."
           - "User says: \"summarize the papers in cluster X\" or \"fill the TODO Key Findings\"."
-          - Just ran `research-hub auto` and per-paper notes are still TODO skeletons.
-          - Prepare per-paper abstract summaries and inspect each enabled destination's confirmed or unknown write outcome.
+          - Just ran `research-hub auto` or abstract-only `ingest` and per-paper notes are still TODO skeletons.
+          - Prepare per-paper summaries and inspect each enabled destination's confirmed or unknown write outcome.
         outputs:
-          - Obsidian markdown blocks (`## Key Findings`, `## Methodology`, `## Relevance` per paper)
-          - Owned Zotero summary child note HTML (confirmed or unknown outcome; guarded best-effort local compensation, not atomic rollback)
+          - Host-native seven-section source-bound summary in conversation (with optional Hub CLI native-summary-import / generic Markdown stdout export)
+          - Obsidian markdown blocks (`## Key Findings`, `## Methodology`, `## Relevance` per paper in abstract-only CLI mode)
+          - Owned Zotero summary child note HTML (confirmed or unknown outcome; guarded best-effort local compensation, not a distributed transaction)
           - Fallback prompt at `<vault>/.research_hub/artifacts/<slug>/summarize-prompt.md` when no LLM CLI on PATH
         verified_on: "2026-05-09"
         verification_status: pass

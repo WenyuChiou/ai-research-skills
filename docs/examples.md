@@ -126,14 +126,17 @@ in `zotero-skills` after you confirm.
 
 ---
 
-## `paper-summarize` — Key Findings markdown block per paper
+## `paper-summarize` — Per-paper summary output (abstract-only CLI mode)
+
+*Note: For single-paper body reading, `paper-summarize` defaults to a host-native seven-section full-text summary (Why, Objective, Methods, Results, Conclusions, Key Points, Limitations) with no Hub CLI required. The example below illustrates the separate abstract-only CLI batch mode (`research-hub summarize`) on stored abstracts.*
 
 **Input**: An Obsidian cluster of 5 ingested papers whose per-paper
-notes still have TODO skeletons (created by `research-hub auto`).
+notes still have TODO skeletons (created by `research-hub auto` or abstract-only `ingest`).
 
-**Output** — for each paper, one markdown block written into both the
-Obsidian note AND the matching Zotero child note (atomically rolled back
-if the Zotero write fails):
+**Output** — for each paper, one markdown block written into enabled
+Obsidian notes and owned Zotero summary child notes (separate destinations,
+not a distributed transaction: unconfirmed remote writes remain unknown, with
+guarded best-effort local compensation):
 
 ```markdown
 ## Key Findings
