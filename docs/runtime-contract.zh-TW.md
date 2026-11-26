@@ -28,6 +28,10 @@
 | Deep Zotero CRUD | `zotero-skills` | Zotero local/Web API credentials，且 host 能呼叫 API |
 | Delegation skills | `codex-delegate`、`antigravity-delegate`、`research-hub-multi-ai` | 目標 CLI 已安裝且在 `PATH`，或改用手動 handoff prompt |
 
+## 本機視覺工作區
+
+若需管理本機研究專案、文獻總表（split Reading Desk、可排序文獻總表、附加式分類與書目筆記）與一鍵啟動器（原始碼版 `research-hub open --demo`／`serve --workspace`），請參考 Hub 的[工作區指南](https://github.com/WenyuChiou/research-hub/blob/master/docs/workspace-guide.zh-TW.md)與 [README](https://github.com/WenyuChiou/research-hub/blob/master/README.zh-TW.md)，而非下方的線上搜尋 smoke test。請檢查實際安裝版本的指令說明；原始碼文件與 PyPI 套件版本號本身不代表已安裝 wheel 具備相同功能。離線示範不需要 Zotero 或 NotebookLM 帳號，也不會執行 AI 模型或認定科學結論。
+
 ## 文獻搜尋前的 Agent Preflight
 
 原生搜尋先依 [Stage 1](pipeline.zh-TW.md#1-找文獻) 確認 host 實際可用的搜尋／

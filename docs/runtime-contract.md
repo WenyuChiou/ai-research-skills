@@ -48,8 +48,11 @@ to hide that drift. Missing host or runtime evidence remains unknown/unavailable
 
 ## Local workspace and writing adapter
 
-For project/artifact/task management, use Hub's existing
-[workspace guide](https://github.com/WenyuChiou/research-hub/blob/master/docs/workspace-guide.md),
+For project/artifact/task management and the local visual literature workspace
+(split Reading Desk, sortable Master Literature Table, append-only category/metadata
+notes, and source-install `research-hub open --demo` / `serve --workspace` launcher),
+use Hub's existing [workspace guide](https://github.com/WenyuChiou/research-hub/blob/master/docs/workspace-guide.md)
+and [README](https://github.com/WenyuChiou/research-hub/blob/master/README.md),
 not the literature-ingestion smoke test below. Check the actual installed
 workspace command help; source documentation and package version text alone do
 not prove the installed wheel contains that capability. No Zotero or NotebookLM

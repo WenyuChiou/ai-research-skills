@@ -150,7 +150,7 @@ authorization; do not silently install tools or require optional accounts.
 | Skill | What it does |
 |---|---|
 | [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | Use available native discovery and source reading under the shared protocol; optionally use configured arXiv / Semantic Scholar / CrossRef / PubMed search and authorized ingest/storage. |
-| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *(optional)* | Fill abstract-only per-paper notes after ingest; does not read PDFs or verify the paper's full-text claims. |
+| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *(optional)* | Default host-native seven-section full-text summary (no Hub or separate LLM CLI required), plus existing abstract-only CLI note fill after ingest (CLI mode does not read PDFs or verify full-text claims). |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *(optional)* | Add, tag, deduplicate, and clean Zotero items when those separately authorized library operations are needed. |
 
 ## 2. Organise & compare literature, find the gap

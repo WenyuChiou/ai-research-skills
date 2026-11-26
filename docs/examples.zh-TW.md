@@ -118,13 +118,16 @@ Curator 只 emit 這份報告;實際 merge / delete 在你確認後由 `zotero-s
 
 ---
 
-## `paper-summarize` — 每篇 paper 一個 Key Findings markdown block
+## `paper-summarize` — 每篇論文摘要產出（abstract-only CLI 模式）
 
-**Input**:Obsidian cluster 裡 5 篇 paper、每篇 per-paper note 還是 TODO 骨架
-(`research-hub auto` 剛跑完的狀態)。
+*註：針對單篇全文精讀，`paper-summarize` 預設採用 AI 主機原生的七段來源綁定摘要（Why / Objective / Methods / Results / Conclusions / Key Points / Limitations），不需 Hub CLI。下方範例呈現另行的 abstract-only CLI 批次更新模式（`research-hub summarize`）。*
 
-**Output** —— 每篇 paper 一塊 markdown,同時寫進 Obsidian note **跟** 對應的
-Zotero child note(Zotero 寫失敗會 atomic rollback):
+**Input**：Obsidian cluster 裡 5 篇 paper、每篇 per-paper note 還是 TODO 骨架
+（`research-hub auto` 或僅含摘要之 `ingest` 剛跑完的狀態）。
+
+**Output** —— 每篇 paper 一塊 markdown，寫入已啟用的 Obsidian note 與受管理的
+Zotero summary child note（分屬不同目的地，非分散式原子交易；未確認的遠端寫入會保持
+unknown，並僅提供受保護的 best-effort 本機補償）：
 
 ```markdown
 ## Key Findings

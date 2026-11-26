@@ -229,3 +229,24 @@ def test_future_reader_acceptance_guidance_keeps_catalog_counts_and_statuses_dis
         assert relative in section
     for term in ("24", "25", "raw hits", "discovered", "screened", "included", "reading-depth counts", "core count", "each supplied language", "assessment-status.sidecar.json", "README.md", "not current accepted-source verification"):
         assert term in section
+
+
+@pytest.mark.parametrize("relative", [
+    "README.md",
+    "README.zh-TW.md",
+    "docs/skill-directory.md",
+    "docs/skill-directory.zh-TW.md",
+    "docs/examples.md",
+    "docs/examples.zh-TW.md",
+    "catalog/skills.yml",
+])
+def test_bilingual_docs_never_claim_atomic_rollback_for_paper_summarize(relative):
+    text = (ROOT / relative).read_text(encoding="utf-8")
+    lowered = text.lower()
+    for forbidden in (
+        "atomic rollback",
+        "atomically rolled back",
+        "rolls back per-paper on failure",
+        "失敗時會針對單篇論文進行回滾",
+    ):
+        assert forbidden not in lowered, f"{relative} still claims {forbidden!r}"
