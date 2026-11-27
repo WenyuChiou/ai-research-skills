@@ -132,10 +132,10 @@ with tree `5261edec0524757d852fc9dc521d018910f2f72e` and plugin manifest
 blob `6022152abd6adae448027ae21ce4dd0973dfa689`, not an accepted-source
 review. The accepted Hub baseline remains 0.5.20, and the floating installation
 ref remains `master`. No source-content or host-loading acceptance is renewed.
-The academic-writing-skills 1.4.3 cache observation is bound to commit
-`70e6d20921160fcf541bc4137ec4f6ca2875a069`, tree
-`c38f1cf8d83417cf4dc01af010f9dde7c7638917` and plugin manifest blob
-`1d37b49b534336b0dca69ad6575fa8eeff14c7f0`. The accepted academic snapshot
+The academic-writing-skills 1.6.0 cache observation is bound to commit
+`3bb7c4557d95353190f0293303fbe25e65974987`, tree
+`6e3f743684981c1914c58fa60715b465b26c13f2` and plugin manifest blob
+`b8d0a7545180a6a54464f4fdb19b4fa7897fbdaf`. The accepted academic snapshot
 remains 1.3.24. At that observed commit, the two cataloged English entrypoints
 remain `skills/academic-writing-skills/SKILL.md` and
 `skills/paper-review/SKILL.md`; upstream also contains four `-zh-tw`/`-zh-cn`

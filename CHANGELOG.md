@@ -47,6 +47,21 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.24] - 2026-11-27
+
+### Changed
+
+- Align the `academic-writing-skills` cache version with the merged `1.6.0`
+  manifest at `3bb7c4557d95353190f0293303fbe25e65974987` (incorporating PR #54
+  `v1.5.0` pre-draft alignment blueprints / scientific figure standards / anti-miss
+  ledger and PR #55 `v1.6.0` guided 5-step Results arc, second-wave AI-tell &
+  flow upgrades, Antigravity host & flat-shim documentation, LaTeX/Word/figure
+  linters, and 24 standalone Before/After examples); record its exact tree,
+  manifest blob, and bytes in the manifest-only observation.
+- Synchronize observation provenance notes, bilingual glossary version labels,
+  and exact-identity regression expectations. Historical accepted-source pins
+  (`1.3.24`) remain unchanged.
+
 ## [1.7.23] - 2026-11-25
 
 ### Changed
@@ -2027,7 +2042,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.23...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.24...HEAD
+[1.7.24]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.23...v1.7.24
 [1.7.23]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.22...v1.7.23
 [1.7.22]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.21...v1.7.22
 [1.7.21]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.20...v1.7.21
