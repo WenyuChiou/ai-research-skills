@@ -12,7 +12,7 @@ English: [pipeline.md](pipeline.md)
         →  7. 撰寫論文  →  8. 投稿、回覆審查、收尾
 ```
 
-有 3 個 skills 不屬於特定階段——它們的觸發條件是 **task 性質**，不是
+有 4 個 skills 不屬於特定階段——它們的觸發條件是 **task 性質**，不是
 pipeline 位置。見最下方的 **Cross-cutting tools**。
 
 每個既有階段的 AI-for-science 輸入、輸出、品質證據與研究者決策，見
@@ -52,12 +52,22 @@ generated 回應；在允許時，將確認未變的輸入重試到新的目錄�
 
 ### 確認本輪需求與搜尋路線
 
-用自然語言接收主題、目標篇數與閱讀深度。沿用已提供的偏好，只問真正缺少且
-影響結果的選項。例如「約 12 篇，先看摘要，再精讀兩篇核心文獻」已同時交代
-篇數與深度，不要重問，也不要求填表。需要篇數但尚未指定時，可提議一輪
-**10–20 篇相關且不重複的論文**，按問題與可得證據調整。這不是配額，也不是
-預設 30 篇；不要用低相關文獻、重複版本或無法取得的論文湊數。交代不足與未
-涵蓋需求；較少但有用的集合也可能是合適結果。
+用自然語言接收主題、目標篇數、探索路線、文獻類型與閱讀深度。沿用已提供的偏好，
+只問真正缺少且影響結果的選項。例如「約 12 篇，先看摘要，再精讀兩篇核心文獻」已同時
+交代篇數與深度，不要重問，也不要求填表。需要篇數但尚未指定時，可提議一輪
+**10–20 篇相關且不重複的論文**，按問題與可得證據調整。這不是配額，也不是預設
+30 篇；不要用低相關文獻、重複版本或無法取得的論文湊數。交代不足與未涵蓋需求；
+較少但有用的集合也可能是合適結果。
+
+若尚未指定探索路線或目標文獻類型（實證研究、理論／形式推導、專書／專章、綜述），
+在展開大規模檢索前先簡要詢問要採用哪條路線與文獻類型：
+
+- **Track A：Classic & Bedrock**（`classic-bedrock`）—— 奠基理論、經典專書／專章與
+  指標綜述；多跳向後引文追蹤；跨年代零新近度懲罰；一等支援無 DOI、ISBN 與典藏文獻。
+- **Track B：Frontier & Recent**（`frontier-recent`）—— 近期實證與方法論研究、預印本與
+  現行基準；向前引文追蹤加上反例與複現路線。
+- **Track C：Dual-Track Canon + Frontier**（`balanced-dual`）—— 為 Track A 經典基石與
+  Track B 前沿研究保留各自受保護的子配額，避免高產出預印本擠掉奠基文獻。
 
 把問題拆成概念、關鍵字、同義詞、縮寫與相鄰術語，嘗試多條適合的搜尋路線及
 查詢變體，再做向後與向前 citation chasing。記錄真正使用的路線、結果與失敗；
@@ -117,8 +127,8 @@ pending 不會自動變成人才能決定的問題：在既有授權內繼續安
 
 | Skill | 用途 |
 |---|---|
-| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | 按共用 protocol 使用可用的原生搜尋與原文閱讀；需要時才用已設定的 arXiv / Semantic Scholar / CrossRef / PubMed 搜尋與獲授權的匯入／儲存。 |
-| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *（可選）* | 預設由 AI 主機原生精讀產出七段來源綁定全文摘要（免裝 Hub 或額外 LLM CLI），亦保留匯入後的 abstract-only CLI 補寫模式（CLI 模式不讀 PDF，也不驗證論文全文 claim）。 |
+| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | 按共用三路線 protocol（Track A / B / C）使用可用的原生搜尋與原文閱讀；需要時才用已設定的 arXiv / Semantic Scholar / CrossRef / PubMed 搜尋、獲授權的匯入、對有效且無重複鍵的 mapping YAML frontmatter 進行精準節點區間更新（若為非 mapping、含重複鍵或無效 YAML 的 frontmatter 則 fail-closed 不予修改）、限定範圍的唯讀 Obsidian vault metadata 匯入 Workspace SQLite（`research-hub open`／`obsidian/import`），以及寫至 `.research/exports/` 的工作區 `.base` 與 Markdown 匯出包（`obsidian/pack`）。 |
+| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *（可選）* | 預設由 AI 主機依研究類型分流產出全文摘要（實證七段契約 vs 理論／概念／形式／歷史五部契約，選用 Hub SQLite 交接時可決定性對應至七個儲存欄位；免裝 Hub 或額外 LLM CLI），亦保留匯入後的 abstract-only CLI 補寫模式（CLI 模式不讀 PDF，也不驗證論文全文 claim）。 |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *（可選）* | 需要且另行獲授權時，才做 Zotero 加項、tag、去重、清理。 |
 
 ## 2. 整理、比較文獻、找出 research gap
@@ -130,7 +140,7 @@ pending 不會自動變成人才能決定的問題：在既有授權內繼續安
 | [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) | 不重讀每一篇 PDF，就能依 method、data、claim、limitation、relevance 比較。 |
 | [`gap-to-topic`](https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md) | 3-gate go/no-go 決策備忘錄 — 對候選論文/提案主題評估「缺口開不開？有貢獻嗎？可不可行？」。v0.3.12+ 起把 `.gaps.yml` 接給 Stage 3a。 |
 | [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) | 把 NotebookLM 的 brief 對回原始 source bundle，抓出漏掉的 source、沒根據的 claim、互相矛盾的描述。 |
-| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | 建立要餵進 matrix 的 Obsidian cluster 與 NotebookLM source bundle。 |
+| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | 建立 Obsidian 叢集（對有效且無重複鍵的 mapping YAML frontmatter 進行精準節點區間更新，若為非 mapping、含重複鍵或無效 YAML 的 frontmatter 則 fail-closed 不予修改）、執行 Workspace SQLite（`research-hub open`）限定範圍唯讀 vault metadata 匯入（`obsidian/import`）與 `.research/exports/` 下之 `.base`／Markdown 匯出包（`obsidian/pack`），並組建要餵進 matrix 的 NotebookLM source bundle。 |
 | [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) *(optional)* | 比較前先 audit Zotero——找出重複 DOI、orphan items、提出 tag/collection 整理計畫。**Read-only**。 |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *(optional)* | 真的執行 curator 提出來的整理動作——對 Zotero items 完整 CRUD。 |
 
@@ -222,7 +232,7 @@ token 重的工作，請用下方 **Cross-cutting tools**——`codex-delegate`
 
 ## Cross-cutting tools——每個階段都會用到
 
-有 3 個 skills 不屬於特定階段——它們的觸發條件是 **task 性質**：
+有 4 個 skills 不屬於特定階段——它們的觸發條件是 **task 性質**：
 
 | Skill | 觸發 | 用途 |
 |---|---|---|
