@@ -18,7 +18,8 @@ claims:
     text: "Embodiment is a crucial factor of AI's influence on human behavior."
     evidence_artifacts: []
     figure_or_table: []
-    status: "supported"
+    status: "gap"
+    gap_reason: "Abstract-only run (no full PDF parsed); full-text Methods, Results, and Discussion must be inspected to verify embodiment comparison conditions and causal scope before promotion to supported."
     risk: "Strong claim from a single VR-health study; reviewers may ask for cross-domain replication."
     sentence_in_manuscript: "Overall, our findings highlight embodiment as a crucial factor of AI's influence on human behavior."
 
@@ -26,7 +27,8 @@ claims:
     text: "Discussing health with opposite-gender agents tended to enhance gaze duration, with the effect stronger for male participants compared to their female counterparts."
     evidence_artifacts: []
     figure_or_table: []
-    status: "supported"
+    status: "gap"
+    gap_reason: "Abstract-only run (no full PDF parsed); full-text eye-tracking protocol, gaze-duration descriptive statistics, interaction test statistics (F/t, p-value, CI), and supporting figure/table must be verified before promotion to supported."
     risk: "Effect described as 'tended to' — exact effect size not reported in abstract; reviewers may ask for p-value and CI."
     sentence_in_manuscript: "We observed an interaction effect between agent and participant gender on biobehavioral outcomes: discussing health with opposite-gender agents tended to enhance gaze duration, with the effect stronger for male participants compared to their female counterparts."
 
@@ -34,7 +36,8 @@ claims:
     text: "Female participants liked the VR-ECAs more than their male counterparts, regardless of the VR-ECAs' gender."
     evidence_artifacts: []
     figure_or_table: []
-    status: "supported"
+    status: "gap"
+    gap_reason: "Abstract-only run (no full PDF parsed); full-text likeability scale definition, ANOVA/main-effect and interaction statistics, and effect sizes must be inspected before promotion to supported."
     risk: "Main effect of participant gender on likeability — straightforward, but the 'regardless of agent gender' framing is a null-effect claim that needs the underlying ANOVA reported."
     sentence_in_manuscript: "In addition, female participants liked the VR-ECAs more than their male counterparts, regardless of the VR-ECAs' gender."
 
@@ -42,7 +45,8 @@ claims:
     text: "Participants experienced greater presence while conversing with embodied agents than chatting with text-only agents."
     evidence_artifacts: []
     figure_or_table: []
-    status: "supported"
+    status: "gap"
+    gap_reason: "Abstract-only run (no full PDF parsed); full-text presence instrument, within-subjects counterbalancing protocol, and paired statistical results must be verified before promotion to supported."
     risk: "Within-subjects comparison strength depends on counterbalancing, which the abstract doesn't describe."
     sentence_in_manuscript: "Finally, participants experienced greater presence while conversing with embodied agents than chatting with text-only agents."
 
@@ -50,6 +54,7 @@ claims:
     text: "A similar directional pattern (to the gaze interaction) was observed for healthy snack selection."
     evidence_artifacts: []
     figure_or_table: []
-    status: "draft"
+    status: "gap"
+    gap_reason: "Abstract-only run (no full PDF parsed); full-text behavioral choice protocol, snack-selection counts/proportions, and statistical test results (not just a 'directional pattern' in the abstract) must be inspected before promotion to supported."
     risk: "'Directional pattern' suggests the effect was not statistically significant; needs explicit reporting before use as primary evidence."
     sentence_in_manuscript: "A similar directional pattern was observed for healthy snack selection."

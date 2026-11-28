@@ -62,15 +62,32 @@ verified unchanged inputs in a fresh directory.
 
 ### Agree the round and search routes
 
-Take the topic, target count and reading depth in natural language. Reuse
-preferences already supplied; ask only about missing choices that matter. For
-example, "about 12 papers, abstracts first, then read two core papers closely"
-already supplies both count and depth. Do not repeat those intake questions or
-require a form. When a count is needed but unspecified, propose a need-based
-round of **10–20 relevant distinct papers**, adjusted to the question and
-available evidence. This is not a quota or a 30-paper default: do not pad weak
-matches, duplicate versions or inaccessible papers to reach a number. Report
-shortfalls and uncovered needs; a smaller useful set may be the right outcome.
+Take the topic, target count, discovery track, document categories, and reading
+depth in natural language. Reuse preferences already supplied; ask only about
+missing choices that matter. For example, "about 12 papers, abstracts first,
+then read two core papers closely" already supplies both count and depth. Do not
+repeat those intake questions or require a form. When a count is needed but
+unspecified, propose a need-based round of **10–20 relevant distinct papers**,
+adjusted to the question and available evidence. This is not a quota or a
+30-paper default: do not pad weak matches, duplicate versions or inaccessible
+papers to reach a number. Report shortfalls and uncovered needs; a smaller useful
+set may be the right outcome.
+
+When the discovery track or target document categories (empirical studies,
+theoretical/formal works, books/monographs, reviews) are unspecified, ask
+upfront which track and document types to target before launching broad
+discovery:
+
+- **Track A: Classic & Bedrock** (`classic-bedrock`) — foundational theories,
+  seminal books/monographs/chapters, and field-defining reviews; multi-hop
+  backward citation chasing; zero recency penalty across decades; first-class
+  DOI-less, ISBN, and archival work support.
+- **Track B: Frontier & Recent** (`frontier-recent`) — recent empirical and
+  methodological work, preprints, and active benchmarks; forward citation
+  chasing plus contrary and replication paths.
+- **Track C: Dual-Track Canon + Frontier** (`balanced-dual`) — separate
+  protected sub-quotas for Track A foundational bedrock and Track B recent
+  frontier so high-velocity papers never crowd out classics.
 
 Decompose the question into concepts, keywords, synonyms, abbreviations and
 adjacent terminology. Try multiple relevant search routes and query variants,
@@ -149,8 +166,8 @@ authorization; do not silently install tools or require optional accounts.
 
 | Skill | What it does |
 |---|---|
-| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | Use available native discovery and source reading under the shared protocol; optionally use configured arXiv / Semantic Scholar / CrossRef / PubMed search and authorized ingest/storage. |
-| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *(optional)* | Default host-native seven-section full-text summary (no Hub or separate LLM CLI required), plus existing abstract-only CLI note fill after ingest (CLI mode does not read PDFs or verify full-text claims). |
+| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | Use available native discovery and source reading under the shared 3-track protocol (Track A / B / C); optionally operate configured arXiv / Semantic Scholar / CrossRef / PubMed search, authorized ingest, targeted node-span YAML frontmatter updates for valid unique-key mapping frontmatter (failing closed without modifying non-mapping, duplicate-key, or invalid-YAML frontmatter), scoped read-only Obsidian vault metadata import into Workspace SQLite (`research-hub open` / `obsidian/import`), and workspace `.base` + Markdown export packs (`obsidian/pack` under `.research/exports/`). |
+| [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) *(optional)* | Default host-native study-type routed full-text summaries (7-section empirical contract vs 5-part theoretical/conceptual/formal/historical contract, with deterministic 7-slot Hub SQLite mapping when requested; no Hub or separate LLM CLI required), plus existing abstract-only CLI note fill after ingest (CLI mode does not read PDFs or verify full-text claims). |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *(optional)* | Add, tag, deduplicate, and clean Zotero items when those separately authorized library operations are needed. |
 
 ## 2. Organise & compare literature, find the gap
@@ -162,7 +179,7 @@ authorization; do not silently install tools or require optional accounts.
 | [`literature-triage-matrix`](https://github.com/WenyuChiou/research-hub/blob/master/skills/literature-triage-matrix/SKILL.md) | Compare papers by method, data, claim, limitation, and relevance — without rereading every PDF. |
 | [`gap-to-topic`](https://github.com/WenyuChiou/research-hub/blob/master/skills/gap-to-topic/SKILL.md) | 3-gate go/no-go decision dossier for a candidate thesis/proposal topic (open? a contribution? feasible?). Hands `.gaps.yml` to Stage 3a (v0.3.12+). |
 | [`notebooklm-brief-verifier`](https://github.com/WenyuChiou/research-hub/blob/master/skills/notebooklm-brief-verifier/SKILL.md) | Verify a NotebookLM brief against the source bundle. Catches missed sources, unsupported claims, and contradictions. |
-| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | Build the Obsidian cluster and the NotebookLM source bundle that feed the matrix. |
+| [`research-hub`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md) | Build the Obsidian cluster (with targeted node-span YAML frontmatter updates for valid unique-key mapping frontmatter, failing closed without modifying non-mapping, duplicate-key, or invalid-YAML frontmatter), scoped read-only vault metadata import into Workspace SQLite (`research-hub open` / `obsidian/import`), workspace `.base` + Markdown export packs (`obsidian/pack` under `.research/exports/`), and the NotebookLM source bundle that feeds the matrix. |
 | [`zotero-library-curator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/zotero-library-curator/SKILL.md) *(optional)* | Audit Zotero before comparison — find duplicate DOIs, orphan items, propose tag/collection cleanup. Read-only. |
 | [`zotero-skills`](https://github.com/WenyuChiou/zotero-skills/blob/master/skills/zotero-skills/SKILL.md) *(optional)* | Apply the cleanup the curator proposes — full CRUD on Zotero items. |
 

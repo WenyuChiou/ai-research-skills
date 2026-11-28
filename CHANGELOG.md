@@ -47,6 +47,40 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Staged upstream/dependent integration guidance with explicit structural,
   production-boundary, host-loading and research-quality verification limits.
 
+## [1.7.25] - 2026-11-27
+
+### Changed
+
+- Align the `research-workspace` cache version with the merged `research-hub`
+  `v1.3.9` / plugin `0.5.45` manifest at
+  `de0268465859f356f33b058de86941783cba3a9e` (tree
+  `d5c79a69a5f4f293d8a00eab5aede8a9f3f5c38c`, manifest blob
+  `ea745d2a44eb722b975cfd6b5892d35b8225792d`), recording exact observation
+  provenance while keeping the historical `0.5.20` accepted-source baseline
+  unchanged.
+- Update `docs/pipeline.md`, `docs/pipeline.zh-TW.md` (including fixing the
+  cross-cutting skill count typo `3` -> `4`), `catalog/skills.yml` (`updated:
+  "2026-11-27"`), `README.md`, `README.zh-TW.md`, `docs/accepted-source-verification.md`,
+  and `docs/glossary*.md` to document Stage 1 three-track discovery
+  (`classic-bedrock`, `frontier-recent`, `balanced-dual`), study-type routed
+  full-text summaries on `paper-summarize` (7-section empirical contract vs
+  5-part theoretical/conceptual/formal/historical contract, with deterministic
+  7-slot Hub SQLite mapping when requested), scoped read-only Obsidian vault
+  metadata import into Workspace SQLite (`obsidian/import`), workspace `.base`
+  + Markdown export packs (`obsidian/pack` under `.research/exports/`), and
+  targeted node-span YAML frontmatter updates for valid unique-key mapping
+  frontmatter (failing closed without modifying non-mapping, duplicate-key, or
+  invalid-YAML frontmatter).
+
+### Fixed
+
+- Remediate P0 schema violation in
+  `test-corpus/ai-agents-social-interaction/.paper/lim-2025/claims.yml`:
+  transition `C1`–`C5` from `supported`/`draft` (with empty
+  `evidence_artifacts`) to `status: "gap"` with concrete `gap_reason`
+  explanations detailing the missing full-text body, statistical tables, and
+  protocols required under `abstract-only` scope.
+
 ## [1.7.24] - 2026-11-27
 
 ### Changed
@@ -2042,7 +2076,8 @@ Pinning `marketplace.json` plugin `ref` to `v0.1.0` is deferred — see
   matching, default-branch ↔ marketplace `ref` matching.
 - `LICENSE` — MIT.
 
-[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.24...HEAD
+[Unreleased]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.25...HEAD
+[1.7.25]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.24...v1.7.25
 [1.7.24]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.23...v1.7.24
 [1.7.23]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.22...v1.7.23
 [1.7.22]: https://github.com/WenyuChiou/ai-research-skills/compare/v1.7.21...v1.7.22

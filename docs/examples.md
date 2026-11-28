@@ -128,7 +128,7 @@ in `zotero-skills` after you confirm.
 
 ## `paper-summarize` — Per-paper summary output (abstract-only CLI mode)
 
-*Note: For single-paper body reading, `paper-summarize` defaults to a host-native seven-section full-text summary (Why, Objective, Methods, Results, Conclusions, Key Points, Limitations) with no Hub CLI required. The example below illustrates the separate abstract-only CLI batch mode (`research-hub summarize`) on stored abstracts.*
+*Note: For single-paper body reading, `paper-summarize` defaults to a host-native study-type routed full-text summary — the seven-section empirical contract (Why, Objective, Methods, Results, Conclusions, Key Points, Limitations) or the five-part theoretical/conceptual/formal/historical contract (Core Thesis & Propositions; Definitions, Concepts & Premises; Derivation, Argumentation & Mechanism; Scope Conditions, Assumptions & Conclusions; Counterexamples, Tensions & Legacy, with deterministic 7-slot Hub SQLite mapping when requested) — with no Hub CLI required. The example below illustrates the separate abstract-only CLI batch mode (`research-hub summarize`) on stored abstracts.*
 
 **Input**: An Obsidian cluster of 5 ingested papers whose per-paper
 notes still have TODO skeletons (created by `research-hub auto` or abstract-only `ingest`).

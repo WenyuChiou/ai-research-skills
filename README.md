@@ -53,8 +53,13 @@ Then ask, for example:
 > Build a literature triage matrix for human-in-the-loop research agents. Verify identifiers, preserve contradictions, and show me the evidence gaps before recommending next steps.
 
 Need an executable, resumable workflow instead of prompt-only skills? Continue
-with `pip install research-hub-pipeline`, then run `research-hub setup` and
-`research-hub doctor`. The full path is in [Install](#1-install--get-the-skills).
+with `pip install research-hub-pipeline` (`>=1.3.0`; upgrade with `-U`), then run `research-hub setup`,
+`research-hub doctor`, and — after checking `research-hub open --help` — `research-hub open`
+(the local SQLite visual workstation supporting scoped read-only Obsidian vault
+metadata import and workspace `.base` + Markdown export packs under
+`.research/exports/`; if your installed CLI is older and lacks `open`, upgrade
+or install from source per the [runtime contract](docs/runtime-contract.md#local-workspace-and-writing-adapter)).
+The full path is in [Install](#1-install--get-the-skills).
 
 ### Understand the two control layers
 
@@ -142,8 +147,10 @@ claude plugin install codex-delegate@ai-research-skills
 claude plugin install antigravity-delegate@ai-research-skills
 
 # 5. Literature pipeline automation (Python CLI behind research-hub skills)
-pip install research-hub-pipeline
+pip install research-hub-pipeline    # >=1.3.0 for `open` (upgrade with -U if already installed)
 research-hub setup --persona researcher
+research-hub open --help             # confirm `open` exists in your installed wheel (or install from source)
+research-hub open --demo             # optional local SQLite visual workstation (vault metadata import + .base/Markdown export packs)
 research-hub doctor
 ```
 
@@ -352,11 +359,12 @@ If auto-trigger picks the wrong skill, name it explicitly:
 > host's native paper discovery and reading with a local visual workspace
 > (split Reading Desk, sortable Master Literature Table with category overview
 > and Markdown/CSV export, inline category/metadata notes, and a one-command
-> source launcher `research-hub open --demo`) plus optional Zotero status,
-> Obsidian cluster notes, and NotebookLM brief verification. **All three
-> external tools are optional** — `research-hub` adapts to whichever subset
-> you have, or runs completely account-free locally (source workspace features
-> are separate from the older PyPI `1.2.0` package).
+> launcher `research-hub open --demo` when `research-hub-pipeline>=1.3.0` or
+> source install is present — check `research-hub open --help` first) plus
+> optional Zotero status, Obsidian cluster notes, and NotebookLM brief
+> verification. **All three external tools are optional** — `research-hub`
+> adapts to whichever subset you have, or runs completely account-free locally
+> (older `1.2.0` wheels lack `open`; see [runtime contract](docs/runtime-contract.md#local-workspace-and-writing-adapter)).
 >
 > Already run independent MCP servers for these tools (e.g.
 > `paper-search-mcp`, a Zotero MCP, a NotebookLM MCP)? They coexist —
@@ -381,7 +389,7 @@ If auto-trigger picks the wrong skill, name it explicitly:
 - [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — character-driven routing across the primary model, Codex, and Antigravity. *(Cross-cutting)*
 - [`research-workflow-orchestrator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-workflow-orchestrator/SKILL.md) — resumable controller for orient → scope → discover → synthesize → design → execute → write → release, automatic for read-only/reversible work and paused at catalog human gates. *(All stages)*
 - [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) — `.paper/claims.yml` + `.paper/figures.yml` (status enum, anti-leakage rule, file sentinels). *(Stage 7)*
-- [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) — default host-native seven-section full-text paper summaries (with optional Hub CLI import/Markdown export), plus abstract-only Obsidian/Zotero cluster note fills. *(Stage 1)*
+- [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) — default host-native study-type routed full-text paper summaries (7-section empirical contract vs 5-part theoretical/conceptual/formal/historical contract, with deterministic 7-slot Hub SQLite mapping and optional Markdown stdout export), plus abstract-only Obsidian/Zotero cluster note fills. *(Stage 1)*
 
 </details>
 
@@ -407,7 +415,7 @@ Rough envelope from in-session use — adjust to your input size:
 | Terminology, repetition, and flow audit on 1 paragraph (`academic-writing-skills`) | <1 min | 1 | Independent of manuscript size |
 | Reviewer response (6 comments) (`academic-writing-skills`) | 3–8 min | 3–5 | Scales with comment depth + revision required |
 | Audit 800-item Zotero library (`zotero-library-curator`) | 2–4 min | 1 | Read-only; library size matters less than tag diversity |
-| Summarize 5 papers per cluster (`paper-summarize`) | 4–10 min | 1 | Host-native 7-section summary or abstract-only CLI update (per-destination receipts; not a distributed transaction) |
+| Summarize 5 papers per cluster (`paper-summarize`) | 4–10 min | 1 | Host-native study-type routed summary (7-section empirical or 5-part theoretical/formal/historical) or abstract-only CLI update (per-destination receipts; not a distributed transaction) |
 
 These are **maintainer-observed ranges**, not benchmark numbers. Your
 LLM provider, network, library state, and prompt phrasing all affect

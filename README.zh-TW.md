@@ -53,7 +53,12 @@ claude plugin install research-workspace@ai-research-skills
 > 為 human-in-the-loop research agents 建立文獻分流矩陣；驗證 identifiers、保留互相矛盾的結果，並在建議下一步前列出 evidence gaps。
 
 若需要可執行、可恢復的 workflow，而不只是 prompt-only skills，接著安裝
-`research-hub-pipeline`，再執行 `research-hub setup` 與 `research-hub doctor`。
+`pip install research-hub-pipeline`（`>=1.3.0`；升級請加 `-U`），再執行 `research-hub setup`、
+`research-hub doctor`，並在先確認 `research-hub open --help` 可用後執行
+`research-hub open`（本機 SQLite 視覺工作台，支援限定範圍的唯讀 Obsidian vault
+metadata 匯入與工作區 `.base`／Markdown 匯出包，不對原始 vault 筆記做自動雙向即時同步；
+若已安裝的 CLI 版本較舊而不含 `open`，請升級或依
+[runtime contract](docs/runtime-contract.zh-TW.md#本機視覺工作區) 改用原始碼安裝）。
 完整路徑請看[安裝章節](#1-安裝-install--取得這套-skills)。
 
 ### 看懂兩個控制層
@@ -140,8 +145,10 @@ claude plugin install codex-delegate@ai-research-skills
 claude plugin install antigravity-delegate@ai-research-skills
 
 # 5. 文獻 pipeline 自動化 (research-hub skills 背後的 Python CLI)
-pip install research-hub-pipeline
+pip install research-hub-pipeline    # >=1.3.0 才含 `open`（若已安裝舊版請加 -U 升級）
 research-hub setup --persona researcher
+research-hub open --help             # 先確認已安裝版本含 `open` 指令（或改用原始碼安裝）
+research-hub open --demo             # 選用：啟動本機 SQLite 視覺工作台（支援唯讀 vault metadata 匯入與 .base／Markdown 匯出包）
 research-hub doctor
 ```
 
@@ -315,7 +322,7 @@ Zotero、Obsidian、NotebookLM 都是可選整合，不必為此多走設定流�
 ### 已經在用 Zotero / Obsidian / NotebookLM?
 
 > **手上已經有 Zotero / Obsidian / NotebookLM 任何一個，或想要本機視覺化文獻整理空間？**
-> [`research-hub`](https://github.com/WenyuChiou/research-hub) 結合你現有 AI 主機的原生找文獻與閱讀能力，搭配本機視覺工作區（閱讀雙欄介面、可排序文獻總表與分類總覽、內建分類與書目筆記、Markdown／CSV 匯出，原始碼版支援 `research-hub open --demo` 一鍵啟動），並可選用 Zotero 收錄狀態、Obsidian 主題筆記與 NotebookLM 簡報驗證。**三個外部工具都是選用** — `research-hub` 依你已有的工具自動調整，也能完全免帳號在純本機運作（原始碼工作區與較早發布的 PyPI `1.2.0` 套件為不同發布線）。
+> [`research-hub`](https://github.com/WenyuChiou/research-hub) 結合你現有 AI 主機的原生找文獻與閱讀能力，搭配本機視覺工作區（閱讀雙欄介面、可排序文獻總表與分類總覽、內建分類與書目筆記、Markdown／CSV 匯出，安裝 `research-hub-pipeline>=1.3.0` 或原始碼版時可用 `research-hub open --demo` 一鍵啟動，請先以 `research-hub open --help` 確認），並可選用 Zotero 收錄狀態、Obsidian 主題筆記與 NotebookLM 簡報驗證。**三個外部工具都是選用** — `research-hub` 依你已有的工具自動調整，也能完全免帳號在純本機運作（較早發布的 `1.2.0` 套件不含 `open`，見 [runtime contract](docs/runtime-contract.zh-TW.md#本機視覺工作區)）。
 >
 > 已經在跑這些工具的獨立 MCP server (例如 `paper-search-mcp` / Zotero MCP /
 > NotebookLM MCP)? 共存 — skill 管 workflow 編排, MCP 給原始 tool access。
@@ -338,7 +345,7 @@ Zotero、Obsidian、NotebookLM 都是可選整合，不必為此多走設定流�
 - [`research-hub-multi-ai`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub-multi-ai/SKILL.md) — 根據任務性質在 primary model / Codex / Antigravity 之間進行 character-driven routing。*(跨領域)*
 - [`research-workflow-orchestrator`](https://github.com/WenyuChiou/research-hub/blob/master/skills/research-workflow-orchestrator/SKILL.md) — 可恢復的 controller，協調 orient → scope → discover → synthesize → design → execute → write → release；read-only / 可逆工作自動前進，遇到 catalog human gates 暫停。*(所有階段)*
 - [`paper-memory-builder`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-memory-builder/SKILL.md) — 產生 `.paper/claims.yml` + `.paper/figures.yml` (包含狀態列舉、anti-leakage 規則、檔案哨兵)。*(階段 7)*
-- [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) — 預設由 AI 主機原生精讀產出七段來源綁定全文摘要（可選用 Hub CLI 匯入／匯出 Markdown），亦支援既有 abstract-only CLI 補寫 Obsidian 與 Zotero 群組筆記。*(階段 1)*
+- [`paper-summarize`](https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md) — 預設由 AI 主機依研究類型分流產出全文摘要（實證七段契約 vs 理論／概念／形式／歷史五部契約，選用 Hub CLI 交接時可決定性對應 SQLite 七欄並匯出 Markdown），亦支援既有 abstract-only CLI 補寫 Obsidian 與 Zotero 群組筆記。*(階段 1)*
 
 </details>
 
@@ -364,7 +371,7 @@ Zotero、Obsidian、NotebookLM 都是可選整合，不必為此多走設定流�
 | 審核單一段落的術語、重複與流暢度 (`academic-writing-skills`) | <1 分鐘 | 1 | 與稿件總長度無關 |
 | 回覆審稿人意見 (6 則) (`academic-writing-skills`) | 3–8 分鐘 | 3–5 | 取決於意見深度及所需修改幅度 |
 | 審核 800 條的 Zotero 文獻庫 (`zotero-library-curator`) | 2–4 分鐘 | 1 | 唯讀；標籤多樣性比文獻庫大小影響更大 |
-| 為每個叢集摘要 5 篇論文 (`paper-summarize`) | 4–10 分鐘 | 1 | 支援 AI 主機原生七段摘要或 abstract-only CLI 更新（分目的地回執，非分散式原子交易） |
+| 為每個叢集摘要 5 篇論文 (`paper-summarize`) | 4–10 分鐘 | 1 | 支援 AI 主機依研究類型分流之全文摘要（實證七段或理論／概念／形式／歷史五部）或 abstract-only CLI 更新（分目的地回執，非分散式原子交易） |
 
 這些是 **維護者觀察到的範圍**，並非基準測試數據。您的 LLM 供應商、網路、文獻庫狀態以及 prompt 的寫法都會影響實際時間。
 

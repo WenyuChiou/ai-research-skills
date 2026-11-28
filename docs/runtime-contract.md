@@ -24,7 +24,7 @@ marketplace state.
 |---|---|---|
 | Prompt-only workflow skills | `gap-to-topic`, `research-design-helper`, `literature-triage-matrix`, `academic-writing-skills` | Any host that can read the needed files and follow the output contract |
 | Workspace-file skills | `research-context-compressor`, `research-project-orienter`, `paper-memory-builder` | File-system access to the project or manually supplied context |
-| Native literature discovery & per-paper summaries | Discovery guidance in `research-hub` (shared research protocol) and host-native seven-section full-text summaries in `paper-summarize` | The search/reading tools actually exposed by Codex or Claude Code; no Hub CLI or storage account required for this route |
+| Native literature discovery & per-paper summaries | Discovery guidance in `research-hub` (shared research protocol) and host-native study-type routed full-text summaries in `paper-summarize` (7-section empirical contract vs 5-part theoretical/conceptual/formal/historical contract, with deterministic 7-slot Hub SQLite mapping when requested) | The search/reading tools actually exposed by Codex or Claude Code; no Hub CLI or storage account required for this route |
 | Runtime-backed research automation | Configured `research-hub` automation, abstract-only `paper-summarize` CLI batch mode (`research-hub summarize`), parts of `notebooklm-brief-verifier`, Zotero-backed curation flows | `pip install research-hub-pipeline` plus any required Zotero, Obsidian, NotebookLM, LLM CLI, MCP, or REST setup |
 | Deep Zotero CRUD | `zotero-skills` | Zotero local/Web API credentials and a host that can call the API |
 | Delegation skills | `codex-delegate`, `antigravity-delegate`, `research-hub-multi-ai` | Target CLI installed and available on `PATH`, or a manual handoff prompt |
@@ -50,7 +50,7 @@ to hide that drift. Missing host or runtime evidence remains unknown/unavailable
 
 For project/artifact/task management and the local visual literature workspace
 (split Reading Desk, sortable Master Literature Table, append-only category/metadata
-notes, and source-install `research-hub open --demo` / `serve --workspace` launcher),
+notes, and `research-hub-pipeline>=1.3.0` / source-install `research-hub open --demo` / `serve --workspace` launcher),
 use Hub's existing [workspace guide](https://github.com/WenyuChiou/research-hub/blob/master/docs/workspace-guide.md)
 and [README](https://github.com/WenyuChiou/research-hub/blob/master/README.md),
 not the literature-ingestion smoke test below. Check the actual installed

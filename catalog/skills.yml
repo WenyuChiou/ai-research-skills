@@ -1,5 +1,5 @@
 version: 4
-updated: "2026-10-03"
+updated: "2026-11-27"
 catalog_name: ai-research-skills
 description: Curated AI skills for research workflows, literature management, academic writing, and multi-agent delegation.
 
@@ -28,13 +28,14 @@ families:
     canonical_repo: https://github.com/WenyuChiou/research-hub
     default_branch: master
     install:
-      summary: Install all packaged research-hub skills through the research-hub CLI; `setup` is the recommended onboarding (init + install + persona + optional NotebookLM login in one command).
+      summary: Install all packaged research-hub skills through the research-hub CLI; `setup` is the recommended onboarding (init + install + persona + optional NotebookLM login in one command), and `open` (in `research-hub-pipeline>=1.3.0` or source install; check `research-hub open --help` first) launches the local SQLite visual workstation.
       commands:
-        - pip install research-hub-pipeline
+        - pip install -U "research-hub-pipeline>=1.3.0"
         - research-hub setup --persona researcher  # or: analyst | humanities | internal
       optional_commands:
         - pip install "research-hub-pipeline[playwright]"
         - research-hub notebooklm login
+        - research-hub open --help && research-hub open --demo  # requires >=1.3.0 or source install
         - research-hub install --platform claude-code  # bare install if you skipped setup
     tools:
       - Zotero
@@ -45,20 +46,20 @@ families:
         directory: skills/research-hub
         repo_url: https://github.com/WenyuChiou/research-hub
         skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/research-hub/SKILL.md
-        purpose: Guide literature discovery with available host-native search and source reading; operate configured research-hub ingest, organization, NotebookLM, dashboard, and maintenance workflows when needed.
+        purpose: Guide three-track literature discovery (classic-bedrock, frontier-recent, balanced-dual) with available host-native search and source reading; operate configured research-hub setup, open visual workstation, scoped read-only Obsidian vault metadata import into Workspace SQLite (`obsidian/import`), workspace `.base` + Markdown export packs (`obsidian/pack` under `.research/exports/`), targeted node-span YAML frontmatter updates for valid unique-key mapping frontmatter (failing closed without modifying non-mapping, duplicate-key, or invalid-YAML frontmatter), NotebookLM, and maintenance workflows when needed.
         use_when:
-          - Find papers about a topic and organize them.
+          - Find papers about a topic and organize them across Track A (classic-bedrock), Track B (frontier-recent), or Track C (balanced-dual) discovery.
           - Plan searches and retain version-bound source evidence, actual reading levels, closest or contrary work, and unresolved needs using available Codex or Claude Code capabilities.
-          - Ingest local files into an Obsidian vault.
+          - Ingest local files into an Obsidian vault, run scoped read-only vault metadata import into Workspace SQLite (`obsidian/import`), or generate workspace `.base` + Markdown export packs (`obsidian/pack` under `.research/exports/`).
           - Upload a cluster to NotebookLM and download a brief.
           - Inspect or maintain a research-hub vault.
         outputs:
           - Literature evidence handoff with source versions, reading levels, locators, closest or contrary work, and not-read or unknown limitations
           - Optional native reader from supplied observations and language content; text-only handoff remains usable if the helper is unavailable
           - Optional Zotero collections and tags (configured and authorized writes only)
-          - Optional Obsidian Markdown notes (configured and authorized writes only)
+          - Optional Obsidian Vault Markdown notes (targeted node-span YAML frontmatter updates for valid unique-key mapping frontmatter, failing closed without modifying non-mapping, duplicate-key, or invalid-YAML frontmatter), scoped read-only vault metadata import into Workspace SQLite (`obsidian/import`), and workspace `.base` + Markdown export packs under `.research/exports/` (`obsidian/pack`; configured and authorized operations only)
           - Optional NotebookLM bundles and briefs (configured and authorized use only)
-          - research-hub local visual workspace (split Reading Desk, Master Literature Table, append-only category/metadata notes, Markdown/CSV export) and dashboards
+          - research-hub local visual workspace (`research-hub open`; split Reading Desk, Master Literature Table, append-only category/metadata notes, Markdown/CSV export) and dashboards
         verified_on: "2026-04-25"
         verification_status: pass
         verification_tier: T1
@@ -317,14 +318,14 @@ families:
         directory: skills/paper-summarize
         repo_url: https://github.com/WenyuChiou/research-hub
         skill_url: https://github.com/WenyuChiou/research-hub/blob/master/skills/paper-summarize/SKILL.md
-        purpose: Guide host-native seven-section full-text paper summaries without requiring Hub or a separate LLM CLI, and operate the existing abstract-only research-hub summarize CLI to fill Key Findings / Methodology / Relevance in authorized Obsidian and Zotero notes (abstract-only CLI mode is not full-text reading or source verification).
+        purpose: Guide host-native study-type routed full-text paper summaries (7-section empirical contract vs 5-part theoretical/conceptual/formal/historical contract, with deterministic 7-slot Hub SQLite mapping when requested) without requiring Hub or a separate LLM CLI, and operate the existing abstract-only research-hub summarize CLI to fill Key Findings / Methodology / Relevance in authorized Obsidian and Zotero notes (abstract-only CLI mode is not full-text reading or source verification).
         use_when:
-          - "User asks for a single-paper body/full-text summary (why, objective, methods, results, conclusions, key points, limitations) using the active AI host."
+          - "User asks for a single-paper body/full-text summary (study-type routed: Empirical 7-section or Theoretical/Conceptual/Formal/Historical 5-part) using the active AI host."
           - "User says: \"summarize the papers in cluster X\" or \"fill the TODO Key Findings\"."
           - Just ran `research-hub auto` or abstract-only `ingest` and per-paper notes are still TODO skeletons.
           - Prepare per-paper summaries and inspect each enabled destination's confirmed or unknown write outcome.
         outputs:
-          - Host-native seven-section source-bound summary in conversation (with optional Hub CLI native-summary-import / generic Markdown stdout export)
+          - Host-native study-type routed source-bound summary in conversation (7-section empirical contract or 5-part theoretical/conceptual/formal/historical contract, with deterministic 7-slot Hub SQLite mapping on optional CLI `native-summary-import` / generic Markdown stdout export)
           - Obsidian markdown blocks (`## Key Findings`, `## Methodology`, `## Relevance` per paper in abstract-only CLI mode)
           - Owned Zotero summary child note HTML (confirmed or unknown outcome; guarded best-effort local compensation, not a distributed transaction)
           - Fallback prompt at `<vault>/.research_hub/artifacts/<slug>/summarize-prompt.md` when no LLM CLI on PATH
