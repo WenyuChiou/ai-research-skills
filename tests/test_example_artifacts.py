@@ -89,3 +89,47 @@ def test_topic_dossier_gaps_have_verdict_and_consumer():
     )
     for gap in data.get("gaps", []):
         assert gap.get("verdict"), f"gap {gap.get('id')} missing a verdict"
+
+
+def _claims_anti_leakage_violations(claims_data):
+    """Return violation tuples for active claims lacking evidence_artifacts.
+
+    Any non-rejected claim with empty or absent `evidence_artifacts` must use
+    `status: "gap"` and carry a non-empty, non-whitespace `gap_reason`.
+    """
+    violations = []
+    for claim in claims_data.get("claims", []):
+        cid = claim.get("id")
+        status = claim.get("status")
+        evidence = claim.get("evidence_artifacts")
+        gap_reason = claim.get("gap_reason")
+        if not evidence and status != "rejected":
+            if status != "gap" or not isinstance(gap_reason, str) or not gap_reason.strip():
+                violations.append((cid, status, gap_reason))
+    return violations
+
+
+def test_corpus_claims_enforce_empty_evidence_anti_leakage():
+    """Guard repaired corpus claims (e.g. lim-2025/claims.yml) against status regressions."""
+    corpus_claims = sorted((ROOT / "test-corpus").rglob("claims.yml"))
+    assert corpus_claims, "expected at least one corpus claims.yml fixture"
+    for path in corpus_claims:
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        violations = _claims_anti_leakage_violations(data)
+        assert not violations, f"{path.relative_to(ROOT)} anti-leakage violations: {violations}"
+
+
+def test_claims_anti_leakage_rejects_old_lim_2025_invalid_statuses():
+    """Negative regression cases mirroring the pre-repair lim-2025 violations."""
+    assert _claims_anti_leakage_violations(
+        {"claims": [{"id": "C1", "evidence_artifacts": [], "status": "supported"}]}
+    ) == [("C1", "supported", None)]
+    assert _claims_anti_leakage_violations(
+        {"claims": [{"id": "C5", "evidence_artifacts": [], "status": "draft"}]}
+    ) == [("C5", "draft", None)]
+    assert _claims_anti_leakage_violations(
+        {"claims": [{"id": "C2", "evidence_artifacts": [], "status": "gap", "gap_reason": "   "}]}
+    ) == [("C2", "gap", "   ")]
+    assert _claims_anti_leakage_violations(
+        {"claims": [{"id": "C3", "evidence_artifacts": [], "status": "rejected"}]}
+    ) == []

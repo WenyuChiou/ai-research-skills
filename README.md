@@ -53,11 +53,13 @@ Then ask, for example:
 > Build a literature triage matrix for human-in-the-loop research agents. Verify identifiers, preserve contradictions, and show me the evidence gaps before recommending next steps.
 
 Need an executable, resumable workflow instead of prompt-only skills? Continue
-with `pip install research-hub-pipeline`, then run `research-hub setup`,
-`research-hub doctor`, and `research-hub open` (the local SQLite visual
-workstation supporting scoped read-only Obsidian vault metadata import and
-workspace `.base` + Markdown export packs under `.research/exports/`). The full
-path is in [Install](#1-install--get-the-skills).
+with `pip install research-hub-pipeline` (`>=1.3.0`; upgrade with `-U`), then run `research-hub setup`,
+`research-hub doctor`, and — after checking `research-hub open --help` — `research-hub open`
+(the local SQLite visual workstation supporting scoped read-only Obsidian vault
+metadata import and workspace `.base` + Markdown export packs under
+`.research/exports/`; if your installed CLI is older and lacks `open`, upgrade
+or install from source per the [runtime contract](docs/runtime-contract.md#local-workspace-and-writing-adapter)).
+The full path is in [Install](#1-install--get-the-skills).
 
 ### Understand the two control layers
 
@@ -145,8 +147,9 @@ claude plugin install codex-delegate@ai-research-skills
 claude plugin install antigravity-delegate@ai-research-skills
 
 # 5. Literature pipeline automation (Python CLI behind research-hub skills)
-pip install research-hub-pipeline
+pip install research-hub-pipeline    # >=1.3.0 for `open` (upgrade with -U if already installed)
 research-hub setup --persona researcher
+research-hub open --help             # confirm `open` exists in your installed wheel (or install from source)
 research-hub open --demo             # optional local SQLite visual workstation (vault metadata import + .base/Markdown export packs)
 research-hub doctor
 ```
@@ -356,11 +359,12 @@ If auto-trigger picks the wrong skill, name it explicitly:
 > host's native paper discovery and reading with a local visual workspace
 > (split Reading Desk, sortable Master Literature Table with category overview
 > and Markdown/CSV export, inline category/metadata notes, and a one-command
-> source launcher `research-hub open --demo`) plus optional Zotero status,
-> Obsidian cluster notes, and NotebookLM brief verification. **All three
-> external tools are optional** — `research-hub` adapts to whichever subset
-> you have, or runs completely account-free locally (source workspace features
-> are separate from the older PyPI `1.2.0` package).
+> launcher `research-hub open --demo` when `research-hub-pipeline>=1.3.0` or
+> source install is present — check `research-hub open --help` first) plus
+> optional Zotero status, Obsidian cluster notes, and NotebookLM brief
+> verification. **All three external tools are optional** — `research-hub`
+> adapts to whichever subset you have, or runs completely account-free locally
+> (older `1.2.0` wheels lack `open`; see [runtime contract](docs/runtime-contract.md#local-workspace-and-writing-adapter)).
 >
 > Already run independent MCP servers for these tools (e.g.
 > `paper-search-mcp`, a Zotero MCP, a NotebookLM MCP)? They coexist —

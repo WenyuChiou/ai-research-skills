@@ -28,14 +28,14 @@ families:
     canonical_repo: https://github.com/WenyuChiou/research-hub
     default_branch: master
     install:
-      summary: Install all packaged research-hub skills through the research-hub CLI; `setup` is the recommended onboarding (init + install + persona + optional NotebookLM login in one command), and `open` launches the local SQLite visual workstation.
+      summary: Install all packaged research-hub skills through the research-hub CLI; `setup` is the recommended onboarding (init + install + persona + optional NotebookLM login in one command), and `open` (in `research-hub-pipeline>=1.3.0` or source install; check `research-hub open --help` first) launches the local SQLite visual workstation.
       commands:
-        - pip install research-hub-pipeline
+        - pip install -U "research-hub-pipeline>=1.3.0"
         - research-hub setup --persona researcher  # or: analyst | humanities | internal
       optional_commands:
         - pip install "research-hub-pipeline[playwright]"
         - research-hub notebooklm login
-        - research-hub open --demo
+        - research-hub open --help && research-hub open --demo  # requires >=1.3.0 or source install
         - research-hub install --platform claude-code  # bare install if you skipped setup
     tools:
       - Zotero

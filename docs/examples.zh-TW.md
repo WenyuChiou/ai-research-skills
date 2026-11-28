@@ -120,7 +120,7 @@ Curator 只 emit 這份報告;實際 merge / delete 在你確認後由 `zotero-s
 
 ## `paper-summarize` — 每篇論文摘要產出（abstract-only CLI 模式）
 
-*註：針對單篇全文精讀，`paper-summarize` 預設採用 AI 主機原生的七段來源綁定摘要（Why / Objective / Methods / Results / Conclusions / Key Points / Limitations），不需 Hub CLI。下方範例呈現另行的 abstract-only CLI 批次更新模式（`research-hub summarize`）。*
+*註：針對單篇全文精讀，`paper-summarize` 預設採用 AI 主機依研究類型分流的來源綁定全文摘要——實證研究採七段契約（Why / Objective / Methods / Results / Conclusions / Key Points / Limitations），理論／概念／形式／歷史研究採五部契約（核心論點與命題；定義、概念與前提；推導、論證與機制；適用邊界、假設與結論；反例、張力與學術遺產，選用 Hub SQLite 交接時可決定性對應至七欄）——不需 Hub CLI。下方範例呈現另行的 abstract-only CLI 批次更新模式（`research-hub summarize`）。*
 
 **Input**：Obsidian cluster 裡 5 篇 paper、每篇 per-paper note 還是 TODO 骨架
 （`research-hub auto` 或僅含摘要之 `ingest` 剛跑完的狀態）。
